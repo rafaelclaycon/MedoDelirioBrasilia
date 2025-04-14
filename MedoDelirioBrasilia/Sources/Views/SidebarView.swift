@@ -102,7 +102,8 @@ struct SidebarView: View {
                         destination: FolderDetailView(
                             folder: folder,
                             currentContentListMode: $currentContentListMode,
-                            toast: $toast
+                            toast: $toast,
+                            floatingOptions: $floatingOptions
                         ),
                         tag: .specificFolder,
                         selection: $state,

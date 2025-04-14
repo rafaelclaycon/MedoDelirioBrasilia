@@ -14,8 +14,6 @@ struct StandaloneFavoritesView: View {
 
     @State private var soundSearchTextIsEmpty: Bool? = true
 
-    private var toast: Binding<Toast?>
-
     // MARK: - Initializer
 
     init(
@@ -30,7 +28,6 @@ struct StandaloneFavoritesView: View {
             toast: toast,
             floatingOptions: .constant(nil)
         ))
-        self.toast = toast
     }
 
     // MARK: - View Body
@@ -90,7 +87,8 @@ struct StandaloneFavoritesView: View {
                     viewModel.onViewDidAppear()
                 }
             }
-            .toast(toast)
+            .toast(favoritesViewModel.toast)
+            .floatingContentOptions(favoritesViewModel.floatingOptions)
         }
     }
 }

@@ -43,7 +43,8 @@ struct FolderDetailView: View {
     init(
         folder: UserFolder,
         currentContentListMode: Binding<ContentListMode>,
-        toast: Binding<Toast?>
+        toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>
     ) {
         self.folder = folder
         let viewModel = FolderDetailViewViewModel(
@@ -59,7 +60,7 @@ struct FolderDetailView: View {
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentListMode: currentContentListMode,
             toast: toast,
-            floatingOptions: .constant(nil),
+            floatingOptions: floatingOptions,
             refreshAction: { viewModel.onPulledToRefresh() },
             insideFolder: folder,
             multiSelectFolderOperation: .remove
@@ -144,6 +145,8 @@ struct FolderDetailView: View {
                     )
                 }
             }
+            .toast(contentListViewModel.toast)
+            .floatingContentOptions(contentListViewModel.floatingOptions)
         }
     }
 
@@ -258,6 +261,7 @@ struct FolderDetailView: View {
             changeHash: "abcdefg"
         ),
         currentContentListMode: .constant(.regular),
-        toast: .constant(nil)
+        toast: .constant(nil),
+        floatingOptions: .constant(nil)
     )
 }

@@ -234,7 +234,8 @@ struct MainView: View {
                                         FolderDetailView(
                                             folder: folder,
                                             currentContentListMode: $currentContentListMode,
-                                            toast: $toast
+                                            toast: $toast,
+                                            floatingOptions: $floatingOptions
                                         )
                                     }
                                 } label: {

@@ -21,6 +21,7 @@ struct FolderList: View {
     @State private var displayJoinFolderResearchBanner: Bool = false
     @State private var currentContentListMode: ContentListMode = .regular
     @State private var toast: Toast?
+    @State private var floatingOptions: FloatingContentOptions?
 
     // MARK: - Environment
 
@@ -78,7 +79,8 @@ struct FolderList: View {
                             FolderDetailView(
                                 folder: folder,
                                 currentContentListMode: $currentContentListMode,
-                                toast: $toast
+                                toast: $toast,
+                                floatingOptions: $floatingOptions
                             )
                         } label: {
                             FolderCell(

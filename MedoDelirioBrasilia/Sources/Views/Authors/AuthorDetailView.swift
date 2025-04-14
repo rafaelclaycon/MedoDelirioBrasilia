@@ -17,7 +17,6 @@ struct AuthorDetailView: View {
 
     @State private var navBarTitle: String = .empty
     private var currentContentListMode: Binding<ContentListMode>
-    private var toast: Binding<Toast?>
 
     @State private var showSelectionControlsInToolbar = false
     @State private var showMenuOnToolbarForiOS16AndHigher = false
@@ -119,7 +118,6 @@ struct AuthorDetailView: View {
 
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentContentListMode = currentListMode
-        self.toast = toast
 
         let contentListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.soundsPublisher,
@@ -274,7 +272,7 @@ struct AuthorDetailView: View {
                 .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-                        toast: toast,
+                        toast: contentListViewModel.toast,
                         subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
                         emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? "")
                     )
@@ -282,7 +280,7 @@ struct AuthorDetailView: View {
                 .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
-                        toast: toast,
+                        toast: contentListViewModel.toast,
                         subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
                         emailBody: Shared.Email.AskForNewSound.body
                     )
@@ -290,7 +288,7 @@ struct AuthorDetailView: View {
                 .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
-                        toast: toast,
+                        toast: contentListViewModel.toast,
                         subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
                         emailBody: Shared.Email.AuthorDetailIssue.body
                     )
@@ -304,7 +302,8 @@ struct AuthorDetailView: View {
                 }
             }
             .edgesIgnoringSafeArea(edgesToIgnore)
-            .toast(toast)
+            .toast(contentListViewModel.toast)
+            .floatingContentOptions(contentListViewModel.floatingOptions)
         }
     }
 

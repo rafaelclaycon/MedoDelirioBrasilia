@@ -16,12 +16,6 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
 
     @Published var dataLoadingDidFail: Bool = false
-
-    @Published var toast: Toast?
-
-    // Playlist
-    @Published var isPlayingPlaylist: Bool = false
-    private var currentTrackIndex: Int = 0
     
     // Alerts
     @Published var alertTitle: String = ""

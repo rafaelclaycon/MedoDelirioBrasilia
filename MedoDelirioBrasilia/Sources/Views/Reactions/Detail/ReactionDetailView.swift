@@ -120,6 +120,8 @@ struct ReactionDetailView: View {
                 }
             }
             .edgesIgnoringSafeArea(.top)
+            .toast(soundListViewModel.toast)
+            .floatingContentOptions(soundListViewModel.floatingOptions)
         }
     }
 }
