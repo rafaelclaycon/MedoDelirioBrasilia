@@ -10,13 +10,14 @@ import SwiftUI
 struct PlayableContentView: View {
 
     let content: any MedoContentProtocol
-    var showNewTag: Bool = true
 
-    @Binding var favorites: Set<String>
-    @Binding var highlighted: Set<String>
-    @Binding var nowPlaying: Set<String>
-    @Binding var selectedItems: Set<String>
-    @Binding var currentContentListMode: ContentListMode
+    var showNewTag: Bool = true
+    let favorites: Set<String>
+    let highlighted: Set<String>
+    let nowPlaying: Set<String>
+    let selectedItems: Set<String>
+    let currentContentListMode: ContentListMode
+
     @State private var timeRemaining: Double = 0
 
     enum Background {
@@ -275,11 +276,11 @@ struct PlayableContentView: View {
                     dateAdded: .now - 1_000_000, // 11.6 days
                     duration: 2
                 ),
-                favorites: .constant(Set<String>()),
-                highlighted: .constant(Set<String>()),
-                nowPlaying: .constant(Set<String>()),
-                selectedItems: .constant(Set<String>()),
-                currentContentListMode: .constant(.regular)
+                favorites: Set<String>(),
+                highlighted: Set<String>(),
+                nowPlaying: Set<String>(),
+                selectedItems: Set<String>(),
+                currentContentListMode: .regular
             )
 
             PlayableContentView(
@@ -290,11 +291,11 @@ struct PlayableContentView: View {
                     dateAdded: .now - 1_000_000, // 11.6 days
                     duration: 2
                 ),
-                favorites: .constant(Set<String>()),
-                highlighted: .constant(Set<String>()),
-                nowPlaying: .constant(Set<String>()),
-                selectedItems: .constant(Set<String>()),
-                currentContentListMode: .constant(.regular)
+                favorites: Set<String>(),
+                highlighted: Set<String>(),
+                nowPlaying: Set<String>(),
+                selectedItems: Set<String>(),
+                currentContentListMode: .regular
             )
         }
 
@@ -306,11 +307,11 @@ struct PlayableContentView: View {
                 dateAdded: .now - 1_000_000, // 11.6 days
                 duration: 2
             ),
-            favorites: .constant(Set<String>()),
-            highlighted: .constant(Set<String>()),
-            nowPlaying: .constant(Set<String>()),
-            selectedItems: .constant(Set<String>()),
-            currentContentListMode: .constant(.regular)
+            favorites: Set<String>(),
+            highlighted: Set<String>(),
+            nowPlaying: Set<String>(),
+            selectedItems: Set<String>(),
+            currentContentListMode: .regular
         )
     }
     .padding()
@@ -326,11 +327,11 @@ struct PlayableContentView: View {
                     authorName: "Filósofo da CEAGESP",
                     duration: 2
                 ),
-                favorites: .constant(Set<String>(arrayLiteral: "ABC")),
-                highlighted: .constant(Set<String>()),
-                nowPlaying: .constant(Set<String>()),
-                selectedItems: .constant(Set<String>()),
-                currentContentListMode: .constant(.regular)
+                favorites: Set<String>(arrayLiteral: "ABC"),
+                highlighted: Set<String>(),
+                nowPlaying: Set<String>(),
+                selectedItems: Set<String>(),
+                currentContentListMode: .regular
             )
 
             PlayableContentView(
@@ -340,11 +341,11 @@ struct PlayableContentView: View {
                     authorName: "Soraya Thronicke",
                     duration: 2
                 ),
-                favorites: .constant(Set<String>(arrayLiteral: "DEF")),
-                highlighted: .constant(Set<String>()),
-                nowPlaying: .constant(Set<String>()),
-                selectedItems: .constant(Set<String>()),
-                currentContentListMode: .constant(.regular)
+                favorites: Set<String>(arrayLiteral: "DEF"),
+                highlighted: Set<String>(),
+                nowPlaying: Set<String>(),
+                selectedItems: Set<String>(),
+                currentContentListMode: .regular
             )
         }
     }
@@ -361,11 +362,11 @@ struct PlayableContentView: View {
                     authorName: "Filósofo da CEAGESP",
                     duration: 2
                 ),
-                favorites: .constant(Set<String>(arrayLiteral: "ABC")),
-                highlighted: .constant(Set<String>()),
-                nowPlaying: .constant(Set<String>(arrayLiteral: "ABC")),
-                selectedItems: .constant(Set<String>()),
-                currentContentListMode: .constant(.regular)
+                favorites: Set<String>(arrayLiteral: "ABC"),
+                highlighted: Set<String>(),
+                nowPlaying: Set<String>(arrayLiteral: "ABC"),
+                selectedItems: Set<String>(),
+                currentContentListMode: .regular
             )
 
             PlayableContentView(
@@ -375,11 +376,11 @@ struct PlayableContentView: View {
                     authorName: "Soraya Thronicke",
                     duration: 2
                 ),
-                favorites: .constant(Set<String>()),
-                highlighted: .constant(Set<String>()),
-                nowPlaying: .constant(Set<String>(arrayLiteral: "DEF")),
-                selectedItems: .constant(Set<String>()),
-                currentContentListMode: .constant(.regular)
+                favorites: Set<String>(),
+                highlighted: Set<String>(),
+                nowPlaying: Set<String>(arrayLiteral: "DEF"),
+                selectedItems: Set<String>(),
+                currentContentListMode: .regular
             )
         }
 
@@ -390,11 +391,11 @@ struct PlayableContentView: View {
                 authorName: "Soraya Thronicke",
                 duration: 2
             ),
-            favorites: .constant(Set<String>()),
-            highlighted: .constant(Set<String>()),
-            nowPlaying: .constant(Set<String>(arrayLiteral: "DEF")),
-            selectedItems: .constant(Set<String>()),
-            currentContentListMode: .constant(.regular)
+            favorites: Set<String>(),
+            highlighted: Set<String>(),
+            nowPlaying: Set<String>(arrayLiteral: "DEF"),
+            selectedItems: Set<String>(),
+            currentContentListMode: .regular
         )
     }
     .padding()
@@ -408,11 +409,11 @@ struct PlayableContentView: View {
             authorName: "Paulo Sérgio Nogueira",
             duration: 2
         ),
-        favorites: .constant(Set<String>()),
-        highlighted: .constant(Set<String>()),
-        nowPlaying: .constant(Set<String>()),
-        selectedItems: .constant(Set<String>()),
-        currentContentListMode: .constant(.regular)
+        favorites: Set<String>(),
+        highlighted: Set<String>(),
+        nowPlaying: Set<String>(),
+        selectedItems: Set<String>(),
+        currentContentListMode: .regular
     )
     .padding()
 }
@@ -425,11 +426,11 @@ struct PlayableContentView: View {
             authorName: "Hamilton Mourão",
             duration: 2
         ),
-        favorites: .constant(Set<String>()),
-        highlighted: .constant(Set<String>(arrayLiteral: "JKL")),
-        nowPlaying: .constant(Set<String>()),
-        selectedItems: .constant(Set<String>()),
-        currentContentListMode: .constant(.regular)
+        favorites: Set<String>(),
+        highlighted: Set<String>(arrayLiteral: "JKL"),
+        nowPlaying: Set<String>(),
+        selectedItems: Set<String>(),
+        currentContentListMode: .regular
     )
     .padding()
 }

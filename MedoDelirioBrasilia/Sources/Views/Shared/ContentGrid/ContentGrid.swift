@@ -125,19 +125,22 @@ struct ContentGrid<
                     VStack {
                         LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
                             if searchResults.isEmpty {
-                                NoSearchResultsView(searchText: $viewModel.searchText)
+                                NoSearchResultsView(searchText: viewModel.searchText)
                             } else {
                                 ForEach(searchResults) { content in
                                     PlayableContentView(
                                         content: content,
                                         showNewTag: showNewTag,
-                                        favorites: $viewModel.favoritesKeeper,
-                                        highlighted: $viewModel.highlightKeeper,
-                                        nowPlaying: $viewModel.nowPlayingKeeper,
-                                        selectedItems: $viewModel.selectionKeeper,
-                                        currentContentListMode: viewModel.currentListMode
+                                        favorites: viewModel.favoritesKeeper,
+                                        highlighted: viewModel.highlightKeeper,
+                                        nowPlaying: viewModel.nowPlayingKeeper,
+                                        selectedItems: viewModel.selectionKeeper,
+                                        currentContentListMode: viewModel.currentListMode.wrappedValue
                                     )
-                                    .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                    .contentShape(
+                                        .contextMenuPreview,
+                                        RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
+                                    )
                                     .onTapGesture {
                                         viewModel.onContentSelected(content)
                                     }
@@ -169,6 +172,7 @@ struct ContentGrid<
                         }
                         .padding(.horizontal)
                         .padding(.top, 7)
+                        .border(.blue, width: 1)
                         .alert(isPresented: $viewModel.showAlert) {
                             switch viewModel.alertType {
                             case .soundFileNotFound:

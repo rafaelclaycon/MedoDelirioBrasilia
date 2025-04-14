@@ -57,7 +57,7 @@ struct SongsView: View {
                 ScrollViewReader { proxy in
                     LazyVGrid(columns: columns, spacing: 14) {
                         if searchResults.isEmpty {
-                            NoSearchResultsView(searchText: $viewModel.searchText)
+                            NoSearchResultsView(searchText: viewModel.searchText)
                         } else {
                             ForEach(searchResults) { song in
                                 SongView(

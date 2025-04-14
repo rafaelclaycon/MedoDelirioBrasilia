@@ -44,7 +44,7 @@ struct AuthorsView: View {
         VStack {
             LazyVGrid(columns: columns, spacing: .spacing(.large)) {
                 if searchResults.isEmpty {
-                    NoSearchResultsView(searchText: $searchText)
+                    NoSearchResultsView(searchText: searchText)
                 } else {
                     ForEach(searchResults) { author in
                         AuthorCell(author: author)
