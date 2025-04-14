@@ -28,7 +28,6 @@ struct ContentGrid<
     @StateObject private var viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
     private var searchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
-    private var multiSelectFolderOperation: FolderOperation = .add
     private var showNewTag: Bool
     private var dataLoadingDidFail: Bool
     private let authorId: String?
@@ -81,7 +80,6 @@ struct ContentGrid<
         viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>,
         searchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
-        multiSelectFolderOperation: FolderOperation = .add,
         showNewTag: Bool = true,
         dataLoadingDidFail: Bool,
         authorId: String? = nil,
@@ -94,7 +92,6 @@ struct ContentGrid<
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.searchTextIsEmpty = searchTextIsEmpty
         self.allowSearch = allowSearch
-        self.multiSelectFolderOperation = multiSelectFolderOperation
         self.showNewTag = showNewTag
         self.dataLoadingDidFail = dataLoadingDidFail
         self.authorId = authorId
@@ -308,12 +305,9 @@ struct ContentGrid<
                                 updateGridLayout()
                             }
                         }
-                         //                                .onChange(of: viewModel.selectionKeeper.count) {
-                         //                                    showMultiSelectButtons = viewModel.currentContentListMode.wrappedValue == .selection
-                         //                                    guard viewModel.currentContentListMode.wrappedValue == .selection else { return }
-                         //                                    multiSelectButtonsEnabled = viewModel.selectionKeeper.count > 0
-                         //                                    allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
-                         //                                }
+                        .onChange(of: viewModel.selectionKeeper.count) {
+                            viewModel.onItemSelectionChanged()
+                        }
 //                                        .onChange(of: trendsHelper.soundIdToGoTo) {
 //                                            if !trendsHelper.soundIdToGoTo.isEmpty {
 //                                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
@@ -341,23 +335,6 @@ struct ContentGrid<
                             updateGridLayout()
                         }
                     }
-//                    .overlay {
-//                        if showMultiSelectButtons {
-//                            VStack {
-//                                Spacer()
-//
-//                                FloatingSelectionOptionsView(
-//                                    areButtonsEnabled: multiSelectButtonsEnabled,
-//                                    allSelectedAreFavorites: allSelectedAreFavorites,
-//                                    folderOperation: multiSelectFolderOperation,
-//                                    shareIsProcessing: viewModel.shareManyIsProcessing,
-//                                    favoriteAction: { viewModel.onAddRemoveManyFromFavoritesSelected() },
-//                                    folderAction: { viewModel.onAddRemoveManyFromFolderSelected(multiSelectFolderOperation) },
-//                                    shareAction: { viewModel.onShareManySelected() }
-//                                )
-//                            }
-//                        }
-//                    }
                 }
 
             case .error(_):
@@ -387,7 +364,8 @@ struct ContentGrid<
             data: MockContentListViewModel().allSoundsPublisher,
             menuOptions: [.sharingOptions()],
             currentListMode: .constant(.regular),
-            toast: .constant(nil)
+            toast: .constant(nil),
+            floatingOptions: .constant(nil)
         ),
         dataLoadingDidFail: false,
         containerSize: CGSize(width: 390, height: 1200),

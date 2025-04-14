@@ -114,13 +114,6 @@ struct ToastView: ViewModifier {
 
 public extension View {
 
-    /// Sets the `ToastPreferenceKey` with the given `value`.
-    /// - Parameters:
-    ///   - value: The value to be set.
-    func showToast(_ value: Bool) -> some View {
-        preference(key: ToastPreferenceKey.self, value: value)
-    }
-
     /// Adds a `ToastView` to the view's safe area inset.
     /// - Parameters:
     ///   - toast: Binding to a toast to display. When nil, toast is not presented.
@@ -159,14 +152,3 @@ public extension View {
 //        )
 //    }
 //}
-
-// MARK: - Preference Key
-
-public struct ToastPreferenceKey: PreferenceKey {
-
-    public static var defaultValue: Bool = false
-
-    public static func reduce(value: inout Bool, nextValue: () -> Bool) {
-        value = value || nextValue()
-    }
-}

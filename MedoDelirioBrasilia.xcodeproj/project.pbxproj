@@ -4786,8 +4786,7 @@
 			isa = PBXGroup;
 			children = (
 				D91E37562C4C8EEE003A1107 /* Navigation */,
-				D9DBEA9F2BCC10F200220679 /* ContentList */,
-				D9715F022CF2D61800DD24BB /* ToastView.swift */,
+				D9DBEA9F2BCC10F200220679 /* ContentGrid */,
 				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
 				D933251D28835E41004EFACB /* ActivityViewController.swift */,
 				D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */,
@@ -5115,7 +5114,6 @@
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
 				D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */,
 				D94EAB5C29FC4D51004CD604 /* Sync */,
-				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
 				D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */,
 				D9F82F702D98712600DE3AF2 /* TopSelector.swift */,
 			);
@@ -5235,6 +5233,8 @@
 		D9C67C112A3E3C3200E74E9D /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				D9715F022CF2D61800DD24BB /* ToastView.swift */,
+				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
 				D9AF8B742ABD0D320051D028 /* OneTimeTask.swift */,
 				D9C67C142A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift */,
 				D9C67C122A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift */,
@@ -5288,7 +5288,7 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		D9DBEA9F2BCC10F200220679 /* ContentList */ = {
+		D9DBEA9F2BCC10F200220679 /* ContentGrid */ = {
 			isa = PBXGroup;
 			children = (
 				D992EF592BCB24FB0080C892 /* ContentGrid.swift */,
@@ -5297,7 +5297,7 @@
 				D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */,
 				D984D55D2CF218E100680C7D /* ContentDetail */,
 			);
-			path = ContentList;
+			path = ContentGrid;
 			sourceTree = "<group>";
 		};
 		D9DC8D482A643CA500467DBA /* SharedDoubles */ = {

@@ -40,10 +40,6 @@ final class ContentGridViewModel<T>: ObservableObject {
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
 
-    // Select Many
-    @Published var isSelectingSounds: Bool = false
-    @Published var shareManyIsProcessing = false
-
     // Long Updates
     @Published var processedUpdateNumber: Int = 0
     @Published var totalUpdateCount: Int = 0
@@ -63,8 +59,10 @@ final class ContentGridViewModel<T>: ObservableObject {
 
     // MARK: - Stored Properties
 
-    var currentListMode: Binding<ContentListMode>
-    var toast: Binding<Toast?>
+    public var currentListMode: Binding<ContentListMode>
+    public var toast: Binding<Toast?>
+    public var floatingOptions: Binding<FloatingContentOptions?>
+    private let multiSelectFolderOperation: FolderOperation
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -75,16 +73,20 @@ final class ContentGridViewModel<T>: ObservableObject {
         menuOptions: [ContextMenuSection],
         currentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
         needsRefreshAfterChange: Bool = false,
         refreshAction: (() -> Void)? = nil,
-        insideFolder: UserFolder? = nil
+        insideFolder: UserFolder? = nil,
+        multiSelectFolderOperation: FolderOperation = .add
     ) {
         self.menuOptions = menuOptions
         self.currentListMode = currentListMode
         self.toast = toast
+        self.floatingOptions = floatingOptions
         self.needsRefreshAfterChange = needsRefreshAfterChange
         self.refreshAction = refreshAction
         self.folder = insideFolder
+        self.multiSelectFolderOperation = multiSelectFolderOperation
 
         data
             .map { content in
@@ -160,8 +162,8 @@ extension ContentGridViewModel {
         stopSelecting()
     }
 
-    public func onShareManySelected() {
-        shareSelected()
+    public func onShareManySelected() async {
+        await shareSelected()
     }
 
     public func onAddRemoveManyFromFavoritesSelected() {
@@ -206,6 +208,12 @@ extension ContentGridViewModel {
 
     public func onRemoveMultipleContentSelected() {
         removeManyFromFolder()
+    }
+
+    public func onItemSelectionChanged() {
+        guard currentListMode.wrappedValue == .selection else { return }
+        floatingOptions.wrappedValue?.areButtonsEnabled = selectionKeeper.count > 0
+        floatingOptions.wrappedValue?.allSelectedAreFavorites = allSelectedAreFavorites()
     }
 }
 
@@ -338,7 +346,7 @@ extension ContentGridViewModel {
 extension ContentGridViewModel {
 
     private func playStopPlaylist() {
-        if isSelectingSounds {
+        if floatingOptions.wrappedValue != nil {
             stopSelecting()
         }
         if isPlayingPlaylist {
@@ -543,11 +551,29 @@ extension ContentGridViewModel {
         stopPlaying()
         if currentListMode.wrappedValue == .regular {
             currentListMode.wrappedValue = .selection
-            isSelectingSounds = true
+            floatingOptions.wrappedValue = FloatingContentOptions(
+                areButtonsEnabled: false,
+                allSelectedAreFavorites: false,
+                folderOperation: .add,
+                shareIsProcessing: false,
+                favoriteAction: addRemoveManyFromFavorites,
+                folderAction: {
+                    if self.multiSelectFolderOperation == .add {
+                        self.addManyToFolder()
+                    } else {
+                        self.showRemoveMultipleSoundsConfirmation()
+                    }
+                },
+                shareAction: {
+                    Task {
+                        await self.shareSelected()
+                    }
+                }
+            )
         } else {
             currentListMode.wrappedValue = .regular
             selectionKeeper.removeAll()
-            isSelectingSounds = false
+            floatingOptions.wrappedValue = nil
         }
     }
 
@@ -556,17 +582,16 @@ extension ContentGridViewModel {
         selectionKeeper.removeAll()
         selectedContentMultiple = nil
         searchText = ""
-        isSelectingSounds = false
+        floatingOptions.wrappedValue = nil
     }
 
-    private func extractSounds() -> [Sound]? {
-        return nil // TODO: Fix this
-//        switch state {
-//        case .loaded(let sounds):
-//            return sounds
-//        default:
-//            return nil
-//        }
+    private func extractLoadedContent() -> [AnyEquatableMedoContent]? {
+        switch state {
+        case .loaded(let content):
+            return content
+        default:
+            return nil
+        }
     }
 
     public func allSelectedAreFavorites() -> Bool {
@@ -613,8 +638,8 @@ extension ContentGridViewModel {
 
     private func addManyToFolder() {
         guard selectionKeeper.count > 0 else { return }
-        guard let sounds = extractSounds() else { return }
-        selectedContentMultiple = sounds.filter({ selectionKeeper.contains($0.id) }).map { AnyEquatableMedoContent($0) }
+        guard let content = extractLoadedContent() else { return }
+        selectedContentMultiple = content.filter { selectionKeeper.contains($0.id) }
         subviewToOpen = .addToFolder
         showingModalView = true
     }
@@ -636,7 +661,7 @@ extension ContentGridViewModel {
             try UserFolderRepository().update(folder)
 
             selectionKeeper.removeAll()
-            isSelectingSounds = false
+            floatingOptions.wrappedValue = nil
             refreshAction()
 
             stopSelecting()
@@ -649,34 +674,33 @@ extension ContentGridViewModel {
         }
     }
 
-    private func shareSelected() {
-//        guard selectionKeeper.count > 0 else { return }
-//
-//        shareManyIsProcessing = true
-//
-//        guard let sounds = extractSounds() else { return }
-//        selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
-//        guard selectedSounds?.count ?? 0 > 0 else { return }
-//
-//        let successfulMessage = selectedSounds!.count > 1 ? Shared.soundsExportedSuccessfullyMessage : Shared.soundExportedSuccessfullyMessage
-//
-//        do {
-//            try SharingUtility.share(sounds: selectedSounds!) { didShareSuccessfully in
-//                self.shareManyIsProcessing = false
-//                self.stopSelecting()
-//                if didShareSuccessfully {
-//                    self.displayToast(toastText: successfulMessage)
-//                }
-//            }
-//        } catch SoundError.fileNotFound(let soundTitle) {
-//            shareManyIsProcessing = false
-//            stopSelecting()
-//            showUnableToGetSoundAlert(soundTitle)
-//        } catch {
-//            shareManyIsProcessing = false
-//            stopSelecting()
-//            showShareManyIssueAlert(error.localizedDescription)
-//        }
+    private func shareSelected() async {
+        guard selectionKeeper.count > 0 else { return }
+
+        floatingOptions.wrappedValue?.shareIsProcessing = true
+
+        guard let content = extractLoadedContent() else { return }
+        selectedContentMultiple = content.filter({ selectionKeeper.contains($0.id) })
+        guard selectedContentMultiple?.count ?? 0 > 0 else { return }
+
+        let successfulMessage = selectedContentMultiple!.count > 1 ? Shared.soundsExportedSuccessfullyMessage : Shared.soundExportedSuccessfullyMessage
+
+        do {
+            let hadSuccessSharing = try await SharingUtility.share(content: selectedContentMultiple!)
+            floatingOptions.wrappedValue?.shareIsProcessing = false
+            stopSelecting()
+            if hadSuccessSharing {
+                toast.wrappedValue = Toast(message: successfulMessage, type: .success)
+            }
+        } catch SoundError.fileNotFound(let soundTitle) {
+            floatingOptions.wrappedValue?.shareIsProcessing = false
+            stopSelecting()
+            showUnableToGetSoundAlert(soundTitle)
+        } catch {
+            floatingOptions.wrappedValue?.shareIsProcessing = false
+            stopSelecting()
+            showShareManyIssueAlert(error.localizedDescription)
+        }
     }
 }
 
