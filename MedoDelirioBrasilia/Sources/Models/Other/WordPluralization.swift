@@ -17,9 +17,9 @@ extension WordPluralization {
     func getAddedToFolderToastText(folderName: String?) -> String {
         switch self {
         case .singular:
-            return "Som adicionado à pasta \(folderName ?? "")."
+            return "Conteúdo adicionado à pasta \(folderName ?? "")."
         case .plural:
-            return "Sons adicionados à pasta \(folderName ?? "")."
+            return "Conteúdos adicionados à pasta \(folderName ?? "")."
         }
     }
 }
