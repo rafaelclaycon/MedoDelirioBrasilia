@@ -95,8 +95,8 @@ struct MainContentView: View {
                             VStack(spacing: .spacing(.xSmall)) {
                                 if displayLongUpdateBanner {
                                     LongUpdateBanner(
-                                        completedNumber: $viewModel.processedUpdateNumber,
-                                        totalUpdateCount: $viewModel.totalUpdateCount
+                                        completedNumber: viewModel.processedUpdateNumber,
+                                        totalUpdateCount: viewModel.totalUpdateCount
                                     )
                                     .padding(.horizontal, .spacing(.small))
                                 }
