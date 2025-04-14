@@ -346,13 +346,15 @@ struct ContentGrid<
         ForEach(menuOptions, id: \.title) { section in
             Section {
                 ForEach(section.options(content)) { option in
-                    Button {
-                        option.action(content, viewModel)
-                    } label: {
-                        Label(
-                            option.title(favorites.contains(content.id)),
-                            systemImage: option.symbol(favorites.contains(content.id))
-                        )
+                    if option.appliesTo.contains(content.type) {
+                        Button {
+                            option.action(content, viewModel)
+                        } label: {
+                            Label(
+                                option.title(favorites.contains(content.id)),
+                                systemImage: option.symbol(favorites.contains(content.id))
+                            )
+                        }
                     }
                 }
             }
