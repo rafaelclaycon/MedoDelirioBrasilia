@@ -145,20 +145,11 @@ struct ContentGrid<
                                 }
                                 .contextMenu {
                                     if viewModel.currentListMode.wrappedValue != .selection {
-                                        ForEach(viewModel.menuOptions, id: \.title) { section in
-                                            Section {
-                                                ForEach(section.options(content)) { option in
-                                                    Button {
-                                                        option.action(content, viewModel)
-                                                    } label: {
-                                                        Label(
-                                                            option.title(viewModel.favoritesKeeper.contains(content.id)),
-                                                            systemImage: option.symbol(viewModel.favoritesKeeper.contains(content.id))
-                                                        )
-                                                    }
-                                                }
-                                            }
-                                        }
+                                        contextMenuOptionsView(
+                                            content: content,
+                                            menuOptions: viewModel.menuOptions,
+                                            favorites: viewModel.favoritesKeeper
+                                        )
                                     }
                                 }
                             }
@@ -340,6 +331,30 @@ struct ContentGrid<
                 errorView
                     .frame(width: containerSize.width)
                     .frame(minHeight: containerSize.height)
+            }
+        }
+    }
+
+    // MARK: - Subviews
+
+    @MainActor @ViewBuilder
+    private func contextMenuOptionsView(
+        content: AnyEquatableMedoContent,
+        menuOptions: [ContextMenuSection],
+        favorites: Set<String>
+    ) -> some View {
+        ForEach(menuOptions, id: \.title) { section in
+            Section {
+                ForEach(section.options(content)) { option in
+                    Button {
+                        option.action(content, viewModel)
+                    } label: {
+                        Label(
+                            option.title(favorites.contains(content.id)),
+                            systemImage: option.symbol(favorites.contains(content.id))
+                        )
+                    }
+                }
             }
         }
     }
