@@ -80,7 +80,7 @@ struct MainContentView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack(spacing: .zero) {
+                VStack(spacing: .spacing(.xSmall)) {
                     if contentSearchTextIsEmpty ?? true {
                         TopSelector(
                             options: UIDevice.isiPhone ? TopSelectorOption.allCases : [.all, .songs],
@@ -98,14 +98,12 @@ struct MainContentView: View {
                                         completedNumber: viewModel.processedUpdateNumber,
                                         totalUpdateCount: viewModel.totalUpdateCount
                                     )
-                                    .padding(.horizontal, .spacing(.small))
                                 }
 
 //                                if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
 //                                    RecurringDonationBanner(
 //                                        isBeingShown: $shouldDisplayRecurringDonationBanner
 //                                    )
-//                                    .padding(.horizontal, 10)
 //                                }
                             }
 
@@ -155,7 +153,6 @@ struct MainContentView: View {
                                     text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
                                 )
                                 .padding(.top, explicitOffWarningTopPadding)
-                                .padding(.horizontal, explicitOffWarningBottomPadding)
                             }
 
                             if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
@@ -170,6 +167,7 @@ struct MainContentView: View {
                             Spacer()
                                 .frame(height: .spacing(.large))
                         }
+                        .padding(.horizontal, .spacing(.small))
 
                     case .folders:
                         MyFoldersiPhoneView()

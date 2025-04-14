@@ -74,7 +74,7 @@ struct FolderDetailView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack(spacing: .spacing(.xSmall)) {
+                VStack(spacing: .spacing(.medium)) {
                     VStack(alignment: .leading) {
                         HStack {
                             Text(viewModel.soundCount)
@@ -123,6 +123,7 @@ struct FolderDetailView: View {
                             }
                     )
                     .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))

@@ -53,7 +53,7 @@ struct ReactionDetailView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack(spacing: .spacing(.xSmall)) {
+                VStack(spacing: .spacing(.medium)) {
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,
                         subtitle: viewModel.subtitle,
@@ -89,6 +89,7 @@ struct ReactionDetailView: View {
                         )
                     )
                     .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))

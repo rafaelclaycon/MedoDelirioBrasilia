@@ -74,6 +74,7 @@ struct StandaloneFavoritesView: View {
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
+                .padding(.horizontal, .spacing(.small))
                 .navigationTitle(Text("Favoritos"))
                 //            .navigationBarItems(
                 //                leading: LeadingToolbarControls(

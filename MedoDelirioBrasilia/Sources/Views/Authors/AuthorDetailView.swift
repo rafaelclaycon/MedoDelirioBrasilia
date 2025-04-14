@@ -134,7 +134,7 @@ struct AuthorDetailView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack(spacing: .spacing(.xSmall)) {
+                VStack(spacing: .spacing(.medium)) {
                     VStack {
                         if let photo = author.photo {
                             GeometryReader { headerPhotoGeometry in
@@ -230,6 +230,7 @@ struct AuthorDetailView: View {
                             }
                     )
                     .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))
