@@ -24,6 +24,7 @@ struct MainView: View {
     @State private var updateFolderList: Bool = false
     @State private var currentContentListMode: ContentListMode = .regular
     @State private var toast: Toast?
+    @State private var floatingOptions: FloatingContentOptions?
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
@@ -54,10 +55,12 @@ struct MainView: View {
                                 authorSortOption: UserSettings().authorSortOption(),
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
+                                floatingOptions: $floatingOptions,
                                 syncValues: syncValues
                             ),
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
+                            floatingOptions: $floatingOptions,
                             openSettingsAction: {
                                 isShowingSettingsSheet.toggle()
                             }
@@ -146,10 +149,12 @@ struct MainView: View {
                                         authorSortOption: UserSettings().authorSortOption(),
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
+                                        floatingOptions: $floatingOptions,
                                         syncValues: syncValues
                                     ),
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
+                                    floatingOptions: $floatingOptions,
                                     openSettingsAction: {}
                                 )
                                 .environment(trendsHelper)
@@ -280,7 +285,8 @@ struct MainView: View {
                             folderForEditing: $folderForEditing,
                             updateFolderList: $updateFolderList,
                             currentContentListMode: $currentContentListMode,
-                            toast: $toast
+                            toast: $toast,
+                            floatingOptions: $floatingOptions
                         )
                         .environment(trendsHelper)
                         .environmentObject(settingsHelper)
@@ -294,10 +300,12 @@ struct MainView: View {
                                     authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
+                                    floatingOptions: $floatingOptions,
                                     syncValues: syncValues
                                 ),
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
+                                floatingOptions: $floatingOptions,
                                 openSettingsAction: {}
                             )
                             .environment(trendsHelper)

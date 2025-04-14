@@ -41,7 +41,8 @@ struct ReactionDetailView: View {
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
-            toast: toast
+            toast: toast,
+            floatingOptions: .constant(nil)
         )
 
         self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
@@ -96,7 +97,7 @@ struct ReactionDetailView: View {
                         startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
                         isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
                         soundArrayIsEmpty: soundArrayIsEmpty,
-                        isSelecting: soundListViewModel.isSelectingSounds
+                        isSelecting: soundListViewModel.floatingOptions.wrappedValue != nil
                     )
                     .foregroundStyle(.white)
                     .opacity(toolbarControlsOpacity)

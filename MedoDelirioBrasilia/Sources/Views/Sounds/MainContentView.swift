@@ -60,6 +60,7 @@ struct MainContentView: View {
         viewModel: MainContentViewModel,
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
@@ -67,7 +68,8 @@ struct MainContentView: View {
             data: viewModel.allContentPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: currentContentListMode,
-            toast: toast
+            toast: toast,
+            floatingOptions: floatingOptions
         ))
         self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction
@@ -233,6 +235,7 @@ struct MainContentView: View {
                 }
             }
             .toast(viewModel.toast)
+            .floatingContentOptions(viewModel.floatingOptions)
         }
     }
 }
@@ -397,10 +400,12 @@ extension MainContentView {
             authorSortOption: AuthorSortOption.nameAscending.rawValue,
             currentContentListMode: .constant(.regular),
             toast: .constant(nil),
+            floatingOptions: .constant(nil),
             syncValues: SyncValues()
         ),
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
+        floatingOptions: .constant(nil),
         openSettingsAction: {}
     )
 }

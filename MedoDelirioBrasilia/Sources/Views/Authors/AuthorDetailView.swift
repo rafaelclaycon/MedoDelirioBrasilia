@@ -125,7 +125,8 @@ struct AuthorDetailView: View {
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
-            toast: toast
+            toast: toast,
+            floatingOptions: .constant(nil)
         )
         self._contentListViewModel = StateObject(wrappedValue: contentListViewModel)
     }

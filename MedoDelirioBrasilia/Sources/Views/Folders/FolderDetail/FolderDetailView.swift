@@ -59,8 +59,10 @@ struct FolderDetailView: View {
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentListMode: currentContentListMode,
             toast: toast,
+            floatingOptions: .constant(nil),
             refreshAction: { viewModel.onPulledToRefresh() },
-            insideFolder: folder
+            insideFolder: folder,
+            multiSelectFolderOperation: .remove
         )
 
         self._contentListViewModel = StateObject(wrappedValue: soundListViewModel)
@@ -87,7 +89,6 @@ struct FolderDetailView: View {
 
                     ContentGrid(
                         viewModel: contentListViewModel,
-                        multiSelectFolderOperation: .remove,
                         showNewTag: false,
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         containerSize: geometry.size,

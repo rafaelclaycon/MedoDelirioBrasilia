@@ -17,6 +17,7 @@ struct SidebarView: View {
     @Binding var updateFolderList: Bool
     @Binding var currentContentListMode: ContentListMode
     @Binding var toast: Toast?
+    @Binding var floatingOptions: FloatingContentOptions?
 
     // MARK: - View State
 
@@ -41,10 +42,12 @@ struct SidebarView: View {
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
+                            floatingOptions: $floatingOptions,
                             syncValues: syncValues
                         ),
                         currentContentListMode: $currentContentListMode,
                         toast: $toast,
+                        floatingOptions: $floatingOptions,
                         openSettingsAction: {}
                     ).environment(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
@@ -153,6 +156,7 @@ struct SidebarView: View {
         folderForEditing: .constant(nil),
         updateFolderList: .constant(false),
         currentContentListMode: .constant(.regular),
-        toast: .constant(nil)
+        toast: .constant(nil),
+        floatingOptions: .constant(nil)
     )
 }

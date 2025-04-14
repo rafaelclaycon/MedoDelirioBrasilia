@@ -30,6 +30,7 @@ class MainContentViewModel: ObservableObject {
 
     public var currentContentListMode: Binding<ContentListMode>
     public var toast: Binding<Toast?>
+    public var floatingOptions: Binding<FloatingContentOptions?>
     private var allContent = [AnyEquatableMedoContent]()
 
     // Sync
@@ -53,6 +54,7 @@ class MainContentViewModel: ObservableObject {
         authorSortOption: Int,
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
         syncValues: SyncValues,
         isAllowedToSync: Bool = true
     ) {
@@ -61,6 +63,7 @@ class MainContentViewModel: ObservableObject {
         self.authorSortOption = authorSortOption
         self.currentContentListMode = currentContentListMode
         self.toast = toast
+        self.floatingOptions = floatingOptions
 
         self.syncManager = SyncManager(
             service: SyncService(

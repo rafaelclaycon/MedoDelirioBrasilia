@@ -7,10 +7,12 @@
 
 import Foundation
 
-enum ContentListMode: Int {
+public enum ContentListMode: Int {
+
     case regular, selection
 }
 
-enum FolderOperation {
+public enum FolderOperation {
+
     case add, remove
 }

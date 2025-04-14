@@ -27,7 +27,8 @@ struct StandaloneFavoritesView: View {
             data: viewModel.dataPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: .constant(.regular),
-            toast: toast
+            toast: toast,
+            floatingOptions: .constant(nil)
         ))
         self.toast = toast
     }
