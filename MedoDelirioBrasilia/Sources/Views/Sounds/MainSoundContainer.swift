@@ -123,8 +123,8 @@ struct MainSoundContainer: View {
                         VStack {
                             if displayLongUpdateBanner {
                                 LongUpdateBanner(
-                                    completedNumber: $viewModel.processedUpdateNumber,
-                                    totalUpdateCount: $viewModel.totalUpdateCount
+                                    completedNumber: viewModel.processedUpdateNumber,
+                                    totalUpdateCount: viewModel.totalUpdateCount
                                 )
                                 .padding(.horizontal, 10)
                             }
