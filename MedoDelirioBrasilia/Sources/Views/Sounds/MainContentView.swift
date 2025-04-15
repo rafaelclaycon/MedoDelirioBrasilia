@@ -10,8 +10,8 @@ import SwiftUI
 /// Main view of the app on iPhone. This is reponsible for showing the main content view and start content sync.
 struct MainContentView: View {
 
-    @StateObject private var viewModel: MainContentViewModel
-    @StateObject private var allSoundsViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State private var viewModel: MainContentViewModel
+    @State private var allSoundsViewModel: ContentGridViewModel
     private var currentContentListMode: Binding<ContentListMode>
     private let openSettingsAction: () -> Void
 
@@ -63,13 +63,13 @@ struct MainContentView: View {
         floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void
     ) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
-        self._allSoundsViewModel = StateObject(wrappedValue: ContentGridViewModel<[AnyEquatableMedoContent]>(
+        self.viewModel = viewModel
+        self.allSoundsViewModel = ContentGridViewModel(
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: currentContentListMode,
             toast: toast,
             floatingOptions: floatingOptions
-        ))
+        )
         self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction
     }
@@ -371,7 +371,7 @@ extension MainContentView {
 
 extension MainContentView {
 
-    private func selectionNavBarTitle(for viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>) -> String {
+    private func selectionNavBarTitle(for viewModel: ContentGridViewModel) -> String {
         if viewModel.selectionKeeper.count == 0 {
             return Shared.SoundSelection.selectSounds
         }

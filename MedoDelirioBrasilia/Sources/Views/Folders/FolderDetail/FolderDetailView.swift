@@ -10,7 +10,7 @@ import SwiftUI
 struct FolderDetailView: View {
 
     @StateObject private var viewModel: FolderDetailViewViewModel
-    @StateObject private var contentListViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State private var contentListViewModel: ContentGridViewModel
 
     let folder: UserFolder
 
@@ -55,7 +55,7 @@ struct FolderDetailView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentContentListMode = currentContentListMode
 
-        let soundListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
+        self.contentListViewModel = ContentGridViewModel(
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentListMode: currentContentListMode,
             toast: toast,
@@ -64,8 +64,6 @@ struct FolderDetailView: View {
             insideFolder: folder,
             multiSelectFolderOperation: .remove
         )
-
-        self._contentListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
 
     // MARK: - View Body

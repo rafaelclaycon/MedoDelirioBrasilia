@@ -26,7 +26,7 @@ struct ContentGrid<
     // MARK: - Dependencies
 
     private var state: LoadingState<[AnyEquatableMedoContent]>
-    @StateObject private var viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State private var viewModel: ContentGridViewModel
     private var searchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
     private var showNewTag: Bool
@@ -78,7 +78,7 @@ struct ContentGrid<
 
     init(
         state: LoadingState<[AnyEquatableMedoContent]>,
-        viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>,
+        viewModel: ContentGridViewModel,
         searchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         showNewTag: Bool = true,
@@ -90,7 +90,7 @@ struct ContentGrid<
         errorView: ErrorView
     ) {
         self.state = state
-        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
         self.searchTextIsEmpty = searchTextIsEmpty
         self.allowSearch = allowSearch
         self.showNewTag = showNewTag

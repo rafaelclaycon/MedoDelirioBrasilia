@@ -11,7 +11,7 @@ import Kingfisher
 struct AuthorDetailView: View {
 
     @StateObject private var viewModel: AuthorDetailViewModel
-    @StateObject private var contentListViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State private var contentListViewModel: ContentGridViewModel
 
     let author: Author
 
@@ -119,13 +119,12 @@ struct AuthorDetailView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentContentListMode = currentListMode
 
-        let contentListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
+        self.contentListViewModel = ContentGridViewModel(
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
             toast: toast,
             floatingOptions: .constant(nil)
         )
-        self._contentListViewModel = StateObject(wrappedValue: contentListViewModel)
     }
 
     // MARK: - View Body

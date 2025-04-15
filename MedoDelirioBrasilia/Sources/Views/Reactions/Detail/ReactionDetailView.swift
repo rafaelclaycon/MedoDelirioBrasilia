@@ -10,7 +10,7 @@ import SwiftUI
 struct ReactionDetailView: View {
 
     @StateObject var viewModel: ReactionDetailViewModel
-    @StateObject private var soundListViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State private var soundListViewModel: ContentGridViewModel
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
@@ -37,14 +37,12 @@ struct ReactionDetailView: View {
 
         self._viewModel = StateObject(wrappedValue: viewModel)
 
-        let soundListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
+        self.soundListViewModel = ContentGridViewModel(
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
             toast: toast,
             floatingOptions: .constant(nil)
         )
-
-        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
 
     // MARK: - View Body

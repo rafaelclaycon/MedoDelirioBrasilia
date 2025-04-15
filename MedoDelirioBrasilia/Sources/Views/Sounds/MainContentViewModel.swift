@@ -9,18 +9,19 @@ import SwiftUI
 import Combine
 
 @MainActor
-class MainContentViewModel: ObservableObject {
+@Observable
+class MainContentViewModel {
 
-    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
+    var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
-    @Published var currentViewMode: TopSelectorOption
-    @Published var soundSortOption: Int
-    @Published var authorSortOption: Int
+    var currentViewMode: TopSelectorOption
+    var soundSortOption: Int
+    var authorSortOption: Int
 
     // Sync
-    @Published var processedUpdateNumber: Int = 0
-    @Published var totalUpdateCount: Int = 0
-    @Published var firstRunSyncHappened: Bool = false
+    var processedUpdateNumber: Int = 0
+    var totalUpdateCount: Int = 0
+    var firstRunSyncHappened: Bool = false
 
     // MARK: - Stored Properties
 

@@ -9,53 +9,54 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class ContentGridViewModel<T>: ObservableObject {
+@Observable
+final class ContentGridViewModel {
 
-    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
-    @Published var menuOptions: [ContextMenuSection]
-    @Published var needsRefreshAfterChange: Bool
+    var state: LoadingState<[AnyEquatableMedoContent]> = .loading
+    var menuOptions: [ContextMenuSection]
+    var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?
     var folder: UserFolder?
 
-    @Published var favoritesKeeper = Set<String>()
-    @Published var highlightKeeper = Set<String>()
-    @Published var nowPlayingKeeper = Set<String>()
-    @Published var selectionKeeper = Set<String>()
+    var favoritesKeeper = Set<String>()
+    var highlightKeeper = Set<String>()
+    var nowPlayingKeeper = Set<String>()
+    var selectionKeeper = Set<String>()
 
-    @Published var selectedContentSingle: AnyEquatableMedoContent? = nil
-    @Published var selectedContentMultiple: [AnyEquatableMedoContent]? = nil
-    @Published var subviewToOpen: ContentListModalToOpen = .shareAsVideo
-    @Published var showingModalView = false
+    var selectedContentSingle: AnyEquatableMedoContent? = nil
+    var selectedContentMultiple: [AnyEquatableMedoContent]? = nil
+    var subviewToOpen: ContentListModalToOpen = .shareAsVideo
+    var showingModalView = false
 
-    @Published var authorToOpen: Author? = nil
+    var authorToOpen: Author? = nil
 
     // Share as Video
-    @Published var shareAsVideoResult = ShareAsVideoResult()
+    var shareAsVideoResult = ShareAsVideoResult()
 
     // Search
-    @Published var searchText: String = ""
+    var searchText: String = ""
 
     // Sharing
-    @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
-    @Published var isShowingShareSheet: Bool = false
-    @Published var shareBannerMessage: String = .empty
+    var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+    var isShowingShareSheet: Bool = false
+    var shareBannerMessage: String = .empty
 
     // Long Updates
-    @Published var processedUpdateNumber: Int = 0
-    @Published var totalUpdateCount: Int = 0
+    var processedUpdateNumber: Int = 0
+    var totalUpdateCount: Int = 0
 
     // Playlist
-    @Published var isPlayingPlaylist: Bool = false
+    var isPlayingPlaylist: Bool = false
     private var currentTrackIndex: Int = 0
 
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
-    @Published var showAlert: Bool = false
-    @Published var alertType: SoundListAlertType = .soundFileNotFound
+    var alertTitle: String = ""
+    var alertMessage: String = ""
+    var showAlert: Bool = false
+    var alertType: SoundListAlertType = .soundFileNotFound
 
     // Play Random Sound
-    @Published var scrollTo: String = ""
+    var scrollTo: String = ""
 
     // MARK: - Stored Properties
 
