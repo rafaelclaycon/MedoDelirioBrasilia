@@ -38,7 +38,6 @@ struct ReactionDetailView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
 
         let soundListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
             toast: toast,
@@ -64,32 +63,32 @@ struct ReactionDetailView: View {
                     .frame(height: 260)
                     .padding(.bottom, 6)
 
-                    ContentGrid(
-                        viewModel: soundListViewModel,
-                        showNewTag: false,
-                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                        reactionId: viewModel.reaction.id,
-                        containerSize: geometry.size,
-                        loadingView: LoadingView(),
-                        emptyStateView: EmptyStateView(
-                            reloadAction: {
-                                Task {
-                                    await viewModel.loadSounds()
-                                }
-                            }
-                        ),
-                        errorView: ErrorView(
-                            reactionNoLongerExists: viewModel.state == .reactionNoLongerExists,
-                            errorMessage: viewModel.errorMessage,
-                            tryAgainAction: {
-                                Task {
-                                    await viewModel.loadSounds()
-                                }
-                            }
-                        )
-                    )
-                    .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.small))
+//                    ContentGrid(
+//                        viewModel: soundListViewModel,
+//                        showNewTag: false,
+//                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
+//                        reactionId: viewModel.reaction.id,
+//                        containerSize: geometry.size,
+//                        loadingView: LoadingView(),
+//                        emptyStateView: EmptyStateView(
+//                            reloadAction: {
+//                                Task {
+//                                    await viewModel.loadSounds()
+//                                }
+//                            }
+//                        ),
+//                        errorView: ErrorView(
+//                            reactionNoLongerExists: viewModel.state == .reactionNoLongerExists,
+//                            errorMessage: viewModel.errorMessage,
+//                            tryAgainAction: {
+//                                Task {
+//                                    await viewModel.loadSounds()
+//                                }
+//                            }
+//                        )
+//                    )
+//                    .environment(TrendsHelper())
+//                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))

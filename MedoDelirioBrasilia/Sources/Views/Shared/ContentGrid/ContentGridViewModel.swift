@@ -69,7 +69,6 @@ final class ContentGridViewModel<T>: ObservableObject {
     // MARK: - Initializer
 
     init(
-        data: AnyPublisher<[AnyEquatableMedoContent], Never>,
         menuOptions: [ContextMenuSection],
         currentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
@@ -87,14 +86,6 @@ final class ContentGridViewModel<T>: ObservableObject {
         self.refreshAction = refreshAction
         self.folder = insideFolder
         self.multiSelectFolderOperation = multiSelectFolderOperation
-
-        data
-            .map { content in
-                let wrapped = content.map { AnyEquatableMedoContent($0) }
-                return LoadingState.loaded(wrapped)
-            }
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$state)
 
         loadFavorites()
     }

@@ -11,15 +11,11 @@ import Combine
 @MainActor
 class MainContentViewModel: ObservableObject {
 
-    // MARK: - Published Vars
-
-    @Published var forDisplay: [AnyEquatableMedoContent]?
+    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
     @Published var currentViewMode: TopSelectorOption
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
-
-    @Published var dataLoadingDidFail: Bool = false
 
     // Sync
     @Published var processedUpdateNumber: Int = 0
@@ -31,20 +27,12 @@ class MainContentViewModel: ObservableObject {
     public var currentContentListMode: Binding<ContentListMode>
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
-    private var allContent = [AnyEquatableMedoContent]()
 
     // Sync
     private let syncManager: SyncManager
     private let syncValues: SyncValues
+    private let contentRepository: ContentRepositoryProtocol
     private let isAllowedToSync: Bool
-
-    // MARK: - Computed Properties
-
-    var allContentPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $forDisplay
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
 
     // MARK: - Initializer
 
@@ -56,7 +44,8 @@ class MainContentViewModel: ObservableObject {
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         syncValues: SyncValues,
-        isAllowedToSync: Bool = true
+        isAllowedToSync: Bool = true,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.currentViewMode = currentViewMode
         self.soundSortOption = soundSortOption
@@ -74,6 +63,7 @@ class MainContentViewModel: ObservableObject {
             logger: Logger.shared
         )
         self.syncValues = syncValues
+        self.contentRepository = contentRepository
         self.isAllowedToSync = isAllowedToSync
         self.syncManager.delegate = self
     }
@@ -95,22 +85,14 @@ extension MainContentViewModel {
         }
 
         loadContent()
-        //loadFavorites()
     }
 
-    public func onSelectedViewModeChanged(favorites: Set<String>) {
-        if currentViewMode == .all {
-            forDisplay = allContent
-        } else if currentViewMode == .favorites {
-            forDisplay = allContent.filter { favorites.contains($0.id) }
-        } else if currentViewMode == .songs {
-            forDisplay = allContent.filter { $0.type == .song }
-        }
-        sortSounds(by: soundSortOption)
+    public func onSelectedViewModeChanged() {
+        loadContent()
     }
 
     public func onSoundSortOptionChanged() {
-        sortSounds(by: soundSortOption)
+        loadContent()
     }
 
     public func onExplicitContentSettingChanged() {
@@ -134,95 +116,20 @@ extension MainContentViewModel {
 extension MainContentViewModel {
 
     private func loadContent() {
+        state = .loading
         do {
-            let sounds: [AnyEquatableMedoContent] = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings().getShowExplicitContent()
-            ).map { AnyEquatableMedoContent($0) }
-            let songs: [AnyEquatableMedoContent] = try LocalDatabase.shared.songs(
-                allowSensitive: UserSettings().getShowExplicitContent()
-            ).map { AnyEquatableMedoContent($0) }
-
-            allContent = sounds + songs
-            forDisplay = allContent
-
-            guard sounds.count > 0 else { return }
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
-            sortAllSounds(by: sortOption)
+            let allowSensitive = UserSettings().getShowExplicitContent()
+            let sort = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
+            if currentViewMode == .all {
+                state = .loaded(try contentRepository.allContent(allowSensitive, sort))
+            } else if currentViewMode == .favorites {
+                state = .loaded(try contentRepository.favorites(allowSensitive, sort))
+            } else if currentViewMode == .songs {
+                state = .loaded(try contentRepository.songs(allowSensitive, sort))
+            }
         } catch {
-            print("Erro carregando sons: \(error.localizedDescription)")
-            dataLoadingDidFail = true
-        }
-    }
-
-    private func sortSounds(by rawSortOption: Int) {
-        let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
-        sortAllSounds(by: sortOption)
-        UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
-    }
-}
-
-// MARK: - Sorting
-
-extension MainContentViewModel {
-
-    private func sortAllSounds(by sortOption: SoundSortOption) {
-        switch sortOption {
-        case .titleAscending:
-            sortAllSoundsByTitleAscending()
-        case .authorNameAscending:
-            sortAllSoundsByAuthorNameAscending()
-        case .dateAddedDescending:
-            sortAllSoundsByDateAddedDescending()
-        case .shortestFirst:
-            sortAllSoundsByDurationAscending()
-        case .longestFirst:
-            sortAllSoundsByDurationDescending()
-        case .longestTitleFirst:
-            sortAllSoundsByTitleLengthDescending()
-        case .shortestTitleFirst:
-            sortAllSoundsByTitleLengthAscending()
-        }
-    }
-
-    private func sortAllSoundsByTitleAscending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
-        }
-    }
-
-    private func sortAllSoundsByAuthorNameAscending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
-        }
-    }
-
-    private func sortAllSoundsByDateAddedDescending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-        }
-    }
-
-    private func sortAllSoundsByDurationAscending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.duration < $1.duration })
-        }
-    }
-
-    private func sortAllSoundsByDurationDescending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.duration > $1.duration })
-        }
-    }
-
-    private func sortAllSoundsByTitleLengthAscending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.title.count < $1.title.count })
-        }
-    }
-
-    private func sortAllSoundsByTitleLengthDescending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.title.count > $1.title.count })
+            state = .error(error.localizedDescription)
+            debugPrint(error)
         }
     }
 }

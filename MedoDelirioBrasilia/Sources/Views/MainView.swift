@@ -41,6 +41,8 @@ struct MainView: View {
     // Sync
     @StateObject private var syncValues = SyncValues()
 
+    @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
+
     // MARK: - View Body
 
     var body: some View {
@@ -56,7 +58,8 @@ struct MainView: View {
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
-                                syncValues: syncValues
+                                syncValues: syncValues,
+                                contentRepository: contentRepository
                             ),
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
@@ -150,7 +153,8 @@ struct MainView: View {
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
                                         floatingOptions: $floatingOptions,
-                                        syncValues: syncValues
+                                        syncValues: syncValues,
+                                        contentRepository: contentRepository
                                     ),
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
@@ -287,7 +291,8 @@ struct MainView: View {
                             updateFolderList: $updateFolderList,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
-                            floatingOptions: $floatingOptions
+                            floatingOptions: $floatingOptions,
+                            contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
                         .environmentObject(settingsHelper)
@@ -302,7 +307,8 @@ struct MainView: View {
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
-                                    syncValues: syncValues
+                                    syncValues: syncValues,
+                                    contentRepository: contentRepository
                                 ),
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,

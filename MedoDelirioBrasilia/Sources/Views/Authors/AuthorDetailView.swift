@@ -120,7 +120,6 @@ struct AuthorDetailView: View {
         self.currentContentListMode = currentListMode
 
         let contentListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
             toast: toast,
@@ -196,41 +195,41 @@ struct AuthorDetailView: View {
                         .padding(.bottom, 5)
                     }
 
-                    ContentGrid(
-                        viewModel: contentListViewModel,
-                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                        authorId: author.id,
-                        containerSize: geometry.size,
-                        loadingView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Carregando sons...")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        ,
-                        emptyStateView:
-                            VStack {
-                                NoSoundsView()
-                                    .padding(.horizontal, 25)
-                            }
-                        ,
-                        errorView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Erro ao carregar sons.")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                    )
-                    .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.small))
+//                    ContentGrid(
+//                        viewModel: contentListViewModel,
+//                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
+//                        authorId: author.id,
+//                        containerSize: geometry.size,
+//                        loadingView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Carregando sons...")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                        ,
+//                        emptyStateView:
+//                            VStack {
+//                                NoSoundsView()
+//                                    .padding(.horizontal, 25)
+//                            }
+//                        ,
+//                        errorView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Erro ao carregar sons.")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                    )
+//                    .environment(TrendsHelper())
+//                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))

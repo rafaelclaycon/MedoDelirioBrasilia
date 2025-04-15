@@ -98,6 +98,8 @@
 		D903DB0B29DF42A500D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0729DF42A400D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 */; };
 		D903DB0C29DF42A500D9BE42 /* 04 E Transao Versao Definitiva.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0829DF42A400D9BE42 /* 04 E Transao Versao Definitiva.mp3 */; };
 		D904495A2BB283C20023088B /* ExternalLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90449592BB283C20023088B /* ExternalLinkButton.swift */; };
+		D904BDCF2DADAA09004AF550 /* ContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904BDCE2DADAA09004AF550 /* ContentRepository.swift */; };
+		D904BDD12DAE1E80004AF550 /* FakeContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904BDD02DAE1E80004AF550 /* FakeContentRepository.swift */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
 		D90622C82AB4030600704B70 /* MedoContentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90622C72AB4030600704B70 /* MedoContentProtocol.swift */; };
 		D90697652A6A177F00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90697622A6A177E00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 */; };
@@ -1645,6 +1647,8 @@
 		D903DB0729DF42A400D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A pandemia ainda nao acabou porra remix.mp3"; sourceTree = "<group>"; };
 		D903DB0829DF42A400D9BE42 /* 04 E Transao Versao Definitiva.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "04 E Transao Versao Definitiva.mp3"; sourceTree = "<group>"; };
 		D90449592BB283C20023088B /* ExternalLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkButton.swift; sourceTree = "<group>"; };
+		D904BDCE2DADAA09004AF550 /* ContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRepository.swift; sourceTree = "<group>"; };
+		D904BDD02DAE1E80004AF550 /* FakeContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeContentRepository.swift; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
 		D90622C72AB4030600704B70 /* MedoContentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoContentProtocol.swift; sourceTree = "<group>"; };
 		D90697622A6A177E00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3"; sourceTree = "<group>"; };
@@ -4867,6 +4871,7 @@
 			isa = PBXGroup;
 			children = (
 				D9855DBD2BE4123E00965E9D /* Reaction+Mocks.swift */,
+				D904BDD02DAE1E80004AF550 /* FakeContentRepository.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -4891,6 +4896,7 @@
 				D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */,
 				D90E21742CCD793E00FC979C /* ReactionRepository.swift */,
 				D90EDDB92908505000ED87A8 /* FolderResearchRepository.swift */,
+				D904BDCE2DADAA09004AF550 /* ContentRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -6881,12 +6887,14 @@
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
+				D904BDCF2DADAA09004AF550 /* ContentRepository.swift in Sources */,
 				D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
 				D992EF5C2BCB25820080C892 /* ContentGridViewModel.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
+				D904BDD12DAE1E80004AF550 /* FakeContentRepository.swift in Sources */,
 				D99BAF762CE1683700250900 /* ReactionsView+LoadedView.swift in Sources */,
 				D90E80C12CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift in Sources */,
 				D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */,

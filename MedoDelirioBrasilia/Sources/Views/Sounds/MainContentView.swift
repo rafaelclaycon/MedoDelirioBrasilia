@@ -65,7 +65,6 @@ struct MainContentView: View {
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self._allSoundsViewModel = StateObject(wrappedValue: ContentGridViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.allContentPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: currentContentListMode,
             toast: toast,
@@ -108,10 +107,10 @@ struct MainContentView: View {
                             }
 
                             ContentGrid(
+                                state: viewModel.state,
                                 viewModel: allSoundsViewModel,
                                 searchTextIsEmpty: $contentSearchTextIsEmpty,
                                 allowSearch: true,
-                                dataLoadingDidFail: viewModel.dataLoadingDidFail,
                                 containerSize: geometry.size,
                                 loadingView:
                                     VStack {
@@ -155,19 +154,19 @@ struct MainContentView: View {
                                 .padding(.top, explicitOffWarningTopPadding)
                             }
 
-                            if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
-                                Text("\(viewModel.forDisplay?.count ?? 0) ITENS")
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, .spacing(.small))
-                                    .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
-                            }
+//                            if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
+//                                Text("\(viewModel.forDisplay?.count ?? 0) ITENS")
+//                                    .font(.footnote)
+//                                    .foregroundColor(.gray)
+//                                    .multilineTextAlignment(.center)
+//                                    .padding(.top, .spacing(.small))
+//                                    .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
+//                            }
 
                             Spacer()
                                 .frame(height: .spacing(.large))
                         }
-                        .padding(.horizontal, .spacing(.small))
+                        .padding(.horizontal, .spacing(.medium))
 
                     case .folders:
                         MyFoldersiPhoneView()
@@ -192,35 +191,35 @@ struct MainContentView: View {
                     trailing: trailingToolbarControls()
                 )
                 .onChange(of: viewModel.currentViewMode) {
-                    viewModel.onSelectedViewModeChanged(favorites: allSoundsViewModel.favoritesKeeper)
+                    viewModel.onSelectedViewModeChanged()
                 }
-                .onChange(of: viewModel.processedUpdateNumber) {
-                    withAnimation {
-                        displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
-                    }
-                }
-                .onChange(of: playRandomSoundHelper.soundIdToPlay) {
-                    if !playRandomSoundHelper.soundIdToPlay.isEmpty {
-                        viewModel.currentViewMode = .all
-                        allSoundsViewModel.scrollAndPlaySound(withId: playRandomSoundHelper.soundIdToPlay)
-                        playRandomSoundHelper.soundIdToPlay = ""
-                    }
-                }
-                .sheet(isPresented: $showingModalView) {
-                    SyncInfoView(
-                        lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
-                        lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
-                    )
-                }
-                .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
-                    if shouldUpdate {
-                        viewModel.onExplicitContentSettingChanged()
-                        settingsHelper.updateSoundsList = false
-                    }
-                }
-                .onChange(of: trendsHelper.notifyMainSoundContainer) {
-                    highlight(soundId: trendsHelper.notifyMainSoundContainer)
-                }
+//                .onChange(of: viewModel.processedUpdateNumber) {
+//                    withAnimation {
+//                        displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+//                    }
+//                }
+//                .onChange(of: playRandomSoundHelper.soundIdToPlay) {
+//                    if !playRandomSoundHelper.soundIdToPlay.isEmpty {
+//                        viewModel.currentViewMode = .all
+//                        allSoundsViewModel.scrollAndPlaySound(withId: playRandomSoundHelper.soundIdToPlay)
+//                        playRandomSoundHelper.soundIdToPlay = ""
+//                    }
+//                }
+//                .sheet(isPresented: $showingModalView) {
+//                    SyncInfoView(
+//                        lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+//                        lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+//                    )
+//                }
+//                .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
+//                    if shouldUpdate {
+//                        viewModel.onExplicitContentSettingChanged()
+//                        settingsHelper.updateSoundsList = false
+//                    }
+//                }
+//                .onChange(of: trendsHelper.notifyMainSoundContainer) {
+//                    highlight(soundId: trendsHelper.notifyMainSoundContainer)
+//                }
                 .onAppear {
                     viewModel.onViewDidAppear()
                 }
@@ -402,7 +401,8 @@ extension MainContentView {
             currentContentListMode: .constant(.regular),
             toast: .constant(nil),
             floatingOptions: .constant(nil),
-            syncValues: SyncValues()
+            syncValues: SyncValues(),
+            contentRepository: FakeContentRepository()
         ),
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),

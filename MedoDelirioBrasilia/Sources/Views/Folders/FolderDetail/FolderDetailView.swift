@@ -56,7 +56,6 @@ struct FolderDetailView: View {
         self.currentContentListMode = currentContentListMode
 
         let soundListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentListMode: currentContentListMode,
             toast: toast,
@@ -88,42 +87,42 @@ struct FolderDetailView: View {
                     .padding(.horizontal, 20)
                     .padding(.top)
 
-                    ContentGrid(
-                        viewModel: contentListViewModel,
-                        showNewTag: false,
-                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                        containerSize: geometry.size,
-                        loadingView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Carregando sons...")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        ,
-                        emptyStateView:
-                            VStack {
-                                EmptyFolderView()
-                                    .padding(.horizontal, .spacing(.xxLarge))
-                                    .padding(.vertical, .spacing(.huge))
-                            }
-                        ,
-                        errorView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Erro ao carregar sons.")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                    )
-                    .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.small))
+//                    ContentGrid(
+//                        viewModel: contentListViewModel,
+//                        showNewTag: false,
+//                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
+//                        containerSize: geometry.size,
+//                        loadingView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Carregando sons...")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                        ,
+//                        emptyStateView:
+//                            VStack {
+//                                EmptyFolderView()
+//                                    .padding(.horizontal, .spacing(.xxLarge))
+//                                    .padding(.vertical, .spacing(.huge))
+//                            }
+//                        ,
+//                        errorView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Erro ao carregar sons.")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                    )
+//                    .environment(TrendsHelper())
+//                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))
