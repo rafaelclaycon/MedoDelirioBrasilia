@@ -180,10 +180,12 @@ struct SongsView: View {
             viewModel.reloadList()
             viewModel.donateActivity()
 
-            Analytics().send(
-                originatingScreen: "SongsView",
-                action: "didViewSongsTab"
-            )
+            Task {
+                await AnalyticsService().send(
+                    originatingScreen: "SongsView",
+                    action: "didViewSongsTab"
+                )
+            }
         }
         .onDisappear {
             AudioPlayer.shared?.cancel()

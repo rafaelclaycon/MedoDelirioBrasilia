@@ -69,7 +69,8 @@ struct FolderDetailView: View {
             toast: toast,
             floatingOptions: floatingOptions,
             insideFolder: folder,
-            multiSelectFolderOperation: .remove
+            multiSelectFolderOperation: .remove,
+            analyticsService: AnalyticsService()
         )
     }
 

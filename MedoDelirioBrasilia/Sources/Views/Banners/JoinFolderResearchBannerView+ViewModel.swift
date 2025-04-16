@@ -60,10 +60,12 @@ extension JoinFolderResearchBannerView.ViewModel {
 
             state = .doneSending
         } catch {
-            Analytics().send(
-                originatingScreen: "JoinFolderResearchBannerView",
-                action: "issueFetchingAll(\(error.localizedDescription))"
-            )
+            Task {
+                await AnalyticsService().send(
+                    originatingScreen: "JoinFolderResearchBannerView",
+                    action: "issueFetchingAll(\(error.localizedDescription))"
+                )
+            }
             state = .errorSending
         }
     }

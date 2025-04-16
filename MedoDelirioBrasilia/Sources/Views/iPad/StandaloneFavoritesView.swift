@@ -29,7 +29,8 @@ struct StandaloneFavoritesView: View {
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: .constant(.regular),
             toast: toast,
-            floatingOptions: .constant(nil)
+            floatingOptions: .constant(nil),
+            analyticsService: AnalyticsService()
         )
     }
 

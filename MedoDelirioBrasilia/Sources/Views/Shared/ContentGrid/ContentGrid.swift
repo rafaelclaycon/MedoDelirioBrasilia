@@ -203,7 +203,7 @@ struct ContentGrid<
                             message: Text(viewModel.alertMessage),
                             primaryButton: .destructive(
                                 Text("Remover"),
-                                action: { viewModel.onRemoveMultipleContentSelected() }
+                                action: { Task { await viewModel.onRemoveMultipleContentSelected() } }
                             ),
                             secondaryButton: .cancel(Text("Cancelar"))
                         )
@@ -274,11 +274,13 @@ struct ContentGrid<
                 }
                 .onChange(of: viewModel.showingModalView) {
                     if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
-                        viewModel.onAddedContentToFolderSuccessfully(
-                            folderName: addToFolderHelper.folderName ?? "",
-                            pluralization: addToFolderHelper.pluralization
-                        )
-                        addToFolderHelper = AddToFolderDetails()
+                        Task {
+                            await viewModel.onAddedContentToFolderSuccessfully(
+                                folderName: addToFolderHelper.folderName ?? "",
+                                pluralization: addToFolderHelper.pluralization
+                            )
+                            addToFolderHelper = AddToFolderDetails()
+                        }
                     }
                 }
                 .onChange(of: containerSize.width) {
@@ -378,7 +380,8 @@ struct ContentGrid<
             menuOptions: [.sharingOptions()],
             currentListMode: .constant(.regular),
             toast: .constant(nil),
-            floatingOptions: .constant(nil)
+            floatingOptions: .constant(nil),
+            analyticsService: AnalyticsService()
         ),
         containerSize: CGSize(width: 390, height: 1200),
         loadingView: ProgressView(),

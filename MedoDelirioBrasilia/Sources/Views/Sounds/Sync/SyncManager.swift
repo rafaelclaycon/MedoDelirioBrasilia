@@ -160,7 +160,7 @@ class SyncManager {
             )
             try await provider.sendChanges()
         } catch {
-            Analytics().send(
+            await AnalyticsService().send(
                 originatingScreen: "SyncManager",
                 action: "issueSyncingFolderResearchChanges(\(error.localizedDescription))"
             )

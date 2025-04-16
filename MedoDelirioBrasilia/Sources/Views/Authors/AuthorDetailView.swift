@@ -135,7 +135,8 @@ struct AuthorDetailView: View {
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
             toast: toast,
-            floatingOptions: .constant(nil)
+            floatingOptions: .constant(nil),
+            analyticsService: AnalyticsService()
         )
     }
 

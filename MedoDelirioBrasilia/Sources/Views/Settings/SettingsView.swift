@@ -113,8 +113,10 @@ struct SettingsView: View {
                 Menu {
                     Section("Blogue") {
                         Button {
-                            OpenUtility.open(link: "https://from-rafael-with-code.ghost.io/")
-                            SettingsView.sendAnalytics(for: "didTapBlogLink")
+                            Task {
+                                OpenUtility.open(link: "https://from-rafael-with-code.ghost.io/")
+                                await SettingsView.sendAnalytics(for: "didTapBlogLink")
+                            }
                         } label: {
                             Label("From Rafael with Code", systemImage: "book")
                         }
@@ -123,8 +125,10 @@ struct SettingsView: View {
                     Section("Seguir no") {
                         ForEach(authorSocials) { social in
                             Button {
-                                OpenUtility.open(link: social.link)
-                                SettingsView.sendAnalytics(for: "didTapSocialLink(\(social.name))")
+                                Task {
+                                    OpenUtility.open(link: social.link)
+                                    await SettingsView.sendAnalytics(for: "didTapSocialLink(\(social.name))")
+                                }
                             } label: {
                                 Label(title: {
                                     Text(social.name)
@@ -139,8 +143,10 @@ struct SettingsView: View {
 
                     Section {
                         Button {
-                            OpenUtility.open(link: "https://jovemnerd.com.br/noticias/ciencia-e-tecnologia/mastodon-como-criar-conta")
-                            SettingsView.sendAnalytics(for: "didTapHowToCreateMastodonAccountOption")
+                            Task {
+                                OpenUtility.open(link: "https://jovemnerd.com.br/noticias/ciencia-e-tecnologia/mastodon-como-criar-conta")
+                                await SettingsView.sendAnalytics(for: "didTapHowToCreateMastodonAccountOption")
+                            }
                         } label: {
                             Label("O que é e como criar uma conta no Mastodon", systemImage: "arrow.up.right.square")
                         }
@@ -154,8 +160,10 @@ struct SettingsView: View {
 
             Section("Contribua ou entenda como funciona") {
                 Button {
-                    OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
-                    SettingsView.sendAnalytics(for: "didTapGitHubButton")
+                    Task {
+                        OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
+                        await SettingsView.sendAnalytics(for: "didTapGitHubButton")
+                    }
                 } label: {
                     Label("Ver código fonte no GitHub", systemImage: "curlybraces")
                 }
@@ -205,10 +213,8 @@ struct SettingsView: View {
         }
     }
 
-
-
-    private static func sendAnalytics(for action: String) {
-        Analytics().send(
+    private static func sendAnalytics(for action: String) async {
+        await AnalyticsService().send(
             originatingScreen: "SettingsView",
             action: action
         )
@@ -237,8 +243,10 @@ extension SettingsView {
                     Spacer()
 
                     Button {
-                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-                        sendAnalytics(for: "didTapApoiaseButton")
+                        Task {
+                            OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
+                            await sendAnalytics(for: "didTapApoiaseButton")
+                        }
                     } label: {
                         HStack(spacing: 15) {
                             Image(systemName: "dollarsign.circle")
@@ -270,9 +278,11 @@ extension SettingsView {
                     Spacer()
 
                     Button {
-                        UIPasteboard.general.string = pixKey
-                        toast = Toast(message: randomThankYouString(), type: .thankYou)
-                        sendAnalytics(for: "didCopyPixKey")
+                        Task {
+                            UIPasteboard.general.string = pixKey
+                            toast = Toast(message: randomThankYouString(), type: .thankYou)
+                            await sendAnalytics(for: "didCopyPixKey")
+                        }
                     } label: {
                         HStack(spacing: 15) {
                             Image(systemName: "doc.on.doc")

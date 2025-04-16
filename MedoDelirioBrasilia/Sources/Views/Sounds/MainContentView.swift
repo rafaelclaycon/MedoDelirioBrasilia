@@ -78,7 +78,8 @@ struct MainContentView: View {
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: currentContentListMode,
             toast: toast,
-            floatingOptions: floatingOptions
+            floatingOptions: floatingOptions,
+            analyticsService: AnalyticsService()
         )
         self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction

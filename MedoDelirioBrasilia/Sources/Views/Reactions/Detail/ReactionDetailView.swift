@@ -50,7 +50,8 @@ struct ReactionDetailView: View {
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
             toast: toast,
-            floatingOptions: .constant(nil)
+            floatingOptions: .constant(nil),
+            analyticsService: AnalyticsService()
         )
     }
 
@@ -123,10 +124,12 @@ struct ReactionDetailView: View {
                     await viewModel.onViewLoaded()
                 }
                 .onAppear {
-                    Analytics().send(
-                        originatingScreen: "ReactionDetailView",
-                        action: "didViewReaction(\(viewModel.reaction.title))"
-                    )
+                    Task {
+                        await AnalyticsService().send(
+                            originatingScreen: "ReactionDetailView",
+                            action: "didViewReaction(\(viewModel.reaction.title))"
+                        )
+                    }
                 }
             }
             .edgesIgnoringSafeArea(.top)

@@ -91,7 +91,7 @@ extension ReactionDetailViewModel {
             return
         } catch {
             state = .error(error.localizedDescription)
-            Analytics().send(
+            await AnalyticsService().send(
                 originatingScreen: "ReactionDetailView",
                 action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
             )
@@ -106,7 +106,7 @@ extension ReactionDetailViewModel {
             )
         } catch {
             state = .error(error.localizedDescription)
-            Analytics().send(
+            await AnalyticsService().send(
                 originatingScreen: "ReactionDetailView",
                 action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
             )

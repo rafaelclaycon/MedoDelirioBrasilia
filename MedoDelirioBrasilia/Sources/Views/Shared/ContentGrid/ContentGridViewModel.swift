@@ -65,6 +65,7 @@ final class ContentGridViewModel {
     private let multiSelectFolderOperation: FolderOperation
     private let contentRepository: ContentRepositoryProtocol
     private let userFolderRepository: UserFolderRepository
+    private let analyticsService: AnalyticsServiceProtocol
     private let currentScreen: ContentGridScreen
 
     // MARK: - Initializer
@@ -80,10 +81,12 @@ final class ContentGridViewModel {
         needsRefreshAfterChange: Bool = false,
         refreshAction: (() -> Void)? = nil,
         insideFolder: UserFolder? = nil,
-        multiSelectFolderOperation: FolderOperation = .add
+        multiSelectFolderOperation: FolderOperation = .add,
+        analyticsService: AnalyticsServiceProtocol
     ) {
         self.contentRepository = contentRepository
         self.userFolderRepository = userFolderRepository
+        self.analyticsService = analyticsService
         self.currentScreen = screen
         self.menuOptions = menuOptions
         self.currentListMode = currentListMode
@@ -127,7 +130,7 @@ extension ContentGridViewModel {
     public func onAddedContentToFolderSuccessfully(
         folderName: String,
         pluralization: WordPluralization
-    ) {
+    ) async {
         // Need to get count before clearing the Set.
         let selectedCount: Int = selectionKeeper.count
 
@@ -138,8 +141,8 @@ extension ContentGridViewModel {
         toast.wrappedValue = Toast(message: pluralization.getAddedToFolderToastText(folderName: folderName), type: .success)
 
         if pluralization == .plural {
-            Analytics().send(
-                originatingScreen: "SoundsView",
+            await analyticsService.send(
+                originatingScreen: currentScreen.rawValue,
                 action: "didAddManySoundsToFolder(\(selectedCount))"
             )
         }
@@ -171,8 +174,8 @@ extension ContentGridViewModel {
         await shareSelected(loadedContent: loadedContent)
     }
 
-    public func onAddRemoveManyFromFavoritesSelected() {
-        addRemoveManyFromFavorites()
+    public func onAddRemoveManyFromFavoritesSelected() async {
+        await addRemoveManyFromFavorites()
     }
 
     public func onAddRemoveManyFromFolderSelected(
@@ -214,8 +217,8 @@ extension ContentGridViewModel {
         removeSingleContentFromFolder()
     }
 
-    public func onRemoveMultipleContentSelected() {
-        removeManyFromFolder()
+    public func onRemoveMultipleContentSelected() async {
+        await removeManyFromFolder()
     }
 
     public func onItemSelectionChanged() {
@@ -569,7 +572,7 @@ extension ContentGridViewModel {
                 allSelectedAreFavorites: false,
                 folderOperation: .add,
                 shareIsProcessing: false,
-                favoriteAction: addRemoveManyFromFavorites,
+                favoriteAction: { Task { await self.addRemoveManyFromFavorites() } },
                 folderAction: {
                     if self.multiSelectFolderOperation == .add {
                         self.addManyToFolder(loadedContent: loadedContent)
@@ -603,7 +606,7 @@ extension ContentGridViewModel {
         return selectionKeeper.isSubset(of: favoritesKeeper)
     }
 
-    private func addRemoveManyFromFavorites() {
+    private func addRemoveManyFromFavorites() async {
         // Need to get count before clearing the Set.
         let selectedCount: Int = selectionKeeper.count
 
@@ -612,15 +615,15 @@ extension ContentGridViewModel {
             stopSelecting()
             guard let refreshAction else { return }
             refreshAction()
-            Analytics().send(
-                originatingScreen: "SoundsView",
+            await analyticsService.send(
+                originatingScreen: currentScreen.rawValue,
                 action: "didRemoveManySoundsFromFavorites(\(selectedCount))"
             )
         } else {
             addSelectedToFavorites()
             stopSelecting()
-            Analytics().send(
-                originatingScreen: "SoundsView",
+            await analyticsService.send(
+                originatingScreen: currentScreen.rawValue,
                 action: "didAddManySoundsToFavorites(\(selectedCount))"
             )
         }
@@ -647,7 +650,7 @@ extension ContentGridViewModel {
         showingModalView = true
     }
 
-    private func removeManyFromFolder() {
+    private func removeManyFromFolder() async {
         guard let folder else { return }
         guard let refreshAction else { return }
         guard selectionKeeper.count > 0 else { return }
@@ -668,7 +671,8 @@ extension ContentGridViewModel {
             refreshAction()
 
             stopSelecting()
-            Analytics().sendUsageMetricToServer(
+            await analyticsService.send(
+                currentScreen: currentScreen.rawValue,
                 folderName: "\(folder.symbol) \(folder.name)",
                 action: "didRemoveManySoundsFromFolder(\(selectedCount))"
             )
