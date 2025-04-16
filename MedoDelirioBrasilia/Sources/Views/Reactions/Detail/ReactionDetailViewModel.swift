@@ -6,28 +6,22 @@
 //
 
 import SwiftUI
-import Combine
 
 @MainActor
-class ReactionDetailViewModel: ObservableObject {
+@Observable
+class ReactionDetailViewModel {
 
     // MARK: - Published Vars
 
-    @Published var state: ReactionDetailState<[Sound]> = .loading
-    @Published var sounds: [Sound]?
-    @Published var soundSortOption: Int
+    var state: ReactionDetailState<[Sound]> = .loading
+    var sounds: [Sound]?
+    var soundSortOption: Int
 
     public var reaction: Reaction
     private var reactionSounds: [ReactionSound]? // Needed for ordering by position.
     private let reactionRepository: ReactionRepositoryProtocol
 
     // MARK: - Computed Properties
-
-    var soundsPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $sounds
-            .compactMap { $0?.map { AnyEquatableMedoContent($0) } }
-            .eraseToAnyPublisher()
-    }
 
     var subtitle: String {
         guard !dataLoadingDidFail else { return "" }

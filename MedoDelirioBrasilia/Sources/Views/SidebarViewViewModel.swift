@@ -17,5 +17,4 @@ class SidebarViewViewModel: ObservableObject {
         }
         self.folders = actualFolders
     }
-
 }

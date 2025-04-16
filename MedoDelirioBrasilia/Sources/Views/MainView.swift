@@ -71,7 +71,7 @@ struct MainView: View {
                         .environment(trendsHelper)
                         .environmentObject(settingsHelper)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                            GeneralRouter(destination: screen)
+                            GeneralRouter(destination: screen, contentRepository: contentRepository)
                         }
                     }
                     .tabItem {
@@ -84,7 +84,7 @@ struct MainView: View {
                         ReactionsView()
                             .environment(trendsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                GeneralRouter(destination: screen)
+                                GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
                     }
                     .tabItem {
@@ -164,7 +164,7 @@ struct MainView: View {
                                 .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
                             }
                             .environment(\.push, PushAction { soundsPath.append($0) })
@@ -181,7 +181,7 @@ struct MainView: View {
                                 .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
                             }
                             .environment(\.push, PushAction { favoritesPath.append($0) })
@@ -192,7 +192,7 @@ struct MainView: View {
                                 ReactionsView()
                                     .environment(trendsHelper)
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen)
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
                                     }
                             }
                             .environment(\.push, PushAction { reactionsPath.append($0) })
@@ -202,7 +202,7 @@ struct MainView: View {
                             NavigationStack(path: $authorsPath) {
                                 StandaloneAuthorsView()
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen)
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
                                     }
                             }
                             .environment(\.push, PushAction { authorsPath.append($0) })
@@ -226,7 +226,7 @@ struct MainView: View {
                                         updateFolderList: $updateFolderList
                                     )
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen)
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
                                     }
                                 }
                                 .environment(\.push, PushAction { foldersPath.append($0) })
@@ -318,7 +318,7 @@ struct MainView: View {
                             .environment(trendsHelper)
                             .environmentObject(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                GeneralRouter(destination: screen)
+                                GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
                             .environment(\.push, PushAction { soundsPath.append($0) })
                         }

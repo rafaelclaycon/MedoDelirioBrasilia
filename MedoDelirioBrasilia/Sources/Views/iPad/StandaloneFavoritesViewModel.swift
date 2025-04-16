@@ -6,27 +6,19 @@
 //
 
 import SwiftUI
-import Combine
 
 @MainActor
-class StandaloneFavoritesViewModel: ObservableObject {
+@Observable
+class StandaloneFavoritesViewModel {
 
     // MARK: - Published Vars
 
-    @Published var data: [AnyEquatableMedoContent]?
+    var data: [AnyEquatableMedoContent]?
 
-    @Published var contentSortOption: Int
-    @Published var dataLoadingDidFail: Bool = false
+    var contentSortOption: Int
+    var dataLoadingDidFail: Bool = false
 
-    @Published var toast: Toast?
-
-    // MARK: - Computed Properties
-
-    var dataPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $data
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
+    var toast: Toast?
 
     // MARK: - Initializer
 
@@ -45,7 +37,6 @@ extension StandaloneFavoritesViewModel {
         print("StandaloneFavoritesView - ON APPEAR")
 
         loadContent()
-        //loadFavorites()
     }
 
     public func onSoundSortOptionChanged() {

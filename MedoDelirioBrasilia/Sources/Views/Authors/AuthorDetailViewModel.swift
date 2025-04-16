@@ -5,86 +5,86 @@
 //  Created by Rafael Claycon Schmitt on 19/05/22.
 //
 
-import Combine
 import SwiftUI
 
-class AuthorDetailViewModel: ObservableObject {
+@Observable
+class AuthorDetailViewModel {
 
-    @Published var sounds = [Sound]()
+    var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
-    @Published var dataLoadingDidFail: Bool = false
+    var soundSortOption: Int = 1
+    var selectedSound: Sound? = nil
+    var selectedSounds: [Sound]? = nil
 
-    @Published var soundSortOption: Int = 1
-    @Published var selectedSound: Sound? = nil
-    @Published var selectedSounds: [Sound]? = nil
-    
-    @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
-    @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
-    @Published var showEmailAppPicker_askForNewSound = false
-    @Published var showEmailAppPicker_reportAuthorDetailIssue = false
+    var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
+    var showEmailAppPicker_soundUnavailableConfirmationDialog = false
+    var showEmailAppPicker_askForNewSound = false
+    var showEmailAppPicker_reportAuthorDetailIssue = false
+    private let authorId: String
     var currentContentListMode: Binding<ContentListMode>
+    private let contentRepository: ContentRepositoryProtocol
 
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
-    @Published var showAlert: Bool = false
-    @Published var alertType: AuthorDetailAlertType = .ok
+    var alertTitle: String = ""
+    var alertMessage: String = ""
+    var showAlert: Bool = false
+    var alertType: AuthorDetailAlertType = .ok
 
     // MARK: - Computed Properties
 
-    var soundsPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $sounds
-            .map { $0.map { AnyEquatableMedoContent($0) } }
-            .eraseToAnyPublisher()
+    var soundCount: Int {
+        guard case .loaded(let content) = state else { return 0 }
+        return content.count
     }
 
-    var soundCount: String {
-        sounds.count == 1 ? "1 SOM" : "\(sounds.count) SONS"
+    var soundCountText: String {
+        soundCount == 1 ? "1 SOM" : "\(soundCount) SONS"
     }
 
     // MARK: - Initializer
 
     init(
-        currentContentListMode: Binding<ContentListMode>
+        authorId: String,
+        currentContentListMode: Binding<ContentListMode>,
+        contentRepository: ContentRepositoryProtocol
     ) {
+        self.authorId = authorId
         self.currentContentListMode = currentContentListMode
+        self.contentRepository = contentRepository
+    }
+}
+
+
+// MARK: - User Actions
+
+extension AuthorDetailViewModel {
+
+    public func onViewLoaded() {
+        loadContent()
     }
 
-    func loadSounds(for authorId: String) {
+    public func onSortOptionChanged() {
+        loadContent()
+    }
+}
+
+// MARK: - Internal Functions
+
+extension AuthorDetailViewModel {
+
+    private func loadContent() {
+        state = .loading
         do {
-            sounds = try LocalDatabase.shared.allSounds(
-                forAuthor: authorId,
-                isSensitiveContentAllowed: UserSettings().getShowExplicitContent()
-            )
-            guard sounds.count > 0 else { return }
-            sortSounds(by: soundSortOption)
+            let allowSensitive = UserSettings().getShowExplicitContent()
+            let sort = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
+            state = .loaded(try contentRepository.content(by: authorId, allowSensitive, sort))
         } catch {
-            print("Erro carregando sons: \(error.localizedDescription)")
-            dataLoadingDidFail = true
+            state = .error(error.localizedDescription)
+            debugPrint(error)
         }
     }
 
-    // MARK: - List Sorting
-
-    func sortSounds(by rawSortOption: Int) {
-        if rawSortOption == 0 {
-            sortSoundsInPlaceByTitleAscending()
-        } else {
-            sortSoundsInPlaceByDateAddedDescending()
-        }
-    }
-
-    private func sortSoundsInPlaceByTitleAscending() {
-        self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
-    }
-
-    private func sortSoundsInPlaceByDateAddedDescending() {
-        self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-    }
-
-    // MARK: - Functions
-
-    func sendUsageMetricToServer(
+    private func sendUsageMetricToServer(
         action: String,
         authorName: String
     ) {
@@ -100,13 +100,8 @@ class AuthorDetailViewModel: ObservableObject {
         )
         NetworkRabbit.shared.post(usageMetric: usageMetric)
     }
-}
 
-// MARK: - Alert
-
-extension AuthorDetailViewModel {
-
-    func showAskForNewSoundAlert() {
+    public func showAskForNewSoundAlert() {
         TapticFeedback.warning()
         alertType = .askForNewSound
         alertTitle = Shared.AuthorDetail.AskForNewSoundAlert.title

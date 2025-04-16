@@ -10,7 +10,7 @@ import Kingfisher
 
 struct AuthorDetailView: View {
 
-    @StateObject private var viewModel: AuthorDetailViewModel
+    @State private var viewModel: AuthorDetailViewModel
     @State private var contentListViewModel: ContentGridViewModel
 
     let author: Author
@@ -111,12 +111,16 @@ struct AuthorDetailView: View {
     init(
         author: Author,
         currentListMode: Binding<ContentListMode>,
-        toast: Binding<Toast?>
+        toast: Binding<Toast?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.author = author
-        let viewModel = AuthorDetailViewModel(currentContentListMode: currentListMode)
 
-        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = AuthorDetailViewModel(
+            authorId: author.id,
+            currentContentListMode: currentListMode,
+            contentRepository: contentRepository
+        )
         self.currentContentListMode = currentListMode
 
         self.contentListViewModel = ContentGridViewModel(
@@ -184,7 +188,7 @@ struct AuthorDetailView: View {
                                 .padding(.vertical, 4)
                             }
 
-                            Text(viewModel.soundCount)
+                            Text(viewModel.soundCountText)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .bold()
@@ -194,41 +198,41 @@ struct AuthorDetailView: View {
                         .padding(.bottom, 5)
                     }
 
-//                    ContentGrid(
-//                        viewModel: contentListViewModel,
-//                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
-//                        authorId: author.id,
-//                        containerSize: geometry.size,
-//                        loadingView:
-//                            VStack {
-//                                HStack(spacing: 10) {
-//                                    ProgressView()
-//
-//                                    Text("Carregando sons...")
-//                                        .foregroundColor(.gray)
-//                                }
-//                                .frame(maxWidth: .infinity)
-//                            }
-//                        ,
-//                        emptyStateView:
-//                            VStack {
-//                                NoSoundsView()
-//                                    .padding(.horizontal, 25)
-//                            }
-//                        ,
-//                        errorView:
-//                            VStack {
-//                                HStack(spacing: 10) {
-//                                    ProgressView()
-//
-//                                    Text("Erro ao carregar sons.")
-//                                        .foregroundColor(.gray)
-//                                }
-//                                .frame(maxWidth: .infinity)
-//                            }
-//                    )
-//                    .environment(TrendsHelper())
-//                    .padding(.horizontal, .spacing(.small))
+                    ContentGrid(
+                        state: viewModel.state,
+                        viewModel: contentListViewModel,
+                        authorId: author.id,
+                        containerSize: geometry.size,
+                        loadingView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
+
+                                    Text("Carregando sons...")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                        ,
+                        emptyStateView:
+                            VStack {
+                                NoSoundsView()
+                                    .padding(.horizontal, 25)
+                            }
+                        ,
+                        errorView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
+
+                                    Text("Erro ao carregar sons.")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                    )
+                    .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))
@@ -238,8 +242,7 @@ struct AuthorDetailView: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
-                    // TODO: Refactor this to be closer to SoundsView.
-                    viewModel.loadSounds(for: author.id)
+                    viewModel.onViewLoaded()
                 }
                 .onDisappear {
                     contentListViewModel.onViewDisappeared()
@@ -311,7 +314,7 @@ struct AuthorDetailView: View {
     @ViewBuilder
     private func moreOptionsMenu(isOnToolbar: Bool) -> some View {
         Menu {
-            if viewModel.sounds.count > 1 {
+            if viewModel.soundCount > 1 {
                 Section {
                     Button {
                         contentListViewModel.onEnterMultiSelectModeSelected()
@@ -325,13 +328,13 @@ struct AuthorDetailView: View {
             }
             
             Section {
-                Button {
-                    contentListViewModel.onExitMultiSelectModeSelected()
-                    viewModel.selectedSounds = viewModel.sounds
-                    // showingAddToFolderModal = true // TODO: Fix - move to ContentList
-                } label: {
-                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
-                }
+//                Button {
+//                    contentListViewModel.onExitMultiSelectModeSelected()
+//                    viewModel.selectedSounds = viewModel.sounds
+//                    // showingAddToFolderModal = true // TODO: Fix - move to ContentList
+//                } label: {
+//                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+//                }
                 
                 Button {
                     contentListViewModel.onExitMultiSelectModeSelected()
@@ -348,7 +351,7 @@ struct AuthorDetailView: View {
                 }
             }
             
-            if viewModel.sounds.count > 1 {
+            if viewModel.soundCount > 1 {
                 Section {
                     Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
                         Text("Título")
@@ -358,7 +361,7 @@ struct AuthorDetailView: View {
                             .tag(1)
                     }
                     .onChange(of: viewModel.soundSortOption) {
-                        viewModel.sortSounds(by: viewModel.soundSortOption)
+                        viewModel.onSortOptionChanged()
                     }
                 }
             }
@@ -372,7 +375,7 @@ struct AuthorDetailView: View {
                     .frame(height: 26)
             }
         }
-        .disabled(viewModel.sounds.count == 0)
+        .disabled(viewModel.soundCount == 0)
     }
 }
 
@@ -398,6 +401,7 @@ struct ViewOffsetKey: PreferenceKey {
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
         ),
         currentListMode: .constant(.regular),
-        toast: .constant(nil)
+        toast: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }

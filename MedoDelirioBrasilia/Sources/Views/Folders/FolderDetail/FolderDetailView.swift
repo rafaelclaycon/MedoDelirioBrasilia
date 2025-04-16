@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FolderDetailView: View {
 
-    @StateObject private var viewModel: FolderDetailViewViewModel
+    @State private var viewModel: FolderDetailViewViewModel
     @State private var contentListViewModel: ContentGridViewModel
 
     let folder: UserFolder
@@ -47,12 +47,11 @@ struct FolderDetailView: View {
         floatingOptions: Binding<FloatingContentOptions?>
     ) {
         self.folder = folder
-        let viewModel = FolderDetailViewViewModel(
+
+        self.viewModel = FolderDetailViewViewModel(
             folder: folder,
             database: LocalDatabase.shared
         )
-
-        self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentContentListMode = currentContentListMode
 
         self.contentListViewModel = ContentGridViewModel(
@@ -60,7 +59,6 @@ struct FolderDetailView: View {
             currentListMode: currentContentListMode,
             toast: toast,
             floatingOptions: floatingOptions,
-            refreshAction: { viewModel.onPulledToRefresh() },
             insideFolder: folder,
             multiSelectFolderOperation: .remove
         )

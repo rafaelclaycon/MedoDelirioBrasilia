@@ -5,23 +5,23 @@
 //  Created by Rafael Claycon Schmitt on 28/06/22.
 //
 
-import Combine
 import SwiftUI
 
-class FolderDetailViewViewModel: ObservableObject {
+@Observable
+class FolderDetailViewViewModel {
 
     // MARK: - Published Properties
 
-    @Published var content = [AnyEquatableMedoContent]()
-    @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
+    var content = [AnyEquatableMedoContent]()
+    var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
 
-    @Published var dataLoadingDidFail: Bool = false
+    var dataLoadingDidFail: Bool = false
     
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
-    @Published var showAlert: Bool = false
-    @Published var alertType: FolderDetailAlertType = .ok
+    var alertTitle: String = ""
+    var alertMessage: String = ""
+    var showAlert: Bool = false
+    var alertType: FolderDetailAlertType = .ok
 
     // MARK: - Stored Properties
 
@@ -29,12 +29,6 @@ class FolderDetailViewViewModel: ObservableObject {
     private let database: LocalDatabaseProtocol
 
     // MARK: - Computed Properties
-
-    var soundsPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $content
-            .map { $0.map { AnyEquatableMedoContent($0) } }
-            .eraseToAnyPublisher()
-    }
 
     var soundCount: String {
         guard !content.isEmpty else { return "PASTA VAZIA" }

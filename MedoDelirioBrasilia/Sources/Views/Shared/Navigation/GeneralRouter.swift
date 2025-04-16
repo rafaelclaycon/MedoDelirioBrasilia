@@ -15,6 +15,7 @@ enum GeneralNavigationDestination: Hashable {
 struct GeneralRouter: View {
 
     let destination: GeneralNavigationDestination
+    let contentRepository: ContentRepositoryProtocol
 
     @State private var currentContentListMode: ContentListMode = .regular
     @State private var toast: Toast?
@@ -25,7 +26,8 @@ struct GeneralRouter: View {
             AuthorDetailView(
                 author: author,
                 currentListMode: $currentContentListMode,
-                toast: $toast
+                toast: $toast,
+                contentRepository: contentRepository
             )
         case .reactionDetail(let reaction):
             ReactionDetailView(
