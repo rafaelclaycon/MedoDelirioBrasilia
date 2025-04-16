@@ -143,7 +143,8 @@ struct ContentGrid<
                                     contextMenuOptionsView(
                                         content: content,
                                         menuOptions: viewModel.menuOptions,
-                                        favorites: viewModel.favoritesKeeper
+                                        favorites: viewModel.favoritesKeeper,
+                                        loadedContent: loadedContent
                                     )
                                 }
                             }
@@ -337,14 +338,15 @@ struct ContentGrid<
     private func contextMenuOptionsView(
         content: AnyEquatableMedoContent,
         menuOptions: [ContextMenuSection],
-        favorites: Set<String>
+        favorites: Set<String>,
+        loadedContent: [AnyEquatableMedoContent]
     ) -> some View {
         ForEach(menuOptions, id: \.title) { section in
             Section {
                 ForEach(section.options(content)) { option in
                     if option.appliesTo.contains(content.type) {
                         Button {
-                            option.action(content, viewModel)
+                            option.action(content, viewModel, loadedContent)
                         } label: {
                             Label(
                                 option.title(favorites.contains(content.id)),

@@ -13,7 +13,7 @@ struct ContextMenuOption: Identifiable {
     let symbol: (Bool) -> String
     let title: (Bool) -> String
     let appliesTo: [MediaType]
-    let action: (AnyEquatableMedoContent, ContentListDisplaying) -> Void
+    let action: (AnyEquatableMedoContent, ContentListDisplaying, [AnyEquatableMedoContent]?) -> Void
 }
 
 struct ContextMenuSection {
@@ -29,7 +29,7 @@ extension ContextMenuOption {
             symbol: { _ in "square.and.arrow.up" },
             title: { _ in Shared.shareSoundButtonText },
             appliesTo: [.sound, .song]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             delegate.share(content: content)
         }
     }
@@ -39,7 +39,7 @@ extension ContextMenuOption {
             symbol: { _ in "film"},
             title: { _ in Shared.shareAsVideoButtonText },
             appliesTo: [.sound, .song]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             delegate.openShareAsVideoModal(for: content)
         }
     }
@@ -53,7 +53,7 @@ extension ContextMenuOption {
                 isFavorite ? Shared.removeFromFavorites : Shared.addToFavorites
             },
             appliesTo: [.sound, .song]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             delegate.toggleFavorite(content.id)
         }
     }
@@ -63,7 +63,7 @@ extension ContextMenuOption {
             symbol: { _ in "folder.badge.plus" },
             title: { _ in Shared.addToFolderButtonText },
             appliesTo: [.sound, .song]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             delegate.addToFolder(content)
         }
     }
@@ -73,7 +73,7 @@ extension ContextMenuOption {
             symbol: { _ in "person" },
             title: { _ in "Ver Autor" },
             appliesTo: [.sound]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             guard !content.authorId.isEmpty else { return }
             delegate.showAuthor(withId: content.authorId)
         }
@@ -84,7 +84,7 @@ extension ContextMenuOption {
             symbol: { _ in "guitars" },
             title: { _ in "Ver Gênero Musical" },
             appliesTo: [.song]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             print("Not implemented yet!")
         }
     }
@@ -94,7 +94,7 @@ extension ContextMenuOption {
             symbol: { _ in "info.circle" },
             title: { _ in "Ver Detalhes" },
             appliesTo: [.sound, .song]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             delegate.showDetails(for: content)
         }
     }
@@ -109,8 +109,8 @@ extension ContextMenuOption {
             symbol: { _ in "play"},
             title: { _ in "Tocar a Partir Desse"},
             appliesTo: [.sound, .song]
-        ) { content, delegate in
-            delegate.playFrom(content: content)
+        ) { content, delegate, loadedContent in
+            delegate.playFrom(content: content, loadedContent: loadedContent ?? [])
         }
     }
 
@@ -119,7 +119,7 @@ extension ContextMenuOption {
             symbol: { _ in "folder.badge.minus"},
             title: { _ in "Remover da Pasta"},
             appliesTo: [.sound, .song]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             delegate.removeFromFolder(content)
         }
     }
@@ -134,7 +134,7 @@ extension ContextMenuOption {
             symbol: { _ in "exclamationmark.bubble"},
             title: { _ in "Sugerir Outro Nome de Autor"},
             appliesTo: [.sound]
-        ) { content, delegate in
+        ) { content, delegate, _ in
             delegate.suggestOtherAuthorName(for: content)
         }
     }

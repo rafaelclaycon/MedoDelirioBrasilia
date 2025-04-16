@@ -524,14 +524,14 @@ extension ContentGridViewModel: ContentListDisplaying {
     }
 
     func playFrom(
-        content: AnyEquatableMedoContent//,
-        //loadedContent: [AnyEquatableMedoContent]
+        content: AnyEquatableMedoContent,
+        loadedContent: [AnyEquatableMedoContent]
     ) {
-//        guard let index = allContent.firstIndex(where: { $0.id == content.id }) else { return }
-//        let soundInArray = allContent[index]
-//        currentTrackIndex = index
-//        isPlayingPlaylist = true
-//        play(soundInArray, scrollToPlaying: true, allContent: allContent)
+        guard let index = loadedContent.firstIndex(where: { $0.id == content.id }) else { return }
+        let soundInArray = loadedContent[index]
+        currentTrackIndex = index
+        isPlayingPlaylist = true
+        play(soundInArray, scrollToPlaying: true, loadedContent: loadedContent)
     }
 
     func removeFromFolder(_ content: AnyEquatableMedoContent) {
