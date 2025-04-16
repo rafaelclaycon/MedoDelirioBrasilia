@@ -66,7 +66,8 @@ struct MainView: View {
                             floatingOptions: $floatingOptions,
                             openSettingsAction: {
                                 isShowingSettingsSheet.toggle()
-                            }
+                            },
+                            contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
                         .environmentObject(settingsHelper)
@@ -159,7 +160,8 @@ struct MainView: View {
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
-                                    openSettingsAction: {}
+                                    openSettingsAction: {},
+                                    contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
@@ -223,7 +225,8 @@ struct MainView: View {
                                 NavigationStack(path: $foldersPath) {
                                     AllFoldersiPadView(
                                         folderForEditing: $folderForEditing,
-                                        updateFolderList: $updateFolderList
+                                        updateFolderList: $updateFolderList,
+                                        contentRepository: contentRepository
                                     )
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                         GeneralRouter(destination: screen, contentRepository: contentRepository)
@@ -239,7 +242,8 @@ struct MainView: View {
                                             folder: folder,
                                             currentContentListMode: $currentContentListMode,
                                             toast: $toast,
-                                            floatingOptions: $floatingOptions
+                                            floatingOptions: $floatingOptions,
+                                            contentRepository: contentRepository
                                         )
                                     }
                                 } label: {
@@ -313,7 +317,8 @@ struct MainView: View {
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
-                                openSettingsAction: {}
+                                openSettingsAction: {},
+                                contentRepository: contentRepository
                             )
                             .environment(trendsHelper)
                             .environmentObject(settingsHelper)

@@ -27,11 +27,11 @@ class MainContentViewModel {
     public var currentContentListMode: Binding<ContentListMode>
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
+    private let contentRepository: ContentRepositoryProtocol
 
     // Sync
     private let syncManager: SyncManager
     private let syncValues: SyncValues
-    private let contentRepository: ContentRepositoryProtocol
     private let isAllowedToSync: Bool
 
     // MARK: - Initializer

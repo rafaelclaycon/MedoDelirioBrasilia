@@ -14,6 +14,7 @@ struct MainContentView: View {
     @State private var allSoundsViewModel: ContentGridViewModel
     private var currentContentListMode: Binding<ContentListMode>
     private let openSettingsAction: () -> Void
+    private let contentRepository: ContentRepositoryProtocol
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -61,7 +62,8 @@ struct MainContentView: View {
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
-        openSettingsAction: @escaping () -> Void
+        openSettingsAction: @escaping () -> Void,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.viewModel = viewModel
         self.allSoundsViewModel = ContentGridViewModel(
@@ -72,6 +74,7 @@ struct MainContentView: View {
         )
         self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction
+        self.contentRepository = contentRepository
     }
 
     // MARK: - View Body
@@ -169,7 +172,7 @@ struct MainContentView: View {
                         .padding(.horizontal, .spacing(.medium))
 
                     case .folders:
-                        MyFoldersiPhoneView()
+                        MyFoldersiPhoneView(contentRepository: contentRepository)
                             .environmentObject(deleteFolderAide)
                         
                     case .authors:
@@ -407,6 +410,7 @@ extension MainContentView {
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
         floatingOptions: .constant(nil),
-        openSettingsAction: {}
+        openSettingsAction: {},
+        contentRepository: FakeContentRepository()
     )
 }

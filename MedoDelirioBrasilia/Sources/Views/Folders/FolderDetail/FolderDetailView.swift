@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FolderDetailView: View {
 
-    @State private var viewModel: FolderDetailViewViewModel
+    @State private var viewModel: FolderDetailViewModel
     @State private var contentListViewModel: ContentGridViewModel
 
     let folder: UserFolder
@@ -44,13 +44,14 @@ struct FolderDetailView: View {
         folder: UserFolder,
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
-        floatingOptions: Binding<FloatingContentOptions?>
+        floatingOptions: Binding<FloatingContentOptions?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.folder = folder
 
-        self.viewModel = FolderDetailViewViewModel(
+        self.viewModel = FolderDetailViewModel(
             folder: folder,
-            database: LocalDatabase.shared
+            contentRepository: contentRepository
         )
         self.currentContentListMode = currentContentListMode
 
@@ -72,7 +73,7 @@ struct FolderDetailView: View {
                 VStack(spacing: .spacing(.medium)) {
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(viewModel.soundCount)
+                            Text(viewModel.contentCountText)
                                 .font(.callout)
                                 .foregroundColor(.gray)
                                 .bold()
@@ -83,42 +84,42 @@ struct FolderDetailView: View {
                     .padding(.horizontal, 20)
                     .padding(.top)
 
-//                    ContentGrid(
-//                        viewModel: contentListViewModel,
-//                        showNewTag: false,
-//                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
-//                        containerSize: geometry.size,
-//                        loadingView:
-//                            VStack {
-//                                HStack(spacing: 10) {
-//                                    ProgressView()
-//
-//                                    Text("Carregando sons...")
-//                                        .foregroundColor(.gray)
-//                                }
-//                                .frame(maxWidth: .infinity)
-//                            }
-//                        ,
-//                        emptyStateView:
-//                            VStack {
-//                                EmptyFolderView()
-//                                    .padding(.horizontal, .spacing(.xxLarge))
-//                                    .padding(.vertical, .spacing(.huge))
-//                            }
-//                        ,
-//                        errorView:
-//                            VStack {
-//                                HStack(spacing: 10) {
-//                                    ProgressView()
-//
-//                                    Text("Erro ao carregar sons.")
-//                                        .foregroundColor(.gray)
-//                                }
-//                                .frame(maxWidth: .infinity)
-//                            }
-//                    )
-//                    .environment(TrendsHelper())
-//                    .padding(.horizontal, .spacing(.small))
+                    ContentGrid(
+                        state: viewModel.state,
+                        viewModel: contentListViewModel,
+                        showNewTag: false,
+                        containerSize: geometry.size,
+                        loadingView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
+
+                                    Text("Carregando sons...")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                        ,
+                        emptyStateView:
+                            VStack {
+                                EmptyFolderView()
+                                    .padding(.horizontal, .spacing(.xxLarge))
+                                    .padding(.vertical, .spacing(.huge))
+                            }
+                        ,
+                        errorView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
+
+                                    Text("Erro ao carregar sons.")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                    )
+                    .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))
@@ -156,7 +157,7 @@ struct FolderDetailView: View {
                 } label: {
                     Image(systemName: contentListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
-                .disabled(viewModel.content.isEmpty)
+                .disabled(viewModel.contentCount == 0)
             } else {
                 selectionControls()
             }
@@ -189,7 +190,7 @@ struct FolderDetailView: View {
                     .onChange(of: viewModel.soundSortOption) {
                         viewModel.onContentSortOptionChanged()
                     }
-                    .disabled(viewModel.content.isEmpty)
+                    .disabled(viewModel.contentCount == 0)
                 }
 
                 //                    Section {
@@ -225,7 +226,7 @@ struct FolderDetailView: View {
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-            .disabled(contentListViewModel.isPlayingPlaylist || viewModel.content.isEmpty)
+            .disabled(contentListViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
         }
     }
     
@@ -258,6 +259,7 @@ struct FolderDetailView: View {
         ),
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
-        floatingOptions: .constant(nil)
+        floatingOptions: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }

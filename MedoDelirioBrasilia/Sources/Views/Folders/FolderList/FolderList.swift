@@ -14,6 +14,7 @@ struct FolderList: View {
 
     @Binding var updateFolderList: Bool
     @Binding var folderForEditing: UserFolder?
+    let contentRepository: ContentRepositoryProtocol
 
     // MARK: - State Properties
 
@@ -80,7 +81,8 @@ struct FolderList: View {
                                 folder: folder,
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
-                                floatingOptions: $floatingOptions
+                                floatingOptions: $floatingOptions,
+                                contentRepository: contentRepository
                             )
                         } label: {
                             FolderCell(
@@ -170,6 +172,7 @@ struct FolderList: View {
 #Preview {
     FolderList(
         updateFolderList: .constant(false),
-        folderForEditing: .constant(nil)
+        folderForEditing: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }

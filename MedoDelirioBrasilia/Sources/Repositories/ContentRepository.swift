@@ -14,7 +14,7 @@ protocol ContentRepositoryProtocol {
     func songs(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent]
 
     func content(by authorId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent]
-    func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent]
+    func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent]
     func reactionContent(reactionId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent]
 }
 
@@ -71,8 +71,20 @@ final class ContentRepository: ContentRepositoryProtocol {
         return sort(content: content, by: sortOrder)
     }
 
-    func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
-        []
+    func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent] {
+        let folderContents = try database.contentsInside(userFolder: folderId)
+        let contentIds = folderContents.map { $0.contentId }
+        var content = allContent.filter { contentIds.contains($0.id) }
+
+        for i in stride(from: 0, to: content.count, by: 1) {
+            // DateAdded here is date added to folder not to the app as it means outside folders.
+            content[i].dateAdded = folderContents.first(where: { $0.contentId == content[i].id })?.dateAdded
+        }
+
+        if !allowSensitive {
+            content = content.filter { !$0.isOffensive }
+        }
+        return folderSort(content: content, by: sortOrder)
     }
 
     func reactionContent(reactionId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
@@ -113,6 +125,17 @@ extension ContentRepository {
             content.sorted(by: { $0.title.count > $1.title.count })
         case .shortestTitleFirst:
             content.sorted(by: { $0.title.count < $1.title.count })
+        }
+    }
+
+    private func folderSort(content: [AnyEquatableMedoContent], by sortOption: FolderSoundSortOption) -> [AnyEquatableMedoContent] {
+        switch sortOption {
+        case .titleAscending:
+            content.sorted(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+        case .authorNameAscending:
+            content.sorted(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
+        case .dateAddedDescending:
+            content.sorted(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
         }
     }
 }

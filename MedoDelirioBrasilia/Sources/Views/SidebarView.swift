@@ -50,7 +50,8 @@ struct SidebarView: View {
                         currentContentListMode: $currentContentListMode,
                         toast: $toast,
                         floatingOptions: $floatingOptions,
-                        openSettingsAction: {}
+                        openSettingsAction: {},
+                        contentRepository: contentRepository
                     ).environment(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
@@ -90,7 +91,8 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: AllFoldersiPadView(
                         folderForEditing: $folderForEditing,
-                        updateFolderList: $updateFolderList
+                        updateFolderList: $updateFolderList,
+                        contentRepository: contentRepository
                     ),
                     tag: PadScreen.allFolders,
                     selection: $state,
@@ -105,7 +107,8 @@ struct SidebarView: View {
                             folder: folder,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
-                            floatingOptions: $floatingOptions
+                            floatingOptions: $floatingOptions,
+                            contentRepository: contentRepository
                         ),
                         tag: .specificFolder,
                         selection: $state,

@@ -25,7 +25,7 @@ final class FakeContentRepository: ContentRepositoryProtocol {
         []
     }
     
-    func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
+    func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent] {
         []
     }
     

@@ -1165,7 +1165,7 @@
 		D9943F2628641FEF002C6B97 /* AddToFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2528641FEF002C6B97 /* AddToFolderView.swift */; };
 		D9943F2828642200002C6B97 /* AddToFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2728642200002C6B97 /* AddToFolderViewModel.swift */; };
 		D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2928642EC3002C6B97 /* UserFolderContent.swift */; };
-		D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */; };
+		D9943F2C28643317002C6B97 /* FolderDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewModel.swift */; };
 		D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD612C9DFE84004FAE25 /* LoadingState.swift */; };
 		D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */; };
 		D998815629C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998815529C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 */; };
@@ -2718,7 +2718,7 @@
 		D9943F2528641FEF002C6B97 /* AddToFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderView.swift; sourceTree = "<group>"; };
 		D9943F2728642200002C6B97 /* AddToFolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewModel.swift; sourceTree = "<group>"; };
 		D9943F2928642EC3002C6B97 /* UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderContent.swift; sourceTree = "<group>"; };
-		D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewViewModel.swift; sourceTree = "<group>"; };
+		D9943F2B28643317002C6B97 /* FolderDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewModel.swift; sourceTree = "<group>"; };
 		D994AD612C9DFE84004FAE25 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentShareCountStats.swift; sourceTree = "<group>"; };
 		D998815529C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote Luiz Pareto - Quem fala aqui e um advogado.mp3"; sourceTree = "<group>"; };
@@ -5213,7 +5213,7 @@
 			children = (
 				D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */,
 				D9943F162863DAE1002C6B97 /* FolderDetailView.swift */,
-				D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */,
+				D9943F2B28643317002C6B97 /* FolderDetailViewModel.swift */,
 			);
 			path = FolderDetail;
 			sourceTree = "<group>";
@@ -6839,7 +6839,7 @@
 				D94EAEB42AC62958002EA512 /* CenterAlignedLabelStyle.swift in Sources */,
 				D9DD1AB72AB954DA0010F700 /* CapsuleButtonStyle.swift in Sources */,
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
-				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
+				D9943F2C28643317002C6B97 /* FolderDetailViewModel.swift in Sources */,
 				D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
 				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
