@@ -51,6 +51,11 @@ struct MainContentView: View {
         return "Sons"
     }
 
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
+    }
+
     // MARK: - Shared Environment
 
     @Environment(\.scenePhase) var scenePhase
@@ -320,7 +325,7 @@ extension MainContentView {
                     Menu {
                         Section {
                             Button {
-                                allSoundsViewModel.onEnterMultiSelectModeSelected()
+                                allSoundsViewModel.onEnterMultiSelectModeSelected(allContent: loadedContent)
                             } label: {
                                 Label(
                                     currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",

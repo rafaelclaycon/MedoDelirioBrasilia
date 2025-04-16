@@ -10,7 +10,7 @@ import SwiftUI
 struct ReactionDetailView: View {
 
     @State var viewModel: ReactionDetailViewModel
-    @State private var soundListViewModel: ContentGridViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
@@ -26,6 +26,11 @@ struct ReactionDetailView: View {
         return content.isEmpty
     }
 
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
+    }
+
     // MARK: - Initializer
 
     init(
@@ -38,7 +43,7 @@ struct ReactionDetailView: View {
             reaction: reaction,
             contentRepository: contentRepository
         )
-        self.soundListViewModel = ContentGridViewModel(
+        self.contentGridViewModel = ContentGridViewModel(
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
             toast: toast,
@@ -64,7 +69,7 @@ struct ReactionDetailView: View {
 
                     ContentGrid(
                         state: viewModel.state,
-                        viewModel: soundListViewModel,
+                        viewModel: contentGridViewModel,
                         showNewTag: false,
                         reactionId: viewModel.reaction.id,
                         containerSize: geometry.size,
@@ -95,16 +100,17 @@ struct ReactionDetailView: View {
                 .toolbar {
                     ToolbarControls(
                         soundSortOption: $viewModel.contentSortOption,
-                        playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
-                        startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
-                        isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
+                        playStopAction: { contentGridViewModel.onPlayStopPlaylistSelected(content: loadedContent) },
+                        startSelectingAction: { contentGridViewModel.onEnterMultiSelectModeSelected(allContent: loadedContent) },
+                        isPlayingPlaylist: contentGridViewModel.isPlayingPlaylist,
                         soundArrayIsEmpty: soundArrayIsEmpty,
-                        isSelecting: soundListViewModel.floatingOptions.wrappedValue != nil
+                        isSelecting: contentGridViewModel.floatingOptions.wrappedValue != nil
                     )
                     .foregroundStyle(.white)
                     .opacity(toolbarControlsOpacity)
                     .disabled(soundArrayIsEmpty)
                     .onChange(of: viewModel.contentSortOption) {
+                        contentGridViewModel.onContentSortingChanged()
                         Task {
                             await viewModel.onContentSortingChanged()
                         }
@@ -121,8 +127,8 @@ struct ReactionDetailView: View {
                 }
             }
             .edgesIgnoringSafeArea(.top)
-            .toast(soundListViewModel.toast)
-            .floatingContentOptions(soundListViewModel.floatingOptions)
+            .toast(contentGridViewModel.toast)
+            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
     }
 }

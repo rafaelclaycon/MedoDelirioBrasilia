@@ -106,6 +106,11 @@ struct AuthorDetailView: View {
         }
     }
 
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
+    }
+
     // MARK: - Initializer
 
     init(
@@ -317,7 +322,7 @@ struct AuthorDetailView: View {
             if viewModel.soundCount > 1 {
                 Section {
                     Button {
-                        contentListViewModel.onEnterMultiSelectModeSelected()
+                        contentListViewModel.onEnterMultiSelectModeSelected(allContent: loadedContent)
                     } label: {
                         Label(
                             currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",

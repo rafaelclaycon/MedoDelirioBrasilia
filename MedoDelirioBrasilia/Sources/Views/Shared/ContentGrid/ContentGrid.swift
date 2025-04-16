@@ -136,7 +136,7 @@ struct ContentGrid<
                                 RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
                             )
                             .onTapGesture {
-                                viewModel.onContentSelected(content)
+                                viewModel.onContentSelected(content, allContent: loadedContent)
                             }
                             .contextMenu {
                                 if viewModel.currentListMode.wrappedValue != .selection {

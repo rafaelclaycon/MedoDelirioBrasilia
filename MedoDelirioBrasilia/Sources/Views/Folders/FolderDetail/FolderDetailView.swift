@@ -38,6 +38,11 @@ struct FolderDetailView: View {
         return "\(folder.symbol)  \(folder.name)"
     }
 
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
+    }
+
     // MARK: - Initializer
 
     init(
@@ -153,7 +158,7 @@ struct FolderDetailView: View {
         HStack(spacing: 16) {
             if currentContentListMode.wrappedValue == .regular {
                 Button {
-                    contentListViewModel.onPlayStopPlaylistSelected()
+                    contentListViewModel.onPlayStopPlaylistSelected(content: loadedContent)
                 } label: {
                     Image(systemName: contentListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
@@ -165,7 +170,7 @@ struct FolderDetailView: View {
             Menu {
                 Section {
                     Button {
-                        contentListViewModel.onEnterMultiSelectModeSelected()
+                        contentListViewModel.onEnterMultiSelectModeSelected(allContent: loadedContent)
                     } label: {
                         Label(
                             currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
