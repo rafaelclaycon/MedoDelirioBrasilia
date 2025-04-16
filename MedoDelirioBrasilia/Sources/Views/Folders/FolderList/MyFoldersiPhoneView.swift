@@ -48,7 +48,7 @@ struct MyFoldersiPhoneView: View {
         .sheet(item: $folderForEditing) { folder in
             FolderInfoEditingView(
                 folder: folder,
-                folderRepository: UserFolderRepository(),
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                 dismissSheet: {
                     folderForEditing = nil
                     updateFolderList = true

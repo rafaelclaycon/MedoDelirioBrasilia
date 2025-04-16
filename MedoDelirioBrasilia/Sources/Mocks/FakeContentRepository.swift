@@ -33,6 +33,26 @@ final class FakeContentRepository: ContentRepositoryProtocol {
         []
     }
 
+    func favorites() throws -> [Favorite] {
+        []
+    }
+
+    func favoriteExists(_ contentId: String) throws -> Bool {
+        false
+    }
+
+    func insert(favorite: Favorite) throws {
+        //
+    }
+
+    func deleteFavorite(_ contentId: String) throws {
+        //
+    }
+
+    func author(withId authorId: String) throws -> Author? {
+        nil
+    }
+
     func clearCache() {
         //
     }

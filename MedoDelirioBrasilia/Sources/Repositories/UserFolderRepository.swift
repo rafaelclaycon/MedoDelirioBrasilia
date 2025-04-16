@@ -13,18 +13,20 @@ protocol UserFolderRepositoryProtocol {
 
     func update(_ userFolder: UserFolder) throws
 
+    func deleteUserContentFromFolder(withId folderId: String, contentId: String) throws
+
     /// Should only be used once.
     func addHashToExistingFolders() throws
 }
 
 final class UserFolderRepository: UserFolderRepositoryProtocol {
 
-    private let database: LocalDatabase
+    private let database: LocalDatabaseProtocol
 
     // MARK: - Initializer
 
     init(
-        database: LocalDatabase = LocalDatabase()
+        database: LocalDatabaseProtocol
     ) {
         self.database = database
     }
@@ -40,6 +42,10 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
         let contents = try database.contentsInside(userFolder: folder.id)
         folder.changeHash = folder.folderHash(contents.map { $0.contentId })
         try database.update(folder)
+    }
+
+    func deleteUserContentFromFolder(withId folderId: String, contentId: String) throws {
+        try database.deleteUserContentFromFolder(withId: folderId, contentId: contentId)
     }
 
     func addHashToExistingFolders() throws {

@@ -18,10 +18,14 @@ struct StandaloneFavoritesView: View {
 
     init(
         viewModel: StandaloneFavoritesViewModel,
-        toast: Binding<Toast?>
+        toast: Binding<Toast?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.viewModel = viewModel
         self.favoritesViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .standaloneFavoritesView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: .constant(.regular),
             toast: toast,

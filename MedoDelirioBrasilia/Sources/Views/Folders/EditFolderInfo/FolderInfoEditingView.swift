@@ -223,7 +223,7 @@ extension FolderInfoEditingView {
             backgroundColor: "",
             changeHash: ""
         ),
-        folderRepository: UserFolderRepository(),
+        folderRepository: UserFolderRepository(database: LocalDatabase()),
         dismissSheet: {}
     )
 }

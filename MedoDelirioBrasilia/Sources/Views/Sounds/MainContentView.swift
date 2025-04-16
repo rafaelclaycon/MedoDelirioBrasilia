@@ -72,6 +72,9 @@ struct MainContentView: View {
     ) {
         self.viewModel = viewModel
         self.allSoundsViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .mainContentView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: currentContentListMode,
             toast: toast,

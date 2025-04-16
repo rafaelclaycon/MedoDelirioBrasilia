@@ -178,7 +178,8 @@ struct MainView: View {
                                     viewModel: StandaloneFavoritesViewModel(
                                         contentSortOption: UserSettings().mainSoundListSoundSortOption()
                                     ),
-                                    toast: $toast
+                                    toast: $toast,
+                                    contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
@@ -358,7 +359,7 @@ struct MainView: View {
         .sheet(item: $folderForEditing) { folder in
             FolderInfoEditingView(
                 folder: folder,
-                folderRepository: UserFolderRepository(),
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                 dismissSheet: {
                     folderForEditing = nil
                     updateFolderList = true

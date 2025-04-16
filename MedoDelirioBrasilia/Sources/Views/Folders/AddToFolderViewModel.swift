@@ -52,7 +52,7 @@ extension AddToFolderViewModel {
                 try selectedContent.forEach { item in
                     try database.insert(contentId: item.id, intoUserFolder: folder.id)
                 }
-                try UserFolderRepository().update(folder)
+                try UserFolderRepository(database: database).update(folder)
 
                 return AddToFolderDetails(
                     hadSuccess: true,
@@ -81,7 +81,7 @@ extension AddToFolderViewModel {
 
             var folderName = ""
             if let folder = folderForSomeSoundsAlreadyInFolder {
-                try UserFolderRepository().update(folder)
+                try UserFolderRepository(database: database).update(folder)
                 folderName = "\(folder.symbol) \(folder.name)"
             }
 

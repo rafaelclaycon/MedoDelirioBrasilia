@@ -84,23 +84,6 @@ extension AuthorDetailViewModel {
         }
     }
 
-    private func sendUsageMetricToServer(
-        action: String,
-        authorName: String
-    ) {
-        let usageMetric = UsageMetric(
-            customInstallId: AppPersistentMemory().customInstallId,
-            originatingScreen: "AuthorDetailView(\(authorName))",
-            destinationScreen: action,
-            systemName: UIDevice.current.systemName,
-            isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
-            appVersion: Versioneer.appVersion,
-            dateTime: Date.now.iso8601withFractionalSeconds,
-            currentTimeZone: TimeZone.current.abbreviation() ?? ""
-        )
-        NetworkRabbit.shared.post(usageMetric: usageMetric)
-    }
-
     public func showAskForNewSoundAlert() {
         TapticFeedback.warning()
         alertType = .askForNewSound

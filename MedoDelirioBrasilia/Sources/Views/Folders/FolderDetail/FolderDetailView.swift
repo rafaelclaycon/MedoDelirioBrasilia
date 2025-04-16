@@ -61,6 +61,9 @@ struct FolderDetailView: View {
         self.currentContentListMode = currentContentListMode
 
         self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .folderDetailView,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentListMode: currentContentListMode,
             toast: toast,
@@ -140,7 +143,7 @@ struct FolderDetailView: View {
                 .sheet(isPresented: $showingFolderInfoEditingView) {
                     FolderInfoEditingView(
                         folder: folder,
-                        folderRepository: UserFolderRepository(),
+                        folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                         dismissSheet: {
                             showingFolderInfoEditingView = false
                         }

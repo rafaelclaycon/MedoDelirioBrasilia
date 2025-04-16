@@ -371,7 +371,10 @@ struct ContentGrid<
 #Preview {
     ContentGrid(
         state: .loading,
-        viewModel: .init(
+        viewModel: ContentGridViewModel(
+            contentRepository: FakeContentRepository(),
+            userFolderRepository: UserFolderRepository(database: LocalDatabase()),
+            screen: .mainContentView,
             menuOptions: [.sharingOptions()],
             currentListMode: .constant(.regular),
             toast: .constant(nil),

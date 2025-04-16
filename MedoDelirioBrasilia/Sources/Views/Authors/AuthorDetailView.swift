@@ -129,6 +129,9 @@ struct AuthorDetailView: View {
         self.currentContentListMode = currentListMode
 
         self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .authorDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
             toast: toast,

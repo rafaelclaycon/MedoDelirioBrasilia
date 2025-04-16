@@ -20,19 +20,26 @@ protocol ContentRepositoryProtocol {
     /// Returns content with the given IDs. Includes both Sounds and Songs.
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
 
+    func favorites() throws -> [Favorite]
+    func favoriteExists(_ contentId: String) throws -> Bool
+    func insert(favorite: Favorite) throws
+    func deleteFavorite(_ contentId: String) throws
+
+    func author(withId authorId: String) throws -> Author?
+
     func clearCache()
 }
 
 final class ContentRepository: ContentRepositoryProtocol {
 
-    private let database: LocalDatabase
+    private let database: LocalDatabaseProtocol
 
     private var allContent: [AnyEquatableMedoContent]?
 
     // MARK: - Initializer
 
     init(
-        database: LocalDatabase = LocalDatabase()
+        database: LocalDatabaseProtocol
     ) {
         self.database = database
         self.allContent = []
@@ -114,10 +121,34 @@ final class ContentRepository: ContentRepositoryProtocol {
         try database.content(withIds: contentIds)
     }
 
+    func favorites() throws -> [Favorite] {
+        try database.favorites()
+    }
+
+    func favoriteExists(_ contentId: String) throws -> Bool {
+        try database.favoriteExists(contentId: contentId)
+    }
+
+    func insert(favorite: Favorite) throws {
+        try database.insert(favorite: favorite)
+    }
+
+    func deleteFavorite(_ contentId: String) throws {
+        try database.deleteFavorite(withId: contentId)
+    }
+
+    func author(withId authorId: String) throws -> Author? {
+        try database.author(withId: authorId)
+    }
+
+    // MARK: - Maintenance
+
     func clearCache() {
         allContent = nil
     }
 }
+
+// MARK: - Internal Functions
 
 extension ContentRepository {
 

@@ -63,12 +63,16 @@ final class ContentGridViewModel {
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let multiSelectFolderOperation: FolderOperation
-
-    private var cancellables = Set<AnyCancellable>()
+    private let contentRepository: ContentRepositoryProtocol
+    private let userFolderRepository: UserFolderRepository
+    private let currentScreen: ContentGridScreen
 
     // MARK: - Initializer
 
     init(
+        contentRepository: ContentRepositoryProtocol,
+        userFolderRepository: UserFolderRepository,
+        screen: ContentGridScreen,
         menuOptions: [ContextMenuSection],
         currentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
@@ -78,6 +82,9 @@ final class ContentGridViewModel {
         insideFolder: UserFolder? = nil,
         multiSelectFolderOperation: FolderOperation = .add
     ) {
+        self.contentRepository = contentRepository
+        self.userFolderRepository = userFolderRepository
+        self.currentScreen = screen
         self.menuOptions = menuOptions
         self.currentListMode = currentListMode
         self.toast = toast
@@ -224,7 +231,7 @@ extension ContentGridViewModel {
 
     private func loadFavorites() {
         do {
-            let favorites = try LocalDatabase.shared.favorites()
+            let favorites = try contentRepository.favorites()
             favoritesKeeper.removeAll()
             favorites.forEach { favorite in
                 self.favoritesKeeper.insert(favorite.contentId)
@@ -238,10 +245,10 @@ extension ContentGridViewModel {
         let newFavorite = Favorite(contentId: contentId, dateAdded: Date())
 
         do {
-            let favorteAlreadyExists = try LocalDatabase.shared.exists(contentId: contentId)
+            let favorteAlreadyExists = try contentRepository.favoriteExists(contentId)
             guard favorteAlreadyExists == false else { return }
 
-            try LocalDatabase.shared.insert(favorite: newFavorite)
+            try contentRepository.insert(favorite: newFavorite)
             favoritesKeeper.insert(newFavorite.contentId)
         } catch {
             print("Issue saving Favorite '\(newFavorite.contentId)': \(error.localizedDescription)")
@@ -250,7 +257,7 @@ extension ContentGridViewModel {
 
     private func removeFromFavorites(contentId: String) {
         do {
-            try LocalDatabase.shared.deleteFavorite(withId: contentId)
+            try contentRepository.deleteFavorite(contentId)
             favoritesKeeper.remove(contentId)
         } catch {
             print("Issue removing Favorite '\(contentId)'.")
@@ -536,7 +543,7 @@ extension ContentGridViewModel: ContentListDisplaying {
     }
 
     func showAuthor(withId authorId: String) {
-        guard let author = try? LocalDatabase.shared.author(withId: authorId) else {
+        guard let author = try? contentRepository.author(withId: authorId) else {
             print("ContentGrid error: unable to find author with id \(authorId)")
             return
         }
@@ -650,11 +657,11 @@ extension ContentGridViewModel {
 
         do {
             try selectionKeeper.forEach { selectedSoundId in
-                try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: selectedSoundId)
+                try userFolderRepository.deleteUserContentFromFolder(withId: folder.id, contentId: selectedSoundId)
             }
 
             // Need to update folder hash so SyncManager knows about the change on next sync.
-            try UserFolderRepository().update(folder)
+            try userFolderRepository.update(folder)
 
             selectionKeeper.removeAll()
             floatingOptions.wrappedValue = nil
@@ -709,10 +716,10 @@ extension ContentGridViewModel {
         guard let sound = selectedContentSingle else { return }
 
         do {
-            try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
+            try userFolderRepository.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
 
             // Need to update folder hash so SyncManager knows about the change on next sync.
-            try UserFolderRepository().update(folder)
+            try userFolderRepository.update(folder)
 
             refreshAction()
         } catch {

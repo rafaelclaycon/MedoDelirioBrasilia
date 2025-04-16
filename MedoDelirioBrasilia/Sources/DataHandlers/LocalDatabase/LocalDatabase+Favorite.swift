@@ -35,7 +35,7 @@ extension LocalDatabase {
         }
     }
     
-    func exists(contentId: String) throws -> Bool {
+    func favoriteExists(contentId: String) throws -> Bool {
         var queriedFavorites = [Favorite]()
 
         let id = Expression<String>("contentId")

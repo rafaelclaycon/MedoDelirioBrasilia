@@ -65,7 +65,8 @@ struct SidebarView: View {
                         viewModel: StandaloneFavoritesViewModel(
                             contentSortOption: UserSettings().mainSoundListSoundSortOption()
                         ),
-                        toast: $toast
+                        toast: $toast,
+                        contentRepository: contentRepository
                     ),
                     tag: PadScreen.favorites,
                     selection: $state,

@@ -134,7 +134,7 @@ struct AddToFolderView: View {
             .sheet(item: $newFolder) { folder in
                 FolderInfoEditingView(
                     folder: folder,
-                    folderRepository: UserFolderRepository(),
+                    folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                     dismissSheet: {
                         newFolder = nil
                         viewModel.onNewFolderCreationSheetDismissed()

@@ -283,7 +283,7 @@ extension AppDelegate {
     func updateFolderChangeHashes() {
         if !hasUpdatedFolderHashesOnFirstRun {
             do {
-                try UserFolderRepository().addHashToExistingFolders()
+                try UserFolderRepository(database: LocalDatabase.shared).addHashToExistingFolders()
                 hasUpdatedFolderHashesOnFirstRun = true
             } catch {
                 print(error)
