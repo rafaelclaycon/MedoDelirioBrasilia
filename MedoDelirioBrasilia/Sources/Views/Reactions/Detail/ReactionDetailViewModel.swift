@@ -22,24 +22,21 @@ class ReactionDetailViewModel {
     // MARK: - Computed Properties
 
     var subtitle: String {
-        return ""
-//        guard !dataLoadingDidFail else { return "" }
-//        guard let sounds else { return "Carregando..." }
-//        let lastUpdateDate: String = reaction.lastUpdate.asRelativeDateTime ?? ""
-//        if sounds.count == 0 {
-//            return "Nenhum som. Atualizada \(lastUpdateDate)."
-//        } else if sounds.count == 1 {
-//            return "1 som. Atualizada \(lastUpdateDate)."
-//        } else {
-//            return "\(sounds.count) sons. Atualizada \(lastUpdateDate)."
-//        }
+        if case .loading = state { return "Carregando..." }
+        guard case .loaded(let content) = state else { return "" }
+        let lastUpdateDate: String = reaction.lastUpdate.asRelativeDateTime ?? ""
+        if content.count == 0 {
+            return "Reação vazia. Atualizada \(lastUpdateDate)."
+        } else if content.count == 1 {
+            return "1 item. Atualizada \(lastUpdateDate)."
+        } else {
+            return "\(content.count) itens. Atualizada \(lastUpdateDate)."
+        }
     }
 
     var errorMessage: String {
-        return ""
-//        // The reactionNoLongerExists case is dealt with in the view itself.
-//        guard case .soundLoadingError(let errorString) = state else { return "" }
-//        return errorString
+        guard case .error(let errorString) = state else { return "" }
+        return errorString
     }
 
     // MARK: - Initializer
@@ -67,14 +64,20 @@ extension ReactionDetailViewModel {
     public func onRetrySelected() async {
         await loadContent()
     }
+
+    public func onContentSortingChanged() async {
+        await loadContent(enterLoadingState: false)
+    }
 }
 
 // MARK: - Internal Functions
 
 extension ReactionDetailViewModel {
 
-    private func loadContent() async {
-        state = .loading
+    private func loadContent(enterLoadingState: Bool = true) async {
+        if enterLoadingState {
+            state = .loading
+        }
         reactionNoLongerExists = false
 
         do {

@@ -16,15 +16,15 @@ struct ReactionDetailView: View {
 
     // MARK: - Computed Properties
 
-//    private var toolbarControlsOpacity: CGFloat {
-//        guard let sounds = viewModel.sounds else { return 1.0 }
-//        return sounds.isEmpty ? 0.5 : 1.0
-//    }
-//
-//    private var soundArrayIsEmpty: Bool {
-//        guard let sounds = viewModel.sounds else { return true }
-//        return sounds.isEmpty
-//    }
+    private var toolbarControlsOpacity: CGFloat {
+        guard case .loaded(let content) = viewModel.state else { return 1.0 }
+        return content.isEmpty ? 0.5 : 1.0
+    }
+
+    private var soundArrayIsEmpty: Bool {
+        guard case .loaded(let content) = viewModel.state else { return true }
+        return content.isEmpty
+    }
 
     // MARK: - Initializer
 
@@ -87,27 +87,29 @@ struct ReactionDetailView: View {
                         )
                     )
                     .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.small))
+                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
-//                .toolbar {
-//                    ToolbarControls(
-//                        soundSortOption: $viewModel.soundSortOption,
-//                        playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
-//                        startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
-//                        isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
-//                        soundArrayIsEmpty: soundArrayIsEmpty,
-//                        isSelecting: soundListViewModel.floatingOptions.wrappedValue != nil
-//                    )
-//                    .foregroundStyle(.white)
-//                    .opacity(toolbarControlsOpacity)
-//                    .disabled(soundArrayIsEmpty)
-//                    .onChange(of: viewModel.soundSortOption) {
-//                        viewModel.sortSounds(by: viewModel.soundSortOption)
-//                    }
-//                }
+                .toolbar {
+                    ToolbarControls(
+                        soundSortOption: $viewModel.contentSortOption,
+                        playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
+                        startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
+                        isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
+                        soundArrayIsEmpty: soundArrayIsEmpty,
+                        isSelecting: soundListViewModel.floatingOptions.wrappedValue != nil
+                    )
+                    .foregroundStyle(.white)
+                    .opacity(toolbarControlsOpacity)
+                    .disabled(soundArrayIsEmpty)
+                    .onChange(of: viewModel.contentSortOption) {
+                        Task {
+                            await viewModel.onContentSortingChanged()
+                        }
+                    }
+                }
                 .oneTimeTask {
                     await viewModel.onViewLoaded()
                 }
