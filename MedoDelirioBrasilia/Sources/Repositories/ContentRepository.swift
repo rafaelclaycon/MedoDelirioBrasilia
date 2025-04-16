@@ -19,13 +19,15 @@ protocol ContentRepositoryProtocol {
     func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent]
     /// Returns content with the given IDs. Includes both Sounds and Songs.
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
+
+    func clearCache()
 }
 
 final class ContentRepository: ContentRepositoryProtocol {
 
     private let database: LocalDatabase
 
-    private var allContent: [AnyEquatableMedoContent]
+    private var allContent: [AnyEquatableMedoContent]?
 
     // MARK: - Initializer
 
@@ -37,8 +39,13 @@ final class ContentRepository: ContentRepositoryProtocol {
         loadAllContent()
     }
 
+    // MARK: - Functions
+
     func allContent(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
-        guard allContent.count > 0 else { return [] }
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
         var content = allContent
         if !allowSensitive {
             content = content.filter { !$0.isOffensive }
@@ -47,7 +54,10 @@ final class ContentRepository: ContentRepositoryProtocol {
     }
 
     func favorites(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
-        guard allContent.count > 0 else { return [] }
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
         let favorites = try database.favorites().map { $0.contentId }
         var content = allContent.filter { favorites.contains($0.id) }
         if !allowSensitive {
@@ -57,7 +67,10 @@ final class ContentRepository: ContentRepositoryProtocol {
     }
 
     func songs(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
-        guard allContent.count > 0 else { return [] }
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
         var content = allContent.filter { $0.type == .song }
         if !allowSensitive {
             content = content.filter { !$0.isOffensive }
@@ -66,7 +79,10 @@ final class ContentRepository: ContentRepositoryProtocol {
     }
 
     func content(by authorId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
-        guard allContent.count > 0 else { return [] }
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
         var content = allContent.filter { $0.authorId == authorId }
         if !allowSensitive {
             content = content.filter { !$0.isOffensive }
@@ -75,6 +91,10 @@ final class ContentRepository: ContentRepositoryProtocol {
     }
 
     func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent] {
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
         let folderContents = try database.contentsInside(userFolder: folderId)
         let contentIds = folderContents.map { $0.contentId }
         var content = allContent.filter { contentIds.contains($0.id) }
@@ -92,6 +112,10 @@ final class ContentRepository: ContentRepositoryProtocol {
 
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent] {
         try database.content(withIds: contentIds)
+    }
+
+    func clearCache() {
+        allContent = nil
     }
 }
 

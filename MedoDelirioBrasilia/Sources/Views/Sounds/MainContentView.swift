@@ -232,7 +232,9 @@ struct MainContentView: View {
                     highlight(soundId: trendsHelper.notifyMainSoundContainer)
                 }
                 .onAppear {
-                    viewModel.onViewDidAppear()
+                    Task {
+                        await viewModel.onViewDidAppear()
+                    }
                 }
                 .onChange(of: scenePhase) {
                     Task {

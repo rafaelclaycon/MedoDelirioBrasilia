@@ -32,4 +32,8 @@ final class FakeContentRepository: ContentRepositoryProtocol {
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent] {
         []
     }
+
+    func clearCache() {
+        //
+    }
 }

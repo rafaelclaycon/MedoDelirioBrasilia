@@ -73,18 +73,18 @@ class MainContentViewModel {
 
 extension MainContentViewModel {
 
-    public func onViewDidAppear() {
-        print("MAIN SOUND CONTAINER - ON APPEAR")
+    public func onViewDidAppear() async {
+        print("MAIN CONTENT VIEW - ON APPEAR")
+
+        var hadAnyUpdates: Bool = false
 
         if !firstRunSyncHappened {
-            Task {
-                print("WILL START SYNCING")
-                await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
-                print("DID FINISH SYNCING")
-            }
+            print("WILL START SYNCING")
+            hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+            print("DID FINISH SYNCING")
         }
 
-        loadContent()
+        loadContent(clearCache: hadAnyUpdates)
     }
 
     public func onSelectedViewModeChanged() {
@@ -100,12 +100,14 @@ extension MainContentViewModel {
     }
 
     public func onSyncRequested() async {
-        await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+        let hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+        loadContent(clearCache: hadAnyUpdates)
     }
 
     public func onScenePhaseChanged(newPhase: ScenePhase) async {
         if newPhase == .active {
-            await warmOpenSync()
+            let hadAnyUpdates = await warmOpenSync()
+            loadContent(clearCache: hadAnyUpdates)
             print("DID FINISH WARM OPEN SYNC")
         }
     }
@@ -115,8 +117,13 @@ extension MainContentViewModel {
 
 extension MainContentViewModel {
 
-    private func loadContent() {
+    private func loadContent(clearCache: Bool = false) {
         state = .loading
+
+        if clearCache {
+            contentRepository.clearCache()
+        }
+
         do {
             let allowSensitive = UserSettings().getShowExplicitContent()
             let sort = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
@@ -138,10 +145,10 @@ extension MainContentViewModel {
 
 extension MainContentViewModel: SyncManagerDelegate {
 
-    private func sync(lastAttempt: String) async {
+    private func sync(lastAttempt: String) async -> Bool {
         print("lastAttempt: \(lastAttempt)")
 
-        guard isAllowedToSync else { return }
+        guard isAllowedToSync else { return false }
 
         guard
             CommandLine.arguments.contains("-IGNORE_SYNC_WAIT") ||
@@ -155,21 +162,22 @@ extension MainContentViewModel: SyncManagerDelegate {
             let message = String(format: Shared.Sync.waitMessage, lastAttempt.timeUntil(addingMinutes: 1))
 
             toast.wrappedValue = Toast(message: message, type: .wait)
-            return
+            return false
         }
 
-        await syncManager.sync()
+        let hadAnyUpdates = await syncManager.sync()
 
         firstRunSyncHappened = true
 
         let message = syncValues.syncStatus.description
-
         toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
+
+        return hadAnyUpdates
     }
 
-    // Warm open means the app was reopened before it left memory.
-    private func warmOpenSync() async {
-        guard isAllowedToSync else { return }
+    /// Warm open means the app was reopened before it left memory.
+    private func warmOpenSync() async -> Bool {
+        guard isAllowedToSync else { return false }
 
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
         print("lastUpdateAttempt: \(lastUpdateAttempt)")
@@ -177,10 +185,10 @@ extension MainContentViewModel: SyncManagerDelegate {
             syncValues.syncStatus != .updating,
             let date = lastUpdateAttempt.iso8601withFractionalSeconds,
             date.minutesPassed(60)
-        else { return }
+        else { return false }
 
         print("WILL WARM OPEN SYNC")
-        await sync(lastAttempt: lastUpdateAttempt)
+        return await sync(lastAttempt: lastUpdateAttempt)
     }
 
     nonisolated func set(totalUpdateCount: Int) {
