@@ -11,7 +11,7 @@ import SwiftUI
 struct MainContentView: View {
 
     @State private var viewModel: MainContentViewModel
-    @State private var allSoundsViewModel: ContentGridViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
     private var currentContentListMode: Binding<ContentListMode>
     private let openSettingsAction: () -> Void
     private let contentRepository: ContentRepositoryProtocol
@@ -46,7 +46,7 @@ struct MainContentView: View {
 
     private var title: String {
         guard currentContentListMode.wrappedValue == .regular else {
-            return selectionNavBarTitle(for: allSoundsViewModel)
+            return selectionNavBarTitle(for: contentGridViewModel)
         }
         return "Sons"
     }
@@ -71,7 +71,7 @@ struct MainContentView: View {
         contentRepository: ContentRepositoryProtocol
     ) {
         self.viewModel = viewModel
-        self.allSoundsViewModel = ContentGridViewModel(
+        self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .mainContentView,
@@ -120,7 +120,7 @@ struct MainContentView: View {
 
                             ContentGrid(
                                 state: viewModel.state,
-                                viewModel: allSoundsViewModel,
+                                viewModel: contentGridViewModel,
                                 searchTextIsEmpty: $contentSearchTextIsEmpty,
                                 allowSearch: true,
                                 containerSize: geometry.size,
@@ -197,7 +197,7 @@ struct MainContentView: View {
                 .navigationBarItems(
                     leading: LeadingToolbarControls(
                         isSelecting: currentContentListMode.wrappedValue == .selection,
-                        cancelAction: { allSoundsViewModel.onExitMultiSelectModeSelected() },
+                        cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
                         openSettingsAction: openSettingsAction
                     ),
                     trailing: trailingToolbarControls()
@@ -213,7 +213,7 @@ struct MainContentView: View {
                 .onChange(of: playRandomSoundHelper.soundIdToPlay) {
                     if !playRandomSoundHelper.soundIdToPlay.isEmpty {
                         viewModel.currentViewMode = .all
-                        allSoundsViewModel.scrollAndPlay(
+                        contentGridViewModel.scrollAndPlay(
                             contentId: playRandomSoundHelper.soundIdToPlay,
                             loadedContent: loadedContent
                         )
@@ -334,7 +334,7 @@ extension MainContentView {
                     Menu {
                         Section {
                             Button {
-                                allSoundsViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
+                                contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
                             } label: {
                                 Label(
                                     currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
@@ -401,7 +401,7 @@ extension MainContentView {
     private func highlight(soundId: String) {
         guard !soundId.isEmpty else { return }
         viewModel.currentViewMode = .all
-        allSoundsViewModel.cancelSearchAndHighlight(id: soundId)
+        contentGridViewModel.cancelSearchAndHighlight(id: soundId)
         trendsHelper.notifyMainSoundContainer = ""
         trendsHelper.soundIdToGoTo = soundId
     }
