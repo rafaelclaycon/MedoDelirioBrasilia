@@ -124,7 +124,7 @@ struct FolderDetailView: View {
                             }
                     )
                     .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.small))
+                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                         .frame(height: .spacing(.large))

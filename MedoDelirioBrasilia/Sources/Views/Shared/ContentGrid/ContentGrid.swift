@@ -382,5 +382,5 @@ struct ContentGrid<
         emptyStateView: Text("No Sounds to Display"),
         errorView: Text("Error")
     )
-    .padding(.horizontal, .spacing(.small))
+    .padding(.horizontal, .spacing(.medium))
 }
