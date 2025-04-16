@@ -11,7 +11,7 @@ import Kingfisher
 struct AuthorDetailView: View {
 
     @State private var viewModel: AuthorDetailViewModel
-    @State private var contentListViewModel: ContentGridViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
 
     let author: Author
 
@@ -75,14 +75,14 @@ struct AuthorDetailView: View {
 
     private var title: String {
         guard currentContentListMode.wrappedValue == .regular else {
-            if contentListViewModel.selectionKeeper.count == 0 {
+            if contentGridViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if contentListViewModel.selectionKeeper.count == 1 {
+            } else if contentGridViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
                 return String(
                     format: Shared.SoundSelection.soundsSelectedPlural,
-                    contentListViewModel.selectionKeeper.count
+                    contentGridViewModel.selectionKeeper.count
                 )
             }
         }
@@ -128,7 +128,7 @@ struct AuthorDetailView: View {
         )
         self.currentContentListMode = currentListMode
 
-        self.contentListViewModel = ContentGridViewModel(
+        self.contentGridViewModel = ContentGridViewModel(
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
             toast: toast,
@@ -205,7 +205,7 @@ struct AuthorDetailView: View {
 
                     ContentGrid(
                         state: viewModel.state,
-                        viewModel: contentListViewModel,
+                        viewModel: contentGridViewModel,
                         authorId: author.id,
                         containerSize: geometry.size,
                         loadingView:
@@ -250,7 +250,7 @@ struct AuthorDetailView: View {
                     viewModel.onViewLoaded()
                 }
                 .onDisappear {
-                    contentListViewModel.onViewDisappeared()
+                    contentGridViewModel.onViewDisappeared()
                 }
                 .alert(isPresented: $viewModel.showAlert) {
                     switch viewModel.alertType {
@@ -279,7 +279,7 @@ struct AuthorDetailView: View {
                 .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-                        toast: contentListViewModel.toast,
+                        toast: contentGridViewModel.toast,
                         subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
                         emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? "")
                     )
@@ -287,7 +287,7 @@ struct AuthorDetailView: View {
                 .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
-                        toast: contentListViewModel.toast,
+                        toast: contentGridViewModel.toast,
                         subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
                         emailBody: Shared.Email.AskForNewSound.body
                     )
@@ -295,12 +295,12 @@ struct AuthorDetailView: View {
                 .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
-                        toast: contentListViewModel.toast,
+                        toast: contentGridViewModel.toast,
                         subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
                         emailBody: Shared.Email.AuthorDetailIssue.body
                     )
                 }
-                .onChange(of: contentListViewModel.selectionKeeper.count) {
+                .onChange(of: contentGridViewModel.selectionKeeper.count) {
                     if navBarTitle.isEmpty == false {
                         DispatchQueue.main.async {
                             navBarTitle = title
@@ -309,8 +309,8 @@ struct AuthorDetailView: View {
                 }
             }
             .edgesIgnoringSafeArea(edgesToIgnore)
-            .toast(contentListViewModel.toast)
-            .floatingContentOptions(contentListViewModel.floatingOptions)
+            .toast(contentGridViewModel.toast)
+            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
     }
 
@@ -322,7 +322,7 @@ struct AuthorDetailView: View {
             if viewModel.soundCount > 1 {
                 Section {
                     Button {
-                        contentListViewModel.onEnterMultiSelectModeSelected(allContent: loadedContent)
+                        contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
                     } label: {
                         Label(
                             currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
@@ -342,14 +342,14 @@ struct AuthorDetailView: View {
 //                }
                 
                 Button {
-                    contentListViewModel.onExitMultiSelectModeSelected()
+                    contentGridViewModel.onExitMultiSelectModeSelected()
                     viewModel.showAskForNewSoundAlert()
                 } label: {
                     Label("Pedir Som Desse Autor", systemImage: "plus.circle")
                 }
                 
                 Button {
-                    contentListViewModel.onExitMultiSelectModeSelected()
+                    contentGridViewModel.onExitMultiSelectModeSelected()
                     viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
                 } label: {
                     Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
@@ -366,6 +366,7 @@ struct AuthorDetailView: View {
                             .tag(1)
                     }
                     .onChange(of: viewModel.soundSortOption) {
+                        contentGridViewModel.onContentSortingChanged()
                         viewModel.onSortOptionChanged()
                     }
                 }

@@ -100,8 +100,8 @@ struct ReactionDetailView: View {
                 .toolbar {
                     ToolbarControls(
                         soundSortOption: $viewModel.contentSortOption,
-                        playStopAction: { contentGridViewModel.onPlayStopPlaylistSelected(content: loadedContent) },
-                        startSelectingAction: { contentGridViewModel.onEnterMultiSelectModeSelected(allContent: loadedContent) },
+                        playStopAction: { contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent) },
+                        startSelectingAction: { contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent) },
                         isPlayingPlaylist: contentGridViewModel.isPlayingPlaylist,
                         soundArrayIsEmpty: soundArrayIsEmpty,
                         isSelecting: contentGridViewModel.floatingOptions.wrappedValue != nil

@@ -325,7 +325,7 @@ extension MainContentView {
                     Menu {
                         Section {
                             Button {
-                                allSoundsViewModel.onEnterMultiSelectModeSelected(allContent: loadedContent)
+                                allSoundsViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
                             } label: {
                                 Label(
                                     currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",

@@ -1393,7 +1393,6 @@
 		D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */; };
 		D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */; };
 		D9DBEA9A2BCBFB8600220679 /* MainContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBEA992BCBFB8600220679 /* MainContentViewModel.swift */; };
-		D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */; };
 		D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */; };
 		D9DC68902AD38648005D3F81 /* RetroBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC688F2AD38648005D3F81 /* RetroBanner.swift */; };
 		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
@@ -2947,7 +2946,6 @@
 		D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernanda Torres - Totalmente drogada.mp3"; sourceTree = "<group>"; };
 		D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Retro.swift"; sourceTree = "<group>"; };
 		D9DBEA992BCBFB8600220679 /* MainContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentViewModel.swift; sourceTree = "<group>"; };
-		D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSoundListViewModel.swift; sourceTree = "<group>"; };
 		D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopChartItem+.swift"; sourceTree = "<group>"; };
 		D9DC688F2AD38648005D3F81 /* RetroBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroBanner.swift; sourceTree = "<group>"; };
 		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
@@ -5306,7 +5304,6 @@
 				D992EF592BCB24FB0080C892 /* ContentGrid.swift */,
 				D992EF5B2BCB25820080C892 /* ContentGridViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* PlayableContentView.swift */,
-				D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */,
 				D984D55D2CF218E100680C7D /* ContentDetail */,
 			);
 			path = ContentGrid;
@@ -6846,7 +6843,6 @@
 				D9DD1AB72AB954DA0010F700 /* CapsuleButtonStyle.swift in Sources */,
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewModel.swift in Sources */,
-				D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
 				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
 				D984D5612CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift in Sources */,
