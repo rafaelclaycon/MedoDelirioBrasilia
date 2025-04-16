@@ -162,14 +162,14 @@ struct MainContentView: View {
                                 .padding(.top, explicitOffWarningTopPadding)
                             }
 
-//                            if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
-//                                Text("\(viewModel.forDisplay?.count ?? 0) ITENS")
-//                                    .font(.footnote)
-//                                    .foregroundColor(.gray)
-//                                    .multilineTextAlignment(.center)
-//                                    .padding(.top, .spacing(.small))
-//                                    .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
-//                            }
+                            if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
+                                Text("\(loadedContent.count) ITENS")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, .spacing(.small))
+                                    .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
+                            }
 
                             Spacer()
                                 .frame(height: .spacing(.large))
@@ -201,33 +201,36 @@ struct MainContentView: View {
                 .onChange(of: viewModel.currentViewMode) {
                     viewModel.onSelectedViewModeChanged()
                 }
-//                .onChange(of: viewModel.processedUpdateNumber) {
-//                    withAnimation {
-//                        displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
-//                    }
-//                }
-//                .onChange(of: playRandomSoundHelper.soundIdToPlay) {
-//                    if !playRandomSoundHelper.soundIdToPlay.isEmpty {
-//                        viewModel.currentViewMode = .all
-//                        allSoundsViewModel.scrollAndPlaySound(withId: playRandomSoundHelper.soundIdToPlay)
-//                        playRandomSoundHelper.soundIdToPlay = ""
-//                    }
-//                }
-//                .sheet(isPresented: $showingModalView) {
-//                    SyncInfoView(
-//                        lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
-//                        lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
-//                    )
-//                }
-//                .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
-//                    if shouldUpdate {
-//                        viewModel.onExplicitContentSettingChanged()
-//                        settingsHelper.updateSoundsList = false
-//                    }
-//                }
-//                .onChange(of: trendsHelper.notifyMainSoundContainer) {
-//                    highlight(soundId: trendsHelper.notifyMainSoundContainer)
-//                }
+                .onChange(of: viewModel.processedUpdateNumber) {
+                    withAnimation {
+                        displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+                    }
+                }
+                .onChange(of: playRandomSoundHelper.soundIdToPlay) {
+                    if !playRandomSoundHelper.soundIdToPlay.isEmpty {
+                        viewModel.currentViewMode = .all
+                        allSoundsViewModel.scrollAndPlay(
+                            contentId: playRandomSoundHelper.soundIdToPlay,
+                            loadedContent: loadedContent
+                        )
+                        playRandomSoundHelper.soundIdToPlay = ""
+                    }
+                }
+                .sheet(isPresented: $showingModalView) {
+                    SyncInfoView(
+                        lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                        lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                    )
+                }
+                .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
+                    if shouldUpdate {
+                        viewModel.onExplicitContentSettingChanged()
+                        settingsHelper.updateSoundsList = false
+                    }
+                }
+                .onChange(of: trendsHelper.notifyMainSoundContainer) {
+                    highlight(soundId: trendsHelper.notifyMainSoundContainer)
+                }
                 .onAppear {
                     viewModel.onViewDidAppear()
                 }
