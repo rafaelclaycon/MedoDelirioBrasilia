@@ -33,7 +33,8 @@ struct GeneralRouter: View {
             ReactionDetailView(
                 reaction: reaction,
                 currentListMode: $currentContentListMode,
-                toast: $toast
+                toast: $toast,
+                contentRepository: contentRepository
             )
         }
     }

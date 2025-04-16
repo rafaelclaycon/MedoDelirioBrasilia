@@ -16,24 +16,28 @@ struct ReactionDetailView: View {
 
     // MARK: - Computed Properties
 
-    private var toolbarControlsOpacity: CGFloat {
-        guard let sounds = viewModel.sounds else { return 1.0 }
-        return sounds.isEmpty ? 0.5 : 1.0
-    }
-
-    private var soundArrayIsEmpty: Bool {
-        guard let sounds = viewModel.sounds else { return true }
-        return sounds.isEmpty
-    }
+//    private var toolbarControlsOpacity: CGFloat {
+//        guard let sounds = viewModel.sounds else { return 1.0 }
+//        return sounds.isEmpty ? 0.5 : 1.0
+//    }
+//
+//    private var soundArrayIsEmpty: Bool {
+//        guard let sounds = viewModel.sounds else { return true }
+//        return sounds.isEmpty
+//    }
 
     // MARK: - Initializer
 
     init(
         reaction: Reaction,
         currentListMode: Binding<ContentListMode>,
-        toast: Binding<Toast?>
+        toast: Binding<Toast?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
-        self.viewModel = ReactionDetailViewModel(reaction: reaction)
+        self.viewModel = ReactionDetailViewModel(
+            reaction: reaction,
+            contentRepository: contentRepository
+        )
         self.soundListViewModel = ContentGridViewModel(
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
@@ -58,54 +62,54 @@ struct ReactionDetailView: View {
                     .frame(height: 260)
                     .padding(.bottom, 6)
 
-//                    ContentGrid(
-//                        viewModel: soundListViewModel,
-//                        showNewTag: false,
-//                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
-//                        reactionId: viewModel.reaction.id,
-//                        containerSize: geometry.size,
-//                        loadingView: LoadingView(),
-//                        emptyStateView: EmptyStateView(
-//                            reloadAction: {
-//                                Task {
-//                                    await viewModel.loadSounds()
-//                                }
-//                            }
-//                        ),
-//                        errorView: ErrorView(
-//                            reactionNoLongerExists: viewModel.state == .reactionNoLongerExists,
-//                            errorMessage: viewModel.errorMessage,
-//                            tryAgainAction: {
-//                                Task {
-//                                    await viewModel.loadSounds()
-//                                }
-//                            }
-//                        )
-//                    )
-//                    .environment(TrendsHelper())
-//                    .padding(.horizontal, .spacing(.small))
+                    ContentGrid(
+                        state: viewModel.state,
+                        viewModel: soundListViewModel,
+                        showNewTag: false,
+                        reactionId: viewModel.reaction.id,
+                        containerSize: geometry.size,
+                        loadingView: LoadingView(),
+                        emptyStateView: EmptyStateView(
+                            reloadAction: {
+                                Task {
+                                    await viewModel.onRetrySelected()
+                                }
+                            }
+                        ),
+                        errorView: ErrorView(
+                            reactionNoLongerExists: viewModel.reactionNoLongerExists,
+                            errorMessage: viewModel.errorMessage,
+                            tryAgainAction: {
+                                Task {
+                                    await viewModel.onRetrySelected()
+                                }
+                            }
+                        )
+                    )
+                    .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.small))
 
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
-                .toolbar {
-                    ToolbarControls(
-                        soundSortOption: $viewModel.soundSortOption,
-                        playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
-                        startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
-                        isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
-                        soundArrayIsEmpty: soundArrayIsEmpty,
-                        isSelecting: soundListViewModel.floatingOptions.wrappedValue != nil
-                    )
-                    .foregroundStyle(.white)
-                    .opacity(toolbarControlsOpacity)
-                    .disabled(soundArrayIsEmpty)
-                    .onChange(of: viewModel.soundSortOption) {
-                        viewModel.sortSounds(by: viewModel.soundSortOption)
-                    }
-                }
+//                .toolbar {
+//                    ToolbarControls(
+//                        soundSortOption: $viewModel.soundSortOption,
+//                        playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
+//                        startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
+//                        isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
+//                        soundArrayIsEmpty: soundArrayIsEmpty,
+//                        isSelecting: soundListViewModel.floatingOptions.wrappedValue != nil
+//                    )
+//                    .foregroundStyle(.white)
+//                    .opacity(toolbarControlsOpacity)
+//                    .disabled(soundArrayIsEmpty)
+//                    .onChange(of: viewModel.soundSortOption) {
+//                        viewModel.sortSounds(by: viewModel.soundSortOption)
+//                    }
+//                }
                 .oneTimeTask {
-                    await viewModel.loadSounds()
+                    await viewModel.onViewLoaded()
                 }
                 .onAppear {
                     Analytics().send(
@@ -282,6 +286,7 @@ extension ReactionDetailView {
     ReactionDetailView(
         reaction: .acidMock,
         currentListMode: .constant(.regular),
-        toast: .constant(nil)
+        toast: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }

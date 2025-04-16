@@ -13,9 +13,12 @@ protocol ContentRepositoryProtocol {
     func favorites(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent]
     func songs(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent]
 
+    /// Returns content by a given Author.
     func content(by authorId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent]
+    /// Returns content for a given UserFolder.
     func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent]
-    func reactionContent(reactionId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent]
+    /// Returns content with the given IDs. Includes both Sounds and Songs.
+    func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
 }
 
 final class ContentRepository: ContentRepositoryProtocol {
@@ -87,8 +90,8 @@ final class ContentRepository: ContentRepositoryProtocol {
         return folderSort(content: content, by: sortOrder)
     }
 
-    func reactionContent(reactionId: String, _ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
-        []
+    func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent] {
+        try database.content(withIds: contentIds)
     }
 }
 

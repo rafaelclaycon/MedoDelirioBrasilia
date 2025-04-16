@@ -4,6 +4,9 @@ import SQLiteMigrationManager
 
 internal protocol LocalDatabaseProtocol {
 
+    // Content
+    func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
+
     // Sound
     func insert(sound newSound: Sound) throws
     func update(sound updatedSound: Sound) throws
@@ -17,7 +20,6 @@ internal protocol LocalDatabaseProtocol {
     func delete(authorId: String) throws
 
     // UserFolder
-
     func allFolders() throws -> [UserFolder]
     func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool

@@ -100,6 +100,8 @@
 		D904495A2BB283C20023088B /* ExternalLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90449592BB283C20023088B /* ExternalLinkButton.swift */; };
 		D904BDCF2DADAA09004AF550 /* ContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904BDCE2DADAA09004AF550 /* ContentRepository.swift */; };
 		D904BDD12DAE1E80004AF550 /* FakeContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904BDD02DAE1E80004AF550 /* FakeContentRepository.swift */; };
+		D904BDE12DAF703E004AF550 /* ReactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904BDE02DAF703E004AF550 /* ReactionService.swift */; };
+		D904BDE32DAF744F004AF550 /* LocalDatabase+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904BDE22DAF744F004AF550 /* LocalDatabase+Content.swift */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
 		D90622C82AB4030600704B70 /* MedoContentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90622C72AB4030600704B70 /* MedoContentProtocol.swift */; };
 		D90697652A6A177F00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90697622A6A177E00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 */; };
@@ -1279,7 +1281,7 @@
 		D9B88BD9298AFAF30077D9A0 /* Casimiro - Do nada mane.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B88BD5298AFAF30077D9A0 /* Casimiro - Do nada mane.mp3 */; };
 		D9B88BDA298AFAF30077D9A0 /* Leandro Ramos - Complicado isso tudo ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B88BD6298AFAF30077D9A0 /* Leandro Ramos - Complicado isso tudo ai.mp3 */; };
 		D9B88BDB298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B88BD7298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 */; };
-		D9B8DE7F2BE5CEFD000C9035 /* ReactionSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8DE7E2BE5CEFD000C9035 /* ReactionSound.swift */; };
+		D9B8DE7F2BE5CEFD000C9035 /* ReactionContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8DE7E2BE5CEFD000C9035 /* ReactionContent.swift */; };
 		D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8DE832BE695B1000C9035 /* AddReactionView.swift */; };
 		D9B9ED92295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */; };
 		D9B9ED93295651FE00C25181 /* Tema do Arquivo X.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */; };
@@ -1649,6 +1651,8 @@
 		D90449592BB283C20023088B /* ExternalLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkButton.swift; sourceTree = "<group>"; };
 		D904BDCE2DADAA09004AF550 /* ContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRepository.swift; sourceTree = "<group>"; };
 		D904BDD02DAE1E80004AF550 /* FakeContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeContentRepository.swift; sourceTree = "<group>"; };
+		D904BDE02DAF703E004AF550 /* ReactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionService.swift; sourceTree = "<group>"; };
+		D904BDE22DAF744F004AF550 /* LocalDatabase+Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Content.swift"; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
 		D90622C72AB4030600704B70 /* MedoContentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoContentProtocol.swift; sourceTree = "<group>"; };
 		D90697622A6A177E00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3"; sourceTree = "<group>"; };
@@ -2831,7 +2835,7 @@
 		D9B88BD5298AFAF30077D9A0 /* Casimiro - Do nada mane.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Do nada mane.mp3"; sourceTree = "<group>"; };
 		D9B88BD6298AFAF30077D9A0 /* Leandro Ramos - Complicado isso tudo ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Leandro Ramos - Complicado isso tudo ai.mp3"; sourceTree = "<group>"; };
 		D9B88BD7298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao - E o gol da alemanha.mp3"; sourceTree = "<group>"; };
-		D9B8DE7E2BE5CEFD000C9035 /* ReactionSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSound.swift; sourceTree = "<group>"; };
+		D9B8DE7E2BE5CEFD000C9035 /* ReactionContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionContent.swift; sourceTree = "<group>"; };
 		D9B8DE832BE695B1000C9035 /* AddReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactionView.swift; sourceTree = "<group>"; };
 		D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eliane Cantanhede - Uau.mp3"; sourceTree = "<group>"; };
 		D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tema do Arquivo X.mp3"; sourceTree = "<group>"; };
@@ -4305,6 +4309,7 @@
 				D94B5F652A1C9CF600B3A688 /* SyncService+Author.swift */,
 				D94B5F672A1C9D0900B3A688 /* SyncService+Song.swift */,
 				D928286E2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift */,
+				D904BDE02DAF703E004AF550 /* ReactionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -4984,6 +4989,7 @@
 				D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */,
 				D9592C412AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift */,
 				D90E80C02CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift */,
+				D904BDE22DAF744F004AF550 /* LocalDatabase+Content.swift */,
 			);
 			path = LocalDatabase;
 			sourceTree = "<group>";
@@ -5096,7 +5102,7 @@
 			isa = PBXGroup;
 			children = (
 				D91107132863B5FD000B6F8F /* Reaction.swift */,
-				D9B8DE7E2BE5CEFD000C9035 /* ReactionSound.swift */,
+				D9B8DE7E2BE5CEFD000C9035 /* ReactionContent.swift */,
 				D90E80C82CEA229C0014A886 /* ReactionGroup.swift */,
 			);
 			path = Reactions;
@@ -7017,7 +7023,7 @@
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */,
 				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,
-				D9B8DE7F2BE5CEFD000C9035 /* ReactionSound.swift in Sources */,
+				D9B8DE7F2BE5CEFD000C9035 /* ReactionContent.swift in Sources */,
 				D9F45DD72BED30C400D49340 /* DynamicBanner.swift in Sources */,
 				D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
@@ -7027,12 +7033,14 @@
 				D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D95C3E0F2A02D7C400172C17 /* NetworkRabbit+Sync.swift in Sources */,
+				D904BDE32DAF744F004AF550 /* LocalDatabase+Content.swift in Sources */,
 				D928286F2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift in Sources */,
 				D9E39DBB2A1E8B320053A527 /* LocalDatabase+SyncLog.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
 				D99070612A92CE7C00A26F65 /* SyncValues.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D9592C422AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift in Sources */,
+				D904BDE12DAF703E004AF550 /* ReactionService.swift in Sources */,
 				D9A096D8287CE72300773869 /* Mailman.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
 				D912A33828B3F2C000F7293D /* TipView.swift in Sources */,
