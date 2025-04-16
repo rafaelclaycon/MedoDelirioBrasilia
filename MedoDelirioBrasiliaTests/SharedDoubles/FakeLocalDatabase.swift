@@ -53,6 +53,30 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     var didCallDeletePinnedReaction = false
 
+    // Content
+
+    func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent] {
+        []
+    }
+
+    // Favorite
+
+    func favoriteExists(contentId: String) throws -> Bool {
+        false
+    }
+
+    func insert(favorite newFavorite: Favorite) throws {
+        //
+    }
+
+    func favorites() throws -> [Favorite] {
+        []
+    }
+
+    func deleteFavorite(withId contentId: String) throws {
+        //
+    }
+
     // Sound
 
     func insert(sound newSound: MedoDelirio.Sound) throws {
@@ -71,6 +95,14 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         didCallSetIsFromServerOnSoundId = true
     }
 
+    func sounds(withIds soundIds: [String]) throws -> [Sound] {
+        []
+    }
+
+    func sounds(allowSensitive: Bool) throws -> [Sound] {
+        []
+    }
+
     // Author
 
     func insert(author newAuthor: MedoDelirio.Author) throws {
@@ -83,6 +115,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func delete(authorId: String) throws {
         didCallDeleteSound = true
+    }
+
+    func author(withId authorId: String) throws -> Author? {
+        nil
     }
 
     // UserFolder
@@ -99,6 +135,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         contentInsideFolder.contains(where: { $0.contentId == contentId })
     }
 
+    func insert(contentId: String, intoUserFolder userFolderId: String) throws {
+        //
+    }
+
     func soundIdsInside(userFolder userFolderId: String) throws -> [String] {
         contentInsideFolder.compactMap {
             guard $0.userFolderId == userFolderId else { return nil }
@@ -112,6 +152,22 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func folders(withIds folderIds: [String]) throws -> [UserFolder] {
         folders.filter { folderIds.contains($0.id) }
+    }
+
+    func update(userSortPreference: Int, forFolderId userFolderId: String) throws {
+        //
+    }
+
+    func insert(_ userFolder: UserFolder) throws {
+        //
+    }
+
+    func update(_ userFolder: UserFolder) throws {
+        //
+    }
+
+    func deleteUserContentFromFolder(withId folderId: String, contentId: String) throws {
+        //
     }
 
     // Song
@@ -130,6 +186,14 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func setIsFromServer(to value: Bool, onSongId songId: String) throws {
         didCallSetIsFromServerOnSongId = true
+    }
+
+    func songs(withIds songIds: [String]) throws -> [Song] {
+        []
+    }
+
+    func songs(allowSensitive: Bool) throws -> [Song] {
+        []
     }
 
     // MusicGenre
@@ -203,13 +267,15 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         return shareDates
     }
 
-    func delete(reactionId: String) throws {
-        didCallDeletePinnedReaction = true
-    }
+    // Pinned Reactions
 
     func insert(_ pinnedReaction: Reaction) throws {}
 
     func pinnedReactions() throws -> [Reaction] {
         []
+    }
+
+    func delete(reactionId: String) throws {
+        didCallDeletePinnedReaction = true
     }
 }

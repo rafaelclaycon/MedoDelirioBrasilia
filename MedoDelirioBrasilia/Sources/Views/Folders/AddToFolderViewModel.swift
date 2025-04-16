@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-@Observable class AddToFolderViewModel {
+@Observable
+class AddToFolderViewModel {
 
-    private var database: LocalDatabaseProtocol
+    private let userFolderRepository: UserFolderRepositoryProtocol
 
     init(
-        database injectedDatabase: LocalDatabaseProtocol
+        userFolderRepository: UserFolderRepositoryProtocol
     ) {
-        self.database = injectedDatabase
+        self.userFolderRepository = userFolderRepository
     }
 
     var folders = [UserFolder]()
@@ -36,7 +37,7 @@ import SwiftUI
 extension AddToFolderViewModel {
 
     public func onViewAppeared() {
-        loadFolderList(withFolders: try? database.allFolders())
+        loadFolderList(withFolders: try? userFolderRepository.allFolders())
     }
 
     public func onExistingFolderSelected(
@@ -50,9 +51,9 @@ extension AddToFolderViewModel {
 
             if selectedContent.count == soundsThatCanBeAdded?.count {
                 try selectedContent.forEach { item in
-                    try database.insert(contentId: item.id, intoUserFolder: folder.id)
+                    try userFolderRepository.insert(contentId: item.id, intoUserFolder: folder.id)
                 }
-                try UserFolderRepository(database: database).update(folder)
+                try userFolderRepository.update(folder)
 
                 return AddToFolderDetails(
                     hadSuccess: true,
@@ -76,12 +77,12 @@ extension AddToFolderViewModel {
     public func onAddOnlyNonExistingSelected() -> AddToFolderDetails? {
         do {
             try soundsThatCanBeAdded?.forEach { sound in
-                try database.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
+                try userFolderRepository.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
             }
 
             var folderName = ""
             if let folder = folderForSomeSoundsAlreadyInFolder {
-                try UserFolderRepository(database: database).update(folder)
+                try userFolderRepository.update(folder)
                 folderName = "\(folder.symbol) \(folder.name)"
             }
 
@@ -97,7 +98,7 @@ extension AddToFolderViewModel {
     }
 
     public func onNewFolderCreationSheetDismissed() {
-        loadFolderList(withFolders: try? database.allFolders())
+        loadFolderList(withFolders: try? userFolderRepository.allFolders())
     }
 }
 
@@ -126,7 +127,7 @@ extension AddToFolderViewModel {
     private func soundIsNotYetOnFolder(folderId: String, contentId: String) -> Bool {
         var contentExistsInsideUserFolder = true
         do {
-            contentExistsInsideUserFolder = try self.database.contentExistsInsideUserFolder(withId: folderId, contentId: contentId)
+            contentExistsInsideUserFolder = try self.userFolderRepository.contentExistsInsideUserFolder(withId: folderId, contentId: contentId)
         } catch {
             return true
         }

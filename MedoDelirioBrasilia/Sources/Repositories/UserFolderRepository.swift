@@ -9,7 +9,11 @@ import Foundation
 
 protocol UserFolderRepositoryProtocol {
 
+    func allFolders() throws -> [UserFolder]
+
     func add(_ userFolder: UserFolder) throws
+    func insert(contentId: String, intoUserFolder userFolderId: String) throws
+    func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
 
     func update(_ userFolder: UserFolder) throws
 
@@ -31,10 +35,22 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
         self.database = database
     }
 
+    func allFolders() throws -> [UserFolder] {
+        try database.allFolders()
+    }
+
     func add(_ userFolder: UserFolder) throws {
         var newFolder = userFolder
         newFolder.changeHash = FolderResearchProvider.hash(userFolder.folderHash([]))
         try database.insert(newFolder)
+    }
+
+    func insert(contentId: String, intoUserFolder userFolderId: String) throws {
+        try database.insert(contentId: contentId, intoUserFolder: userFolderId)
+    }
+
+    func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool {
+        try database.contentExistsInsideUserFolder(withId: folderId, contentId: contentId)
     }
 
     func update(_ userFolder: UserFolder) throws {

@@ -15,10 +15,18 @@ final class VideoMakerTests: XCTestCase {
     }
 
     struct FakeServerSound: MedoContentProtocol {
+
         var id: String
-        
         var title: String
-        
+        var subtitle: String = ""
+        var description: String = ""
+        var duration: Double = 0.0
+        var dateAdded: Date? = nil
+        var isFromServer: Bool? = true
+        var type: MediaType = .sound
+        var authorId: String = ""
+        var isOffensive: Bool = false
+
         func fileURL() throws -> URL {
             Bundle(for: VideoMakerTests.self).url(forResource: "A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5", withExtension: "mp3")!
         }

@@ -90,7 +90,7 @@
 		49E5D33B28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */; };
 		49F9220028E334C1009AC743 /* Eu to esmagada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */; };
 		49F9220228E33576009AC743 /* Ey ey eymael funk meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */; };
-		D900B9C52A6DF6D300C1BC3A /* LoggerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900B9C42A6DF6D300C1BC3A /* LoggerStub.swift */; };
+		D900B9C52A6DF6D300C1BC3A /* FakeLoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900B9C42A6DF6D300C1BC3A /* FakeLoggerService.swift */; };
 		D90277822AAA242D0061A960 /* AlbumCoverPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90277812AAA242D0061A960 /* AlbumCoverPlayView.swift */; };
 		D903DB0429DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */; };
 		D903DB0929DF42A500D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */; };
@@ -133,6 +133,7 @@
 		D91107112863B481000B6F8F /* ReactionsView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* ReactionsView+ViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* Reaction.swift */; };
 		D91255B22DAFF335006AC71C /* ContentGridScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91255B12DAFF335006AC71C /* ContentGridScreen.swift */; };
+		D91255B42DB0346E006AC71C /* FakeUserFolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91255B32DB0346E006AC71C /* FakeUserFolderRepository.swift */; };
 		D912A33828B3F2C000F7293D /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33728B3F2C000F7293D /* TipView.swift */; };
 		D914CF3B2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */; };
 		D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536328AD7FF7007F141D /* VideoMaker.swift */; };
@@ -1210,7 +1211,7 @@
 		D99D6CE528D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewModel.swift */; };
 		D9A039182BD69EF100AB74F7 /* ModalViewToOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */; };
-		D9A06417298B59D5006075D1 /* AddToFolderViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06416298B59D5006075D1 /* AddToFolderViewViewModelTests.swift */; };
+		D9A06417298B59D5006075D1 /* AddToFolderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06416298B59D5006075D1 /* AddToFolderViewModelTests.swift */; };
 		D9A0641A298B6749006075D1 /* FakeLocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06419298B6749006075D1 /* FakeLocalDatabase.swift */; };
 		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
@@ -1639,7 +1640,7 @@
 		49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao e hora pra desespero completo.mp3"; sourceTree = "<group>"; };
 		49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu to esmagada.mp3"; sourceTree = "<group>"; };
 		49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ey ey eymael funk meme.mp3"; sourceTree = "<group>"; };
-		D900B9C42A6DF6D300C1BC3A /* LoggerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerStub.swift; sourceTree = "<group>"; };
+		D900B9C42A6DF6D300C1BC3A /* FakeLoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLoggerService.swift; sourceTree = "<group>"; };
 		D90277812AAA242D0061A960 /* AlbumCoverPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverPlayView.swift; sourceTree = "<group>"; };
 		D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro e morte, Bolsonaro e uma peste.mp3"; sourceTree = "<group>"; };
 		D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ei, Bolsonaro, vai tomar no cu.mp3"; sourceTree = "<group>"; };
@@ -1682,6 +1683,7 @@
 		D91107102863B481000B6F8F /* ReactionsView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReactionsView+ViewModel.swift"; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 		D91255B12DAFF335006AC71C /* ContentGridScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGridScreen.swift; sourceTree = "<group>"; };
+		D91255B32DB0346E006AC71C /* FakeUserFolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserFolderRepository.swift; sourceTree = "<group>"; };
 		D912A33728B3F2C000F7293D /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Primeiramente.mp3"; sourceTree = "<group>"; };
 		D916536328AD7FF7007F141D /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
@@ -2763,7 +2765,7 @@
 		D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3"; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewModel.swift; sourceTree = "<group>"; };
 		D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewToOpen.swift; sourceTree = "<group>"; };
-		D9A06416298B59D5006075D1 /* AddToFolderViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewViewModelTests.swift; sourceTree = "<group>"; };
+		D9A06416298B59D5006075D1 /* AddToFolderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewModelTests.swift; sourceTree = "<group>"; };
 		D9A06419298B6749006075D1 /* FakeLocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLocalDatabase.swift; sourceTree = "<group>"; };
 		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
@@ -5023,7 +5025,7 @@
 		D9A06415298B59B0006075D1 /* Folders */ = {
 			isa = PBXGroup;
 			children = (
-				D9A06416298B59D5006075D1 /* AddToFolderViewViewModelTests.swift */,
+				D9A06416298B59D5006075D1 /* AddToFolderViewModelTests.swift */,
 			);
 			path = Folders;
 			sourceTree = "<group>";
@@ -5051,7 +5053,7 @@
 			isa = PBXGroup;
 			children = (
 				D9AB63F32A5A085800390778 /* SyncServiceStub.swift */,
-				D900B9C42A6DF6D300C1BC3A /* LoggerStub.swift */,
+				D900B9C42A6DF6D300C1BC3A /* FakeLoggerService.swift */,
 			);
 			path = Doubles;
 			sourceTree = "<group>";
@@ -5314,6 +5316,7 @@
 				D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */,
 				D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */,
 				D9E5F5152CD7114600C2FF64 /* FakeFolderResearchRepository.swift */,
+				D91255B32DB0346E006AC71C /* FakeUserFolderRepository.swift */,
 			);
 			path = SharedDoubles;
 			sourceTree = "<group>";
@@ -7057,13 +7060,13 @@
 				D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */,
 				D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */,
 				D9A0641A298B6749006075D1 /* FakeLocalDatabase.swift in Sources */,
-				D9A06417298B59D5006075D1 /* AddToFolderViewViewModelTests.swift in Sources */,
+				D9A06417298B59D5006075D1 /* AddToFolderViewModelTests.swift in Sources */,
 				D9F570882A62F27F00596C32 /* XCTestCase+Extensions.swift in Sources */,
 				D90E80C72CEA20820014A886 /* FakeReactionRepository.swift in Sources */,
 				D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */,
 				D9E5F5162CD7114600C2FF64 /* FakeFolderResearchRepository.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
-				D900B9C52A6DF6D300C1BC3A /* LoggerStub.swift in Sources */,
+				D900B9C52A6DF6D300C1BC3A /* FakeLoggerService.swift in Sources */,
 				D99ACE982ADDFC2500C290F0 /* RetroViewModelTests.swift in Sources */,
 				D96892DE2C9F7DC50084F646 /* VideoMakerTests.swift in Sources */,
 				D90E80C42CEA1F570014A886 /* ReactionsViewModelTests.swift in Sources */,
@@ -7071,6 +7074,7 @@
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
 				D9D22D862A59FA1D00ABDCDC /* MainViewViewModelTests.swift in Sources */,
+				D91255B42DB0346E006AC71C /* FakeUserFolderRepository.swift in Sources */,
 				D920BF662CD1F52500C6BD72 /* MockUserSettings.swift in Sources */,
 				D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */,
 				D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */,
