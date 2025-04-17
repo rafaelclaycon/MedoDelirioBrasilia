@@ -14,6 +14,8 @@ struct ReactionDetailView: View {
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
+    private var contentGridMode: Binding<ContentListMode>
+
     // MARK: - Computed Properties
 
     private var toolbarControlsOpacity: CGFloat {
@@ -43,6 +45,7 @@ struct ReactionDetailView: View {
             reaction: reaction,
             contentRepository: contentRepository
         )
+        self.contentGridMode = currentListMode
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
@@ -108,7 +111,7 @@ struct ReactionDetailView: View {
                         startSelectingAction: { contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent) },
                         isPlayingPlaylist: contentGridViewModel.isPlayingPlaylist,
                         soundArrayIsEmpty: soundArrayIsEmpty,
-                        isSelecting: contentGridViewModel.floatingOptions.wrappedValue != nil
+                        isSelecting: contentGridMode.wrappedValue == .selection
                     )
                     .foregroundStyle(.white)
                     .opacity(toolbarControlsOpacity)
@@ -152,14 +155,19 @@ extension ReactionDetailView {
         let soundArrayIsEmpty: Bool
         let isSelecting: Bool
 
+        private var playStopIsDisabled: Bool {
+            soundArrayIsEmpty || isSelecting
+        }
+
         var body: some View {
             HStack(spacing: 15) {
                 Button {
                     playStopAction()
                 } label: {
                     Image(systemName: isPlayingPlaylist ? "stop.fill" : "play.fill")
+                        .opacity(playStopIsDisabled ? 0.5 : 1.0)
                 }
-                .disabled(soundArrayIsEmpty)
+                .disabled(playStopIsDisabled)
 
                 Menu {
                     Section {

@@ -574,7 +574,7 @@ extension ContentGridViewModel {
             floatingOptions.wrappedValue = FloatingContentOptions(
                 areButtonsEnabled: false,
                 allSelectedAreFavorites: false,
-                folderOperation: .add,
+                folderOperation: multiSelectFolderOperation,
                 shareIsProcessing: false,
                 favoriteAction: { Task { await self.addRemoveManyFromFavorites() } },
                 folderAction: {
