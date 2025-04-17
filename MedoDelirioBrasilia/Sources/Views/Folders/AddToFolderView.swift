@@ -9,7 +9,9 @@ import SwiftUI
 
 struct AddToFolderView: View {
 
-    @State private var viewModel = AddToFolderViewModel(database: LocalDatabase.shared)
+    @State private var viewModel = AddToFolderViewModel(
+        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+    )
 
     @Binding var isBeingShown: Bool
     @Binding var details: AddToFolderDetails
@@ -134,7 +136,7 @@ struct AddToFolderView: View {
             .sheet(item: $newFolder) { folder in
                 FolderInfoEditingView(
                     folder: folder,
-                    folderRepository: UserFolderRepository(),
+                    folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                     dismissSheet: {
                         newFolder = nil
                         viewModel.onNewFolderCreationSheetDismissed()

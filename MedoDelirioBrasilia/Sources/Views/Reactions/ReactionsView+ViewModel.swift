@@ -52,12 +52,12 @@ extension ReactionsView.ViewModel {
         await loadReactions()
     }
 
-    public func onPinReactionSelected(reaction: Reaction) {
+    public func onPinReactionSelected(reaction: Reaction) async {
         do {
             try reactionRepository.savePin(reaction: reaction)
             addToPinned(reaction: reaction)
 
-            Analytics().send(
+            await AnalyticsService().send(
                 originatingScreen: "ReactionsView",
                 action: "pinnedReaction(\(reaction.title))"
             )
@@ -72,7 +72,7 @@ extension ReactionsView.ViewModel {
             // I decided to reload the entire view because dealing with `position` proved convoluted.
             await loadReactions()
 
-            Analytics().send(
+            await AnalyticsService().send(
                 originatingScreen: "ReactionsView",
                 action: "unpinnedReaction(\(reaction.title))"
             )
@@ -119,7 +119,7 @@ extension ReactionsView.ViewModel {
         } catch {
             state = .error(error.localizedDescription)
 
-            Analytics().send(
+            await AnalyticsService().send(
                 originatingScreen: "ReactionsView",
                 action: "hadIssueLoadingReactions(\(error.localizedDescription))"
             )

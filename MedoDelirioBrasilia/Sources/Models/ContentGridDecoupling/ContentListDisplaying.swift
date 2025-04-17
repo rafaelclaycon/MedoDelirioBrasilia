@@ -18,7 +18,7 @@ protocol ContentListDisplaying {
 
     func addToFolder(_ content: AnyEquatableMedoContent)
 
-    func playFrom(content: AnyEquatableMedoContent)
+    func playFrom(content: AnyEquatableMedoContent, loadedContent: [AnyEquatableMedoContent])
 
     func removeFromFolder(_ content: AnyEquatableMedoContent)
 

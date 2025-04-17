@@ -41,6 +41,8 @@ struct MainView: View {
     // Sync
     @StateObject private var syncValues = SyncValues()
 
+    @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
+
     // MARK: - View Body
 
     var body: some View {
@@ -51,24 +53,26 @@ struct MainView: View {
                         MainContentView(
                             viewModel: .init(
                                 currentViewMode: .all,
-                                soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                 authorSortOption: UserSettings().authorSortOption(),
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
-                                syncValues: syncValues
+                                syncValues: syncValues,
+                                contentRepository: contentRepository
                             ),
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
                             floatingOptions: $floatingOptions,
                             openSettingsAction: {
                                 isShowingSettingsSheet.toggle()
-                            }
+                            },
+                            contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
                         .environmentObject(settingsHelper)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                            GeneralRouter(destination: screen)
+                            GeneralRouter(destination: screen, contentRepository: contentRepository)
                         }
                     }
                     .tabItem {
@@ -81,7 +85,7 @@ struct MainView: View {
                         ReactionsView()
                             .environment(trendsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                GeneralRouter(destination: screen)
+                                GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
                     }
                     .tabItem {
@@ -145,22 +149,24 @@ struct MainView: View {
                                 MainContentView(
                                     viewModel: .init(
                                         currentViewMode: .all,
-                                        soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
                                         floatingOptions: $floatingOptions,
-                                        syncValues: syncValues
+                                        syncValues: syncValues,
+                                        contentRepository: contentRepository
                                     ),
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
-                                    openSettingsAction: {}
+                                    openSettingsAction: {},
+                                    contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
                             }
                             .environment(\.push, PushAction { soundsPath.append($0) })
@@ -170,14 +176,16 @@ struct MainView: View {
                             NavigationStack(path: $favoritesPath) {
                                 StandaloneFavoritesView(
                                     viewModel: StandaloneFavoritesViewModel(
-                                        contentSortOption: UserSettings().mainSoundListSoundSortOption()
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        contentRepository: contentRepository
                                     ),
-                                    toast: $toast
+                                    toast: $toast,
+                                    contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
                             }
                             .environment(\.push, PushAction { favoritesPath.append($0) })
@@ -188,7 +196,7 @@ struct MainView: View {
                                 ReactionsView()
                                     .environment(trendsHelper)
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen)
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
                                     }
                             }
                             .environment(\.push, PushAction { reactionsPath.append($0) })
@@ -198,7 +206,7 @@ struct MainView: View {
                             NavigationStack(path: $authorsPath) {
                                 StandaloneAuthorsView()
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen)
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
                                     }
                             }
                             .environment(\.push, PushAction { authorsPath.append($0) })
@@ -219,10 +227,11 @@ struct MainView: View {
                                 NavigationStack(path: $foldersPath) {
                                     AllFoldersiPadView(
                                         folderForEditing: $folderForEditing,
-                                        updateFolderList: $updateFolderList
+                                        updateFolderList: $updateFolderList,
+                                        contentRepository: contentRepository
                                     )
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen)
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
                                     }
                                 }
                                 .environment(\.push, PushAction { foldersPath.append($0) })
@@ -235,7 +244,8 @@ struct MainView: View {
                                             folder: folder,
                                             currentContentListMode: $currentContentListMode,
                                             toast: $toast,
-                                            floatingOptions: $floatingOptions
+                                            floatingOptions: $floatingOptions,
+                                            contentRepository: contentRepository
                                         )
                                     }
                                 } label: {
@@ -287,7 +297,8 @@ struct MainView: View {
                             updateFolderList: $updateFolderList,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
-                            floatingOptions: $floatingOptions
+                            floatingOptions: $floatingOptions,
+                            contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
                         .environmentObject(settingsHelper)
@@ -297,22 +308,24 @@ struct MainView: View {
                             MainContentView(
                                 viewModel: .init(
                                     currentViewMode: .all,
-                                    soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                    contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                     authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
-                                    syncValues: syncValues
+                                    syncValues: syncValues,
+                                    contentRepository: contentRepository
                                 ),
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
-                                openSettingsAction: {}
+                                openSettingsAction: {},
+                                contentRepository: contentRepository
                             )
                             .environment(trendsHelper)
                             .environmentObject(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                GeneralRouter(destination: screen)
+                                GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
                             .environment(\.push, PushAction { soundsPath.append($0) })
                         }
@@ -347,7 +360,7 @@ struct MainView: View {
         .sheet(item: $folderForEditing) { folder in
             FolderInfoEditingView(
                 folder: folder,
-                folderRepository: UserFolderRepository(),
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                 dismissSheet: {
                     folderForEditing = nil
                     updateFolderList = true

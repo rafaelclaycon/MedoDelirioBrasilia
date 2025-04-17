@@ -9,21 +9,26 @@ import SwiftUI
 
 struct ReactionDetailView: View {
 
-    @StateObject var viewModel: ReactionDetailViewModel
-    @StateObject private var soundListViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State var viewModel: ReactionDetailViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
     // MARK: - Computed Properties
 
     private var toolbarControlsOpacity: CGFloat {
-        guard let sounds = viewModel.sounds else { return 1.0 }
-        return sounds.isEmpty ? 0.5 : 1.0
+        guard case .loaded(let content) = viewModel.state else { return 1.0 }
+        return content.isEmpty ? 0.5 : 1.0
     }
 
     private var soundArrayIsEmpty: Bool {
-        guard let sounds = viewModel.sounds else { return true }
-        return sounds.isEmpty
+        guard case .loaded(let content) = viewModel.state else { return true }
+        return content.isEmpty
+    }
+
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
     }
 
     // MARK: - Initializer
@@ -31,21 +36,23 @@ struct ReactionDetailView: View {
     init(
         reaction: Reaction,
         currentListMode: Binding<ContentListMode>,
-        toast: Binding<Toast?>
+        toast: Binding<Toast?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
-        let viewModel = ReactionDetailViewModel(reaction: reaction)
-
-        self._viewModel = StateObject(wrappedValue: viewModel)
-
-        let soundListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.soundsPublisher,
+        self.viewModel = ReactionDetailViewModel(
+            reaction: reaction,
+            contentRepository: contentRepository
+        )
+        self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .reactionDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
             toast: toast,
-            floatingOptions: .constant(nil)
+            floatingOptions: .constant(nil),
+            analyticsService: AnalyticsService()
         )
-
-        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
 
     // MARK: - View Body
@@ -65,64 +72,69 @@ struct ReactionDetailView: View {
                     .padding(.bottom, 6)
 
                     ContentGrid(
-                        viewModel: soundListViewModel,
+                        state: viewModel.state,
+                        viewModel: contentGridViewModel,
                         showNewTag: false,
-                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         reactionId: viewModel.reaction.id,
                         containerSize: geometry.size,
                         loadingView: LoadingView(),
                         emptyStateView: EmptyStateView(
                             reloadAction: {
                                 Task {
-                                    await viewModel.loadSounds()
+                                    await viewModel.onRetrySelected()
                                 }
                             }
                         ),
                         errorView: ErrorView(
-                            reactionNoLongerExists: viewModel.state == .reactionNoLongerExists,
+                            reactionNoLongerExists: viewModel.reactionNoLongerExists,
                             errorMessage: viewModel.errorMessage,
                             tryAgainAction: {
                                 Task {
-                                    await viewModel.loadSounds()
+                                    await viewModel.onRetrySelected()
                                 }
                             }
                         )
                     )
                     .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.small))
+                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
                 .toolbar {
                     ToolbarControls(
-                        soundSortOption: $viewModel.soundSortOption,
-                        playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
-                        startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
-                        isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
+                        contentSortOption: $viewModel.contentSortOption,
+                        playStopAction: { contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent) },
+                        startSelectingAction: { contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent) },
+                        isPlayingPlaylist: contentGridViewModel.isPlayingPlaylist,
                         soundArrayIsEmpty: soundArrayIsEmpty,
-                        isSelecting: soundListViewModel.floatingOptions.wrappedValue != nil
+                        isSelecting: contentGridViewModel.floatingOptions.wrappedValue != nil
                     )
                     .foregroundStyle(.white)
                     .opacity(toolbarControlsOpacity)
                     .disabled(soundArrayIsEmpty)
-                    .onChange(of: viewModel.soundSortOption) {
-                        viewModel.sortSounds(by: viewModel.soundSortOption)
+                    .onChange(of: viewModel.contentSortOption) {
+                        contentGridViewModel.onContentSortingChanged()
+                        Task {
+                            await viewModel.onContentSortingChanged()
+                        }
                     }
                 }
                 .oneTimeTask {
-                    await viewModel.loadSounds()
+                    await viewModel.onViewLoaded()
                 }
                 .onAppear {
-                    Analytics().send(
-                        originatingScreen: "ReactionDetailView",
-                        action: "didViewReaction(\(viewModel.reaction.title))"
-                    )
+                    Task {
+                        await AnalyticsService().send(
+                            originatingScreen: "ReactionDetailView",
+                            action: "didViewReaction(\(viewModel.reaction.title))"
+                        )
+                    }
                 }
             }
             .edgesIgnoringSafeArea(.top)
-            .toast(soundListViewModel.toast)
-            .floatingContentOptions(soundListViewModel.floatingOptions)
+            .toast(contentGridViewModel.toast)
+            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
     }
 }
@@ -133,7 +145,7 @@ extension ReactionDetailView {
 
     struct ToolbarControls: View {
 
-        @Binding var soundSortOption: Int
+        @Binding var contentSortOption: Int
         let playStopAction: () -> Void
         let startSelectingAction: () -> Void
         let isPlayingPlaylist: Bool
@@ -162,7 +174,7 @@ extension ReactionDetailView {
                     }
 
                     Section {
-                        Picker("Ordenação de Sons", selection: $soundSortOption) {
+                        Picker("Ordenação de Sons", selection: $contentSortOption) {
                             ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
                                 Text(option.description).tag(option.rawValue)
                             }
@@ -288,6 +300,7 @@ extension ReactionDetailView {
     ReactionDetailView(
         reaction: .acidMock,
         currentListMode: .constant(.regular),
-        toast: .constant(nil)
+        toast: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }

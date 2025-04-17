@@ -9,8 +9,8 @@ import SwiftUI
 
 struct StandaloneFavoritesView: View {
 
-    @StateObject var viewModel: StandaloneFavoritesViewModel
-    @StateObject private var favoritesViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State var viewModel: StandaloneFavoritesViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
 
     @State private var soundSearchTextIsEmpty: Bool? = true
 
@@ -18,16 +18,20 @@ struct StandaloneFavoritesView: View {
 
     init(
         viewModel: StandaloneFavoritesViewModel,
-        toast: Binding<Toast?>
+        toast: Binding<Toast?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
-        self._favoritesViewModel = StateObject(wrappedValue: ContentGridViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.dataPublisher,
+        self.viewModel = viewModel
+        self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .standaloneFavoritesView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: .constant(.regular),
             toast: toast,
-            floatingOptions: .constant(nil)
-        ))
+            floatingOptions: .constant(nil),
+            analyticsService: AnalyticsService()
+        )
     }
 
     // MARK: - View Body
@@ -37,9 +41,9 @@ struct StandaloneFavoritesView: View {
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
                     ContentGrid(
-                        viewModel: favoritesViewModel,
+                        state: viewModel.state,
+                        viewModel: contentGridViewModel,
                         searchTextIsEmpty: $soundSearchTextIsEmpty,
-                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         containerSize: geometry.size,
                         loadingView:
                             VStack {
@@ -74,7 +78,7 @@ struct StandaloneFavoritesView: View {
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
-                .padding(.horizontal, .spacing(.small))
+                .padding(.horizontal, .spacing(.medium))
                 .navigationTitle(Text("Favoritos"))
                 //            .navigationBarItems(
                 //                leading: LeadingToolbarControls(
@@ -86,10 +90,11 @@ struct StandaloneFavoritesView: View {
                 //            )
                 .onAppear {
                     viewModel.onViewDidAppear()
+                    contentGridViewModel.onViewAppeared()
                 }
             }
-            .toast(favoritesViewModel.toast)
-            .floatingContentOptions(favoritesViewModel.floatingOptions)
+            .toast(contentGridViewModel.toast)
+            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
     }
 }

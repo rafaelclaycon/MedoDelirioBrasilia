@@ -4,20 +4,30 @@ import SQLiteMigrationManager
 
 internal protocol LocalDatabaseProtocol {
 
+    // Content
+    func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
+
+    // Favorite
+    func favoriteExists(contentId: String) throws -> Bool
+    func insert(favorite newFavorite: Favorite) throws
+    func favorites() throws -> [Favorite]
+    func deleteFavorite(withId contentId: String) throws
+
     // Sound
     func insert(sound newSound: Sound) throws
     func update(sound updatedSound: Sound) throws
     func delete(soundId: String) throws
     func setIsFromServer(to value: Bool, onSoundId soundId: String) throws
     func sounds(withIds soundIds: [String]) throws -> [Sound]
+    func sounds(allowSensitive: Bool) throws -> [Sound]
 
     // Author
     func insert(author newAuthor: Author) throws
     func update(author updatedAuthor: Author) throws
     func delete(authorId: String) throws
+    func author(withId authorId: String) throws -> Author?
 
     // UserFolder
-
     func allFolders() throws -> [UserFolder]
     func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
@@ -26,6 +36,9 @@ internal protocol LocalDatabaseProtocol {
     func folderHashes() throws -> [String: String]
     func folders(withIds folderIds: [String]) throws -> [UserFolder]
     func update(userSortPreference: Int, forFolderId userFolderId: String) throws
+    func insert(_ userFolder: UserFolder) throws
+    func update(_ userFolder: UserFolder) throws
+    func deleteUserContentFromFolder(withId folderId: String, contentId: String) throws
 
     // Song
     func insert(song newSong: Song) throws

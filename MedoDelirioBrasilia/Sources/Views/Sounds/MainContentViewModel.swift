@@ -6,60 +6,49 @@
 //
 
 import SwiftUI
-import Combine
 
 @MainActor
-class MainContentViewModel: ObservableObject {
+@Observable
+class MainContentViewModel {
 
-    // MARK: - Published Vars
+    var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
-    @Published var forDisplay: [AnyEquatableMedoContent]?
-
-    @Published var currentViewMode: TopSelectorOption
-    @Published var soundSortOption: Int
-    @Published var authorSortOption: Int
-
-    @Published var dataLoadingDidFail: Bool = false
+    var currentViewMode: TopSelectorOption
+    var contentSortOption: Int
+    var authorSortOption: Int
 
     // Sync
-    @Published var processedUpdateNumber: Int = 0
-    @Published var totalUpdateCount: Int = 0
-    @Published var firstRunSyncHappened: Bool = false
+    var processedUpdateNumber: Int = 0
+    var totalUpdateCount: Int = 0
+    var firstRunSyncHappened: Bool = false
 
     // MARK: - Stored Properties
 
     public var currentContentListMode: Binding<ContentListMode>
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
-    private var allContent = [AnyEquatableMedoContent]()
+    private let contentRepository: ContentRepositoryProtocol
 
     // Sync
     private let syncManager: SyncManager
     private let syncValues: SyncValues
     private let isAllowedToSync: Bool
 
-    // MARK: - Computed Properties
-
-    var allContentPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $forDisplay
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
-
     // MARK: - Initializer
 
     init(
         currentViewMode: TopSelectorOption,
-        soundSortOption: Int,
+        contentSortOption: Int,
         authorSortOption: Int,
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         syncValues: SyncValues,
-        isAllowedToSync: Bool = true
+        isAllowedToSync: Bool = true,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.currentViewMode = currentViewMode
-        self.soundSortOption = soundSortOption
+        self.contentSortOption = contentSortOption
         self.authorSortOption = authorSortOption
         self.currentContentListMode = currentContentListMode
         self.toast = toast
@@ -74,6 +63,7 @@ class MainContentViewModel: ObservableObject {
             logger: Logger.shared
         )
         self.syncValues = syncValues
+        self.contentRepository = contentRepository
         self.isAllowedToSync = isAllowedToSync
         self.syncManager.delegate = self
     }
@@ -83,34 +73,26 @@ class MainContentViewModel: ObservableObject {
 
 extension MainContentViewModel {
 
-    public func onViewDidAppear() {
-        print("MAIN SOUND CONTAINER - ON APPEAR")
+    public func onViewDidAppear() async {
+        print("MAIN CONTENT VIEW - ON APPEAR")
+
+        var hadAnyUpdates: Bool = false
 
         if !firstRunSyncHappened {
-            Task {
-                print("WILL START SYNCING")
-                await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
-                print("DID FINISH SYNCING")
-            }
+            print("WILL START SYNCING")
+            hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+            print("DID FINISH SYNCING")
         }
 
-        loadContent()
-        //loadFavorites()
+        loadContent(clearCache: hadAnyUpdates)
     }
 
-    public func onSelectedViewModeChanged(favorites: Set<String>) {
-        if currentViewMode == .all {
-            forDisplay = allContent
-        } else if currentViewMode == .favorites {
-            forDisplay = allContent.filter { favorites.contains($0.id) }
-        } else if currentViewMode == .songs {
-            forDisplay = allContent.filter { $0.type == .song }
-        }
-        sortSounds(by: soundSortOption)
+    public func onSelectedViewModeChanged() {
+        loadContent()
     }
 
     public func onSoundSortOptionChanged() {
-        sortSounds(by: soundSortOption)
+        loadContent()
     }
 
     public func onExplicitContentSettingChanged() {
@@ -118,12 +100,14 @@ extension MainContentViewModel {
     }
 
     public func onSyncRequested() async {
-        await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+        let hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+        loadContent(clearCache: hadAnyUpdates)
     }
 
     public func onScenePhaseChanged(newPhase: ScenePhase) async {
         if newPhase == .active {
-            await warmOpenSync()
+            let hadAnyUpdates = await warmOpenSync()
+            loadContent(clearCache: hadAnyUpdates)
             print("DID FINISH WARM OPEN SYNC")
         }
     }
@@ -133,96 +117,26 @@ extension MainContentViewModel {
 
 extension MainContentViewModel {
 
-    private func loadContent() {
+    private func loadContent(clearCache: Bool = false) {
+        state = .loading
+
+        if clearCache {
+            contentRepository.clearCache()
+        }
+
         do {
-            let sounds: [AnyEquatableMedoContent] = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings().getShowExplicitContent()
-            ).map { AnyEquatableMedoContent($0) }
-            let songs: [AnyEquatableMedoContent] = try LocalDatabase.shared.songs(
-                allowSensitive: UserSettings().getShowExplicitContent()
-            ).map { AnyEquatableMedoContent($0) }
-
-            allContent = sounds + songs
-            forDisplay = allContent
-
-            guard sounds.count > 0 else { return }
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
-            sortAllSounds(by: sortOption)
+            let allowSensitive = UserSettings().getShowExplicitContent()
+            let sort = SoundSortOption(rawValue: contentSortOption) ?? .dateAddedDescending
+            if currentViewMode == .all {
+                state = .loaded(try contentRepository.allContent(allowSensitive, sort))
+            } else if currentViewMode == .favorites {
+                state = .loaded(try contentRepository.favorites(allowSensitive, sort))
+            } else if currentViewMode == .songs {
+                state = .loaded(try contentRepository.songs(allowSensitive, sort))
+            }
         } catch {
-            print("Erro carregando sons: \(error.localizedDescription)")
-            dataLoadingDidFail = true
-        }
-    }
-
-    private func sortSounds(by rawSortOption: Int) {
-        let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
-        sortAllSounds(by: sortOption)
-        UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
-    }
-}
-
-// MARK: - Sorting
-
-extension MainContentViewModel {
-
-    private func sortAllSounds(by sortOption: SoundSortOption) {
-        switch sortOption {
-        case .titleAscending:
-            sortAllSoundsByTitleAscending()
-        case .authorNameAscending:
-            sortAllSoundsByAuthorNameAscending()
-        case .dateAddedDescending:
-            sortAllSoundsByDateAddedDescending()
-        case .shortestFirst:
-            sortAllSoundsByDurationAscending()
-        case .longestFirst:
-            sortAllSoundsByDurationDescending()
-        case .longestTitleFirst:
-            sortAllSoundsByTitleLengthDescending()
-        case .shortestTitleFirst:
-            sortAllSoundsByTitleLengthAscending()
-        }
-    }
-
-    private func sortAllSoundsByTitleAscending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
-        }
-    }
-
-    private func sortAllSoundsByAuthorNameAscending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
-        }
-    }
-
-    private func sortAllSoundsByDateAddedDescending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-        }
-    }
-
-    private func sortAllSoundsByDurationAscending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.duration < $1.duration })
-        }
-    }
-
-    private func sortAllSoundsByDurationDescending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.duration > $1.duration })
-        }
-    }
-
-    private func sortAllSoundsByTitleLengthAscending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.title.count < $1.title.count })
-        }
-    }
-
-    private func sortAllSoundsByTitleLengthDescending() {
-        DispatchQueue.main.async {
-            self.forDisplay?.sort(by: { $0.title.count > $1.title.count })
+            state = .error(error.localizedDescription)
+            debugPrint(error)
         }
     }
 }
@@ -231,10 +145,10 @@ extension MainContentViewModel {
 
 extension MainContentViewModel: SyncManagerDelegate {
 
-    private func sync(lastAttempt: String) async {
+    private func sync(lastAttempt: String) async -> Bool {
         print("lastAttempt: \(lastAttempt)")
 
-        guard isAllowedToSync else { return }
+        guard isAllowedToSync else { return false }
 
         guard
             CommandLine.arguments.contains("-IGNORE_SYNC_WAIT") ||
@@ -248,21 +162,22 @@ extension MainContentViewModel: SyncManagerDelegate {
             let message = String(format: Shared.Sync.waitMessage, lastAttempt.timeUntil(addingMinutes: 1))
 
             toast.wrappedValue = Toast(message: message, type: .wait)
-            return
+            return false
         }
 
-        await syncManager.sync()
+        let hadAnyUpdates = await syncManager.sync()
 
         firstRunSyncHappened = true
 
         let message = syncValues.syncStatus.description
-
         toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
+
+        return hadAnyUpdates
     }
 
-    // Warm open means the app was reopened before it left memory.
-    private func warmOpenSync() async {
-        guard isAllowedToSync else { return }
+    /// Warm open means the app was reopened before it left memory.
+    private func warmOpenSync() async -> Bool {
+        guard isAllowedToSync else { return false }
 
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
         print("lastUpdateAttempt: \(lastUpdateAttempt)")
@@ -270,10 +185,10 @@ extension MainContentViewModel: SyncManagerDelegate {
             syncValues.syncStatus != .updating,
             let date = lastUpdateAttempt.iso8601withFractionalSeconds,
             date.minutesPassed(60)
-        else { return }
+        else { return false }
 
         print("WILL WARM OPEN SYNC")
-        await sync(lastAttempt: lastUpdateAttempt)
+        return await sync(lastAttempt: lastUpdateAttempt)
     }
 
     nonisolated func set(totalUpdateCount: Int) {

@@ -45,7 +45,11 @@ struct ReactionsView: View {
                                 await viewModel.onPullToRefresh()
                             }
                         },
-                        pinAction: { viewModel.onPinReactionSelected(reaction: $0) },
+                        pinAction: { reaction in
+                            Task {
+                                await viewModel.onPinReactionSelected(reaction: reaction)
+                            }
+                        },
                         unpinAction: { reaction in
                             Task {
                                 await viewModel.onUnpinReactionSelected(reaction: reaction)
@@ -59,10 +63,12 @@ struct ReactionsView: View {
                             spacing: UIDevice.isiPhone ? 12 : 20
                         )
 
-                        Analytics().send(
-                            originatingScreen: "ReactionsView",
-                            action: "didViewReactionsTab"
-                        )
+                        Task {
+                            await AnalyticsService().send(
+                                originatingScreen: "ReactionsView",
+                                action: "didViewReactionsTab"
+                            )
+                        }
                     }
                     .onChange(of: geometry.size.width) {
                         columns = GridHelper.adaptableColumns(

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MyFoldersiPhoneView: View {
 
+    let contentRepository: ContentRepositoryProtocol
+
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
     @State private var currentContentListMode: ContentListMode = .regular
@@ -23,7 +25,8 @@ struct MyFoldersiPhoneView: View {
             VStack(alignment: .center) {
                 FolderList(
                     updateFolderList: $updateFolderList,
-                    folderForEditing: $folderForEditing
+                    folderForEditing: $folderForEditing,
+                    contentRepository: contentRepository
                 )
             }
             .padding(.horizontal)
@@ -45,7 +48,7 @@ struct MyFoldersiPhoneView: View {
         .sheet(item: $folderForEditing) { folder in
             FolderInfoEditingView(
                 folder: folder,
-                folderRepository: UserFolderRepository(),
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                 dismissSheet: {
                     folderForEditing = nil
                     updateFolderList = true
@@ -85,5 +88,5 @@ struct MyFoldersiPhoneView: View {
 // MARK: - Preview
 
 #Preview {
-    MyFoldersiPhoneView()
+    MyFoldersiPhoneView(contentRepository: FakeContentRepository())
 }

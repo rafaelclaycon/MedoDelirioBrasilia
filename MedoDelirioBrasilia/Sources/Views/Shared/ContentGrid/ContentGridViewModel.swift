@@ -9,53 +9,53 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class ContentGridViewModel<T>: ObservableObject {
+@Observable
+final class ContentGridViewModel {
 
-    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
-    @Published var menuOptions: [ContextMenuSection]
-    @Published var needsRefreshAfterChange: Bool
+    var menuOptions: [ContextMenuSection]
+    var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?
     var folder: UserFolder?
 
-    @Published var favoritesKeeper = Set<String>()
-    @Published var highlightKeeper = Set<String>()
-    @Published var nowPlayingKeeper = Set<String>()
-    @Published var selectionKeeper = Set<String>()
+    var favoritesKeeper = Set<String>()
+    var highlightKeeper = Set<String>()
+    var nowPlayingKeeper = Set<String>()
+    var selectionKeeper = Set<String>()
 
-    @Published var selectedContentSingle: AnyEquatableMedoContent? = nil
-    @Published var selectedContentMultiple: [AnyEquatableMedoContent]? = nil
-    @Published var subviewToOpen: ContentListModalToOpen = .shareAsVideo
-    @Published var showingModalView = false
+    var selectedContentSingle: AnyEquatableMedoContent? = nil
+    var selectedContentMultiple: [AnyEquatableMedoContent]? = nil
+    var subviewToOpen: ContentListModalToOpen = .shareAsVideo
+    var showingModalView = false
 
-    @Published var authorToOpen: Author? = nil
+    var authorToOpen: Author? = nil
 
     // Share as Video
-    @Published var shareAsVideoResult = ShareAsVideoResult()
+    var shareAsVideoResult = ShareAsVideoResult()
 
     // Search
-    @Published var searchText: String = ""
+    var searchText: String = ""
 
     // Sharing
-    @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
-    @Published var isShowingShareSheet: Bool = false
-    @Published var shareBannerMessage: String = .empty
+    var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+    var isShowingShareSheet: Bool = false
+    var shareBannerMessage: String = .empty
 
     // Long Updates
-    @Published var processedUpdateNumber: Int = 0
-    @Published var totalUpdateCount: Int = 0
+    var processedUpdateNumber: Int = 0
+    var totalUpdateCount: Int = 0
 
     // Playlist
-    @Published var isPlayingPlaylist: Bool = false
+    var isPlayingPlaylist: Bool = false
     private var currentTrackIndex: Int = 0
 
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
-    @Published var showAlert: Bool = false
-    @Published var alertType: SoundListAlertType = .soundFileNotFound
+    var alertTitle: String = ""
+    var alertMessage: String = ""
+    var showAlert: Bool = false
+    var alertType: SoundListAlertType = .soundFileNotFound
 
     // Play Random Sound
-    @Published var scrollTo: String = ""
+    var scrollTo: String = ""
 
     // MARK: - Stored Properties
 
@@ -63,13 +63,17 @@ final class ContentGridViewModel<T>: ObservableObject {
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let multiSelectFolderOperation: FolderOperation
-
-    private var cancellables = Set<AnyCancellable>()
+    private let contentRepository: ContentRepositoryProtocol
+    private let userFolderRepository: UserFolderRepositoryProtocol
+    private let analyticsService: AnalyticsServiceProtocol
+    private let currentScreen: ContentGridScreen
 
     // MARK: - Initializer
 
     init(
-        data: AnyPublisher<[AnyEquatableMedoContent], Never>,
+        contentRepository: ContentRepositoryProtocol,
+        userFolderRepository: UserFolderRepositoryProtocol,
+        screen: ContentGridScreen,
         menuOptions: [ContextMenuSection],
         currentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
@@ -77,8 +81,13 @@ final class ContentGridViewModel<T>: ObservableObject {
         needsRefreshAfterChange: Bool = false,
         refreshAction: (() -> Void)? = nil,
         insideFolder: UserFolder? = nil,
-        multiSelectFolderOperation: FolderOperation = .add
+        multiSelectFolderOperation: FolderOperation = .add,
+        analyticsService: AnalyticsServiceProtocol
     ) {
+        self.contentRepository = contentRepository
+        self.userFolderRepository = userFolderRepository
+        self.analyticsService = analyticsService
+        self.currentScreen = screen
         self.menuOptions = menuOptions
         self.currentListMode = currentListMode
         self.toast = toast
@@ -88,14 +97,6 @@ final class ContentGridViewModel<T>: ObservableObject {
         self.folder = insideFolder
         self.multiSelectFolderOperation = multiSelectFolderOperation
 
-        data
-            .map { content in
-                let wrapped = content.map { AnyEquatableMedoContent($0) }
-                return LoadingState.loaded(wrapped)
-            }
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$state)
-
         loadFavorites()
     }
 }
@@ -104,7 +105,14 @@ final class ContentGridViewModel<T>: ObservableObject {
 
 extension ContentGridViewModel {
 
-    public func onContentSelected(_ content: AnyEquatableMedoContent) {
+    public func onViewAppeared() {
+        loadFavorites()
+    }
+
+    public func onContentSelected(
+        _ content: AnyEquatableMedoContent,
+        loadedContent: [AnyEquatableMedoContent]
+    ) {
         if currentListMode.wrappedValue == .regular {
             if nowPlayingKeeper.contains(content.id) {
                 AudioPlayer.shared?.togglePlay()
@@ -112,7 +120,7 @@ extension ContentGridViewModel {
                 doPlaylistCleanup() // Needed because user tap a playing sound to stop playing a playlist.
             } else {
                 doPlaylistCleanup() // Needed because user can be playing a playlist and decide to tap another sound.
-                play(content)
+                play(content, loadedContent: loadedContent)
             }
         } else {
             if selectionKeeper.contains(content.id) {
@@ -126,7 +134,7 @@ extension ContentGridViewModel {
     public func onAddedContentToFolderSuccessfully(
         folderName: String,
         pluralization: WordPluralization
-    ) {
+    ) async {
         // Need to get count before clearing the Set.
         let selectedCount: Int = selectionKeeper.count
 
@@ -137,8 +145,8 @@ extension ContentGridViewModel {
         toast.wrappedValue = Toast(message: pluralization.getAddedToFolderToastText(folderName: folderName), type: .success)
 
         if pluralization == .plural {
-            Analytics().send(
-                originatingScreen: "SoundsView",
+            await analyticsService.send(
+                originatingScreen: currentScreen.rawValue,
                 action: "didAddManySoundsToFolder(\(selectedCount))"
             )
         }
@@ -150,29 +158,36 @@ extension ContentGridViewModel {
         }
     }
 
-    public func onPlayStopPlaylistSelected() {
-        playStopPlaylist()
+    public func onPlayStopPlaylistSelected(loadedContent: [AnyEquatableMedoContent]) {
+        playStopPlaylist(loadedContent: loadedContent)
     }
 
-    public func onEnterMultiSelectModeSelected() {
-        startSelecting()
+    public func onContentSortingChanged() {
+        stopPlaying()
+    }
+
+    public func onEnterMultiSelectModeSelected(loadedContent: [AnyEquatableMedoContent]) {
+        startSelecting(loadedContent: loadedContent)
     }
 
     public func onExitMultiSelectModeSelected() {
         stopSelecting()
     }
 
-    public func onShareManySelected() async {
-        await shareSelected()
+    public func onShareManySelected(loadedContent: [AnyEquatableMedoContent]) async {
+        await shareSelected(loadedContent: loadedContent)
     }
 
-    public func onAddRemoveManyFromFavoritesSelected() {
-        addRemoveManyFromFavorites()
+    public func onAddRemoveManyFromFavoritesSelected() async {
+        await addRemoveManyFromFavorites()
     }
 
-    public func onAddRemoveManyFromFolderSelected(_ operation: FolderOperation) {
+    public func onAddRemoveManyFromFolderSelected(
+        _ operation: FolderOperation,
+        loadedContent: [AnyEquatableMedoContent]
+    ) {
         if operation == .add {
-            addManyToFolder()
+            addManyToFolder(loadedContent: loadedContent)
         } else {
             showRemoveMultipleSoundsConfirmation()
         }
@@ -206,8 +221,8 @@ extension ContentGridViewModel {
         removeSingleContentFromFolder()
     }
 
-    public func onRemoveMultipleContentSelected() {
-        removeManyFromFolder()
+    public func onRemoveMultipleContentSelected() async {
+        await removeManyFromFolder()
     }
 
     public func onItemSelectionChanged() {
@@ -223,7 +238,7 @@ extension ContentGridViewModel {
 
     private func loadFavorites() {
         do {
-            let favorites = try LocalDatabase.shared.favorites()
+            let favorites = try contentRepository.favorites()
             favoritesKeeper.removeAll()
             favorites.forEach { favorite in
                 self.favoritesKeeper.insert(favorite.contentId)
@@ -237,10 +252,10 @@ extension ContentGridViewModel {
         let newFavorite = Favorite(contentId: contentId, dateAdded: Date())
 
         do {
-            let favorteAlreadyExists = try LocalDatabase.shared.exists(contentId: contentId)
+            let favorteAlreadyExists = try contentRepository.favoriteExists(contentId)
             guard favorteAlreadyExists == false else { return }
 
-            try LocalDatabase.shared.insert(favorite: newFavorite)
+            try contentRepository.insert(favorite: newFavorite)
             favoritesKeeper.insert(newFavorite.contentId)
         } catch {
             print("Issue saving Favorite '\(newFavorite.contentId)': \(error.localizedDescription)")
@@ -249,7 +264,7 @@ extension ContentGridViewModel {
 
     private func removeFromFavorites(contentId: String) {
         do {
-            try LocalDatabase.shared.deleteFavorite(withId: contentId)
+            try contentRepository.deleteFavorite(contentId)
             favoritesKeeper.remove(contentId)
         } catch {
             print("Issue removing Favorite '\(contentId)'.")
@@ -345,20 +360,21 @@ extension ContentGridViewModel {
 
 extension ContentGridViewModel {
 
-    private func playStopPlaylist() {
+    private func playStopPlaylist(loadedContent: [AnyEquatableMedoContent]) {
         if floatingOptions.wrappedValue != nil {
             stopSelecting()
         }
         if isPlayingPlaylist {
             stopPlaying()
         } else {
-            playAllSoundsOneAfterTheOther()
+            playAllOneAfterTheOther(loadedContent: loadedContent)
         }
     }
 
     private func play(
         _ content: AnyEquatableMedoContent,
-        scrollToPlaying: Bool = false
+        scrollToPlaying: Bool = false,
+        loadedContent: [AnyEquatableMedoContent]
     ) {
         do {
             let url = try content.fileURL()
@@ -375,7 +391,8 @@ extension ContentGridViewModel {
                 update: { [weak self] state in
                     self?.onAudioPlayerUpdate(
                         playerState: state,
-                        scrollToPlaying: scrollToPlaying
+                        scrollToPlaying: scrollToPlaying,
+                        loadedContent: loadedContent
                     )
                 }
             )
@@ -391,22 +408,23 @@ extension ContentGridViewModel {
 
     private func onAudioPlayerUpdate(
         playerState: AudioPlayer.State?,
-        scrollToPlaying: Bool
+        scrollToPlaying: Bool,
+        loadedContent: [AnyEquatableMedoContent]
     ) {
         guard playerState?.activity == .stopped else { return }
 
         nowPlayingKeeper.removeAll()
 
-        guard case .loaded(let sounds) = state else { return }
+        guard !loadedContent.isEmpty else { return }
         guard isPlayingPlaylist else { return }
 
         currentTrackIndex += 1
-        if currentTrackIndex >= sounds.count {
+        if currentTrackIndex >= loadedContent.count {
             doPlaylistCleanup()
             return
         }
 
-        play(sounds[currentTrackIndex], scrollToPlaying: scrollToPlaying)
+        play(loadedContent[currentTrackIndex], scrollToPlaying: scrollToPlaying, loadedContent: loadedContent)
     }
 
     private func stopPlaying() {
@@ -417,11 +435,10 @@ extension ContentGridViewModel {
         }
     }
 
-    private func playAllSoundsOneAfterTheOther() {
-        guard case .loaded(let sounds) = state else { return }
-        guard let firstSound = sounds.first else { return }
+    private func playAllOneAfterTheOther(loadedContent: [AnyEquatableMedoContent]) {
+        guard let first = loadedContent.first else { return }
         isPlayingPlaylist = true
-        play(firstSound, scrollToPlaying: true)
+        play(first, scrollToPlaying: true, loadedContent: loadedContent)
     }
 
     private func doPlaylistCleanup() {
@@ -429,12 +446,14 @@ extension ContentGridViewModel {
         isPlayingPlaylist = false
     }
 
-    public func scrollAndPlaySound(withId soundId: String) {
-        guard case .loaded(let sounds) = state else { return }
-        guard let sound = sounds.first(where: { $0.id == soundId }) else { return }
-        scrollTo = sound.id
+    public func scrollAndPlay(
+        contentId: String,
+        loadedContent: [AnyEquatableMedoContent]
+    ) {
+        guard let content = loadedContent.first(where: { $0.id == contentId }) else { return }
+        scrollTo = content.id
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) {
-            self.play(sound)
+            self.play(content, loadedContent: loadedContent)
         }
     }
 }
@@ -508,14 +527,15 @@ extension ContentGridViewModel: ContentListDisplaying {
         showingModalView = true
     }
 
-    func playFrom(content: AnyEquatableMedoContent) {
-        guard case .loaded(let loadedContent) = state else { return }
-        guard let soundIndex = loadedContent.firstIndex(where: { $0.id == content.id }) else { return }
-        // TODO: Figure this out later
-//        let soundInArray = sounds[soundIndex]
-//        currentTrackIndex = soundIndex
-//        isPlayingPlaylist = true
-//        play(soundInArray, scrollToPlaying: true)
+    func playFrom(
+        content: AnyEquatableMedoContent,
+        loadedContent: [AnyEquatableMedoContent]
+    ) {
+        guard let index = loadedContent.firstIndex(where: { $0.id == content.id }) else { return }
+        let soundInArray = loadedContent[index]
+        currentTrackIndex = index
+        isPlayingPlaylist = true
+        play(soundInArray, scrollToPlaying: true, loadedContent: loadedContent)
     }
 
     func removeFromFolder(_ content: AnyEquatableMedoContent) {
@@ -530,7 +550,7 @@ extension ContentGridViewModel: ContentListDisplaying {
     }
 
     func showAuthor(withId authorId: String) {
-        guard let author = try? LocalDatabase.shared.author(withId: authorId) else {
+        guard let author = try? contentRepository.author(withId: authorId) else {
             print("ContentGrid error: unable to find author with id \(authorId)")
             return
         }
@@ -547,7 +567,7 @@ extension ContentGridViewModel: ContentListDisplaying {
 
 extension ContentGridViewModel {
 
-    private func startSelecting() {
+    private func startSelecting(loadedContent: [AnyEquatableMedoContent]) {
         stopPlaying()
         if currentListMode.wrappedValue == .regular {
             currentListMode.wrappedValue = .selection
@@ -556,17 +576,17 @@ extension ContentGridViewModel {
                 allSelectedAreFavorites: false,
                 folderOperation: .add,
                 shareIsProcessing: false,
-                favoriteAction: addRemoveManyFromFavorites,
+                favoriteAction: { Task { await self.addRemoveManyFromFavorites() } },
                 folderAction: {
                     if self.multiSelectFolderOperation == .add {
-                        self.addManyToFolder()
+                        self.addManyToFolder(loadedContent: loadedContent)
                     } else {
                         self.showRemoveMultipleSoundsConfirmation()
                     }
                 },
                 shareAction: {
                     Task {
-                        await self.shareSelected()
+                        await self.shareSelected(loadedContent: loadedContent)
                     }
                 }
             )
@@ -585,21 +605,12 @@ extension ContentGridViewModel {
         floatingOptions.wrappedValue = nil
     }
 
-    private func extractLoadedContent() -> [AnyEquatableMedoContent]? {
-        switch state {
-        case .loaded(let content):
-            return content
-        default:
-            return nil
-        }
-    }
-
     public func allSelectedAreFavorites() -> Bool {
         guard selectionKeeper.count > 0 else { return false }
         return selectionKeeper.isSubset(of: favoritesKeeper)
     }
 
-    private func addRemoveManyFromFavorites() {
+    private func addRemoveManyFromFavorites() async {
         // Need to get count before clearing the Set.
         let selectedCount: Int = selectionKeeper.count
 
@@ -608,15 +619,15 @@ extension ContentGridViewModel {
             stopSelecting()
             guard let refreshAction else { return }
             refreshAction()
-            Analytics().send(
-                originatingScreen: "SoundsView",
+            await analyticsService.send(
+                originatingScreen: currentScreen.rawValue,
                 action: "didRemoveManySoundsFromFavorites(\(selectedCount))"
             )
         } else {
             addSelectedToFavorites()
             stopSelecting()
-            Analytics().send(
-                originatingScreen: "SoundsView",
+            await analyticsService.send(
+                originatingScreen: currentScreen.rawValue,
                 action: "didAddManySoundsToFavorites(\(selectedCount))"
             )
         }
@@ -636,15 +647,14 @@ extension ContentGridViewModel {
         }
     }
 
-    private func addManyToFolder() {
+    private func addManyToFolder(loadedContent: [AnyEquatableMedoContent]) {
         guard selectionKeeper.count > 0 else { return }
-        guard let content = extractLoadedContent() else { return }
-        selectedContentMultiple = content.filter { selectionKeeper.contains($0.id) }
+        selectedContentMultiple = loadedContent.filter { selectionKeeper.contains($0.id) }
         subviewToOpen = .addToFolder
         showingModalView = true
     }
 
-    private func removeManyFromFolder() {
+    private func removeManyFromFolder() async {
         guard let folder else { return }
         guard let refreshAction else { return }
         guard selectionKeeper.count > 0 else { return }
@@ -654,18 +664,19 @@ extension ContentGridViewModel {
 
         do {
             try selectionKeeper.forEach { selectedSoundId in
-                try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: selectedSoundId)
+                try userFolderRepository.deleteUserContentFromFolder(withId: folder.id, contentId: selectedSoundId)
             }
 
             // Need to update folder hash so SyncManager knows about the change on next sync.
-            try UserFolderRepository().update(folder)
+            try userFolderRepository.update(folder)
 
             selectionKeeper.removeAll()
             floatingOptions.wrappedValue = nil
             refreshAction()
 
             stopSelecting()
-            Analytics().sendUsageMetricToServer(
+            await analyticsService.send(
+                currentScreen: currentScreen.rawValue,
                 folderName: "\(folder.symbol) \(folder.name)",
                 action: "didRemoveManySoundsFromFolder(\(selectedCount))"
             )
@@ -674,13 +685,12 @@ extension ContentGridViewModel {
         }
     }
 
-    private func shareSelected() async {
+    private func shareSelected(loadedContent: [AnyEquatableMedoContent]) async {
         guard selectionKeeper.count > 0 else { return }
 
         floatingOptions.wrappedValue?.shareIsProcessing = true
 
-        guard let content = extractLoadedContent() else { return }
-        selectedContentMultiple = content.filter({ selectionKeeper.contains($0.id) })
+        selectedContentMultiple = loadedContent.filter({ selectionKeeper.contains($0.id) })
         guard selectedContentMultiple?.count ?? 0 > 0 else { return }
 
         let successfulMessage = selectedContentMultiple!.count > 1 ? Shared.soundsExportedSuccessfullyMessage : Shared.soundExportedSuccessfullyMessage
@@ -714,10 +724,10 @@ extension ContentGridViewModel {
         guard let sound = selectedContentSingle else { return }
 
         do {
-            try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
+            try userFolderRepository.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
 
             // Need to update folder hash so SyncManager knows about the change on next sync.
-            try UserFolderRepository().update(folder)
+            try userFolderRepository.update(folder)
 
             refreshAction()
         } catch {

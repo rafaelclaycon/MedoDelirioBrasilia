@@ -113,10 +113,12 @@ struct TrendsView: View {
                 self.toast = Toast(message: message, type: .wait)
             }
 
-            Analytics().send(
-                originatingScreen: "TrendsView",
-                action: "didViewTrendsTab"
-            )
+            Task {
+                try await AnalyticsService().send(
+                    originatingScreen: "TrendsView",
+                    action: "didViewTrendsTab"
+                )
+            }
         }
         .toast($toast)
     }

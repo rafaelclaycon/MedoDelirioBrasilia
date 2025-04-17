@@ -18,6 +18,7 @@ struct SidebarView: View {
     @Binding var currentContentListMode: ContentListMode
     @Binding var toast: Toast?
     @Binding var floatingOptions: FloatingContentOptions?
+    let contentRepository: ContentRepositoryProtocol
 
     // MARK: - View State
 
@@ -38,17 +39,19 @@ struct SidebarView: View {
                     destination: MainContentView(
                         viewModel: MainContentViewModel(
                             currentViewMode: .all,
-                            soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                            contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
                             floatingOptions: $floatingOptions,
-                            syncValues: syncValues
+                            syncValues: syncValues,
+                            contentRepository: contentRepository
                         ),
                         currentContentListMode: $currentContentListMode,
                         toast: $toast,
                         floatingOptions: $floatingOptions,
-                        openSettingsAction: {}
+                        openSettingsAction: {},
+                        contentRepository: contentRepository
                     ).environment(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
@@ -60,9 +63,11 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: StandaloneFavoritesView(
                         viewModel: StandaloneFavoritesViewModel(
-                            contentSortOption: UserSettings().mainSoundListSoundSortOption()
+                            contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                            contentRepository: contentRepository
                         ),
-                        toast: $toast
+                        toast: $toast,
+                        contentRepository: contentRepository
                     ),
                     tag: PadScreen.favorites,
                     selection: $state,
@@ -88,7 +93,8 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: AllFoldersiPadView(
                         folderForEditing: $folderForEditing,
-                        updateFolderList: $updateFolderList
+                        updateFolderList: $updateFolderList,
+                        contentRepository: contentRepository
                     ),
                     tag: PadScreen.allFolders,
                     selection: $state,
@@ -103,7 +109,8 @@ struct SidebarView: View {
                             folder: folder,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
-                            floatingOptions: $floatingOptions
+                            floatingOptions: $floatingOptions,
+                            contentRepository: contentRepository
                         ),
                         tag: .specificFolder,
                         selection: $state,
@@ -158,6 +165,7 @@ struct SidebarView: View {
         updateFolderList: .constant(false),
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
-        floatingOptions: .constant(nil)
+        floatingOptions: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }

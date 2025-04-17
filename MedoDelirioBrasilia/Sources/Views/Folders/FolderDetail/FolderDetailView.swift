@@ -9,8 +9,8 @@ import SwiftUI
 
 struct FolderDetailView: View {
 
-    @StateObject private var viewModel: FolderDetailViewViewModel
-    @StateObject private var contentListViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State private var viewModel: FolderDetailViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
 
     let folder: UserFolder
 
@@ -27,15 +27,20 @@ struct FolderDetailView: View {
     
     private var title: String {
         guard currentContentListMode.wrappedValue == .regular else {
-            if contentListViewModel.selectionKeeper.count == 0 {
+            if contentGridViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if contentListViewModel.selectionKeeper.count == 1 {
+            } else if contentGridViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
-                return String(format: Shared.SoundSelection.soundsSelectedPlural, contentListViewModel.selectionKeeper.count)
+                return String(format: Shared.SoundSelection.soundsSelectedPlural, contentGridViewModel.selectionKeeper.count)
             }
         }
         return "\(folder.symbol)  \(folder.name)"
+    }
+
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
     }
 
     // MARK: - Initializer
@@ -44,29 +49,29 @@ struct FolderDetailView: View {
         folder: UserFolder,
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
-        floatingOptions: Binding<FloatingContentOptions?>
+        floatingOptions: Binding<FloatingContentOptions?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.folder = folder
-        let viewModel = FolderDetailViewViewModel(
-            folder: folder,
-            database: LocalDatabase.shared
-        )
 
-        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = FolderDetailViewModel(
+            folder: folder,
+            contentRepository: contentRepository
+        )
         self.currentContentListMode = currentContentListMode
 
-        let soundListViewModel = ContentGridViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.soundsPublisher,
+        self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .folderDetailView,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentListMode: currentContentListMode,
             toast: toast,
             floatingOptions: floatingOptions,
-            refreshAction: { viewModel.onPulledToRefresh() },
             insideFolder: folder,
-            multiSelectFolderOperation: .remove
+            multiSelectFolderOperation: .remove,
+            analyticsService: AnalyticsService()
         )
-
-        self._contentListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
 
     // MARK: - View Body
@@ -77,7 +82,7 @@ struct FolderDetailView: View {
                 VStack(spacing: .spacing(.medium)) {
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(viewModel.soundCount)
+                            Text(viewModel.contentCountText)
                                 .font(.callout)
                                 .foregroundColor(.gray)
                                 .bold()
@@ -89,9 +94,9 @@ struct FolderDetailView: View {
                     .padding(.top)
 
                     ContentGrid(
-                        viewModel: contentListViewModel,
+                        state: viewModel.state,
+                        viewModel: contentGridViewModel,
                         showNewTag: false,
-                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         containerSize: geometry.size,
                         loadingView:
                             VStack {
@@ -123,7 +128,7 @@ struct FolderDetailView: View {
                             }
                     )
                     .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.small))
+                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                         .frame(height: .spacing(.large))
@@ -134,20 +139,20 @@ struct FolderDetailView: View {
                     viewModel.onViewAppeared()
                 }
                 .onDisappear {
-                    contentListViewModel.onViewDisappeared()
+                    contentGridViewModel.onViewDisappeared()
                 }
                 .sheet(isPresented: $showingFolderInfoEditingView) {
                     FolderInfoEditingView(
                         folder: folder,
-                        folderRepository: UserFolderRepository(),
+                        folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                         dismissSheet: {
                             showingFolderInfoEditingView = false
                         }
                     )
                 }
             }
-            .toast(contentListViewModel.toast)
-            .floatingContentOptions(contentListViewModel.floatingOptions)
+            .toast(contentGridViewModel.toast)
+            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
     }
 
@@ -157,11 +162,11 @@ struct FolderDetailView: View {
         HStack(spacing: 16) {
             if currentContentListMode.wrappedValue == .regular {
                 Button {
-                    contentListViewModel.onPlayStopPlaylistSelected()
+                    contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent)
                 } label: {
-                    Image(systemName: contentListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                    Image(systemName: contentGridViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
-                .disabled(viewModel.content.isEmpty)
+                .disabled(viewModel.contentCount == 0)
             } else {
                 selectionControls()
             }
@@ -169,7 +174,7 @@ struct FolderDetailView: View {
             Menu {
                 Section {
                     Button {
-                        contentListViewModel.onEnterMultiSelectModeSelected()
+                        contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
                     } label: {
                         Label(
                             currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
@@ -179,7 +184,7 @@ struct FolderDetailView: View {
                 }
 
                 Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                    Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
                         Text("Título")
                             .tag(0)
 
@@ -191,10 +196,11 @@ struct FolderDetailView: View {
                                 .tag(2)
                         }
                     }
-                    .onChange(of: viewModel.soundSortOption) {
+                    .onChange(of: viewModel.contentSortOption) {
+                        contentGridViewModel.onContentSortingChanged()
                         viewModel.onContentSortOptionChanged()
                     }
-                    .disabled(viewModel.content.isEmpty)
+                    .disabled(viewModel.contentCount == 0)
                 }
 
                 //                    Section {
@@ -230,7 +236,7 @@ struct FolderDetailView: View {
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-            .disabled(contentListViewModel.isPlayingPlaylist || viewModel.content.isEmpty)
+            .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
         }
     }
     
@@ -241,7 +247,7 @@ struct FolderDetailView: View {
             HStack(spacing: 16) {
                 Button {
                     currentContentListMode.wrappedValue = .regular
-                    contentListViewModel.selectionKeeper.removeAll()
+                    contentGridViewModel.selectionKeeper.removeAll()
                 } label: {
                     Text("Cancelar")
                         .bold()
@@ -263,6 +269,7 @@ struct FolderDetailView: View {
         ),
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
-        floatingOptions: .constant(nil)
+        floatingOptions: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }

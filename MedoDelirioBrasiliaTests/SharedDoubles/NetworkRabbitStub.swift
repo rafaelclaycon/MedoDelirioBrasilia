@@ -47,4 +47,8 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
     func retroStartingVersion() async -> String? {
         return retroStartingVersion
     }
+
+    func post<T>(to url: URL, body: T) async throws where T : Encodable {
+        //
+    }
 }

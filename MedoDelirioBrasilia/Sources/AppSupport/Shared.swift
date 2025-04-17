@@ -122,8 +122,7 @@ struct Shared {
     }
     
     struct ScreenNames {
-        
-        static let soundsView = "SoundsView"
+
         static let authorsView = "AuthorsView"
         static let authorDetailView = "AuthorDetailView"
     }

@@ -10,10 +10,11 @@ import SwiftUI
 /// Main view of the app on iPhone. This is reponsible for showing the main content view and start content sync.
 struct MainContentView: View {
 
-    @StateObject private var viewModel: MainContentViewModel
-    @StateObject private var allSoundsViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
+    @State private var viewModel: MainContentViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
     private var currentContentListMode: Binding<ContentListMode>
     private let openSettingsAction: () -> Void
+    private let contentRepository: ContentRepositoryProtocol
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -45,9 +46,14 @@ struct MainContentView: View {
 
     private var title: String {
         guard currentContentListMode.wrappedValue == .regular else {
-            return selectionNavBarTitle(for: allSoundsViewModel)
+            return selectionNavBarTitle(for: contentGridViewModel)
         }
         return "Sons"
+    }
+
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
     }
 
     // MARK: - Shared Environment
@@ -61,18 +67,23 @@ struct MainContentView: View {
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
-        openSettingsAction: @escaping () -> Void
+        openSettingsAction: @escaping () -> Void,
+        contentRepository: ContentRepositoryProtocol
     ) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
-        self._allSoundsViewModel = StateObject(wrappedValue: ContentGridViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.allContentPublisher,
+        self.viewModel = viewModel
+        self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .mainContentView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: currentContentListMode,
             toast: toast,
-            floatingOptions: floatingOptions
-        ))
+            floatingOptions: floatingOptions,
+            analyticsService: AnalyticsService()
+        )
         self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction
+        self.contentRepository = contentRepository
     }
 
     // MARK: - View Body
@@ -108,10 +119,10 @@ struct MainContentView: View {
                             }
 
                             ContentGrid(
-                                viewModel: allSoundsViewModel,
+                                state: viewModel.state,
+                                viewModel: contentGridViewModel,
                                 searchTextIsEmpty: $contentSearchTextIsEmpty,
                                 allowSearch: true,
-                                dataLoadingDidFail: viewModel.dataLoadingDidFail,
                                 containerSize: geometry.size,
                                 loadingView:
                                     VStack {
@@ -156,7 +167,7 @@ struct MainContentView: View {
                             }
 
                             if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
-                                Text("\(viewModel.forDisplay?.count ?? 0) ITENS")
+                                Text("\(loadedContent.count) ITENS")
                                     .font(.footnote)
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
@@ -167,10 +178,10 @@ struct MainContentView: View {
                             Spacer()
                                 .frame(height: .spacing(.large))
                         }
-                        .padding(.horizontal, .spacing(.small))
+                        .padding(.horizontal, .spacing(.medium))
 
                     case .folders:
-                        MyFoldersiPhoneView()
+                        MyFoldersiPhoneView(contentRepository: contentRepository)
                             .environmentObject(deleteFolderAide)
                         
                     case .authors:
@@ -186,13 +197,13 @@ struct MainContentView: View {
                 .navigationBarItems(
                     leading: LeadingToolbarControls(
                         isSelecting: currentContentListMode.wrappedValue == .selection,
-                        cancelAction: { allSoundsViewModel.onExitMultiSelectModeSelected() },
+                        cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
                         openSettingsAction: openSettingsAction
                     ),
                     trailing: trailingToolbarControls()
                 )
                 .onChange(of: viewModel.currentViewMode) {
-                    viewModel.onSelectedViewModeChanged(favorites: allSoundsViewModel.favoritesKeeper)
+                    viewModel.onSelectedViewModeChanged()
                 }
                 .onChange(of: viewModel.processedUpdateNumber) {
                     withAnimation {
@@ -202,7 +213,10 @@ struct MainContentView: View {
                 .onChange(of: playRandomSoundHelper.soundIdToPlay) {
                     if !playRandomSoundHelper.soundIdToPlay.isEmpty {
                         viewModel.currentViewMode = .all
-                        allSoundsViewModel.scrollAndPlaySound(withId: playRandomSoundHelper.soundIdToPlay)
+                        contentGridViewModel.scrollAndPlay(
+                            contentId: playRandomSoundHelper.soundIdToPlay,
+                            loadedContent: loadedContent
+                        )
                         playRandomSoundHelper.soundIdToPlay = ""
                     }
                 }
@@ -222,7 +236,9 @@ struct MainContentView: View {
                     highlight(soundId: trendsHelper.notifyMainSoundContainer)
                 }
                 .onAppear {
-                    viewModel.onViewDidAppear()
+                    Task {
+                        await viewModel.onViewDidAppear()
+                    }
                 }
                 .onChange(of: scenePhase) {
                     Task {
@@ -318,7 +334,7 @@ extension MainContentView {
                     Menu {
                         Section {
                             Button {
-                                allSoundsViewModel.onEnterMultiSelectModeSelected()
+                                contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
                             } label: {
                                 Label(
                                     currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
@@ -328,7 +344,7 @@ extension MainContentView {
                         }
 
                         Section {
-                            Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                            Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
                                 Text("Título")
                                     .tag(0)
 
@@ -356,7 +372,7 @@ extension MainContentView {
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }
-                    .onChange(of: viewModel.soundSortOption) {
+                    .onChange(of: viewModel.contentSortOption) {
                         viewModel.onSoundSortOptionChanged()
                     }
                     .disabled(
@@ -372,7 +388,7 @@ extension MainContentView {
 
 extension MainContentView {
 
-    private func selectionNavBarTitle(for viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>) -> String {
+    private func selectionNavBarTitle(for viewModel: ContentGridViewModel) -> String {
         if viewModel.selectionKeeper.count == 0 {
             return Shared.SoundSelection.selectSounds
         }
@@ -385,7 +401,7 @@ extension MainContentView {
     private func highlight(soundId: String) {
         guard !soundId.isEmpty else { return }
         viewModel.currentViewMode = .all
-        allSoundsViewModel.cancelSearchAndHighlight(id: soundId)
+        contentGridViewModel.cancelSearchAndHighlight(id: soundId)
         trendsHelper.notifyMainSoundContainer = ""
         trendsHelper.soundIdToGoTo = soundId
     }
@@ -397,16 +413,18 @@ extension MainContentView {
     MainContentView(
         viewModel: .init(
             currentViewMode: .all,
-            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+            contentSortOption: SoundSortOption.dateAddedDescending.rawValue,
             authorSortOption: AuthorSortOption.nameAscending.rawValue,
             currentContentListMode: .constant(.regular),
             toast: .constant(nil),
             floatingOptions: .constant(nil),
-            syncValues: SyncValues()
+            syncValues: SyncValues(),
+            contentRepository: FakeContentRepository()
         ),
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
         floatingOptions: .constant(nil),
-        openSettingsAction: {}
+        openSettingsAction: {},
+        contentRepository: FakeContentRepository()
     )
 }
