@@ -1103,7 +1103,7 @@
 		D98674132A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */; };
 		D98674142A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */; };
 		D986C2462B25848B00EF575A /* LongUpdateBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C2452B25848B00EF575A /* LongUpdateBanner.swift */; };
-		D986D1FE2BCE23FD00214DAB /* ContentListDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986D1FD2BCE23FD00214DAB /* ContentListDisplaying.swift */; };
+		D986D1FE2BCE23FD00214DAB /* ContentGridDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986D1FD2BCE23FD00214DAB /* ContentGridDisplaying.swift */; };
 		D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */; };
 		D9877D2B2869845400B541F9 /* SharingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2A2869845400B541F9 /* SharingUtility.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
@@ -2659,7 +2659,7 @@
 		D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket (completo).mp3"; sourceTree = "<group>"; };
 		D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket.mp3"; sourceTree = "<group>"; };
 		D986C2452B25848B00EF575A /* LongUpdateBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongUpdateBanner.swift; sourceTree = "<group>"; };
-		D986D1FD2BCE23FD00214DAB /* ContentListDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListDisplaying.swift; sourceTree = "<group>"; };
+		D986D1FD2BCE23FD00214DAB /* ContentGridDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGridDisplaying.swift; sourceTree = "<group>"; };
 		D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolderContent.swift"; sourceTree = "<group>"; };
 		D9877D2A2869845400B541F9 /* SharingUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingUtility.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -5289,7 +5289,7 @@
 			isa = PBXGroup;
 			children = (
 				D992EF552BCB222B0080C892 /* ContextMenuOption.swift */,
-				D986D1FD2BCE23FD00214DAB /* ContentListDisplaying.swift */,
+				D986D1FD2BCE23FD00214DAB /* ContentGridDisplaying.swift */,
 			);
 			path = ContentGridDecoupling;
 			sourceTree = "<group>";
@@ -6851,7 +6851,7 @@
 				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchRepository.swift in Sources */,
 				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
-				D986D1FE2BCE23FD00214DAB /* ContentListDisplaying.swift in Sources */,
+				D986D1FE2BCE23FD00214DAB /* ContentGridDisplaying.swift in Sources */,
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,
 				D955DA302AA6B94C00AC4169 /* ContentDetailView.swift in Sources */,

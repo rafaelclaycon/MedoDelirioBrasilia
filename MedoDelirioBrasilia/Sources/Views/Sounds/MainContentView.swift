@@ -79,6 +79,7 @@ struct MainContentView: View {
             currentListMode: currentContentListMode,
             toast: toast,
             floatingOptions: floatingOptions,
+            refreshAction: viewModel.onFavoritesChanged,
             analyticsService: AnalyticsService()
         )
         self.currentContentListMode = currentContentListMode
@@ -123,6 +124,7 @@ struct MainContentView: View {
                                 viewModel: contentGridViewModel,
                                 searchTextIsEmpty: $contentSearchTextIsEmpty,
                                 allowSearch: true,
+                                isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
                                 containerSize: geometry.size,
                                 loadingView:
                                     VStack {
@@ -333,7 +335,10 @@ extension MainContentView {
                     Menu {
                         Section {
                             Button {
-                                contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
+                                contentGridViewModel.onEnterMultiSelectModeSelected(
+                                    loadedContent: loadedContent,
+                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+                                )
                             } label: {
                                 Label(
                                     currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",

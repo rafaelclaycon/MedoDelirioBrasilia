@@ -28,8 +28,9 @@ struct ContentGrid<
     private var state: LoadingState<[AnyEquatableMedoContent]>
     @State private var viewModel: ContentGridViewModel
     private var searchTextIsEmpty: Binding<Bool?>
-    private var allowSearch: Bool
-    private var showNewTag: Bool
+    private let allowSearch: Bool
+    private let showNewTag: Bool
+    private let isFavoritesOnlyView: Bool
     private let authorId: String?
     private let reactionId: String?
     private let containerSize: CGSize
@@ -79,12 +80,15 @@ struct ContentGrid<
     init(
         state: LoadingState<[AnyEquatableMedoContent]>,
         viewModel: ContentGridViewModel,
+
         searchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         showNewTag: Bool = true,
+        isFavoritesOnlyView: Bool = false,
         authorId: String? = nil,
         reactionId: String? = nil,
         containerSize: CGSize,
+
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
         errorView: ErrorView
@@ -94,6 +98,7 @@ struct ContentGrid<
         self.searchTextIsEmpty = searchTextIsEmpty
         self.allowSearch = allowSearch
         self.showNewTag = showNewTag
+        self.isFavoritesOnlyView = isFavoritesOnlyView
         self.authorId = authorId
         self.reactionId = reactionId
         self.containerSize = containerSize
@@ -346,7 +351,14 @@ struct ContentGrid<
                 ForEach(section.options(content)) { option in
                     if option.appliesTo.contains(content.type) {
                         Button {
-                            option.action(content, viewModel, loadedContent)
+                            option.action(
+                                viewModel,
+                                ContextMenuPassthroughData(
+                                    selectedContent: content,
+                                    loadedContent: loadedContent,
+                                    isFavoritesOnlyView: isFavoritesOnlyView
+                                )
+                            )
                         } label: {
                             Label(
                                 option.title(favorites.contains(content.id)),

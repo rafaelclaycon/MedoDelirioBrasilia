@@ -111,6 +111,10 @@ extension MainContentViewModel {
             print("DID FINISH WARM OPEN SYNC")
         }
     }
+
+    public func onFavoritesChanged() {
+        loadContent()
+    }
 }
 
 // MARK: - Internal Functions

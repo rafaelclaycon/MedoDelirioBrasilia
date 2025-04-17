@@ -7,13 +7,20 @@
 
 import UIKit
 
+struct ContextMenuPassthroughData {
+
+    let selectedContent: AnyEquatableMedoContent
+    let loadedContent: [AnyEquatableMedoContent]
+    let isFavoritesOnlyView: Bool
+}
+
 struct ContextMenuOption: Identifiable {
 
     let id: UUID = UUID()
     let symbol: (Bool) -> String
     let title: (Bool) -> String
     let appliesTo: [MediaType]
-    let action: (AnyEquatableMedoContent, ContentListDisplaying, [AnyEquatableMedoContent]?) -> Void
+    let action: (ContentGridDisplaying, ContextMenuPassthroughData) -> Void
 }
 
 struct ContextMenuSection {
@@ -29,8 +36,8 @@ extension ContextMenuOption {
             symbol: { _ in "square.and.arrow.up" },
             title: { _ in Shared.shareSoundButtonText },
             appliesTo: [.sound, .song]
-        ) { content, delegate, _ in
-            delegate.share(content: content)
+        ) { delegate, data in
+            delegate.share(content: data.selectedContent)
         }
     }
 
@@ -39,8 +46,8 @@ extension ContextMenuOption {
             symbol: { _ in "film"},
             title: { _ in Shared.shareAsVideoButtonText },
             appliesTo: [.sound, .song]
-        ) { content, delegate, _ in
-            delegate.openShareAsVideoModal(for: content)
+        ) { delegate, data in
+            delegate.openShareAsVideoModal(for: data.selectedContent)
         }
     }
 
@@ -53,8 +60,8 @@ extension ContextMenuOption {
                 isFavorite ? Shared.removeFromFavorites : Shared.addToFavorites
             },
             appliesTo: [.sound, .song]
-        ) { content, delegate, _ in
-            delegate.toggleFavorite(content.id)
+        ) { delegate, data in
+            delegate.toggleFavorite(data.selectedContent.id, isFavoritesOnlyView: data.isFavoritesOnlyView)
         }
     }
 
@@ -63,8 +70,8 @@ extension ContextMenuOption {
             symbol: { _ in "folder.badge.plus" },
             title: { _ in Shared.addToFolderButtonText },
             appliesTo: [.sound, .song]
-        ) { content, delegate, _ in
-            delegate.addToFolder(content)
+        ) { delegate, data in
+            delegate.addToFolder(data.selectedContent)
         }
     }
 
@@ -73,9 +80,9 @@ extension ContextMenuOption {
             symbol: { _ in "person" },
             title: { _ in "Ver Autor" },
             appliesTo: [.sound]
-        ) { content, delegate, _ in
-            guard !content.authorId.isEmpty else { return }
-            delegate.showAuthor(withId: content.authorId)
+        ) { delegate, data in
+            guard !data.selectedContent.authorId.isEmpty else { return }
+            delegate.showAuthor(withId: data.selectedContent.authorId)
         }
     }
 
@@ -84,7 +91,7 @@ extension ContextMenuOption {
             symbol: { _ in "guitars" },
             title: { _ in "Ver Gênero Musical" },
             appliesTo: [.song]
-        ) { content, delegate, _ in
+        ) { delegate, data in
             print("Not implemented yet!")
         }
     }
@@ -94,8 +101,8 @@ extension ContextMenuOption {
             symbol: { _ in "info.circle" },
             title: { _ in "Ver Detalhes" },
             appliesTo: [.sound, .song]
-        ) { content, delegate, _ in
-            delegate.showDetails(for: content)
+        ) { delegate, data in
+            delegate.showDetails(for: data.selectedContent)
         }
     }
 }
@@ -109,8 +116,8 @@ extension ContextMenuOption {
             symbol: { _ in "play"},
             title: { _ in "Tocar a Partir Desse"},
             appliesTo: [.sound, .song]
-        ) { content, delegate, loadedContent in
-            delegate.playFrom(content: content, loadedContent: loadedContent ?? [])
+        ) { delegate, data in
+            delegate.playFrom(content: data.selectedContent, loadedContent: data.loadedContent)
         }
     }
 
@@ -119,8 +126,8 @@ extension ContextMenuOption {
             symbol: { _ in "folder.badge.minus"},
             title: { _ in "Remover da Pasta"},
             appliesTo: [.sound, .song]
-        ) { content, delegate, _ in
-            delegate.removeFromFolder(content)
+        ) { delegate, data in
+            delegate.removeFromFolder(data.selectedContent)
         }
     }
 }
@@ -134,8 +141,8 @@ extension ContextMenuOption {
             symbol: { _ in "exclamationmark.bubble"},
             title: { _ in "Sugerir Outro Nome de Autor"},
             appliesTo: [.sound]
-        ) { content, delegate, _ in
-            delegate.suggestOtherAuthorName(for: content)
+        ) { delegate, data in
+            delegate.suggestOtherAuthorName(for: data.selectedContent)
         }
     }
 }
@@ -172,7 +179,7 @@ extension ContextMenuSection {
             options: { _ in
                 [
                     ContextMenuOption.viewAuthor,
-                    ContextMenuOption.viewMusicGenre,
+                    //ContextMenuOption.viewMusicGenre,
                     ContextMenuOption.viewDetails
                 ]
             }

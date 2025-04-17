@@ -13,7 +13,6 @@ import SwiftUI
 final class ContentGridViewModel {
 
     var menuOptions: [ContextMenuSection]
-    var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?
     var folder: UserFolder?
 
@@ -78,7 +77,6 @@ final class ContentGridViewModel {
         currentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
-        needsRefreshAfterChange: Bool = false,
         refreshAction: (() -> Void)? = nil,
         insideFolder: UserFolder? = nil,
         multiSelectFolderOperation: FolderOperation = .add,
@@ -92,7 +90,6 @@ final class ContentGridViewModel {
         self.currentListMode = currentListMode
         self.toast = toast
         self.floatingOptions = floatingOptions
-        self.needsRefreshAfterChange = needsRefreshAfterChange
         self.refreshAction = refreshAction
         self.folder = insideFolder
         self.multiSelectFolderOperation = multiSelectFolderOperation
@@ -166,8 +163,11 @@ extension ContentGridViewModel {
         stopPlaying()
     }
 
-    public func onEnterMultiSelectModeSelected(loadedContent: [AnyEquatableMedoContent]) {
-        startSelecting(loadedContent: loadedContent)
+    public func onEnterMultiSelectModeSelected(
+        loadedContent: [AnyEquatableMedoContent],
+        isFavoritesOnlyView: Bool
+    ) {
+        startSelecting(loadedContent: loadedContent, isFavoritesOnlyView: isFavoritesOnlyView)
     }
 
     public func onExitMultiSelectModeSelected() {
@@ -178,8 +178,8 @@ extension ContentGridViewModel {
         await shareSelected(loadedContent: loadedContent)
     }
 
-    public func onAddRemoveManyFromFavoritesSelected() async {
-        await addRemoveManyFromFavorites()
+    public func onAddRemoveManyFromFavoritesSelected(isFavoritesOnlyView: Bool) async {
+        await addRemoveManyFromFavorites(isFavoritesOnlyView: isFavoritesOnlyView)
     }
 
     public func onAddRemoveManyFromFolderSelected(
@@ -460,7 +460,7 @@ extension ContentGridViewModel {
 
 // MARK: - ContextMenuOption Communication
 
-extension ContentGridViewModel: ContentListDisplaying {
+extension ContentGridViewModel: ContentGridDisplaying {
 
     func share(content: AnyEquatableMedoContent) {
         if UIDevice.isiPhone {
@@ -509,12 +509,12 @@ extension ContentGridViewModel: ContentListDisplaying {
         showingModalView = true
     }
 
-    func toggleFavorite(_ contentId: String) {
+    func toggleFavorite(_ contentId: String, isFavoritesOnlyView: Bool) {
         if favoritesKeeper.contains(contentId) {
             removeFromFavorites(contentId: contentId)
-//            if needsRefreshAfterChange {
-//                refreshAction!()
-//            }
+            if isFavoritesOnlyView {
+                refreshAction?()
+            }
         } else {
             addToFavorites(contentId: contentId)
         }
@@ -567,7 +567,10 @@ extension ContentGridViewModel: ContentListDisplaying {
 
 extension ContentGridViewModel {
 
-    private func startSelecting(loadedContent: [AnyEquatableMedoContent]) {
+    private func startSelecting(
+        loadedContent: [AnyEquatableMedoContent],
+        isFavoritesOnlyView: Bool
+    ) {
         stopPlaying()
         if currentListMode.wrappedValue == .regular {
             currentListMode.wrappedValue = .selection
@@ -576,7 +579,7 @@ extension ContentGridViewModel {
                 allSelectedAreFavorites: false,
                 folderOperation: multiSelectFolderOperation,
                 shareIsProcessing: false,
-                favoriteAction: { Task { await self.addRemoveManyFromFavorites() } },
+                favoriteAction: { Task { await self.addRemoveManyFromFavorites(isFavoritesOnlyView: isFavoritesOnlyView) } },
                 folderAction: {
                     if self.multiSelectFolderOperation == .add {
                         self.addManyToFolder(loadedContent: loadedContent)
@@ -610,15 +613,16 @@ extension ContentGridViewModel {
         return selectionKeeper.isSubset(of: favoritesKeeper)
     }
 
-    private func addRemoveManyFromFavorites() async {
+    private func addRemoveManyFromFavorites(isFavoritesOnlyView: Bool) async {
         // Need to get count before clearing the Set.
         let selectedCount: Int = selectionKeeper.count
 
-        if /*currentViewMode == .favorites ||*/ allSelectedAreFavorites() {
+        if isFavoritesOnlyView || allSelectedAreFavorites() {
             removeSelectedFromFavorites()
             stopSelecting()
-            guard let refreshAction else { return }
-            refreshAction()
+            if let refreshAction {
+                refreshAction()
+            }
             await analyticsService.send(
                 originatingScreen: currentScreen.rawValue,
                 action: "didRemoveManySoundsFromFavorites(\(selectedCount))"

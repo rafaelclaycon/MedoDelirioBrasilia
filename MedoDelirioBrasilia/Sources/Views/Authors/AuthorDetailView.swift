@@ -326,7 +326,10 @@ struct AuthorDetailView: View {
             if viewModel.soundCount > 1 {
                 Section {
                     Button {
-                        contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
+                        contentGridViewModel.onEnterMultiSelectModeSelected(
+                            loadedContent: loadedContent,
+                            isFavoritesOnlyView: false
+                        )
                     } label: {
                         Label(
                             currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",

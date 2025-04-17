@@ -173,7 +173,10 @@ struct FolderDetailView: View {
             Menu {
                 Section {
                     Button {
-                        contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent)
+                        contentGridViewModel.onEnterMultiSelectModeSelected(
+                            loadedContent: loadedContent,
+                            isFavoritesOnlyView: false
+                        )
                     } label: {
                         Label(
                             currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
