@@ -90,6 +90,17 @@ struct ToastView: ViewModifier {
                     .padding(.bottom, 15)
                     .dynamicTypeSize(.xSmall ... .accessibility1)
                     .onAppear {
+                        switch toast.type {
+                        case .success:
+                            HapticFeedback.success()
+                        case .warning:
+                            HapticFeedback.warning()
+                        case .wait:
+                            HapticFeedback.warning()
+                        case .thankYou:
+                            HapticFeedback.success()
+                        }
+
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                             self.toast = nil
                         }

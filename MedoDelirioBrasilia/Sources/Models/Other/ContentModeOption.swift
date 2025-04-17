@@ -1,5 +1,5 @@
 //
-//  TopSelectorOption.swift
+//  ContentModeOption.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 29/03/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TopSelectorOption: CaseIterable, Identifiable {
+enum ContentModeOption: CaseIterable, Identifiable {
 
     case all, favorites, songs, folders, authors
 

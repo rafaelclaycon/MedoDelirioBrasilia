@@ -113,7 +113,7 @@ struct SongsView: View {
                                 withAnimation {
                                     proxy.scrollTo(trendsHelper.songIdToGoTo, anchor: .center)
                                 }
-                                TapticFeedback.warning()
+                                HapticFeedback.warning()
                                 trendsHelper.songIdToGoTo = ""
                             }
                         }

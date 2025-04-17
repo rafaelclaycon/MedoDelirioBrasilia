@@ -13,7 +13,7 @@ class MainContentViewModel {
 
     var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
-    var currentViewMode: TopSelectorOption
+    var currentViewMode: ContentModeOption
     var contentSortOption: Int
     var authorSortOption: Int
 
@@ -37,7 +37,7 @@ class MainContentViewModel {
     // MARK: - Initializer
 
     init(
-        currentViewMode: TopSelectorOption,
+        currentViewMode: ContentModeOption,
         contentSortOption: Int,
         authorSortOption: Int,
         currentContentListMode: Binding<ContentListMode>,

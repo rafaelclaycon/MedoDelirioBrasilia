@@ -160,7 +160,7 @@ extension MostSharedByAudienceView.ViewModel {
     }
 
     private func showServerUnavailableAlert() {
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertTitle = "Servidor Indisponível"
         alertMessage = "Não foi possível obter o ranking mais recente. Tente novamente mais tarde."
         showAlert = true

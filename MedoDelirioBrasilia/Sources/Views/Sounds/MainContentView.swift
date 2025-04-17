@@ -93,8 +93,8 @@ struct MainContentView: View {
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
                     if contentSearchTextIsEmpty ?? true {
-                        TopSelector(
-                            options: UIDevice.isiPhone ? TopSelectorOption.allCases : [.all, .songs],
+                        ContentModePicker(
+                            options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
                             selected: $viewModel.currentViewMode,
                             allowScrolling: UIDevice.isiPhone
                         )
@@ -139,11 +139,10 @@ struct MainContentView: View {
                                     VStack {
                                         if viewModel.currentViewMode == .favorites {
                                             NoFavoritesView()
-                                                .padding(.horizontal, .spacing(.xLarge))
+                                                .padding(.vertical, .spacing(.huge))
                                         } else {
                                             Text("Nenhum som a ser exibido. Isso é esquisito.")
                                                 .foregroundColor(.gray)
-                                                .padding(.horizontal, .spacing(.large))
                                         }
                                     }
                                 ,

@@ -1,5 +1,5 @@
 //
-//  TopSelector.swift
+//  ContentModePicker.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 29/03/25.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct TopSelector: View {
+struct ContentModePicker: View {
 
-    let options: [TopSelectorOption]
-    @Binding var selected: TopSelectorOption
+    let options: [ContentModeOption]
+    @Binding var selected: ContentModeOption
     let allowScrolling: Bool
 
     @Environment(\.colorScheme) private var colorScheme
@@ -89,6 +89,7 @@ struct TopSelector: View {
                         .onTapGesture {
                             selected = kind
                         }
+                        .sensoryFeedback(.selection, trigger: selected)
                 }
             }
             .padding(.horizontal)
@@ -103,8 +104,8 @@ struct TopSelector: View {
 // MARK: - Preview
 
 #Preview {
-    TopSelector(
-        options: TopSelectorOption.allCases,
+    ContentModePicker(
+        options: ContentModeOption.allCases,
         selected: .constant(.all),
         allowScrolling: true
     )

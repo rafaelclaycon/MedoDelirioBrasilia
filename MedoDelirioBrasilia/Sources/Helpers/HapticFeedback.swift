@@ -1,6 +1,13 @@
+//
+//  HapticFeedback.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Schmitt on 04/07/22.
+//
+
 import UIKit
 
-class TapticFeedback {
+class HapticFeedback {
 
     static func success() {
         let generator = UINotificationFeedbackGenerator()
@@ -21,5 +28,4 @@ class TapticFeedback {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
     }
-
 }

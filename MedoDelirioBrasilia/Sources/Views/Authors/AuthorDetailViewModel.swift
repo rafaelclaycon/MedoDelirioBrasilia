@@ -85,7 +85,7 @@ extension AuthorDetailViewModel {
     }
 
     public func showAskForNewSoundAlert() {
-        TapticFeedback.warning()
+        HapticFeedback.warning()
         alertType = .askForNewSound
         alertTitle = Shared.AuthorDetail.AskForNewSoundAlert.title
         alertMessage = Shared.AuthorDetail.AskForNewSoundAlert.message

@@ -758,7 +758,7 @@ extension ContentGridViewModel {
 extension ContentGridViewModel {
 
     private func showUnableToGetSoundAlert(_ soundTitle: String) {
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertType = .issueSharingSound
         alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.contentNotFoundAlertMessage
@@ -767,7 +767,7 @@ extension ContentGridViewModel {
 
     private func showServerSoundNotAvailableAlert(_ content: AnyEquatableMedoContent) {
         selectedContentSingle = content
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertType = .soundFileNotFound
         alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
@@ -775,7 +775,7 @@ extension ContentGridViewModel {
     }
 
     private func showShareManyIssueAlert(_ localizedError: String) {
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertType = .issueExportingManySounds
         alertTitle = "Problema ao Tentar Exportar Vários Conteúdos"
         alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários conteúdos. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"

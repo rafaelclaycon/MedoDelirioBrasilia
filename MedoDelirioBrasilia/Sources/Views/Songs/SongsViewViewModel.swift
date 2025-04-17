@@ -263,7 +263,7 @@ extension SongsViewViewModel {
     // MARK: - Alerts
 
     func showSongUnavailableAlert() {
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertType = .songUnavailable
         alertTitle = Shared.Songs.songNotFoundAlertTitle
         alertMessage = Shared.Songs.songNotFoundAlertMessage
@@ -272,7 +272,7 @@ extension SongsViewViewModel {
 
     func showServerSongNotAvailableAlert(_ song: Song) {
         selectedSong = song
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertType = .redownloadSong
         alertTitle = Shared.contentNotFoundAlertTitle(song.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage

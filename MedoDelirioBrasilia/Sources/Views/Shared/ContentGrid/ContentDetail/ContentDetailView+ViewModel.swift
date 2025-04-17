@@ -161,14 +161,14 @@ extension ContentDetailView.ViewModel {
     }
 
     private func showUnableToGetSoundAlert() {
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.contentNotFoundAlertMessage
         showAlert = true
     }
 
     private func showServerSoundNotAvailableAlert() {
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
