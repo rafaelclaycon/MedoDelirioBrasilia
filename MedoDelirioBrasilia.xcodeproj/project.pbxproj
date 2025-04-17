@@ -1352,6 +1352,8 @@
 		D9CEB760299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */; };
 		D9CEB76629991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */; };
 		D9CEB76A29991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */; };
+		D9CF3BDA2DB06036002C6E6B /* ContentGridViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF3BD92DB06036002C6E6B /* ContentGridViewModelTests.swift */; };
+		D9CF3BDC2DB060AF002C6E6B /* FakeAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF3BDB2DB060AF002C6E6B /* FakeAnalyticsService.swift */; };
 		D9CFF04D2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CFF04C2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 */; };
 		D9D103EF29AE35CD0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */; };
 		D9D103F329AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */; };
@@ -2905,6 +2907,8 @@
 		D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meu irmao ta no Supremo.mp3"; sourceTree = "<group>"; };
 		D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bruno Aleixo - Esqueceu-se.mp3"; sourceTree = "<group>"; };
 		D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Te amo te amo te amo, democracia (Natuza Nery).mp3"; sourceTree = "<group>"; };
+		D9CF3BD92DB06036002C6E6B /* ContentGridViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGridViewModelTests.swift; sourceTree = "<group>"; };
+		D9CF3BDB2DB060AF002C6E6B /* FakeAnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAnalyticsService.swift; sourceTree = "<group>"; };
 		D9CFF04C2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hugo Ojuara - Preto demais.mp3"; sourceTree = "<group>"; };
 		D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lourdes Melo - O ministro cabeca de ovo lustrada.mp3"; sourceTree = "<group>"; };
 		D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3"; sourceTree = "<group>"; };
@@ -4316,6 +4320,7 @@
 		D92C0CA328401220009CF19A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9CF3BD72DB0601A002C6E6B /* Shared */,
 				D90E80C22CEA1F3B0014A886 /* Reactions */,
 				D9DE920D2B9B98D700268626 /* Sounds */,
 				D9AB63F22A5A084200390778 /* MainView */,
@@ -5255,6 +5260,22 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		D9CF3BD72DB0601A002C6E6B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D9CF3BD82DB06021002C6E6B /* ContentGrid */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D9CF3BD82DB06021002C6E6B /* ContentGrid */ = {
+			isa = PBXGroup;
+			children = (
+				D9CF3BD92DB06036002C6E6B /* ContentGridViewModelTests.swift */,
+			);
+			path = ContentGrid;
+			sourceTree = "<group>";
+		};
 		D9D734F92AD38AC900A25916 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
@@ -5317,6 +5338,7 @@
 				D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */,
 				D9E5F5152CD7114600C2FF64 /* FakeFolderResearchRepository.swift */,
 				D91255B32DB0346E006AC71C /* FakeUserFolderRepository.swift */,
+				D9CF3BDB2DB060AF002C6E6B /* FakeAnalyticsService.swift */,
 			);
 			path = SharedDoubles;
 			sourceTree = "<group>";
@@ -7070,6 +7092,7 @@
 				D99ACE982ADDFC2500C290F0 /* RetroViewModelTests.swift in Sources */,
 				D96892DE2C9F7DC50084F646 /* VideoMakerTests.swift in Sources */,
 				D90E80C42CEA1F570014A886 /* ReactionsViewModelTests.swift in Sources */,
+				D9CF3BDC2DB060AF002C6E6B /* FakeAnalyticsService.swift in Sources */,
 				D94B514D2CC625120005FABE /* SyncManagerDelegateSpy.swift in Sources */,
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
@@ -7077,6 +7100,7 @@
 				D91255B42DB0346E006AC71C /* FakeUserFolderRepository.swift in Sources */,
 				D920BF662CD1F52500C6BD72 /* MockUserSettings.swift in Sources */,
 				D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */,
+				D9CF3BDA2DB06036002C6E6B /* ContentGridViewModelTests.swift in Sources */,
 				D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */,
 				D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */,
 			);

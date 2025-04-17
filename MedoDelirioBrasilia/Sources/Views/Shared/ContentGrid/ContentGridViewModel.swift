@@ -64,7 +64,7 @@ final class ContentGridViewModel {
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let multiSelectFolderOperation: FolderOperation
     private let contentRepository: ContentRepositoryProtocol
-    private let userFolderRepository: UserFolderRepository
+    private let userFolderRepository: UserFolderRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
     private let currentScreen: ContentGridScreen
 
@@ -72,7 +72,7 @@ final class ContentGridViewModel {
 
     init(
         contentRepository: ContentRepositoryProtocol,
-        userFolderRepository: UserFolderRepository,
+        userFolderRepository: UserFolderRepositoryProtocol,
         screen: ContentGridScreen,
         menuOptions: [ContextMenuSection],
         currentListMode: Binding<ContentListMode>,
