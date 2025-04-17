@@ -512,9 +512,9 @@ extension ContentGridViewModel: ContentListDisplaying {
     func toggleFavorite(_ contentId: String) {
         if favoritesKeeper.contains(contentId) {
             removeFromFavorites(contentId: contentId)
-            if needsRefreshAfterChange {
-                refreshAction!()
-            }
+//            if needsRefreshAfterChange {
+//                refreshAction!()
+//            }
         } else {
             addToFavorites(contentId: contentId)
         }

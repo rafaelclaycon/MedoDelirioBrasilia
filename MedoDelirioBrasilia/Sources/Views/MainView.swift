@@ -241,6 +241,10 @@ struct MainView: View {
                                 Tab {
                                     NavigationStack {
                                         FolderDetailView(
+                                            viewModel: FolderDetailViewModel(
+                                                folder: folder,
+                                                contentRepository: contentRepository
+                                            ),
                                             folder: folder,
                                             currentContentListMode: $currentContentListMode,
                                             toast: $toast,

@@ -64,6 +64,10 @@ extension FolderDetailViewModel {
     public func onContentSortOptionChanged() {
         loadContent()
     }
+
+    public func onContentWasRemovedFromFolder() {
+        loadContent()
+    }
 }
 
 // MARK: - Internal Functions

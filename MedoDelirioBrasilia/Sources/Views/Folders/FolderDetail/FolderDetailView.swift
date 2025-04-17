@@ -46,6 +46,7 @@ struct FolderDetailView: View {
     // MARK: - Initializer
 
     init(
+        viewModel: FolderDetailViewModel,
         folder: UserFolder,
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
@@ -54,10 +55,7 @@ struct FolderDetailView: View {
     ) {
         self.folder = folder
 
-        self.viewModel = FolderDetailViewModel(
-            folder: folder,
-            contentRepository: contentRepository
-        )
+        self.viewModel = viewModel
         self.currentContentListMode = currentContentListMode
 
         self.contentGridViewModel = ContentGridViewModel(
@@ -68,6 +66,7 @@ struct FolderDetailView: View {
             currentListMode: currentContentListMode,
             toast: toast,
             floatingOptions: floatingOptions,
+            refreshAction: { viewModel.onContentWasRemovedFromFolder() },
             insideFolder: folder,
             multiSelectFolderOperation: .remove,
             analyticsService: AnalyticsService()
@@ -260,13 +259,19 @@ struct FolderDetailView: View {
 // MARK: - Preview
 
 #Preview {
-    FolderDetailView(
-        folder: .init(
-            symbol: "🤑",
-            name: "Grupo da Economia",
-            backgroundColor: "pastelBabyBlue",
-            changeHash: "abcdefg"
+    let folder = UserFolder(
+        symbol: "🤑",
+        name: "Grupo da Economia",
+        backgroundColor: "pastelBabyBlue",
+        changeHash: "abcdefg"
+    )
+
+    return FolderDetailView(
+        viewModel: FolderDetailViewModel(
+            folder: folder,
+            contentRepository: FakeContentRepository()
         ),
+        folder: folder,
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
         floatingOptions: .constant(nil),

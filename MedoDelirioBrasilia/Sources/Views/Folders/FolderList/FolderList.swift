@@ -78,6 +78,10 @@ struct FolderList: View {
                     ForEach(viewModel.folders, id: \.changeHash) { folder in
                         NavigationLink {
                             FolderDetailView(
+                                viewModel: FolderDetailViewModel(
+                                    folder: folder,
+                                    contentRepository: contentRepository
+                                ),
                                 folder: folder,
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,

@@ -106,6 +106,10 @@ struct SidebarView: View {
                 ForEach(viewModel.folders) { folder in
                     NavigationLink(
                         destination: FolderDetailView(
+                            viewModel: FolderDetailViewModel(
+                                folder: folder,
+                                contentRepository: contentRepository
+                            ),
                             folder: folder,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
