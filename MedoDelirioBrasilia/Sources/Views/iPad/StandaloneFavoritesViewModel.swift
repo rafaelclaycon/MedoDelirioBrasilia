@@ -13,19 +13,20 @@ class StandaloneFavoritesViewModel {
 
     // MARK: - Published Vars
 
-    var data: [AnyEquatableMedoContent]?
+    var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
     var contentSortOption: Int
-    var dataLoadingDidFail: Bool = false
 
-    var toast: Toast?
+    private let contentRepository: ContentRepositoryProtocol
 
     // MARK: - Initializer
 
     init(
-        contentSortOption: Int
+        contentSortOption: Int,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.contentSortOption = contentSortOption
+        self.contentRepository = contentRepository
     }
 }
 
@@ -40,7 +41,7 @@ extension StandaloneFavoritesViewModel {
     }
 
     public func onSoundSortOptionChanged() {
-        sortSounds(by: contentSortOption)
+        loadContent()
     }
 
     public func onExplicitContentSettingChanged() {
@@ -53,94 +54,15 @@ extension StandaloneFavoritesViewModel {
 extension StandaloneFavoritesViewModel {
 
     private func loadContent() {
+        state = .loading
+
         do {
-            let sounds: [AnyEquatableMedoContent] = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings().getShowExplicitContent()
-            ).map { AnyEquatableMedoContent($0) }
-            let songs: [AnyEquatableMedoContent] = try LocalDatabase.shared.songs(
-                allowSensitive: UserSettings().getShowExplicitContent()
-            ).map { AnyEquatableMedoContent($0) }
-
-            data = sounds + songs
-
-            guard sounds.count > 0 else { return }
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: contentSortOption) ?? .dateAddedDescending
-            sortData(by: sortOption)
+            let allowSensitive = UserSettings().getShowExplicitContent()
+            let sort = SoundSortOption(rawValue: contentSortOption) ?? .dateAddedDescending
+            state = .loaded(try contentRepository.favorites(allowSensitive, sort))
         } catch {
-            print("Erro carregando sons: \(error.localizedDescription)")
-            dataLoadingDidFail = true
-        }
-    }
-
-    private func sortSounds(by rawSortOption: Int) {
-        let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
-        sortData(by: sortOption)
-        UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
-    }
-}
-
-// MARK: - Sorting
-
-extension StandaloneFavoritesViewModel {
-
-    private func sortData(by sortOption: SoundSortOption) {
-        switch sortOption {
-        case .titleAscending:
-            sortAllSoundsByTitleAscending()
-        case .authorNameAscending:
-            sortAllSoundsByAuthorNameAscending()
-        case .dateAddedDescending:
-            sortAllSoundsByDateAddedDescending()
-        case .shortestFirst:
-            sortAllSoundsByDurationAscending()
-        case .longestFirst:
-            sortAllSoundsByDurationDescending()
-        case .longestTitleFirst:
-            sortAllSoundsByTitleLengthDescending()
-        case .shortestTitleFirst:
-            sortAllSoundsByTitleLengthAscending()
-        }
-    }
-
-    private func sortAllSoundsByTitleAscending() {
-        DispatchQueue.main.async {
-            self.data?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
-        }
-    }
-
-    private func sortAllSoundsByAuthorNameAscending() {
-        DispatchQueue.main.async {
-            self.data?.sort(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
-        }
-    }
-
-    private func sortAllSoundsByDateAddedDescending() {
-        DispatchQueue.main.async {
-            self.data?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-        }
-    }
-
-    private func sortAllSoundsByDurationAscending() {
-        DispatchQueue.main.async {
-            self.data?.sort(by: { $0.duration < $1.duration })
-        }
-    }
-
-    private func sortAllSoundsByDurationDescending() {
-        DispatchQueue.main.async {
-            self.data?.sort(by: { $0.duration > $1.duration })
-        }
-    }
-
-    private func sortAllSoundsByTitleLengthAscending() {
-        DispatchQueue.main.async {
-            self.data?.sort(by: { $0.title.count < $1.title.count })
-        }
-    }
-
-    private func sortAllSoundsByTitleLengthDescending() {
-        DispatchQueue.main.async {
-            self.data?.sort(by: { $0.title.count > $1.title.count })
+            state = .error(error.localizedDescription)
+            debugPrint(error)
         }
     }
 }

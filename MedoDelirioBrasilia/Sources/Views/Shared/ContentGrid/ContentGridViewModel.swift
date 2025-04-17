@@ -105,6 +105,10 @@ final class ContentGridViewModel {
 
 extension ContentGridViewModel {
 
+    public func onViewAppeared() {
+        loadFavorites()
+    }
+
     public func onContentSelected(
         _ content: AnyEquatableMedoContent,
         loadedContent: [AnyEquatableMedoContent]
