@@ -53,7 +53,7 @@ struct MainView: View {
                         MainContentView(
                             viewModel: .init(
                                 currentViewMode: .all,
-                                soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                 authorSortOption: UserSettings().authorSortOption(),
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
@@ -149,7 +149,7 @@ struct MainView: View {
                                 MainContentView(
                                     viewModel: .init(
                                         currentViewMode: .all,
-                                        soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
@@ -176,7 +176,8 @@ struct MainView: View {
                             NavigationStack(path: $favoritesPath) {
                                 StandaloneFavoritesView(
                                     viewModel: StandaloneFavoritesViewModel(
-                                        contentSortOption: UserSettings().mainSoundListSoundSortOption()
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        contentRepository: contentRepository
                                     ),
                                     toast: $toast,
                                     contentRepository: contentRepository
@@ -307,7 +308,7 @@ struct MainView: View {
                             MainContentView(
                                 viewModel: .init(
                                     currentViewMode: .all,
-                                    soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                    contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                     authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,

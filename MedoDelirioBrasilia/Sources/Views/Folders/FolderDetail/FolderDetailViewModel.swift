@@ -14,7 +14,7 @@ class FolderDetailViewModel {
 
     var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
-    var soundSortOption: Int = FolderSoundSortOption.dateAddedDescending.rawValue
+    var contentSortOption: Int = FolderSoundSortOption.dateAddedDescending.rawValue
 
     // Alerts
     var alertTitle: String = ""
@@ -74,7 +74,7 @@ extension FolderDetailViewModel {
         state = .loading
         do {
             let allowSensitive = UserSettings().getShowExplicitContent()
-            let sort = FolderSoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
+            let sort = FolderSoundSortOption(rawValue: contentSortOption) ?? .dateAddedDescending
             state = .loaded(try contentRepository.content(in: folder.id, allowSensitive, sort))
         } catch {
             state = .error(error.localizedDescription)

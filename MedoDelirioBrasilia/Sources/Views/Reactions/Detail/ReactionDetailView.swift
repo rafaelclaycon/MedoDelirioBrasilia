@@ -103,7 +103,7 @@ struct ReactionDetailView: View {
                 }
                 .toolbar {
                     ToolbarControls(
-                        soundSortOption: $viewModel.contentSortOption,
+                        contentSortOption: $viewModel.contentSortOption,
                         playStopAction: { contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent) },
                         startSelectingAction: { contentGridViewModel.onEnterMultiSelectModeSelected(loadedContent: loadedContent) },
                         isPlayingPlaylist: contentGridViewModel.isPlayingPlaylist,
@@ -145,7 +145,7 @@ extension ReactionDetailView {
 
     struct ToolbarControls: View {
 
-        @Binding var soundSortOption: Int
+        @Binding var contentSortOption: Int
         let playStopAction: () -> Void
         let startSelectingAction: () -> Void
         let isPlayingPlaylist: Bool
@@ -174,7 +174,7 @@ extension ReactionDetailView {
                     }
 
                     Section {
-                        Picker("Ordenação de Sons", selection: $soundSortOption) {
+                        Picker("Ordenação de Sons", selection: $contentSortOption) {
                             ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
                                 Text(option.description).tag(option.rawValue)
                             }

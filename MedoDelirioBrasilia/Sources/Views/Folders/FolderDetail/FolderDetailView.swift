@@ -184,7 +184,7 @@ struct FolderDetailView: View {
                 }
 
                 Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                    Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
                         Text("Título")
                             .tag(0)
 
@@ -196,7 +196,7 @@ struct FolderDetailView: View {
                                 .tag(2)
                         }
                     }
-                    .onChange(of: viewModel.soundSortOption) {
+                    .onChange(of: viewModel.contentSortOption) {
                         contentGridViewModel.onContentSortingChanged()
                         viewModel.onContentSortOptionChanged()
                     }

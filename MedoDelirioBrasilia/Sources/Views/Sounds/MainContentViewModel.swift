@@ -14,7 +14,7 @@ class MainContentViewModel {
     var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
     var currentViewMode: TopSelectorOption
-    var soundSortOption: Int
+    var contentSortOption: Int
     var authorSortOption: Int
 
     // Sync
@@ -38,7 +38,7 @@ class MainContentViewModel {
 
     init(
         currentViewMode: TopSelectorOption,
-        soundSortOption: Int,
+        contentSortOption: Int,
         authorSortOption: Int,
         currentContentListMode: Binding<ContentListMode>,
         toast: Binding<Toast?>,
@@ -48,7 +48,7 @@ class MainContentViewModel {
         contentRepository: ContentRepositoryProtocol
     ) {
         self.currentViewMode = currentViewMode
-        self.soundSortOption = soundSortOption
+        self.contentSortOption = contentSortOption
         self.authorSortOption = authorSortOption
         self.currentContentListMode = currentContentListMode
         self.toast = toast
@@ -126,7 +126,7 @@ extension MainContentViewModel {
 
         do {
             let allowSensitive = UserSettings().getShowExplicitContent()
-            let sort = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
+            let sort = SoundSortOption(rawValue: contentSortOption) ?? .dateAddedDescending
             if currentViewMode == .all {
                 state = .loaded(try contentRepository.allContent(allowSensitive, sort))
             } else if currentViewMode == .favorites {

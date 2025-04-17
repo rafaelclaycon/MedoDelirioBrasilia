@@ -344,7 +344,7 @@ extension MainContentView {
                         }
 
                         Section {
-                            Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                            Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
                                 Text("Título")
                                     .tag(0)
 
@@ -372,7 +372,7 @@ extension MainContentView {
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }
-                    .onChange(of: viewModel.soundSortOption) {
+                    .onChange(of: viewModel.contentSortOption) {
                         viewModel.onSoundSortOptionChanged()
                     }
                     .disabled(
@@ -413,7 +413,7 @@ extension MainContentView {
     MainContentView(
         viewModel: .init(
             currentViewMode: .all,
-            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+            contentSortOption: SoundSortOption.dateAddedDescending.rawValue,
             authorSortOption: AuthorSortOption.nameAscending.rawValue,
             currentContentListMode: .constant(.regular),
             toast: .constant(nil),

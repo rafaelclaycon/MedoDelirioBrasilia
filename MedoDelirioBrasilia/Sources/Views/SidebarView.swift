@@ -39,7 +39,7 @@ struct SidebarView: View {
                     destination: MainContentView(
                         viewModel: MainContentViewModel(
                             currentViewMode: .all,
-                            soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                            contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
@@ -63,7 +63,8 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: StandaloneFavoritesView(
                         viewModel: StandaloneFavoritesViewModel(
-                            contentSortOption: UserSettings().mainSoundListSoundSortOption()
+                            contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                            contentRepository: contentRepository
                         ),
                         toast: $toast,
                         contentRepository: contentRepository
