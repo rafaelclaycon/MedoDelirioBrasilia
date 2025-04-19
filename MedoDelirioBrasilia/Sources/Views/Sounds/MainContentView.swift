@@ -211,6 +211,7 @@ struct MainContentView: View {
                             viewModel.onContentSortOptionChanged()
                         },
                         authorSortChangeAction: {
+                            authorSortAction = AuthorSortOption(rawValue: viewModel.authorSortOption) ?? .nameAscending
                             viewModel.onAuthorSortOptionChanged()
                         }
                     )
