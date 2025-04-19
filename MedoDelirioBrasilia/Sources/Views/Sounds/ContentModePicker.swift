@@ -89,7 +89,7 @@ struct ContentModePicker: View {
                         .onTapGesture {
                             selected = kind
                         }
-                        .sensoryFeedback(.selection, trigger: selected)
+                        .sensoryFeedback(.impact(weight: .light, intensity: 0.4), trigger: selected)
                 }
             }
             .padding(.horizontal)
