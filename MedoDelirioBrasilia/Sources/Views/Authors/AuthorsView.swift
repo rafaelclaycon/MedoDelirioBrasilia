@@ -36,7 +36,6 @@ struct AuthorsView: View {
     // MARK: - Environment
 
     @Environment(\.push) var push
-    @Environment(\.sizeCategory) var sizeCategory
 
     // MARK: - View Body
 
@@ -48,7 +47,6 @@ struct AuthorsView: View {
                 } else {
                     ForEach(searchResults) { author in
                         AuthorCell(author: author)
-                            .padding(.horizontal, .spacing(.xxSmall))
                             .onTapGesture {
                                 push(GeneralNavigationDestination.authorDetail(author))
                             }
@@ -97,11 +95,9 @@ struct AuthorsView: View {
     }
 
     private func updateColumns() {
-        columns = GridHelper.adaptableColumns(
-            listWidth: containerWidth,
-            sizeCategory: sizeCategory,
-            spacing: UIDevice.isiPhone ? .spacing(.small) : .spacing(.large),
-            forceSingleColumnOnPhone: true
+        columns = GridHelper.authorColumns(
+            gridWidth: containerWidth,
+            spacing: UIDevice.isiPhone ? .spacing(.small) : .spacing(.large)
         )
     }
 }
