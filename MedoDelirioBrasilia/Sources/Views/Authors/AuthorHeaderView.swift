@@ -348,6 +348,10 @@ extension AuthorHeaderView {
         let reportIssueAction: () -> Void
         let contentSortChangeAction: () -> Void
 
+        @ScaledMetric private var menuButtonHeight: CGFloat = 26
+
+        // MARK: - View Body
+
         var body: some View {
             Menu {
                 if soundCount > 1 {
@@ -403,7 +407,7 @@ extension AuthorHeaderView {
                 Image(systemName: "ellipsis.circle")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 26)
+                    .frame(height: menuButtonHeight)
             }
             .disabled(soundCount == 0)
         }
