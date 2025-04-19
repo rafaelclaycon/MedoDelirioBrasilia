@@ -100,7 +100,28 @@ struct AuthorDetailView: View {
                     AuthorHeaderView(
                         author: author,
                         title: title,
-                        soundCountText: viewModel.soundCountText
+                        soundCount: viewModel.soundCount,
+                        soundCountText: viewModel.soundCountText,
+                        contentListMode: currentContentListMode.wrappedValue,
+                        contentSortOption: $viewModel.soundSortOption,
+                        multiSelectAction: {
+                            contentGridViewModel.onEnterMultiSelectModeSelected(
+                                loadedContent: loadedContent,
+                                isFavoritesOnlyView: false
+                            )
+                        },
+                        askForSoundAction: {
+                            contentGridViewModel.onExitMultiSelectModeSelected()
+                            viewModel.showAskForNewSoundAlert()
+                        },
+                        reportIssueAction: {
+                            contentGridViewModel.onExitMultiSelectModeSelected()
+                            viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+                        },
+                        contentSortChangeAction: {
+                            contentGridViewModel.onContentSortingChanged()
+                            viewModel.onSortOptionChanged()
+                        }
                     )
 
                     ContentGrid(
@@ -212,79 +233,6 @@ struct AuthorDetailView: View {
             .toast(contentGridViewModel.toast)
             .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
-    }
-
-    // MARK: - Subviews
-
-    @ViewBuilder
-    private func moreOptionsMenu(isOnToolbar: Bool) -> some View {
-        Menu {
-            if viewModel.soundCount > 1 {
-                Section {
-                    Button {
-                        contentGridViewModel.onEnterMultiSelectModeSelected(
-                            loadedContent: loadedContent,
-                            isFavoritesOnlyView: false
-                        )
-                    } label: {
-                        Label(
-                            currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
-                        )
-                    }
-                }
-            }
-            
-            Section {
-//                Button {
-//                    contentListViewModel.onExitMultiSelectModeSelected()
-//                    viewModel.selectedSounds = viewModel.sounds
-//                    // showingAddToFolderModal = true // TODO: Fix - move to ContentList
-//                } label: {
-//                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
-//                }
-                
-                Button {
-                    contentGridViewModel.onExitMultiSelectModeSelected()
-                    viewModel.showAskForNewSoundAlert()
-                } label: {
-                    Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-                }
-                
-                Button {
-                    contentGridViewModel.onExitMultiSelectModeSelected()
-                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
-                } label: {
-                    Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
-                }
-            }
-            
-            if viewModel.soundCount > 1 {
-                Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                        Text("Título")
-                            .tag(0)
-                        
-                        Text("Mais Recentes no Topo")
-                            .tag(1)
-                    }
-                    .onChange(of: viewModel.soundSortOption) {
-                        contentGridViewModel.onContentSortingChanged()
-                        viewModel.onSortOptionChanged()
-                    }
-                }
-            }
-        } label: {
-            if isOnToolbar {
-                Image(systemName: "ellipsis.circle")
-            } else {
-                Image(systemName: "ellipsis.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 26)
-            }
-        }
-        .disabled(viewModel.soundCount == 0)
     }
 }
 

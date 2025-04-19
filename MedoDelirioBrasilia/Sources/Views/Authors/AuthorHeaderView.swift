@@ -12,7 +12,15 @@ struct AuthorHeaderView: View {
 
     let author: Author
     let title: String
+    let soundCount: Int
     let soundCountText: String
+
+    let contentListMode: ContentListMode
+    @Binding var contentSortOption: Int
+    let multiSelectAction: () -> Void
+    let askForSoundAction: () -> Void
+    let reportIssueAction: () -> Void
+    let contentSortChangeAction: () -> Void
 
     // MARK: - Computed Properties
 
@@ -73,7 +81,15 @@ struct AuthorHeaderView: View {
 
                     Spacer()
 
-                    //moreOptionsMenu(isOnToolbar: false)
+                    MoreOptionsMenu(
+                        soundCount: soundCount,
+                        contentListMode: contentListMode,
+                        contentSortOption: $contentSortOption,
+                        multiSelectAction: multiSelectAction,
+                        askForSoundAction: askForSoundAction,
+                        reportIssueAction: reportIssueAction,
+                        contentSortChangeAction: contentSortChangeAction
+                    )
                 }
 
                 if let description = author.description {
@@ -108,6 +124,82 @@ struct AuthorHeaderView: View {
     }
 }
 
+// MARK: - Subviews
+
+extension AuthorHeaderView {
+
+    struct MoreOptionsMenu: View {
+
+        let soundCount: Int
+        let contentListMode: ContentListMode
+        @Binding var contentSortOption: Int
+        let multiSelectAction: () -> Void
+        let askForSoundAction: () -> Void
+        let reportIssueAction: () -> Void
+        let contentSortChangeAction: () -> Void
+
+        var body: some View {
+            Menu {
+                if soundCount > 1 {
+                    Section {
+                        Button {
+                            multiSelectAction()
+                        } label: {
+                            Label(
+                                contentListMode == .selection ? "Cancelar Seleção" : "Selecionar",
+                                systemImage: contentListMode == .selection ? "xmark.circle" : "checkmark.circle"
+                            )
+                        }
+                    }
+                }
+
+                Section {
+    //                Button {
+    //                    contentListViewModel.onExitMultiSelectModeSelected()
+    //                    viewModel.selectedSounds = viewModel.sounds
+    //                    // showingAddToFolderModal = true // TODO: Fix - move to ContentList
+    //                } label: {
+    //                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+    //                }
+
+                    Button {
+                        askForSoundAction()
+                    } label: {
+                        Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+                    }
+
+                    Button {
+                        reportIssueAction()
+                    } label: {
+                        Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+                    }
+                }
+
+                if soundCount > 1 {
+                    Section {
+                        Picker("Ordenação de Sons", selection: $contentSortOption) {
+                            Text("Título")
+                                .tag(0)
+
+                            Text("Mais Recentes no Topo")
+                                .tag(1)
+                        }
+                        .onChange(of: contentSortOption) {
+                            contentSortChangeAction()
+                        }
+                    }
+                }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 26)
+            }
+            .disabled(soundCount == 0)
+        }
+    }
+}
+
 // MARK: - Preview
 
 #Preview {
@@ -116,6 +208,13 @@ struct AuthorHeaderView: View {
     return AuthorHeaderView(
         author: author,
         title: author.name,
-        soundCountText: "10 SONS"
+        soundCount: 10,
+        soundCountText: "10 SONS",
+        contentListMode: .regular,
+        contentSortOption: .constant(0),
+        multiSelectAction: {},
+        askForSoundAction: {},
+        reportIssueAction: {},
+        contentSortChangeAction: {}
     )
 }
