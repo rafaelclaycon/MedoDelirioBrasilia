@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct NoSearchResultsView: View {
-    
-    @Binding var searchText: String
-    
+
+    let searchText: String
+
     var body: some View {
-        VStack(alignment: .center, spacing: 16) {
-            Spacer(minLength: 40)
+        VStack(alignment: .center, spacing: .spacing(.medium)) {
+            Spacer(minLength: .spacing(.xxxLarge))
 
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 60))
@@ -29,13 +29,11 @@ struct NoSearchResultsView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             
-            Spacer(minLength: 40)
+            Spacer(minLength: .spacing(.xxxLarge))
         }
     }
 }
 
-struct NoSearchResultsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoSearchResultsView(searchText: .constant("Testeeee"))
-    }
+#Preview {
+    NoSearchResultsView(searchText: "Testeeee")
 }

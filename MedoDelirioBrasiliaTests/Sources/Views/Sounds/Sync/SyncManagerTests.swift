@@ -14,7 +14,7 @@ final class SyncManagerTests: XCTestCase {
 
     private var syncService: SyncServiceStub!
     private var localDatabase: FakeLocalDatabase!
-    private var logger: LoggerStub!
+    private var logger: FakeLoggerService!
     private var delegateSpy: SyncManagerDelegateSpy!
 
     private let mockUpdates: [UpdateEvent] = [
@@ -29,7 +29,7 @@ final class SyncManagerTests: XCTestCase {
         try super.setUpWithError()
         syncService = SyncServiceStub()
         localDatabase = FakeLocalDatabase()
-        logger = LoggerStub()
+        logger = FakeLoggerService()
         delegateSpy = SyncManagerDelegateSpy()
         sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
         sut.delegate = delegateSpy

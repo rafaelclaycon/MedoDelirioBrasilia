@@ -7,10 +7,18 @@
 
 import Foundation
 
-internal protocol MedoContentProtocol {
+internal protocol MedoContentProtocol: Equatable {
 
     var id: String { get }
     var title: String { get }
+    var subtitle: String { get }
+    var description: String { get }
+    var duration: Double { get }
+    var dateAdded: Date? { get set }
+    var isFromServer: Bool? { get }
+    var type: MediaType { get }
+    var authorId: String { get }
+    var isOffensive: Bool { get }
 
     func fileURL() throws -> URL
 }

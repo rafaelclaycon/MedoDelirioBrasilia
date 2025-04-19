@@ -11,7 +11,7 @@ protocol ReactionRepositoryProtocol {
 
     func allReactions() async throws -> [Reaction]
     func reaction(_ reactionId: String) async throws -> Reaction
-    func reactionSounds(reactionId: String) async throws -> [ReactionSound]
+    func reactionContent(reactionId: String) async throws -> [ReactionContent]
     func pinnedReactions(_ serverReactions: [Reaction]) async throws -> [Reaction]
     func savePin(reaction: Reaction) throws
     func removePin(reactionId: String) throws
@@ -45,9 +45,9 @@ final class ReactionRepository: ReactionRepositoryProtocol {
         return Reaction(dto: dto, type: .regular) // Maybe change?
     }
 
-    func reactionSounds(reactionId: String) async throws -> [ReactionSound] {
+    func reactionContent(reactionId: String) async throws -> [ReactionContent] {
         let url = URL(string: apiClient.serverPath + "v4/reaction-sounds/\(reactionId)")!
-        let reactionSounds: [ReactionSound] = try await apiClient.get(from: url)
+        let reactionSounds: [ReactionContent] = try await apiClient.get(from: url)
         return reactionSounds.sorted(by: { $0.position < $1.position })
     }
 

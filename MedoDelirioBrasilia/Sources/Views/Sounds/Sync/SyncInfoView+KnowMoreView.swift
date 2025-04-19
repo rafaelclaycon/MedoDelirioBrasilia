@@ -68,7 +68,9 @@ extension SyncInfoView {
             }
             .navigationTitle("Sobre a atualização de conteúdos")
             .onAppear {
-                Analytics().send(action: "didViewSyncSystemAboutScreen")
+                Task {
+                    await AnalyticsService().send(action: "didViewSyncSystemAboutScreen")
+                }
             }
         }
     }

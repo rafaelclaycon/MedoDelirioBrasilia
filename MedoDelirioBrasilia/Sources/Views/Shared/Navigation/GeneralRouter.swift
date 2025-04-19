@@ -15,20 +15,26 @@ enum GeneralNavigationDestination: Hashable {
 struct GeneralRouter: View {
 
     let destination: GeneralNavigationDestination
+    let contentRepository: ContentRepositoryProtocol
 
-    @State private var currentSoundListMode: SoundsListMode = .regular
+    @State private var currentContentListMode: ContentListMode = .regular
+    @State private var toast: Toast?
 
     var body: some View {
         switch destination {
         case .authorDetail(let author):
             AuthorDetailView(
                 author: author,
-                currentSoundsListMode: $currentSoundListMode
+                currentListMode: $currentContentListMode,
+                toast: $toast,
+                contentRepository: contentRepository
             )
         case .reactionDetail(let reaction):
             ReactionDetailView(
                 reaction: reaction,
-                currentSoundsListMode: $currentSoundListMode
+                currentListMode: $currentContentListMode,
+                toast: $toast,
+                contentRepository: contentRepository
             )
         }
     }

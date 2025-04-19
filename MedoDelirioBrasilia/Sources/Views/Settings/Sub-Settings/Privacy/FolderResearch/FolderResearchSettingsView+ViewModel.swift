@@ -72,7 +72,7 @@ extension FolderResearchSettingsView.ViewModel {
 
             state = .enrolled
         } catch {
-            Analytics().send(
+            await AnalyticsService().send(
                 originatingScreen: "FolderResearchSettingsView",
                 action: "issueSyncingChanges(\(error.localizedDescription))"
             )

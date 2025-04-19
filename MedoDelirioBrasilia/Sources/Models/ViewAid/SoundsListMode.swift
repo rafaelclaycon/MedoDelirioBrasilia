@@ -1,5 +1,5 @@
 //
-//  SoundsListMode.swift
+//  ContentListMode.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/02/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SoundsListMode: Int {
+enum ContentListMode: Int {
     case regular, selection
 }
 

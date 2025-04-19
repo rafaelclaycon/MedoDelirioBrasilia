@@ -12,6 +12,8 @@ internal protocol NetworkRabbitProtocol {
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 
     func retroStartingVersion() async -> String?
+
+    func post<T: Encodable>(to url: URL, body: T) async throws
 }
 
 class NetworkRabbit: NetworkRabbitProtocol {

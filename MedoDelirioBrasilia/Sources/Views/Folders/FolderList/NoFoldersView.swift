@@ -30,7 +30,7 @@ struct NoFoldersView: View {
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Pastas são uma maneira de organizar sons que você usa com frequência para acesso fácil.")
+            Text("Pastas são uma maneira de organizar conteúdos que você usa com frequência para acesso fácil.")
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)

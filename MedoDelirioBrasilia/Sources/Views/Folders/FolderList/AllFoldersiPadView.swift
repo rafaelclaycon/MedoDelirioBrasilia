@@ -12,7 +12,8 @@ struct AllFoldersiPadView: View {
 
     @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
-    
+    let contentRepository: ContentRepositoryProtocol
+
     @State private var folderIdForEditing: String = ""
     @State private var showErrorDeletingAlert: Bool = false
 
@@ -37,7 +38,8 @@ struct AllFoldersiPadView: View {
 
                 FolderList(
                     updateFolderList: $updateFolderList,
-                    folderForEditing: $folderForEditing
+                    folderForEditing: $folderForEditing,
+                    contentRepository: contentRepository
                 )
                 .environmentObject(deleteFolderAide)
             }
@@ -150,6 +152,7 @@ struct AllFoldersiPadView: View {
 #Preview {
     AllFoldersiPadView(
         folderForEditing: .constant(nil),
-        updateFolderList: .constant(false)
+        updateFolderList: .constant(false),
+        contentRepository: FakeContentRepository()
     )
 }

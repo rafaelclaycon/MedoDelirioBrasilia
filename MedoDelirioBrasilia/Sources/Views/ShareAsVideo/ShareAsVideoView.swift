@@ -31,6 +31,8 @@ struct ShareAsVideoView: View {
     private let textSocialNetworkTip = "Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
 
+    // MARK: - Computed Properties
+
     private var isSquare: Bool {
         viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue
     }
@@ -323,7 +325,7 @@ struct ShareAsVideoView: View {
 #Preview {
     ShareAsVideoView(
         viewModel: ShareAsVideoViewViewModel(
-            content: Sound(title: "Você é maluco ou você é idiota, companheiro?"),
+            content: AnyEquatableMedoContent(Sound(title: "Você é maluco ou você é idiota, companheiro?")),
             subtitle: "Lula (Cristiano Botafogo)",
             contentType: .videoFromSound
         ),

@@ -306,7 +306,7 @@ extension ClassicRetroView {
                             UIPasteboard.general.string = "#MedoEDelírioiOS"
 
                             showCopiedMessage = true
-                            TapticFeedback.success()
+                            HapticFeedback.success()
 
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 showCopiedMessage = false

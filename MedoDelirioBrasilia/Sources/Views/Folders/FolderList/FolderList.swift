@@ -7,18 +7,28 @@
 
 import SwiftUI
 
-/// Sub-view loaded inside the Sounds tab on iPhone and the All Folders tab on iPad and Mac.
+/// Subview loaded inside the Sounds tab on iPhone and the All Folders tab on iPad and Mac.
 struct FolderList: View {
+
+    // MARK: - External Dependencies
 
     @Binding var updateFolderList: Bool
     @Binding var folderForEditing: UserFolder?
+    let contentRepository: ContentRepositoryProtocol
+
+    // MARK: - State Properties
 
     @StateObject private var viewModel = FolderListViewModel()
-
     @State private var displayJoinFolderResearchBanner: Bool = false
-    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @State private var currentContentListMode: ContentListMode = .regular
+    @State private var toast: Toast?
+    @State private var floatingOptions: FloatingContentOptions?
+
+    // MARK: - Environment
 
     @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
+
+    // MARK: - Computed Properties
 
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -50,7 +60,9 @@ struct FolderList: View {
             return 100
         }
     }
-    
+
+    // MARK: - View Body
+
     var body: some View {
         VStack {
             if viewModel.hasFoldersToDisplay {
@@ -66,8 +78,15 @@ struct FolderList: View {
                     ForEach(viewModel.folders, id: \.changeHash) { folder in
                         NavigationLink {
                             FolderDetailView(
+                                viewModel: FolderDetailViewModel(
+                                    folder: folder,
+                                    contentRepository: contentRepository
+                                ),
                                 folder: folder,
-                                currentSoundsListMode: $currentSoundsListMode
+                                currentContentListMode: $currentContentListMode,
+                                toast: $toast,
+                                floatingOptions: $floatingOptions,
+                                contentRepository: contentRepository
                             )
                         } label: {
                             FolderCell(
@@ -93,7 +112,7 @@ struct FolderList: View {
                                 Button(role: .destructive, action: {
                                     let folderName = "\(folder.symbol) \(folder.name)"
                                     deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
-                                    deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+                                    deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os conteúdos não serão apagados."
                                     deleteFolderAide.folderIdForDeletion = folder.id
                                     deleteFolderAide.showAlert = true
                                 }, label: {
@@ -133,14 +152,16 @@ struct FolderList: View {
             
             viewModel.donateActivity()
         }
-        .onChange(of: updateFolderList) { shouldUpdate in
-            refreshFolderList(shouldUpdate)
+        .onChange(of: updateFolderList) {
+            refreshFolderList(updateFolderList)
         }
-        .onChange(of: deleteFolderAide.updateFolderList) { shouldUpdate in
-            refreshFolderList(shouldUpdate)
+        .onChange(of: deleteFolderAide.updateFolderList) {
+            refreshFolderList(deleteFolderAide.updateFolderList)
         }
     }
-    
+
+    // MARK: - Functions
+
     private func refreshFolderList(_ shouldUpdate: Bool) {
         if shouldUpdate {
             viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
@@ -155,6 +176,7 @@ struct FolderList: View {
 #Preview {
     FolderList(
         updateFolderList: .constant(false),
-        folderForEditing: .constant(nil)
+        folderForEditing: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }
