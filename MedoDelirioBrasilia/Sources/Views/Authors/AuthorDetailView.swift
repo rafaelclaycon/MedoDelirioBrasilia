@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct AuthorDetailView: View {
 
@@ -15,61 +14,10 @@ struct AuthorDetailView: View {
 
     let author: Author
 
-    @State private var navBarTitle: String = .empty
+    @State private var navBarTitle: String = ""
     private var currentContentListMode: Binding<ContentListMode>
 
-    @State private var showSelectionControlsInToolbar = false
-    @State private var showMenuOnToolbarForiOS16AndHigher = false
-    
     @State private var showingModalView = false
-
-    // MARK: - Sticky Header Vars
-
-    private var edgesToIgnore: SwiftUI.Edge.Set {
-        return author.photo == nil ? [] : .top
-    }
-
-    private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
-        geometry.frame(in: .global).minY
-    }
-    
-    private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
-        let offset = getScrollOffset(geometry)
-        // Image was pulled down
-        if offset > 0 {
-            return -offset
-        }
-        return 0
-    }
-    
-    private func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
-        let offset = getScrollOffset(geometry)
-        let imageHeight = geometry.size.height
-        if offset > 0 {
-            return imageHeight + offset
-        }
-        return imageHeight
-    }
-    
-    private func getOffsetBeforeShowingTitle() -> CGFloat {
-        author.photo == nil ? 50 : 250
-    }
-    
-    private func updateNavBarContent(_ offset: CGFloat) {
-        if offset < getOffsetBeforeShowingTitle() {
-            DispatchQueue.main.async {
-                navBarTitle = title
-                showSelectionControlsInToolbar = currentContentListMode.wrappedValue == .selection
-                showMenuOnToolbarForiOS16AndHigher = currentContentListMode.wrappedValue == .regular
-            }
-        } else {
-            DispatchQueue.main.async {
-                navBarTitle = .empty
-                showSelectionControlsInToolbar = false
-                showMenuOnToolbarForiOS16AndHigher = false
-            }
-        }
-    }
 
     // MARK: - Computed Properties
 
@@ -89,20 +37,23 @@ struct AuthorDetailView: View {
         return author.name
     }
 
-    private var externalLinks: [ExternalLink] {
-        guard let links = author.externalLinks else {
-            return []
-        }
-        guard let jsonData = links.data(using: .utf8) else {
-            return []
-        }
-        let decoder = JSONDecoder()
-        do {
-            let decodedLinks = try decoder.decode([ExternalLink].self, from: jsonData)
-            return decodedLinks
-        } catch {
-            print("Error decoding JSON: \(error)")
-            return []
+    private var edgesToIgnore: SwiftUI.Edge.Set {
+        return author.photo == nil ? [] : .top
+    }
+
+    private func getOffsetBeforeShowingTitle() -> CGFloat {
+        author.photo == nil ? 50 : 250
+    }
+
+    private func updateNavBarContent(_ offset: CGFloat) {
+        if offset < getOffsetBeforeShowingTitle() {
+            DispatchQueue.main.async {
+                navBarTitle = title
+            }
+        } else {
+            DispatchQueue.main.async {
+                navBarTitle = ""
+            }
         }
     }
 
@@ -146,66 +97,32 @@ struct AuthorDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.medium)) {
-                    VStack {
-                        if let photo = author.photo {
-                            GeometryReader { headerPhotoGeometry in
-                                KFImage(URL(string: photo))
-                                    .placeholder {
-                                        Image(systemName: "photo.on.rectangle")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 100)
-                                            .foregroundColor(.gray)
-                                            .opacity(0.3)
-                                    }
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
-                                    .clipped()
-                                    .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
-                            }.frame(height: 250)
+                    AuthorHeaderView(
+                        author: author,
+                        title: title,
+                        soundCount: viewModel.soundCount,
+                        soundCountText: viewModel.soundCountText,
+                        contentListMode: currentContentListMode.wrappedValue,
+                        contentSortOption: $viewModel.soundSortOption,
+                        multiSelectAction: {
+                            contentGridViewModel.onEnterMultiSelectModeSelected(
+                                loadedContent: loadedContent,
+                                isFavoritesOnlyView: false
+                            )
+                        },
+                        askForSoundAction: {
+                            contentGridViewModel.onExitMultiSelectModeSelected()
+                            viewModel.showAskForNewSoundAlert()
+                        },
+                        reportIssueAction: {
+                            contentGridViewModel.onExitMultiSelectModeSelected()
+                            viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+                        },
+                        contentSortChangeAction: {
+                            contentGridViewModel.onContentSortingChanged()
+                            viewModel.onSortOptionChanged()
                         }
-
-                        VStack(alignment: .leading, spacing: 15) {
-                            HStack {
-                                Text(title)
-                                    .font(.title)
-                                    .bold()
-
-                                Spacer()
-
-                                moreOptionsMenu(isOnToolbar: false)
-                            }
-
-                            if author.description != nil {
-                                Text(author.description ?? "")
-                            }
-
-                            if !externalLinks.isEmpty {
-                                ViewThatFits(in: .horizontal) {
-                                    HStack(spacing: 10) {
-                                        ForEach(externalLinks, id: \.title) {
-                                            ExternalLinkButton(externalLink: $0)
-                                        }
-                                    }
-                                    VStack(alignment: .leading, spacing: 15) {
-                                        ForEach(externalLinks, id: \.title) {
-                                            ExternalLinkButton(externalLink: $0)
-                                        }
-                                    }
-                                }
-                                .padding(.vertical, 4)
-                            }
-
-                            Text(viewModel.soundCountText)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .bold()
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.top, 10)
-                        .padding(.bottom, 5)
-                    }
+                    )
 
                     ContentGrid(
                         state: viewModel.state,
@@ -316,79 +233,6 @@ struct AuthorDetailView: View {
             .toast(contentGridViewModel.toast)
             .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
-    }
-
-    // MARK: - Subviews
-
-    @ViewBuilder
-    private func moreOptionsMenu(isOnToolbar: Bool) -> some View {
-        Menu {
-            if viewModel.soundCount > 1 {
-                Section {
-                    Button {
-                        contentGridViewModel.onEnterMultiSelectModeSelected(
-                            loadedContent: loadedContent,
-                            isFavoritesOnlyView: false
-                        )
-                    } label: {
-                        Label(
-                            currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
-                        )
-                    }
-                }
-            }
-            
-            Section {
-//                Button {
-//                    contentListViewModel.onExitMultiSelectModeSelected()
-//                    viewModel.selectedSounds = viewModel.sounds
-//                    // showingAddToFolderModal = true // TODO: Fix - move to ContentList
-//                } label: {
-//                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
-//                }
-                
-                Button {
-                    contentGridViewModel.onExitMultiSelectModeSelected()
-                    viewModel.showAskForNewSoundAlert()
-                } label: {
-                    Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-                }
-                
-                Button {
-                    contentGridViewModel.onExitMultiSelectModeSelected()
-                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
-                } label: {
-                    Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
-                }
-            }
-            
-            if viewModel.soundCount > 1 {
-                Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                        Text("Título")
-                            .tag(0)
-                        
-                        Text("Mais Recentes no Topo")
-                            .tag(1)
-                    }
-                    .onChange(of: viewModel.soundSortOption) {
-                        contentGridViewModel.onContentSortingChanged()
-                        viewModel.onSortOptionChanged()
-                    }
-                }
-            }
-        } label: {
-            if isOnToolbar {
-                Image(systemName: "ellipsis.circle")
-            } else {
-                Image(systemName: "ellipsis.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 26)
-            }
-        }
-        .disabled(viewModel.soundCount == 0)
     }
 }
 
