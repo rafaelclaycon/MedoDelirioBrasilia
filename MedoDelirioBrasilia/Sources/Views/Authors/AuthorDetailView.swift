@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct AuthorDetailView: View {
 
@@ -15,61 +14,10 @@ struct AuthorDetailView: View {
 
     let author: Author
 
-    @State private var navBarTitle: String = .empty
+    @State private var navBarTitle: String = ""
     private var currentContentListMode: Binding<ContentListMode>
 
-    @State private var showSelectionControlsInToolbar = false
-    @State private var showMenuOnToolbarForiOS16AndHigher = false
-    
     @State private var showingModalView = false
-
-    // MARK: - Sticky Header Vars
-
-    private var edgesToIgnore: SwiftUI.Edge.Set {
-        return author.photo == nil ? [] : .top
-    }
-
-    private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
-        geometry.frame(in: .global).minY
-    }
-    
-    private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
-        let offset = getScrollOffset(geometry)
-        // Image was pulled down
-        if offset > 0 {
-            return -offset
-        }
-        return 0
-    }
-    
-    private func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
-        let offset = getScrollOffset(geometry)
-        let imageHeight = geometry.size.height
-        if offset > 0 {
-            return imageHeight + offset
-        }
-        return imageHeight
-    }
-    
-    private func getOffsetBeforeShowingTitle() -> CGFloat {
-        author.photo == nil ? 50 : 250
-    }
-    
-    private func updateNavBarContent(_ offset: CGFloat) {
-        if offset < getOffsetBeforeShowingTitle() {
-            DispatchQueue.main.async {
-                navBarTitle = title
-                showSelectionControlsInToolbar = currentContentListMode.wrappedValue == .selection
-                showMenuOnToolbarForiOS16AndHigher = currentContentListMode.wrappedValue == .regular
-            }
-        } else {
-            DispatchQueue.main.async {
-                navBarTitle = .empty
-                showSelectionControlsInToolbar = false
-                showMenuOnToolbarForiOS16AndHigher = false
-            }
-        }
-    }
 
     // MARK: - Computed Properties
 
@@ -89,20 +37,23 @@ struct AuthorDetailView: View {
         return author.name
     }
 
-    private var externalLinks: [ExternalLink] {
-        guard let links = author.externalLinks else {
-            return []
-        }
-        guard let jsonData = links.data(using: .utf8) else {
-            return []
-        }
-        let decoder = JSONDecoder()
-        do {
-            let decodedLinks = try decoder.decode([ExternalLink].self, from: jsonData)
-            return decodedLinks
-        } catch {
-            print("Error decoding JSON: \(error)")
-            return []
+    private var edgesToIgnore: SwiftUI.Edge.Set {
+        return author.photo == nil ? [] : .top
+    }
+
+    private func getOffsetBeforeShowingTitle() -> CGFloat {
+        author.photo == nil ? 50 : 250
+    }
+
+    private func updateNavBarContent(_ offset: CGFloat) {
+        if offset < getOffsetBeforeShowingTitle() {
+            DispatchQueue.main.async {
+                navBarTitle = title
+            }
+        } else {
+            DispatchQueue.main.async {
+                navBarTitle = ""
+            }
         }
     }
 
@@ -146,66 +97,11 @@ struct AuthorDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.medium)) {
-                    VStack {
-                        if let photo = author.photo {
-                            GeometryReader { headerPhotoGeometry in
-                                KFImage(URL(string: photo))
-                                    .placeholder {
-                                        Image(systemName: "photo.on.rectangle")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 100)
-                                            .foregroundColor(.gray)
-                                            .opacity(0.3)
-                                    }
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
-                                    .clipped()
-                                    .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
-                            }.frame(height: 250)
-                        }
-
-                        VStack(alignment: .leading, spacing: 15) {
-                            HStack {
-                                Text(title)
-                                    .font(.title)
-                                    .bold()
-
-                                Spacer()
-
-                                moreOptionsMenu(isOnToolbar: false)
-                            }
-
-                            if author.description != nil {
-                                Text(author.description ?? "")
-                            }
-
-                            if !externalLinks.isEmpty {
-                                ViewThatFits(in: .horizontal) {
-                                    HStack(spacing: 10) {
-                                        ForEach(externalLinks, id: \.title) {
-                                            ExternalLinkButton(externalLink: $0)
-                                        }
-                                    }
-                                    VStack(alignment: .leading, spacing: 15) {
-                                        ForEach(externalLinks, id: \.title) {
-                                            ExternalLinkButton(externalLink: $0)
-                                        }
-                                    }
-                                }
-                                .padding(.vertical, 4)
-                            }
-
-                            Text(viewModel.soundCountText)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .bold()
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.top, 10)
-                        .padding(.bottom, 5)
-                    }
+                    AuthorHeaderView(
+                        author: author,
+                        title: title,
+                        soundCountText: viewModel.soundCountText
+                    )
 
                     ContentGrid(
                         state: viewModel.state,

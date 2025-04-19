@@ -1240,6 +1240,7 @@
 		D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB63F32A5A085800390778 /* SyncServiceStub.swift */; };
 		D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABDDAF287411C9007B25EA /* SongHelpView.swift */; };
 		D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */; };
+		D9ACB4F32DB4070F00CCCDD8 /* AuthorHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ACB4F22DB4070F00CCCDD8 /* AuthorHeaderView.swift */; };
 		D9ADEB6329861A79001CB004 /* Ai eu acho exagero.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6229861A79001CB004 /* Ai eu acho exagero.mp3 */; };
 		D9ADEB6729861BD3001CB004 /* Bem-vindos ao devido processo legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6429861BD2001CB004 /* Bem-vindos ao devido processo legal.mp3 */; };
 		D9ADEB6829861BD3001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6529861BD2001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 */; };
@@ -2798,6 +2799,7 @@
 		D9AB63F32A5A085800390778 /* SyncServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceStub.swift; sourceTree = "<group>"; };
 		D9ABDDAF287411C9007B25EA /* SongHelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
 		D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRandomSoundHelper.swift; sourceTree = "<group>"; };
+		D9ACB4F22DB4070F00CCCDD8 /* AuthorHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorHeaderView.swift; sourceTree = "<group>"; };
 		D9ADEB6229861A79001CB004 /* Ai eu acho exagero.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ai eu acho exagero.mp3"; sourceTree = "<group>"; };
 		D9ADEB6429861BD2001CB004 /* Bem-vindos ao devido processo legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bem-vindos ao devido processo legal.mp3"; sourceTree = "<group>"; };
 		D9ADEB6529861BD2001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ana Priscila Azevedo (golpista) - Senhores, selva.mp3"; sourceTree = "<group>"; };
@@ -4904,6 +4906,7 @@
 				D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */,
 				D9D627112B266389000EB791 /* AuthorCell.swift */,
 				D90449592BB283C20023088B /* ExternalLinkButton.swift */,
+				D9ACB4F22DB4070F00CCCDD8 /* AuthorHeaderView.swift */,
 			);
 			path = Authors;
 			sourceTree = "<group>";
@@ -6829,6 +6832,7 @@
 				D9E7BE9F2C9E1D9D0094AD28 /* ShareAsVideoResult.swift in Sources */,
 				D9E7BEA02C9E1D9D0094AD28 /* AlertType.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
+				D9ACB4F32DB4070F00CCCDD8 /* AuthorHeaderView.swift in Sources */,
 				D94EAB5529FC141F004CD604 /* LocalDatabase+Author.swift in Sources */,
 				D9A7D85F29FB448500A964AC /* AddSyncTables.swift in Sources */,
 				D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */,
