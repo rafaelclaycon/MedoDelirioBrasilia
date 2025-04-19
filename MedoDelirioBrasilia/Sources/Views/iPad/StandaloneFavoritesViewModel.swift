@@ -40,7 +40,7 @@ extension StandaloneFavoritesViewModel {
         loadContent()
     }
 
-    public func onSoundSortOptionChanged() {
+    public func onContentSortOptionChanged() {
         loadContent()
     }
 

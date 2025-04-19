@@ -91,8 +91,12 @@ extension MainContentViewModel {
         loadContent()
     }
 
-    public func onSoundSortOptionChanged() {
+    public func onContentSortOptionChanged() {
         loadContent()
+    }
+
+    public func onAuthorSortOptionChanged() {
+        UserSettings().saveAuthorSortOption(authorSortOption)
     }
 
     public func onExplicitContentSettingChanged() {

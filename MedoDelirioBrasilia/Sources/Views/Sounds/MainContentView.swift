@@ -93,7 +93,7 @@ struct MainContentView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
-                    if contentSearchTextIsEmpty ?? true {
+                    if contentSearchTextIsEmpty ?? true, currentContentListMode.wrappedValue == .regular {
                         ContentModePicker(
                             options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
                             selected: $viewModel.currentViewMode,
@@ -148,16 +148,7 @@ struct MainContentView: View {
                                         }
                                     }
                                 ,
-                                errorView:
-                                    VStack {
-                                        HStack(spacing: .spacing(.small)) {
-                                            ProgressView()
-
-                                            Text("Erro ao carregar sons.")
-                                                .foregroundColor(.gray)
-                                        }
-                                        .frame(maxWidth: .infinity)
-                                    }
+                                errorView: VStack { ContentLoadErrorView() }
                             )
 
                             if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
@@ -201,7 +192,28 @@ struct MainContentView: View {
                         cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
                         openSettingsAction: openSettingsAction
                     ),
-                    trailing: trailingToolbarControls()
+                    trailing: TrailingToolbarControls(
+                        currentViewMode: viewModel.currentViewMode,
+                        contentListMode: currentContentListMode.wrappedValue,
+                        contentSortOption: $viewModel.contentSortOption,
+                        authorSortOption: $viewModel.authorSortOption,
+                        openContentUpdateSheet: {
+                            subviewToOpen = .syncInfo
+                            showingModalView = true
+                        },
+                        multiSelectAction: {
+                            contentGridViewModel.onEnterMultiSelectModeSelected(
+                                loadedContent: loadedContent,
+                                isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+                            )
+                        },
+                        contentSortChangeAction: {
+                            viewModel.onContentSortOptionChanged()
+                        },
+                        authorSortChangeAction: {
+                            viewModel.onAuthorSortOptionChanged()
+                        }
+                    )
                 )
                 .onChange(of: viewModel.currentViewMode) {
                     viewModel.onSelectedViewModeChanged()
@@ -262,126 +274,55 @@ struct MainContentView: View {
 
 extension MainContentView {
 
-    struct LeadingToolbarControls: View {
+    struct TrailingToolbarControls: View {
 
-        let isSelecting: Bool
-        let cancelAction: () -> Void
-        let openSettingsAction: () -> Void
+        let currentViewMode: ContentModeOption
+        let contentListMode: ContentListMode
+        @Binding var contentSortOption: Int
+        @Binding var authorSortOption: Int
+        let openContentUpdateSheet: () -> Void
+        let multiSelectAction: () -> Void
+        let contentSortChangeAction: () -> Void
+        let authorSortChangeAction: () -> Void
 
         var body: some View {
-            if isSelecting {
-                Button {
-                    cancelAction()
-                } label: {
-                    Text("Cancelar")
-                        .bold()
-                }
-            } else {
-                if UIDevice.isiPhone {
-                    Button {
-                        openSettingsAction()
-                    } label: {
-                        Image(systemName: "gearshape")
-                    }
-                } else {
-                    EmptyView()
-                }
-            }
-        }
-    }
+            if currentViewMode != .folders { // MyFoldersiPhoneView takes care of its own toolbar.
+                HStack(spacing: .spacing(.medium)) {
+                    if currentViewMode == .authors {
+                        Menu {
+                            Section {
+                                Picker("Ordenação de Autores", selection: $authorSortOption) {
+                                    Text("Nome")
+                                        .tag(0)
 
-    @ViewBuilder
-    func trailingToolbarControls() -> some View {
-        if viewModel.currentViewMode == .folders {
-            EmptyView()
-        } else {
-            HStack(spacing: 15) {
-                if viewModel.currentViewMode == .authors {
-                    Menu {
-                        Section {
-                            Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
-                                Text("Nome")
-                                    .tag(0)
+                                    Text("Autores com Mais Sons no Topo")
+                                        .tag(1)
 
-                                Text("Autores com Mais Sons no Topo")
-                                    .tag(1)
-
-                                Text("Autores com Menos Sons no Topo")
-                                    .tag(2)
-                            }
-                        }
-                    } label: {
-                        Image(systemName: "arrow.up.arrow.down")
-                    }
-                    .onChange(of: viewModel.authorSortOption) {
-                        authorSortAction = AuthorSortOption(rawValue: viewModel.authorSortOption) ?? .nameAscending
-                        UserSettings().saveAuthorSortOption(viewModel.authorSortOption)
-                    }
-                } else {
-                    if UIDevice.isiPhone && currentContentListMode.wrappedValue == .regular {
-                        SyncStatusView()
-                            .onTapGesture {
-                                subviewToOpen = .syncInfo
-                                showingModalView = true
-                            }
-                    } else if !UIDevice.isiPhone && viewModel.currentViewMode != .favorites {
-                        SyncStatusView()
-                            .onTapGesture {
-                                subviewToOpen = .syncInfo
-                                showingModalView = true
-                            }
-                    }
-
-                    Menu {
-                        Section {
-                            Button {
-                                contentGridViewModel.onEnterMultiSelectModeSelected(
-                                    loadedContent: loadedContent,
-                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites
-                                )
-                            } label: {
-                                Label(
-                                    currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                                    systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
-                                )
-                            }
-                        }
-
-                        Section {
-                            Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
-                                Text("Título")
-                                    .tag(0)
-
-                                Text("Nome do(a) Autor(a)")
-                                    .tag(1)
-
-                                Text("Mais Recentes no Topo")
-                                    .tag(2)
-
-                                Text("Mais Curtos no Topo")
-                                    .tag(3)
-
-                                Text("Mais Longos no Topo")
-                                    .tag(4)
-
-                                if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
-                                    Text("Título Mais Longo no Topo")
-                                        .tag(5)
-
-                                    Text("Título Mais Curto no Topo")
-                                        .tag(6)
+                                    Text("Autores com Menos Sons no Topo")
+                                        .tag(2)
                                 }
                             }
+                        } label: {
+                            Image(systemName: "arrow.up.arrow.down")
                         }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
+                        .onChange(of: authorSortOption) {
+                            authorSortChangeAction()
+                        }
+                    } else {
+                        if contentListMode == .regular {
+                            SyncStatusView()
+                                .onTapGesture {
+                                    openContentUpdateSheet()
+                                }
+                        }
+
+                        ContentToolbarOptionsView(
+                            contentSortOption: $contentSortOption,
+                            contentListMode: contentListMode,
+                            multiSelectAction: multiSelectAction,
+                            contentSortChangeAction: contentSortChangeAction
+                        )
                     }
-                    .onChange(of: viewModel.contentSortOption) {
-                        viewModel.onSoundSortOptionChanged()
-                    }
-                    .disabled(
-                        viewModel.currentViewMode == .favorites //&& viewModel.favorites?.count == 0 // TODO: Do we need to adapt this?
-                    )
                 }
             }
         }

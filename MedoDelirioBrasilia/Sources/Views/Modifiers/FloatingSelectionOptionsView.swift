@@ -126,7 +126,6 @@ struct FloatingSelectionOptionsView: ViewModifier {
                                 }
                             }
                             .disabled(!options.areButtonsEnabled)
-                            .disabled(!UIDevice.isiPhone)
                         }
                     }
                     .padding(.horizontal, 20)

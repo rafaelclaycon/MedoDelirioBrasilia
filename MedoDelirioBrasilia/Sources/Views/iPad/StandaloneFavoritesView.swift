@@ -11,17 +11,28 @@ struct StandaloneFavoritesView: View {
 
     @State var viewModel: StandaloneFavoritesViewModel
     @State private var contentGridViewModel: ContentGridViewModel
+    private var currentContentListMode: Binding<ContentListMode>
+    private let openSettingsAction: () -> Void
 
     @State private var soundSearchTextIsEmpty: Bool? = true
+
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
+    }
 
     // MARK: - Initializer
 
     init(
         viewModel: StandaloneFavoritesViewModel,
+        currentContentListMode: Binding<ContentListMode>,
+        openSettingsAction: @escaping () -> Void,
         toast: Binding<Toast?>,
         contentRepository: ContentRepositoryProtocol
     ) {
         self.viewModel = viewModel
+        self.currentContentListMode = currentContentListMode
+        self.openSettingsAction = openSettingsAction
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
@@ -44,6 +55,7 @@ struct StandaloneFavoritesView: View {
                         state: viewModel.state,
                         viewModel: contentGridViewModel,
                         searchTextIsEmpty: $soundSearchTextIsEmpty,
+                        allowSearch: true,
                         containerSize: geometry.size,
                         loadingView:
                             VStack {
@@ -63,16 +75,7 @@ struct StandaloneFavoritesView: View {
                                     .padding(.vertical, .spacing(.huge))
                             }
                         ,
-                        errorView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Erro ao carregar sons.")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
+                        errorView: VStack { ContentLoadErrorView() }
                     )
 
                     Spacer()
@@ -80,14 +83,26 @@ struct StandaloneFavoritesView: View {
                 }
                 .padding(.horizontal, .spacing(.medium))
                 .navigationTitle(Text("Favoritos"))
-                //            .navigationBarItems(
-                //                leading: LeadingToolbarControls(
-                //                    isSelecting: currentContentListMode.wrappedValue == .selection,
-                //                    cancelAction: { allSoundsViewModel.onExitMultiSelectModeSelected() },
-                //                    openSettingsAction: openSettingsAction
-                //                ),
-                //                trailing: trailingToolbarControls()
-                //            )
+                .navigationBarItems(
+                    leading: LeadingToolbarControls(
+                        isSelecting: currentContentListMode.wrappedValue == .selection,
+                        cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
+                        openSettingsAction: openSettingsAction
+                    ),
+                    trailing: ContentToolbarOptionsView(
+                        contentSortOption: $viewModel.contentSortOption,
+                        contentListMode: currentContentListMode.wrappedValue,
+                        multiSelectAction: {
+                            contentGridViewModel.onEnterMultiSelectModeSelected(
+                                loadedContent: loadedContent,
+                                isFavoritesOnlyView: true
+                            )
+                        },
+                        contentSortChangeAction: {
+                            viewModel.onContentSortOptionChanged()
+                        }
+                    )
+                )
                 .onAppear {
                     viewModel.onViewDidAppear()
                     contentGridViewModel.onViewAppeared()

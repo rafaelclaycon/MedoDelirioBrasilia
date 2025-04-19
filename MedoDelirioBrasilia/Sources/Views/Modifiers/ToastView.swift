@@ -19,7 +19,7 @@ public struct Toast {
 
     public init(
         message: String,
-        type: ToastType = .success
+        type: ToastType
     ) {
         self.message = message
         self.type = type

@@ -66,6 +66,8 @@ struct SidebarView: View {
                             contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                             contentRepository: contentRepository
                         ),
+                        currentContentListMode: $currentContentListMode,
+                        openSettingsAction: {},
                         toast: $toast,
                         contentRepository: contentRepository
                     ),
