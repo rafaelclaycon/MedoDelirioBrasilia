@@ -102,6 +102,7 @@ struct AuthorDetailView: View {
                         title: title,
                         soundCount: viewModel.soundCount,
                         soundCountText: viewModel.soundCountText,
+                        containerWidth: geometry.size.width,
                         contentListMode: currentContentListMode.wrappedValue,
                         contentSortOption: $viewModel.soundSortOption,
                         multiSelectAction: {

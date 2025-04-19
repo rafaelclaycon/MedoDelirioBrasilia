@@ -14,6 +14,7 @@ struct AuthorHeaderView: View {
     let title: String
     let soundCount: Int
     let soundCountText: String
+    var containerWidth: CGFloat = 400
 
     let contentListMode: ContentListMode
     @Binding var contentSortOption: Int
@@ -44,6 +45,7 @@ struct AuthorHeaderView: View {
                 title: title,
                 soundCount: soundCount,
                 soundCountText: soundCountText,
+                containerWidth: containerWidth,
                 contentListMode: contentListMode,
                 contentSortOption: $contentSortOption,
                 multiSelectAction: multiSelectAction,
@@ -195,6 +197,7 @@ extension AuthorHeaderView {
         let title: String
         let soundCount: Int
         let soundCountText: String
+        let containerWidth: CGFloat
 
         let contentListMode: ContentListMode
         @Binding var contentSortOption: Int
@@ -214,7 +217,7 @@ extension AuthorHeaderView {
         // MARK: - View Body
 
         var body: some View {
-            if !hasPhoto {
+            if !hasPhoto || containerWidth < 400 {
                 PhoneHeader(
                     author: author,
                     title: title,
