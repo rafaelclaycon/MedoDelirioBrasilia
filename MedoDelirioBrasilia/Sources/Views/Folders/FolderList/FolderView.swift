@@ -14,10 +14,11 @@ struct FolderView: View {
     @State var height: CGFloat = 90
 
     var body: some View {
-        VStack(spacing: .spacing(.xxSmall)) {
-            FolderSymbol(
+        VStack(spacing: .spacing(.xSmall)) {
+            FolderIcon(
                 color: folder.backgroundColor.toPastelColor(),
-                emoji: folder.symbol
+                emoji: folder.symbol,
+                isEmpty: folder.isEmpty
             )
 
             HStack {
@@ -40,47 +41,62 @@ struct FolderView: View {
 
 extension FolderView {
 
-    struct FolderSymbol: View {
+    struct FolderIcon: View {
 
         let color: Color
         let emoji: String
+        let isEmpty: Bool
 
         var body: some View {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(color)
-                .frame(height: 105)
-                .overlay { SpeckleOverlay() }
-                .padding(.horizontal, .spacing(.nano))
-                .modifier(PerspectiveModifier())
-                .overlay(alignment: .topLeading) {
-                    Text(emoji)
-                        .font(.system(size: 38))
-                        .padding()
+            VStack {
+                Spacer()
+                    .frame(height: 18)
+
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(color)
+                    .frame(height: 106)
+                    .overlay { SpeckleOverlay() }
+            }
+            .background(alignment: .topLeading) {
+                HStack {
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(color)
+                        .frame(width: 66, height: 100)
+                        .overlay { SpeckleOverlay() }
+
+                    Spacer()
                 }
-        }
-    }
-
-    struct PerspectiveRectangle: Shape {
-        func path(in rect: CGRect) -> Path {
-            var path = Path()
-
-            // Define the amount of perspective distortion
-            let perspectiveOffset: CGFloat = rect.height * 0.2
-
-            // Define the four corners of the quadrilateral
-            let topLeft = CGPoint(x: rect.minX, y: rect.minY)
-            let topRight = CGPoint(x: rect.maxX, y: rect.minY)
-            let bottomRight = CGPoint(x: rect.maxX - perspectiveOffset, y: rect.maxY)
-            let bottomLeft = CGPoint(x: rect.minX + perspectiveOffset, y: rect.maxY)
-
-            // Draw the path
-            path.move(to: topLeft)
-            path.addLine(to: topRight)
-            path.addLine(to: bottomRight)
-            path.addLine(to: bottomLeft)
-            path.closeSubpath()
-
-            return path
+            }
+            .overlay(alignment: .top) {
+                if !isEmpty {
+                    VStack {
+                        Spacer()
+                            .frame(height: 22)
+                        
+                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            .fill(Color.white)
+                            .frame(height: 50)
+                            .shadow(radius: 1)
+                    }
+                }
+            }
+            .overlay(alignment: .bottom) {
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(color)
+                    .frame(height: 95)
+                    .overlay { SpeckleOverlay() }
+                    .padding(.horizontal, .spacing(.nano))
+                    .modifier(PerspectiveModifier())
+                    .shadow(radius: 3, y: -1)
+                    .overlay(alignment: .topLeading) {
+                        Text(emoji)
+                            .font(.system(size: 38))
+                            .padding(.leading, 16)
+                            .padding(.top, 8)
+                    }
+                    .offset(y: 3)
+            }
+            .padding(.horizontal, .spacing(.nano))
         }
     }
 
@@ -118,21 +134,29 @@ struct PerspectiveModifier: ViewModifier {
 
 #Preview {
     let columns = [
-        GridItem(.flexible(), spacing: .spacing(.large)),
-        GridItem(.flexible(), spacing: .spacing(.large))
+        GridItem(.flexible(), spacing: 22),
+        GridItem(.flexible(), spacing: 22)
     ]
 
     let folders = [
-        UserFolder(symbol: "🤡", name: "Uso diario", backgroundColor: "pastelPurple"),
-        UserFolder(symbol: "😅", name: "Meh", backgroundColor: "pastelPurple"),
-        UserFolder(symbol: "🏙️", name: "Política", backgroundColor: "pastelPurple"),
-        UserFolder(symbol: "🙅🏿‍♂️", name: "Anti-Racista", backgroundColor: "pastelRoyalBlue")
+        UserFolder(
+            symbol: "🤡",
+            name: "Uso diario",
+            backgroundColor: "pastelPurple",
+            numberOfContents: 3
+        ),
+        UserFolder(symbol: "😅", name: "Meh", backgroundColor: "pastelPurple", numberOfContents: 3),
+        UserFolder(symbol: "🏙️", name: "Política", backgroundColor: "pastelPurple", numberOfContents: 0),
+        UserFolder(symbol: "🙅🏿‍♂️", name: "Anti-Racista", backgroundColor: "pastelRoyalBlue", numberOfContents: 3),
+        UserFolder(symbol: "✋", name: "Espera!", backgroundColor: "pastelPurple", numberOfContents: 3),
+        UserFolder(symbol: "🔥", name: "Queima!", backgroundColor: "pastelPurple", numberOfContents: 3)
     ]
 
     return LazyVGrid(columns: columns) {
         ForEach(folders) { folder in
             FolderView(folder: folder)
+                .padding(.vertical, 6)
         }
     }
-    .padding()
+    .padding(.horizontal, .spacing(.medium))
 }

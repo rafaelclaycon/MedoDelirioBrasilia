@@ -37,7 +37,7 @@ struct UserFolder: Hashable, Codable, Identifiable {
 
     var isEmpty: Bool {
         guard let numberOfContents else { return true }
-        return numberOfContents > 0
+        return numberOfContents == 0
     }
 
     init(
@@ -48,7 +48,9 @@ struct UserFolder: Hashable, Codable, Identifiable {
         changeHash: String = "",
         creationDate: Date? = nil,
         version: String? = nil,
-        userSortPreference: Int? = nil
+        userSortPreference: Int? = nil,
+        numberOfContents: Int? = nil,
+        authorPhotos: [String]? = nil
     ) {
         self.id = id
         self.symbol = symbol
@@ -58,6 +60,8 @@ struct UserFolder: Hashable, Codable, Identifiable {
         self.creationDate = creationDate
         self.version = version
         self.userSortPreference = userSortPreference
+        self.numberOfContents = numberOfContents
+        self.authorPhotos = authorPhotos
     }
 
     init(
