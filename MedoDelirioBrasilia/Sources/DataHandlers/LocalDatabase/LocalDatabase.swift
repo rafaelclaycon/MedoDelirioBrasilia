@@ -32,7 +32,7 @@ internal protocol LocalDatabaseProtocol {
     func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
     func insert(contentId: String, intoUserFolder userFolderId: String) throws
-    func soundIdsInside(userFolder userFolderId: String) throws -> [String]
+    func contentIdsInside(userFolder userFolderId: String) throws -> [String]
     func folderHashes() throws -> [String: String]
     func folders(withIds folderIds: [String]) throws -> [UserFolder]
     func update(userSortPreference: Int, forFolderId userFolderId: String) throws

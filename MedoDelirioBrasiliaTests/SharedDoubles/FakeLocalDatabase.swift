@@ -139,7 +139,7 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         //
     }
 
-    func soundIdsInside(userFolder userFolderId: String) throws -> [String] {
+    func contentIdsInside(userFolder userFolderId: String) throws -> [String] {
         contentInsideFolder.compactMap {
             guard $0.userFolderId == userFolderId else { return nil }
             return $0.contentId

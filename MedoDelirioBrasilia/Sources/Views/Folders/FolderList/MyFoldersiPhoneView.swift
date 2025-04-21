@@ -23,7 +23,7 @@ struct MyFoldersiPhoneView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(
+                FolderGrid(
                     updateFolderList: $updateFolderList,
                     folderForEditing: $folderForEditing,
                     contentRepository: contentRepository

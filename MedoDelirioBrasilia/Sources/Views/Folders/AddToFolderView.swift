@@ -87,11 +87,7 @@ struct AddToFolderView: View {
                                         details = result
                                         isBeingShown.toggle()
                                     } label: {
-                                        FolderCell(
-                                            symbol: folder.symbol,
-                                            name: folder.name,
-                                            backgroundColor: folder.backgroundColor.toPastelColor()
-                                        )
+                                        FolderView(folder: folder)
                                     }
                                     .foregroundColor(.primary)
                                 }

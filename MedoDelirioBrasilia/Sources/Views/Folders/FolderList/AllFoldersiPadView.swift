@@ -36,7 +36,7 @@ struct AllFoldersiPadView: View {
                         //.disabled(true)  // Make it non-editable
                 }
 
-                FolderList(
+                FolderGrid(
                     updateFolderList: $updateFolderList,
                     folderForEditing: $folderForEditing,
                     contentRepository: contentRepository
@@ -52,12 +52,6 @@ struct AllFoldersiPadView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 HStack(spacing: 20) {
-                    if CommandLine.arguments.contains("-SHOW_EXPORT_FOLDERS_OPTION") {
-                        Button("Exportar Pastas") {
-                            exportFolders()
-                        }
-                    }
-
                     Button {
                         folderForEditing = UserFolder.newFolder()
                     } label: {
@@ -103,30 +97,6 @@ struct AllFoldersiPadView: View {
     }
 
     // MARK: - Functions
-
-    private func exportFolders() {
-        do {
-            let rawFolders = try LocalDatabase.shared.allFolders()
-            var folders = rawFolders.map { UserFolderDTO(userFolder: $0) }
-
-            for i in folders.indices {
-                let folderContents = try LocalDatabase.shared.contentsInside(userFolder: folders[i].id)
-                let contentIds = folderContents.map { $0.contentId }
-                let sounds = try LocalDatabase.shared.sounds(withIds: contentIds)
-                folders[i].sounds = sounds.map { $0.id }
-            }
-
-            if let jsonData = try? JSONEncoder().encode(folders), let jsonString = String(data: jsonData, encoding: .utf8) {
-                DispatchQueue.main.async {
-                    self.exportDataString = jsonString
-                    UIPasteboard.general.string = jsonString
-                    self.isDataReadyToShow = true
-                }
-            }
-        } catch {
-            print("Erro ao tentar exportar as pastas para arquivo: \(error.localizedDescription)")
-        }
-    }
 
     private func verifyFile(at url: URL) -> Bool {
         let fileManager = FileManager.default

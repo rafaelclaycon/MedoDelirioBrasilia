@@ -32,6 +32,13 @@ struct UserFolder: Hashable, Codable, Identifiable {
     var creationDate: Date?
     var version: String?
     var userSortPreference: Int?
+    var numberOfContents: Int?
+    var authorPhotos: [String]?
+
+    var isEmpty: Bool {
+        guard let numberOfContents else { return true }
+        return numberOfContents > 0
+    }
 
     init(
         id: String = UUID().uuidString,
@@ -51,6 +58,23 @@ struct UserFolder: Hashable, Codable, Identifiable {
         self.creationDate = creationDate
         self.version = version
         self.userSortPreference = userSortPreference
+    }
+
+    init(
+        dto: UserFolderDTO,
+        numberOfContents: Int,
+        authorPhotos: [String]
+    ) {
+        self.id = dto.id
+        self.symbol = dto.symbol
+        self.name = dto.name
+        self.backgroundColor = dto.backgroundColor
+        self.changeHash = dto.changeHash
+        self.creationDate = dto.creationDate
+        self.version = dto.version
+        self.userSortPreference = dto.userSortPreference
+        self.numberOfContents = numberOfContents
+        self.authorPhotos = authorPhotos
     }
 }
 
@@ -73,9 +97,41 @@ extension UserFolder {
     }
 }
 
+struct UserFolderDTO: Hashable, Codable, Identifiable {
+
+    let id: String
+    var symbol: String
+    var name: String
+    var backgroundColor: String
+    var changeHash: String?
+    var creationDate: Date?
+    var version: String?
+    var userSortPreference: Int?
+
+    init(
+        id: String = UUID().uuidString,
+        symbol: String,
+        name: String,
+        backgroundColor: String,
+        changeHash: String = "",
+        creationDate: Date? = nil,
+        version: String? = nil,
+        userSortPreference: Int? = nil
+    ) {
+        self.id = id
+        self.symbol = symbol
+        self.name = name
+        self.backgroundColor = backgroundColor
+        self.changeHash = changeHash
+        self.creationDate = creationDate
+        self.version = version
+        self.userSortPreference = userSortPreference
+    }
+}
+
 /// INTERNAL USE ONLY.
 /// Used to export folders to create Reactions.
-struct UserFolderDTO: Codable {
+struct UserFolderForExport: Codable {
 
     let id: String
     let name: String

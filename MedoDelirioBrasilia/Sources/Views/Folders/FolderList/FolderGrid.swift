@@ -1,5 +1,5 @@
 //
-//  FolderList.swift
+//  FolderGrid.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 26/09/22.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Subview loaded inside the Sounds tab on iPhone and the All Folders tab on iPad and Mac.
-struct FolderList: View {
+struct FolderGrid: View {
 
     // MARK: - External Dependencies
 
@@ -18,8 +18,12 @@ struct FolderList: View {
 
     // MARK: - State Properties
 
-    @StateObject private var viewModel = FolderListViewModel()
-    @State private var displayJoinFolderResearchBanner: Bool = false
+    @State private var viewModel = FolderGridViewModel(
+        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+        userSettings: UserSettings(),
+        appMemory: AppPersistentMemory()
+    )
+
     @State private var currentContentListMode: ContentListMode = .regular
     @State private var toast: Toast?
     @State private var floatingOptions: FloatingContentOptions?
@@ -65,16 +69,16 @@ struct FolderList: View {
 
     var body: some View {
         VStack {
-            if viewModel.hasFoldersToDisplay {
-                if displayJoinFolderResearchBanner {
+            if !viewModel.folders.isEmpty {
+                if viewModel.displayJoinFolderResearchBanner {
                     JoinFolderResearchBannerView(
                         viewModel: JoinFolderResearchBannerView.ViewModel(state: .displayingRequestToJoin),
-                        displayMe: $displayJoinFolderResearchBanner
+                        displayMe: $viewModel.displayJoinFolderResearchBanner
                     )
                     .padding(.bottom)
                 }
                 
-                LazyVGrid(columns: columns, spacing: 14) {
+                LazyVGrid(columns: columns, spacing: .spacing(.small)) {
                     ForEach(viewModel.folders, id: \.changeHash) { folder in
                         NavigationLink {
                             FolderDetailView(
@@ -89,12 +93,7 @@ struct FolderList: View {
                                 contentRepository: contentRepository
                             )
                         } label: {
-                            FolderCell(
-                                symbol: folder.symbol,
-                                name: folder.name,
-                                backgroundColor: folder.backgroundColor.toPastelColor()
-                            )
-                            .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
+                            FolderView(folder: folder)
                         }
                         .foregroundColor(.primary)
                         .contextMenu {
@@ -131,50 +130,28 @@ struct FolderList: View {
             }
         }
         .onAppear {
-            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
-            
-            if UserSettings().getHasJoinedFolderResearch() {
-                displayJoinFolderResearchBanner = false
-            } else if let hasDismissed = AppPersistentMemory().getHasDismissedJoinFolderResearchBanner() {
-                if hasDismissed {
-                    displayJoinFolderResearchBanner = false
-                } else {
-                    if AppPersistentMemory().getHasSentFolderResearchInfo() {
-                        displayJoinFolderResearchBanner = false
-                    } else {
-                        displayJoinFolderResearchBanner = true
-                    }
-                }
-                displayJoinFolderResearchBanner = hasDismissed == false
-            } else {
-                displayJoinFolderResearchBanner = true
-            }
-            
-            viewModel.donateActivity()
+            viewModel.onViewAppeared()
         }
         .onChange(of: updateFolderList) {
-            refreshFolderList(updateFolderList)
+            if updateFolderList {
+                viewModel.onReloadRequested()
+                updateFolderList = false
+            }
         }
         .onChange(of: deleteFolderAide.updateFolderList) {
-            refreshFolderList(deleteFolderAide.updateFolderList)
+            if deleteFolderAide.updateFolderList {
+                viewModel.onReloadRequested()
+                deleteFolderAide.updateFolderList = false
+            }
         }
-    }
-
-    // MARK: - Functions
-
-    private func refreshFolderList(_ shouldUpdate: Bool) {
-        if shouldUpdate {
-            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
-            updateFolderList = false
-            deleteFolderAide.updateFolderList = false
-        }
+        //.alert
     }
 }
 
 // MARK: - Preview
 
 #Preview {
-    FolderList(
+    FolderGrid(
         updateFolderList: .constant(false),
         folderForEditing: .constant(nil),
         contentRepository: FakeContentRepository()
