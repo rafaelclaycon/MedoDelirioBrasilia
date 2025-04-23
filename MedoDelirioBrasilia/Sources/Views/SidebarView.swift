@@ -150,14 +150,14 @@ struct SidebarView: View {
                 Image(systemName: "gearshape")
             }
         }
-//        .onAppear {
-//            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
-//        }
-//        .onChange(of: updateFolderList) {
-//            if updateFolderList {
-//                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
-//            }
-//        }
+        .onAppear {
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+        }
+        .onChange(of: updateFolderList) {
+            if updateFolderList {
+                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+            }
+        }
     }
 }
 

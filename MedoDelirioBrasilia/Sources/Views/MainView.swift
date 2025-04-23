@@ -291,9 +291,9 @@ struct MainView: View {
                         }
                         .padding(.top, 30)
                     }
-//                    .onAppear {
-//                        viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
-//                    }
+                    .onAppear {
+                        viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                    }
                 } else {
                     NavigationSplitView {
                         SidebarView(
