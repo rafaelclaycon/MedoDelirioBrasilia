@@ -10,7 +10,8 @@ import SwiftUI
 @Observable
 class FolderGridViewModel {
 
-    var folders = [UserFolder]()
+    var state: LoadingState<[UserFolder]> = .loading
+
     var displayJoinFolderResearchBanner: Bool = false
 
     var currentActivity: NSUserActivity? = nil
@@ -34,14 +35,14 @@ class FolderGridViewModel {
 
 extension FolderGridViewModel {
 
-    public func onViewAppeared() {
-        loadContent()
+    public func onViewAppeared() async {
+        await loadContent()
         showFolderResearchBanner()
         donateActivity()
     }
 
-    public func onReloadRequested() {
-        loadContent()
+    public func onReloadRequested() async {
+        await loadContent()
     }
 }
 
@@ -49,13 +50,12 @@ extension FolderGridViewModel {
 
 extension FolderGridViewModel {
 
-    private func loadContent() {
+    private func loadContent() async {
+        state = .loading
         do {
-            folders = try userFolderRepository.allFolders()
-            dump(folders)
+            state = .loaded(try await userFolderRepository.allFolders())
         } catch {
-            debugPrint(error)
-            // show error to user
+            state = .error(error.localizedDescription)
         }
     }
 

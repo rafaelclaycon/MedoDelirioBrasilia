@@ -32,12 +32,11 @@ struct UserFolder: Hashable, Codable, Identifiable {
     var creationDate: Date?
     var version: String?
     var userSortPreference: Int?
-    var numberOfContents: Int?
-    var authorPhotos: [String]?
+    var contentCount: Int?
 
     var isEmpty: Bool {
-        guard let numberOfContents else { return true }
-        return numberOfContents == 0
+        guard let contentCount else { return true }
+        return contentCount == 0
     }
 
     init(
@@ -49,8 +48,7 @@ struct UserFolder: Hashable, Codable, Identifiable {
         creationDate: Date? = nil,
         version: String? = nil,
         userSortPreference: Int? = nil,
-        numberOfContents: Int? = nil,
-        authorPhotos: [String]? = nil
+        contentCount: Int? = nil
     ) {
         self.id = id
         self.symbol = symbol
@@ -60,25 +58,7 @@ struct UserFolder: Hashable, Codable, Identifiable {
         self.creationDate = creationDate
         self.version = version
         self.userSortPreference = userSortPreference
-        self.numberOfContents = numberOfContents
-        self.authorPhotos = authorPhotos
-    }
-
-    init(
-        dto: UserFolderDTO,
-        numberOfContents: Int,
-        authorPhotos: [String]
-    ) {
-        self.id = dto.id
-        self.symbol = dto.symbol
-        self.name = dto.name
-        self.backgroundColor = dto.backgroundColor
-        self.changeHash = dto.changeHash
-        self.creationDate = dto.creationDate
-        self.version = dto.version
-        self.userSortPreference = dto.userSortPreference
-        self.numberOfContents = numberOfContents
-        self.authorPhotos = authorPhotos
+        self.contentCount = contentCount
     }
 }
 
@@ -98,64 +78,5 @@ extension UserFolder {
     func folderHash(_ folderContents: [String]) -> String {
         let string = self.symbol + self.name + folderContents.joined()
         return FolderResearchProvider.hash(string)
-    }
-}
-
-struct UserFolderDTO: Hashable, Codable, Identifiable {
-
-    let id: String
-    var symbol: String
-    var name: String
-    var backgroundColor: String
-    var changeHash: String?
-    var creationDate: Date?
-    var version: String?
-    var userSortPreference: Int?
-
-    init(
-        id: String = UUID().uuidString,
-        symbol: String,
-        name: String,
-        backgroundColor: String,
-        changeHash: String = "",
-        creationDate: Date? = nil,
-        version: String? = nil,
-        userSortPreference: Int? = nil
-    ) {
-        self.id = id
-        self.symbol = symbol
-        self.name = name
-        self.backgroundColor = backgroundColor
-        self.changeHash = changeHash
-        self.creationDate = creationDate
-        self.version = version
-        self.userSortPreference = userSortPreference
-    }
-}
-
-/// INTERNAL USE ONLY.
-/// Used to export folders to create Reactions.
-struct UserFolderForExport: Codable {
-
-    let id: String
-    let name: String
-    var sounds: [String]
-
-    init(
-        id: String,
-        name: String,
-        sounds: [String]
-    ) {
-        self.id = id
-        self.name = name
-        self.sounds = sounds
-    }
-
-    init(
-        userFolder: UserFolder
-    ) {
-        self.id = userFolder.id
-        self.name = userFolder.name
-        self.sounds = []
     }
 }

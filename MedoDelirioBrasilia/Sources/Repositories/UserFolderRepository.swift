@@ -9,7 +9,7 @@ import Foundation
 
 protocol UserFolderRepositoryProtocol {
 
-    func allFolders() throws -> [UserFolder]
+    func allFolders() async throws -> [UserFolder]
 
     func add(_ userFolder: UserFolder) throws
     func insert(contentId: String, intoUserFolder userFolderId: String) throws
@@ -35,8 +35,14 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
         self.database = database
     }
 
-    func allFolders() throws -> [UserFolder] {
-        try database.allFolders()
+    func allFolders() async throws -> [UserFolder] {
+        return try await withCheckedThrowingContinuation { continuation in
+            do {
+                continuation.resume(returning: try database.allFolders())
+            } catch {
+                continuation.resume(throwing: error)
+            }
+        }
     }
 
     func add(_ userFolder: UserFolder) throws {

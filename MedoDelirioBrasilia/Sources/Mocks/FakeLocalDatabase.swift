@@ -5,7 +5,6 @@
 //  Created by Rafael Claycon Schmitt on 02/02/23.
 //
 
-@testable import MedoDelirio
 import Foundation
 
 enum CustomSQLiteError: Error {

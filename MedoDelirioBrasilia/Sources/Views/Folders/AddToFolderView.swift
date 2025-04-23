@@ -105,7 +105,9 @@ struct AddToFolderView: View {
             )
             .padding(.horizontal)
             .onAppear {
-                viewModel.onViewAppeared()
+                Task {
+                    await viewModel.onViewAppeared()
+                }
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
@@ -135,7 +137,9 @@ struct AddToFolderView: View {
                     folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                     dismissSheet: {
                         newFolder = nil
-                        viewModel.onNewFolderCreationSheetDismissed()
+                        Task {
+                            await viewModel.onNewFolderCreationSheetDismissed()
+                        }
                     }
                 )
             }

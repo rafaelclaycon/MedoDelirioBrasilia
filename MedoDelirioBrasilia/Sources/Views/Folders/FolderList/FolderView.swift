@@ -34,7 +34,6 @@ struct FolderView: View {
             .padding(.leading, .spacing(.medium))
         }
     }
-
 }
 
 // MARK: - Subviews
@@ -61,7 +60,7 @@ extension FolderView {
                 HStack {
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .fill(color)
-                        .frame(width: 66, height: 100)
+                        .frame(width: 60, height: 100)
                         .overlay { SpeckleOverlay() }
 
                     Spacer()
@@ -143,13 +142,38 @@ struct PerspectiveModifier: ViewModifier {
             symbol: "🤡",
             name: "Uso diario",
             backgroundColor: "pastelPurple",
-            numberOfContents: 3
+            contentCount: 3
         ),
-        UserFolder(symbol: "😅", name: "Meh", backgroundColor: "pastelPurple", numberOfContents: 3),
-        UserFolder(symbol: "🏙️", name: "Política", backgroundColor: "pastelPurple", numberOfContents: 0),
-        UserFolder(symbol: "🙅🏿‍♂️", name: "Anti-Racista", backgroundColor: "pastelRoyalBlue", numberOfContents: 3),
-        UserFolder(symbol: "✋", name: "Espera!", backgroundColor: "pastelPurple", numberOfContents: 3),
-        UserFolder(symbol: "🔥", name: "Queima!", backgroundColor: "pastelPurple", numberOfContents: 3)
+        UserFolder(
+            symbol: "😅",
+            name: "Meh",
+            backgroundColor: "pastelPurple",
+            contentCount: 3
+        ),
+        UserFolder(
+            symbol: "🏙️",
+            name: "Política",
+            backgroundColor: "pastelPurple",
+            contentCount: 0
+        ),
+        UserFolder(
+            symbol: "🙅🏿‍♂️",
+            name: "Anti-Racista",
+            backgroundColor: "pastelRoyalBlue",
+            contentCount: 3
+        ),
+        UserFolder(
+            symbol: "✋",
+            name: "Espera!",
+            backgroundColor: "pastelPurple",
+            contentCount: 3
+        ),
+        UserFolder(
+            symbol: "🔥",
+            name: "Queima!",
+            backgroundColor: "pastelPurple",
+            contentCount: 3
+        )
     ]
 
     return LazyVGrid(columns: columns) {

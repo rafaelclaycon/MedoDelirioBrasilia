@@ -173,8 +173,11 @@ struct MainContentView: View {
                         .padding(.horizontal, .spacing(.medium))
 
                     case .folders:
-                        MyFoldersiPhoneView(contentRepository: contentRepository)
-                            .environmentObject(deleteFolderAide)
+                        MyFoldersiPhoneView(
+                            contentRepository: contentRepository,
+                            containerSize: geometry.size
+                        )
+                        .environmentObject(deleteFolderAide)
                         
                     case .authors:
                         AuthorsView(

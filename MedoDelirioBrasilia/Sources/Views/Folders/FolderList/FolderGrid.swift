@@ -12,44 +12,29 @@ struct FolderGrid: View {
 
     // MARK: - External Dependencies
 
+    @State var viewModel: FolderGridViewModel
     @Binding var updateFolderList: Bool
     @Binding var folderForEditing: UserFolder?
     let contentRepository: ContentRepositoryProtocol
+    let containerSize: CGSize
 
     // MARK: - State Properties
-
-    @State private var viewModel = FolderGridViewModel(
-        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
-        userSettings: UserSettings(),
-        appMemory: AppPersistentMemory()
-    )
 
     @State private var currentContentListMode: ContentListMode = .regular
     @State private var toast: Toast?
     @State private var floatingOptions: FloatingContentOptions?
+    @State private var columns: [GridItem] = []
+
+    private let phoneItemSpacing: CGFloat = .spacing(.medium)
+    private let padItemSpacing: CGFloat = .spacing(.xLarge)
 
     // MARK: - Environment
 
     @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
+    @Environment(\.sizeCategory) private var sizeCategory
 
     // MARK: - Computed Properties
 
-    private var columns: [GridItem] {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
-        } else {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
-        }
-    }
-    
     private var noFoldersScrollHeight: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             let screenWidth = UIScreen.main.bounds.height
@@ -69,35 +54,48 @@ struct FolderGrid: View {
 
     var body: some View {
         VStack {
-            if !viewModel.folders.isEmpty {
-                if viewModel.displayJoinFolderResearchBanner {
-                    JoinFolderResearchBannerView(
-                        viewModel: JoinFolderResearchBannerView.ViewModel(state: .displayingRequestToJoin),
-                        displayMe: $viewModel.displayJoinFolderResearchBanner
-                    )
-                    .padding(.bottom)
+            switch viewModel.state {
+            case .loading:
+                VStack {
+                    HStack(spacing: .spacing(.small)) {
+                        ProgressView()
+
+                        Text("Carregando Pastas...")
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, .spacing(.huge))
                 }
-                
-                LazyVGrid(columns: columns, spacing: .spacing(.small)) {
-                    ForEach(viewModel.folders, id: \.changeHash) { folder in
-                        NavigationLink {
-                            FolderDetailView(
-                                viewModel: FolderDetailViewModel(
+
+            case .loaded(let folders):
+                if !folders.isEmpty {
+                    if viewModel.displayJoinFolderResearchBanner {
+                        JoinFolderResearchBannerView(
+                            viewModel: JoinFolderResearchBannerView.ViewModel(state: .displayingRequestToJoin),
+                            displayMe: $viewModel.displayJoinFolderResearchBanner
+                        )
+                        .padding(.bottom)
+                    }
+
+                    LazyVGrid(columns: columns, spacing: .spacing(.small)) {
+                        ForEach(folders, id: \.changeHash) { folder in
+                            NavigationLink {
+                                FolderDetailView(
+                                    viewModel: FolderDetailViewModel(
+                                        folder: folder,
+                                        contentRepository: contentRepository
+                                    ),
                                     folder: folder,
+                                    currentContentListMode: $currentContentListMode,
+                                    toast: $toast,
+                                    floatingOptions: $floatingOptions,
                                     contentRepository: contentRepository
-                                ),
-                                folder: folder,
-                                currentContentListMode: $currentContentListMode,
-                                toast: $toast,
-                                floatingOptions: $floatingOptions,
-                                contentRepository: contentRepository
-                            )
-                        } label: {
-                            FolderView(folder: folder)
-                        }
-                        .foregroundColor(.primary)
-                        .contextMenu {
-                            if UIDevice.isiPhone {
+                                )
+                            } label: {
+                                FolderView(folder: folder)
+                            }
+                            .foregroundColor(.primary)
+                            .contextMenu {
                                 Section {
                                     Button {
                                         folderForEditing = folder
@@ -105,55 +103,133 @@ struct FolderGrid: View {
                                         Label("Editar Pasta", systemImage: "pencil")
                                     }
                                 }
-                            }
 
-                            Section {
-                                Button(role: .destructive, action: {
-                                    let folderName = "\(folder.symbol) \(folder.name)"
-                                    deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
-                                    deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os conteúdos não serão apagados."
-                                    deleteFolderAide.folderIdForDeletion = folder.id
-                                    deleteFolderAide.showAlert = true
-                                }, label: {
-                                    HStack {
-                                        Text("Apagar Pasta")
-                                        Image(systemName: "trash")
-                                    }
-                                })
+                                Section {
+                                    Button(role: .destructive, action: {
+                                        let folderName = "\(folder.symbol) \(folder.name)"
+                                        deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
+                                        deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os conteúdos não serão apagados."
+                                        deleteFolderAide.folderIdForDeletion = folder.id
+                                        deleteFolderAide.showAlert = true
+                                    }, label: {
+                                        HStack {
+                                            Text("Apagar Pasta")
+                                            Image(systemName: "trash")
+                                        }
+                                    })
+                                }
                             }
                         }
                     }
+                } else {
+                    NoFoldersView()
+                        .padding(.vertical, noFoldersScrollHeight)
                 }
-            } else {
-                NoFoldersView()
-                    .padding(.vertical, noFoldersScrollHeight)
+
+            case .error(let errorMessage):
+                VStack {
+                    Text("Erro ao carregar as Pastas. Informe o desenvolvedor.\n\nDetalhes: \(errorMessage)")
+                        .foregroundColor(.gray)
+                }
             }
         }
         .onAppear {
-            viewModel.onViewAppeared()
+            Task {
+                await viewModel.onViewAppeared()
+            }
+            updateGridLayout()
         }
         .onChange(of: updateFolderList) {
             if updateFolderList {
-                viewModel.onReloadRequested()
-                updateFolderList = false
+                Task {
+                    await viewModel.onReloadRequested()
+                    updateFolderList = false
+                }
             }
         }
         .onChange(of: deleteFolderAide.updateFolderList) {
             if deleteFolderAide.updateFolderList {
-                viewModel.onReloadRequested()
-                deleteFolderAide.updateFolderList = false
+                Task {
+                    await viewModel.onReloadRequested()
+                    deleteFolderAide.updateFolderList = false
+                }
             }
         }
-        //.alert
+        .onChange(of: containerSize.width) {
+            updateGridLayout()
+        }
+    }
+
+    // MARK: - Functions
+
+    private func updateGridLayout() {
+        columns = GridHelper.adaptableColumns(
+            listWidth: containerSize.width,
+            sizeCategory: sizeCategory,
+            spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing
+        )
     }
 }
 
 // MARK: - Preview
 
 #Preview {
-    FolderGrid(
-        updateFolderList: .constant(false),
-        folderForEditing: .constant(nil),
-        contentRepository: FakeContentRepository()
-    )
+    let fakeDB = FakeLocalDatabase()
+
+    fakeDB.folders = [
+        UserFolder(
+            symbol: "🤡",
+            name: "Uso diario",
+            backgroundColor: "pastelPurple",
+            contentCount: 3
+        ),
+        UserFolder(
+            symbol: "😅",
+            name: "Meh",
+            backgroundColor: "pastelPurple",
+            contentCount: 3
+        ),
+        UserFolder(
+            symbol: "🏙️",
+            name: "Política",
+            backgroundColor: "pastelPurple",
+            contentCount: 0
+        ),
+        UserFolder(
+            symbol: "🙅🏿‍♂️",
+            name: "Anti-Racista",
+            backgroundColor: "pastelRoyalBlue",
+            contentCount: 3
+        ),
+        UserFolder(
+            symbol: "✋",
+            name: "Espera!",
+            backgroundColor: "pastelPurple",
+            contentCount: 3
+        ),
+        UserFolder(
+            symbol: "🔥",
+            name: "Queima!",
+            backgroundColor: "pastelPurple",
+            contentCount: 3
+        )
+    ]
+
+    return GeometryReader { geometry in
+        ScrollView {
+            FolderGrid(
+                viewModel: FolderGridViewModel(
+                    userFolderRepository: UserFolderRepository(database: fakeDB),
+                    userSettings: UserSettings(),
+                    appMemory: AppPersistentMemory()
+                ),
+                updateFolderList: .constant(false),
+                folderForEditing: .constant(nil),
+                contentRepository: FakeContentRepository(),
+                containerSize: geometry.size
+            )
+            .environmentObject(DeleteFolderViewAide())
+            .padding(.horizontal, .spacing(.medium))
+        }
+    }
 }

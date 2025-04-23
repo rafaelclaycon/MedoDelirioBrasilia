@@ -50,17 +50,13 @@ extension LocalDatabase {
         let creationDate = Expression<String>("creationDate")
         let sortedQuery = try db.prepare(userFolder.order(creationDate.asc))
 
-        let folderDtos = try sortedQuery.map { queriedFolder in
-            try queriedFolder.decode() as UserFolderDTO
+        let folders = try sortedQuery.map { queriedFolder in
+            try queriedFolder.decode() as UserFolder
         }
-        return try folderDtos.map { dto in
-            let ids = try contentIdsInside(userFolder: dto.id)
-            let photos = try authorPhotos(contentIds: ids)
-            return UserFolder(
-                dto: dto,
-                numberOfContents: ids.count,
-                authorPhotos: photos
-            )
+        return try folders.map { basicFolder in
+            var copy = basicFolder
+            copy.contentCount = try contentIdsInside(userFolder: basicFolder.id).count
+            return copy
         }
     }
     

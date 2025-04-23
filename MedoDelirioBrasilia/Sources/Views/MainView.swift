@@ -227,7 +227,7 @@ struct MainView: View {
                         TabSection("Minhas Pastas") {
                             Tab("Todas as Pastas", systemImage: "folder") {
                                 NavigationStack(path: $foldersPath) {
-                                    AllFoldersiPadView(
+                                    StandaloneFolderGridView(
                                         folderForEditing: $folderForEditing,
                                         updateFolderList: $updateFolderList,
                                         contentRepository: contentRepository
