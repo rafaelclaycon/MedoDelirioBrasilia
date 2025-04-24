@@ -209,7 +209,7 @@ extension DiagnosticsView {
                 displayError.toggle()
                 logError(error)
             } else {
-                errorMessage = "Não Foi Possível Obter os IDs do Arquivo"
+                errorMessage = "Arquivo Inacessível ou Outro Erro ao Tentar Obter IDs"
                 displayError.toggle()
                 logError(errorMessage)
             }
@@ -230,6 +230,14 @@ extension DiagnosticsView {
         }
 
         private func parseFile(at fileUrl: URL) async -> [String]? {
+            let didStartAccessing = fileUrl.startAccessingSecurityScopedResource()
+            defer {
+                if didStartAccessing {
+                    fileUrl.stopAccessingSecurityScopedResource()
+                }
+            }
+            guard FileManager.default.fileExists(atPath: fileUrl.path) else { return nil }
+
             do {
                 let (data, _) = try await URLSession.shared.data(from: fileUrl)
                 if let content = String(data: data, encoding: .utf8) {
