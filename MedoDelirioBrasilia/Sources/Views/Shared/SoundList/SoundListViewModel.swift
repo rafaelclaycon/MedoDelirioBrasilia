@@ -147,7 +147,7 @@ extension SoundListViewModel {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
 
         do {
-            let favorteAlreadyExists = try LocalDatabase.shared.exists(contentId: soundId)
+            let favorteAlreadyExists = try LocalDatabase.shared.isFavorite(contentId: soundId)
             guard favorteAlreadyExists == false else { return }
 
             try LocalDatabase.shared.insert(favorite: newFavorite)
