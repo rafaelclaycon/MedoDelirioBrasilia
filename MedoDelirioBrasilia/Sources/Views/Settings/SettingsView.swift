@@ -167,7 +167,9 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: DiagnosticsView()) {
+                    NavigationLink(
+                        destination: DiagnosticsView(database: LocalDatabase.shared)
+                    ) {
                         Label {
                             Text("Diagnóstico")
                         } icon: {

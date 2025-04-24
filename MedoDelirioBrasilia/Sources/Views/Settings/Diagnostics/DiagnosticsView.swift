@@ -10,9 +10,9 @@ import Kingfisher
 
 struct DiagnosticsView: View {
 
+    let database: LocalDatabaseProtocol
+
     @State private var showUpdateDateOnUI: Bool = UserSettings().getShowUpdateDateOnUI()
-
-
 
     var body: some View {
         Form {
@@ -30,7 +30,7 @@ struct DiagnosticsView: View {
                 }
             }
 
-            ImportFavoritesView()
+            ImportFavoritesView(database: database)
 
             Section {
                 Toggle("Exibir data e hora da última atualização na UI", isOn: $showUpdateDateOnUI)
@@ -135,13 +135,25 @@ extension DiagnosticsView {
 
     struct ImportFavoritesView: View {
 
+        let database: LocalDatabaseProtocol
+
+        struct ImportResult {
+
+            let importCount: Int
+            let errorMessage: String?
+        }
+
         @State private var displayPicker: Bool = false
+
         @State private var displayError: Bool = false
+        @State private var displaySuccessAlert: Bool = false
+
+        @State private var importCount: Int = 0
         @State private var errorMessage: String = ""
 
         var body: some View {
             Section {
-                Button("Importar favoritos de um arquivo CSV") {
+                Button("Selecionar arquivo CSV") {
                     displayPicker.toggle()
                 }
                 .fileImporter(
@@ -152,7 +164,22 @@ extension DiagnosticsView {
                     switch result {
                     case .success(let success):
                         guard let fileUrl = success.items.first else { return }
-                        parseFile(at: fileUrl)
+
+                        Task {
+                            if let ids = await parseFile(at: fileUrl) {
+                                let result = addToFavorites(ids: ids)
+                                guard let error = result.errorMessage else {
+                                    importCount = result.importCount
+                                    displaySuccessAlert.toggle()
+                                    return
+                                }
+                                errorMessage = error
+                                displayError.toggle()
+                            } else {
+                                errorMessage = "Não Foi Possível Obter os IDs do Arquivo"
+                                displayError.toggle()
+                            }
+                        }
 
                     case .failure(let failure):
                         errorMessage = failure.localizedDescription
@@ -160,29 +187,59 @@ extension DiagnosticsView {
                     }
                 }
                 .alert(
-                    "Erro ao Tentar Importar Favoritos: \(errorMessage)",
-                    isPresented: $displayError) {
-                        Button("OK") {
-                            displayError.toggle()
-                        }
+                    "\(importCount) Favoritos Importados com Sucesso",
+                    isPresented: $displaySuccessAlert
+                ) {
+                    Button("OK") {
+                        displaySuccessAlert.toggle()
                     }
+                }
+                .alert(
+                    "Erro ao Tentar Importar Favoritos: \(errorMessage)",
+                    isPresented: $displayError
+                ) {
+                    Button("OK") {
+                        displayError.toggle()
+                    }
+                }
+            } header: {
+                Text("Importar favoritos de um arquivo")
             } footer: {
                 Text("Para que essa opção funcione, selecione um arquivo que contém apenas os IDs dos conteúdos, cada um em uma linha, e nada mais, em um arquivo no formato .csv.")
             }
         }
 
-        private func parseFile(at fileUrl: URL) {
-            let task = URLSession.shared.dataTask(with: fileUrl) { data, response, error in
-                if let data = data, let content = String(data: data, encoding: .utf8) {
-                    let lines = content.components(separatedBy: .newlines)
-                    for line in lines {
-                        print(line)
-                    }
-                } else if let error = error {
-                    print("Error fetching file: \(error)")
+        private func parseFile(at fileUrl: URL) async -> [String]? {
+            do {
+                let (data, _) = try await URLSession.shared.data(from: fileUrl)
+                if let content = String(data: data, encoding: .utf8) {
+                    return content.components(separatedBy: .newlines)
+                } else {
+                    return nil
                 }
+            } catch {
+                print("Error fetching file: \(error)")
+                return nil
             }
-            task.resume()
+
+        }
+
+        private func addToFavorites(ids contentIds: [String]) -> ImportResult {
+            guard !contentIds.isEmpty else { return ImportResult(importCount: 0, errorMessage: "O vetor de IDs está vazio.") }
+
+            do {
+                var counter: Int = 0
+                try contentIds.forEach { id in
+                    guard try database.contentExists(withId: id) else { return }
+                    guard try !database.isFavorite(contentId: id) else { return }
+                    try database.insert(favorite: Favorite(contentId: id, dateAdded: .now))
+                    print("Successfully imported \(id)")
+                    counter += 1
+                }
+                return ImportResult(importCount: counter, errorMessage: nil)
+            } catch {
+                return ImportResult(importCount: 0, errorMessage: error.localizedDescription)
+            }
         }
     }
 
@@ -229,5 +286,5 @@ extension DiagnosticsView {
 }
 
 #Preview {
-    DiagnosticsView()
+    //DiagnosticsView(database: FakeLocalDatabase())
 }

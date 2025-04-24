@@ -9,6 +9,11 @@ internal protocol LocalDatabaseProtocol {
     func update(sound updatedSound: Sound) throws
     func delete(soundId: String) throws
     func setIsFromServer(to value: Bool, onSoundId soundId: String) throws
+    func contentExists(withId contentId: String) throws -> Bool
+
+    // Favorite
+    func insert(favorite newFavorite: Favorite) throws
+    func isFavorite(contentId: String) throws -> Bool
 
     // Author
     func insert(author newAuthor: Author) throws
@@ -16,7 +21,6 @@ internal protocol LocalDatabaseProtocol {
     func delete(authorId: String) throws
 
     // UserFolder
-
     func allFolders() throws -> [UserFolder]
     func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool

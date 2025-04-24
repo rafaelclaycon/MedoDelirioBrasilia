@@ -26,7 +26,7 @@ extension LocalDatabase {
     func deleteAllFavorites() throws {
         try db.run(favorite.delete())
     }
-    
+
     func deleteFavorite(withId contentId: String) throws {
         let id = Expression<String>("contentId")
         let specificFavorite = favorite.filter(id == contentId)
@@ -34,16 +34,11 @@ extension LocalDatabase {
             throw LocalDatabaseError.favoriteNotFound
         }
     }
-    
-    func exists(contentId: String) throws -> Bool {
-        var queriedFavorites = [Favorite]()
 
+    func isFavorite(contentId: String) throws -> Bool {
         let id = Expression<String>("contentId")
-        let query = favorite.filter(id == contentId)
-
-        for queriedFavorite in try db.prepare(query) {
-            queriedFavorites.append(try queriedFavorite.decode())
-        }
-        return queriedFavorites.count > 0
+        let query = soundTable.filter(id == contentId)
+        let count = try db.scalar(query.count)
+        return count > 0
     }
 }
