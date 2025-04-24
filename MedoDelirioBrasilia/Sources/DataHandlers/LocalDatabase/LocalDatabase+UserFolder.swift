@@ -1,3 +1,10 @@
+//
+//  LocalDatabase+UserFolder.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Schmitt on 28/06/22.
+//
+
 import Foundation
 import SQLite
 
@@ -136,12 +143,5 @@ extension LocalDatabase {
             folders.append(try row.decode())
         }
         return folders
-    }
-
-    private func authorPhotos(contentIds: [String]) throws -> [String] {
-        guard !contentIds.isEmpty else { return [] }
-        return try contentIds.compactMap { id in
-            try authorPhoto(for: id)
-        }
     }
 }

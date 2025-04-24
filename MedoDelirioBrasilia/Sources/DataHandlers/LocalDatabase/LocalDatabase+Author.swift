@@ -1,5 +1,5 @@
 //
-//  LocalDatabase+Generic.swift
+//  LocalDatabase+Author.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 28/04/23.
@@ -67,24 +67,5 @@ extension LocalDatabase {
         } else {
             throw LocalDatabaseError.authorNotFound
         }
-    }
-
-    func authorPhoto(for soundId: String) throws -> String? {
-        let soundIdColumn = Expression<String>("id")
-        let authorId = Expression<String>("authorId")
-        let authorIdColumn = Expression<String>("id")
-        let authorPhoto = Expression<String?>("photo")
-
-        guard let row = try db.pluck(soundTable.filter(soundIdColumn == soundId)) else {
-            return nil
-        }
-
-        let foundAuthorId = row[authorId]
-
-        guard let authorRow = try db.pluck(author.filter(authorIdColumn == foundAuthorId)) else {
-            return nil
-        }
-
-        return authorRow[authorPhoto]
     }
 }
