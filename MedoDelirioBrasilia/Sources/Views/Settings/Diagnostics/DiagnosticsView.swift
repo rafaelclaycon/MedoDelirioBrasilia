@@ -10,22 +10,50 @@ import Kingfisher
 
 struct DiagnosticsView: View {
 
-    @State private var showServerConnectionTestAlert = false
-    @State private var serverConnectionTestAlertTitle = ""
-
-    @State private var installId = AppPersistentMemory().customInstallId
-    @State private var showInstallIdCopiedAlert = false
-
-    @State private var diskImageCacheText: String = ""
-    @State private var cleanImageCacheAlert: Bool = false
-
     @State private var showUpdateDateOnUI: Bool = UserSettings().getShowUpdateDateOnUI()
 
-    @State private var shareLogs: [UserShareLog]?
-    //@State var networkLogs: [NetworkCallLog]?
+
 
     var body: some View {
         Form {
+            TestServerConnectionView()
+
+            InstallIdView()
+
+            ImageCacheOptionsView()
+
+            Section {
+                ShareLink(
+                    item: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("medo_db.sqlite3")
+                ) {
+                    Text("Exportar base de dados")
+                }
+            }
+
+            ImportFavoritesView()
+
+            Section {
+                Toggle("Exibir data e hora da última atualização na UI", isOn: $showUpdateDateOnUI)
+                    .onChange(of: showUpdateDateOnUI) {
+                        UserSettings().setShowUpdateDateOnUI(to: showUpdateDateOnUI)
+                    }
+            }
+            
+            ShareLogsView()
+        }
+        .navigationTitle("Diagnóstico")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+extension DiagnosticsView {
+
+    struct TestServerConnectionView: View {
+
+        @State private var showServerConnectionTestAlert = false
+        @State private var serverConnectionTestAlertTitle = ""
+
+        var body: some View {
             Section {
                 Button("Testar conexão com o servidor") {
                     Task {
@@ -38,7 +66,15 @@ struct DiagnosticsView: View {
                     Alert(title: Text(serverConnectionTestAlertTitle), dismissButton: .default(Text("OK")))
                 }
             }
-            
+        }
+    }
+
+    struct InstallIdView: View {
+
+        @State private var installId = AppPersistentMemory().customInstallId
+        @State private var showInstallIdCopiedAlert = false
+
+        var body: some View {
             Section {
                 Text(installId)
                     .font(.monospaced(.subheadline)())
@@ -54,7 +90,15 @@ struct DiagnosticsView: View {
             } footer: {
                 Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente. Toque nele uma vez para copiar.")
             }
+        }
+    }
 
+    struct ImageCacheOptionsView: View {
+
+        @State private var diskImageCacheText: String = ""
+        @State private var cleanImageCacheAlert: Bool = false
+
+        var body: some View {
             Section("Cache de imagens") {
                 Text(diskImageCacheText)
 
@@ -71,34 +115,82 @@ struct DiagnosticsView: View {
                     Alert(title: Text("Cache de imagens limpado com sucesso"), dismissButton: .default(Text("OK")))
                 }
             }
+            .onAppear {
+                updateImageCacheSizeText()
+            }
+        }
 
-            Section {
-                ShareLink(
-                    item: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("medo_db.sqlite3")
-                ) {
-                    Text("Exportar base de dados")
+        private func updateImageCacheSizeText() {
+            ImageCache.default.calculateDiskStorageSize { result in
+                switch result {
+                case .success(let size):
+                    let imageCacheSize = Double(size) / 1024 / 1024
+                    diskImageCacheText = "Tamanho: \(imageCacheSize.formatted(.number.precision(.fractionLength(1)))) MB"
+                case .failure(let error):
+                    diskImageCacheText = error.localizedDescription
                 }
             }
+        }
+    }
 
+    struct ImportFavoritesView: View {
+
+        @State private var displayPicker: Bool = false
+        @State private var displayError: Bool = false
+        @State private var errorMessage: String = ""
+
+        var body: some View {
             Section {
-                Toggle("Exibir data e hora da última atualização na UI", isOn: $showUpdateDateOnUI)
-                    .onChange(of: showUpdateDateOnUI) {
-                        UserSettings().setShowUpdateDateOnUI(to: $0)
-                    }
-            }
+                Button("Importar favoritos de um arquivo CSV") {
+                    displayPicker.toggle()
+                }
+                .fileImporter(
+                    isPresented: $displayPicker,
+                    allowedContentTypes: [.commaSeparatedText],
+                    allowsMultipleSelection: false)
+                { result in
+                    switch result {
+                    case .success(let success):
+                        guard let fileUrl = success.items.first else { return }
+                        parseFile(at: fileUrl)
 
-            /*if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
-                Section("Tendências [DEV ONLY]") {
-                    Button("Setar dia de envio para ontem") {
-                        var dayComponent = DateComponents()
-                        dayComponent.day = -1
-                        let calendar = Calendar.current
-                        let newDate = calendar.date(byAdding: dayComponent, to: Date())
-                        AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: newDate!.onlyDate!)
+                    case .failure(let failure):
+                        errorMessage = failure.localizedDescription
+                        displayError.toggle()
                     }
                 }
-            }*/
-            
+                .alert(
+                    "Erro ao Tentar Importar Favoritos: \(errorMessage)",
+                    isPresented: $displayError) {
+                        Button("OK") {
+                            displayError.toggle()
+                        }
+                    }
+            } footer: {
+                Text("Para que essa opção funcione, selecione um arquivo que contém apenas os IDs dos conteúdos, cada um em uma linha, e nada mais, em um arquivo no formato .csv.")
+            }
+        }
+
+        private func parseFile(at fileUrl: URL) {
+            let task = URLSession.shared.dataTask(with: fileUrl) { data, response, error in
+                if let data = data, let content = String(data: data, encoding: .utf8) {
+                    let lines = content.components(separatedBy: .newlines)
+                    for line in lines {
+                        print(line)
+                    }
+                } else if let error = error {
+                    print("Error fetching file: \(error)")
+                }
+            }
+            task.resume()
+        }
+    }
+
+    struct ShareLogsView: View {
+
+        @State private var shareLogs: [UserShareLog]?
+
+        var body: some View {
             Section("Logs de compartilhamento") {
                 if shareLogs == nil || shareLogs?.count == 0 {
                     Text("Sem Dados")
@@ -114,60 +206,28 @@ struct DiagnosticsView: View {
                     }
                 }
             }
-            
-            /*Section("Logs de rede") {
-                if networkLogs == nil || networkLogs?.count == 0 {
-                    Text("Sem Dados")
-                } else {
-                    List(networkLogs!) { log in
-                        NetworkLogCell(callType: NetworkCallType(rawValue: log.callType) ?? .checkServerStatus, dateTime: log.dateTime.toString(), wasSuccessful: log.wasSuccessful)
-                    }
-                }
-            }*/
-        }
-        .navigationTitle("Diagnóstico")
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            updateImageCacheSizeText()
-
-            shareLogs = try? LocalDatabase.shared.getAllUserShareLogs()
-            shareLogs?.sort(by: { $0.dateTime > $1.dateTime })
-            /*networkLogs = try? database.getAllNetworkCallLogs()
-            networkLogs?.sort(by: { $0.dateTime > $1.dateTime })*/
-        }
-    }
-
-    // MARK: - Functions
-
-    private func updateImageCacheSizeText() {
-        ImageCache.default.calculateDiskStorageSize { result in
-            switch result {
-            case .success(let size):
-                let imageCacheSize = Double(size) / 1024 / 1024
-                diskImageCacheText = "Tamanho: \(imageCacheSize.formatted(.number.precision(.fractionLength(1)))) MB"
-            case .failure(let error):
-                diskImageCacheText = error.localizedDescription
+            .onAppear {
+                shareLogs = try? LocalDatabase.shared.getAllUserShareLogs()
+                shareLogs?.sort(by: { $0.dateTime > $1.dateTime })
             }
         }
-    }
 
-    private func getContentName(contentId: String) -> String {
-        do {
-            if let sound: Sound = try LocalDatabase.shared.sound(withId: contentId) {
-                return sound.title
-            } else if let song: Song = try LocalDatabase.shared.song(withId: contentId) {
-                return song.title
-            } else {
+        private func getContentName(contentId: String) -> String {
+            do {
+                if let sound: Sound = try LocalDatabase.shared.sound(withId: contentId) {
+                    return sound.title
+                } else if let song: Song = try LocalDatabase.shared.song(withId: contentId) {
+                    return song.title
+                } else {
+                    return ""
+                }
+            } catch {
                 return ""
             }
-        } catch {
-            return ""
         }
     }
 }
 
-struct DiagnosticsView_Previews: PreviewProvider {
-    static var previews: some View {
-        DiagnosticsView()
-    }
+#Preview {
+    DiagnosticsView()
 }
