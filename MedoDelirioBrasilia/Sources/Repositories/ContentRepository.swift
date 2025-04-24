@@ -126,7 +126,7 @@ final class ContentRepository: ContentRepositoryProtocol {
     }
 
     func favoriteExists(_ contentId: String) throws -> Bool {
-        try database.favoriteExists(contentId: contentId)
+        try database.isFavorite(contentId: contentId)
     }
 
     func insert(favorite: Favorite) throws {
