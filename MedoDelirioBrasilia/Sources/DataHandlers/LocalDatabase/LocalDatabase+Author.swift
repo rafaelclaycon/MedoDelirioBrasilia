@@ -1,5 +1,5 @@
 //
-//  LocalDatabase+Generic.swift
+//  LocalDatabase+Author.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 28/04/23.

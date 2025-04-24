@@ -108,7 +108,7 @@ extension FolderResearchProvider {
         guard !folders.isEmpty else { return nil }
         var contentLogs = [UserFolderContent]()
         folders.forEach { folder in
-            if let contentIds = try? localDatabase.soundIdsInside(userFolder: folder.id) {
+            if let contentIds = try? localDatabase.contentIdsInside(userFolder: folder.id) {
                 guard !contentIds.isEmpty else { return }
                 contentIds.forEach { contentId in
                     let contentLog = UserFolderContent(userFolderId: folder.id, contentId: contentId)

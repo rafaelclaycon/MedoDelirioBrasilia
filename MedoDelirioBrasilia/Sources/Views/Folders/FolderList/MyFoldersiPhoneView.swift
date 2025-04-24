@@ -10,6 +10,7 @@ import SwiftUI
 struct MyFoldersiPhoneView: View {
 
     let contentRepository: ContentRepositoryProtocol
+    let containerSize: CGSize
 
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
@@ -23,10 +24,16 @@ struct MyFoldersiPhoneView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(
+                FolderGrid(
+                    viewModel: FolderGridViewModel(
+                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                        userSettings: UserSettings(),
+                        appMemory: AppPersistentMemory()
+                    ),
                     updateFolderList: $updateFolderList,
                     folderForEditing: $folderForEditing,
-                    contentRepository: contentRepository
+                    contentRepository: contentRepository,
+                    containerSize: containerSize
                 )
             }
             .padding(.horizontal)
@@ -88,5 +95,8 @@ struct MyFoldersiPhoneView: View {
 // MARK: - Preview
 
 #Preview {
-    MyFoldersiPhoneView(contentRepository: FakeContentRepository())
+    MyFoldersiPhoneView(
+        contentRepository: FakeContentRepository(),
+        containerSize: CGSize(width: 400, height: 1200)
+    )
 }

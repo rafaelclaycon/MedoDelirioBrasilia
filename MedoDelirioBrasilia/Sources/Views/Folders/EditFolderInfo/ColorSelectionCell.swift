@@ -12,17 +12,18 @@ struct ColorSelectionCell: View {
     let color: Color
     let isSelected: Bool
     let colorSelectionAction: (String) -> Void
-    
-    private let borderCircle: CGFloat = 44
-    private let innerCircle: CGFloat = 37
-    
+
+    @ScaledMetric private var borderCircle: CGFloat = 44
+    @ScaledMetric private var innerCircle: CGFloat = 37
+    @ScaledMetric private var borderWidth: CGFloat = 2
+
     var body: some View {
         ZStack {
             if isSelected {
                 Circle()
-                    .strokeBorder(color, lineWidth: 2)
+                    .strokeBorder(color, lineWidth: borderWidth)
                     .frame(width: borderCircle, height: borderCircle)
-                    .saturation(1.5)
+                    .brightness(-0.2)
             }
             
             Circle()

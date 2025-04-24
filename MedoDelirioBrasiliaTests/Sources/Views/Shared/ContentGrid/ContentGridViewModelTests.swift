@@ -29,7 +29,7 @@ struct ContentGridViewModelTests {
             analyticsService: FakeAnalyticsService()
         )
 
-        await sut.onEnterMultiSelectModeSelected(loadedContent: [])
+        await sut.onEnterMultiSelectModeSelected(loadedContent: [], isFavoritesOnlyView: false)
 
         #expect(listModeValue == .selection)
         #expect(await sut.currentListMode.wrappedValue == .selection)

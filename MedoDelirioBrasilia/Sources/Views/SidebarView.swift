@@ -93,7 +93,7 @@ struct SidebarView: View {
             
             Section("Minhas Pastas") {
                 NavigationLink(
-                    destination: AllFoldersiPadView(
+                    destination: StandaloneFolderGridView(
                         folderForEditing: $folderForEditing,
                         updateFolderList: $updateFolderList,
                         contentRepository: contentRepository

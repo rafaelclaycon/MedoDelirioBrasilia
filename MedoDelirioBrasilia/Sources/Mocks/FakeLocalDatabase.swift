@@ -5,7 +5,6 @@
 //  Created by Rafael Claycon Schmitt on 02/02/23.
 //
 
-@testable import MedoDelirio
 import Foundation
 
 enum CustomSQLiteError: Error {
@@ -61,7 +60,7 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     // Favorite
 
-    func favoriteExists(contentId: String) throws -> Bool {
+    func isFavorite(contentId: String) throws -> Bool {
         false
     }
 
@@ -103,6 +102,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         []
     }
 
+    func contentExists(withId contentId: String) throws -> Bool {
+        false
+    }
+
     // Author
 
     func insert(author newAuthor: MedoDelirio.Author) throws {
@@ -139,7 +142,7 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         //
     }
 
-    func soundIdsInside(userFolder userFolderId: String) throws -> [String] {
+    func contentIdsInside(userFolder userFolderId: String) throws -> [String] {
         contentInsideFolder.compactMap {
             guard $0.userFolderId == userFolderId else { return nil }
             return $0.contentId

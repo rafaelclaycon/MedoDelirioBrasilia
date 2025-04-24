@@ -36,8 +36,8 @@ class AddToFolderViewModel {
 
 extension AddToFolderViewModel {
 
-    public func onViewAppeared() {
-        loadFolderList(withFolders: try? userFolderRepository.allFolders())
+    public func onViewAppeared() async {
+        loadFolderList(withFolders: try? await userFolderRepository.allFolders())
     }
 
     public func onExistingFolderSelected(
@@ -97,8 +97,8 @@ extension AddToFolderViewModel {
         return nil
     }
 
-    public func onNewFolderCreationSheetDismissed() {
-        loadFolderList(withFolders: try? userFolderRepository.allFolders())
+    public func onNewFolderCreationSheetDismissed() async {
+        loadFolderList(withFolders: try? await userFolderRepository.allFolders())
     }
 }
 

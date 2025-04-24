@@ -15,6 +15,7 @@ protocol AppPersistentMemoryProtocol {
     /// This was used to mark sending before the more elaborate change syncing.
     func getHasSentFolderResearchInfo() -> Bool
     func setHasSentFolderResearchInfo(to newValue: Bool)
+    func getHasDismissedJoinFolderResearchBanner() -> Bool?
 
     func lastFolderResearchSyncDateTime() -> Date?
     func lastFolderResearchSyncDateTime(_ dateTime: Date)

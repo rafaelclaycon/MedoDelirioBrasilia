@@ -37,58 +37,72 @@ struct FolderInfoEditingView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                Spacer()
-                
-                EmojiField(
-                    symbol: $viewModel.folder.symbol,
-                    backgroundColor: viewModel.folder.backgroundColor.toPastelColor()
-                )
-                .focused($focusedField, equals: .symbol)
+            ScrollView {
+                VStack(spacing: .spacing(.medium)) {
+                    Spacer()
 
-                Text("Digite um emoji no retângulo acima para representar a pasta.")
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .onTapGesture {
-                        focusedField = nil
-                    }
-                
-                if ProcessInfo.processInfo.isMacCatalystApp {
-                    Text("Para acessar os emojis no Mac, pressione Control + Command + Espaço.")
+                    EmojiField(
+                        symbol: $viewModel.folder.symbol,
+                        backgroundColor: viewModel.folder.backgroundColor.toPastelColor()
+                    )
+                    .focused($focusedField, equals: .symbol)
+
+                    Text("1. Digite um emoji no espaço acima para representar a pasta.")
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
-                        .padding()
+                        .onTapGesture {
+                            focusedField = nil
+                        }
+
+                    if ProcessInfo.processInfo.isMacCatalystApp {
+                        Text("Para acessar os emojis no Mac, pressione Control + Command + Espaço.")
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    }
+
+                    NameField(name: $viewModel.folder.name)
+                        .focused($focusedField, equals: .folderName)
+
+                    Spacer()
                 }
-
-                NameField(name: $viewModel.folder.name)
-                    .focused($focusedField, equals: .folderName)
-
-                Spacer()
-                
-                ColorPicker(
-                    selectedBackgroundColor: viewModel.folder.backgroundColor,
-                    colorSelectionAction: { viewModel.onPickedColorChanged($0) }
+                .padding(.horizontal, .spacing(.medium))
+                .navigationTitle(viewModel.isEditing ? "Editar Pasta" : "Nova Pasta")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(
+                    leading:
+                        Button("Cancelar") {
+                            dismissSheet()
+                        }
+                    ,
+                    trailing:
+                        Button {
+                            viewModel.onSaveSelected()
+                        } label: {
+                            Text(viewModel.isEditing ? "Salvar" : "Criar")
+                                .bold()
+                        }
+                        .disabled(viewModel.saveCreateButtonIsDisabled)
                 )
             }
-            .navigationTitle(viewModel.isEditing ? "Editar Pasta" : "Nova Pasta")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-                leading:
-                    Button("Cancelar") {
-                        dismissSheet()
-                    }
-                ,
-                trailing:
-                    Button {
-                        viewModel.onSaveSelected()
-                    } label: {
-                        Text(viewModel.isEditing ? "Salvar" : "Criar")
-                            .bold()
-                    }
-                    .disabled(viewModel.saveCreateButtonIsDisabled)
-            )
-            .alert(isPresented: $viewModel.showAlert) { 
+            .safeAreaInset(edge: .bottom) {
+                VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
+                    Text("3. ESCOLHA UMA COR:")
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.leading)
+                        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+                        .padding(.leading)
+
+                    ColorPicker(
+                        selectedBackgroundColor: viewModel.folder.backgroundColor,
+                        colorSelectionAction: { viewModel.onPickedColorChanged($0) }
+                    )
+                }
+                .padding(.top, .spacing(.xSmall))
+                .background(Color.systemBackground)
+            }
+            .alert(isPresented: $viewModel.showAlert) {
                 Alert(
                     title: Text(viewModel.alertTitle),
                     message: Text(viewModel.alertMessage),
@@ -127,24 +141,27 @@ extension FolderInfoEditingView {
         let backgroundColor: Color
 
         var body: some View {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(backgroundColor)
-                .frame(width: 180, height: 100)
-                .overlay {
-                    HStack {
-                        Spacer()
+            FolderView.FolderIcon(
+                color: backgroundColor,
+                emoji: "",
+                isEmpty: true
+            )
+            .frame(width: 180)
+            .overlay {
+                HStack {
+                    Spacer()
 
-                        TextField("", text: $symbol)
-                            .font(.system(size: 50))
-                            .padding(.horizontal)
-                            .multilineTextAlignment(.center)
-                            .onReceive(Just(symbol)) { _ in
-                                limitSymbolText(1)
-                            }
+                    TextField("", text: $symbol)
+                        .font(.system(size: 44))
+                        .padding(.leading, .spacing(.medium))
+                        .multilineTextAlignment(.leading)
+                        .onReceive(Just(symbol)) { _ in
+                            limitSymbolText(1)
+                        }
 
-                        Spacer()
-                    }
+                    Spacer()
                 }
+            }
         }
 
         private func limitSymbolText(_ upper: Int) {
@@ -160,7 +177,7 @@ extension FolderInfoEditingView {
 
         var body: some View {
             VStack {
-                TextField("Nome da pasta", text: $name)
+                TextField("2. Nome da pasta", text: $name)
                     .textFieldStyle(.roundedBorder)
                     .onReceive(Just(name)) { _ in
                         limitFolderNameText(25)
@@ -175,7 +192,6 @@ extension FolderInfoEditingView {
                         .foregroundColor(.gray)
                 }
             }
-            .padding(.horizontal)
         }
 
         private func limitFolderNameText(_ upper: Int) {
@@ -190,13 +206,9 @@ extension FolderInfoEditingView {
         let selectedBackgroundColor: String
         let colorSelectionAction: (String) -> Void
 
-        private let colorRow = [
-            GridItem(.flexible())
-        ]
-
         var body: some View {
             ScrollView(.horizontal, showsIndicators: true) {
-                LazyHGrid(rows: colorRow, spacing: 5) {
+                HStack(spacing: 5) {
                     ForEach(FolderColorFactory.getColors()) { folderColor in
                         ColorSelectionCell(
                             color: folderColor.color,
@@ -205,9 +217,8 @@ extension FolderInfoEditingView {
                         )
                     }
                 }
-                .frame(height: 70)
-                .padding(.leading)
-                .padding(.trailing)
+                .padding(.horizontal)
+                .padding(.bottom, .spacing(.xSmall))
             }
         }
     }
@@ -217,13 +228,8 @@ extension FolderInfoEditingView {
 
 #Preview("New Folder") {
     FolderInfoEditingView(
-        folder: .init(
-            symbol: "",
-            name: "",
-            backgroundColor: "",
-            changeHash: ""
-        ),
-        folderRepository: UserFolderRepository(database: LocalDatabase()),
+        folder: UserFolder.newFolder(),
+        folderRepository: UserFolderRepository(database: FakeLocalDatabase()),
         dismissSheet: {}
     )
 }
