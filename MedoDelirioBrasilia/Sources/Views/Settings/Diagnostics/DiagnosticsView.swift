@@ -164,21 +164,8 @@ extension DiagnosticsView {
                     switch result {
                     case .success(let success):
                         guard let fileUrl = success.items.first else { return }
-
                         Task {
-                            if let ids = await parseFile(at: fileUrl) {
-                                let result = addToFavorites(ids: ids)
-                                guard let error = result.errorMessage else {
-                                    importCount = result.importCount
-                                    displaySuccessAlert.toggle()
-                                    return
-                                }
-                                errorMessage = error
-                                displayError.toggle()
-                            } else {
-                                errorMessage = "Não Foi Possível Obter os IDs do Arquivo"
-                                displayError.toggle()
-                            }
+                            await process(fileUrl)
                         }
 
                     case .failure(let failure):
@@ -207,6 +194,39 @@ extension DiagnosticsView {
             } footer: {
                 Text("Para que essa opção funcione, selecione um arquivo que contém apenas os IDs dos conteúdos, cada um em uma linha, e nada mais, em um arquivo no formato .csv.")
             }
+        }
+
+        private func process(_ fileUrl: URL) async {
+            if let ids = await parseFile(at: fileUrl) {
+                let result = addToFavorites(ids: ids)
+                guard let error = result.errorMessage else {
+                    importCount = result.importCount
+                    displaySuccessAlert.toggle()
+                    logSuccess(result.importCount)
+                    return
+                }
+                errorMessage = error
+                displayError.toggle()
+                logError(error)
+            } else {
+                errorMessage = "Não Foi Possível Obter os IDs do Arquivo"
+                displayError.toggle()
+                logError(errorMessage)
+            }
+        }
+
+        private func logError(_ message: String) {
+            Analytics().send(
+                originatingScreen: "DiagnosticsView",
+                action: "hadIssueImportingFavorites(\(message))"
+            )
+        }
+
+        private func logSuccess(_ count: Int) {
+            Analytics().send(
+                originatingScreen: "DiagnosticsView",
+                action: "importedFavorites(\(count))"
+            )
         }
 
         private func parseFile(at fileUrl: URL) async -> [String]? {
