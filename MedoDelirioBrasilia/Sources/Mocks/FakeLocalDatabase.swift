@@ -60,7 +60,7 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     // Favorite
 
-    func favoriteExists(contentId: String) throws -> Bool {
+    func isFavorite(contentId: String) throws -> Bool {
         false
     }
 
@@ -100,6 +100,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func sounds(allowSensitive: Bool) throws -> [Sound] {
         []
+    }
+
+    func contentExists(withId contentId: String) throws -> Bool {
+        false
     }
 
     // Author
