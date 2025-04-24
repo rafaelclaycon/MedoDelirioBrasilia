@@ -247,4 +247,11 @@ extension LocalDatabase {
         }
         return nil // Return nil if no sound is found
     }
+
+    func contentExists(withId contentId: String) throws -> Bool {
+        let id = Expression<String>("id")
+        let query = soundTable.filter(id == contentId)
+        let count = try db.scalar(query.count)
+        return count > 0
+    }
 }
