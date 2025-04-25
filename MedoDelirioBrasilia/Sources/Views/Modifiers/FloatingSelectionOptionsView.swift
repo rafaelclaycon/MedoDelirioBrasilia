@@ -125,7 +125,7 @@ struct FloatingSelectionOptionsView: ViewModifier {
                                     Image(systemName: "square.and.arrow.up")
                                 }
                             }
-                            .disabled(!options.areButtonsEnabled)
+                            .disabled(!options.areButtonsEnabled || !UIDevice.isiPhone) // Sharing many crashed on iPad.
                         }
                     }
                     .padding(.horizontal, 20)
