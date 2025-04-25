@@ -19,14 +19,20 @@ struct GeneralRouter: View {
 
     @State private var currentContentListMode: ContentListMode = .regular
     @State private var toast: Toast?
+    @State private var floatingOptions: FloatingContentOptions?
 
     var body: some View {
         switch destination {
         case .authorDetail(let author):
             AuthorDetailView(
-                author: author,
+                viewModel: AuthorDetailViewModel(
+                    author: author,
+                    currentContentListMode: $currentContentListMode,
+                    toast: $toast,
+                    floatingOptions: $floatingOptions,
+                    contentRepository: contentRepository
+                ),
                 currentListMode: $currentContentListMode,
-                toast: $toast,
                 contentRepository: contentRepository
             )
         case .reactionDetail(let reaction):

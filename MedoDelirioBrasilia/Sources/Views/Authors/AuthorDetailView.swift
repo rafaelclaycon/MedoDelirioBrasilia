@@ -12,8 +12,6 @@ struct AuthorDetailView: View {
     @State private var viewModel: AuthorDetailViewModel
     @State private var contentGridViewModel: ContentGridViewModel
 
-    let author: Author
-
     @State private var navBarTitle: String = ""
     private var currentContentListMode: Binding<ContentListMode>
 
@@ -34,15 +32,15 @@ struct AuthorDetailView: View {
                 )
             }
         }
-        return author.name
+        return viewModel.author.name
     }
 
     private var edgesToIgnore: SwiftUI.Edge.Set {
-        return author.photo == nil ? [] : .top
+        return viewModel.author.photo == nil ? [] : .top
     }
 
     private func getOffsetBeforeShowingTitle() -> CGFloat {
-        author.photo == nil ? 50 : 250
+        viewModel.author.photo == nil ? 50 : 250
     }
 
     private func updateNavBarContent(_ offset: CGFloat) {
@@ -65,28 +63,20 @@ struct AuthorDetailView: View {
     // MARK: - Initializer
 
     init(
-        author: Author,
+        viewModel: AuthorDetailViewModel,
         currentListMode: Binding<ContentListMode>,
-        toast: Binding<Toast?>,
         contentRepository: ContentRepositoryProtocol
     ) {
-        self.author = author
-
-        self.viewModel = AuthorDetailViewModel(
-            authorId: author.id,
-            currentContentListMode: currentListMode,
-            contentRepository: contentRepository
-        )
+        self.viewModel = viewModel
         self.currentContentListMode = currentListMode
-
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .authorDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
-            toast: toast,
-            floatingOptions: .constant(nil),
+            toast: viewModel.toast,
+            floatingOptions: viewModel.floatingOptions,
             analyticsService: AnalyticsService()
         )
     }
@@ -98,7 +88,7 @@ struct AuthorDetailView: View {
             ScrollView {
                 VStack(spacing: .spacing(.medium)) {
                     AuthorHeaderView(
-                        author: author,
+                        author: viewModel.author,
                         title: title,
                         soundCount: viewModel.soundCount,
                         soundCountText: viewModel.soundCountText,
@@ -128,7 +118,7 @@ struct AuthorDetailView: View {
                     ContentGrid(
                         state: viewModel.state,
                         viewModel: contentGridViewModel,
-                        authorId: author.id,
+                        authorId: viewModel.author.id,
                         containerSize: geometry.size,
                         loadingView:
                             VStack {
@@ -210,7 +200,7 @@ struct AuthorDetailView: View {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
                         toast: contentGridViewModel.toast,
-                        subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
+                        subject: String(format: Shared.Email.AskForNewSound.subject, self.viewModel.author.name),
                         emailBody: Shared.Email.AskForNewSound.body
                     )
                 }
@@ -218,7 +208,7 @@ struct AuthorDetailView: View {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
                         toast: contentGridViewModel.toast,
-                        subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
+                        subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.viewModel.author.name),
                         emailBody: Shared.Email.AuthorDetailIssue.body
                     )
                 }
@@ -231,8 +221,8 @@ struct AuthorDetailView: View {
                 }
             }
             .edgesIgnoringSafeArea(edgesToIgnore)
-            .toast(contentGridViewModel.toast)
-            .floatingContentOptions(contentGridViewModel.floatingOptions)
+            .toast(viewModel.toast)
+            .floatingContentOptions(viewModel.floatingOptions)
         }
     }
 }
@@ -251,15 +241,22 @@ struct ViewOffsetKey: PreferenceKey {
 // MARK: - Preview
 
 #Preview {
+    let author = Author(
+        id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+        name: "Abraham Weintraub",
+        photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+    )
+
     AuthorDetailView(
-        author: .init(
-            id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
-            name: "Abraham Weintraub",
-            photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+        viewModel: AuthorDetailViewModel(
+            author: author,
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: FakeContentRepository()
         ),
         currentListMode: .constant(.regular),
-        toast: .constant(nil),
         contentRepository: FakeContentRepository()
     )
 }

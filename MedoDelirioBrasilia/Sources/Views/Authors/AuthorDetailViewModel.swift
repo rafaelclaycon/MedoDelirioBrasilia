@@ -12,6 +12,8 @@ class AuthorDetailViewModel {
 
     var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
+    public let author: Author
+
     var soundSortOption: Int = 1
     var selectedSound: Sound? = nil
     var selectedSounds: [Sound]? = nil
@@ -20,8 +22,11 @@ class AuthorDetailViewModel {
     var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     var showEmailAppPicker_askForNewSound = false
     var showEmailAppPicker_reportAuthorDetailIssue = false
-    private let authorId: String
-    var currentContentListMode: Binding<ContentListMode>
+
+    public var currentContentListMode: Binding<ContentListMode>
+    public var toast: Binding<Toast?>
+    public var floatingOptions: Binding<FloatingContentOptions?>
+
     private let contentRepository: ContentRepositoryProtocol
 
     // Alerts
@@ -44,12 +49,16 @@ class AuthorDetailViewModel {
     // MARK: - Initializer
 
     init(
-        authorId: String,
+        author: Author,
         currentContentListMode: Binding<ContentListMode>,
+        toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
         contentRepository: ContentRepositoryProtocol
     ) {
-        self.authorId = authorId
+        self.author = author
         self.currentContentListMode = currentContentListMode
+        self.toast = toast
+        self.floatingOptions = floatingOptions
         self.contentRepository = contentRepository
     }
 }
@@ -77,7 +86,7 @@ extension AuthorDetailViewModel {
         do {
             let allowSensitive = UserSettings().getShowExplicitContent()
             let sort = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
-            state = .loaded(try contentRepository.content(by: authorId, allowSensitive, sort))
+            state = .loaded(try contentRepository.content(by: author.id, allowSensitive, sort))
         } catch {
             state = .error(error.localizedDescription)
             debugPrint(error)
