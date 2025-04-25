@@ -17,6 +17,8 @@ class ReactionDetailViewModel {
     public var contentSortOption: Int = ReactionSoundSortOption.default.rawValue
 
     public var reaction: Reaction
+    public var toast: Binding<Toast?>
+    public var floatingOptions: Binding<FloatingContentOptions?>
     private let reactionService: ReactionServiceProtocol
 
     // MARK: - Computed Properties
@@ -43,9 +45,13 @@ class ReactionDetailViewModel {
 
     init(
         reaction: Reaction,
+        toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
         contentRepository: ContentRepositoryProtocol
     ) {
         self.reaction = reaction
+        self.toast = toast
+        self.floatingOptions = floatingOptions
         self.reactionService = ReactionService(
             reactionRepository: ReactionRepository(),
             contentRepository: contentRepository

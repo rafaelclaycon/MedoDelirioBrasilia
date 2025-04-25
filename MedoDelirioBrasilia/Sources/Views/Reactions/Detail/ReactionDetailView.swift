@@ -36,15 +36,11 @@ struct ReactionDetailView: View {
     // MARK: - Initializer
 
     init(
-        reaction: Reaction,
+        viewModel: ReactionDetailViewModel,
         currentListMode: Binding<ContentListMode>,
-        toast: Binding<Toast?>,
         contentRepository: ContentRepositoryProtocol
     ) {
-        self.viewModel = ReactionDetailViewModel(
-            reaction: reaction,
-            contentRepository: contentRepository
-        )
+        self.viewModel = viewModel
         self.contentGridMode = currentListMode
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
@@ -52,8 +48,8 @@ struct ReactionDetailView: View {
             screen: .reactionDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
-            toast: toast,
-            floatingOptions: .constant(nil),
+            toast: viewModel.toast,
+            floatingOptions: viewModel.floatingOptions,
             analyticsService: AnalyticsService()
         )
     }
@@ -311,9 +307,13 @@ extension ReactionDetailView {
 
 #Preview {
     ReactionDetailView(
-        reaction: .acidMock,
+        viewModel: ReactionDetailViewModel(
+            reaction: .acidMock,
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: FakeContentRepository()
+        ),
         currentListMode: .constant(.regular),
-        toast: .constant(nil),
         contentRepository: FakeContentRepository()
     )
 }

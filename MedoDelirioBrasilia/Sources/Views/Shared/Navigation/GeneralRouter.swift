@@ -37,9 +37,13 @@ struct GeneralRouter: View {
             )
         case .reactionDetail(let reaction):
             ReactionDetailView(
-                reaction: reaction,
+                viewModel: ReactionDetailViewModel(
+                    reaction: reaction,
+                    toast: $toast,
+                    floatingOptions: $floatingOptions,
+                    contentRepository: contentRepository
+                ),
                 currentListMode: $currentContentListMode,
-                toast: $toast,
                 contentRepository: contentRepository
             )
         }
