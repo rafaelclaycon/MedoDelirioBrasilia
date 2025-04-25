@@ -326,6 +326,7 @@ struct ContentGrid<
                     viewModel.authorToOpen = nil
                 }
                 .onAppear {
+                    viewModel.onViewAppeared()
                     updateGridLayout()
                 }
             }
