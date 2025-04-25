@@ -11,6 +11,7 @@ struct StandaloneFavoritesView: View {
 
     @State var viewModel: StandaloneFavoritesViewModel
     @State private var contentGridViewModel: ContentGridViewModel
+    
     private var currentContentListMode: Binding<ContentListMode>
     private let openSettingsAction: () -> Void
 
@@ -27,7 +28,6 @@ struct StandaloneFavoritesView: View {
         viewModel: StandaloneFavoritesViewModel,
         currentContentListMode: Binding<ContentListMode>,
         openSettingsAction: @escaping () -> Void,
-        toast: Binding<Toast?>,
         contentRepository: ContentRepositoryProtocol
     ) {
         self.viewModel = viewModel
@@ -39,8 +39,8 @@ struct StandaloneFavoritesView: View {
             screen: .standaloneFavoritesView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: .constant(.regular),
-            toast: toast,
-            floatingOptions: .constant(nil),
+            toast: viewModel.toast,
+            floatingOptions: viewModel.floatingOptions,
             analyticsService: AnalyticsService()
         )
     }

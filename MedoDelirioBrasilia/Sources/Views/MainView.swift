@@ -177,11 +177,12 @@ struct MainView: View {
                                 StandaloneFavoritesView(
                                     viewModel: StandaloneFavoritesViewModel(
                                         contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        toast: $toast,
+                                        floatingOptions: $floatingOptions,
                                         contentRepository: contentRepository
                                     ),
                                     currentContentListMode: $currentContentListMode,
                                     openSettingsAction: {},
-                                    toast: $toast,
                                     contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)

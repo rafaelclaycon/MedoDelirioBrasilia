@@ -13,9 +13,12 @@ class StandaloneFavoritesViewModel {
 
     // MARK: - Published Vars
 
-    var state: LoadingState<[AnyEquatableMedoContent]> = .loading
+    public var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
-    var contentSortOption: Int
+    public var contentSortOption: Int
+
+    public var toast: Binding<Toast?>
+    public var floatingOptions: Binding<FloatingContentOptions?>
 
     private let contentRepository: ContentRepositoryProtocol
 
@@ -23,9 +26,13 @@ class StandaloneFavoritesViewModel {
 
     init(
         contentSortOption: Int,
+        toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
         contentRepository: ContentRepositoryProtocol
     ) {
         self.contentSortOption = contentSortOption
+        self.toast = toast
+        self.floatingOptions = floatingOptions
         self.contentRepository = contentRepository
     }
 }
