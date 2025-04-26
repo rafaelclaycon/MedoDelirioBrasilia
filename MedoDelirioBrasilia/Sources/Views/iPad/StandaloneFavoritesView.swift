@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StandaloneFavoritesView: View {
 
-    @State var viewModel: StandaloneFavoritesViewModel
+    @State private var viewModel: StandaloneFavoritesViewModel
     @State private var contentGridViewModel: ContentGridViewModel
     
     private var currentContentListMode: Binding<ContentGridMode>
