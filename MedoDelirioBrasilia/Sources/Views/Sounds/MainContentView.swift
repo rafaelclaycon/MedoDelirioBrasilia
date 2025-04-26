@@ -256,8 +256,8 @@ struct MainContentView: View {
                             settingsHelper.updateSoundsList = false
                         }
                     }
-                    .onChange(of: trendsHelper.notifyMainSoundContainer) {
-                        highlight(contentId: trendsHelper.notifyMainSoundContainer)
+                    .onChange(of: trendsHelper.contentIdToNavigateTo) {
+                        highlight(contentId: trendsHelper.contentIdToNavigateTo)
                     }
                     .onAppear {
                         Task {
@@ -361,7 +361,7 @@ extension MainContentView {
         guard !contentId.isEmpty else { return }
         viewModel.currentViewMode = .all
         contentGridViewModel.cancelSearchAndHighlight(id: contentId)
-        trendsHelper.notifyMainSoundContainer = ""
+        trendsHelper.contentIdToNavigateTo = ""
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
             contentGridViewModel.scrollTo = contentId
             HapticFeedback.warning()

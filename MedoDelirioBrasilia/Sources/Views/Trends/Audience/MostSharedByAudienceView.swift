@@ -26,9 +26,9 @@ struct MostSharedByAudienceView: View {
                 state: viewModel.soundsState,
                 timeIntervalOption: $viewModel.soundsTimeInterval,
                 lastUpdatedText: viewModel.soundsLastCheckString,
-                navigateToText: "Ir para Som",
+                navigateToText: "Ir para Conteúdo",
                 navigateToAction: { soundId in
-                    navigateTo(sound: soundId)
+                    navigateTo(content: soundId)
                 }
             )
             .onChange(of: viewModel.soundsTimeInterval) {
@@ -42,9 +42,9 @@ struct MostSharedByAudienceView: View {
                 state: viewModel.songsState,
                 timeIntervalOption: $viewModel.songsTimeInterval,
                 lastUpdatedText: viewModel.songsLastCheckString,
-                navigateToText: "Ir para Música",
+                navigateToText: "Ir para Conteúdo",
                 navigateToAction: { songId in
-                    navigateTo(song: songId)
+                    navigateTo(content: songId)
                 }
             )
             .onChange(of: viewModel.songsTimeInterval) {
@@ -96,22 +96,13 @@ struct MostSharedByAudienceView: View {
 
     // MARK: - Functions
 
-    private func navigateTo(sound soundId: String) {
+    private func navigateTo(content contentId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             tabSelection = .sounds
         } else {
             activePadScreen = .allSounds
         }
-        trendsHelper.notifyMainSoundContainer = soundId
-    }
-
-    private func navigateTo(song songId: String) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            tabSelection = .songs
-        } else {
-            activePadScreen = .songs
-        }
-        trendsHelper.songIdToGoTo = songId
+        trendsHelper.contentIdToNavigateTo = contentId
     }
 
     private func navigateTo(reaction reactionId: String) {
@@ -120,7 +111,7 @@ struct MostSharedByAudienceView: View {
         } else {
             activePadScreen = .reactions
         }
-        trendsHelper.reactionIdToGoTo = reactionId
+        trendsHelper.reactionIdToNavigateTo = reactionId
     }
 }
 

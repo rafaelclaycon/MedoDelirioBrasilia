@@ -106,15 +106,15 @@ struct SongsView: View {
                     .disableAutocorrection(true)
                     .padding(.horizontal)
                     .padding(.top, 7)
-                    .onChange(of: trendsHelper.songIdToGoTo) {
-                        if !trendsHelper.songIdToGoTo.isEmpty {
-                            viewModel.cancelSearchAndHighlight(id: trendsHelper.songIdToGoTo)
+                    .onChange(of: trendsHelper.songIdToNavigateTo) {
+                        if !trendsHelper.songIdToNavigateTo.isEmpty {
+                            viewModel.cancelSearchAndHighlight(id: trendsHelper.songIdToNavigateTo)
                             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                 withAnimation {
-                                    proxy.scrollTo(trendsHelper.songIdToGoTo, anchor: .center)
+                                    proxy.scrollTo(trendsHelper.songIdToNavigateTo, anchor: .center)
                                 }
                                 HapticFeedback.warning()
-                                trendsHelper.songIdToGoTo = ""
+                                trendsHelper.songIdToNavigateTo = ""
                             }
                         }
                     }

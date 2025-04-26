@@ -15,14 +15,13 @@ import SwiftUI
 @Observable class TrendsHelper {
 
     // To Sounds tab
-    var notifyMainSoundContainer: String = ""
-    var soundIdToGoTo: String = ""
+    var contentIdToNavigateTo: String = ""
 
     // To Songs tab
-    var songIdToGoTo: String = ""
+    var songIdToNavigateTo: String = ""
 
     // To Reactions tab
-    var reactionIdToGoTo: String = ""
+    var reactionIdToNavigateTo: String = ""
 
     // From Siri Suggestions
     var timeIntervalToGoTo: TrendsTimeInterval? = nil
