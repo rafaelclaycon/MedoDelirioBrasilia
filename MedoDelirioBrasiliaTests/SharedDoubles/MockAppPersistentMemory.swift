@@ -44,4 +44,12 @@ final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
     func getHasDismissedJoinFolderResearchBanner() -> Bool? {
         hasDismissedJoinFolderResearchBanner
     }
+
+    func hasSeenVersion9WhatsNewScreen() -> Bool {
+        false
+    }
+
+    func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
+        //
+    }
 }
