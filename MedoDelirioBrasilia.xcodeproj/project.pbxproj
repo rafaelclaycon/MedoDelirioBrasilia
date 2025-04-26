@@ -235,6 +235,7 @@
 		D928286F2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D928286E2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
+		D92ABB252DBC15EB002E4315 /* Version9WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92ABB242DBC15EB002E4315 /* Version9WhatsNewView.swift */; };
 		D92AD1A6288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1A4288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 */; };
 		D92AD1A7288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1A5288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 */; };
 		D92AD1A928832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1A828832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 */; };
@@ -1792,6 +1793,7 @@
 		D928286E2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+MusicGenre.swift"; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
+		D92ABB242DBC15EB002E4315 /* Version9WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version9WhatsNewView.swift; sourceTree = "<group>"; };
 		D92AD1A4288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3"; sourceTree = "<group>"; };
 		D92AD1A5288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Propaganda Instituto Tireido Ku (longo).mp3"; sourceTree = "<group>"; };
 		D92AD1A828832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3"; sourceTree = "<group>"; };
@@ -4842,6 +4844,7 @@
 			children = (
 				D97FFA652CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift */,
 				D924F9202BF841E6002FC815 /* IntroducingReactionsView.swift */,
+				D92ABB242DBC15EB002E4315 /* Version9WhatsNewView.swift */,
 			);
 			path = WhatsNew;
 			sourceTree = "<group>";
@@ -7011,6 +7014,7 @@
 				D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */,
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
 				D95BFEF129E8866700E42A23 /* LargeCreatorView.swift in Sources */,
+				D92ABB252DBC15EB002E4315 /* Version9WhatsNewView.swift in Sources */,
 				D9ECD81528B3C470003C033A /* IconImage.swift in Sources */,
 				D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */,
 				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,

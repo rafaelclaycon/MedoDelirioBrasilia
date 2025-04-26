@@ -20,6 +20,9 @@ protocol AppPersistentMemoryProtocol {
     func lastFolderResearchSyncDateTime() -> Date?
     func lastFolderResearchSyncDateTime(_ dateTime: Date)
 
+    func hasSeenVersion9WhatsNewScreen() -> Bool
+    func hasSeenVersion9WhatsNewScreen(_ newValue: Bool)
+
     var customInstallId: String { get }
 }
 
@@ -209,6 +212,13 @@ extension AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
+
+    func hasSeenVersion9WhatsNewScreen() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasSeenVersion9WhatsNewScreen") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
 }
 
 // MARK: - Setters
@@ -306,5 +316,9 @@ extension AppPersistentMemory {
 
     func setHasSeenPinReactionsBanner(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasSeenPinReactionsBanner")
+    }
+
+    func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasSeenVersion9WhatsNewScreen")
     }
 }

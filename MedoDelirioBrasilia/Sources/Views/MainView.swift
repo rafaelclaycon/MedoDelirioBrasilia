@@ -357,7 +357,7 @@ struct MainView: View {
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                IntroducingReactionsView()
+                Version9WhatsNewView(appMemory: AppPersistentMemory())
                     .interactiveDismissDisabled()
 
             case .retrospective:
@@ -416,7 +416,7 @@ struct MainView: View {
         if !AppPersistentMemory().hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
-        } else if !AppPersistentMemory().hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
+        } else if !AppPersistentMemory().hasSeenVersion9WhatsNewScreen() {
             subviewToOpen = .whatsNew
             showingModalView = true
         }
