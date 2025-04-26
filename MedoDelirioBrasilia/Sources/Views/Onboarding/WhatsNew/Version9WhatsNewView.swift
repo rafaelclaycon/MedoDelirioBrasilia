@@ -33,7 +33,7 @@ struct Version9WhatsNewView: View {
                                 .frame(width: .spacing(.xxxLarge))
                                 .foregroundStyle(.green),
                             title: "Novo Seletor de Modo",
-                            message: "Navegue com conforto pela parte superior do app para trocar entre Favoritos, Pastas e Autores."
+                            message: Text("Navegue com conforto pela parte superior do app para trocar entre Favoritos, Pastas e Autores.")
                         )
 
                         ItemView(
@@ -45,7 +45,7 @@ struct Version9WhatsNewView: View {
                                     .foregroundStyle(.green)
                             }.frame(width: .spacing(.xxxLarge)),
                             title: "Músicas Em Destaque",
-                            message: "Agora você encontra Sons e Músicas juntos na lista principal de conteúdos."
+                            message: Text("Agora você encontra Sons e Músicas **juntos** na grade principal de conteúdos.")
                         )
 
                         ItemView(
@@ -53,9 +53,10 @@ struct Version9WhatsNewView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: .spacing(.xxxLarge))
-                                .foregroundStyle(.green),
+                                .foregroundStyle(.purple)
+                            ,
                             title: "Pastas com Cheirinho de Novo",
-                            message: "As pastas contam com um novo visual, inspirado pelo Mac OS X Leopard."
+                            message: Text("As pastas contam com um novo visual, inspirado pelo Mac OS X Leopard.")
                         )
                     }
                 }
@@ -96,17 +97,17 @@ extension Version9WhatsNewView {
 
         let image: ImageView
         let title: String
-        let message: String
+        let message: Text
 
         var body: some View {
             HStack(spacing: .spacing(.large)) {
                 image
 
-                VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
+                VStack(alignment: .leading, spacing: .spacing(.xxSmall)) {
                     Text(title)
                         .bold()
 
-                    Text(message)
+                    message
                         .foregroundStyle(.gray)
                 }
             }
