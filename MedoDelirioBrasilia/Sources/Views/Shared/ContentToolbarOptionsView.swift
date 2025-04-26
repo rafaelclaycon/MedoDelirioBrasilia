@@ -32,7 +32,7 @@ struct ContentToolbarOptionsView: View {
                     Text("Título")
                         .tag(0)
 
-                    Text("Nome do(a) Autor(a)")
+                    Text("Nome do(a) Autor(a) ou Gênero Musical")
                         .tag(1)
 
                     Text("Mais Recentes no Topo")
