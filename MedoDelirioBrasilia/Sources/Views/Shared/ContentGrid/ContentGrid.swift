@@ -121,8 +121,6 @@ struct ContentGrid<
         case .loaded(let loadedContent):
             if loadedContent.isEmpty {
                 emptyStateView
-//                    .frame(width: containerSize.width)
-//                    .frame(minHeight: containerSize.height)
             } else {
                 LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
                     if searchResults.isEmpty {
@@ -324,8 +322,6 @@ struct ContentGrid<
 
         case .error(_):
             errorView
-                .frame(width: containerSize.width)
-                .frame(minHeight: containerSize.height)
         }
     }
 

@@ -112,22 +112,22 @@ struct ContentDetailView: View {
                 } message: {
                     Text(viewModel.alertMessage)
                 }
-//                .sheet(isPresented: $viewModel.showAuthorSuggestionEmailAppPicker) {
-//                    EmailAppPickerView(
-//                        isBeingShown: $viewModel.showAuthorSuggestionEmailAppPicker,
-//            toast: toast,
-//                        subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.sound.title),
-//                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.sound.authorName ?? "", viewModel.sound.id)
-//                    )
-//                }
-//                .sheet(isPresented: $viewModel.showReactionSuggestionEmailAppPicker) {
-//                    EmailAppPickerView(
-//                        isBeingShown: $viewModel.showReactionSuggestionEmailAppPicker,
-//            toast: toast,
-//                        subject: String(format: "Sugestão Para Adicionar '%@' a Uma Reação", viewModel.sound.title),
-//                        emailBody: String(format: "As Reações expressam emoções, acontecimentos ou personalidades. Qual o nome da Reação nova ou existente na qual você acha que esse som se encaixa?")
-//                    )
-//                }
+                .sheet(isPresented: $viewModel.showAuthorSuggestionEmailAppPicker) {
+                    EmailAppPickerView(
+                        isBeingShown: $viewModel.showAuthorSuggestionEmailAppPicker,
+                        toast: $viewModel.toast,
+                        subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.content.title),
+                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.content.subtitle, viewModel.content.id)
+                    )
+                }
+                .sheet(isPresented: $viewModel.showReactionSuggestionEmailAppPicker) {
+                    EmailAppPickerView(
+                        isBeingShown: $viewModel.showReactionSuggestionEmailAppPicker,
+                        toast: $viewModel.toast,
+                        subject: String(format: "Sugestão Para Adicionar '%@' a Uma Reação", viewModel.content.title),
+                        emailBody: String(format: "As Reações expressam emoções, acontecimentos ou personalidades. Qual o nome da Reação nova ou existente na qual você acha que esse som se encaixa?")
+                    )
+                }
             }
             .toast($viewModel.toast)
             .task {
