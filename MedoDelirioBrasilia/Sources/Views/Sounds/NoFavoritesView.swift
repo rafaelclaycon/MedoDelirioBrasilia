@@ -8,16 +8,9 @@
 import SwiftUI
 
 struct NoFavoritesView: View {
-    
-//    private var textFirstLine: String {
-//        guard !UIDevice.isMac else {
-//            return
-//        }
-//        return "Para adicionar um som aos Favoritos, volte para os sons, clique com o botão direito em um deles e escolha **Adicionar aos Favoritos**."
-//    }
 
     var body: some View {
-        VStack(alignment: .center, spacing: 24) {
+        VStack(alignment: .center, spacing: .spacing(.xLarge)) {
             Image(systemName: "star")
                 .font(.system(size: 74))
                 .foregroundColor(.red)
@@ -27,7 +20,7 @@ struct NoFavoritesView: View {
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Para adicionar um som aos Favoritos, volte para os sons, segure em um deles e escolha **Adicionar aos Favoritos**.")
+            Text("Para adicionar um conteúdo aos Favoritos, volte para Tudo, segure em um deles e escolha **Adicionar aos Favoritos**.")
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
@@ -40,9 +33,8 @@ struct NoFavoritesView: View {
     }
 }
 
-struct NoFavoritesView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        NoFavoritesView()
-    }
+#Preview {
+    NoFavoritesView()
 }

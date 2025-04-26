@@ -31,7 +31,6 @@ struct MedoDelirioBrasiliaApp: App {
         guard url.scheme == "medodelirio" else { return }
         if url.host == "playrandomsound" {
             tabSelection = .sounds
-            state = .allSounds
 
             let includeOffensive = UserSettings().getShowExplicitContent()
 
@@ -40,10 +39,14 @@ struct MedoDelirioBrasiliaApp: App {
                     let randomSound = try LocalDatabase.shared.randomSound(includeOffensive: includeOffensive)
                 else { return }
                 helper.soundIdToPlay = randomSound.id
-                Analytics().send(action: "didPlayRandomSound(\(randomSound.title))")
+                Task {
+                    await AnalyticsService().send(action: "didPlayRandomSound(\(randomSound.title))")
+                }
             } catch {
                 print("Erro obtendo som aleatório: \(error.localizedDescription)")
-                Analytics().send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
+                Task {
+                    await AnalyticsService().send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
+                }
             }
         }
     }
@@ -283,7 +286,7 @@ extension AppDelegate {
     func updateFolderChangeHashes() {
         if !hasUpdatedFolderHashesOnFirstRun {
             do {
-                try UserFolderRepository().addHashToExistingFolders()
+                try UserFolderRepository(database: LocalDatabase.shared).addHashToExistingFolders()
                 hasUpdatedFolderHashesOnFirstRun = true
             } catch {
                 print(error)

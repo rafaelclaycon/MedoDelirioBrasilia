@@ -6,51 +6,38 @@
 //
 
 import SwiftUI
-import Combine
 
 @MainActor
-class ReactionDetailViewModel: ObservableObject {
+@Observable
+class ReactionDetailViewModel {
 
-    // MARK: - Published Vars
+    public var state: LoadingState<[AnyEquatableMedoContent]> = .loading
+    public var reactionNoLongerExists: Bool = false
 
-    @Published var state: ReactionDetailState<[Sound]> = .loading
-    @Published var sounds: [Sound]?
-    @Published var soundSortOption: Int
+    public var contentSortOption: Int = ReactionSoundSortOption.default.rawValue
 
     public var reaction: Reaction
-    private var reactionSounds: [ReactionSound]? // Needed for ordering by position.
-    private let reactionRepository: ReactionRepositoryProtocol
+    public var toast: Binding<Toast?>
+    public var floatingOptions: Binding<FloatingContentOptions?>
+    private let reactionService: ReactionServiceProtocol
 
     // MARK: - Computed Properties
 
-    var soundsPublisher: AnyPublisher<[Sound], Never> {
-        $sounds
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
-
     var subtitle: String {
-        guard !dataLoadingDidFail else { return "" }
-        guard let sounds else { return "Carregando..." }
+        if case .loading = state { return "Carregando..." }
+        guard case .loaded(let content) = state else { return "" }
         let lastUpdateDate: String = reaction.lastUpdate.asRelativeDateTime ?? ""
-        if sounds.count == 0 {
-            return "Nenhum som. Atualizada \(lastUpdateDate)."
-        } else if sounds.count == 1 {
-            return "1 som. Atualizada \(lastUpdateDate)."
+        if content.count == 0 {
+            return "Reação vazia. Atualizada \(lastUpdateDate)."
+        } else if content.count == 1 {
+            return "1 item. Atualizada \(lastUpdateDate)."
         } else {
-            return "\(sounds.count) sons. Atualizada \(lastUpdateDate)."
+            return "\(content.count) itens. Atualizada \(lastUpdateDate)."
         }
     }
 
-    var dataLoadingDidFail: Bool {
-        if case .soundLoadingError = state { return true }
-        if case .reactionNoLongerExists = state { return true }
-        return false
-    }
-
     var errorMessage: String {
-        // The reactionNoLongerExists case is dealt with in the view itself.
-        guard case .soundLoadingError(let errorString) = state else { return "" }
+        guard case .error(let errorString) = state else { return "" }
         return errorString
     }
 
@@ -58,32 +45,59 @@ class ReactionDetailViewModel: ObservableObject {
 
     init(
         reaction: Reaction,
-        reactionRepository: ReactionRepositoryProtocol = ReactionRepository()
+        toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.reaction = reaction
-        self.soundSortOption = 0
-        self.reactionRepository = reactionRepository
+        self.toast = toast
+        self.floatingOptions = floatingOptions
+        self.reactionService = ReactionService(
+            reactionRepository: ReactionRepository(),
+            contentRepository: contentRepository
+        )
     }
 }
 
-// MARK: - Sound Loading
+// MARK: - User Actions
 
 extension ReactionDetailViewModel {
 
-    func loadSounds() async {
-        state = .loading
+    public func onViewLoaded() async {
+        await loadContent()
+    }
+
+    public func onRetrySelected() async {
+        await loadContent()
+    }
+
+    public func onContentSortingChanged() async {
+        await loadContent(enterLoadingState: false)
+    }
+}
+
+// MARK: - Internal Functions
+
+extension ReactionDetailViewModel {
+
+    private func loadContent(enterLoadingState: Bool = true) async {
+        if enterLoadingState {
+            state = .loading
+        }
+        reactionNoLongerExists = false
 
         do {
-            let reaction = try await reactionRepository.reaction(reaction.id)
+            let reaction = try await reactionService.reaction(reaction.id)
             self.reaction.lastUpdate = reaction.lastUpdate
             self.reaction.attributionText = reaction.attributionText
             self.reaction.attributionURL = reaction.attributionURL
         } catch NetworkRabbitError.resourceNotFound {
-            state = .reactionNoLongerExists
+            state = .error("")
+            reactionNoLongerExists = true
             return
         } catch {
-            state = .soundLoadingError(error.localizedDescription)
-            Analytics().send(
+            state = .error(error.localizedDescription)
+            await AnalyticsService().send(
                 originatingScreen: "ReactionDetailView",
                 action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
             )
@@ -91,64 +105,17 @@ extension ReactionDetailViewModel {
         }
 
         do {
-            self.reactionSounds = try await reactionRepository.reactionSounds(reactionId: reaction.id)
-            guard let reactionSounds else { return }
-            let soundIds: [String] = reactionSounds.map { $0.soundId }
-            var selectedSounds = try LocalDatabase.shared.sounds(withIds: soundIds)
-
-            for i in 0..<selectedSounds.count {
-                if let reactionSound = reactionSounds.first(where: { $0.soundId == selectedSounds[i].id }) {
-                    selectedSounds[i].dateAdded = reactionSound.dateAdded.iso8601withFractionalSeconds
-                }
-            }
-
-            sounds = selectedSounds
-            state = .loaded(selectedSounds)
+            let allowSensitive = UserSettings().getShowExplicitContent()
+            let sort = ReactionSoundSortOption(rawValue: contentSortOption) ?? .default
+            state = .loaded(
+                try await reactionService.reactionContent(for: reaction.id, allowSensitive, sort)
+            )
         } catch {
-            state = .soundLoadingError(error.localizedDescription)
-            Analytics().send(
+            state = .error(error.localizedDescription)
+            await AnalyticsService().send(
                 originatingScreen: "ReactionDetailView",
                 action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
             )
         }
-    }
-}
-
-// MARK: - Sound Sorting
-
-extension ReactionDetailViewModel {
-
-    func sortSounds(by rawSortOption: Int) {
-        let sortOption = ReactionSoundSortOption(rawValue: rawSortOption) ?? .default
-        switch sortOption {
-        case .default:
-            sortSoundsByServerPosition()
-        case .dateAddedDescending:
-            sortSoundsByDateAddedDescending()
-        case .dateAddedAscending:
-            sortSoundsByDateAddedAscending()
-        }
-    }
-
-    private func sortSoundsByServerPosition() {
-        guard let reactionSounds, let sounds else { return }
-        let indexMap = Dictionary(uniqueKeysWithValues: reactionSounds.enumerated().map { ($1.soundId, $0) })
-
-        let sortedSounds = sounds.sorted { (item1, item2) -> Bool in
-            guard let index1 = indexMap[item1.id], let index2 = indexMap[item2.id] else {
-                return false
-            }
-            return index1 < index2
-        }
-
-        self.sounds = sortedSounds
-    }
-
-    private func sortSoundsByDateAddedDescending() {
-        sounds?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-    }
-
-    private func sortSoundsByDateAddedAscending() {
-        sounds?.sort(by: { $0.dateAdded ?? Date() < $1.dateAdded ?? Date() })
     }
 }

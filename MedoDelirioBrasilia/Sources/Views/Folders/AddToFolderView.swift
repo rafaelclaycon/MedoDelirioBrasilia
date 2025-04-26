@@ -9,19 +9,20 @@ import SwiftUI
 
 struct AddToFolderView: View {
 
-    @StateObject private var viewModel = AddToFolderViewModel(database: LocalDatabase.shared)
+    @State private var viewModel = AddToFolderViewModel(
+        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+    )
 
     @Binding var isBeingShown: Bool
-    @Binding var hadSuccess: Bool
-    @Binding var folderName: String?
-    @Binding var pluralization: WordPluralization
+    @Binding var details: AddToFolderDetails
 
-    @State var selectedSounds: [Sound]
+    @State var selectedContent: [AnyEquatableMedoContent]
     @State private var newFolder: UserFolder?
 
-    @State private var soundsThatCanBeAdded: [Sound]? = nil
-    @State private var folderForSomeSoundsAlreadyInFolder: UserFolder? = nil
-    
+    private let columns = [GridItem(.flexible()), GridItem(.flexible())]
+
+    // MARK: - Computed Properties
+
     private var createNewFolderCellWidth: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return (UIScreen.main.bounds.size.width / 2) - 20
@@ -29,17 +30,12 @@ struct AddToFolderView: View {
             return 250
         }
     }
-    
-    private let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
-    private func getSoundText() -> String {
-        if selectedSounds.count == 1 {
-            return "Som:  \(selectedSounds.first!.title)"
+
+    private var selectedItemsText: String {
+        if selectedContent.count == 1 {
+            return "Som:  \(selectedContent.first!.title)"
         } else {
-            return "\(selectedSounds.count) sons selecionados"
+            return "\(selectedContent.count) itens selecionados"
         }
     }
 
@@ -48,96 +44,55 @@ struct AddToFolderView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
-                HStack(spacing: 16) {
-                    Image(systemName: "speaker.wave.3.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 24)
-                        .padding(.leading, 7)
-                    
-                    Text(getSoundText())
-                        .bold()
-                        .multilineTextAlignment(.leading)
-                    
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 2)
-                
+                HeaderView(text: selectedItemsText)
+
 //                FoldersAreTagsBannerView()
 //                    .padding(.horizontal)
 //                    .padding(.bottom, -10)
                 
                 ScrollView {
-                    HStack {
-                        Button {
-                            newFolder = UserFolder.newFolder()
-                        } label: {
-                            CreateFolderCell()
+                    VStack(spacing: 15) {
+                        HStack {
+                            Button {
+                                newFolder = UserFolder.newFolder()
+                            } label: {
+                                CreateFolderCell()
+                            }
+                            .foregroundColor(.primary)
+                            .frame(width: createNewFolderCellWidth)
+
+                            Spacer()
                         }
-                        .foregroundColor(.primary)
-                        .frame(width: createNewFolderCellWidth)
 
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    .padding(.top, 5)
+                        HStack {
+                            Text("Minhas Pastas")
+                                .font(.title2)
 
-                    HStack {
-                        Text("Minhas Pastas")
-                            .font(.title2)
-                        
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    .padding(.top)
-                    
-                    if viewModel.folders.count == 0 {
-                        Text("Nenhuma Pasta")
-                            .font(.title2)
-                            .foregroundColor(.gray)
-                            .padding(.vertical, 200)
-                    } else {
-                        LazyVGrid(columns: columns, spacing: 14) {
-                            ForEach(viewModel.folders) { folder in
-                                Button {
-                                    do {
-                                        soundsThatCanBeAdded = viewModel.canBeAddedToFolder(sounds: selectedSounds, folderId: folder.id)
+                            Spacer()
+                        }
 
-                                        let soundsAlreadyInFolder = selectedSounds.count - (soundsThatCanBeAdded?.count ?? 0)
-
-                                        if selectedSounds.count == soundsThatCanBeAdded?.count {
-                                            try selectedSounds.forEach { sound in
-                                                try LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folder.id)
-                                            }
-                                            try UserFolderRepository().update(folder)
-
-                                            folderName = "\(folder.symbol) \(folder.name)"
-                                            pluralization = selectedSounds.count > 1 ? .plural : .singular
-                                            hadSuccess = true
-                                            isBeingShown = false
-                                        } else if soundsAlreadyInFolder == 1, selectedSounds.count == 1 {
-                                            viewModel.showSingleSoundAlredyInFolderAlert(folderName: folder.name)
-                                        } else if soundsAlreadyInFolder == selectedSounds.count {
-                                            viewModel.showAllSoundsAlredyInFolderAlert(folderName: folder.name)
-                                        } else {
-                                            folderForSomeSoundsAlreadyInFolder = folder
-                                            viewModel.showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: soundsAlreadyInFolder, folderName: folder.name)
-                                        }
-                                    } catch {
-                                        viewModel.showIssueSavingAlert(error.localizedDescription)
+                        if viewModel.folders.count == 0 {
+                            Text("Nenhuma Pasta")
+                                .font(.title2)
+                                .foregroundColor(.gray)
+                                .padding(.vertical, 200)
+                        } else {
+                            LazyVGrid(columns: columns, spacing: 14) {
+                                ForEach(viewModel.folders) { folder in
+                                    Button {
+                                        guard let result = viewModel.onExistingFolderSelected(
+                                            folder: folder,
+                                            selectedContent: selectedContent
+                                        ) else { return }
+                                        details = result
+                                        isBeingShown.toggle()
+                                    } label: {
+                                        FolderView(folder: folder)
                                     }
-                                } label: {
-                                    FolderCell(
-                                        symbol: folder.symbol,
-                                        name: folder.name,
-                                        backgroundColor: folder.backgroundColor.toPastelColor()
-                                    )
+                                    .foregroundColor(.primary)
                                 }
-                                .foregroundColor(.primary)
                             }
                         }
-                        .padding(.horizontal)
                     }
                 }
             }
@@ -148,31 +103,22 @@ struct AddToFolderView: View {
                     self.isBeingShown = false
                 }
             )
+            .padding(.horizontal)
             .onAppear {
-                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                Task {
+                    await viewModel.onViewAppeared()
+                }
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
-                case .twoOptions:
+                case .addOnlyNonOverlapping:
                     return Alert(
                         title: Text(viewModel.alertTitle),
                         message: Text(viewModel.alertMessage),
                         primaryButton: .default(Text("Adicionar"), action: {
-                            do {
-                                try soundsThatCanBeAdded?.forEach { sound in
-                                    try LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
-                                }
-
-                                if let folder = folderForSomeSoundsAlreadyInFolder {
-                                    try UserFolderRepository().update(folder)
-                                    folderName = "\(folder.symbol) \(folder.name)"
-                                }
-                                pluralization = soundsThatCanBeAdded?.count ?? 0 > 1 ? .plural : .singular
-                                hadSuccess = true
-                                isBeingShown = false
-                            } catch {
-                                viewModel.showIssueSavingAlert(error.localizedDescription)
-                            }
+                            guard let result = viewModel.onAddOnlyNonExistingSelected() else { return }
+                            details = result
+                            isBeingShown.toggle()
                         }),
                         secondaryButton: .cancel(Text("Cancelar"))
                     )
@@ -188,16 +134,44 @@ struct AddToFolderView: View {
             .sheet(item: $newFolder) { folder in
                 FolderInfoEditingView(
                     folder: folder,
-                    folderRepository: UserFolderRepository(),
+                    folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                     dismissSheet: {
                         newFolder = nil
-                        viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                        Task {
+                            await viewModel.onNewFolderCreationSheetDismissed()
+                        }
                     }
                 )
             }
         }
     }
+}
 
+// MARK: - Subviews
+
+extension AddToFolderView {
+
+    struct HeaderView: View {
+
+        let text: String
+
+        var body: some View {
+            HStack(spacing: 16) {
+                Image(systemName: "speaker.wave.3.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 24)
+                    .padding(.leading, 7)
+
+                Text(text)
+                    .bold()
+                    .multilineTextAlignment(.leading)
+
+                Spacer()
+            }
+            .padding(.top, 5)
+        }
+    }
 }
 
 // MARK: - Preview
@@ -205,9 +179,9 @@ struct AddToFolderView: View {
 #Preview {
     AddToFolderView(
         isBeingShown: .constant(true),
-        hadSuccess: .constant(false),
-        folderName: .constant(nil),
-        pluralization: .constant(.singular),
-        selectedSounds: [Sound(title: "ABCD", description: "")]
+        details: .constant(AddToFolderDetails()),
+        selectedContent: [
+            AnyEquatableMedoContent(Sound(title: "ABCD", description: ""))
+        ]
     )
 }

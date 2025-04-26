@@ -20,11 +20,11 @@ enum MainSoundContainerModalToOpen {
     case syncInfo
 }
 
-enum SoundListModalToOpen {
+enum ContentGridModalToOpen {
 
     case shareAsVideo
     case addToFolder
-    case soundDetail
+    case contentDetail
     case soundIssueEmailPicker
-    case authorIssueEmailPicker(Sound)
+    case authorIssueEmailPicker(AnyEquatableMedoContent)
 }

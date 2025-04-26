@@ -31,4 +31,21 @@ struct Author: Hashable, Codable, Identifiable {
         self.soundCount = soundCount
         self.externalLinks = externalLinks
     }
+
+    var links: [ExternalLink] {
+        guard let links = self.externalLinks else {
+            return []
+        }
+        guard let jsonData = links.data(using: .utf8) else {
+            return []
+        }
+        let decoder = JSONDecoder()
+        do {
+            let decodedLinks = try decoder.decode([ExternalLink].self, from: jsonData)
+            return decodedLinks
+        } catch {
+            print("Error decoding JSON: \(error)")
+            return []
+        }
+    }
 }

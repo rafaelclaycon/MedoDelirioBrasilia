@@ -9,9 +9,12 @@ import SwiftUI
 
 struct MyFoldersiPhoneView: View {
 
+    let contentRepository: ContentRepositoryProtocol
+    let containerSize: CGSize
+
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
-    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @State private var currentContentListMode: ContentGridMode = .regular
     @State private var showErrorDeletingAlert: Bool = false
 
     @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
@@ -21,9 +24,16 @@ struct MyFoldersiPhoneView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(
+                FolderGrid(
+                    viewModel: FolderGridViewModel(
+                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                        userSettings: UserSettings(),
+                        appMemory: AppPersistentMemory()
+                    ),
                     updateFolderList: $updateFolderList,
-                    folderForEditing: $folderForEditing
+                    folderForEditing: $folderForEditing,
+                    contentRepository: contentRepository,
+                    containerSize: containerSize
                 )
             }
             .padding(.horizontal)
@@ -45,7 +55,7 @@ struct MyFoldersiPhoneView: View {
         .sheet(item: $folderForEditing) { folder in
             FolderInfoEditingView(
                 folder: folder,
-                folderRepository: UserFolderRepository(),
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                 dismissSheet: {
                     folderForEditing = nil
                     updateFolderList = true
@@ -85,5 +95,8 @@ struct MyFoldersiPhoneView: View {
 // MARK: - Preview
 
 #Preview {
-    MyFoldersiPhoneView()
+    MyFoldersiPhoneView(
+        contentRepository: FakeContentRepository(),
+        containerSize: CGSize(width: 400, height: 1200)
+    )
 }

@@ -27,6 +27,8 @@ class Logger: LoggerProtocol {
 
     static let shared = Logger()
 
+    // MARK: - Functions
+
     func logShared(
         _ type: ContentType,
         contentId: String,

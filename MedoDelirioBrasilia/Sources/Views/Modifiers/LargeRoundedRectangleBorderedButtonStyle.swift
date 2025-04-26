@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LargeRoundedRectangleBorderedButtonStyle: ViewModifier {
+
     var color: Color
 
     func body(content: Content) -> some View {
@@ -22,5 +23,24 @@ struct LargeRoundedRectangleBorderedButtonStyle: ViewModifier {
 extension Button {
     func largeRoundedRectangleBordered(colored color: Color) -> some View {
         self.modifier(LargeRoundedRectangleBorderedButtonStyle(color: color))
+    }
+}
+
+struct LargeRoundedRectangleBorderedProminentButtonStyle: ViewModifier {
+
+    var color: Color
+
+    func body(content: Content) -> some View {
+        content
+            .tint(color)
+            .controlSize(.large)
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.roundedRectangle)
+    }
+}
+
+extension Button {
+    func largeRoundedRectangleBorderedProminent(colored color: Color) -> some View {
+        self.modifier(LargeRoundedRectangleBorderedProminentButtonStyle(color: color))
     }
 }

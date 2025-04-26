@@ -10,10 +10,10 @@ import PhotosUI
 
 class ShareAsVideoViewViewModel: ObservableObject {
 
-    public let content: MedoContentProtocol
-    public let subtitle: String
+    var content: AnyEquatableMedoContent
+    var subtitle: String
     private let type: ContentType
-
+    
     @Published var includeSoundWarning: Bool = true
     @Published var isShowingProcessingView = false
 
@@ -29,7 +29,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     // MARK: - Initializer
 
     init(
-        content: MedoContentProtocol,
+        content: AnyEquatableMedoContent,
         subtitle: String = "",
         contentType: ContentType
     ) {
@@ -61,7 +61,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
                 self.isShowingProcessingView = false
                 self.showOtherError(
                     errorTitle: Shared.contentNotFoundAlertTitle(""),
-                    errorBody: Shared.soundNotFoundAlertMessage
+                    errorBody: Shared.contentNotFoundAlertMessage
                 )
             }
         } catch {

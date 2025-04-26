@@ -69,12 +69,14 @@ struct UpdateIncentiveBanner: View {
         .onAppear {
             maxSystemVersion = UpdateIncentive.maxSupportedVersion(deviceModel: UIDevice.modelName) ?? ""
 
-            if !AppPersistentMemory().getHasSentFirstUpdateIncentiveMetric() {
-                Analytics().send(
-                    originatingScreen: "UpdateIncentiveBanner",
-                    action: "didShowUpdateIncentiveBanner(\(UIDevice.modelName), \(UIDevice.current.systemVersion))"
-                )
-                AppPersistentMemory().setHasSentFirstUpdateIncentiveMetric(to: true)
+            Task {
+                if !AppPersistentMemory().getHasSentFirstUpdateIncentiveMetric() {
+                    await AnalyticsService().send(
+                        originatingScreen: "UpdateIncentiveBanner",
+                        action: "didShowUpdateIncentiveBanner(\(UIDevice.modelName), \(UIDevice.current.systemVersion))"
+                    )
+                    AppPersistentMemory().setHasSentFirstUpdateIncentiveMetric(to: true)
+                }
             }
         }
     }

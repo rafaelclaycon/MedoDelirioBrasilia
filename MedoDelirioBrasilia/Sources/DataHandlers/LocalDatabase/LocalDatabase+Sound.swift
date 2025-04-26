@@ -15,15 +15,14 @@ extension LocalDatabase {
     func soundCount() throws -> Int {
         try db.scalar(soundTable.count)
     }
-    
+
     func insert(sound newSound: Sound) throws {
         let insert = try soundTable.insert(newSound)
         try db.run(insert)
     }
-    
+
     func sounds(
-        allowSensitive: Bool,
-        favoritesOnly: Bool
+        allowSensitive: Bool
     ) throws -> [Sound] {
         var queriedSounds = [Sound]()
 
@@ -31,7 +30,6 @@ extension LocalDatabase {
         let id = Expression<String>("id")
         let name = Expression<String>("name")
         let isOffensive = Expression<Bool>("isOffensive")
-        let contentId = Expression<String>("contentid")
 
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -40,10 +38,6 @@ extension LocalDatabase {
 
         var query = soundTable.select(soundTable[*], author[name])
             .join(author, on: soundTable[author_id] == author[id])
-
-        if favoritesOnly {
-            query = query.join(favorite, on: soundTable[id] == favorite[contentId])
-        }
 
         if !allowSensitive {
             query = query.filter(isOffensive == false)
@@ -69,14 +63,14 @@ extension LocalDatabase {
         }
         return queriedSounds
     }
-    
+
     func sound(withId soundId: String) throws -> Sound? {
         var queriedSounds = [Sound]()
-        
+
         let author_id = Expression<String>("authorId")
         let id = Expression<String>("id")
         let name = Expression<String>("name")
-        
+
         let query = soundTable.select(soundTable[*], author[name])
             .join(author, on: soundTable[author_id] == author[id])
             .filter(soundTable[id] == soundId)
@@ -97,19 +91,19 @@ extension LocalDatabase {
         }
         return queriedSounds.first
     }
-    
+
     func sounds(withIds soundIds: [String]) throws -> [Sound] {
         var queriedSounds = [String: Sound]()
 
         let author_id = Expression<String>("authorId")
         let id = Expression<String>("id")
         let name = Expression<String>("name")
-        
+
         let query = soundTable
             .select(soundTable[*], author[name])
             .join(author, on: soundTable[author_id] == author[id])
             .filter(soundIds.contains(soundTable[id]))
-        
+
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
             if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
@@ -122,7 +116,7 @@ extension LocalDatabase {
             }
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
-            
+
             let soundId = try queriedSound.get(id)
             queriedSounds[soundId] = soundData
         }
@@ -180,7 +174,7 @@ extension LocalDatabase {
 //        let update = try filter.update(updatedSound)
 //        try db.run(update)
 //    }
-    
+
     func update(sound updatedSound: Sound) throws {
         let id = Expression<String>("id")
         let query = soundTable.filter(id == updatedSound.id)
@@ -191,10 +185,10 @@ extension LocalDatabase {
             Expression<Double>("duration") <- updatedSound.duration,
             Expression<Bool>("isOffensive") <- updatedSound.isOffensive
         )
-        
+
         try db.run(updateQuery)
     }
-    
+
     func delete(soundId: String) throws {
         let id = Expression<String>("id")
         let deleteQuery = soundTable.filter(id == soundId).delete()

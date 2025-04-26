@@ -13,6 +13,7 @@ final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
     var folderResearchHashValue: [String: String]? = nil
     var hasSentFolderResearchInfo = false
     var lastFolderResearchSyncDateTimeValue: Date? = nil
+    var hasDismissedJoinFolderResearchBanner = false
 
     var customInstallId: String = ""
 
@@ -38,5 +39,17 @@ final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
 
     func lastFolderResearchSyncDateTime(_ dateTime: Date) {
         lastFolderResearchSyncDateTimeValue = dateTime
+    }
+
+    func getHasDismissedJoinFolderResearchBanner() -> Bool? {
+        hasDismissedJoinFolderResearchBanner
+    }
+
+    func hasSeenVersion9WhatsNewScreen() -> Bool {
+        false
+    }
+
+    func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
+        //
     }
 }

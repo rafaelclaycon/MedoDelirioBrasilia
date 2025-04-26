@@ -9,12 +9,12 @@ import SwiftUI
 
 struct FolderDetailView: View {
 
-    @StateObject private var viewModel: FolderDetailViewViewModel
-    @StateObject private var soundListViewModel: SoundListViewModel<[Sound]>
+    @State private var viewModel: FolderDetailViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
 
     let folder: UserFolder
 
-    private var currentSoundsListMode: Binding<SoundsListMode>
+    private var currentContentListMode: Binding<ContentGridMode>
     @State private var showingFolderInfoEditingView = false
     @State private var showingModalView = false
 
@@ -26,54 +26,62 @@ struct FolderDetailView: View {
     }
     
     private var title: String {
-        guard currentSoundsListMode.wrappedValue == SoundsListMode.regular else {
-            if soundListViewModel.selectionKeeper.count == 0 {
+        guard currentContentListMode.wrappedValue == .regular else {
+            if contentGridViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if soundListViewModel.selectionKeeper.count == 1 {
+            } else if contentGridViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
-                return String(format: Shared.SoundSelection.soundsSelectedPlural, soundListViewModel.selectionKeeper.count)
+                return String(format: Shared.SoundSelection.soundsSelectedPlural, contentGridViewModel.selectionKeeper.count)
             }
         }
         return "\(folder.symbol)  \(folder.name)"
     }
 
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
+    }
+
     // MARK: - Initializer
 
     init(
+        viewModel: FolderDetailViewModel,
         folder: UserFolder,
-        currentSoundsListMode: Binding<SoundsListMode>
+        currentContentListMode: Binding<ContentGridMode>,
+        toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.folder = folder
-        let viewModel = FolderDetailViewViewModel(folder: folder)
 
-        self._viewModel = StateObject(wrappedValue: viewModel)
-        self.currentSoundsListMode = currentSoundsListMode
+        self.viewModel = viewModel
+        self.currentContentListMode = currentContentListMode
 
-        let soundListViewModel = SoundListViewModel<[Sound]>(
-            data: viewModel.soundsPublisher,
+        self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .folderDetailView,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
-            currentSoundsListMode: currentSoundsListMode,
-            refreshAction: { viewModel.reloadSounds() },
-            insideFolder: folder
+            currentListMode: currentContentListMode,
+            toast: toast,
+            floatingOptions: floatingOptions,
+            refreshAction: { viewModel.onContentWasRemovedFromFolder() },
+            insideFolder: folder,
+            multiSelectFolderOperation: .remove,
+            analyticsService: AnalyticsService()
         )
-
-        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
 
     // MARK: - View Body
 
     var body: some View {
-        VStack {
-            SoundList(
-                viewModel: soundListViewModel,
-                multiSelectFolderOperation: .remove,
-                showNewTag: false,
-                dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                headerView: {
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: .spacing(.medium)) {
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(viewModel.soundCount)
+                            Text(viewModel.contentCountText)
                                 .font(.callout)
                                 .foregroundColor(.gray)
                                 .bold()
@@ -83,67 +91,81 @@ struct FolderDetailView: View {
                     }
                     .padding(.horizontal, 20)
                     .padding(.top)
-                },
-                loadingView:
-                    VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
 
-                            Text("Carregando sons...")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                ,
-                emptyStateView:
-                    EmptyFolderView()
-                        .padding(.horizontal, 30)
-                ,
-                errorView:
-                    VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
+                    ContentGrid(
+                        state: viewModel.state,
+                        viewModel: contentGridViewModel,
+                        showNewTag: false,
+                        containerSize: geometry.size,
+                        loadingView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
 
-                            Text("Erro ao carregar sons.")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-            )
-            .environment(TrendsHelper())
-        }
-        .navigationTitle(title)
-        .toolbar { trailingToolbarControls() }
-        .onAppear {
-            viewModel.reloadSounds()
-        }
-        .onDisappear {
-            if soundListViewModel.isPlayingPlaylist {
-                soundListViewModel.stopPlaying()
-            }
-        }
-        .sheet(isPresented: $showingFolderInfoEditingView) {
-            FolderInfoEditingView(
-                folder: folder,
-                folderRepository: UserFolderRepository(),
-                dismissSheet: {
-                    showingFolderInfoEditingView = false
+                                    Text("Carregando sons...")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                        ,
+                        emptyStateView:
+                            VStack {
+                                EmptyFolderView()
+                                    .padding(.horizontal, .spacing(.xxLarge))
+                                    .padding(.vertical, .spacing(.huge))
+                            }
+                        ,
+                        errorView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
+
+                                    Text("Erro ao carregar sons.")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                    )
+                    .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.medium))
+
+                    Spacer()
+                        .frame(height: .spacing(.large))
                 }
-            )
+                .navigationTitle(title)
+                .toolbar { trailingToolbarControls() }
+                .onAppear {
+                    viewModel.onViewAppeared()
+                }
+                .onDisappear {
+                    contentGridViewModel.onViewDisappeared()
+                }
+                .sheet(isPresented: $showingFolderInfoEditingView) {
+                    FolderInfoEditingView(
+                        folder: folder,
+                        folderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                        dismissSheet: {
+                            showingFolderInfoEditingView = false
+                        }
+                    )
+                }
+            }
+            .toast(contentGridViewModel.toast)
+            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
     }
 
-    // MARK: - Auxiliary Views
+    // MARK: - Subviews
 
     @ViewBuilder func trailingToolbarControls() -> some View {
         HStack(spacing: 16) {
-            if currentSoundsListMode.wrappedValue == .regular {
+            if currentContentListMode.wrappedValue == .regular {
                 Button {
-                    soundListViewModel.playStopPlaylist()
+                    contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent)
                 } label: {
-                    Image(systemName: soundListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                    Image(systemName: contentGridViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
-                .disabled(viewModel.sounds.isEmpty)
+                .disabled(viewModel.contentCount == 0)
             } else {
                 selectionControls()
             }
@@ -151,17 +173,20 @@ struct FolderDetailView: View {
             Menu {
                 Section {
                     Button {
-                        soundListViewModel.startSelecting()
+                        contentGridViewModel.onEnterMultiSelectModeSelected(
+                            loadedContent: loadedContent,
+                            isFavoritesOnlyView: false
+                        )
                     } label: {
                         Label(
-                            currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                            currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                            systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
                         )
                     }
                 }
 
                 Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                    Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
                         Text("Título")
                             .tag(0)
 
@@ -173,10 +198,11 @@ struct FolderDetailView: View {
                                 .tag(2)
                         }
                     }
-                    .onChange(of: viewModel.soundSortOption) { sortOption in
-                        viewModel.sortSounds(by: sortOption)
+                    .onChange(of: viewModel.contentSortOption) {
+                        contentGridViewModel.onContentSortingChanged()
+                        viewModel.onContentSortOptionChanged()
                     }
-                    .disabled(viewModel.sounds.isEmpty)
+                    .disabled(viewModel.contentCount == 0)
                 }
 
                 //                    Section {
@@ -212,18 +238,18 @@ struct FolderDetailView: View {
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-            .disabled(soundListViewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
+            .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
         }
     }
     
     @ViewBuilder func selectionControls() -> some View {
-        if currentSoundsListMode.wrappedValue == .regular {
+        if currentContentListMode.wrappedValue == .regular {
             EmptyView()
         } else {
             HStack(spacing: 16) {
                 Button {
-                    currentSoundsListMode.wrappedValue = .regular
-                    soundListViewModel.selectionKeeper.removeAll()
+                    currentContentListMode.wrappedValue = .regular
+                    contentGridViewModel.selectionKeeper.removeAll()
                 } label: {
                     Text("Cancelar")
                         .bold()
@@ -233,14 +259,25 @@ struct FolderDetailView: View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    FolderDetailView(
-        folder: .init(
-            symbol: "🤑",
-            name: "Grupo da Economia",
-            backgroundColor: "pastelBabyBlue",
-            changeHash: "abcdefg"
+    let folder = UserFolder(
+        symbol: "🤑",
+        name: "Grupo da Economia",
+        backgroundColor: "pastelBabyBlue",
+        changeHash: "abcdefg"
+    )
+
+    return FolderDetailView(
+        viewModel: FolderDetailViewModel(
+            folder: folder,
+            contentRepository: FakeContentRepository()
         ),
-        currentSoundsListMode: .constant(.regular)
+        folder: folder,
+        currentContentListMode: .constant(.regular),
+        toast: .constant(nil),
+        floatingOptions: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }

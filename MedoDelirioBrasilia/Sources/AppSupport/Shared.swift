@@ -26,7 +26,7 @@ struct Shared {
     }
     
     static let addToFolderButtonText = "Adicionar a Pasta"
-    static let shareSoundButtonText = "Compartilhar Som"
+    static let shareSoundButtonText = "Compartilhar"
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
     static let addToFavorites = "Adicionar aos Favoritos"
@@ -34,7 +34,7 @@ struct Shared {
     
     struct SoundSelection {
         
-        static let selectSounds = "Selecionar Sons"
+        static let selectSounds = "Selecionar"
         static let soundSelectedSingular = "1 Selecionado"
         static let soundsSelectedPlural = "%d Selecionados"
     }
@@ -47,12 +47,12 @@ struct Shared {
     static func contentNotFoundAlertTitle(_ contentName: String) -> String {
         return "Conteúdo \"\(contentName)\" Indisponível"
     }
-    static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
+    static let contentNotFoundAlertMessage = "Devido a um problema técnico, o conteúdo que você quer acessar não está disponível."
     static let serverContentNotAvailableMessage = "Provavelmente houve um problema com o download desse conteúdo.\n\nPor favor, reporte esse erro para mim através do e-mail nas Configurações."
     static let serverContentNotAvailableRedownloadMessage = "Houve um problema com o download desse conteúdo durante a atualização.\n\nVocê pode tentar baixá-lo novamente."
-    static let soundSharedSuccessfullyMessage = "Som compartilhado com sucesso."
-    static let soundExportedSuccessfullyMessage = "Som exportado com sucesso."
-    static let soundsExportedSuccessfullyMessage = "Sons exportados com sucesso."
+    static let soundSharedSuccessfullyMessage = "Conteúdo compartilhado com sucesso."
+    static let soundExportedSuccessfullyMessage = "Conteúdo exportado com sucesso."
+    static let soundsExportedSuccessfullyMessage = "Conteúdos exportados com sucesso."
     static let songSharedSuccessfullyMessage = "Música compartilhada com sucesso."
     static let videoSharedSuccessfullyMessage = "Vídeo compartilhado com sucesso."
     
@@ -122,8 +122,7 @@ struct Shared {
     }
     
     struct ScreenNames {
-        
-        static let soundsView = "SoundsView"
+
         static let authorsView = "AuthorsView"
         static let authorDetailView = "AuthorDetailView"
     }

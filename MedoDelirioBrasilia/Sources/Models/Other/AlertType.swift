@@ -16,7 +16,6 @@ enum SoundListAlertType {
 
     case soundFileNotFound
     case issueSharingSound
-    case optionIncompatibleWithWhatsApp
     case issueExportingManySounds
     case removeSingleSound
     case removeMultipleSounds
@@ -25,13 +24,21 @@ enum SoundListAlertType {
 }
 
 enum AuthorDetailAlertType {
+
     case ok, reportSoundIssue, askForNewSound
 }
 
 enum FolderDetailAlertType {
+
     case ok, removeSingleSound, removeMultipleSounds
 }
 
 enum SongsViewAlert {
+
     case ok, songUnavailable, redownloadSong
+}
+
+enum AddToFolderAlertType {
+
+    case ok, addOnlyNonOverlapping
 }

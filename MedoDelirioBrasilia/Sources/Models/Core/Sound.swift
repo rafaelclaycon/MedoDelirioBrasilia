@@ -19,7 +19,7 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
     let duration: Double
     let isOffensive: Bool
     var isFromServer: Bool?
-    
+
     init(
         id: String = UUID().uuidString,
         title: String,
@@ -43,7 +43,15 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
         self.isOffensive = isOffensive
         self.isFromServer = isFromServer
     }
-    
+
+    var subtitle: String {
+        authorName ?? ""
+    }
+
+    var type: MediaType {
+        .sound
+    }
+
     func fileURL() throws -> URL {
         if isFromServer ?? false {
             let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

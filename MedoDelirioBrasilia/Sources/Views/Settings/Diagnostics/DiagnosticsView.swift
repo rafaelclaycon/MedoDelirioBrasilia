@@ -11,6 +11,7 @@ import Kingfisher
 struct DiagnosticsView: View {
 
     let database: LocalDatabaseProtocol
+    let analyticsService: AnalyticsServiceProtocol
 
     @State private var showUpdateDateOnUI: Bool = UserSettings().getShowUpdateDateOnUI()
 
@@ -30,7 +31,7 @@ struct DiagnosticsView: View {
                 }
             }
 
-            ImportFavoritesView(database: database)
+            ImportFavoritesView(database: database, analyticsService: analyticsService)
 
             Section {
                 Toggle("Exibir data e hora da última atualização na UI", isOn: $showUpdateDateOnUI)
@@ -136,6 +137,7 @@ extension DiagnosticsView {
     struct ImportFavoritesView: View {
 
         let database: LocalDatabaseProtocol
+        let analyticsService: AnalyticsServiceProtocol
 
         struct ImportResult {
 
@@ -202,28 +204,28 @@ extension DiagnosticsView {
                 guard let error = result.errorMessage else {
                     importCount = result.importCount
                     displaySuccessAlert.toggle()
-                    logSuccess(result.importCount)
+                    await logSuccess(result.importCount)
                     return
                 }
                 errorMessage = error
                 displayError.toggle()
-                logError(error)
+                await logError(error)
             } else {
                 errorMessage = "Arquivo Inacessível ou Outro Erro ao Tentar Obter IDs"
                 displayError.toggle()
-                logError(errorMessage)
+                await logError(errorMessage)
             }
         }
 
-        private func logError(_ message: String) {
-            Analytics().send(
+        private func logError(_ message: String) async {
+            await analyticsService.send(
                 originatingScreen: "DiagnosticsView",
                 action: "hadIssueImportingFavorites(\(message))"
             )
         }
 
-        private func logSuccess(_ count: Int) {
-            Analytics().send(
+        private func logSuccess(_ count: Int) async {
+            await analyticsService.send(
                 originatingScreen: "DiagnosticsView",
                 action: "importedFavorites(\(count))"
             )
@@ -314,5 +316,8 @@ extension DiagnosticsView {
 }
 
 #Preview {
-    //DiagnosticsView(database: FakeLocalDatabase())
+//    DiagnosticsView(
+//        database: FakeLocalDatabase(),
+//        analyticsService: FakeAnalyticsService()
+//    )
 }

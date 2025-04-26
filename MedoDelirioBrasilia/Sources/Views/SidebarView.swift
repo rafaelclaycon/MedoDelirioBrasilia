@@ -9,87 +9,76 @@ import SwiftUI
 
 struct SidebarView: View {
 
-    @StateObject private var viewModel = SidebarViewViewModel()
+    // MARK: - External Dependencies
+
     @Binding var state: PadScreen?
     @Binding var isShowingSettingsSheet: Bool
     @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
-    @Binding var currentSoundsListMode: SoundsListMode
-    @EnvironmentObject var settingsHelper: SettingsHelper
-    @EnvironmentObject var syncValues: SyncValues
+    @Binding var currentContentListMode: ContentGridMode
+    @Binding var toast: Toast?
+    @Binding var floatingOptions: FloatingContentOptions?
+    let contentRepository: ContentRepositoryProtocol
+
+    // MARK: - View State
+
+    @StateObject private var viewModel = SidebarViewViewModel()
+    @EnvironmentObject private var settingsHelper: SettingsHelper
+    @EnvironmentObject private var syncValues: SyncValues
 
     // Trends
     @Environment(TrendsHelper.self) private var trendsHelper
-    @Environment(\.push) var push
+    @Environment(\.push) private var push
+
+    // MARK: - View Body
 
     var body: some View {
         List {
-            Section("Sons") {
+            Section {
                 NavigationLink(
-                    destination: MainSoundContainer(
-                        viewModel: .init(
-                            currentViewMode: .allSounds,
-                            soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                    destination: MainContentView(
+                        viewModel: MainContentViewModel(
+                            currentViewMode: .all,
+                            contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
+                            currentContentListMode: $currentContentListMode,
+                            toast: $toast,
+                            floatingOptions: $floatingOptions,
+                            syncValues: syncValues,
+                            contentRepository: contentRepository
                         ),
-                        currentSoundsListMode: $currentSoundsListMode,
-                        openSettingsAction: {}
+                        currentContentListMode: $currentContentListMode,
+                        toast: $toast,
+                        floatingOptions: $floatingOptions,
+                        openSettingsAction: {},
+                        contentRepository: contentRepository
                     ).environment(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
-                        Label("Todos os Sons", systemImage: "speaker.wave.2")
-                    })
-                
+                        Label("Sons", systemImage: "speaker.wave.2")
+                    }
+                )
+
                 NavigationLink(
-                    destination: MainSoundContainer(
-                        viewModel: .init(
-                            currentViewMode: .favorites,
-                            soundSortOption: UserSettings().mainSoundListSoundSortOption(),
-                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues,
-                            isAllowedToSync: false
+                    destination: StandaloneFavoritesView(
+                        viewModel: StandaloneFavoritesViewModel(
+                            contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                            toast: $toast,
+                            floatingOptions: $floatingOptions,
+                            contentRepository: contentRepository
                         ),
-                        currentSoundsListMode: $currentSoundsListMode,
-                        openSettingsAction: {}
-                    ).environment(trendsHelper).environmentObject(settingsHelper),
+                        currentContentListMode: $currentContentListMode,
+                        openSettingsAction: {},
+                        contentRepository: contentRepository
+                    ),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
-                    })
+                    }
+                )
 
-                // FIXME: Bring Reactions to iPad in the future.
-//                NavigationLink(
-//                    destination: ReactionsView(),
-//                    tag: PadScreen.reactions,
-//                    selection: $state,
-//                    label: {
-//                        Label("Reações", systemImage: "rectangle.grid.2x2")
-//                    }
-//                )
-
-                // FIXME: Bring Authors back to iPad in the future.
-//                NavigationLink(
-//                    destination: SoundsView(
-//                        viewModel: SoundsViewViewModel(
-//                            currentViewMode: .byAuthor,
-//                            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-//                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
-//                            currentSoundsListMode: $currentSoundsListMode,
-//                            syncValues: syncValues
-//                        ),
-//                        currentSoundsListMode: $currentSoundsListMode
-//                        ).environmentObject(trendsHelper).environmentObject(settingsHelper),
-//                    tag: PadScreen.groupedByAuthor,
-//                    selection: $state,
-//                    label: {
-//                        Label("Por Autor", systemImage: "person")
-//                    })
-                
                 NavigationLink(
                     destination: TrendsView(
                         tabSelection: .constant(.trends),
@@ -99,45 +88,50 @@ struct SidebarView: View {
                     selection: $state,
                     label: {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                    })
-            }
-            
-            Section("Mais") {
-                NavigationLink(
-                    destination: SongsView().environmentObject(settingsHelper).environment(trendsHelper),
-                    tag: PadScreen.songs,
-                    selection: $state,
-                    label: {
-                        Label("Músicas", systemImage: "music.quarternote.3")
-                    })
+                    }
+                )
             }
             
             Section("Minhas Pastas") {
                 NavigationLink(
-                    destination: AllFoldersiPadView(
+                    destination: StandaloneFolderGridView(
                         folderForEditing: $folderForEditing,
-                        updateFolderList: $updateFolderList
+                        updateFolderList: $updateFolderList,
+                        contentRepository: contentRepository
                     ),
                     tag: PadScreen.allFolders,
                     selection: $state,
                     label: {
                         Label("Todas as Pastas", systemImage: "folder")
-                    })
-                
+                    }
+                )
+
                 ForEach(viewModel.folders) { folder in
                     NavigationLink(
                         destination: FolderDetailView(
+                            viewModel: FolderDetailViewModel(
+                                folder: folder,
+                                contentRepository: contentRepository
+                            ),
                             folder: folder,
-                            currentSoundsListMode: $currentSoundsListMode
+                            currentContentListMode: $currentContentListMode,
+                            toast: $toast,
+                            floatingOptions: $floatingOptions,
+                            contentRepository: contentRepository
                         ),
                         tag: .specificFolder,
                         selection: $state,
                         label: {
                             HStack(spacing: 15) {
-                                SidebarFolderIcon(symbol: folder.symbol, backgroundColor: folder.backgroundColor.toPastelColor())
+                                SidebarFolderIcon(
+                                    symbol: folder.symbol,
+                                    backgroundColor: folder.backgroundColor.toPastelColor()
+                                )
+
                                 Text(folder.name)
                             }
-                        })
+                        }
+                    )
                 }
                 
                 Button {
@@ -160,8 +154,8 @@ struct SidebarView: View {
         .onAppear {
             viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
         }
-        .onChange(of: updateFolderList) { shouldUpdate in
-            if shouldUpdate {
+        .onChange(of: updateFolderList) {
+            if updateFolderList {
                 viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             }
         }
@@ -176,6 +170,9 @@ struct SidebarView: View {
         isShowingSettingsSheet: .constant(false),
         folderForEditing: .constant(nil),
         updateFolderList: .constant(false),
-        currentSoundsListMode: .constant(.regular)
+        currentContentListMode: .constant(.regular),
+        toast: .constant(nil),
+        floatingOptions: .constant(nil),
+        contentRepository: FakeContentRepository()
     )
 }
