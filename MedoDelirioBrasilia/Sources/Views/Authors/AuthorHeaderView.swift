@@ -16,7 +16,7 @@ struct AuthorHeaderView: View {
     let soundCountText: String
     var containerWidth: CGFloat = 400
 
-    let contentListMode: ContentListMode
+    let contentListMode: ContentGridMode
     @Binding var contentSortOption: Int
     let multiSelectAction: () -> Void
     let askForSoundAction: () -> Void
@@ -127,7 +127,7 @@ extension AuthorHeaderView {
         let soundCount: Int
         let soundCountText: String
 
-        let contentListMode: ContentListMode
+        let contentListMode: ContentGridMode
         @Binding var contentSortOption: Int
         let multiSelectAction: () -> Void
         let askForSoundAction: () -> Void
@@ -199,7 +199,7 @@ extension AuthorHeaderView {
         let soundCountText: String
         let containerWidth: CGFloat
 
-        let contentListMode: ContentListMode
+        let contentListMode: ContentGridMode
         @Binding var contentSortOption: Int
         let multiSelectAction: () -> Void
         let askForSoundAction: () -> Void
@@ -344,7 +344,7 @@ extension AuthorHeaderView {
     struct MoreOptionsMenu: View {
 
         let soundCount: Int
-        let contentListMode: ContentListMode
+        let contentListMode: ContentGridMode
         @Binding var contentSortOption: Int
         let multiSelectAction: () -> Void
         let askForSoundAction: () -> Void

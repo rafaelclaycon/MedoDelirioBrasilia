@@ -16,7 +16,7 @@ struct PlayableContentView: View {
     let highlighted: Set<String>
     let nowPlaying: Set<String>
     let selectedItems: Set<String>
-    @Binding var currentContentListMode: ContentListMode // This needs to be a Binding to keep Selection working.
+    @Binding var currentContentListMode: ContentGridMode // This needs to be a Binding to keep Selection working.
 
     @State private var timeRemaining: Double = 0
 

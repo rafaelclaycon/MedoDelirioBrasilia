@@ -15,7 +15,7 @@ struct SidebarView: View {
     @Binding var isShowingSettingsSheet: Bool
     @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
-    @Binding var currentContentListMode: ContentListMode
+    @Binding var currentContentListMode: ContentGridMode
     @Binding var toast: Toast?
     @Binding var floatingOptions: FloatingContentOptions?
     let contentRepository: ContentRepositoryProtocol

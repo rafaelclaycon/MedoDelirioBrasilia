@@ -12,7 +12,7 @@ struct StandaloneFavoritesView: View {
     @State var viewModel: StandaloneFavoritesViewModel
     @State private var contentGridViewModel: ContentGridViewModel
     
-    private var currentContentListMode: Binding<ContentListMode>
+    private var currentContentListMode: Binding<ContentGridMode>
     private let openSettingsAction: () -> Void
 
     @State private var soundSearchTextIsEmpty: Bool? = true
@@ -26,7 +26,7 @@ struct StandaloneFavoritesView: View {
 
     init(
         viewModel: StandaloneFavoritesViewModel,
-        currentContentListMode: Binding<ContentListMode>,
+        currentContentListMode: Binding<ContentGridMode>,
         openSettingsAction: @escaping () -> Void,
         contentRepository: ContentRepositoryProtocol
     ) {

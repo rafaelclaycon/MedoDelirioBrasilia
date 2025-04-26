@@ -23,7 +23,7 @@ final class ContentGridViewModel {
 
     var selectedContentSingle: AnyEquatableMedoContent? = nil
     var selectedContentMultiple: [AnyEquatableMedoContent]? = nil
-    var subviewToOpen: ContentListModalToOpen = .shareAsVideo
+    var subviewToOpen: ContentGridModalToOpen = .shareAsVideo
     var showingModalView = false
 
     var authorToOpen: Author? = nil
@@ -58,7 +58,7 @@ final class ContentGridViewModel {
 
     // MARK: - Stored Properties
 
-    public var currentListMode: Binding<ContentListMode>
+    public var currentListMode: Binding<ContentGridMode>
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let multiSelectFolderOperation: FolderOperation
@@ -74,7 +74,7 @@ final class ContentGridViewModel {
         userFolderRepository: UserFolderRepositoryProtocol,
         screen: ContentGridScreen,
         menuOptions: [ContextMenuSection],
-        currentListMode: Binding<ContentListMode>,
+        currentListMode: Binding<ContentGridMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         refreshAction: (() -> Void)? = nil,

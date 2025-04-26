@@ -22,7 +22,7 @@ struct MainView: View {
     @StateObject private var settingsHelper = SettingsHelper()
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false
-    @State private var currentContentListMode: ContentListMode = .regular
+    @State private var currentContentListMode: ContentGridMode = .regular
     @State private var toast: Toast?
     @State private var floatingOptions: FloatingContentOptions?
 

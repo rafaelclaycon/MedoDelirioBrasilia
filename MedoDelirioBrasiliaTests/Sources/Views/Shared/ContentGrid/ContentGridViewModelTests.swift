@@ -12,8 +12,8 @@ import SwiftUI
 struct ContentGridViewModelTests {
 
     @Test func whenMultiSelectModeSelected_shouldEnterIt() async throws {
-        var listModeValue: ContentListMode = .regular
-        let listMode = Binding<ContentListMode>(
+        var listModeValue: ContentGridMode = .regular
+        let listMode = Binding<ContentGridMode>(
             get: { listModeValue },
             set: { listModeValue = $0 }
         )

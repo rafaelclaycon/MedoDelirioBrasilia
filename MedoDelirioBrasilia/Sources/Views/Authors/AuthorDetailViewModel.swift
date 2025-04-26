@@ -23,7 +23,7 @@ class AuthorDetailViewModel {
     var showEmailAppPicker_askForNewSound = false
     var showEmailAppPicker_reportAuthorDetailIssue = false
 
-    public var currentContentListMode: Binding<ContentListMode>
+    public var currentContentListMode: Binding<ContentGridMode>
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
 
@@ -50,7 +50,7 @@ class AuthorDetailViewModel {
 
     init(
         author: Author,
-        currentContentListMode: Binding<ContentListMode>,
+        currentContentListMode: Binding<ContentGridMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         contentRepository: ContentRepositoryProtocol

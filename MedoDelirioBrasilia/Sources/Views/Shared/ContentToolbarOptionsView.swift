@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentToolbarOptionsView: View {
 
     @Binding var contentSortOption: Int
-    let contentListMode: ContentListMode
+    let contentListMode: ContentGridMode
     let multiSelectAction: () -> Void
     var playRandomSoundAction: (() -> Void)? = nil
     let contentSortChangeAction: () -> Void

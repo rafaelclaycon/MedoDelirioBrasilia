@@ -24,7 +24,7 @@ class MainContentViewModel {
 
     // MARK: - Stored Properties
 
-    public var currentContentListMode: Binding<ContentListMode>
+    public var currentContentListMode: Binding<ContentGridMode>
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let contentRepository: ContentRepositoryProtocol
@@ -40,7 +40,7 @@ class MainContentViewModel {
         currentViewMode: ContentModeOption,
         contentSortOption: Int,
         authorSortOption: Int,
-        currentContentListMode: Binding<ContentListMode>,
+        currentContentListMode: Binding<ContentGridMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         syncValues: SyncValues,

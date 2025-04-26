@@ -20,7 +20,7 @@ enum MainSoundContainerModalToOpen {
     case syncInfo
 }
 
-enum ContentListModalToOpen {
+enum ContentGridModalToOpen {
 
     case shareAsVideo
     case addToFolder

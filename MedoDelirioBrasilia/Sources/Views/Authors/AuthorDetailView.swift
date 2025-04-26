@@ -13,7 +13,7 @@ struct AuthorDetailView: View {
     @State private var contentGridViewModel: ContentGridViewModel
 
     @State private var navBarTitle: String = ""
-    private var currentContentListMode: Binding<ContentListMode>
+    private var currentContentListMode: Binding<ContentGridMode>
 
     @State private var showingModalView = false
 
@@ -64,7 +64,7 @@ struct AuthorDetailView: View {
 
     init(
         viewModel: AuthorDetailViewModel,
-        currentListMode: Binding<ContentListMode>,
+        currentListMode: Binding<ContentGridMode>,
         contentRepository: ContentRepositoryProtocol
     ) {
         self.viewModel = viewModel

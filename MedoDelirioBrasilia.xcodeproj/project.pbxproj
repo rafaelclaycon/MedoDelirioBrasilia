@@ -1184,7 +1184,7 @@
 		D998816929C4AA93007A8C7B /* FLOW PODCAST - Igor 3k - Como eu odeio isso cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998816429C4AA93007A8C7B /* FLOW PODCAST - Igor 3k - Como eu odeio isso cara.mp3 */; };
 		D998816A29C4AA93007A8C7B /* Advocacia Geral da Uniao - Voce sabe o que e onus da prova.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998816529C4AA93007A8C7B /* Advocacia Geral da Uniao - Voce sabe o que e onus da prova.mp3 */; };
 		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
-		D99A961A299A6CC700BB5F0D /* ContentListMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A9619299A6CC700BB5F0D /* ContentListMode.swift */; };
+		D99A961A299A6CC700BB5F0D /* ContentGridMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A9619299A6CC700BB5F0D /* ContentGridMode.swift */; };
 		D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */; };
 		D99ACE982ADDFC2500C290F0 /* RetroViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99ACE972ADDFC2500C290F0 /* RetroViewModelTests.swift */; };
 		D99BAF732CE05B1500250900 /* HowReactionsWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */; };
@@ -2744,7 +2744,7 @@
 		D998816429C4AA93007A8C7B /* FLOW PODCAST - Igor 3k - Como eu odeio isso cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FLOW PODCAST - Igor 3k - Como eu odeio isso cara.mp3"; sourceTree = "<group>"; };
 		D998816529C4AA93007A8C7B /* Advocacia Geral da Uniao - Voce sabe o que e onus da prova.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Advocacia Geral da Uniao - Voce sabe o que e onus da prova.mp3"; sourceTree = "<group>"; };
 		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
-		D99A9619299A6CC700BB5F0D /* ContentListMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListMode.swift; sourceTree = "<group>"; };
+		D99A9619299A6CC700BB5F0D /* ContentGridMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGridMode.swift; sourceTree = "<group>"; };
 		D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCheckbox.swift; sourceTree = "<group>"; };
 		D99ACE972ADDFC2500C290F0 /* RetroViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroViewModelTests.swift; sourceTree = "<group>"; };
 		D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowReactionsWorkView.swift; sourceTree = "<group>"; };
@@ -4832,7 +4832,7 @@
 				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */,
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
 				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
-				D99A9619299A6CC700BB5F0D /* ContentListMode.swift */,
+				D99A9619299A6CC700BB5F0D /* ContentGridMode.swift */,
 				D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */,
 				D9D474422D9C8A03007371C3 /* AddToFolderDetails.swift */,
 			);
@@ -6985,7 +6985,7 @@
 				D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */,
 				D90277822AAA242D0061A960 /* AlbumCoverPlayView.swift in Sources */,
 				D9A039182BD69EF100AB74F7 /* ModalViewToOpen.swift in Sources */,
-				D99A961A299A6CC700BB5F0D /* ContentListMode.swift in Sources */,
+				D99A961A299A6CC700BB5F0D /* ContentGridMode.swift in Sources */,
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,

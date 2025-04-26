@@ -12,7 +12,7 @@ struct MainContentView: View {
 
     @State private var viewModel: MainContentViewModel
     @State private var contentGridViewModel: ContentGridViewModel
-    private var currentContentListMode: Binding<ContentListMode>
+    private var currentContentListMode: Binding<ContentGridMode>
     private let openSettingsAction: () -> Void
     private let contentRepository: ContentRepositoryProtocol
 
@@ -64,7 +64,7 @@ struct MainContentView: View {
 
     init(
         viewModel: MainContentViewModel,
-        currentContentListMode: Binding<ContentListMode>,
+        currentContentListMode: Binding<ContentGridMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void,
@@ -289,7 +289,7 @@ extension MainContentView {
     struct TrailingToolbarControls: View {
 
         let currentViewMode: ContentModeOption
-        let contentListMode: ContentListMode
+        let contentListMode: ContentGridMode
         @Binding var contentSortOption: Int
         @Binding var authorSortOption: Int
         let openContentUpdateSheet: () -> Void

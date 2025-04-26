@@ -17,7 +17,7 @@ struct GeneralRouter: View {
     let destination: GeneralNavigationDestination
     let contentRepository: ContentRepositoryProtocol
 
-    @State private var currentContentListMode: ContentListMode = .regular
+    @State private var currentContentListMode: ContentGridMode = .regular
     @State private var toast: Toast?
     @State private var floatingOptions: FloatingContentOptions?
 

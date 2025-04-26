@@ -16,7 +16,7 @@ struct AuthorsView: View {
 
     @State private var viewModel = ViewModel()
     @State private var searchText = ""
-    @State private var currentContentListMode: ContentListMode = .regular
+    @State private var currentContentListMode: ContentGridMode = .regular
     @State private var columns: [GridItem] = []
 
     // Dynamic Type

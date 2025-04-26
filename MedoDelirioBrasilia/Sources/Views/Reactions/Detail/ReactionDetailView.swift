@@ -14,7 +14,7 @@ struct ReactionDetailView: View {
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
-    private var contentGridMode: Binding<ContentListMode>
+    private var contentGridMode: Binding<ContentGridMode>
 
     // MARK: - Computed Properties
 
@@ -37,7 +37,7 @@ struct ReactionDetailView: View {
 
     init(
         viewModel: ReactionDetailViewModel,
-        currentListMode: Binding<ContentListMode>,
+        currentListMode: Binding<ContentGridMode>,
         contentRepository: ContentRepositoryProtocol
     ) {
         self.viewModel = viewModel

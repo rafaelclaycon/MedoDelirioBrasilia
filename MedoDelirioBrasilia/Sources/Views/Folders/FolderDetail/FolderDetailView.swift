@@ -14,7 +14,7 @@ struct FolderDetailView: View {
 
     let folder: UserFolder
 
-    private var currentContentListMode: Binding<ContentListMode>
+    private var currentContentListMode: Binding<ContentGridMode>
     @State private var showingFolderInfoEditingView = false
     @State private var showingModalView = false
 
@@ -48,7 +48,7 @@ struct FolderDetailView: View {
     init(
         viewModel: FolderDetailViewModel,
         folder: UserFolder,
-        currentContentListMode: Binding<ContentListMode>,
+        currentContentListMode: Binding<ContentGridMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         contentRepository: ContentRepositoryProtocol

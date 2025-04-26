@@ -20,7 +20,7 @@ struct FolderGrid: View {
 
     // MARK: - State Properties
 
-    @State private var currentContentListMode: ContentListMode = .regular
+    @State private var currentContentListMode: ContentGridMode = .regular
     @State private var toast: Toast?
     @State private var floatingOptions: FloatingContentOptions?
     @State private var columns: [GridItem] = []
