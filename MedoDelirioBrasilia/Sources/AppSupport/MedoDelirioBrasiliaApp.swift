@@ -31,7 +31,6 @@ struct MedoDelirioBrasiliaApp: App {
         guard url.scheme == "medodelirio" else { return }
         if url.host == "playrandomsound" {
             tabSelection = .sounds
-            state = .allSounds
 
             let includeOffensive = UserSettings().getShowExplicitContent()
 

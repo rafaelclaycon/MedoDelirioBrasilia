@@ -34,6 +34,7 @@ struct ContentGrid<
     private let authorId: String?
     private let reactionId: String?
     private let containerSize: CGSize
+    private let scrollViewProxy: ScrollViewProxy?
 
     @ViewBuilder private let loadingView: LoadingView
     @ViewBuilder private let emptyStateView: EmptyStateView
@@ -73,7 +74,6 @@ struct ContentGrid<
 
     @Environment(\.sizeCategory) private var sizeCategory
     @Environment(\.push) private var push
-    @Environment(TrendsHelper.self) private var trendsHelper
 
     // MARK: - Initializer
 
@@ -88,6 +88,7 @@ struct ContentGrid<
         authorId: String? = nil,
         reactionId: String? = nil,
         containerSize: CGSize,
+        scrollViewProxy: ScrollViewProxy? = nil,
 
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
@@ -102,6 +103,7 @@ struct ContentGrid<
         self.authorId = authorId
         self.reactionId = reactionId
         self.containerSize = containerSize
+        self.scrollViewProxy = scrollViewProxy
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
         self.errorView = errorView
@@ -302,24 +304,13 @@ struct ContentGrid<
                 .onChange(of: viewModel.selectionKeeper.count) {
                     viewModel.onItemSelectionChanged()
                 }
-//                                        .onChange(of: trendsHelper.soundIdToGoTo) {
-//                                            if !trendsHelper.soundIdToGoTo.isEmpty {
-//                                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-//                                                    withAnimation {
-//                                                        proxy.scrollTo(trendsHelper.soundIdToGoTo, anchor: .center)
-//                                                    }
-//                                                    TapticFeedback.warning()
-//                                                    trendsHelper.soundIdToGoTo = ""
-//                                                }
-//                                            }
-//                                        }
-//                        .onChange(of: viewModel.scrollTo) {
-//                            if !viewModel.scrollTo.isEmpty {
-//                                withAnimation {
-//                                    proxy.scrollTo(viewModel.scrollTo, anchor: .center)
-//                                }
-//                            }
-//                        }
+                .onChange(of: viewModel.scrollTo) {
+                    if !viewModel.scrollTo.isEmpty {
+                        withAnimation {
+                            scrollViewProxy?.scrollTo(viewModel.scrollTo, anchor: .center)
+                        }
+                    }
+                }
                 .onChange(of: viewModel.authorToOpen) {
                     guard let author = viewModel.authorToOpen else { return }
                     push(GeneralNavigationDestination.authorDetail(author))

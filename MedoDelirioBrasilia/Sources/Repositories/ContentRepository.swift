@@ -19,6 +19,8 @@ protocol ContentRepositoryProtocol {
     func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent]
     /// Returns content with the given IDs. Includes both Sounds and Songs.
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
+    /// Returns a random Sound.
+    func randomSound(_ allowSensitive: Bool) -> Sound?
 
     func favorites() throws -> [Favorite]
     func favoriteExists(_ contentId: String) throws -> Bool
@@ -119,6 +121,14 @@ final class ContentRepository: ContentRepositoryProtocol {
 
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent] {
         try database.content(withIds: contentIds)
+    }
+
+    func randomSound(_ allowSensitive: Bool) -> Sound? {
+        do {
+            return try LocalDatabase.shared.randomSound(includeOffensive: allowSensitive)
+        } catch {
+            return nil
+        }
     }
 
     func favorites() throws -> [Favorite] {

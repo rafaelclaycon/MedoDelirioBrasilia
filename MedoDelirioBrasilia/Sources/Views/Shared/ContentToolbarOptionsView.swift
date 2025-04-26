@@ -12,6 +12,7 @@ struct ContentToolbarOptionsView: View {
     @Binding var contentSortOption: Int
     let contentListMode: ContentListMode
     let multiSelectAction: () -> Void
+    var playRandomSoundAction: (() -> Void)? = nil
     let contentSortChangeAction: () -> Void
 
     var body: some View {
@@ -24,6 +25,16 @@ struct ContentToolbarOptionsView: View {
                         contentListMode == .selection ? "Cancelar Seleção" : "Selecionar",
                         systemImage: contentListMode == .selection ? "xmark.circle" : "checkmark.circle"
                     )
+                }
+            }
+
+            if let playRandomSoundAction {
+                Section {
+                    Button {
+                        playRandomSoundAction()
+                    } label: {
+                        Label("Tocar Som Aleatório", systemImage: "shuffle")
+                    }
                 }
             }
 

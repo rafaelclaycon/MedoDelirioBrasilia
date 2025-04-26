@@ -744,15 +744,15 @@ extension ContentGridViewModel {
 
 extension ContentGridViewModel {
 
-    public func cancelSearchAndHighlight(id soundId: String) {
+    public func cancelSearchAndHighlight(id contentId: String) {
         if !searchText.isEmpty {
             searchText = ""
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
 
-        highlightKeeper.insert(soundId)
+        highlightKeeper.insert(contentId)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            self.highlightKeeper.remove(soundId)
+            self.highlightKeeper.remove(contentId)
         }
     }
 }

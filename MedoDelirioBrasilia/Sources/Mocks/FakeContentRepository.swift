@@ -33,6 +33,10 @@ final class FakeContentRepository: ContentRepositoryProtocol {
         []
     }
 
+    func randomSound(_ allowSensitive: Bool) -> Sound? {
+        nil
+    }
+
     func favorites() throws -> [Favorite] {
         []
     }

@@ -92,174 +92,182 @@ struct MainContentView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack(spacing: .spacing(.xSmall)) {
-                    if contentSearchTextIsEmpty ?? true, currentContentListMode.wrappedValue == .regular {
-                        ContentModePicker(
-                            options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
-                            selected: $viewModel.currentViewMode,
-                            allowScrolling: UIDevice.isiPhone
-                        )
-                    }
+                ScrollViewReader { proxy in
+                    VStack(spacing: .spacing(.xSmall)) {
+                        if contentSearchTextIsEmpty ?? true, currentContentListMode.wrappedValue == .regular {
+                            ContentModePicker(
+                                options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
+                                selected: $viewModel.currentViewMode,
+                                allowScrolling: UIDevice.isiPhone
+                            )
+                        }
 
-                    switch viewModel.currentViewMode {
-                    case .all, .favorites, .songs:
-                        VStack(spacing: .spacing(.xSmall)) {
+                        switch viewModel.currentViewMode {
+                        case .all, .favorites, .songs:
                             VStack(spacing: .spacing(.xSmall)) {
-                                if displayLongUpdateBanner {
-                                    LongUpdateBanner(
-                                        completedNumber: viewModel.processedUpdateNumber,
-                                        totalUpdateCount: viewModel.totalUpdateCount
-                                    )
+                                VStack(spacing: .spacing(.xSmall)) {
+                                    if displayLongUpdateBanner {
+                                        LongUpdateBanner(
+                                            completedNumber: viewModel.processedUpdateNumber,
+                                            totalUpdateCount: viewModel.totalUpdateCount
+                                        )
+                                    }
+
+                                    //                                if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+                                    //                                    RecurringDonationBanner(
+                                    //                                        isBeingShown: $shouldDisplayRecurringDonationBanner
+                                    //                                    )
+                                    //                                }
                                 }
 
-//                                if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-//                                    RecurringDonationBanner(
-//                                        isBeingShown: $shouldDisplayRecurringDonationBanner
-//                                    )
-//                                }
-                            }
+                                ContentGrid(
+                                    state: viewModel.state,
+                                    viewModel: contentGridViewModel,
+                                    searchTextIsEmpty: $contentSearchTextIsEmpty,
+                                    allowSearch: true,
+                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
+                                    containerSize: geometry.size,
+                                    scrollViewProxy: proxy,
+                                    loadingView:
+                                        VStack {
+                                            HStack(spacing: .spacing(.small)) {
+                                                ProgressView()
 
-                            ContentGrid(
-                                state: viewModel.state,
-                                viewModel: contentGridViewModel,
-                                searchTextIsEmpty: $contentSearchTextIsEmpty,
-                                allowSearch: true,
-                                isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
-                                containerSize: geometry.size,
-                                loadingView:
-                                    VStack {
-                                        HStack(spacing: .spacing(.small)) {
-                                            ProgressView()
-
-                                            Text("Carregando sons...")
-                                                .foregroundColor(.gray)
+                                                Text("Carregando sons...")
+                                                    .foregroundColor(.gray)
+                                            }
+                                            .frame(maxWidth: .infinity)
                                         }
-                                        .frame(maxWidth: .infinity)
-                                    }
-                                ,
-                                emptyStateView:
-                                    VStack {
-                                        if viewModel.currentViewMode == .favorites {
-                                            NoFavoritesView()
-                                                .padding(.vertical, .spacing(.huge))
-                                        } else {
-                                            Text("Nenhum som a ser exibido. Isso é esquisito.")
-                                                .foregroundColor(.gray)
+                                    ,
+                                    emptyStateView:
+                                        VStack {
+                                            if viewModel.currentViewMode == .favorites {
+                                                NoFavoritesView()
+                                                    .padding(.vertical, .spacing(.huge))
+                                            } else {
+                                                Text("Nenhum som a ser exibido. Isso é esquisito.")
+                                                    .foregroundColor(.gray)
+                                            }
                                         }
-                                    }
-                                ,
-                                errorView: VStack { ContentLoadErrorView() }
-                            )
-
-                            if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
-                                ExplicitDisabledWarning(
-                                    text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                                    ,
+                                    errorView: VStack { ContentLoadErrorView() }
                                 )
-                                .padding(.top, explicitOffWarningTopPadding)
+
+                                if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
+                                    ExplicitDisabledWarning(
+                                        text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                                    )
+                                    .padding(.top, explicitOffWarningTopPadding)
+                                }
+
+                                if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
+                                    Text("\(loadedContent.count) ITENS")
+                                        .font(.footnote)
+                                        .foregroundColor(.gray)
+                                        .multilineTextAlignment(.center)
+                                        .padding(.top, .spacing(.small))
+                                        .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
+                                }
+
+                                Spacer()
+                                    .frame(height: .spacing(.large))
                             }
+                            .padding(.horizontal, .spacing(.medium))
 
-                            if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
-                                Text("\(loadedContent.count) ITENS")
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, .spacing(.small))
-                                    .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
-                            }
-
-                            Spacer()
-                                .frame(height: .spacing(.large))
-                        }
-                        .padding(.horizontal, .spacing(.medium))
-
-                    case .folders:
-                        MyFoldersiPhoneView(
-                            contentRepository: contentRepository,
-                            containerSize: geometry.size
-                        )
-                        .environmentObject(deleteFolderAide)
-                        
-                    case .authors:
-                        AuthorsView(
-                            sortOption: $viewModel.authorSortOption,
-                            sortAction: $authorSortAction,
-                            searchTextForControl: $authorSearchText,
-                            containerWidth: geometry.size.width
-                        )
-                    }
-                }
-                .navigationTitle(Text(title))
-                .navigationBarItems(
-                    leading: LeadingToolbarControls(
-                        isSelecting: currentContentListMode.wrappedValue == .selection,
-                        cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
-                        openSettingsAction: openSettingsAction
-                    ),
-                    trailing: TrailingToolbarControls(
-                        currentViewMode: viewModel.currentViewMode,
-                        contentListMode: currentContentListMode.wrappedValue,
-                        contentSortOption: $viewModel.contentSortOption,
-                        authorSortOption: $viewModel.authorSortOption,
-                        openContentUpdateSheet: {
-                            subviewToOpen = .syncInfo
-                            showingModalView = true
-                        },
-                        multiSelectAction: {
-                            contentGridViewModel.onEnterMultiSelectModeSelected(
-                                loadedContent: loadedContent,
-                                isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+                        case .folders:
+                            MyFoldersiPhoneView(
+                                contentRepository: contentRepository,
+                                containerSize: geometry.size
                             )
-                        },
-                        contentSortChangeAction: {
-                            viewModel.onContentSortOptionChanged()
-                        },
-                        authorSortChangeAction: {
-                            authorSortAction = AuthorSortOption(rawValue: viewModel.authorSortOption) ?? .nameAscending
-                            viewModel.onAuthorSortOptionChanged()
+                            .environmentObject(deleteFolderAide)
+
+                        case .authors:
+                            AuthorsView(
+                                sortOption: $viewModel.authorSortOption,
+                                sortAction: $authorSortAction,
+                                searchTextForControl: $authorSearchText,
+                                containerWidth: geometry.size.width
+                            )
                         }
-                    )
-                )
-                .onChange(of: viewModel.currentViewMode) {
-                    viewModel.onSelectedViewModeChanged()
-                }
-                .onChange(of: viewModel.processedUpdateNumber) {
-                    withAnimation {
-                        displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
                     }
-                }
-                .onChange(of: playRandomSoundHelper.soundIdToPlay) {
-                    if !playRandomSoundHelper.soundIdToPlay.isEmpty {
-                        viewModel.currentViewMode = .all
-                        contentGridViewModel.scrollAndPlay(
-                            contentId: playRandomSoundHelper.soundIdToPlay,
-                            loadedContent: loadedContent
+                    .navigationTitle(Text(title))
+                    .navigationBarItems(
+                        leading: LeadingToolbarControls(
+                            isSelecting: currentContentListMode.wrappedValue == .selection,
+                            cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
+                            openSettingsAction: openSettingsAction
+                        ),
+                        trailing: TrailingToolbarControls(
+                            currentViewMode: viewModel.currentViewMode,
+                            contentListMode: currentContentListMode.wrappedValue,
+                            contentSortOption: $viewModel.contentSortOption,
+                            authorSortOption: $viewModel.authorSortOption,
+                            openContentUpdateSheet: {
+                                subviewToOpen = .syncInfo
+                                showingModalView = true
+                            },
+                            multiSelectAction: {
+                                contentGridViewModel.onEnterMultiSelectModeSelected(
+                                    loadedContent: loadedContent,
+                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+                                )
+                            },
+                            playRandomSoundAction: {
+                                Task {
+                                    await playRandomSound()
+                                }
+                            },
+                            contentSortChangeAction: {
+                                viewModel.onContentSortOptionChanged()
+                            },
+                            authorSortChangeAction: {
+                                authorSortAction = AuthorSortOption(rawValue: viewModel.authorSortOption) ?? .nameAscending
+                                viewModel.onAuthorSortOptionChanged()
+                            }
                         )
-                        playRandomSoundHelper.soundIdToPlay = ""
-                    }
-                }
-                .sheet(isPresented: $showingModalView) {
-                    SyncInfoView(
-                        lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
-                        lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                     )
-                }
-                .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
-                    if shouldUpdate {
-                        viewModel.onExplicitContentSettingChanged()
-                        settingsHelper.updateSoundsList = false
+                    .onChange(of: viewModel.currentViewMode) {
+                        viewModel.onSelectedViewModeChanged()
                     }
-                }
-                .onChange(of: trendsHelper.notifyMainSoundContainer) {
-                    highlight(soundId: trendsHelper.notifyMainSoundContainer)
-                }
-                .onAppear {
-                    Task {
-                        await viewModel.onViewDidAppear()
+                    .onChange(of: viewModel.processedUpdateNumber) {
+                        withAnimation {
+                            displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+                        }
                     }
-                }
-                .onChange(of: scenePhase) {
-                    Task {
-                        await viewModel.onScenePhaseChanged(newPhase: scenePhase)
+                    .onChange(of: playRandomSoundHelper.soundIdToPlay) {
+                        if !playRandomSoundHelper.soundIdToPlay.isEmpty {
+                            viewModel.currentViewMode = .all
+                            contentGridViewModel.scrollAndPlay(
+                                contentId: playRandomSoundHelper.soundIdToPlay,
+                                loadedContent: loadedContent
+                            )
+                            playRandomSoundHelper.soundIdToPlay = ""
+                        }
+                    }
+                    .sheet(isPresented: $showingModalView) {
+                        SyncInfoView(
+                            lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                            lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                        )
+                    }
+                    .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
+                        if shouldUpdate {
+                            viewModel.onExplicitContentSettingChanged()
+                            settingsHelper.updateSoundsList = false
+                        }
+                    }
+                    .onChange(of: trendsHelper.notifyMainSoundContainer) {
+                        highlight(contentId: trendsHelper.notifyMainSoundContainer)
+                    }
+                    .onAppear {
+                        Task {
+                            await viewModel.onViewDidAppear()
+                        }
+                    }
+                    .onChange(of: scenePhase) {
+                        Task {
+                            await viewModel.onScenePhaseChanged(newPhase: scenePhase)
+                        }
                     }
                 }
             }
@@ -286,6 +294,7 @@ extension MainContentView {
         @Binding var authorSortOption: Int
         let openContentUpdateSheet: () -> Void
         let multiSelectAction: () -> Void
+        let playRandomSoundAction: () -> Void
         let contentSortChangeAction: () -> Void
         let authorSortChangeAction: () -> Void
 
@@ -324,6 +333,7 @@ extension MainContentView {
                             contentSortOption: $contentSortOption,
                             contentListMode: contentListMode,
                             multiSelectAction: multiSelectAction,
+                            playRandomSoundAction: playRandomSoundAction,
                             contentSortChangeAction: contentSortChangeAction
                         )
                     }
@@ -347,12 +357,27 @@ extension MainContentView {
         return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
     }
 
-    private func highlight(soundId: String) {
-        guard !soundId.isEmpty else { return }
+    private func highlight(contentId: String) {
+        guard !contentId.isEmpty else { return }
         viewModel.currentViewMode = .all
-        contentGridViewModel.cancelSearchAndHighlight(id: soundId)
+        contentGridViewModel.cancelSearchAndHighlight(id: contentId)
         trendsHelper.notifyMainSoundContainer = ""
-        trendsHelper.soundIdToGoTo = soundId
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            contentGridViewModel.scrollTo = contentId
+            HapticFeedback.warning()
+        }
+    }
+
+    private func playRandomSound() async {
+        guard
+            let randomSound = contentRepository.randomSound(UserSettings().getShowExplicitContent())
+        else {
+            print("Erro obtendo som aleatório")
+            await AnalyticsService().send(action: "hadErrorPlayingRandomSound")
+            return
+        }
+        playRandomSoundHelper.soundIdToPlay = randomSound.id
+        await AnalyticsService().send(action: "didPlayRandomSound(\(randomSound.title))")
     }
 }
 
