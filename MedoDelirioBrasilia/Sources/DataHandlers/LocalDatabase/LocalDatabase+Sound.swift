@@ -30,7 +30,6 @@ extension LocalDatabase {
         let id = Expression<String>("id")
         let name = Expression<String>("name")
         let isOffensive = Expression<Bool>("isOffensive")
-        let contentId = Expression<String>("contentid")
 
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -43,10 +42,6 @@ extension LocalDatabase {
         if !allowSensitive {
             query = query.filter(isOffensive == false)
         }
-
-        let favoriteContentId = Expression<String>("contentId")
-        let favoriteIdsQuery = favorite.select(favoriteContentId)
-        let favoriteIds = try db.prepare(favoriteIdsQuery).compactMap { try $0.get(favoriteContentId) }
 
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
@@ -63,7 +58,6 @@ extension LocalDatabase {
 
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
-            soundData.isFavorite = favoriteIds.contains(soundData.id)
 
             queriedSounds.append(soundData)
         }
