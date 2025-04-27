@@ -79,18 +79,12 @@ struct FolderDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.medium)) {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(viewModel.contentCountText)
-                                .font(.callout)
-                                .foregroundColor(.gray)
-                                .bold()
-
-                            Spacer()
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.top)
+                    HeaderView(
+                        title: title,
+                        color: folder.backgroundColor.toColor(),
+                        itemCountText: viewModel.contentCountText
+                    )
+                    //.border(.red)
 
                     ContentGrid(
                         state: viewModel.state,
@@ -132,7 +126,6 @@ struct FolderDetailView: View {
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
-                .navigationTitle(title)
                 .toolbar { trailingToolbarControls() }
                 .onAppear {
                     viewModel.onViewAppeared()
@@ -150,6 +143,7 @@ struct FolderDetailView: View {
                     )
                 }
             }
+            .edgesIgnoringSafeArea(.top)
             .toast(contentGridViewModel.toast)
             .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
@@ -259,6 +253,90 @@ struct FolderDetailView: View {
     }
 }
 
+// MARK: - Subviews
+
+extension FolderDetailView {
+
+    struct StickyFolderBackgroundView: View {
+
+        let color: Color
+        let height: CGFloat
+
+        // MARK: - Computed Properties
+
+        private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
+            geometry.frame(in: .global).minY
+        }
+
+        private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+            let offset = getScrollOffset(geometry)
+            // Image was pulled down
+            if offset > 0 {
+                return -offset
+            }
+            return 0
+        }
+
+        private func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+            let offset = getScrollOffset(geometry)
+            let imageHeight = geometry.size.height
+            if offset > 0 {
+                return imageHeight + offset
+            }
+            return imageHeight
+        }
+
+        // MARK: - View Body
+
+        var body: some View {
+            //GeometryReader { headerPhotoGeometry in
+                Rectangle()
+                .fill("pastelPurple".toPastelColor())
+                    .frame(height: height)
+                    .overlay { FolderView.SpeckleOverlay() }
+//                    .frame(
+//                        width: headerPhotoGeometry.size.width,
+//                        height: self.getHeightForHeaderImage(headerPhotoGeometry)
+//                    )
+//                    .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
+//            }
+//            .frame(height: height)
+        }
+    }
+
+    struct HeaderView: View {
+
+        let title: String
+        let color: Color
+        let itemCountText: String
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                StickyFolderBackgroundView(color: color, height: 200)
+                    .overlay(alignment: .bottomLeading) {
+                        VStack(alignment: .leading) {
+                            Text(title)
+                                .font(.largeTitle)
+                                .bold()
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(2)
+//                                .foregroundStyle(.white)
+//                                .shadow(color: .black, radius: 3, x: 1.5, y: 1.5)
+                        }
+                        .padding(.all, .spacing(.large))
+                    }
+
+                Text(itemCountText)
+                    .font(.callout)
+                    .foregroundColor(.gray)
+                    .bold()
+                    .padding(.leading, .spacing(.medium))
+                    //.padding(.bottom, .spacing(.small))
+            }
+        }
+    }
+}
+
 // MARK: - Preview
 
 #Preview {
@@ -266,18 +344,24 @@ struct FolderDetailView: View {
         symbol: "🤑",
         name: "Grupo da Economia",
         backgroundColor: "pastelBabyBlue",
-        changeHash: "abcdefg"
+        changeHash: "abcdefg",
+        contentCount: 3
     )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
 
-    return FolderDetailView(
-        viewModel: FolderDetailViewModel(
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
             folder: folder,
-            contentRepository: FakeContentRepository()
-        ),
-        folder: folder,
-        currentContentListMode: .constant(.regular),
-        toast: .constant(nil),
-        floatingOptions: .constant(nil),
-        contentRepository: FakeContentRepository()
-    )
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
 }
