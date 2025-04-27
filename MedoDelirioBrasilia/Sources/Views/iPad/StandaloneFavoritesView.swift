@@ -41,6 +41,7 @@ struct StandaloneFavoritesView: View {
             currentListMode: .constant(.regular),
             toast: viewModel.toast,
             floatingOptions: viewModel.floatingOptions,
+            refreshAction: viewModel.onFavoriteRemoved,
             analyticsService: AnalyticsService()
         )
     }
@@ -56,6 +57,7 @@ struct StandaloneFavoritesView: View {
                         viewModel: contentGridViewModel,
                         searchTextIsEmpty: $soundSearchTextIsEmpty,
                         allowSearch: true,
+                        isFavoritesOnlyView: true,
                         containerSize: geometry.size,
                         loadingView:
                             VStack {

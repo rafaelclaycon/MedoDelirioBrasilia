@@ -47,6 +47,10 @@ extension StandaloneFavoritesViewModel {
         loadContent()
     }
 
+    public func onFavoriteRemoved() {
+        loadContent()
+    }
+
     public func onContentSortOptionChanged() {
         loadContent()
     }
