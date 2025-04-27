@@ -10,6 +10,8 @@ import Foundation
 protocol UserSettingsProtocol {
 
     func getHasJoinedFolderResearch() -> Bool
+
+    func authorSortOption(_ newValue: Int)
 }
 
 final class UserSettings: UserSettingsProtocol {
@@ -189,7 +191,7 @@ extension UserSettings {
         userDefaults.set(newValue, forKey: "showUpdateDateOnUI")
     }
 
-    func saveAuthorSortOption(_ newValue: Int) {
+    func authorSortOption(_ newValue: Int) {
         userDefaults.set(newValue, forKey: "authorSortOption")
     }
 

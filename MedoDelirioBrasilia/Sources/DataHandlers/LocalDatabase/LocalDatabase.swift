@@ -23,6 +23,7 @@ internal protocol LocalDatabaseProtocol {
     func sounds(allowSensitive: Bool) throws -> [Sound]
 
     // Author
+    func allAuthors() throws -> [Author]
     func insert(author newAuthor: Author) throws
     func update(author updatedAuthor: Author) throws
     func delete(authorId: String) throws
