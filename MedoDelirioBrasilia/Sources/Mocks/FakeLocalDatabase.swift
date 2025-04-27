@@ -108,6 +108,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     // Author
 
+    func allAuthors() throws -> [Author] {
+        []
+    }
+
     func insert(author newAuthor: MedoDelirio.Author) throws {
         didCallInsertAuthor = true
     }

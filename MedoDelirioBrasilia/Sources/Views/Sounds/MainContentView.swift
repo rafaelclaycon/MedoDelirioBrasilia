@@ -24,8 +24,11 @@ struct MainContentView: View {
     @StateObject var deleteFolderAide = DeleteFolderViewAide()
 
     // Authors
-    @State var authorSortAction: AuthorSortOption = .nameAscending
-    @State var authorSearchText: String = .empty
+    @State private var authorsGridViewModel = AuthorsGrid.ViewModel(
+        authorService: AuthorService(database: LocalDatabase.shared),
+        userSettings: UserSettings(),
+        sortOption: UserSettings().authorSortOption()
+    )
 
     // Sync
     @State private var displayLongUpdateBanner: Bool = false
@@ -113,11 +116,11 @@ struct MainContentView: View {
                                         )
                                     }
 
-                                    //                                if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-                                    //                                    RecurringDonationBanner(
-                                    //                                        isBeingShown: $shouldDisplayRecurringDonationBanner
-                                    //                                    )
-                                    //                                }
+//                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+//                                        RecurringDonationBanner(
+//                                            isBeingShown: $shouldDisplayRecurringDonationBanner
+//                                        )
+//                                    }
                                 }
 
                                 ContentGrid(
@@ -182,12 +185,11 @@ struct MainContentView: View {
                             .environmentObject(deleteFolderAide)
 
                         case .authors:
-                            AuthorsView(
-                                sortOption: $viewModel.authorSortOption,
-                                sortAction: $authorSortAction,
-                                searchTextForControl: $authorSearchText,
+                            AuthorsGrid(
+                                viewModel: authorsGridViewModel,
                                 containerWidth: geometry.size.width
                             )
+                            .padding(.horizontal, .spacing(.medium))
                         }
                     }
                     .navigationTitle(Text(title))
@@ -221,8 +223,7 @@ struct MainContentView: View {
                                 viewModel.onContentSortOptionChanged()
                             },
                             authorSortChangeAction: {
-                                authorSortAction = AuthorSortOption(rawValue: viewModel.authorSortOption) ?? .nameAscending
-                                viewModel.onAuthorSortOptionChanged()
+                                authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
                             }
                         )
                     )
@@ -302,25 +303,10 @@ extension MainContentView {
             if currentViewMode != .folders { // MyFoldersiPhoneView takes care of its own toolbar.
                 HStack(spacing: .spacing(.medium)) {
                     if currentViewMode == .authors {
-                        Menu {
-                            Section {
-                                Picker("Ordenação de Autores", selection: $authorSortOption) {
-                                    Text("Nome")
-                                        .tag(0)
-
-                                    Text("Autores com Mais Sons no Topo")
-                                        .tag(1)
-
-                                    Text("Autores com Menos Sons no Topo")
-                                        .tag(2)
-                                }
-                            }
-                        } label: {
-                            Image(systemName: "arrow.up.arrow.down")
-                        }
-                        .onChange(of: authorSortOption) {
-                            authorSortChangeAction()
-                        }
+                        AuthorToolbarOptionsView(
+                            authorSortOption: $authorSortOption,
+                            onSortingChangedAction: authorSortChangeAction
+                        )
                     } else {
                         if contentListMode == .regular {
                             SyncStatusView()

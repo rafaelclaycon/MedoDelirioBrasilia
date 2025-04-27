@@ -130,6 +130,7 @@ struct FolderGrid: View {
                 VStack {
                     Text("Erro ao carregar as Pastas. Informe o desenvolvedor.\n\nDetalhes: \(errorMessage)")
                         .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
                 }
             }
         }

@@ -95,10 +95,6 @@ extension MainContentViewModel {
         loadContent()
     }
 
-    public func onAuthorSortOptionChanged() {
-        UserSettings().saveAuthorSortOption(authorSortOption)
-    }
-
     public func onExplicitContentSettingChanged() {
         loadContent()
     }
