@@ -95,6 +95,7 @@ extension FolderView {
                     }
                     .offset(y: 3)
             }
+            .compositingGroup()
             .padding(.horizontal, .spacing(.nano))
         }
     }
