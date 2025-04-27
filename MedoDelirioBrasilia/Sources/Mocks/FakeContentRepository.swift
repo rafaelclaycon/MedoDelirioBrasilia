@@ -9,8 +9,10 @@ import Foundation
 
 final class FakeContentRepository: ContentRepositoryProtocol {
 
+    var content: [AnyEquatableMedoContent] = []
+
     func allContent(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
-        []
+        content
     }
     
     func favorites(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
@@ -26,7 +28,7 @@ final class FakeContentRepository: ContentRepositoryProtocol {
     }
     
     func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent] {
-        []
+        content
     }
 
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent] {

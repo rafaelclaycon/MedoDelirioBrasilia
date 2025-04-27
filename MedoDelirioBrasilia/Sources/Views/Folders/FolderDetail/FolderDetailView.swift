@@ -79,18 +79,10 @@ struct FolderDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.medium)) {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(viewModel.contentCountText)
-                                .font(.callout)
-                                .foregroundColor(.gray)
-                                .bold()
-
-                            Spacer()
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.top)
+                    HeaderView(
+                        folder: folder,
+                        itemCountText: viewModel.contentCountText
+                    )
 
                     ContentGrid(
                         state: viewModel.state,
@@ -132,7 +124,6 @@ struct FolderDetailView: View {
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
-                .navigationTitle(title)
                 .toolbar { trailingToolbarControls() }
                 .onAppear {
                     viewModel.onViewAppeared()
@@ -150,6 +141,7 @@ struct FolderDetailView: View {
                     )
                 }
             }
+            .edgesIgnoringSafeArea(.top)
             .toast(contentGridViewModel.toast)
             .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
@@ -259,25 +251,171 @@ struct FolderDetailView: View {
     }
 }
 
+// MARK: - Subviews
+
+extension FolderDetailView {
+
+    struct StickyFolderBackgroundView: View {
+
+        let color: Color
+        let height: CGFloat
+
+        // MARK: - Computed Properties
+
+        private func scrollOffset(_ geometry: GeometryProxy) -> CGFloat {
+            geometry.frame(in: .global).minY
+        }
+
+        private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+            let offset = scrollOffset(geometry)
+            // Image was pulled down
+            if offset > 0 {
+                return -offset
+            }
+            return 0
+        }
+
+        private func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+            let offset = scrollOffset(geometry)
+            let imageHeight = geometry.size.height
+            if offset > 0 {
+                return imageHeight + offset
+            }
+            return imageHeight
+        }
+
+        // MARK: - View Body
+
+        var body: some View {
+            GeometryReader { geometry in
+                Rectangle()
+                    .fill(color)
+                    .overlay { FolderView.SpeckleOverlay() }
+                    .frame(
+                        width: geometry.size.width,
+                        height: getHeightForHeaderImage(geometry)
+                    )
+                    .offset(x: 0, y: getOffsetForHeaderImage(geometry))
+            }
+            .frame(height: height)
+        }
+    }
+
+    struct HeaderView: View {
+
+        let folder: UserFolder
+        let itemCountText: String
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                StickyFolderBackgroundView(
+                    color: folder.backgroundColor.toPastelColor(),
+                    height: 200
+                )
+                .overlay(alignment: .bottomLeading) {
+                    VStack(alignment: .leading, spacing: .spacing(.xxSmall)) {
+                        Text(folder.symbol)
+                            .font(.largeTitle)
+
+                        Text(folder.name)
+                            .font(.title)
+                            .bold()
+                            .foregroundStyle(.black)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(1)
+                    }
+                    .padding(.all, .spacing(.large))
+                }
+
+                Text(itemCountText)
+                    .font(.callout)
+                    .foregroundColor(.gray)
+                    .bold()
+                    .padding(.leading, .spacing(.medium))
+            }
+        }
+    }
+}
+
 // MARK: - Preview
 
-#Preview {
+#Preview("Regular") {
     let folder = UserFolder(
-        symbol: "🤑",
-        name: "Grupo da Economia",
-        backgroundColor: "pastelBabyBlue",
-        changeHash: "abcdefg"
+        symbol: "🤡",
+        name: "Uso diario",
+        backgroundColor: "pastelPurple",
+        changeHash: "abcdefg",
+        contentCount: 3
     )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
 
-    return FolderDetailView(
-        viewModel: FolderDetailViewModel(
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
             folder: folder,
-            contentRepository: FakeContentRepository()
-        ),
-        folder: folder,
-        currentContentListMode: .constant(.regular),
-        toast: .constant(nil),
-        floatingOptions: .constant(nil),
-        contentRepository: FakeContentRepository()
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
+}
+
+#Preview("Red") {
+    let folder = UserFolder(
+        symbol: "🎲",
+        name: "Aleatório, Random & WTF",
+        backgroundColor: "pastelRed",
+        changeHash: "abcdefg",
+        contentCount: 3
     )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
+
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
+            folder: folder,
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
+}
+
+#Preview("Long Title") {
+    let folder = UserFolder(
+        symbol: "🗳️",
+        name: "Eleições Presidente 2022",
+        backgroundColor: "pastelYellow",
+        changeHash: "abcdefg",
+        contentCount: 3
+    )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
+
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
+            folder: folder,
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
 }
