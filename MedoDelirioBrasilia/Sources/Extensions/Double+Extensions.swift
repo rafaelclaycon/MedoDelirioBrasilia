@@ -14,6 +14,6 @@ extension Double {
         formatter.allowedUnits = [.minute, .second]
         formatter.unitsStyle = .positional
         formatter.zeroFormattingBehavior = .pad
-        return formatter.string(from: self) ?? .empty
+        return formatter.string(from: self) ?? ""
     }
 }

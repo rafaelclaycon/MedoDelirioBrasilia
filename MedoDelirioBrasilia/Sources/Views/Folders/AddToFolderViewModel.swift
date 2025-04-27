@@ -26,8 +26,8 @@ class AddToFolderViewModel {
     var folderForSomeSoundsAlreadyInFolder: UserFolder? = nil
 
     // Alerts
-    var alertTitle: String = .empty
-    var alertMessage: String = .empty
+    var alertTitle: String = ""
+    var alertMessage: String = ""
     var alertType: AddToFolderAlertType = .ok
     var showAlert: Bool = false
 }
@@ -77,7 +77,7 @@ extension AddToFolderViewModel {
     public func onAddOnlyNonExistingSelected() -> AddToFolderDetails? {
         do {
             try soundsThatCanBeAdded?.forEach { sound in
-                try userFolderRepository.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
+                try userFolderRepository.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? "")
             }
 
             var folderName = ""

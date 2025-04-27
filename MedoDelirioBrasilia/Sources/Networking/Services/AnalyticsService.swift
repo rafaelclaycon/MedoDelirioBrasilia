@@ -38,7 +38,7 @@ final class AnalyticsService: AnalyticsServiceProtocol {
                 isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
                 appVersion: Versioneer.appVersion,
                 dateTime: Date.now.iso8601withFractionalSeconds,
-                currentTimeZone: TimeZone.current.abbreviation() ?? .empty
+                currentTimeZone: TimeZone.current.abbreviation() ?? ""
             )
             let url = URL(string: apiClient.serverPath + "v2/usage-metric")!
             try await apiClient.post(to: url, body: usageMetric)
@@ -61,7 +61,7 @@ final class AnalyticsService: AnalyticsServiceProtocol {
                 isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
                 appVersion: Versioneer.appVersion,
                 dateTime: Date.now.iso8601withFractionalSeconds,
-                currentTimeZone: TimeZone.current.abbreviation() ?? .empty
+                currentTimeZone: TimeZone.current.abbreviation() ?? ""
             )
             let url = URL(string: apiClient.serverPath + "v2/usage-metric")!
             try await apiClient.post(to: url, body: usageMetric)

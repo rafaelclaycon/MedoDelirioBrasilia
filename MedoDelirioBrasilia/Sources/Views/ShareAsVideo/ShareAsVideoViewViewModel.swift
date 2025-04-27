@@ -18,12 +18,12 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var isShowingProcessingView = false
 
     @Published var shouldCloseView = false
-    @Published var pathToVideoFile = String.empty
+    @Published var pathToVideoFile = ""
     @Published var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
 
     // Alerts
-    @Published var alertTitle: String = .empty
-    @Published var alertMessage: String = .empty
+    @Published var alertTitle: String = ""
+    @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
 
     // MARK: - Initializer

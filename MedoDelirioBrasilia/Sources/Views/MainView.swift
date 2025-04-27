@@ -35,7 +35,7 @@ struct MainView: View {
     @State private var authorSortAction: AuthorSortOption = .nameAscending
 
     // Trends
-    @State private var soundIdToGoToFromTrends: String = .empty
+    @State private var soundIdToGoToFromTrends: String = ""
     @State private var trendsHelper = TrendsHelper()
 
     // Sync

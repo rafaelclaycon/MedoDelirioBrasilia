@@ -25,8 +25,8 @@ extension ClassicRetroView {
         @Published var shouldProcessPostExport: Bool = false
 
         // Alerts
-        @Published var alertTitle: String = .empty
-        @Published var alertMessage: String = .empty
+        @Published var alertTitle: String = ""
+        @Published var alertMessage: String = ""
         @Published var showAlert: Bool = false
 
         private let database: LocalDatabaseProtocol

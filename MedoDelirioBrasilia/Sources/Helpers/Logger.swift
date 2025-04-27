@@ -72,7 +72,7 @@ class Logger: LoggerProtocol {
     ) {
         let log = NetworkCallLog(
             callType: callType,
-            requestBody: requestBody ?? .empty,
+            requestBody: requestBody ?? "",
             response: response,
             dateTime: Date(),
             wasSuccessful: wasSuccessful

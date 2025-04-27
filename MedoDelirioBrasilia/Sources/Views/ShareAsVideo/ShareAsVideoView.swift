@@ -16,7 +16,7 @@ struct ShareAsVideoView: View {
     @State private var didCloseTip: Bool = false
     @State private var showTextSocialNetworkTip: Bool = true
     @State private var showInstagramTip: Bool = true
-    @State private var tipText: String = .empty
+    @State private var tipText: String = ""
     @State private var verticalOffset: CGFloat = 0.0
     @State private var isExpanded = false
     @State private var titleSize = 28.0
@@ -173,8 +173,8 @@ struct ShareAsVideoView: View {
             tipText = textSocialNetworkTip
             
             // Cleaning this string is needed in case the user decides do re-export the same sound
-            result.videoFilepath = .empty
-            result.contentId = .empty
+            result.videoFilepath = ""
+            result.contentId = ""
             
             showTextSocialNetworkTip = AppPersistentMemory().getHasHiddenShareAsVideoTextSocialNetworkTip() == false
             showInstagramTip = AppPersistentMemory().getHasHiddenShareAsVideoInstagramTip() == false
@@ -292,7 +292,7 @@ struct ShareAsVideoView: View {
                 viewModel.saveVideoToPhotos(withImage: image) { success, videoPath in
                     if success {
                         DispatchQueue.main.async {
-                            viewModel.pathToVideoFile = videoPath ?? .empty
+                            viewModel.pathToVideoFile = videoPath ?? ""
                             result.exportMethod = .saveAsVideo
                             viewModel.shouldCloseView = true
                         }
