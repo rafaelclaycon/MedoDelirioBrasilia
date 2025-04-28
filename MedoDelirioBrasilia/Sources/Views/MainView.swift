@@ -53,7 +53,7 @@ struct MainView: View {
                 TabView(selection: $tabSelection) {
                     NavigationStack(path: $soundsPath) {
                         MainContentView(
-                            viewModel: .init(
+                            viewModel: MainContentViewModel(
                                 currentViewMode: .all,
                                 contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                 authorSortOption: UserSettings().authorSortOption(),
@@ -61,7 +61,8 @@ struct MainView: View {
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
                                 syncValues: syncValues,
-                                contentRepository: contentRepository
+                                contentRepository: contentRepository,
+                                analyticsService: AnalyticsService()
                             ),
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
@@ -149,7 +150,7 @@ struct MainView: View {
                         Tab("Sons", systemImage: "speaker.wave.2") {
                             NavigationStack(path: $soundsPath) {
                                 MainContentView(
-                                    viewModel: .init(
+                                    viewModel: MainContentViewModel(
                                         currentViewMode: .all,
                                         contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
@@ -157,7 +158,8 @@ struct MainView: View {
                                         toast: $toast,
                                         floatingOptions: $floatingOptions,
                                         syncValues: syncValues,
-                                        contentRepository: contentRepository
+                                        contentRepository: contentRepository,
+                                        analyticsService: AnalyticsService()
                                     ),
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
@@ -334,7 +336,7 @@ struct MainView: View {
                     } detail: {
                         NavigationStack(path: $soundsPath) {
                             MainContentView(
-                                viewModel: .init(
+                                viewModel: MainContentViewModel(
                                     currentViewMode: .all,
                                     contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                     authorSortOption: AuthorSortOption.nameAscending.rawValue,
@@ -342,7 +344,8 @@ struct MainView: View {
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
                                     syncValues: syncValues,
-                                    contentRepository: contentRepository
+                                    contentRepository: contentRepository,
+                                    analyticsService: AnalyticsService()
                                 ),
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
