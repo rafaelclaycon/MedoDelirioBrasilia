@@ -24,7 +24,7 @@ struct SidebarView: View {
 
     @StateObject private var viewModel = SidebarViewViewModel()
     @Environment(SettingsHelper.self) private var settingsHelper
-    @EnvironmentObject private var syncValues: SyncValues
+    @Environment(SyncValues.self) private var syncValues
 
     // Trends
     @Environment(TrendsHelper.self) private var trendsHelper

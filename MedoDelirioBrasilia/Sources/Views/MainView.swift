@@ -39,7 +39,7 @@ struct MainView: View {
     @State private var trendsHelper = TrendsHelper()
 
     // Sync
-    @StateObject private var syncValues = SyncValues()
+    @State private var syncValues = SyncValues()
 
     @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
 
@@ -309,7 +309,7 @@ struct MainView: View {
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)
-                        .environmentObject(syncValues)
+                        .environment(syncValues)
                     } detail: {
                         NavigationStack(path: $soundsPath) {
                             MainContentView(
@@ -340,7 +340,7 @@ struct MainView: View {
                 }
             }
         }
-        .environmentObject(syncValues)
+        .environment(syncValues)
         .onAppear {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()

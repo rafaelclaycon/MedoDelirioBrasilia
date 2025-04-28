@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SyncStatusView: View {
 
-    @EnvironmentObject private var syncValues: SyncValues
+    @Environment(SyncValues.self) private var syncValues
 
     var body: some View {
         switch syncValues.syncStatus {
@@ -35,13 +35,13 @@ struct SyncStatusView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SyncStatusView()
-                .environmentObject(syncValuesUpdating)
+                .environment(syncValuesUpdating)
 
             SyncStatusView()
-                .environmentObject(syncValuesDone)
+                .environment(syncValuesDone)
 
             SyncStatusView()
-                .environmentObject(syncValuesUpdateError)
+                .environment(syncValuesUpdateError)
         }
     }
 }

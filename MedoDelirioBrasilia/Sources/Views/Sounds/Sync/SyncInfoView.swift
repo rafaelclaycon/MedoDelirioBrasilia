@@ -12,8 +12,7 @@ struct SyncInfoView: View {
     let lastUpdateAttempt: String
     let lastUpdateDate: String
 
-    @EnvironmentObject private var syncValues: SyncValues
-
+    @Environment(SyncValues.self) private var syncValues
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -225,13 +224,13 @@ struct SyncInfoView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
-                .environmentObject(syncValuesUpdating)
+                .environment(syncValuesUpdating)
 
             SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environmentObject(syncValuesDone)
+                .environment(syncValuesDone)
 
             SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environmentObject(syncValuesUpdateError)
+                .environment(syncValuesUpdateError)
         }
     }
 }
