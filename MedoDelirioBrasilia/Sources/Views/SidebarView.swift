@@ -22,7 +22,10 @@ struct SidebarView: View {
 
     // MARK: - View State
 
-    @StateObject private var viewModel = SidebarViewViewModel()
+    @State private var viewModel = SidebarViewModel(
+        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+    )
+
     @Environment(SettingsHelper.self) private var settingsHelper
     @Environment(SyncValues.self) private var syncValues
 
@@ -106,34 +109,43 @@ struct SidebarView: View {
                     }
                 )
 
-                ForEach(viewModel.folders) { folder in
-                    NavigationLink(
-                        destination: FolderDetailView(
-                            viewModel: FolderDetailViewModel(
+                switch viewModel.state {
+                case .loading:
+                    ProgressView()
+
+                case .loaded(let folders):
+                    ForEach(folders) { folder in
+                        NavigationLink(
+                            destination: FolderDetailView(
+                                viewModel: FolderDetailViewModel(
+                                    folder: folder,
+                                    contentRepository: contentRepository
+                                ),
                                 folder: folder,
+                                currentContentListMode: $currentContentListMode,
+                                toast: $toast,
+                                floatingOptions: $floatingOptions,
                                 contentRepository: contentRepository
                             ),
-                            folder: folder,
-                            currentContentListMode: $currentContentListMode,
-                            toast: $toast,
-                            floatingOptions: $floatingOptions,
-                            contentRepository: contentRepository
-                        ),
-                        tag: .specificFolder,
-                        selection: $state,
-                        label: {
-                            HStack(spacing: 15) {
-                                SidebarFolderIcon(
-                                    symbol: folder.symbol,
-                                    backgroundColor: folder.backgroundColor.toPastelColor()
-                                )
+                            tag: .specificFolder,
+                            selection: $state,
+                            label: {
+                                HStack(spacing: 15) {
+                                    SidebarFolderIcon(
+                                        symbol: folder.symbol,
+                                        backgroundColor: folder.backgroundColor.toPastelColor()
+                                    )
 
-                                Text(folder.name)
+                                    Text(folder.name)
+                                }
                             }
-                        }
-                    )
+                        )
+                    }
+
+                case .error(_):
+                    Text("Erro carregando as pastas.")
                 }
-                
+
                 Button {
                     folderForEditing = UserFolder.newFolder()
                 } label: {
@@ -152,11 +164,16 @@ struct SidebarView: View {
             }
         }
         .onAppear {
-            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+            Task {
+                await viewModel.onViewAppeared()
+            }
         }
         .onChange(of: updateFolderList) {
             if updateFolderList {
-                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                Task {
+                    await viewModel.onFoldersChanged()
+                }
+                updateFolderList = false
             }
         }
     }

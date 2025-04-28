@@ -459,7 +459,7 @@
 		D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */; };
 		D9592C462AA2FBE100157F5A /* musicGenre_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D9592C452AA2FBE100157F5A /* musicGenre_data.json */; };
 		D9592C482AA38C3000157F5A /* LocalDatabase+Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */; };
-		D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */; };
+		D959B0482887E83D00A215AD /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewModel.swift */; };
 		D95A195F29D5D55500909096 /* Rui Falcao - Vai, chupetinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */; };
 		D95A196129D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */; };
 		D95A196A29D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A196829D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 */; };
@@ -2019,7 +2019,7 @@
 		D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongAndMusicGenreTables.swift; sourceTree = "<group>"; };
 		D9592C452AA2FBE100157F5A /* musicGenre_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = musicGenre_data.json; sourceTree = "<group>"; };
 		D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Song.swift"; sourceTree = "<group>"; };
-		D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewViewModel.swift; sourceTree = "<group>"; };
+		D959B0472887E83D00A215AD /* SidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 		D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rui Falcao - Vai, chupetinha.mp3"; sourceTree = "<group>"; };
 		D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3"; sourceTree = "<group>"; };
 		D95A196829D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valentina Bandeira - Olha o respeito, porra.mp3"; sourceTree = "<group>"; };
@@ -4736,7 +4736,7 @@
 			children = (
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
-				D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */,
+				D959B0472887E83D00A215AD /* SidebarViewModel.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
 				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
@@ -6953,7 +6953,7 @@
 				D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */,
 				D9BACC012B13BF5400BBD0BE /* AnalyticsService.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
-				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
+				D959B0482887E83D00A215AD /* SidebarViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
 				D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,

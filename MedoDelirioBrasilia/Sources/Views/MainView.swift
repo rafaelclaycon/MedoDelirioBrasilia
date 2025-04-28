@@ -30,7 +30,9 @@ struct MainView: View {
     @State private var showingModalView: Bool = false
 
     // iPad
-    @StateObject private var viewModel = SidebarViewViewModel()
+    @State private var sidebarViewModel = SidebarViewModel(
+        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+    )
     @State private var authorSortOption: Int = 0
     @State private var authorSortAction: AuthorSortOption = .nameAscending
 
@@ -240,24 +242,41 @@ struct MainView: View {
                                 .environment(\.push, PushAction { foldersPath.append($0) })
                             }
 
-                            ForEach(viewModel.folders) { folder in
+                            switch sidebarViewModel.state {
+                            case .loading:
                                 Tab {
-                                    NavigationStack {
-                                        FolderDetailView(
-                                            viewModel: FolderDetailViewModel(
-                                                folder: folder,
-                                                contentRepository: contentRepository
-                                            ),
-                                            folder: folder,
-                                            currentContentListMode: $currentContentListMode,
-                                            toast: $toast,
-                                            floatingOptions: $floatingOptions,
-                                            contentRepository: contentRepository
-                                        )
-                                    }
+                                    EmptyView()
                                 } label: {
-                                    Text("\(folder.symbol)   \(folder.name)")
-                                        .padding()
+                                    ProgressView()
+                                }
+
+                            case .loaded(let folders):
+                                ForEach(folders) { folder in
+                                    Tab {
+                                        NavigationStack {
+                                            FolderDetailView(
+                                                viewModel: FolderDetailViewModel(
+                                                    folder: folder,
+                                                    contentRepository: contentRepository
+                                                ),
+                                                folder: folder,
+                                                currentContentListMode: $currentContentListMode,
+                                                toast: $toast,
+                                                floatingOptions: $floatingOptions,
+                                                contentRepository: contentRepository
+                                            )
+                                        }
+                                    } label: {
+                                        Text("\(folder.symbol)   \(folder.name)")
+                                            .padding()
+                                    }
+                                }
+
+                            case .error(_):
+                                Tab {
+                                    EmptyView()
+                                } label: {
+                                    Text("Erro carregando as pastas.")
                                 }
                             }
                         }
@@ -293,7 +312,9 @@ struct MainView: View {
                         .padding(.top, 30)
                     }
                     .onAppear {
-                        viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                        Task {
+                            await sidebarViewModel.onViewAppeared()
+                        }
                     }
                 } else {
                     NavigationSplitView {
