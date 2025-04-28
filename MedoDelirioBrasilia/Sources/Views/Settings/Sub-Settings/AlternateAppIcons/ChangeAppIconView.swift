@@ -3,7 +3,7 @@ import SwiftUI
 struct ChangeAppIconView: View {
 
     private var model = AppIcon()
-    @State private var selectedIcon: String = .empty
+    @State private var selectedIcon: String = ""
     
     private var icons: [Icon] {
         if UserSettings().getShowExplicitContent() {

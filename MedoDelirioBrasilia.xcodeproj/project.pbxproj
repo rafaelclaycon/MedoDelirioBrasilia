@@ -326,7 +326,7 @@
 		D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */; };
-		D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */; };
+		D93F643029A6A692003E7550 /* ShareAsVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642F29A6A692003E7550 /* ShareAsVideoViewModel.swift */; };
 		D9400DE42DAA992500EFBE20 /* StandaloneFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9400DE32DAA992500EFBE20 /* StandaloneFavoritesView.swift */; };
 		D9400DE62DAAAF4800EFBE20 /* StandaloneFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9400DE52DAAAF4800EFBE20 /* StandaloneFavoritesViewModel.swift */; };
 		D944D5D92CE1A23600621981 /* CrumbProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D944D5D82CE1A23600621981 /* CrumbProgressView.swift */; };
@@ -459,7 +459,7 @@
 		D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */; };
 		D9592C462AA2FBE100157F5A /* musicGenre_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D9592C452AA2FBE100157F5A /* musicGenre_data.json */; };
 		D9592C482AA38C3000157F5A /* LocalDatabase+Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */; };
-		D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */; };
+		D959B0482887E83D00A215AD /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewModel.swift */; };
 		D95A195F29D5D55500909096 /* Rui Falcao - Vai, chupetinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */; };
 		D95A196129D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */; };
 		D95A196A29D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A196829D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 */; };
@@ -1887,7 +1887,7 @@
 		D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+MoveAndFade.swift"; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoView.swift; sourceTree = "<group>"; };
-		D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoViewViewModel.swift; sourceTree = "<group>"; };
+		D93F642F29A6A692003E7550 /* ShareAsVideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoViewModel.swift; sourceTree = "<group>"; };
 		D9400DE32DAA992500EFBE20 /* StandaloneFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneFavoritesView.swift; sourceTree = "<group>"; };
 		D9400DE52DAAAF4800EFBE20 /* StandaloneFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneFavoritesViewModel.swift; sourceTree = "<group>"; };
 		D944D5D82CE1A23600621981 /* CrumbProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrumbProgressView.swift; sourceTree = "<group>"; };
@@ -2019,7 +2019,7 @@
 		D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongAndMusicGenreTables.swift; sourceTree = "<group>"; };
 		D9592C452AA2FBE100157F5A /* musicGenre_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = musicGenre_data.json; sourceTree = "<group>"; };
 		D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Song.swift"; sourceTree = "<group>"; };
-		D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewViewModel.swift; sourceTree = "<group>"; };
+		D959B0472887E83D00A215AD /* SidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 		D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rui Falcao - Vai, chupetinha.mp3"; sourceTree = "<group>"; };
 		D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3"; sourceTree = "<group>"; };
 		D95A196829D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valentina Bandeira - Olha o respeito, porra.mp3"; sourceTree = "<group>"; };
@@ -4621,7 +4621,7 @@
 			isa = PBXGroup;
 			children = (
 				D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */,
-				D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */,
+				D93F642F29A6A692003E7550 /* ShareAsVideoViewModel.swift */,
 				D912A33728B3F2C000F7293D /* TipView.swift */,
 			);
 			path = ShareAsVideo;
@@ -4736,7 +4736,7 @@
 			children = (
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
-				D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */,
+				D959B0472887E83D00A215AD /* SidebarViewModel.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
 				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
@@ -6953,7 +6953,7 @@
 				D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */,
 				D9BACC012B13BF5400BBD0BE /* AnalyticsService.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
-				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
+				D959B0482887E83D00A215AD /* SidebarViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
 				D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
@@ -6967,7 +6967,7 @@
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
-				D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */,
+				D93F643029A6A692003E7550 /* ShareAsVideoViewModel.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D9B681E32A942C2E00AB7417 /* SyncInfoCard.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,

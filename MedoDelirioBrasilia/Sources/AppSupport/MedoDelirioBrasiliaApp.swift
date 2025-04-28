@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var moveDatabaseIssue: String = .empty
+var moveDatabaseIssue: String = ""
 
 @main
 struct MedoDelirioBrasiliaApp: App {
@@ -17,13 +17,13 @@ struct MedoDelirioBrasiliaApp: App {
     @State private var tabSelection: PhoneTab = .sounds
     @State private var state: PadScreen? = PadScreen.allSounds
 
-    @StateObject private var helper = PlayRandomSoundHelper()
+    @State private var helper = PlayRandomSoundHelper()
 
     var body: some Scene {
         WindowGroup {
             MainView(tabSelection: $tabSelection, padSelection: $state)
                 .onOpenURL(perform: handleURL)
-                .environmentObject(helper)
+                .environment(helper)
         }
     }
 
@@ -123,23 +123,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             }
         }
     }
-    
+
     private func sendStillAliveSignalToServer() {
         let lastDate = UserSettings().getLastSendDateOfStillAliveSignalToServer()
-        
+
         // Should only send 1 still alive signal per day
         guard lastDate == nil || lastDate!.onlyDate! < Date.now.onlyDate! else {
             return
         }
-        
-        let signal = StillAliveSignal(installId: AppPersistentMemory().customInstallId,
-                                      modelName: UIDevice.modelName,
-                                      systemName: UIDevice.current.systemName,
-                                      systemVersion: UIDevice.current.systemVersion,
-                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
-                                      appVersion: Versioneer.appVersion,
-                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
-                                      dateTime: Date.now.iso8601withFractionalSeconds)
+
+        let signal = StillAliveSignal(
+            installId: AppPersistentMemory().customInstallId,
+            modelName: UIDevice.modelName,
+            systemName: UIDevice.current.systemName,
+            systemVersion: UIDevice.current.systemVersion,
+            isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+            appVersion: Versioneer.appVersion,
+            currentTimeZone: TimeZone.current.abbreviation() ?? "",
+            dateTime: Date.now.iso8601withFractionalSeconds
+        )
         NetworkRabbit.shared.post(signal: signal) { success, error in
             if success != nil, success == true {
                 UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)

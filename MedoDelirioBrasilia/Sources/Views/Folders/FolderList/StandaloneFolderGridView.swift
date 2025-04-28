@@ -17,7 +17,7 @@ struct StandaloneFolderGridView: View {
     @State private var folderIdForEditing: String = ""
     @State private var showErrorDeletingAlert: Bool = false
 
-    @StateObject var deleteFolderAide = DeleteFolderViewAide()
+    @State private var deleteFolderAide = DeleteFolderViewAide()
 
     // MARK: - View Body
 
@@ -36,7 +36,7 @@ struct StandaloneFolderGridView: View {
                         contentRepository: contentRepository,
                         containerSize: geometry.size
                     )
-                    .environmentObject(deleteFolderAide)
+                    .environment(deleteFolderAide)
                 }
                 .padding(.horizontal, .spacing(.medium))
                 .padding(.top, 7)

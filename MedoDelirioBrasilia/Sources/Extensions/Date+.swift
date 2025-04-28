@@ -111,7 +111,7 @@ extension Date {
         if let newDate = newDate {
             return formatter3.string(from: newDate)
         } else {
-            return .empty
+            return ""
         }
     }
 }

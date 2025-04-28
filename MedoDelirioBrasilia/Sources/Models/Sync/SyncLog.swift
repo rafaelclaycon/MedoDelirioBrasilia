@@ -35,7 +35,7 @@ struct SyncLog: Hashable, Codable, Identifiable {
         self.systemVersion = UIDevice.current.systemVersion
         self.isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
         self.appVersion = Versioneer.appVersion
-        self.currentTimeZone = TimeZone.current.abbreviation() ?? .empty
+        self.currentTimeZone = TimeZone.current.abbreviation() ?? ""
         self.updateEventId = updateEventId
     }
 

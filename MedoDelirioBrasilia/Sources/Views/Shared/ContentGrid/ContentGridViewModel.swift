@@ -36,7 +36,7 @@ final class ContentGridViewModel {
     // Sharing
     var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
     var isShowingShareSheet: Bool = false
-    var shareBannerMessage: String = .empty
+    var shareBannerMessage: String = ""
 
     // Long Updates
     var processedUpdateNumber: Int = 0

@@ -156,6 +156,8 @@ struct FolderDetailView: View {
                     contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent)
                 } label: {
                     Image(systemName: contentGridViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                        .foregroundStyle(.white)
+                        .shadow(radius: 5)
                 }
                 .disabled(viewModel.contentCount == 0)
             } else {
@@ -201,20 +203,6 @@ struct FolderDetailView: View {
                 //                        Button {
                 //                            showingFolderInfoEditingView = true
                 //                        } label: {
-                //                            Label("Exportar", systemImage: "square.and.arrow.up")
-                //                        }
-                //
-                //                        Button {
-                //                            showingFolderInfoEditingView = true
-                //                        } label: {
-                //                            Label("Importar", systemImage: "square.and.arrow.down")
-                //                        }
-                //                    }
-
-                //                    Section {
-                //                        Button {
-                //                            showingFolderInfoEditingView = true
-                //                        } label: {
                 //                            Label("Editar Pasta", systemImage: "pencil")
                 //                        }
                 //
@@ -228,7 +216,9 @@ struct FolderDetailView: View {
                 //                        })
                 //                    }
             } label: {
-                Image(systemName: "ellipsis.circle")
+                Image(systemName: "ellipsis.circle.fill")
+                    .foregroundStyle(.white)
+                    .shadow(radius: 4)
             }
             .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
         }
@@ -245,6 +235,8 @@ struct FolderDetailView: View {
                 } label: {
                     Text("Cancelar")
                         .bold()
+                        .foregroundStyle(.white)
+                        .shadow(radius: 5)
                 }
             }
         }
@@ -359,6 +351,33 @@ extension FolderDetailView {
             ),
             folder: folder,
             currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
+}
+
+#Preview("Regular - Selecting") {
+    let folder = UserFolder(
+        symbol: "🤡",
+        name: "Uso diario",
+        backgroundColor: "pastelPurple",
+        changeHash: "abcdefg",
+        contentCount: 3
+    )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
+
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
+            folder: folder,
+            currentContentListMode: .constant(.selection),
             toast: .constant(nil),
             floatingOptions: .constant(nil),
             contentRepository: repo

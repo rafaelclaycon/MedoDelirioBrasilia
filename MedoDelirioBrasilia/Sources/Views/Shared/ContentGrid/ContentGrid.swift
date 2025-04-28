@@ -219,7 +219,7 @@ struct ContentGrid<
                     switch viewModel.subviewToOpen {
                     case .shareAsVideo:
                         ShareAsVideoView(
-                            viewModel: ShareAsVideoViewViewModel(
+                            viewModel: ShareAsVideoViewModel(
                                 content: viewModel.selectedContentSingle!,
                                 subtitle: viewModel.selectedContentSingle!.subtitle,
                                 contentType: viewModel.typeForShareAsVideo()

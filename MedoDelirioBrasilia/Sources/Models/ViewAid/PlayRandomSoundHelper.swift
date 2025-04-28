@@ -5,9 +5,10 @@
 //  Created by Rafael Schmitt on 23/09/24.
 //
 
-import Foundation
+import SwiftUI
 
-class PlayRandomSoundHelper: ObservableObject {
+@Observable
+class PlayRandomSoundHelper {
 
-    @Published var soundIdToPlay: String = ""
+    var soundIdToPlay: String = ""
 }

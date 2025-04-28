@@ -21,7 +21,7 @@ struct MainContentView: View {
     @State private var contentSearchTextIsEmpty: Bool? = true
 
     // Folders
-    @StateObject var deleteFolderAide = DeleteFolderViewAide()
+    @State private var deleteFolderAide = DeleteFolderViewAide()
 
     // Authors
     @State private var authorsGridViewModel = AuthorsGrid.ViewModel(
@@ -42,8 +42,8 @@ struct MainContentView: View {
     // MARK: - Environment Objects
 
     @Environment(TrendsHelper.self) private var trendsHelper
-    @EnvironmentObject var settingsHelper: SettingsHelper
-    @EnvironmentObject var playRandomSoundHelper: PlayRandomSoundHelper
+    @Environment(SettingsHelper.self) private var settingsHelper 
+    @Environment(PlayRandomSoundHelper.self) private var playRandomSoundHelper
 
     // MARK: - Computed Properties
 
@@ -180,9 +180,10 @@ struct MainContentView: View {
                         case .folders:
                             MyFoldersiPhoneView(
                                 contentRepository: contentRepository,
+                                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
                                 containerSize: geometry.size
                             )
-                            .environmentObject(deleteFolderAide)
+                            .environment(deleteFolderAide)
 
                         case .authors:
                             AuthorsGrid(
@@ -251,8 +252,8 @@ struct MainContentView: View {
                             lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                         )
                     }
-                    .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
-                        if shouldUpdate {
+                    .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
+                        if settingsHelper.updateSoundsList {
                             viewModel.onExplicitContentSettingChanged()
                             settingsHelper.updateSoundsList = false
                         }

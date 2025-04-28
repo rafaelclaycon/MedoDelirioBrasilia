@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import Combine
 
-class SyncValues: ObservableObject {
+@Observable
+class SyncValues {
 
-    @Published var syncStatus: SyncUIStatus
+    var syncStatus: SyncUIStatus
 
     init(
         syncStatus: SyncUIStatus = .updating

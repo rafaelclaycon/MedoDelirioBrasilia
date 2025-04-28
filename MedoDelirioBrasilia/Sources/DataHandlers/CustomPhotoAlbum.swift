@@ -106,7 +106,7 @@ class CustomPhotoAlbum: NSObject {
         }
         
         
-        var placeholderIdentifier: String = .empty
+        var placeholderIdentifier: String = ""
         
         PHPhotoLibrary.shared().performChanges({
             //PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)

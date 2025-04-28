@@ -19,7 +19,7 @@ struct MainView: View {
     @State private var foldersPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
-    @StateObject private var settingsHelper = SettingsHelper()
+    @State private var settingsHelper = SettingsHelper()
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false
     @State private var currentContentListMode: ContentGridMode = .regular
@@ -30,16 +30,18 @@ struct MainView: View {
     @State private var showingModalView: Bool = false
 
     // iPad
-    @StateObject private var viewModel = SidebarViewViewModel()
+    @State private var sidebarViewModel = SidebarViewModel(
+        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+    )
     @State private var authorSortOption: Int = 0
     @State private var authorSortAction: AuthorSortOption = .nameAscending
 
     // Trends
-    @State private var soundIdToGoToFromTrends: String = .empty
+    @State private var soundIdToGoToFromTrends: String = ""
     @State private var trendsHelper = TrendsHelper()
 
     // Sync
-    @StateObject private var syncValues = SyncValues()
+    @State private var syncValues = SyncValues()
 
     @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
 
@@ -70,7 +72,7 @@ struct MainView: View {
                             contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
-                        .environmentObject(settingsHelper)
+                        .environment(settingsHelper)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                             GeneralRouter(destination: screen, contentRepository: contentRepository)
                         }
@@ -164,7 +166,7 @@ struct MainView: View {
                                     contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
-                                .environmentObject(settingsHelper)
+                                .environment(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
@@ -186,7 +188,7 @@ struct MainView: View {
                                     contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
-                                .environmentObject(settingsHelper)
+                                .environment(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
@@ -240,24 +242,41 @@ struct MainView: View {
                                 .environment(\.push, PushAction { foldersPath.append($0) })
                             }
 
-                            ForEach(viewModel.folders) { folder in
+                            switch sidebarViewModel.state {
+                            case .loading:
                                 Tab {
-                                    NavigationStack {
-                                        FolderDetailView(
-                                            viewModel: FolderDetailViewModel(
-                                                folder: folder,
-                                                contentRepository: contentRepository
-                                            ),
-                                            folder: folder,
-                                            currentContentListMode: $currentContentListMode,
-                                            toast: $toast,
-                                            floatingOptions: $floatingOptions,
-                                            contentRepository: contentRepository
-                                        )
-                                    }
+                                    EmptyView()
                                 } label: {
-                                    Text("\(folder.symbol)   \(folder.name)")
-                                        .padding()
+                                    ProgressView()
+                                }
+
+                            case .loaded(let folders):
+                                ForEach(folders) { folder in
+                                    Tab {
+                                        NavigationStack {
+                                            FolderDetailView(
+                                                viewModel: FolderDetailViewModel(
+                                                    folder: folder,
+                                                    contentRepository: contentRepository
+                                                ),
+                                                folder: folder,
+                                                currentContentListMode: $currentContentListMode,
+                                                toast: $toast,
+                                                floatingOptions: $floatingOptions,
+                                                contentRepository: contentRepository
+                                            )
+                                        }
+                                    } label: {
+                                        Text("\(folder.symbol)   \(folder.name)")
+                                            .padding()
+                                    }
+                                }
+
+                            case .error(_):
+                                Tab {
+                                    EmptyView()
+                                } label: {
+                                    Text("Erro carregando as pastas.")
                                 }
                             }
                         }
@@ -293,7 +312,9 @@ struct MainView: View {
                         .padding(.top, 30)
                     }
                     .onAppear {
-                        viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                        Task {
+                            await sidebarViewModel.onViewAppeared()
+                        }
                     }
                 } else {
                     NavigationSplitView {
@@ -308,8 +329,8 @@ struct MainView: View {
                             contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
-                        .environmentObject(settingsHelper)
-                        .environmentObject(syncValues)
+                        .environment(settingsHelper)
+                        .environment(syncValues)
                     } detail: {
                         NavigationStack(path: $soundsPath) {
                             MainContentView(
@@ -330,7 +351,7 @@ struct MainView: View {
                                 contentRepository: contentRepository
                             )
                             .environment(trendsHelper)
-                            .environmentObject(settingsHelper)
+                            .environment(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
@@ -340,7 +361,7 @@ struct MainView: View {
                 }
             }
         }
-        .environmentObject(syncValues)
+        .environment(syncValues)
         .onAppear {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
@@ -350,7 +371,7 @@ struct MainView: View {
             switch subviewToOpen {
             case .settings:
                 SettingsCasingWithCloseView(isBeingShown: $showingModalView)
-                    .environmentObject(settingsHelper)
+                    .environment(settingsHelper)
 
             case .onboarding:
                 FirstOnboardingView(isBeingShown: $showingModalView)
@@ -377,7 +398,7 @@ struct MainView: View {
         // Could be removed in the future, but for now using `showingModalView` bugs out on iPad. Shows Onboarding most of the time.
         .sheet(isPresented: $isShowingSettingsSheet) {
             SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
-                .environmentObject(settingsHelper)
+                .environment(settingsHelper)
         }
     }
 

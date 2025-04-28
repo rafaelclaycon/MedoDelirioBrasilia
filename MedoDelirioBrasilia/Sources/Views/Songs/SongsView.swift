@@ -19,7 +19,7 @@ struct SongsView: View {
     @State private var shareAsVideo_Result = ShareAsVideoResult()
 
     @Environment(TrendsHelper.self) private var trendsHelper
-    @EnvironmentObject var settingsHelper: SettingsHelper
+    @Environment(SettingsHelper.self) private var settingsHelper
 
     // Dynamic Type
     @ScaledMetric private var explicitOffWarningTopPadding = 16
@@ -204,7 +204,7 @@ struct SongsView: View {
         }
         .sheet(item: $viewModel.songToShareAsVideo) { song in
             ShareAsVideoView(
-                viewModel: ShareAsVideoViewViewModel(
+                viewModel: ShareAsVideoViewModel(
                     content: AnyEquatableMedoContent(song),
                     contentType: .videoFromSong
                 ),
@@ -254,8 +254,8 @@ struct SongsView: View {
                 )
             }
         }
-        .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
-            if shouldUpdate {
+        .onChange(of: settingsHelper.updateSoundsList) {
+            if settingsHelper.updateSoundsList {
                 viewModel.reloadList()
                 settingsHelper.updateSoundsList = false
             }

@@ -10,7 +10,8 @@ import SwiftUI
 extension ContentDetailView {
 
     @MainActor
-    final class ViewModel: ObservableObject {
+    @Observable
+    final class ViewModel {
 
         internal let content: AnyEquatableMedoContent
         private let openAuthorDetailsAction: (Author) -> Void
@@ -19,19 +20,19 @@ extension ContentDetailView {
         private let reactionId: String?
         private let dismissAction: () -> Void
 
-        @Published var isPlaying: Bool = false
-        @Published var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
-        @Published var reactionsState: LoadingState<[Reaction]> = .loading
-        @Published var showAuthorSuggestionEmailAppPicker: Bool = false
-        @Published var showReactionSuggestionEmailAppPicker: Bool = false
-        @Published var didCopySupportAddressOnEmailPicker: Bool = false
+        var isPlaying: Bool = false
+        var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
+        var reactionsState: LoadingState<[Reaction]> = .loading
+        var showAuthorSuggestionEmailAppPicker: Bool = false
+        var showReactionSuggestionEmailAppPicker: Bool = false
+        var didCopySupportAddressOnEmailPicker: Bool = false
 
-        @Published var toast: Toast?
+        var toast: Toast?
 
         // Alerts
-        @Published var alertTitle: String = ""
-        @Published var alertMessage: String = ""
-        @Published var showAlert: Bool = false
+        var alertTitle: String = ""
+        var alertMessage: String = ""
+        var showAlert: Bool = false
 
         // MARK: - Initializer
 

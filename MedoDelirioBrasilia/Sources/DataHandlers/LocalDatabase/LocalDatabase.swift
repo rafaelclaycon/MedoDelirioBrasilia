@@ -40,6 +40,7 @@ internal protocol LocalDatabaseProtocol {
     func update(userSortPreference: Int, forFolderId userFolderId: String) throws
     func insert(_ userFolder: UserFolder) throws
     func update(_ userFolder: UserFolder) throws
+    func deleteUserFolder(withId folderId: String) throws
     func deleteUserContentFromFolder(withId folderId: String, contentId: String) throws
 
     // Song
