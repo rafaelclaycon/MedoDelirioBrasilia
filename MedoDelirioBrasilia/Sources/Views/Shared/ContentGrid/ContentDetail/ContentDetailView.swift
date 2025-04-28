@@ -18,7 +18,7 @@ import SwiftUI
 ///   - authorId: An optional author ID for deciding if the author's name button should navigate to author details or not. When already opening from author details it should NOT.
 struct ContentDetailView: View {
 
-    @StateObject private var viewModel: ViewModel
+    @State private var viewModel: ViewModel
 
     @Environment(\.dismiss) var dismiss
 
@@ -32,15 +32,13 @@ struct ContentDetailView: View {
         reactionId: String?,
         dismissAction: @escaping () -> Void
     ) {
-        self._viewModel = StateObject(
-            wrappedValue: ViewModel(
-                content: content,
-                openAuthorDetailsAction: openAuthorDetailsAction,
-                authorId: authorId,
-                openReactionAction: openReactionAction,
-                reactionId: reactionId,
-                dismissAction: dismissAction
-            )
+        self.viewModel = ViewModel(
+            content: content,
+            openAuthorDetailsAction: openAuthorDetailsAction,
+            authorId: authorId,
+            openReactionAction: openReactionAction,
+            reactionId: reactionId,
+            dismissAction: dismissAction
         )
     }
 
