@@ -10,7 +10,7 @@ import Combine
 
 struct FolderInfoEditingView: View {
 
-    @StateObject private var viewModel: ViewModel
+    @State private var viewModel: ViewModel
 
     @FocusState private var focusedField: Field?
 
@@ -23,12 +23,10 @@ struct FolderInfoEditingView: View {
         folderRepository: UserFolderRepositoryProtocol,
         dismissSheet: @escaping () -> Void
     ) {
-        self._viewModel = StateObject(
-            wrappedValue: ViewModel(
-                folder: folder,
-                folderRepository: folderRepository,
-                dismissSheet: dismissSheet
-            )
+        self.viewModel = ViewModel(
+            folder: folder,
+            folderRepository: folderRepository,
+            dismissSheet: dismissSheet
         )
         self.dismissSheet = dismissSheet
     }
