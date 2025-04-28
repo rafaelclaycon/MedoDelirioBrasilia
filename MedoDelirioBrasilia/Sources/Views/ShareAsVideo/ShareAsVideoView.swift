@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShareAsVideoView: View {
 
-    @StateObject var viewModel: ShareAsVideoViewViewModel
+    @State var viewModel: ShareAsVideoViewModel
     @Binding var result: ShareAsVideoResult
     @State var useLongerGeneratingVideoMessage: Bool
 
@@ -324,7 +324,7 @@ struct ShareAsVideoView: View {
 
 #Preview {
     ShareAsVideoView(
-        viewModel: ShareAsVideoViewViewModel(
+        viewModel: ShareAsVideoViewModel(
             content: AnyEquatableMedoContent(Sound(title: "Você é maluco ou você é idiota, companheiro?")),
             subtitle: "Lula (Cristiano Botafogo)",
             contentType: .videoFromSound

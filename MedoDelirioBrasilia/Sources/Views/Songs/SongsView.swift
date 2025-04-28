@@ -204,7 +204,7 @@ struct SongsView: View {
         }
         .sheet(item: $viewModel.songToShareAsVideo) { song in
             ShareAsVideoView(
-                viewModel: ShareAsVideoViewViewModel(
+                viewModel: ShareAsVideoViewModel(
                     content: AnyEquatableMedoContent(song),
                     contentType: .videoFromSong
                 ),

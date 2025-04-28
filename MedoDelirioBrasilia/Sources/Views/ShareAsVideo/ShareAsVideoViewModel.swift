@@ -1,30 +1,31 @@
 //
-//  ShareAsVideoViewViewModel.swift
+//  ShareAsVideoViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 22/02/23.
 //
 
-import Combine
+import Foundation
 import PhotosUI
 
-class ShareAsVideoViewViewModel: ObservableObject {
+@Observable
+class ShareAsVideoViewModel {
 
     var content: AnyEquatableMedoContent
     var subtitle: String
     private let type: ContentType
     
-    @Published var includeSoundWarning: Bool = true
-    @Published var isShowingProcessingView = false
+    var includeSoundWarning: Bool = true
+    var isShowingProcessingView = false
 
-    @Published var shouldCloseView = false
-    @Published var pathToVideoFile = ""
-    @Published var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
+    var shouldCloseView = false
+    var pathToVideoFile = ""
+    var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
 
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
-    @Published var showAlert: Bool = false
+    var alertTitle: String = ""
+    var alertMessage: String = ""
+    var showAlert: Bool = false
 
     // MARK: - Initializer
 
