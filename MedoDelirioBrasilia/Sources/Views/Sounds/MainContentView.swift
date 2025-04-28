@@ -229,7 +229,9 @@ struct MainContentView: View {
                         )
                     )
                     .onChange(of: viewModel.currentViewMode) {
-                        viewModel.onSelectedViewModeChanged()
+                        Task {
+                            await viewModel.onSelectedViewModeChanged()
+                        }
                     }
                     .onChange(of: viewModel.processedUpdateNumber) {
                         withAnimation {
@@ -372,7 +374,7 @@ extension MainContentView {
 
 #Preview {
     MainContentView(
-        viewModel: .init(
+        viewModel: MainContentViewModel(
             currentViewMode: .all,
             contentSortOption: SoundSortOption.dateAddedDescending.rawValue,
             authorSortOption: AuthorSortOption.nameAscending.rawValue,
@@ -380,7 +382,8 @@ extension MainContentView {
             toast: .constant(nil),
             floatingOptions: .constant(nil),
             syncValues: SyncValues(),
-            contentRepository: FakeContentRepository()
+            contentRepository: FakeContentRepository(),
+            analyticsService: AnalyticsService()
         ),
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),

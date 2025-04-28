@@ -48,7 +48,8 @@ struct SidebarView: View {
                             toast: $toast,
                             floatingOptions: $floatingOptions,
                             syncValues: syncValues,
-                            contentRepository: contentRepository
+                            contentRepository: contentRepository,
+                            analyticsService: AnalyticsService()
                         ),
                         currentContentListMode: $currentContentListMode,
                         toast: $toast,

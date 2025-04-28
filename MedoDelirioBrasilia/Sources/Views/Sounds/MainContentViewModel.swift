@@ -28,6 +28,7 @@ class MainContentViewModel {
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let contentRepository: ContentRepositoryProtocol
+    private let analyticsService: AnalyticsServiceProtocol
 
     // Sync
     private let syncManager: SyncManager
@@ -45,7 +46,8 @@ class MainContentViewModel {
         floatingOptions: Binding<FloatingContentOptions?>,
         syncValues: SyncValues,
         isAllowedToSync: Bool = true,
-        contentRepository: ContentRepositoryProtocol
+        contentRepository: ContentRepositoryProtocol,
+        analyticsService: AnalyticsServiceProtocol
     ) {
         self.currentViewMode = currentViewMode
         self.contentSortOption = contentSortOption
@@ -64,6 +66,7 @@ class MainContentViewModel {
         )
         self.syncValues = syncValues
         self.contentRepository = contentRepository
+        self.analyticsService = analyticsService
         self.isAllowedToSync = isAllowedToSync
         self.syncManager.delegate = self
     }
@@ -87,8 +90,9 @@ extension MainContentViewModel {
         loadContent(clearCache: hadAnyUpdates)
     }
 
-    public func onSelectedViewModeChanged() {
+    public func onSelectedViewModeChanged() async {
         loadContent()
+        await fireAnalytics()
     }
 
     public func onContentSortOptionChanged() {
@@ -141,6 +145,19 @@ extension MainContentViewModel {
         } catch {
             state = .error(error.localizedDescription)
             debugPrint(error)
+        }
+    }
+
+    private func fireAnalytics() async {
+        let screen = "MainContentView"
+        if currentViewMode == .favorites {
+            await analyticsService.send(originatingScreen: screen, action: "didViewFavoritesTab")
+        } else if currentViewMode == .songs {
+            await analyticsService.send(originatingScreen: screen, action: "didViewSongsTab")
+        } else if currentViewMode == .folders {
+            await analyticsService.send(originatingScreen: screen, action: "didViewFoldersTab")
+        } else if currentViewMode == .authors {
+            await analyticsService.send(originatingScreen: screen, action: "didViewAuthorsTab")
         }
     }
 }
