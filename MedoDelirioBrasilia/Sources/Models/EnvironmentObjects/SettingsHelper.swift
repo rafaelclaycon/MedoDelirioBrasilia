@@ -7,7 +7,8 @@
 
 import Foundation
 
-class SettingsHelper: ObservableObject {
+@Observable
+class SettingsHelper {
 
-    @Published var updateSoundsList: Bool = false
+    var updateSoundsList: Bool = false
 }

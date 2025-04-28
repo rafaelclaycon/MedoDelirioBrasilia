@@ -42,8 +42,8 @@ struct MainContentView: View {
     // MARK: - Environment Objects
 
     @Environment(TrendsHelper.self) private var trendsHelper
-    @EnvironmentObject var settingsHelper: SettingsHelper
-    @EnvironmentObject var playRandomSoundHelper: PlayRandomSoundHelper
+    @Environment(SettingsHelper.self) private var settingsHelper 
+    @Environment(PlayRandomSoundHelper.self) private var playRandomSoundHelper
 
     // MARK: - Computed Properties
 
@@ -251,8 +251,8 @@ struct MainContentView: View {
                             lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                         )
                     }
-                    .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
-                        if shouldUpdate {
+                    .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
+                        if settingsHelper.updateSoundsList {
                             viewModel.onExplicitContentSettingChanged()
                             settingsHelper.updateSoundsList = false
                         }

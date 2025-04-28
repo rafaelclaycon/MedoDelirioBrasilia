@@ -1,10 +1,17 @@
+//
+//  SettingsCasingWithCloseView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 19/07/22.
+//
+
 import SwiftUI
 
 struct SettingsCasingWithCloseView: View {
 
     @Binding var isBeingShown: Bool
-    @EnvironmentObject var helper: SettingsHelper
-    
+    @Environment(SettingsHelper.self) private var helper
+
     var body: some View {
         NavigationView {
             SettingsView()
@@ -15,16 +22,11 @@ struct SettingsCasingWithCloseView: View {
                         self.isBeingShown = false
                     }
                 )
-                .environmentObject(helper)
+                .environment(helper)
         }
     }
-
 }
 
-struct SettingsCasingWithCloseView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        SettingsCasingWithCloseView(isBeingShown: .constant(true))
-    }
-
+#Preview {
+    SettingsCasingWithCloseView(isBeingShown: .constant(true))
 }

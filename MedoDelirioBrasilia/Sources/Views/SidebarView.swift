@@ -23,7 +23,7 @@ struct SidebarView: View {
     // MARK: - View State
 
     @StateObject private var viewModel = SidebarViewViewModel()
-    @EnvironmentObject private var settingsHelper: SettingsHelper
+    @Environment(SettingsHelper.self) private var settingsHelper
     @EnvironmentObject private var syncValues: SyncValues
 
     // Trends
@@ -52,7 +52,7 @@ struct SidebarView: View {
                         floatingOptions: $floatingOptions,
                         openSettingsAction: {},
                         contentRepository: contentRepository
-                    ).environment(trendsHelper).environmentObject(settingsHelper),
+                    ).environment(trendsHelper).environment(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {

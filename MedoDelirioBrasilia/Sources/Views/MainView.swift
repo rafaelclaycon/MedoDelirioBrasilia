@@ -19,7 +19,7 @@ struct MainView: View {
     @State private var foldersPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
-    @StateObject private var settingsHelper = SettingsHelper()
+    @State private var settingsHelper = SettingsHelper()
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false
     @State private var currentContentListMode: ContentGridMode = .regular
@@ -70,7 +70,7 @@ struct MainView: View {
                             contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
-                        .environmentObject(settingsHelper)
+                        .environment(settingsHelper)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                             GeneralRouter(destination: screen, contentRepository: contentRepository)
                         }
@@ -164,7 +164,7 @@ struct MainView: View {
                                     contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
-                                .environmentObject(settingsHelper)
+                                .environment(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
@@ -186,7 +186,7 @@ struct MainView: View {
                                     contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
-                                .environmentObject(settingsHelper)
+                                .environment(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
@@ -308,7 +308,7 @@ struct MainView: View {
                             contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
-                        .environmentObject(settingsHelper)
+                        .environment(settingsHelper)
                         .environmentObject(syncValues)
                     } detail: {
                         NavigationStack(path: $soundsPath) {
@@ -330,7 +330,7 @@ struct MainView: View {
                                 contentRepository: contentRepository
                             )
                             .environment(trendsHelper)
-                            .environmentObject(settingsHelper)
+                            .environment(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
@@ -350,7 +350,7 @@ struct MainView: View {
             switch subviewToOpen {
             case .settings:
                 SettingsCasingWithCloseView(isBeingShown: $showingModalView)
-                    .environmentObject(settingsHelper)
+                    .environment(settingsHelper)
 
             case .onboarding:
                 FirstOnboardingView(isBeingShown: $showingModalView)
@@ -377,7 +377,7 @@ struct MainView: View {
         // Could be removed in the future, but for now using `showingModalView` bugs out on iPad. Shows Onboarding most of the time.
         .sheet(isPresented: $isShowingSettingsSheet) {
             SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
-                .environmentObject(settingsHelper)
+                .environment(settingsHelper)
         }
     }
 

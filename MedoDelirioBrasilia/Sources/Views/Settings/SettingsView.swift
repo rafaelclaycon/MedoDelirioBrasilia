@@ -13,7 +13,7 @@ struct SettingsView: View {
         case email, pix
     }
 
-    @EnvironmentObject var helper: SettingsHelper
+    @Environment(SettingsHelper.self) private var helper
 
     @State private var showExplicitSounds: Bool = UserSettings().getShowExplicitContent()
 

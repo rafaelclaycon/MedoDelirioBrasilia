@@ -17,13 +17,13 @@ struct MedoDelirioBrasiliaApp: App {
     @State private var tabSelection: PhoneTab = .sounds
     @State private var state: PadScreen? = PadScreen.allSounds
 
-    @StateObject private var helper = PlayRandomSoundHelper()
+    @State private var helper = PlayRandomSoundHelper()
 
     var body: some Scene {
         WindowGroup {
             MainView(tabSelection: $tabSelection, padSelection: $state)
                 .onOpenURL(perform: handleURL)
-                .environmentObject(helper)
+                .environment(helper)
         }
     }
 
