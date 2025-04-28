@@ -21,7 +21,7 @@ struct MainContentView: View {
     @State private var contentSearchTextIsEmpty: Bool? = true
 
     // Folders
-    @StateObject var deleteFolderAide = DeleteFolderViewAide()
+    @State private var deleteFolderAide = DeleteFolderViewAide()
 
     // Authors
     @State private var authorsGridViewModel = AuthorsGrid.ViewModel(
@@ -182,7 +182,7 @@ struct MainContentView: View {
                                 contentRepository: contentRepository,
                                 containerSize: geometry.size
                             )
-                            .environmentObject(deleteFolderAide)
+                            .environment(deleteFolderAide)
 
                         case .authors:
                             AuthorsGrid(

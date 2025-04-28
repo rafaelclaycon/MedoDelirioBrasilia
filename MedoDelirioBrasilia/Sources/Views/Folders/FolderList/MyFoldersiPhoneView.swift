@@ -13,11 +13,12 @@ struct MyFoldersiPhoneView: View {
     let containerSize: CGSize
 
     @State private var folderForEditing: UserFolder?
-    @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
+    @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderGrid :)
     @State private var currentContentListMode: ContentGridMode = .regular
+    @State private var displayDeleteFolderAlert: Bool = false
     @State private var showErrorDeletingAlert: Bool = false
 
-    @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
+    @Environment(DeleteFolderViewAide.self) private var deleteFolderAide
 
     // MARK: - View Body
 
@@ -62,22 +63,17 @@ struct MyFoldersiPhoneView: View {
                 }
             )
         }
-        .alert(isPresented: $deleteFolderAide.showAlert) {
+        .onChange(of: deleteFolderAide.showAlert) {
+            if deleteFolderAide.showAlert {
+                displayDeleteFolderAlert = true
+                deleteFolderAide.showAlert = false
+            }
+        }
+        .alert(isPresented: $displayDeleteFolderAlert) {
             Alert(
                 title: Text(deleteFolderAide.alertTitle),
                 message: Text(deleteFolderAide.alertMessage),
-                primaryButton: .destructive(Text("Apagar"), action: {
-                    guard !deleteFolderAide.folderIdForDeletion.isEmpty else {
-                        return
-                    }
-
-                    do {
-                        try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
-                        updateFolderList = true
-                    } catch {
-                        showErrorDeletingAlert = true
-                    }
-                }),
+                primaryButton: .destructive(Text("Apagar"), action: deleteFolder),
                 secondaryButton: .cancel(Text("Cancelar"))
             )
         }
@@ -88,6 +84,21 @@ struct MyFoldersiPhoneView: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text("Tente novamente mais tarde. Se o erro persisir, por favor, envie um e-mail para o desenvolvedor.")
+        }
+    }
+
+    // MARK: - Functions
+
+    private func deleteFolder() {
+        guard !deleteFolderAide.folderIdForDeletion.isEmpty else {
+            return
+        }
+
+        do {
+            try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+            updateFolderList = true
+        } catch {
+            showErrorDeletingAlert = true
         }
     }
 }

@@ -30,7 +30,7 @@ struct FolderGrid: View {
 
     // MARK: - Environment
 
-    @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
+    @Environment(DeleteFolderViewAide.self) private var deleteFolderAide
     @Environment(\.sizeCategory) private var sizeCategory
 
     // MARK: - Computed Properties
@@ -229,7 +229,7 @@ struct FolderGrid: View {
                 contentRepository: FakeContentRepository(),
                 containerSize: geometry.size
             )
-            .environmentObject(DeleteFolderViewAide())
+            .environment(DeleteFolderViewAide())
             .padding(.horizontal, .spacing(.medium))
         }
     }
