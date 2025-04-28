@@ -10,6 +10,7 @@ import SwiftUI
 struct MyFoldersiPhoneView: View {
 
     let contentRepository: ContentRepositoryProtocol
+    let userFolderRepository: UserFolderRepositoryProtocol
     let containerSize: CGSize
 
     @State private var folderForEditing: UserFolder?
@@ -27,7 +28,7 @@ struct MyFoldersiPhoneView: View {
             VStack(alignment: .center) {
                 FolderGrid(
                     viewModel: FolderGridViewModel(
-                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                        userFolderRepository: userFolderRepository,
                         userSettings: UserSettings(),
                         appMemory: AppPersistentMemory()
                     ),
@@ -93,9 +94,8 @@ struct MyFoldersiPhoneView: View {
         guard !deleteFolderAide.folderIdForDeletion.isEmpty else {
             return
         }
-
         do {
-            try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+            try userFolderRepository.delete(deleteFolderAide.folderIdForDeletion)
             updateFolderList = true
         } catch {
             showErrorDeletingAlert = true
@@ -108,6 +108,7 @@ struct MyFoldersiPhoneView: View {
 #Preview {
     MyFoldersiPhoneView(
         contentRepository: FakeContentRepository(),
+        userFolderRepository: UserFolderRepository(database: FakeLocalDatabase()),
         containerSize: CGSize(width: 400, height: 1200)
     )
 }

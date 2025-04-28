@@ -180,6 +180,7 @@ struct MainContentView: View {
                         case .folders:
                             MyFoldersiPhoneView(
                                 contentRepository: contentRepository,
+                                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
                                 containerSize: geometry.size
                             )
                             .environment(deleteFolderAide)

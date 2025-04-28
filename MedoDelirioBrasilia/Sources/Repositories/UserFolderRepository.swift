@@ -17,6 +17,7 @@ protocol UserFolderRepositoryProtocol {
 
     func update(_ userFolder: UserFolder) throws
 
+    func delete(_ folderId: String) throws
     func deleteUserContentFromFolder(withId folderId: String, contentId: String) throws
 
     /// Should only be used once.
@@ -64,6 +65,10 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
         let contents = try database.contentsInside(userFolder: folder.id)
         folder.changeHash = folder.folderHash(contents.map { $0.contentId })
         try database.update(folder)
+    }
+
+    func delete(_ folderId: String) throws {
+        try database.deleteUserFolder(withId: folderId)
     }
 
     func deleteUserContentFromFolder(withId folderId: String, contentId: String) throws {
