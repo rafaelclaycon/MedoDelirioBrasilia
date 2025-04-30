@@ -12,6 +12,8 @@ struct DynamicBanner: View {
     let bannerData: DynamicBannerData
     let textCopyFeedback: (String) -> Void
 
+    private let mainColor: Color = .blue
+
     @State private var isExpanded: Bool = false
 
     private func markedDownText(_ text: String) -> AttributedString {
@@ -26,10 +28,10 @@ struct DynamicBanner: View {
 
     var body: some View {
         DisclosureGroup(isExpanded: $isExpanded) {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: .spacing(.small)) {
                 ForEach(bannerData.text, id: \.self) {
                     Text(markedDownText($0))
-                        .foregroundColor(.red)
+                        .foregroundColor(mainColor)
                         .opacity(0.8)
                         .font(.callout)
                 }
@@ -58,7 +60,7 @@ struct DynamicBanner: View {
                         } label: {
                             Text(button.title)
                         }
-                        .tint(.red)
+                        .tint(mainColor)
                         .controlSize(.regular)
                         .buttonStyle(.bordered)
                         .buttonBorderShape(.roundedRectangle)
@@ -73,21 +75,21 @@ struct DynamicBanner: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 30)
-                    .foregroundColor(.red)
+                    .foregroundColor(mainColor)
 
                 Text(bannerData.title)
                     .font(.callout)
-                    .foregroundColor(.red)
+                    .foregroundColor(mainColor)
                     .bold()
                     .multilineTextAlignment(.leading)
             }
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 16)
-        .foregroundStyle(.red)
+        .foregroundStyle(mainColor)
         .background {
             RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.red)
+                .foregroundColor(mainColor)
                 .opacity(colorScheme == .dark ? 0.3 : 0.15)
         }
         .overlay {
@@ -96,7 +98,7 @@ struct DynamicBanner: View {
                     Spacer()
 
                     ProgressView()
-                        .foregroundStyle(.red)
+                        .scaleEffect(1.1)
 
                     Spacer()
                 }
@@ -105,9 +107,45 @@ struct DynamicBanner: View {
     }
 }
 
-#Preview {
+#Preview("Loading") {
     DynamicBanner(
-        bannerData: .init(symbol: "house", title: "Ajude", text: ["Text"], buttons: []),
-        textCopyFeedback: { _ in }
+        bannerData: DynamicBannerData(
+            symbol: "",
+            title: "",
+            text: [],
+            buttons: []
+        ),
+        textCopyFeedback: { _ in
+        }
     )
+    .padding(.horizontal, .spacing(.medium))
+}
+
+#Preview("Loaded") {
+    DynamicBanner(
+        bannerData: DynamicBannerData(
+            symbol: "heart.square.fill",
+            title: "Apoie o app",
+            text: [
+                "Oi! Para manter o app funcionando e trazer novidades, precisamos renovar nossa licença anual de desenvolvedor. Se o app tem sido útil para você, considere fazer uma contribuição do valor que puder."
+            ],
+            buttons: [
+                DynamicBannerButton(
+                    title: "Fazer uma doação única via Pix",
+                    type: .copyText,
+                    data: "",
+                    additionalData: nil
+                ),
+                DynamicBannerButton(
+                    title: "Apoiar mensalmente (a partir de R$ 5)",
+                    type: .openLink,
+                    data: "",
+                    additionalData: nil
+                )
+            ]
+        ),
+        textCopyFeedback: { _ in
+        }
+    )
+    .padding(.horizontal, .spacing(.medium))
 }

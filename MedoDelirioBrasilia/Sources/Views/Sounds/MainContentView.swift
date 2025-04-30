@@ -116,6 +116,8 @@ struct MainContentView: View {
                                         )
                                     }
 
+//                                    DynamicBanner(bannerData: <#T##DynamicBannerData#>, textCopyFeedback: <#T##(String) -> Void#>, colorScheme: <#T##arg#>)
+
 //                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
 //                                        RecurringDonationBanner(
 //                                            isBeingShown: $shouldDisplayRecurringDonationBanner
