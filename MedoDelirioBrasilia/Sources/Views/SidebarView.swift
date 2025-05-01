@@ -55,7 +55,8 @@ struct SidebarView: View {
                         toast: $toast,
                         floatingOptions: $floatingOptions,
                         openSettingsAction: {},
-                        contentRepository: contentRepository
+                        contentRepository: contentRepository,
+                        bannerRepository: BannerRepository()
                     ).environment(trendsHelper).environment(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,

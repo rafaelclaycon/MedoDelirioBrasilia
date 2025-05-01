@@ -15,6 +15,7 @@ struct MainContentView: View {
     private var currentContentListMode: Binding<ContentGridMode>
     private let openSettingsAction: () -> Void
     private let contentRepository: ContentRepositoryProtocol
+    private let bannerRepository: BannerRepositoryProtocol
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -33,11 +34,8 @@ struct MainContentView: View {
     // Sync
     @State private var displayLongUpdateBanner: Bool = false
 
-    // Temporary banners
-    @State private var shouldDisplayRecurringDonationBanner: Bool = false
-
-    @ScaledMetric private var explicitOffWarningTopPadding = 16
-    @ScaledMetric private var explicitOffWarningBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningTopPadding: CGFloat = .spacing(.medium)
+    @ScaledMetric private var explicitOffWarningBottomPadding: CGFloat = .spacing(.large)
 
     // MARK: - Environment Objects
 
@@ -71,7 +69,8 @@ struct MainContentView: View {
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void,
-        contentRepository: ContentRepositoryProtocol
+        contentRepository: ContentRepositoryProtocol,
+        bannerRepository: BannerRepositoryProtocol
     ) {
         self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
@@ -88,6 +87,7 @@ struct MainContentView: View {
         self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction
         self.contentRepository = contentRepository
+        self.bannerRepository = bannerRepository
     }
 
     // MARK: - View Body
@@ -116,13 +116,14 @@ struct MainContentView: View {
                                         )
                                     }
 
-//                                    DynamicBanner(bannerData: <#T##DynamicBannerData#>, textCopyFeedback: <#T##(String) -> Void#>, colorScheme: <#T##arg#>)
-
-//                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-//                                        RecurringDonationBanner(
-//                                            isBeingShown: $shouldDisplayRecurringDonationBanner
-//                                        )
-//                                    }
+                                    if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
+                                        BannersView(
+                                            bannerRepository: bannerRepository,
+                                            toast: viewModel.toast
+                                        )
+                                        .padding(.top, .spacing(.xxxSmall))
+                                        .padding(.bottom, .spacing(.xSmall))
+                                    }
                                 }
 
                                 ContentGrid(
@@ -332,6 +333,32 @@ extension MainContentView {
             }
         }
     }
+
+    struct BannersView: View {
+
+        let bannerRepository: BannerRepositoryProtocol
+        @Binding var toast: Toast?
+
+        @State private var data: DynamicBannerData?
+
+        var body: some View {
+            VStack {
+                if let data {
+                    DynamicBanner(
+                        bannerData: data,
+                        textCopyFeedback: { message in
+                            self.toast = Toast(message: message, type: .thankYou)
+                        }
+                    )
+                }
+            }
+            .onAppear {
+                Task{
+                    data = await bannerRepository.dynamicBanner()
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Functions
@@ -391,6 +418,7 @@ extension MainContentView {
         toast: .constant(nil),
         floatingOptions: .constant(nil),
         openSettingsAction: {},
-        contentRepository: FakeContentRepository()
+        contentRepository: FakeContentRepository(),
+        bannerRepository: BannerRepository()
     )
 }

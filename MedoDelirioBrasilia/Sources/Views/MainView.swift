@@ -70,7 +70,8 @@ struct MainView: View {
                             openSettingsAction: {
                                 isShowingSettingsSheet.toggle()
                             },
-                            contentRepository: contentRepository
+                            contentRepository: contentRepository,
+                            bannerRepository: BannerRepository()
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)
@@ -165,7 +166,8 @@ struct MainView: View {
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
                                     openSettingsAction: {},
-                                    contentRepository: contentRepository
+                                    contentRepository: contentRepository,
+                                    bannerRepository: BannerRepository()
                                 )
                                 .environment(trendsHelper)
                                 .environment(settingsHelper)
@@ -351,7 +353,8 @@ struct MainView: View {
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
                                 openSettingsAction: {},
-                                contentRepository: contentRepository
+                                contentRepository: contentRepository,
+                                bannerRepository: BannerRepository()
                             )
                             .environment(trendsHelper)
                             .environment(settingsHelper)

@@ -9,12 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    enum ToastType {
-        case email, pix
-    }
-
-    @Environment(SettingsHelper.self) private var helper
-
     @State private var showExplicitSounds: Bool = UserSettings().getShowExplicitContent()
 
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
@@ -23,7 +17,7 @@ struct SettingsView: View {
     @State private var toast: Toast?
     @State private var donors: [Donor]? = nil
 
-    @State private var showEmailClientConfirmationDialog: Bool = false
+    @State private var showEmailSheet: Bool = false
 
     @State private var showLargeCreatorImage: Bool = false
 
@@ -31,6 +25,21 @@ struct SettingsView: View {
         .init(name: "Bluesky", imageName: "bluesky", link: "https://bsky.app/profile/rafaelschmitt.bsky.social"),
         .init(name: "Mastodon", imageName: "mastodon", link: "https://burnthis.town/@rafael")
     ]
+    private let apiClient: NetworkRabbitProtocol
+
+    // MARK: - Environment
+
+    @Environment(SettingsHelper.self) private var helper
+
+    // MARK: - Initializer
+
+    init(
+        apiClient: NetworkRabbitProtocol
+    ) {
+        self.apiClient = apiClient
+    }
+
+    // MARK: - View Body
 
     var body: some View {
         Form {
@@ -89,7 +98,7 @@ struct SettingsView: View {
 
             Section("Problemas, sugestões e pedidos") {
                 Button {
-                    showEmailClientConfirmationDialog = true
+                    showEmailSheet = true
                 } label: {
                     Label("Entrar em contato por e-mail", systemImage: "envelope")
                 }
@@ -194,17 +203,13 @@ struct SettingsView: View {
             }
         }
         .onAppear {
-            NetworkRabbit.shared.displayAskForMoneyView { shouldDisplay in
-                showAskForMoneyView = shouldDisplay
-            }
-            NetworkRabbit.shared.getPixDonorNames { donors in
-                let copy = donors?.shuffled()
-                self.donors = copy
+            Task {
+                await onViewAppeared()
             }
         }
-        .sheet(isPresented: $showEmailClientConfirmationDialog) {
+        .sheet(isPresented: $showEmailSheet) {
             EmailAppPickerView(
-                isBeingShown: $showEmailClientConfirmationDialog,
+                isBeingShown: $showEmailSheet,
                 toast: $toast,
                 subject: Shared.issueSuggestionEmailSubject,
                 emailBody: Shared.issueSuggestionEmailBody
@@ -218,6 +223,14 @@ struct SettingsView: View {
         }
     }
 
+    // MARK: - Functions
+
+    private func onViewAppeared() async {
+        showAskForMoneyView = await apiClient.displayAskForMoneyView(appVersion: Versioneer.appVersion)
+        let copy = await apiClient.getPixDonorNames()?.shuffled()
+        self.donors = copy
+    }
+
     private static func sendAnalytics(for action: String) async {
         await AnalyticsService().send(
             originatingScreen: "SettingsView",
@@ -225,6 +238,8 @@ struct SettingsView: View {
         )
     }
 }
+
+// MARK: - Subviews
 
 extension SettingsView {
 
@@ -332,6 +347,8 @@ extension SettingsView {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    SettingsView()
+    SettingsView(apiClient: NetworkRabbit.shared)
 }

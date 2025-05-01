@@ -14,7 +14,7 @@ struct SettingsCasingWithCloseView: View {
 
     var body: some View {
         NavigationView {
-            SettingsView()
+            SettingsView(apiClient: NetworkRabbit.shared)
                 .navigationTitle("Configurações")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading:
