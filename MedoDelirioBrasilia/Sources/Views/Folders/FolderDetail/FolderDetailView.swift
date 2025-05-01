@@ -60,6 +60,7 @@ struct FolderDetailView: View {
 
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(database: LocalDatabase.shared, contentRepository: contentRepository),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .folderDetailView,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],

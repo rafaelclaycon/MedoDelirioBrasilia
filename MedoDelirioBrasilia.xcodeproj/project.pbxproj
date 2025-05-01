@@ -275,6 +275,7 @@
 		D92DAB232937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB212937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 */; };
 		D92DAB242937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB222937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 */; };
 		D92E22EE2DC4127500FEA890 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E22ED2DC4127500FEA890 /* SearchResultsView.swift */; };
+		D92E22F02DC418AC00FEA890 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E22EF2DC418AC00FEA890 /* SearchService.swift */; };
 		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
@@ -444,7 +445,6 @@
 		D955756829131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */; };
 		D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */; };
 		D955D0962D3F185D0036A0E6 /* SearchResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955D0952D3F185D0036A0E6 /* SearchResultSection.swift */; };
-		D955D0982D3F19C40036A0E6 /* Searcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955D0972D3F19C40036A0E6 /* Searcher.swift */; };
 		D955DA302AA6B94C00AC4169 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955DA2F2AA6B94C00AC4169 /* ContentDetailView.swift */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
@@ -1839,6 +1839,7 @@
 		D92DAB212937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - E a doenca politica.mp3"; sourceTree = "<group>"; };
 		D92DAB222937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Sabe o que que me doi.mp3"; sourceTree = "<group>"; };
 		D92E22ED2DC4127500FEA890 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		D92E22EF2DC418AC00FEA890 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
@@ -2008,7 +2009,6 @@
 		D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Precisa ter provas.mp3"; sourceTree = "<group>"; };
 		D955D0932D3EF6980036A0E6 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		D955D0952D3F185D0036A0E6 /* SearchResultSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSection.swift; sourceTree = "<group>"; };
-		D955D0972D3F19C40036A0E6 /* Searcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searcher.swift; sourceTree = "<group>"; };
 		D955DA2F2AA6B94C00AC4169 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		D957047C28AEF733008DEF8C /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
@@ -4337,6 +4337,7 @@
 				D904BDE02DAF703E004AF550 /* ReactionService.swift */,
 				D9BACC002B13BF5400BBD0BE /* AnalyticsService.swift */,
 				D92ABB532DBDAC60002E4315 /* AuthorService.swift */,
+				D92E22EF2DC418AC00FEA890 /* SearchService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -5408,7 +5409,6 @@
 				D9943F2128641A82002C6B97 /* LocalDatabase */,
 				D9A8AB1E2853D80200B5A94B /* Migrations */,
 				D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */,
-				D955D0972D3F19C40036A0E6 /* Searcher.swift */,
 			);
 			path = DataHandlers;
 			sourceTree = "<group>";
@@ -6879,7 +6879,6 @@
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D90E80C92CEA229C0014A886 /* ReactionGroup.swift in Sources */,
 				D9FF3F992B1431C8007AE773 /* UpdateIncentive.swift in Sources */,
-				D955D0982D3F19C40036A0E6 /* Searcher.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
 				D97FFA662CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift in Sources */,
 				D94EAB5729FC375A004CD604 /* Bundle+.swift in Sources */,
@@ -7077,6 +7076,7 @@
 				D91B4DF4299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift in Sources */,
 				D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderGrid.swift in Sources */,
+				D92E22F02DC418AC00FEA890 /* SearchService.swift in Sources */,
 				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
 				D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */,
 				D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */,

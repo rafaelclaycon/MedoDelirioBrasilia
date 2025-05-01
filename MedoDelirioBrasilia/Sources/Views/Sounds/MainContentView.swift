@@ -75,6 +75,7 @@ struct MainContentView: View {
         self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(database: LocalDatabase.shared, contentRepository: contentRepository),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .mainContentView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],

@@ -13,18 +13,18 @@ struct SearchResultsView: View {
 
     var body: some View {
         VStack {
-            if let sounds = results.sounds {
-//                ForEach(sounds) { sound in
-//                    PlayableContentView(
-//                        content: <#T##any MedoContentProtocol#>,
-//                        favorites: .constant(Set<String>(arrayLiteral: "")),
-//                        highlighted: .constant(Set<String>(arrayLiteral: "")),
-//                        nowPlaying: .constant(Set<String>(arrayLiteral: "")),
-//                        selectedItems: .constant(Set<String>(arrayLiteral: "")),
-//                        currentContentListMode: .constant(.regular)
-//                    )
-//                    .searchCompletion(sound)
-//                }
+            if let content = results.content {
+                ForEach(content) { item in
+                    PlayableContentView(
+                        content: item,
+                        favorites: Set<String>(arrayLiteral: ""),
+                        highlighted: Set<String>(arrayLiteral: ""),
+                        nowPlaying: Set<String>(arrayLiteral: ""),
+                        selectedItems: Set<String>(arrayLiteral: ""),
+                        currentContentListMode: .constant(.regular)
+                    )
+                    .searchCompletion(item)
+                }
             }
 
             if let authors = results.authors {

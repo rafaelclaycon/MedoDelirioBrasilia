@@ -35,6 +35,10 @@ final class FakeContentRepository: ContentRepositoryProtocol {
         []
     }
 
+    func content(matching description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+        []
+    }
+
     func randomSound(_ allowSensitive: Bool) -> Sound? {
         nil
     }

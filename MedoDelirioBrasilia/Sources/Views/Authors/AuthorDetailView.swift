@@ -71,6 +71,7 @@ struct AuthorDetailView: View {
         self.currentContentListMode = currentListMode
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(database: LocalDatabase.shared, contentRepository: contentRepository),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .authorDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],

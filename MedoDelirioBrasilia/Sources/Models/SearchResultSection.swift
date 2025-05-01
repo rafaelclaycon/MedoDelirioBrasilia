@@ -18,14 +18,14 @@ enum SearchResultSection: String, CaseIterable {
 
 struct SearchResults {
 
-    var sounds: [Sound]?
+    var content: [AnyEquatableMedoContent]?
     var authors: [Author]?
     var folders: [UserFolder]?
     var songs: [Song]?
     var reactions: [Reaction]?
 
     public mutating func clearAll() {
-        self.sounds = []
+        self.content = []
         self.authors = []
         self.folders = []
         self.songs = []

@@ -35,6 +35,7 @@ struct StandaloneFavoritesView: View {
         self.openSettingsAction = openSettingsAction
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(database: LocalDatabase.shared, contentRepository: contentRepository),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .standaloneFavoritesView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],

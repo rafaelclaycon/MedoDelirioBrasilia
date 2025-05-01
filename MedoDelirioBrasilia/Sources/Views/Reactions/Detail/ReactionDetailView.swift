@@ -44,6 +44,7 @@ struct ReactionDetailView: View {
         self.contentGridMode = currentListMode
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(database: LocalDatabase.shared, contentRepository: contentRepository),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .reactionDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],

@@ -19,6 +19,8 @@ protocol ContentRepositoryProtocol {
     func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent]
     /// Returns content with the given IDs. Includes both Sounds and Songs.
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
+    func content(matching description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent]
+
     /// Returns a random Sound.
     func randomSound(_ allowSensitive: Bool) -> Sound?
 
@@ -121,6 +123,22 @@ final class ContentRepository: ContentRepositoryProtocol {
 
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent] {
         try database.content(withIds: contentIds)
+    }
+
+    func content(matching description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
+        var content = allContent
+        if !allowSensitive {
+            content = content.filter { !$0.isOffensive }
+        }
+        content = content.filter { item in
+            let searchString = "\(item.description.lowercased().withoutDiacritics()) \(item.subtitle.lowercased().withoutDiacritics())"
+            return searchString.contains(description.lowercased().withoutDiacritics())
+        }
+        return sort(content: content, by: .titleAscending)
     }
 
     func randomSound(_ allowSensitive: Bool) -> Sound? {

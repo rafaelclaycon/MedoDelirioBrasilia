@@ -52,24 +52,6 @@ struct ContentGrid<
     // Add to Folder details
     @State private var addToFolderHelper = AddToFolderDetails()
 
-    // MARK: - Computed Properties
-
-    private var searchResults: [AnyEquatableMedoContent] {
-        switch state {
-        case .loaded(let content):
-            if viewModel.searchText.isEmpty {
-                return content
-            } else {
-                return content.filter { item in
-                    let searchString = "\(item.description.lowercased().withoutDiacritics()) \(item.subtitle.lowercased().withoutDiacritics())"
-                    return searchString.contains(viewModel.searchText.lowercased().withoutDiacritics())
-                }
-            }
-        case .loading, .error:
-            return []
-        }
-    }
-
     // MARK: - Environment
 
     @Environment(\.sizeCategory) private var sizeCategory
@@ -123,10 +105,10 @@ struct ContentGrid<
                 emptyStateView
             } else {
                 LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
-                    if searchResults.isEmpty {
+                    if loadedContent.isEmpty {
                         NoSearchResultsView(searchText: viewModel.searchText)
                     } else {
-                        ForEach(searchResults) { content in
+                        ForEach(loadedContent) { content in
                             PlayableContentView(
                                 content: content,
                                 showNewTag: showNewTag,
@@ -158,7 +140,13 @@ struct ContentGrid<
                 }
                 .if(allowSearch) {
                     $0
-                        .searchable(text: $viewModel.searchText)
+                        .searchable(text: $viewModel.searchText) {
+                            if viewModel.searchText.isEmpty {
+                                Text("Sugestões")
+                            } else {
+                                SearchResultsView(results: viewModel.searchResults)
+                            }
+                        }
                         .disableAutocorrection(true)
                 }
                 .alert(isPresented: $viewModel.showAlert) {
@@ -274,6 +262,7 @@ struct ContentGrid<
                 }
                 .onChange(of: viewModel.searchText) {
                     searchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
+                    viewModel.onSearchStringChanged(newString: viewModel.searchText)
                 }
                 .onChange(of: viewModel.shareAsVideoResult.videoFilepath) {
                     viewModel.onDidExitShareAsVideoSheet()
@@ -291,13 +280,6 @@ struct ContentGrid<
                 }
                 .onChange(of: containerSize.width) {
                     updateGridLayout()
-                }
-                .onChange(of: searchResults) {
-                    if searchResults.isEmpty {
-                        columns = [GridItem(.flexible())]
-                    } else {
-                        updateGridLayout()
-                    }
                 }
                 .onChange(of: viewModel.selectionKeeper.count) {
                     viewModel.onItemSelectionChanged()
@@ -377,6 +359,7 @@ struct ContentGrid<
         state: .loading,
         viewModel: ContentGridViewModel(
             contentRepository: FakeContentRepository(),
+            searchService: SearchService(database: FakeLocalDatabase(), contentRepository: FakeContentRepository()),
             userFolderRepository: UserFolderRepository(database: LocalDatabase()),
             screen: .mainContentView,
             menuOptions: [.sharingOptions()],
