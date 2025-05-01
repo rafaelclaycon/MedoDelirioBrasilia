@@ -121,8 +121,6 @@ struct MainContentView: View {
                                             bannerRepository: bannerRepository,
                                             toast: viewModel.toast
                                         )
-                                        .padding(.top, .spacing(.xxxSmall))
-                                        .padding(.bottom, .spacing(.xSmall))
                                     }
                                 }
 
@@ -350,6 +348,8 @@ extension MainContentView {
                             self.toast = Toast(message: message, type: .thankYou)
                         }
                     )
+                    .padding(.top, .spacing(.xxxSmall))
+                    .padding(.bottom, .spacing(.xSmall))
                 }
             }
             .onAppear {
