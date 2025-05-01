@@ -14,9 +14,8 @@ struct ShareAsVideoResult {
     var exportMethod: ExportVideoInterface
     
     init() {
-        self.videoFilepath = .empty
-        self.contentId = .empty
+        self.videoFilepath = ""
+        self.contentId = ""
         self.exportMethod = .shareSheet
     }
-
 }

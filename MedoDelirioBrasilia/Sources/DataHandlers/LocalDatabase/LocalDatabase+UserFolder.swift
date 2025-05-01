@@ -1,3 +1,10 @@
+//
+//  LocalDatabase+UserFolder.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Schmitt on 28/06/22.
+//
+
 import Foundation
 import SQLite
 
@@ -50,8 +57,13 @@ extension LocalDatabase {
         let creationDate = Expression<String>("creationDate")
         let sortedQuery = try db.prepare(userFolder.order(creationDate.asc))
 
-        return try sortedQuery.map { queriedFolder in
+        let folders = try sortedQuery.map { queriedFolder in
             try queriedFolder.decode() as UserFolder
+        }
+        return try folders.map { basicFolder in
+            var copy = basicFolder
+            copy.contentCount = try contentIdsInside(userFolder: basicFolder.id).count
+            return copy
         }
     }
     
@@ -61,7 +73,7 @@ extension LocalDatabase {
         try db.run(insert)
     }
     
-    func soundIdsInside(userFolder userFolderId: String) throws -> [String] {
+    func contentIdsInside(userFolder userFolderId: String) throws -> [String] {
         var queriedIds = [String]()
         let user_folder_id = Expression<String>("userFolderId")
         let content_id = Expression<String>("contentId")

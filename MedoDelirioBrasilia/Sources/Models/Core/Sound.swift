@@ -19,7 +19,7 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
     let duration: Double
     let isOffensive: Bool
     var isFromServer: Bool?
-    
+
     init(
         id: String = UUID().uuidString,
         title: String,
@@ -43,7 +43,15 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
         self.isOffensive = isOffensive
         self.isFromServer = isFromServer
     }
-    
+
+    var subtitle: String {
+        authorName ?? ""
+    }
+
+    var type: MediaType {
+        .sound
+    }
+
     func fileURL() throws -> URL {
         if isFromServer ?? false {
             let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -75,8 +83,11 @@ enum SoundError: Error, LocalizedError {
 
 extension Sound {
     static let sampleSounds = [
-        Sound(title: "Alegria"),
-        Sound(title: "Maravilhoso!"),
-        Sound(title: "Cadê os machos?")
+        Sound(title: "Alegria", authorName: "Fábio Porchat"),
+        Sound(title: "Maravilhoso!", authorName: "Milton Cunha"),
+        Sound(title: "Cadê os machos?", authorName: "Michelle Bolsonaro"),
+        Sound(title: "Popcorn and ice cream sellers", authorName: "Jair Bolsonaro"),
+        Sound(title: "O que é que é dura?", authorName: "Jair Bolsonaro"),
+        Sound(title: "Lixo, arrombado", authorName: "Soraya Thronicke")
     ]
 }

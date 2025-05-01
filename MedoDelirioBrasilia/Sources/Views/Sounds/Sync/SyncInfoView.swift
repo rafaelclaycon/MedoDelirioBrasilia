@@ -12,8 +12,7 @@ struct SyncInfoView: View {
     let lastUpdateAttempt: String
     let lastUpdateDate: String
 
-    @EnvironmentObject private var syncValues: SyncValues
-
+    @Environment(SyncValues.self) private var syncValues
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -50,12 +49,12 @@ extension SyncInfoView {
                     .scaleEffect(2)
                     .padding()
 
-                Text("Sincronização em andamento...")
+                Text("Atualização de conteúdos em andamento...")
                     .font(.title2)
                     .bold()
                     .multilineTextAlignment(.center)
 
-                Text("Por favor, aguarde a sincronização ser concluída.")
+                Text("Por favor, aguarde a atualização ser concluída.")
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
             }
@@ -65,15 +64,25 @@ extension SyncInfoView {
 
     private struct AllOkView: View {
 
-        let lastUpdateAttempt: String
+        @State var lastUpdateAttempt: String
 
         @State private var updates: [SyncLog] = []
+        @State private var hiddenUpdates: Int = 0
+        @State private var lastUpdateText: String = ""
 
-        private var lastUpdateText: String {
+        private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+
+        private func updateLastUpdateText() {
             if lastUpdateAttempt == "" {
-                return "A última tentativa de sincronização não retornou resultados."
+                lastUpdateText = "A última tentativa de atualização não retornou resultados."
             } else {
-                return "Última sincronização \(lastUpdateAttempt.asRelativeDateTime ?? "")."
+                guard let date = lastUpdateAttempt.iso8601withFractionalSeconds else {
+                    return lastUpdateText = ""
+                }
+                guard date.minutesPassed(1) else {
+                    return lastUpdateText = "Atualizado agora há pouco."
+                }
+                lastUpdateText = "Última atualização \(lastUpdateAttempt.asRelativeDateTime ?? "")."
             }
         }
 
@@ -86,7 +95,7 @@ extension SyncInfoView {
                     .foregroundColor(.green)
 
                 VStack(spacing: 15) {
-                    Text("Sincronização de Conteúdos Habilitada")
+                    Text("Atualização Automática de Conteúdos Habilitada")
                         .font(.title2)
                         .bold()
                         .multilineTextAlignment(.center)
@@ -102,32 +111,20 @@ extension SyncInfoView {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
 
-                HStack {
-                    Text("Histórico:")
-                        .bold()
-
-                    Spacer()
-                }
-                .padding(.horizontal, 10)
-
-                VStack(spacing: 15) {
-                    ForEach(updates) { update in
-                        SyncInfoCard(
-                            imageName: update.logType == .success ? "checkmark.circle.fill" : "exclamationmark.triangle.fill",
-                            imageColor: update.logType == .success ? .green : .orange,
-                            title: update.description,
-                            timestamp: update.dateTime.asRelativeDateTime ?? ""
-                        )
-                        .onTapGesture {
-                            dump(update)
-                        }
-                    }
-                }
+                HistoryView(
+                    updates: updates,
+                    hiddenUpdatesCount: hiddenUpdates
+                )
             }
             .padding(.horizontal)
             .padding(.bottom, 30)
             .onAppear {
-                updates = LocalDatabase.shared.lastFewLogs()
+                updateLastUpdateText()
+                updates = LocalDatabase.shared.lastFewSyncLogs()
+                hiddenUpdates = LocalDatabase.shared.totalSyncLogCount()
+            }
+            .onReceive(timer) { time in
+                updateLastUpdateText()
             }
         }
     }
@@ -137,12 +134,13 @@ extension SyncInfoView {
         let lastUpdateDate: String
 
         @State private var updates: [SyncLog] = []
+        @State private var hiddenUpdates: Int = 0
 
         private var lastUpdateText: String {
             if lastUpdateDate == "all" {
-                return "A última tentativa de sincronização não retornou resultados."
+                return "A última tentativa de atualização não retornou resultados."
             } else {
-                return "Última sincronização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "").\n\nGaranta que o seu dispositivo está conectado à Internet. Caso o problema persista, entre em contato com o desenvolvedor."
+                return "Última atualização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "").\n\nGaranta que o seu dispositivo está conectado à Internet. Caso o problema persista, entre em contato com o desenvolvedor."
             }
         }
 
@@ -154,7 +152,7 @@ extension SyncInfoView {
                     .frame(width: 70)
                     .foregroundColor(.orange)
 
-                Text("Houve um problema na última tentativa de sincronização.")
+                Text("Houve um problema na última tentativa de atualização.")
                     .font(.title2)
                     .bold()
                     .multilineTextAlignment(.center)
@@ -163,6 +161,27 @@ extension SyncInfoView {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
 
+                HistoryView(
+                    updates: updates,
+                    hiddenUpdatesCount: hiddenUpdates
+                )
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            .onAppear {
+                updates = LocalDatabase.shared.lastFewSyncLogs()
+                hiddenUpdates = LocalDatabase.shared.totalSyncLogCount()
+            }
+        }
+    }
+
+    private struct HistoryView: View {
+
+        let updates: [SyncLog]
+        let hiddenUpdatesCount: Int
+
+        var body: some View {
+            VStack(spacing: 20) {
                 HStack {
                     Text("Histórico:")
                         .bold()
@@ -171,22 +190,26 @@ extension SyncInfoView {
                 }
                 .padding(.horizontal, 10)
 
-                LazyVStack {
+                LazyVStack(spacing: 15) {
                     ForEach(updates) { update in
                         SyncInfoCard(
-                            imageName: update.logType == .error ? "exclamationmark.triangle.fill" : "checkmark.circle.fill",
+                            imageName: update.logType == .error ? "exclamationmark.triangle" : "checkmark.circle",
                             imageColor: update.logType == .error ? .orange : .green,
                             title: update.description,
                             timestamp: update.dateTime.asRelativeDateTime ?? ""
                         )
-                        .padding(.vertical, 5)
+                        .onTapGesture {
+                            dump(update)
+                        }
                     }
                 }
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
-            .onAppear {
-                updates = LocalDatabase.shared.lastFewLogs()
+
+                if hiddenUpdatesCount > 0 {
+                    Text("E outras \(hiddenUpdatesCount) atualizações registradas.")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                }
             }
         }
     }
@@ -201,13 +224,13 @@ struct SyncInfoView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
-                .environmentObject(syncValuesUpdating)
+                .environment(syncValuesUpdating)
 
             SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environmentObject(syncValuesDone)
+                .environment(syncValuesDone)
 
             SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environmentObject(syncValuesUpdateError)
+                .environment(syncValuesUpdateError)
         }
     }
 }

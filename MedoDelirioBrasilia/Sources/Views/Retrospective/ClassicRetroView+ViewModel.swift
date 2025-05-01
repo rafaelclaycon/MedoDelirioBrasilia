@@ -25,8 +25,8 @@ extension ClassicRetroView {
         @Published var shouldProcessPostExport: Bool = false
 
         // Alerts
-        @Published var alertTitle: String = .empty
-        @Published var alertMessage: String = .empty
+        @Published var alertTitle: String = ""
+        @Published var alertMessage: String = ""
         @Published var showAlert: Bool = false
 
         private let database: LocalDatabaseProtocol
@@ -173,7 +173,8 @@ extension ClassicRetroView.ViewModel {
         currentVersion: String = Versioneer.appVersion,
         network: NetworkRabbitProtocol = NetworkRabbit.shared
     ) async -> Bool {
-        guard let allowedVersion = await network.retroStartingVersion() else { return false }
-        return currentVersion >= allowedVersion
+//        guard let allowedVersion = await network.retroStartingVersion() else { return false }
+//        return currentVersion >= allowedVersion
+        return false
     }
 }

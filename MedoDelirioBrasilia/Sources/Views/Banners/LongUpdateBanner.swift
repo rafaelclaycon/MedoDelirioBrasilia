@@ -9,20 +9,32 @@ import SwiftUI
 
 struct LongUpdateBanner: View {
 
-    @Binding var completedNumber: Int
-    @Binding var totalUpdateCount: Int
+    let completedNumber: Int
+    let totalUpdateCount: Int
 
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var percentageText: String {
+        guard
+            completedNumber > 0,
+            totalUpdateCount > 0,
+            completedNumber <= totalUpdateCount
+        else { return "" }
+        let percentage: Int = Int((Double(completedNumber) / Double(totalUpdateCount)) * 100)
+        return "\(percentage)%"
+    }
+
+    // MARK: - View Body
 
     var body: some View {
         HStack(spacing: 15) {
             Image(systemName: "arrow.clockwise.icloud.fill")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 42)
+                .frame(width: .spacing(.huge))
                 .foregroundColor(.green)
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
                 Text("Atualização Longa Em Andamento")
                     .bold()
                     .multilineTextAlignment(.leading)
@@ -32,24 +44,53 @@ struct LongUpdateBanner: View {
                     .font(.callout)
 
                 ProgressView(
-                    "\(completedNumber)/\(totalUpdateCount)",
+                    percentageText,
                     value: Double(completedNumber),
                     total: Double(totalUpdateCount)
                 )
-                .padding(.top, 8)
-                .padding(.bottom, 10)
+                .padding(.top, .spacing(.xSmall))
+                .padding(.bottom, .spacing(.xSmall))
             }
         }
         .padding()
         .background {
-            RoundedRectangle(cornerRadius: 15)
+            RoundedRectangle(cornerRadius: .spacing(.medium))
                 .foregroundColor(.gray)
                 .opacity(colorScheme == .dark ? 0.3 : 0.15)
         }
     }
 }
 
-#Preview {
-    LongUpdateBanner(completedNumber: .constant(2), totalUpdateCount: .constant(10))
-        .padding()
+// MARK: - Preview
+
+#Preview("Partial") {
+    LongUpdateBanner(
+        completedNumber: 2,
+        totalUpdateCount: 10
+    )
+    .padding()
+}
+
+#Preview("Complete") {
+    LongUpdateBanner(
+        completedNumber: 10,
+        totalUpdateCount: 10
+    )
+    .padding()
+}
+
+#Preview("Over") {
+    LongUpdateBanner(
+        completedNumber: 12,
+        totalUpdateCount: 10
+    )
+    .padding()
+}
+
+#Preview("Under") {
+    LongUpdateBanner(
+        completedNumber: -2,
+        totalUpdateCount: 10
+    )
+    .padding()
 }

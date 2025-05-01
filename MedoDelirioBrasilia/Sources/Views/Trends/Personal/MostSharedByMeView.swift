@@ -16,9 +16,9 @@ struct MostSharedByMeView: View {
     ]
 
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             HStack {
-                Text("Sons Mais Compartilhados Por Mim 🙎")
+                Text("Sons Mais Compartilhados")
                     .font(.title2)
                 Spacer()
             }
@@ -57,11 +57,12 @@ struct MostSharedByMeView: View {
                     }
                 } else {
                     VStack {
-                        LazyVGrid(columns: columns, spacing: .zero) {
+                        LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(items) { item in
                                 TopChartRow(item: item)
                             }
                         }
+                        .padding(.horizontal, 14)
                     }
                     .padding(.bottom, 20)
                 }

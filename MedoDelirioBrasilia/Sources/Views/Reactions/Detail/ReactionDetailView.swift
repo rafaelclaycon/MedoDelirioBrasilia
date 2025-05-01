@@ -9,53 +9,57 @@ import SwiftUI
 
 struct ReactionDetailView: View {
 
-    @StateObject var viewModel: ReactionDetailViewModel
-    @StateObject private var soundListViewModel: SoundListViewModel<[Sound]>
+    @State var viewModel: ReactionDetailViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+
+    private var contentGridMode: Binding<ContentGridMode>
 
     // MARK: - Computed Properties
 
     private var toolbarControlsOpacity: CGFloat {
-        guard let sounds = viewModel.sounds else { return 1.0 }
-        return sounds.isEmpty ? 0.5 : 1.0
+        guard case .loaded(let content) = viewModel.state else { return 1.0 }
+        return content.isEmpty ? 0.5 : 1.0
     }
 
     private var soundArrayIsEmpty: Bool {
-        guard let sounds = viewModel.sounds else { return true }
-        return sounds.isEmpty
+        guard case .loaded(let content) = viewModel.state else { return true }
+        return content.isEmpty
+    }
+
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
     }
 
     // MARK: - Initializer
 
     init(
-        reaction: Reaction,
-        currentSoundsListMode: Binding<SoundsListMode>
+        viewModel: ReactionDetailViewModel,
+        currentListMode: Binding<ContentGridMode>,
+        contentRepository: ContentRepositoryProtocol
     ) {
-        let viewModel = ReactionDetailViewModel(reaction: reaction)
-
-        self._viewModel = StateObject(wrappedValue: viewModel)
-
-        let soundListViewModel = SoundListViewModel<[Sound]>(
-            data: viewModel.soundsPublisher,
+        self.viewModel = viewModel
+        self.contentGridMode = currentListMode
+        self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .reactionDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
-            currentSoundsListMode: currentSoundsListMode
+            currentListMode: currentListMode,
+            toast: viewModel.toast,
+            floatingOptions: viewModel.floatingOptions,
+            analyticsService: AnalyticsService()
         )
-
-        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
 
     // MARK: - View Body
 
     var body: some View {
         GeometryReader { geometry in
-            SoundList(
-                viewModel: soundListViewModel,
-                soundSearchTextIsEmpty: .constant(nil),
-                showNewTag: false,
-                dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                reactionId: viewModel.reaction.id,
-                headerView: {
+            ScrollView {
+                VStack(spacing: .spacing(.medium)) {
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,
                         subtitle: viewModel.subtitle,
@@ -65,53 +69,77 @@ struct ReactionDetailView: View {
                     )
                     .frame(height: 260)
                     .padding(.bottom, 6)
-                },
-                loadingView: LoadingView(),
-                emptyStateView: EmptyStateView(
-                    reloadAction: {
+
+                    ContentGrid(
+                        state: viewModel.state,
+                        viewModel: contentGridViewModel,
+                        showNewTag: false,
+                        reactionId: viewModel.reaction.id,
+                        containerSize: geometry.size,
+                        loadingView: LoadingView(),
+                        emptyStateView: EmptyStateView(
+                            reloadAction: {
+                                Task {
+                                    await viewModel.onRetrySelected()
+                                }
+                            }
+                        ),
+                        errorView: ErrorView(
+                            reactionNoLongerExists: viewModel.reactionNoLongerExists,
+                            errorMessage: viewModel.errorMessage,
+                            tryAgainAction: {
+                                Task {
+                                    await viewModel.onRetrySelected()
+                                }
+                            }
+                        )
+                    )
+                    .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.medium))
+
+                    Spacer()
+                        .frame(height: .spacing(.large))
+                }
+                .toolbar {
+                    ToolbarControls(
+                        contentSortOption: $viewModel.contentSortOption,
+                        playStopAction: { contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent) },
+                        startSelectingAction: {
+                            contentGridViewModel.onEnterMultiSelectModeSelected(
+                                loadedContent: loadedContent,
+                                isFavoritesOnlyView: false
+                            )
+                        },
+                        isPlayingPlaylist: contentGridViewModel.isPlayingPlaylist,
+                        soundArrayIsEmpty: soundArrayIsEmpty,
+                        isSelecting: contentGridMode.wrappedValue == .selection
+                    )
+                    .foregroundStyle(.white)
+                    .opacity(toolbarControlsOpacity)
+                    .disabled(soundArrayIsEmpty)
+                    .onChange(of: viewModel.contentSortOption) {
+                        contentGridViewModel.onContentSortingChanged()
                         Task {
-                            await viewModel.loadSounds()
+                            await viewModel.onContentSortingChanged()
                         }
                     }
-                ),
-                errorView: ErrorView(
-                    reactionNoLongerExists: viewModel.state == .reactionNoLongerExists,
-                    errorMessage: viewModel.errorMessage,
-                    tryAgainAction: {
-                        Task {
-                            await viewModel.loadSounds()
-                        }
+                }
+                .oneTimeTask {
+                    await viewModel.onViewLoaded()
+                }
+                .onAppear {
+                    Task {
+                        await AnalyticsService().send(
+                            originatingScreen: "ReactionDetailView",
+                            action: "didViewReaction(\(viewModel.reaction.title))"
+                        )
                     }
-                )
-            )
-            .environment(TrendsHelper())
-        }
-        .toolbar {
-            ToolbarControls(
-                soundSortOption: $viewModel.soundSortOption,
-                playStopAction: { soundListViewModel.playStopPlaylist() },
-                startSelectingAction: { soundListViewModel.startSelecting() },
-                isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
-                soundArrayIsEmpty: soundArrayIsEmpty,
-                isSelecting: soundListViewModel.isSelectingSounds
-            )
-            .foregroundStyle(.white)
-            .opacity(toolbarControlsOpacity)
-            .disabled(soundArrayIsEmpty)
-            .onChange(of: viewModel.soundSortOption) {
-                viewModel.sortSounds(by: viewModel.soundSortOption)
+                }
             }
+            .edgesIgnoringSafeArea(.top)
+            .toast(contentGridViewModel.toast)
+            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
-        .oneTimeTask {
-            await viewModel.loadSounds()
-        }
-        .onAppear {
-            Analytics().send(
-                originatingScreen: "ReactionDetailView",
-                action: "didViewReaction(\(viewModel.reaction.title))"
-            )
-        }
-        .edgesIgnoringSafeArea(.top)
     }
 }
 
@@ -121,12 +149,16 @@ extension ReactionDetailView {
 
     struct ToolbarControls: View {
 
-        @Binding var soundSortOption: Int
+        @Binding var contentSortOption: Int
         let playStopAction: () -> Void
         let startSelectingAction: () -> Void
         let isPlayingPlaylist: Bool
         let soundArrayIsEmpty: Bool
         let isSelecting: Bool
+
+        private var playStopIsDisabled: Bool {
+            soundArrayIsEmpty || isSelecting
+        }
 
         var body: some View {
             HStack(spacing: 15) {
@@ -134,8 +166,9 @@ extension ReactionDetailView {
                     playStopAction()
                 } label: {
                     Image(systemName: isPlayingPlaylist ? "stop.fill" : "play.fill")
+                        .opacity(playStopIsDisabled ? 0.5 : 1.0)
                 }
-                .disabled(soundArrayIsEmpty)
+                .disabled(playStopIsDisabled)
 
                 Menu {
                     Section {
@@ -150,7 +183,7 @@ extension ReactionDetailView {
                     }
 
                     Section {
-                        Picker("Ordenação de Sons", selection: $soundSortOption) {
+                        Picker("Ordenação de Sons", selection: $contentSortOption) {
                             ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
                                 Text(option.description).tag(option.rawValue)
                             }
@@ -274,7 +307,13 @@ extension ReactionDetailView {
 
 #Preview {
     ReactionDetailView(
-        reaction: .acidMock,
-        currentSoundsListMode: .constant(.regular)
+        viewModel: ReactionDetailViewModel(
+            reaction: .acidMock,
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: FakeContentRepository()
+        ),
+        currentListMode: .constant(.regular),
+        contentRepository: FakeContentRepository()
     )
 }

@@ -7,11 +7,12 @@
 
 import Foundation
 
-class DeleteFolderViewAide: ObservableObject {
+@Observable
+class DeleteFolderViewAide {
 
-    @Published var alertTitle: String = .empty
-    @Published var alertMessage: String = .empty
-    @Published var showAlert: Bool = false
-    @Published var folderIdForDeletion: String = .empty
-    @Published var updateFolderList: Bool = false
+    var alertTitle: String = ""
+    var alertMessage: String = ""
+    var showAlert: Bool = false
+    var folderIdForDeletion: String = ""
+    var updateFolderList: Bool = false
 }

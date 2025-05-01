@@ -56,11 +56,9 @@ struct AddReactionView: View {
             .sheet(isPresented: $showEmailAppPicker) {
                 EmailAppPickerView(
                     isBeingShown: $showEmailAppPicker,
+                    toast: $toast,
                     subject: Shared.Email.Reactions.suggestChangesSubject,
-                    emailBody: Shared.Email.Reactions.suggestChangesBody,
-                    afterCopyAddressAction: {
-                        toast = Toast(message: Shared.Email.copyAddressSuccessMessage)
-                    }
+                    emailBody: Shared.Email.Reactions.suggestChangesBody
                 )
             }
         }

@@ -19,5 +19,4 @@ extension LocalDatabase {
             throw LocalDatabaseError.folderContentNotFound
         }
     }
-
 }

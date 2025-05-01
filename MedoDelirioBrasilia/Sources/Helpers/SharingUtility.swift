@@ -12,6 +12,7 @@ class SharingUtility {
     static func shareSound(
         from url: URL,
         andContentId contentId: String,
+        context contentType: ContentType,
         completionHandler: @escaping (Bool) -> Void
     ) throws {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
@@ -24,8 +25,8 @@ class SharingUtility {
                     return
                 }
                 let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                Logger.shared.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                
+                Logger.shared.logShared(contentType, contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                 
                 completionHandler(true)
@@ -35,57 +36,46 @@ class SharingUtility {
         }
     }
     
-    static func share(sounds: [Sound], completionHandler: @escaping (Bool) -> Void) throws {
-        guard sounds.isEmpty == false else {
-            return
-        }
-        
-        var urls = [URL]()
-        
-        try sounds.forEach { sound in
-            urls.append(try sound.fileURL())
-        }
-        
-        // let wppURL = URL(string: "whatsapp://app")!
+    static func share(
+        content: [AnyEquatableMedoContent]
+    ) async throws -> Bool {
+        guard !content.isEmpty else { return false }
+        let urls: [URL] = content.compactMap { try? $0.fileURL() }
 
-//        if UIApplication.shared.canOpenURL(wppURL) {
-//            var filePaths = ""
-//            for url in urls {
-//                filePaths += "\(url.absoluteString),"
-//            }
-//            let urlEncodedFilePaths = filePaths.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-//            let wppURLWithFilePaths = URL(string: "whatsapp://send?file=\(urlEncodedFilePaths)")!
-//            UIApplication.shared.open(wppURLWithFilePaths)
-//        } else {
+        return await withCheckedContinuation { continuation in
             let activityVC = UIActivityViewController(activityItems: urls, applicationActivities: nil)
             DispatchQueue.main.async {
                 UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
             }
             activityVC.completionWithItemsHandler = { activity, completed, items, error in
-                if completed {
-                    guard let activity = activity else {
-                        return
-                    }
+                guard completed else { return continuation.resume(returning: false) }
+                guard let activity else { return continuation.resume(returning: true) }
 
-                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    sounds.forEach {
-                        Logger.shared.logSharedSound(contentId: $0.id, destination: destination, destinationBundleId: activity.rawValue)
-                    }
-
-                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-                    
-                    completionHandler(true)
-                } else {
-                    completionHandler(false)
+                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                content.forEach {
+                    Logger.shared.logShared(.sound, contentId: $0.id, destination: destination, destinationBundleId: activity.rawValue)
                 }
+
+                AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                continuation.resume(returning: true)
             }
+        }
     }
 
-    static func shareVideoFromSound(withPath filepath: String, andContentId contentId: String, shareSheetDelayInSeconds: Double, completionHandler: @escaping (Bool) -> Void) throws {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
+    /// Use for video only.
+    static func share(
+        _ type: ContentType,
+        withPath filepath: String,
+        andContentId contentId: String,
+        shareSheetDelayInSeconds: Double,
+        completionHandler: @escaping (Bool) -> Void
+    ) throws {
+        guard
+            filepath.isEmpty == false,
+            [.videoFromSound, .videoFromSong].contains(type)
+        else { return }
+
         let url = URL(fileURLWithPath: filepath)
         
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
@@ -100,8 +90,8 @@ class SharingUtility {
                     return
                 }
                 let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                
+                Logger.shared.logShared(type, contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                 
                 completionHandler(true)

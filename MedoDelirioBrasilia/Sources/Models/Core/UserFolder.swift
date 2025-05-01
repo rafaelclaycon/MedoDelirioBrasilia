@@ -32,6 +32,12 @@ struct UserFolder: Hashable, Codable, Identifiable {
     var creationDate: Date?
     var version: String?
     var userSortPreference: Int?
+    var contentCount: Int?
+
+    var isEmpty: Bool {
+        guard let contentCount else { return true }
+        return contentCount == 0
+    }
 
     init(
         id: String = UUID().uuidString,
@@ -41,7 +47,8 @@ struct UserFolder: Hashable, Codable, Identifiable {
         changeHash: String = "",
         creationDate: Date? = nil,
         version: String? = nil,
-        userSortPreference: Int? = nil
+        userSortPreference: Int? = nil,
+        contentCount: Int? = nil
     ) {
         self.id = id
         self.symbol = symbol
@@ -51,6 +58,7 @@ struct UserFolder: Hashable, Codable, Identifiable {
         self.creationDate = creationDate
         self.version = version
         self.userSortPreference = userSortPreference
+        self.contentCount = contentCount
     }
 }
 
@@ -70,32 +78,5 @@ extension UserFolder {
     func folderHash(_ folderContents: [String]) -> String {
         let string = self.symbol + self.name + folderContents.joined()
         return FolderResearchProvider.hash(string)
-    }
-}
-
-/// INTERNAL USE ONLY.
-/// Used to export folders to create Reactions.
-struct UserFolderDTO: Codable {
-
-    let id: String
-    let name: String
-    var sounds: [String]
-
-    init(
-        id: String,
-        name: String,
-        sounds: [String]
-    ) {
-        self.id = id
-        self.name = name
-        self.sounds = sounds
-    }
-
-    init(
-        userFolder: UserFolder
-    ) {
-        self.id = userFolder.id
-        self.name = userFolder.name
-        self.sounds = []
     }
 }

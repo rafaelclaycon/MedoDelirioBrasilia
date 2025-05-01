@@ -5,13 +5,17 @@ internal protocol NetworkRabbitProtocol {
     var serverPath: String { get }
 
     func `get`<T: Codable>(from url: URL) async throws -> T
+    func getString(from url: URL) async throws -> String?
 
     func serverIsAvailable() async -> Bool
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 
-    func retroStartingVersion() async -> String?
+    func displayAskForMoneyView(appVersion: String) async -> Bool
+    func getPixDonorNames() async -> [Donor]?
+
+    func post<T: Encodable>(to url: URL, body: T) async throws
 }
 
 class NetworkRabbit: NetworkRabbitProtocol {
@@ -45,51 +49,47 @@ class NetworkRabbit: NetworkRabbitProtocol {
         }
     }
 
-    func displayAskForMoneyView(completion: @escaping (Bool) -> Void) {
+    func displayAskForMoneyView(appVersion: String) async -> Bool {
         let url = URL(string: serverPath + "v2/current-test-version")!
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else { return completion(false) }
-            guard httpResponse.statusCode == 200 else { return completion(false) }
-            if let data = data {
-                let versionFromServer = String(data: data, encoding: .utf8)!
-                if versionFromServer == Versioneer.appVersion {
-                    completion(false)
-                } else {
-                    completion(true)
-                }
-            } else if error != nil {
-                completion(false)
-            }
+        do {
+            guard let versionFromServer = try await getString(from: url) else { return false }
+            return versionFromServer != appVersion
+        } catch {
+            return false
         }
-        
-        task.resume()
     }
 
-//    func displayRecurringDonationBanner(completion: @escaping (Bool) -> Void) {
-//        let url = URL(string: serverPath + "v3/display-recurring-donation-banner")!
-//
-//        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-//            guard let httpResponse = response as? HTTPURLResponse else { return completion(false) }
-//            guard httpResponse.statusCode == 200 else { return completion(false) }
-//            if let data = data {
-//                let shouldDisplay = String(data: data, encoding: .utf8)!
-//                if shouldDisplay == "1" {
-//                    completion(true)
-//                } else {
-//                    completion(false)
-//                }
-//            } else if error != nil {
-//                completion(false)
-//            }
-//        }
-//
-//        task.resume()
-//    }
-    
+    func getString(from url: URL) async throws -> String? {
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let response = response as? HTTPURLResponse else {
+            throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
+        }
+        if response.statusCode == 404 {
+            throw NetworkRabbitError.resourceNotFound
+        }
+        guard response.statusCode == 200 else {
+            throw NetworkRabbitError.unexpectedStatusCode
+        }
+        return String(data: data, encoding: .utf8)
+    }
+
+    func getPixDonorNames() async -> [Donor]? {
+        let url = URL(string: serverPath + "v3/donor-names")!
+
+        do {
+            return try await get(from: url)
+        } catch {
+            return nil
+        }
+    }
+
     // MARK: - POST
     
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {
+    func post(
+        shareCountStat: ServerShareCountStat,
+        completionHandler: @escaping (Bool, String) -> Void
+    ) {
         let url = URL(string: serverPath + "v1/share-count-stat")!
 
         var request = URLRequest(url: url)

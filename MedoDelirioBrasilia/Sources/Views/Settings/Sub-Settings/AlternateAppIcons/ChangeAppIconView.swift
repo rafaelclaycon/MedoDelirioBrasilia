@@ -3,7 +3,7 @@ import SwiftUI
 struct ChangeAppIconView: View {
 
     private var model = AppIcon()
-    @State private var selectedIcon: String = .empty
+    @State private var selectedIcon: String = ""
     
     private var icons: [Icon] {
         if UserSettings().getShowExplicitContent() {
@@ -29,7 +29,9 @@ struct ChangeAppIconView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             selectedIcon = UIApplication.shared.alternateIconName ?? Icon.primary.id
-            Analytics().send(originatingScreen: "ChangeAppIconView", action: "didViewAlternateIconsView")
+            Task {
+                await AnalyticsService().send(originatingScreen: "ChangeAppIconView", action: "didViewAlternateIconsView")
+            }
         }
     }
 

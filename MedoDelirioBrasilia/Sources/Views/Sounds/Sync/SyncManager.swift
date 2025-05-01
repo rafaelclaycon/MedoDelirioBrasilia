@@ -34,19 +34,23 @@ class SyncManager {
         self.logger = logger
     }
 
-    func sync() async {
+    /// Performs the content sync operation with the server and returns a Boolean indicating if the sync process updated any data or not.
+    func sync() async -> Bool {
         await MainActor.run {
             delegate?.didFinishUpdating(status: .updating, updateSoundList: false)
         }
+
+        var hadUpdates: Bool = false
 
         do {
             let didHaveAnyLocalUpdates = try await retryLocal()
             let didHaveAnyRemoteUpdates = try await syncDataWithServer()
 
             if didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates {
-                logger.logSyncSuccess(description: "Sincronização realizada com sucesso.")
+                hadUpdates = true
+                logger.logSyncSuccess(description: "Atualização concluída com sucesso.")
             } else {
-                logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.")
+                logger.logSyncSuccess(description: "Atualização concluída com sucesso, porém não existem novidades.")
             }
 
             delegate?.didFinishUpdating(
@@ -68,6 +72,8 @@ class SyncManager {
         AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
 
         await syncFolderResearchChangesUp()
+
+        return hadUpdates
     }
 
     func retryLocal() async throws -> Bool {
@@ -154,7 +160,7 @@ class SyncManager {
             )
             try await provider.sendChanges()
         } catch {
-            Analytics().send(
+            await AnalyticsService().send(
                 originatingScreen: "SyncManager",
                 action: "issueSyncingFolderResearchChanges(\(error.localizedDescription))"
             )

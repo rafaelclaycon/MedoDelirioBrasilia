@@ -27,7 +27,7 @@ final class FakeReactionRepository: ReactionRepositoryProtocol {
         return Reaction(title: "", image: "")
     }
 
-    func reactionSounds(reactionId: String) async throws -> [ReactionSound] {
+    func reactionContent(reactionId: String) async throws -> [ReactionContent] {
         didCallReactionSounds = true
         return []
     }

@@ -18,7 +18,7 @@ extension MostSharedByAudienceView {
         var soundsLastCheckString: String = ""
 
         var songsState: LoadingState<[TopChartItem]> = .loading
-        var songsTimeInterval: TrendsTimeInterval = .allTime
+        var songsTimeInterval: TrendsTimeInterval = .lastWeek
         var songsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
         var songsLastCheckString: String = ""
 
@@ -160,7 +160,7 @@ extension MostSharedByAudienceView.ViewModel {
     }
 
     private func showServerUnavailableAlert() {
-        TapticFeedback.error()
+        HapticFeedback.error()
         alertTitle = "Servidor Indisponível"
         alertMessage = "Não foi possível obter o ranking mais recente. Tente novamente mais tarde."
         showAlert = true

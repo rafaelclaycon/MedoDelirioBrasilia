@@ -8,26 +8,30 @@
 import SwiftUI
 
 struct ShareAsVideoView: View {
-    
-    @StateObject var viewModel: ShareAsVideoViewViewModel
-    
-    @Binding var isBeingShown: Bool
+
+    @State var viewModel: ShareAsVideoViewModel
     @Binding var result: ShareAsVideoResult
-    
     @State var useLongerGeneratingVideoMessage: Bool
-    @State var didCloseTip: Bool = false
-    @State var showTextSocialNetworkTip: Bool = true
-    @State var showInstagramTip: Bool = true
-    @State private var tipText: String = .empty
+
+    @State private var didCloseTip: Bool = false
+    @State private var showTextSocialNetworkTip: Bool = true
+    @State private var showInstagramTip: Bool = true
+    @State private var tipText: String = ""
     @State private var verticalOffset: CGFloat = 0.0
     @State private var isExpanded = false
     @State private var titleSize = 28.0
-    
-    @ScaledMetric var vstackSpacing: CGFloat = 22
-    @ScaledMetric var bottomPadding: CGFloat = 26
-    
+
+    @ScaledMetric private var vstackSpacing: CGFloat = 22
+    @ScaledMetric private var bottomPadding: CGFloat = 26
+
+    @Environment(\.dismiss) private var dismiss
+
+    // MARK: - Computed & Stored Properties
+
     private let textSocialNetworkTip = "Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
+
+    // MARK: - Computed Properties
 
     private var isSquare: Bool {
         viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue
@@ -36,7 +40,9 @@ struct ShareAsVideoView: View {
     private var is9By16: Bool {
         !isSquare
     }
-    
+
+    // MARK: - View Body
+
     var body: some View {
         let squareImage = squareImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
         let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
@@ -51,8 +57,8 @@ struct ShareAsVideoView: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .disabled(viewModel.isShowingProcessingView)
-                        .onChange(of: viewModel.selectedSocialNetwork) { newValue in
-                            tipText = newValue == IntendedVideoDestination.twitter.rawValue ? textSocialNetworkTip : instagramTip
+                        .onChange(of: viewModel.selectedSocialNetwork) {
+                            tipText = viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue ? textSocialNetworkTip : instagramTip
                         }
                         
                         if viewModel.selectedSocialNetwork == 0 {
@@ -124,20 +130,20 @@ struct ShareAsVideoView: View {
                     .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
                         Button("Cancelar") {
-                            self.isBeingShown = false
+                            dismiss()
                         }
                     )
                     .alert(isPresented: $viewModel.showAlert) {
                         Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
                     }
-                    .onChange(of: viewModel.shouldCloseView) { shouldCloseView in
-                        if shouldCloseView {
+                    .onChange(of: viewModel.shouldCloseView) {
+                        if viewModel.shouldCloseView {
                             result.videoFilepath = viewModel.pathToVideoFile
                             result.contentId = viewModel.content.id
-                            isBeingShown = false
+                            dismiss()
                         }
                     }
-                    .onChange(of: didCloseTip) { didCloseTip in
+                    .onChange(of: didCloseTip) {
                         if didCloseTip {
                             if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
                                 showTextSocialNetworkTip = false
@@ -167,14 +173,16 @@ struct ShareAsVideoView: View {
             tipText = textSocialNetworkTip
             
             // Cleaning this string is needed in case the user decides do re-export the same sound
-            result.videoFilepath = .empty
-            result.contentId = .empty
+            result.videoFilepath = ""
+            result.contentId = ""
             
             showTextSocialNetworkTip = AppPersistentMemory().getHasHiddenShareAsVideoTextSocialNetworkTip() == false
             showInstagramTip = AppPersistentMemory().getHasHiddenShareAsVideoInstagramTip() == false
         }
     }
-    
+
+    // MARK: - Subviews
+
     private func squareImageView(contentName: String, contentAuthor: String) -> some View {
         ZStack {
             Image("square_video_background")
@@ -284,7 +292,7 @@ struct ShareAsVideoView: View {
                 viewModel.saveVideoToPhotos(withImage: image) { success, videoPath in
                     if success {
                         DispatchQueue.main.async {
-                            viewModel.pathToVideoFile = videoPath ?? .empty
+                            viewModel.pathToVideoFile = videoPath ?? ""
                             result.exportMethod = .saveAsVideo
                             viewModel.shouldCloseView = true
                         }
@@ -310,17 +318,18 @@ struct ShareAsVideoView: View {
         .borderedProminentButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
     }
-    
 }
 
-struct ShareAsVideoNewView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShareAsVideoView(
-            viewModel: ShareAsVideoViewViewModel(content: Sound(title: "Você é maluco ou você é idiota, companheiro?"), subtitle: "Lula (Cristiano Botafogo)"),
-            isBeingShown: .constant(true),
-            result: .constant(ShareAsVideoResult()),
-            useLongerGeneratingVideoMessage: false
-        )
-    }
-    
+// MARK: - Preview
+
+#Preview {
+    ShareAsVideoView(
+        viewModel: ShareAsVideoViewModel(
+            content: AnyEquatableMedoContent(Sound(title: "Você é maluco ou você é idiota, companheiro?")),
+            subtitle: "Lula (Cristiano Botafogo)",
+            contentType: .videoFromSound
+        ),
+        result: .constant(ShareAsVideoResult()),
+        useLongerGeneratingVideoMessage: false
+    )
 }

@@ -19,25 +19,31 @@ struct MainView: View {
     @State private var foldersPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
-    @StateObject private var settingsHelper = SettingsHelper()
+    @State private var settingsHelper = SettingsHelper()
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false
-    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @State private var currentContentListMode: ContentGridMode = .regular
+    @State private var toast: Toast?
+    @State private var floatingOptions: FloatingContentOptions?
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
 
     // iPad
-    @StateObject private var viewModel = SidebarViewViewModel()
+    @State private var sidebarViewModel = SidebarViewModel(
+        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+    )
     @State private var authorSortOption: Int = 0
     @State private var authorSortAction: AuthorSortOption = .nameAscending
 
     // Trends
-    @State private var soundIdToGoToFromTrends: String = .empty
+    @State private var soundIdToGoToFromTrends: String = ""
     @State private var trendsHelper = TrendsHelper()
 
     // Sync
-    @StateObject private var syncValues = SyncValues()
+    @State private var syncValues = SyncValues()
+
+    @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
 
     // MARK: - View Body
 
@@ -46,23 +52,31 @@ struct MainView: View {
             if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
                     NavigationStack(path: $soundsPath) {
-                        MainSoundContainer(
-                            viewModel: .init(
-                                currentViewMode: .allSounds,
-                                soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                        MainContentView(
+                            viewModel: MainContentViewModel(
+                                currentViewMode: .all,
+                                contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                 authorSortOption: UserSettings().authorSortOption(),
-                                currentSoundsListMode: $currentSoundsListMode,
-                                syncValues: syncValues
+                                currentContentListMode: $currentContentListMode,
+                                toast: $toast,
+                                floatingOptions: $floatingOptions,
+                                syncValues: syncValues,
+                                contentRepository: contentRepository,
+                                analyticsService: AnalyticsService()
                             ),
-                            currentSoundsListMode: $currentSoundsListMode,
+                            currentContentListMode: $currentContentListMode,
+                            toast: $toast,
+                            floatingOptions: $floatingOptions,
                             openSettingsAction: {
                                 isShowingSettingsSheet.toggle()
-                            }
+                            },
+                            contentRepository: contentRepository,
+                            bannerRepository: BannerRepository()
                         )
                         .environment(trendsHelper)
-                        .environmentObject(settingsHelper)
+                        .environment(settingsHelper)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                            GeneralRouter(destination: screen)
+                            GeneralRouter(destination: screen, contentRepository: contentRepository)
                         }
                     }
                     .tabItem {
@@ -75,7 +89,7 @@ struct MainView: View {
                         ReactionsView()
                             .environment(trendsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                GeneralRouter(destination: screen)
+                                GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
                     }
                     .tabItem {
@@ -84,15 +98,15 @@ struct MainView: View {
                     .tag(PhoneTab.reactions)
                     .environment(\.push, PushAction { reactionsPath.append($0) })
 
-                    NavigationView {
-                        SongsView()
-                            .environmentObject(settingsHelper)
-                            .environment(trendsHelper)
-                    }
-                    .tabItem {
-                        Label("Músicas", systemImage: "music.quarternote.3")
-                    }
-                    .tag(PhoneTab.songs)
+//                    NavigationView {
+//                        SongsView()
+//                            .environmentObject(settingsHelper)
+//                            .environment(trendsHelper)
+//                    }
+//                    .tabItem {
+//                        Label("Músicas", systemImage: "music.quarternote.3")
+//                    }
+//                    .tag(PhoneTab.songs)
                     
                     NavigationView {
                         TrendsView(
@@ -109,12 +123,12 @@ struct MainView: View {
                 .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                     tabSelection = .sounds
                 })
-                //            .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
-                //                tabSelection = .collections
-                //            })
-                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
-                    tabSelection = .songs
-                })
+//                .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
+//                    tabSelection = .collections
+//                })
+//                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
+//                    tabSelection = .songs
+//                })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
                     tabSelection = .trends
                     trendsHelper.timeIntervalToGoTo = .last24Hours
@@ -136,21 +150,29 @@ struct MainView: View {
                     TabView {
                         Tab("Sons", systemImage: "speaker.wave.2") {
                             NavigationStack(path: $soundsPath) {
-                                MainSoundContainer(
-                                    viewModel: .init(
-                                        currentViewMode: .allSounds,
-                                        soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                MainContentView(
+                                    viewModel: MainContentViewModel(
+                                        currentViewMode: .all,
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
-                                        currentSoundsListMode: $currentSoundsListMode,
-                                        syncValues: syncValues
+                                        currentContentListMode: $currentContentListMode,
+                                        toast: $toast,
+                                        floatingOptions: $floatingOptions,
+                                        syncValues: syncValues,
+                                        contentRepository: contentRepository,
+                                        analyticsService: AnalyticsService()
                                     ),
-                                    currentSoundsListMode: $currentSoundsListMode,
-                                    openSettingsAction: {}
+                                    currentContentListMode: $currentContentListMode,
+                                    toast: $toast,
+                                    floatingOptions: $floatingOptions,
+                                    openSettingsAction: {},
+                                    contentRepository: contentRepository,
+                                    bannerRepository: BannerRepository()
                                 )
                                 .environment(trendsHelper)
-                                .environmentObject(settingsHelper)
+                                .environment(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
                             }
                             .environment(\.push, PushAction { soundsPath.append($0) })
@@ -158,22 +180,21 @@ struct MainView: View {
 
                         Tab("Favoritos", systemImage: "star") {
                             NavigationStack(path: $favoritesPath) {
-                                MainSoundContainer(
-                                    viewModel: .init(
-                                        currentViewMode: .favorites,
-                                        soundSortOption: UserSettings().mainSoundListSoundSortOption(),
-                                        authorSortOption: UserSettings().authorSortOption(),
-                                        currentSoundsListMode: $currentSoundsListMode,
-                                        syncValues: syncValues,
-                                        isAllowedToSync: false
+                                StandaloneFavoritesView(
+                                    viewModel: StandaloneFavoritesViewModel(
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        toast: $toast,
+                                        floatingOptions: $floatingOptions,
+                                        contentRepository: contentRepository
                                     ),
-                                    currentSoundsListMode: $currentSoundsListMode,
-                                    openSettingsAction: {}
+                                    currentContentListMode: $currentContentListMode,
+                                    openSettingsAction: {},
+                                    contentRepository: contentRepository
                                 )
                                 .environment(trendsHelper)
-                                .environmentObject(settingsHelper)
+                                .environment(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
                             }
                             .environment(\.push, PushAction { favoritesPath.append($0) })
@@ -184,7 +205,7 @@ struct MainView: View {
                                 ReactionsView()
                                     .environment(trendsHelper)
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen)
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
                                     }
                             }
                             .environment(\.push, PushAction { reactionsPath.append($0) })
@@ -192,14 +213,10 @@ struct MainView: View {
 
                         Tab("Autores", systemImage: "person") {
                             NavigationStack(path: $authorsPath) {
-                                AuthorsView(
-                                    sortOption: $authorSortOption,
-                                    sortAction: $authorSortAction,
-                                    searchTextForControl: .constant("")
-                                )
-                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
-                                }
+                                StandaloneAuthorsView()
+                                    .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
+                                    }
                             }
                             .environment(\.push, PushAction { authorsPath.append($0) })
                         }
@@ -214,41 +231,56 @@ struct MainView: View {
                             }
                         }
 
-                        TabSection("Mais") {
-                            Tab("Músicas", systemImage: "music.quarternote.3") {
-                                NavigationStack {
-                                    SongsView()
-                                        .environmentObject(settingsHelper)
-                                        .environment(trendsHelper)
-                                }
-                            }
-                        }
-
                         TabSection("Minhas Pastas") {
                             Tab("Todas as Pastas", systemImage: "folder") {
                                 NavigationStack(path: $foldersPath) {
-                                    AllFoldersiPadView(
+                                    StandaloneFolderGridView(
                                         folderForEditing: $folderForEditing,
-                                        updateFolderList: $updateFolderList
+                                        updateFolderList: $updateFolderList,
+                                        contentRepository: contentRepository
                                     )
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen)
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
                                     }
                                 }
                                 .environment(\.push, PushAction { foldersPath.append($0) })
                             }
 
-                            ForEach(viewModel.folders) { folder in
+                            switch sidebarViewModel.state {
+                            case .loading:
                                 Tab {
-                                    NavigationStack {
-                                        FolderDetailView(
-                                            folder: folder,
-                                            currentSoundsListMode: $currentSoundsListMode
-                                        )
-                                    }
+                                    EmptyView()
                                 } label: {
-                                    Text("\(folder.symbol)   \(folder.name)")
-                                        .padding()
+                                    ProgressView()
+                                }
+
+                            case .loaded(let folders):
+                                ForEach(folders) { folder in
+                                    Tab {
+                                        NavigationStack {
+                                            FolderDetailView(
+                                                viewModel: FolderDetailViewModel(
+                                                    folder: folder,
+                                                    contentRepository: contentRepository
+                                                ),
+                                                folder: folder,
+                                                currentContentListMode: $currentContentListMode,
+                                                toast: $toast,
+                                                floatingOptions: $floatingOptions,
+                                                contentRepository: contentRepository
+                                            )
+                                        }
+                                    } label: {
+                                        Text("\(folder.symbol)   \(folder.name)")
+                                            .padding()
+                                    }
+                                }
+
+                            case .error(_):
+                                Tab {
+                                    EmptyView()
+                                } label: {
+                                    Text("Erro carregando as pastas.")
                                 }
                             }
                         }
@@ -284,7 +316,9 @@ struct MainView: View {
                         .padding(.top, 30)
                     }
                     .onAppear {
-                        viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                        Task {
+                            await sidebarViewModel.onViewAppeared()
+                        }
                     }
                 } else {
                     NavigationSplitView {
@@ -293,28 +327,39 @@ struct MainView: View {
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             folderForEditing: $folderForEditing,
                             updateFolderList: $updateFolderList,
-                            currentSoundsListMode: $currentSoundsListMode
+                            currentContentListMode: $currentContentListMode,
+                            toast: $toast,
+                            floatingOptions: $floatingOptions,
+                            contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
-                        .environmentObject(settingsHelper)
-                        .environmentObject(syncValues)
+                        .environment(settingsHelper)
+                        .environment(syncValues)
                     } detail: {
                         NavigationStack(path: $soundsPath) {
-                            MainSoundContainer(
-                                viewModel: .init(
-                                    currentViewMode: .allSounds,
-                                    soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                            MainContentView(
+                                viewModel: MainContentViewModel(
+                                    currentViewMode: .all,
+                                    contentSortOption: UserSettings().mainSoundListSoundSortOption(),
                                     authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                    currentSoundsListMode: $currentSoundsListMode,
-                                    syncValues: syncValues
+                                    currentContentListMode: $currentContentListMode,
+                                    toast: $toast,
+                                    floatingOptions: $floatingOptions,
+                                    syncValues: syncValues,
+                                    contentRepository: contentRepository,
+                                    analyticsService: AnalyticsService()
                                 ),
-                                currentSoundsListMode: $currentSoundsListMode,
-                                openSettingsAction: {}
+                                currentContentListMode: $currentContentListMode,
+                                toast: $toast,
+                                floatingOptions: $floatingOptions,
+                                openSettingsAction: {},
+                                contentRepository: contentRepository,
+                                bannerRepository: BannerRepository()
                             )
                             .environment(trendsHelper)
-                            .environmentObject(settingsHelper)
+                            .environment(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                GeneralRouter(destination: screen)
+                                GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
                             .environment(\.push, PushAction { soundsPath.append($0) })
                         }
@@ -322,7 +367,7 @@ struct MainView: View {
                 }
             }
         }
-        .environmentObject(syncValues)
+        .environment(syncValues)
         .onAppear {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
@@ -332,14 +377,14 @@ struct MainView: View {
             switch subviewToOpen {
             case .settings:
                 SettingsCasingWithCloseView(isBeingShown: $showingModalView)
-                    .environmentObject(settingsHelper)
+                    .environment(settingsHelper)
 
             case .onboarding:
                 FirstOnboardingView(isBeingShown: $showingModalView)
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                IntroducingReactionsView()
+                Version9WhatsNewView(appMemory: AppPersistentMemory())
                     .interactiveDismissDisabled()
 
             case .retrospective:
@@ -349,7 +394,7 @@ struct MainView: View {
         .sheet(item: $folderForEditing) { folder in
             FolderInfoEditingView(
                 folder: folder,
-                folderRepository: UserFolderRepository(),
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                 dismissSheet: {
                     folderForEditing = nil
                     updateFolderList = true
@@ -359,7 +404,7 @@ struct MainView: View {
         // Could be removed in the future, but for now using `showingModalView` bugs out on iPad. Shows Onboarding most of the time.
         .sheet(isPresented: $isShowingSettingsSheet) {
             SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
-                .environmentObject(settingsHelper)
+                .environment(settingsHelper)
         }
     }
 
@@ -398,7 +443,7 @@ struct MainView: View {
         if !AppPersistentMemory().hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
-        } else if !AppPersistentMemory().hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
+        } else if !AppPersistentMemory().hasSeenVersion9WhatsNewScreen() {
             subviewToOpen = .whatsNew
             showingModalView = true
         }

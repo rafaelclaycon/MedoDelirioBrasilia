@@ -20,16 +20,17 @@ struct Song: Hashable, Codable, Identifiable, MedoContentProtocol {
     let isOffensive: Bool
     var isFromServer: Bool?
 
-    init(id: String = UUID().uuidString,
-         title: String,
-         description: String = "",
-         genreId: String,
-         genreName: String?,
-         duration: Double = 0,
-         filename: String = "",
-         dateAdded: Date = Date(),
-         isOffensive: Bool = false,
-         isFromServer: Bool? = false
+    init(
+        id: String = UUID().uuidString,
+        title: String,
+        description: String = "",
+        genreId: String,
+        genreName: String?,
+        duration: Double = 0,
+        filename: String = "",
+        dateAdded: Date = Date(),
+        isOffensive: Bool = false,
+        isFromServer: Bool? = false
     ) {
         self.id = id
         self.title = title
@@ -41,6 +42,18 @@ struct Song: Hashable, Codable, Identifiable, MedoContentProtocol {
         self.dateAdded = dateAdded
         self.isOffensive = isOffensive
         self.isFromServer = isFromServer
+    }
+
+    var subtitle: String {
+        genreName ?? ""
+    }
+
+    var type: MediaType {
+        .song
+    }
+
+    var authorId: String {
+        ""
     }
 
     func fileURL() throws -> URL {

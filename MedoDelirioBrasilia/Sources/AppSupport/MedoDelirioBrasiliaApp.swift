@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var moveDatabaseIssue: String = .empty
+var moveDatabaseIssue: String = ""
 
 @main
 struct MedoDelirioBrasiliaApp: App {
@@ -17,13 +17,13 @@ struct MedoDelirioBrasiliaApp: App {
     @State private var tabSelection: PhoneTab = .sounds
     @State private var state: PadScreen? = PadScreen.allSounds
 
-    @StateObject private var helper = PlayRandomSoundHelper()
+    @State private var helper = PlayRandomSoundHelper()
 
     var body: some Scene {
         WindowGroup {
             MainView(tabSelection: $tabSelection, padSelection: $state)
                 .onOpenURL(perform: handleURL)
-                .environmentObject(helper)
+                .environment(helper)
         }
     }
 
@@ -31,7 +31,6 @@ struct MedoDelirioBrasiliaApp: App {
         guard url.scheme == "medodelirio" else { return }
         if url.host == "playrandomsound" {
             tabSelection = .sounds
-            state = .allSounds
 
             let includeOffensive = UserSettings().getShowExplicitContent()
 
@@ -40,10 +39,14 @@ struct MedoDelirioBrasiliaApp: App {
                     let randomSound = try LocalDatabase.shared.randomSound(includeOffensive: includeOffensive)
                 else { return }
                 helper.soundIdToPlay = randomSound.id
-                Analytics().send(action: "didPlayRandomSound(\(randomSound.title))")
+                Task {
+                    await AnalyticsService().send(action: "didPlayRandomSound(\(randomSound.title))")
+                }
             } catch {
                 print("Erro obtendo som aleatório: \(error.localizedDescription)")
-                Analytics().send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
+                Task {
+                    await AnalyticsService().send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
+                }
             }
         }
     }
@@ -120,23 +123,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             }
         }
     }
-    
+
     private func sendStillAliveSignalToServer() {
         let lastDate = UserSettings().getLastSendDateOfStillAliveSignalToServer()
-        
+
         // Should only send 1 still alive signal per day
         guard lastDate == nil || lastDate!.onlyDate! < Date.now.onlyDate! else {
             return
         }
-        
-        let signal = StillAliveSignal(installId: AppPersistentMemory().customInstallId,
-                                      modelName: UIDevice.modelName,
-                                      systemName: UIDevice.current.systemName,
-                                      systemVersion: UIDevice.current.systemVersion,
-                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
-                                      appVersion: Versioneer.appVersion,
-                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
-                                      dateTime: Date.now.iso8601withFractionalSeconds)
+
+        let signal = StillAliveSignal(
+            installId: AppPersistentMemory().customInstallId,
+            modelName: UIDevice.modelName,
+            systemName: UIDevice.current.systemName,
+            systemVersion: UIDevice.current.systemVersion,
+            isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+            appVersion: Versioneer.appVersion,
+            currentTimeZone: TimeZone.current.abbreviation() ?? "",
+            dateTime: Date.now.iso8601withFractionalSeconds
+        )
         NetworkRabbit.shared.post(signal: signal) { success, error in
             if success != nil, success == true {
                 UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)
@@ -283,7 +288,7 @@ extension AppDelegate {
     func updateFolderChangeHashes() {
         if !hasUpdatedFolderHashesOnFirstRun {
             do {
-                try UserFolderRepository().addHashToExistingFolders()
+                try UserFolderRepository(database: LocalDatabase.shared).addHashToExistingFolders()
                 hasUpdatedFolderHashesOnFirstRun = true
             } catch {
                 print(error)

@@ -38,7 +38,7 @@ extension LocalDatabase {
         ) {
             result.append(
                 TopChartItem(
-                    id: .empty,
+                    id: "",
                     rankNumber: "",
                     contentId: row[content_id],
                     contentName: row[soundTable[soundTitle]],

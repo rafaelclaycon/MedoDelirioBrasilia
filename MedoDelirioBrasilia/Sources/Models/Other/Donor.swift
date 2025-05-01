@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Donor: Decodable {
+struct Donor: Codable {
 
     let name: String
     let hasDonatedBefore: Bool

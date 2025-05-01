@@ -10,14 +10,15 @@ import Foundation
 extension FolderInfoEditingView {
 
     @MainActor
-    final class ViewModel: ObservableObject {
+    @Observable
+    final class ViewModel {
 
-        @Published var folder: UserFolder
+        var folder: UserFolder
 
         // Alerts
-        @Published var alertTitle: String = ""
-        @Published var alertMessage: String = ""
-        @Published var showAlert: Bool = false
+        var alertTitle: String = ""
+        var alertMessage: String = ""
+        var showAlert: Bool = false
 
         public let isEditing: Bool
         private let folderRepository: UserFolderRepositoryProtocol

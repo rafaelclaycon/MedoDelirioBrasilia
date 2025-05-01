@@ -9,21 +9,33 @@ import SwiftUI
 
 struct MyFoldersiPhoneView: View {
 
+    let contentRepository: ContentRepositoryProtocol
+    let userFolderRepository: UserFolderRepositoryProtocol
+    let containerSize: CGSize
+
     @State private var folderForEditing: UserFolder?
-    @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
-    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderGrid :)
+    @State private var currentContentListMode: ContentGridMode = .regular
+    @State private var displayDeleteFolderAlert: Bool = false
     @State private var showErrorDeletingAlert: Bool = false
 
-    @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
+    @Environment(DeleteFolderViewAide.self) private var deleteFolderAide
 
     // MARK: - View Body
 
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(
+                FolderGrid(
+                    viewModel: FolderGridViewModel(
+                        userFolderRepository: userFolderRepository,
+                        userSettings: UserSettings(),
+                        appMemory: AppPersistentMemory()
+                    ),
                     updateFolderList: $updateFolderList,
-                    folderForEditing: $folderForEditing
+                    folderForEditing: $folderForEditing,
+                    contentRepository: contentRepository,
+                    containerSize: containerSize
                 )
             }
             .padding(.horizontal)
@@ -45,29 +57,24 @@ struct MyFoldersiPhoneView: View {
         .sheet(item: $folderForEditing) { folder in
             FolderInfoEditingView(
                 folder: folder,
-                folderRepository: UserFolderRepository(),
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
                 dismissSheet: {
                     folderForEditing = nil
                     updateFolderList = true
                 }
             )
         }
-        .alert(isPresented: $deleteFolderAide.showAlert) {
+        .onChange(of: deleteFolderAide.showAlert) {
+            if deleteFolderAide.showAlert {
+                displayDeleteFolderAlert = true
+                deleteFolderAide.showAlert = false
+            }
+        }
+        .alert(isPresented: $displayDeleteFolderAlert) {
             Alert(
                 title: Text(deleteFolderAide.alertTitle),
                 message: Text(deleteFolderAide.alertMessage),
-                primaryButton: .destructive(Text("Apagar"), action: {
-                    guard !deleteFolderAide.folderIdForDeletion.isEmpty else {
-                        return
-                    }
-
-                    do {
-                        try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
-                        updateFolderList = true
-                    } catch {
-                        showErrorDeletingAlert = true
-                    }
-                }),
+                primaryButton: .destructive(Text("Apagar"), action: deleteFolder),
                 secondaryButton: .cancel(Text("Cancelar"))
             )
         }
@@ -80,10 +87,28 @@ struct MyFoldersiPhoneView: View {
             Text("Tente novamente mais tarde. Se o erro persisir, por favor, envie um e-mail para o desenvolvedor.")
         }
     }
+
+    // MARK: - Functions
+
+    private func deleteFolder() {
+        guard !deleteFolderAide.folderIdForDeletion.isEmpty else {
+            return
+        }
+        do {
+            try userFolderRepository.delete(deleteFolderAide.folderIdForDeletion)
+            updateFolderList = true
+        } catch {
+            showErrorDeletingAlert = true
+        }
+    }
 }
 
 // MARK: - Preview
 
 #Preview {
-    MyFoldersiPhoneView()
+    MyFoldersiPhoneView(
+        contentRepository: FakeContentRepository(),
+        userFolderRepository: UserFolderRepository(database: FakeLocalDatabase()),
+        containerSize: CGSize(width: 400, height: 1200)
+    )
 }

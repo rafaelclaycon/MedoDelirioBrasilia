@@ -21,7 +21,7 @@ struct SyncInfoCard: View {
                 .scaledToFit()
                 .frame(width: 30)
                 .foregroundColor(imageColor)
-                .padding(.leading, 5)
+                .padding(.leading, 8)
 
             Spacer()
                 .frame(width: 14)

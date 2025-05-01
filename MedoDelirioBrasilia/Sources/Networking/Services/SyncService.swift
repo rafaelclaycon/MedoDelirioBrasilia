@@ -144,7 +144,7 @@ enum SyncUIStatus: CustomStringConvertible {
         case .done:
             return "Você tem as últimas novidades."
         case .updateError:
-            return "Não foi possível obter as últimas novidades do servidor."
+            return "Não foi possível obter as últimas novidades."
         }
     }
 }

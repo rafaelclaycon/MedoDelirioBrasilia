@@ -9,12 +9,12 @@ import SwiftUI
 
 struct FolderDetailView: View {
 
-    @StateObject private var viewModel: FolderDetailViewViewModel
-    @StateObject private var soundListViewModel: SoundListViewModel<[Sound]>
+    @State private var viewModel: FolderDetailViewModel
+    @State private var contentGridViewModel: ContentGridViewModel
 
     let folder: UserFolder
 
-    private var currentSoundsListMode: Binding<SoundsListMode>
+    private var currentContentListMode: Binding<ContentGridMode>
     @State private var showingFolderInfoEditingView = false
     @State private var showingModalView = false
 
@@ -26,124 +26,140 @@ struct FolderDetailView: View {
     }
     
     private var title: String {
-        guard currentSoundsListMode.wrappedValue == SoundsListMode.regular else {
-            if soundListViewModel.selectionKeeper.count == 0 {
+        guard currentContentListMode.wrappedValue == .regular else {
+            if contentGridViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if soundListViewModel.selectionKeeper.count == 1 {
+            } else if contentGridViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
-                return String(format: Shared.SoundSelection.soundsSelectedPlural, soundListViewModel.selectionKeeper.count)
+                return String(format: Shared.SoundSelection.soundsSelectedPlural, contentGridViewModel.selectionKeeper.count)
             }
         }
         return "\(folder.symbol)  \(folder.name)"
     }
 
+    private var loadedContent: [AnyEquatableMedoContent] {
+        guard case .loaded(let content) = viewModel.state else { return [] }
+        return content
+    }
+
     // MARK: - Initializer
 
     init(
+        viewModel: FolderDetailViewModel,
         folder: UserFolder,
-        currentSoundsListMode: Binding<SoundsListMode>
+        currentContentListMode: Binding<ContentGridMode>,
+        toast: Binding<Toast?>,
+        floatingOptions: Binding<FloatingContentOptions?>,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.folder = folder
-        let viewModel = FolderDetailViewViewModel(folder: folder)
 
-        self._viewModel = StateObject(wrappedValue: viewModel)
-        self.currentSoundsListMode = currentSoundsListMode
+        self.viewModel = viewModel
+        self.currentContentListMode = currentContentListMode
 
-        let soundListViewModel = SoundListViewModel<[Sound]>(
-            data: viewModel.soundsPublisher,
+        self.contentGridViewModel = ContentGridViewModel(
+            contentRepository: contentRepository,
+            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            screen: .folderDetailView,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
-            currentSoundsListMode: currentSoundsListMode,
-            refreshAction: { viewModel.reloadSounds() },
-            insideFolder: folder
+            currentListMode: currentContentListMode,
+            toast: toast,
+            floatingOptions: floatingOptions,
+            refreshAction: { viewModel.onContentWasRemovedFromFolder() },
+            insideFolder: folder,
+            multiSelectFolderOperation: .remove,
+            analyticsService: AnalyticsService()
         )
-
-        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
 
     // MARK: - View Body
 
     var body: some View {
-        VStack {
-            SoundList(
-                viewModel: soundListViewModel,
-                multiSelectFolderOperation: .remove,
-                showNewTag: false,
-                dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                headerView: {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(viewModel.soundCount)
-                                .font(.callout)
-                                .foregroundColor(.gray)
-                                .bold()
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: .spacing(.medium)) {
+                    HeaderView(
+                        folder: folder,
+                        itemCountText: viewModel.contentCountText
+                    )
 
-                            Spacer()
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.top)
-                },
-                loadingView:
-                    VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
+                    ContentGrid(
+                        state: viewModel.state,
+                        viewModel: contentGridViewModel,
+                        showNewTag: false,
+                        containerSize: geometry.size,
+                        loadingView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
 
-                            Text("Carregando sons...")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                ,
-                emptyStateView:
-                    EmptyFolderView()
-                        .padding(.horizontal, 30)
-                ,
-                errorView:
-                    VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
+                                    Text("Carregando sons...")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                        ,
+                        emptyStateView:
+                            VStack {
+                                EmptyFolderView()
+                                    .padding(.horizontal, .spacing(.xxLarge))
+                                    .padding(.vertical, .spacing(.huge))
+                            }
+                        ,
+                        errorView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
 
-                            Text("Erro ao carregar sons.")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-            )
-            .environment(TrendsHelper())
-        }
-        .navigationTitle(title)
-        .toolbar { trailingToolbarControls() }
-        .onAppear {
-            viewModel.reloadSounds()
-        }
-        .onDisappear {
-            if soundListViewModel.isPlayingPlaylist {
-                soundListViewModel.stopPlaying()
-            }
-        }
-        .sheet(isPresented: $showingFolderInfoEditingView) {
-            FolderInfoEditingView(
-                folder: folder,
-                folderRepository: UserFolderRepository(),
-                dismissSheet: {
-                    showingFolderInfoEditingView = false
+                                    Text("Erro ao carregar sons.")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                    )
+                    .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.medium))
+
+                    Spacer()
+                        .frame(height: .spacing(.large))
                 }
-            )
+                .toolbar { trailingToolbarControls() }
+                .onAppear {
+                    viewModel.onViewAppeared()
+                }
+                .onDisappear {
+                    contentGridViewModel.onViewDisappeared()
+                }
+                .sheet(isPresented: $showingFolderInfoEditingView) {
+                    FolderInfoEditingView(
+                        folder: folder,
+                        folderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                        dismissSheet: {
+                            showingFolderInfoEditingView = false
+                        }
+                    )
+                }
+            }
+            .edgesIgnoringSafeArea(.top)
+            .toast(contentGridViewModel.toast)
+            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
     }
 
-    // MARK: - Auxiliary Views
+    // MARK: - Subviews
 
     @ViewBuilder func trailingToolbarControls() -> some View {
         HStack(spacing: 16) {
-            if currentSoundsListMode.wrappedValue == .regular {
+            if currentContentListMode.wrappedValue == .regular {
                 Button {
-                    soundListViewModel.playStopPlaylist()
+                    contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent)
                 } label: {
-                    Image(systemName: soundListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                    Image(systemName: contentGridViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                        .foregroundStyle(.white)
+                        .shadow(radius: 5)
                 }
-                .disabled(viewModel.sounds.isEmpty)
+                .disabled(viewModel.contentCount == 0)
             } else {
                 selectionControls()
             }
@@ -151,17 +167,20 @@ struct FolderDetailView: View {
             Menu {
                 Section {
                     Button {
-                        soundListViewModel.startSelecting()
+                        contentGridViewModel.onEnterMultiSelectModeSelected(
+                            loadedContent: loadedContent,
+                            isFavoritesOnlyView: false
+                        )
                     } label: {
                         Label(
-                            currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                            currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                            systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
                         )
                     }
                 }
 
                 Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                    Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
                         Text("Título")
                             .tag(0)
 
@@ -173,25 +192,12 @@ struct FolderDetailView: View {
                                 .tag(2)
                         }
                     }
-                    .onChange(of: viewModel.soundSortOption) { sortOption in
-                        viewModel.sortSounds(by: sortOption)
+                    .onChange(of: viewModel.contentSortOption) {
+                        contentGridViewModel.onContentSortingChanged()
+                        viewModel.onContentSortOptionChanged()
                     }
-                    .disabled(viewModel.sounds.isEmpty)
+                    .disabled(viewModel.contentCount == 0)
                 }
-
-                //                    Section {
-                //                        Button {
-                //                            showingFolderInfoEditingView = true
-                //                        } label: {
-                //                            Label("Exportar", systemImage: "square.and.arrow.up")
-                //                        }
-                //
-                //                        Button {
-                //                            showingFolderInfoEditingView = true
-                //                        } label: {
-                //                            Label("Importar", systemImage: "square.and.arrow.down")
-                //                        }
-                //                    }
 
                 //                    Section {
                 //                        Button {
@@ -210,37 +216,225 @@ struct FolderDetailView: View {
                 //                        })
                 //                    }
             } label: {
-                Image(systemName: "ellipsis.circle")
+                Image(systemName: "ellipsis.circle.fill")
+                    .foregroundStyle(.white)
+                    .shadow(radius: 4)
             }
-            .disabled(soundListViewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
+            .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
         }
     }
     
     @ViewBuilder func selectionControls() -> some View {
-        if currentSoundsListMode.wrappedValue == .regular {
+        if currentContentListMode.wrappedValue == .regular {
             EmptyView()
         } else {
             HStack(spacing: 16) {
                 Button {
-                    currentSoundsListMode.wrappedValue = .regular
-                    soundListViewModel.selectionKeeper.removeAll()
+                    currentContentListMode.wrappedValue = .regular
+                    contentGridViewModel.selectionKeeper.removeAll()
                 } label: {
                     Text("Cancelar")
                         .bold()
+                        .foregroundStyle(.white)
+                        .shadow(radius: 5)
                 }
             }
         }
     }
 }
 
-#Preview {
-    FolderDetailView(
-        folder: .init(
-            symbol: "🤑",
-            name: "Grupo da Economia",
-            backgroundColor: "pastelBabyBlue",
-            changeHash: "abcdefg"
-        ),
-        currentSoundsListMode: .constant(.regular)
+// MARK: - Subviews
+
+extension FolderDetailView {
+
+    struct StickyFolderBackgroundView: View {
+
+        let color: Color
+        let height: CGFloat
+
+        // MARK: - Computed Properties
+
+        private func scrollOffset(_ geometry: GeometryProxy) -> CGFloat {
+            geometry.frame(in: .global).minY
+        }
+
+        private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+            let offset = scrollOffset(geometry)
+            // Image was pulled down
+            if offset > 0 {
+                return -offset
+            }
+            return 0
+        }
+
+        private func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+            let offset = scrollOffset(geometry)
+            let imageHeight = geometry.size.height
+            if offset > 0 {
+                return imageHeight + offset
+            }
+            return imageHeight
+        }
+
+        // MARK: - View Body
+
+        var body: some View {
+            GeometryReader { geometry in
+                Rectangle()
+                    .fill(color)
+                    .overlay { FolderView.SpeckleOverlay() }
+                    .frame(
+                        width: geometry.size.width,
+                        height: getHeightForHeaderImage(geometry)
+                    )
+                    .offset(x: 0, y: getOffsetForHeaderImage(geometry))
+            }
+            .frame(height: height)
+        }
+    }
+
+    struct HeaderView: View {
+
+        let folder: UserFolder
+        let itemCountText: String
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                StickyFolderBackgroundView(
+                    color: folder.backgroundColor.toPastelColor(),
+                    height: 200
+                )
+                .overlay(alignment: .bottomLeading) {
+                    VStack(alignment: .leading, spacing: .spacing(.xxSmall)) {
+                        Text(folder.symbol)
+                            .font(.largeTitle)
+
+                        Text(folder.name)
+                            .font(.title)
+                            .bold()
+                            .foregroundStyle(.black)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(1)
+                    }
+                    .padding(.all, .spacing(.large))
+                }
+
+                Text(itemCountText)
+                    .font(.callout)
+                    .foregroundColor(.gray)
+                    .bold()
+                    .padding(.leading, .spacing(.medium))
+            }
+        }
+    }
+}
+
+// MARK: - Preview
+
+#Preview("Regular") {
+    let folder = UserFolder(
+        symbol: "🤡",
+        name: "Uso diario",
+        backgroundColor: "pastelPurple",
+        changeHash: "abcdefg",
+        contentCount: 3
     )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
+
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
+            folder: folder,
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
+}
+
+#Preview("Regular - Selecting") {
+    let folder = UserFolder(
+        symbol: "🤡",
+        name: "Uso diario",
+        backgroundColor: "pastelPurple",
+        changeHash: "abcdefg",
+        contentCount: 3
+    )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
+
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
+            folder: folder,
+            currentContentListMode: .constant(.selection),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
+}
+
+#Preview("Red") {
+    let folder = UserFolder(
+        symbol: "🎲",
+        name: "Aleatório, Random & WTF",
+        backgroundColor: "pastelRed",
+        changeHash: "abcdefg",
+        contentCount: 3
+    )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
+
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
+            folder: folder,
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
+}
+
+#Preview("Long Title") {
+    let folder = UserFolder(
+        symbol: "🗳️",
+        name: "Eleições Presidente 2022",
+        backgroundColor: "pastelYellow",
+        changeHash: "abcdefg",
+        contentCount: 3
+    )
+    var repo = FakeContentRepository()
+    let sounds: [Sound] = Sound.sampleSounds
+    repo.content = sounds.map { AnyEquatableMedoContent($0) }
+
+    return NavigationStack {
+        FolderDetailView(
+            viewModel: FolderDetailViewModel(
+                folder: folder,
+                contentRepository: repo
+            ),
+            folder: folder,
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            contentRepository: repo
+        )
+    }
 }

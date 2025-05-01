@@ -11,7 +11,7 @@ import SQLite
 private typealias Expression = SQLite.Expression
 
 extension LocalDatabase {
-    
+
     func insert(syncLog newSyncLog: SyncLog) {
         do {
             let insert = try syncLogTable.insert(newSyncLog)
@@ -21,7 +21,7 @@ extension LocalDatabase {
         }
     }
 
-    func lastFewLogs() -> [SyncLog] {
+    public func lastFewSyncLogs() -> [SyncLog] {
         var syncLogs: [SyncLog] = []
 
         let id = Expression<String>("id")
@@ -46,5 +46,16 @@ extension LocalDatabase {
             print(error)
         }
         return syncLogs
+    }
+
+    public func totalSyncLogCount() -> Int {
+        do {
+            let result = try db.scalar(syncLogTable.count) - 20
+            guard result > 0 else { return 0 }
+            return result
+        } catch {
+            print(error)
+            return 0
+        }
     }
 }
