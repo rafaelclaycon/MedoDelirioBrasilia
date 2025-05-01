@@ -492,7 +492,6 @@
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
 		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
 		D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */; };
-		D962806B2DBFC33E00E385FE /* Early2025PleaseDonateBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D962806A2DBFC33E00E385FE /* Early2025PleaseDonateBanner.swift */; };
 		D96370052B085845002E8838 /* ExplicitDisabledWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */; };
 		D964CF3428EEEDC6004DECAF /* Abertura Lombardi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3328EEEDC6004DECAF /* Abertura Lombardi.mp3 */; };
 		D964CF3928EEF83A004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */; };
@@ -2055,7 +2054,6 @@
 		D9625E8428238F9B00080852 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseTests.swift; sourceTree = "<group>"; };
-		D962806A2DBFC33E00E385FE /* Early2025PleaseDonateBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Early2025PleaseDonateBanner.swift; sourceTree = "<group>"; };
 		D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplicitDisabledWarning.swift; sourceTree = "<group>"; };
 		D964CF3328EEEDC6004DECAF /* Abertura Lombardi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abertura Lombardi.mp3"; sourceTree = "<group>"; };
 		D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Eu vou votar no barba, nao tem jeito.mp3"; sourceTree = "<group>"; };
@@ -4502,7 +4500,6 @@
 				D986C2452B25848B00EF575A /* LongUpdateBanner.swift */,
 				D9F45DD62BED30C400D49340 /* DynamicBanner.swift */,
 				D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */,
-				D962806A2DBFC33E00E385FE /* Early2025PleaseDonateBanner.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -7037,7 +7034,6 @@
 				D91BB0B22DC2A39B00B3DD02 /* BannerRepository.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,
 				D9BF90BE2842EAED00BDDD7D /* TopChartRow.swift in Sources */,
-				D962806B2DBFC33E00E385FE /* Early2025PleaseDonateBanner.swift in Sources */,
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,
 				D9C67C152A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift in Sources */,
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
