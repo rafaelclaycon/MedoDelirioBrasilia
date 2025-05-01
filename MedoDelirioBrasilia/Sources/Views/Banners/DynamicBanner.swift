@@ -12,7 +12,7 @@ struct DynamicBanner: View {
     let bannerData: DynamicBannerData
     let textCopyFeedback: (String) -> Void
 
-    private let mainColor: Color = .blue
+    private let mainColor: Color = .pink
 
     @State private var isExpanded: Bool = false
 
@@ -32,7 +32,6 @@ struct DynamicBanner: View {
                 ForEach(bannerData.text, id: \.self) {
                     Text(markedDownText($0))
                         .foregroundColor(mainColor)
-                        .opacity(0.8)
                         .font(.callout)
                 }
 
@@ -59,6 +58,7 @@ struct DynamicBanner: View {
                             }
                         } label: {
                             Text(button.title)
+                                .multilineTextAlignment(.leading)
                         }
                         .tint(mainColor)
                         .controlSize(.regular)
