@@ -43,7 +43,7 @@ struct ToastView: ViewModifier {
         case .wait:
             "clock.fill"
         case .thankYou:
-            ""
+            "heart"
         case nil:
             ""
         }

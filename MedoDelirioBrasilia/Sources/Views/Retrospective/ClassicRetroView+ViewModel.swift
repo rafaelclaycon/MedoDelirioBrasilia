@@ -173,7 +173,8 @@ extension ClassicRetroView.ViewModel {
         currentVersion: String = Versioneer.appVersion,
         network: NetworkRabbitProtocol = NetworkRabbit.shared
     ) async -> Bool {
-        guard let allowedVersion = await network.retroStartingVersion() else { return false }
-        return currentVersion >= allowedVersion
+//        guard let allowedVersion = await network.retroStartingVersion() else { return false }
+//        return currentVersion >= allowedVersion
+        return false
     }
 }
