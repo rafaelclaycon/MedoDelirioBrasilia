@@ -444,7 +444,7 @@
 		D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */; };
 		D955756829131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */; };
 		D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */; };
-		D955D0962D3F185D0036A0E6 /* SearchResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955D0952D3F185D0036A0E6 /* SearchResultSection.swift */; };
+		D955D0962D3F185D0036A0E6 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955D0952D3F185D0036A0E6 /* SearchResults.swift */; };
 		D955DA302AA6B94C00AC4169 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955DA2F2AA6B94C00AC4169 /* ContentDetailView.swift */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
@@ -2009,7 +2009,7 @@
 		D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Como dizem os peruanos.mp3"; sourceTree = "<group>"; };
 		D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Precisa ter provas.mp3"; sourceTree = "<group>"; };
 		D955D0932D3EF6980036A0E6 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
-		D955D0952D3F185D0036A0E6 /* SearchResultSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSection.swift; sourceTree = "<group>"; };
+		D955D0952D3F185D0036A0E6 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		D955DA2F2AA6B94C00AC4169 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		D957047C28AEF733008DEF8C /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
@@ -5006,7 +5006,7 @@
 				D9BB1E7828B3210D00C5FFAA /* Logs */,
 				D9DBEA9E2BCC0CF400220679 /* Other */,
 				D98CFB592C95C9710038C26C /* SocialMediaLink.swift */,
-				D955D0952D3F185D0036A0E6 /* SearchResultSection.swift */,
+				D955D0952D3F185D0036A0E6 /* SearchResults.swift */,
 				D91255B12DAFF335006AC71C /* ContentGridScreen.swift */,
 			);
 			path = Models;
@@ -6888,7 +6888,7 @@
 				D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */,
 				D92F096529ED844300CC382F /* View+Marquee.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingView+ViewModel.swift in Sources */,
-				D955D0962D3F185D0036A0E6 /* SearchResultSection.swift in Sources */,
+				D955D0962D3F185D0036A0E6 /* SearchResults.swift in Sources */,
 				D90622C82AB4030600704B70 /* MedoContentProtocol.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,

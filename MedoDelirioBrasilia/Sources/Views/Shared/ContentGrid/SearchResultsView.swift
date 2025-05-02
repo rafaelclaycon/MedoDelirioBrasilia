@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchResultsView: View {
 
+    let searchString: String
     let results: SearchResults
 
     @State private var columns: [GridItem] = [
@@ -18,9 +19,9 @@ struct SearchResultsView: View {
 
     var body: some View {
         LazyVGrid(columns: columns, spacing: .spacing(.medium), pinnedViews: .sectionHeaders) {
-            if let content = results.content {
+            if let soundsMatchingTitle = results.soundsMatchingTitle {
                 Section {
-                    ForEach(content) { item in
+                    ForEach(soundsMatchingTitle) { item in
                         PlayableContentView(
                             content: item,
                             favorites: Set<String>(arrayLiteral: ""),
@@ -32,27 +33,23 @@ struct SearchResultsView: View {
                         .searchCompletion(item)
                     }
                 } header: {
-                    HeaderView(title: "SONS - CORRESPONDÊNCIA NO TÍTULO")
+                    HeaderView(title: "SONS - CORRESPONDE NO TÍTULO")
                 }
             }
 
-//            if let content = results.content {
-//                Section {
-//                    ForEach(content) { item in
-//                        PlayableContentView(
-//                            content: item,
-//                            favorites: Set<String>(arrayLiteral: ""),
-//                            highlighted: Set<String>(arrayLiteral: ""),
-//                            nowPlaying: Set<String>(arrayLiteral: ""),
-//                            selectedItems: Set<String>(arrayLiteral: ""),
-//                            currentContentListMode: .constant(.regular)
-//                        )
-//                        .searchCompletion(item)
-//                    }
-//                } header: {
-//                    HeaderView(title: "SONS - CORRESPONDÊNCIA NO CONTEÚDO")
-//                }
-//            }
+            if let soundsMatchingContent = results.soundsMatchingContent {
+                Section {
+                    ForEach(soundsMatchingContent) { item in
+                        ContentWithDescriptionMatch(
+                            content: item,
+                            highlight: searchString
+                        )
+                        .searchCompletion(item)
+                    }
+                } header: {
+                    HeaderView(title: "SONS - CORRESPONDE NO CONTEÚDO")
+                }
+            }
 
             if let authors = results.authors {
                 Section {
@@ -61,7 +58,7 @@ struct SearchResultsView: View {
                             .searchCompletion(author)
                     }
                 } header: {
-                    HeaderView(title: "AUTORES")
+                    HeaderView(title: "AUTORES - CORRESPONDE NO NOME")
                 }
             }
 
@@ -72,13 +69,13 @@ struct SearchResultsView: View {
                             .searchCompletion(folder)
                     }
                 } header: {
-                    HeaderView(title: "PASTAS")
+                    HeaderView(title: "PASTAS - CORRESPONDE NO NOME")
                 }
             }
 
-            if let reactions = results.reactions {
+            if let reactionsMatchingTitle = results.reactionsMatchingTitle {
                 Section {
-                    ForEach(reactions) { reaction in
+                    ForEach(reactionsMatchingTitle) { reaction in
                         ReactionItem(reaction: reaction)
                             .searchCompletion(reaction)
                     }
@@ -87,9 +84,9 @@ struct SearchResultsView: View {
                 }
             }
 
-            if let reactions = results.reactions {
+            if let reactionsMatchingFeeling = results.reactionsMatchingFeeling {
                 Section {
-                    ForEach(reactions) { reaction in
+                    ForEach(reactionsMatchingFeeling) { reaction in
                         ReactionItem(reaction: reaction)
                             .searchCompletion(reaction)
                     }
@@ -120,6 +117,38 @@ extension SearchResultsView {
             .background(Color.systemBackground)
         }
     }
+
+    struct ContentWithDescriptionMatch: View {
+
+        let content: AnyEquatableMedoContent
+        let highlight: String
+
+        private var text: AttributedString {
+            var attributedString = AttributedString(content.description)
+            if let range = attributedString.range(of: highlight, options: .caseInsensitive) {
+                attributedString[range].foregroundColor = .yellow
+            }
+            return attributedString
+        }
+
+        var body: some View {
+            VStack {
+                PlayableContentView(
+                    content: content,
+                    favorites: Set<String>(arrayLiteral: ""),
+                    highlighted: Set<String>(arrayLiteral: ""),
+                    nowPlaying: Set<String>(arrayLiteral: ""),
+                    selectedItems: Set<String>(arrayLiteral: ""),
+                    currentContentListMode: .constant(.regular)
+                )
+
+                Text("\"\(text)\"")
+                    .italic()
+                    .lineLimit(3)
+                    .multilineTextAlignment(.leading)
+            }
+        }
+    }
 }
 
 // MARK: - Preview
@@ -127,11 +156,13 @@ extension SearchResultsView {
 #Preview {
     ScrollView {
         SearchResultsView(
+            searchString: "bolso",
             results: SearchResults(
-                content: Sound.sampleSounds.map { AnyEquatableMedoContent($0) },
+                soundsMatchingTitle: Sound.sampleSounds.map { AnyEquatableMedoContent($0) },
+                soundsMatchingContent: [Sound.sampleBolsoA, Sound.sampleBolsoB].map { AnyEquatableMedoContent($0) },
                 authors: [.bozo, .omarAziz],
                 folders: [.mockA, .mockB],
-                reactions: [.viralMock, .choqueMock]
+                reactionsMatchingTitle: [.viralMock, .choqueMock]
             )
         )
     }

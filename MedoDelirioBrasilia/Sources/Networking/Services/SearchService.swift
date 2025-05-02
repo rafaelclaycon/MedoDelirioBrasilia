@@ -37,7 +37,7 @@ final class SearchService: SearchServiceProtocol {
 
     func results(matching searchString: String) -> SearchResults {
         return SearchResults(
-            content: contentRepository.content(matching: searchString, allowSensitive)
+            soundsMatchingTitle: contentRepository.content(matching: searchString, allowSensitive)
         )
     }
 }

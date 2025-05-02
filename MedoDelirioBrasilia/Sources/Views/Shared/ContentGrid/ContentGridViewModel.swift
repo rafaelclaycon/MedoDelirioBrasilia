@@ -243,7 +243,7 @@ extension ContentGridViewModel {
             return
         }
         searchResults = searchService.results(matching: newString)
-        print(searchResults.content?.count)
+        print(searchResults.soundsMatchingTitle?.count)
     }
 }
 

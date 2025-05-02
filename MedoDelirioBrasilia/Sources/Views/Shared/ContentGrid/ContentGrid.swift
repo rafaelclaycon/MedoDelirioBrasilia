@@ -144,7 +144,10 @@ struct ContentGrid<
                             if viewModel.searchText.isEmpty {
                                 Text("Sugestões")
                             } else {
-                                SearchResultsView(results: viewModel.searchResults)
+                                SearchResultsView(
+                                    searchString: viewModel.searchText,
+                                    results: viewModel.searchResults
+                                )
                             }
                         }
                         .disableAutocorrection(true)
