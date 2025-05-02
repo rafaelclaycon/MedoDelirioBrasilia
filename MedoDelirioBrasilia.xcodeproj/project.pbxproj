@@ -1386,7 +1386,7 @@
 		D9D3D493288750C400C42FDE /* FolderGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderGridViewModel.swift */; };
 		D9D474432D9C8A03007371C3 /* AddToFolderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D474422D9C8A03007371C3 /* AddToFolderDetails.swift */; };
 		D9D53E3D2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */; };
-		D9D627122B266389000EB791 /* AuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D627112B266389000EB791 /* AuthorCell.swift */; };
+		D9D627122B266389000EB791 /* HorizontalAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D627112B266389000EB791 /* HorizontalAuthorView.swift */; };
 		D9D734FB2AD38AF300A25916 /* ClassicRetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D734FA2AD38AF300A25916 /* ClassicRetroView.swift */; };
 		D9D798742A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */; };
 		D9D7988F2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */; };
@@ -1533,6 +1533,7 @@
 		D9FD0F1628B2B2FA0000616A /* Funk do Sentar na Mesa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0F1228B2B2FA0000616A /* Funk do Sentar na Mesa.mp3 */; };
 		D9FD0F1728B2B2FA0000616A /* Eu vou, eu vou, sentar na mesa eu vou funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0F1328B2B2FA0000616A /* Eu vou, eu vou, sentar na mesa eu vou funk.mp3 */; };
 		D9FD9E8D2A89690C0071F4A9 /* YoureOfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD9E8C2A89690C0071F4A9 /* YoureOfflineView.swift */; };
+		D9FE84CA2DC43F73009A1FFE /* VerticalAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE84C92DC43F73009A1FFE /* VerticalAuthorView.swift */; };
 		D9FF3F972B142F78007AE773 /* UpdateIncentiveBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF3F962B142F78007AE773 /* UpdateIncentiveBanner.swift */; };
 		D9FF3F992B1431C8007AE773 /* UpdateIncentive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF3F982B1431C8007AE773 /* UpdateIncentive.swift */; };
 		D9FF3F9B2B14325A007AE773 /* UpdateIncentiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF3F9A2B14325A007AE773 /* UpdateIncentiveTests.swift */; };
@@ -2953,7 +2954,7 @@
 		D9D3D492288750C400C42FDE /* FolderGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderGridViewModel.swift; sourceTree = "<group>"; };
 		D9D474422D9C8A03007371C3 /* AddToFolderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderDetails.swift; sourceTree = "<group>"; };
 		D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano - Advogados malucos.mp3"; sourceTree = "<group>"; };
-		D9D627112B266389000EB791 /* AuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCell.swift; sourceTree = "<group>"; };
+		D9D627112B266389000EB791 /* HorizontalAuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalAuthorView.swift; sourceTree = "<group>"; };
 		D9D734FA2AD38AF300A25916 /* ClassicRetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicRetroView.swift; sourceTree = "<group>"; };
 		D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Diogo Defante - Ih, a porrada ta lambrando ainda.mp3"; sourceTree = "<group>"; };
 		D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3"; sourceTree = "<group>"; };
@@ -3100,6 +3101,7 @@
 		D9FD0F1228B2B2FA0000616A /* Funk do Sentar na Mesa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk do Sentar na Mesa.mp3"; sourceTree = "<group>"; };
 		D9FD0F1328B2B2FA0000616A /* Eu vou, eu vou, sentar na mesa eu vou funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu vou, eu vou, sentar na mesa eu vou funk.mp3"; sourceTree = "<group>"; };
 		D9FD9E8C2A89690C0071F4A9 /* YoureOfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoureOfflineView.swift; sourceTree = "<group>"; };
+		D9FE84C92DC43F73009A1FFE /* VerticalAuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAuthorView.swift; sourceTree = "<group>"; };
 		D9FF3F962B142F78007AE773 /* UpdateIncentiveBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateIncentiveBanner.swift; sourceTree = "<group>"; };
 		D9FF3F982B1431C8007AE773 /* UpdateIncentive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateIncentive.swift; sourceTree = "<group>"; };
 		D9FF3F9A2B14325A007AE773 /* UpdateIncentiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateIncentiveTests.swift; sourceTree = "<group>"; };
@@ -4934,9 +4936,10 @@
 				D98622DF283FC57100E9F630 /* AuthorDetailView.swift */,
 				D99DC19C28423AD7002B03B6 /* AuthorDetailViewModel.swift */,
 				D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */,
-				D9D627112B266389000EB791 /* AuthorCell.swift */,
+				D9D627112B266389000EB791 /* HorizontalAuthorView.swift */,
 				D90449592BB283C20023088B /* ExternalLinkButton.swift */,
 				D9ACB4F22DB4070F00CCCDD8 /* AuthorHeaderView.swift */,
+				D9FE84C92DC43F73009A1FFE /* VerticalAuthorView.swift */,
 			);
 			path = Authors;
 			sourceTree = "<group>";
@@ -6983,7 +6986,7 @@
 				D95C3E142A02E70D00172C17 /* UpdateEvent.swift in Sources */,
 				D990705D2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift in Sources */,
 				D9D474432D9C8A03007371C3 /* AddToFolderDetails.swift in Sources */,
-				D9D627122B266389000EB791 /* AuthorCell.swift in Sources */,
+				D9D627122B266389000EB791 /* HorizontalAuthorView.swift in Sources */,
 				D95315A92A9AA783003DA40E /* MusicGenre.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
@@ -7041,6 +7044,7 @@
 				D96370052B085845002E8838 /* ExplicitDisabledWarning.swift in Sources */,
 				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,
 				D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */,
+				D9FE84CA2DC43F73009A1FFE /* VerticalAuthorView.swift in Sources */,
 				D9E39DB92A1E891D0053A527 /* LocalDatabase+UpdateEvent.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsGrid+ViewModel.swift in Sources */,
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,

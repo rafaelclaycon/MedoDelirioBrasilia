@@ -55,7 +55,7 @@ struct AuthorsGrid: View {
                             NoSearchResultsView(searchText: viewModel.searchText)
                         } else {
                             ForEach(viewModel.searchResults) { author in
-                                AuthorCell(author: author)
+                                HorizontalAuthorView(author: author)
                                     .onTapGesture {
                                         push(GeneralNavigationDestination.authorDetail(author))
                                     }

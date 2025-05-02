@@ -82,6 +82,7 @@ enum SoundError: Error, LocalizedError {
 }
 
 extension Sound {
+
     static let sampleSounds = [
         Sound(title: "Alegria", authorName: "Fábio Porchat"),
         Sound(title: "Maravilhoso!", authorName: "Milton Cunha"),
