@@ -18,6 +18,7 @@ final class SearchService: SearchServiceProtocol {
 
     private let database: LocalDatabaseProtocol
     private let contentRepository: ContentRepositoryProtocol
+    private let authorService: AuthorServiceProtocol
 
     public var allowSensitive: Bool
 
@@ -26,10 +27,12 @@ final class SearchService: SearchServiceProtocol {
     init(
         database: LocalDatabaseProtocol,
         contentRepository: ContentRepositoryProtocol,
+        authorService: AuthorServiceProtocol,
         allowSensitive: Bool = false
     ) {
         self.database = database
         self.contentRepository = contentRepository
+        self.authorService = authorService
         self.allowSensitive = allowSensitive
     }
 
@@ -37,7 +40,11 @@ final class SearchService: SearchServiceProtocol {
 
     func results(matching searchString: String) -> SearchResults {
         return SearchResults(
-            soundsMatchingTitle: contentRepository.content(matching: searchString, allowSensitive)
+            soundsMatchingTitle: contentRepository.sounds(matchingTitle: searchString, allowSensitive),
+            soundsMatchingContent: contentRepository.sounds(matchingDescription: searchString, allowSensitive),
+            songsMatchingTitle: contentRepository.songs(matchingTitle: searchString, allowSensitive),
+            songsMatchingContent: contentRepository.songs(matchingDescription: searchString, allowSensitive),
+            authors: authorService.authors(matchingName: searchString)
         )
     }
 }

@@ -19,8 +19,9 @@ protocol ContentRepositoryProtocol {
     func content(in folderId: String, _ allowSensitive: Bool, _ sortOrder: FolderSoundSortOption) throws -> [AnyEquatableMedoContent]
     /// Returns content with the given IDs. Includes both Sounds and Songs.
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
-    func content(matching description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent]
 
+    func sounds(matchingTitle title: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent]
+    func sounds(matchingDescription description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent]
     /// Returns a random Sound.
     func randomSound(_ allowSensitive: Bool) -> Sound?
 
@@ -28,6 +29,9 @@ protocol ContentRepositoryProtocol {
     func favoriteExists(_ contentId: String) throws -> Bool
     func insert(favorite: Favorite) throws
     func deleteFavorite(_ contentId: String) throws
+
+    func songs(matchingTitle title: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent]
+    func songs(matchingDescription description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent]
 
     func author(withId authorId: String) throws -> Author?
 
@@ -125,18 +129,32 @@ final class ContentRepository: ContentRepositoryProtocol {
         try database.content(withIds: contentIds)
     }
 
-    func content(matching description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+    func sounds(matchingTitle title: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
         if allContent == nil {
             loadAllContent()
         }
         guard let allContent, allContent.count > 0 else { return [] }
-        var content = allContent
+        var content = allContent.filter { $0.type == .sound }
         if !allowSensitive {
             content = content.filter { !$0.isOffensive }
         }
-        content = content.filter { item in
-            let searchString = "\(item.description.lowercased().withoutDiacritics()) \(item.subtitle.lowercased().withoutDiacritics())"
-            return searchString.contains(description.lowercased().withoutDiacritics())
+        content = content.filter {
+            $0.title.lowercased().withoutDiacritics().contains(title.lowercased().withoutDiacritics())
+        }
+        return sort(content: content, by: .titleAscending)
+    }
+
+    func sounds(matchingDescription description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
+        var content = allContent.filter { $0.type == .sound }
+        if !allowSensitive {
+            content = content.filter { !$0.isOffensive }
+        }
+        content = content.filter {
+            $0.description.lowercased().withoutDiacritics().contains(description.lowercased().withoutDiacritics())
         }
         return sort(content: content, by: .titleAscending)
     }
@@ -164,6 +182,40 @@ final class ContentRepository: ContentRepositoryProtocol {
     func deleteFavorite(_ contentId: String) throws {
         try database.deleteFavorite(withId: contentId)
     }
+
+    // MARK: - Song
+
+    func songs(matchingTitle title: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
+        var content = allContent.filter { $0.type == .song }
+        if !allowSensitive {
+            content = content.filter { !$0.isOffensive }
+        }
+        content = content.filter {
+            $0.title.lowercased().withoutDiacritics().contains(title.lowercased().withoutDiacritics())
+        }
+        return sort(content: content, by: .titleAscending)
+    }
+
+    func songs(matchingDescription description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+        if allContent == nil {
+            loadAllContent()
+        }
+        guard let allContent, allContent.count > 0 else { return [] }
+        var content = allContent.filter { $0.type == .song }
+        if !allowSensitive {
+            content = content.filter { !$0.isOffensive }
+        }
+        content = content.filter {
+            $0.description.lowercased().withoutDiacritics().contains(description.lowercased().withoutDiacritics())
+        }
+        return sort(content: content, by: .titleAscending)
+    }
+
+    // MARK: - Author
 
     func author(withId authorId: String) throws -> Author? {
         try database.author(withId: authorId)

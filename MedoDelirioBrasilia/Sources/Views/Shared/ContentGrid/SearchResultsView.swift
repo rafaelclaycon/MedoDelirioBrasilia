@@ -21,7 +21,7 @@ struct SearchResultsView: View {
         LazyVGrid(columns: columns, spacing: .spacing(.medium), pinnedViews: .sectionHeaders) {
             if let soundsMatchingTitle = results.soundsMatchingTitle {
                 Section {
-                    ForEach(soundsMatchingTitle) { item in
+                    ForEach(soundsMatchingTitle.prefix(4)) { item in
                         PlayableContentView(
                             content: item,
                             favorites: Set<String>(arrayLiteral: ""),
@@ -33,13 +33,13 @@ struct SearchResultsView: View {
                         .searchCompletion(item)
                     }
                 } header: {
-                    HeaderView(title: "SONS - CORRESPONDE NO TÍTULO")
+                    HeaderView(title: "SONS - CORRESPONDEM NO TÍTULO (\(soundsMatchingTitle.count))")
                 }
             }
 
             if let soundsMatchingContent = results.soundsMatchingContent {
                 Section {
-                    ForEach(soundsMatchingContent) { item in
+                    ForEach(soundsMatchingContent.prefix(4)) { item in
                         ContentWithDescriptionMatch(
                             content: item,
                             highlight: searchString
@@ -47,7 +47,39 @@ struct SearchResultsView: View {
                         .searchCompletion(item)
                     }
                 } header: {
-                    HeaderView(title: "SONS - CORRESPONDE NO CONTEÚDO")
+                    HeaderView(title: "SONS - CORRESPONDEM NO CONTEÚDO (\(soundsMatchingContent.count))")
+                }
+            }
+
+            if let songsMatchingTitle = results.songsMatchingTitle {
+                Section {
+                    ForEach(songsMatchingTitle.prefix(4)) { item in
+                        PlayableContentView(
+                            content: item,
+                            favorites: Set<String>(arrayLiteral: ""),
+                            highlighted: Set<String>(arrayLiteral: ""),
+                            nowPlaying: Set<String>(arrayLiteral: ""),
+                            selectedItems: Set<String>(arrayLiteral: ""),
+                            currentContentListMode: .constant(.regular)
+                        )
+                        .searchCompletion(item)
+                    }
+                } header: {
+                    HeaderView(title: "SONS - CORRESPONDEM NO TÍTULO (\(songsMatchingTitle.count))")
+                }
+            }
+
+            if let songsMatchingContent = results.songsMatchingContent {
+                Section {
+                    ForEach(songsMatchingContent.prefix(4)) { item in
+                        ContentWithDescriptionMatch(
+                            content: item,
+                            highlight: searchString
+                        )
+                        .searchCompletion(item)
+                    }
+                } header: {
+                    HeaderView(title: "SONS - CORRESPONDEM NO CONTEÚDO (\(songsMatchingContent.count))")
                 }
             }
 
@@ -58,7 +90,7 @@ struct SearchResultsView: View {
                             .searchCompletion(author)
                     }
                 } header: {
-                    HeaderView(title: "AUTORES - CORRESPONDE NO NOME")
+                    HeaderView(title: "AUTORES - CORRESPONDEM NO NOME (\(authors.count))")
                 }
             }
 
@@ -69,7 +101,7 @@ struct SearchResultsView: View {
                             .searchCompletion(folder)
                     }
                 } header: {
-                    HeaderView(title: "PASTAS - CORRESPONDE NO NOME")
+                    HeaderView(title: "PASTAS - CORRESPONDEM NO NOME (\(folders.count))")
                 }
             }
 
@@ -80,7 +112,7 @@ struct SearchResultsView: View {
                             .searchCompletion(reaction)
                     }
                 } header: {
-                    HeaderView(title: "REAÇÕES - CORRESPONDE NO TÍTULO")
+                    HeaderView(title: "REAÇÕES - CORRESPONDEM NO TÍTULO (\(reactionsMatchingTitle.count))")
                 }
             }
 
@@ -91,7 +123,7 @@ struct SearchResultsView: View {
                             .searchCompletion(reaction)
                     }
                 } header: {
-                    HeaderView(title: "REAÇÕES - EXPRESSA O SENTIMENTO DE \"ALEGRIA\"")
+                    HeaderView(title: "REAÇÕES - EXPRESSAM O SENTIMENTO DE \"\(searchString.uppercased())\" (\(reactionsMatchingFeeling.count))")
                 }
             }
         }
@@ -153,7 +185,7 @@ extension SearchResultsView {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("Complete") {
     ScrollView {
         SearchResultsView(
             searchString: "bolso",
@@ -162,7 +194,8 @@ extension SearchResultsView {
                 soundsMatchingContent: [Sound.sampleBolsoA, Sound.sampleBolsoB].map { AnyEquatableMedoContent($0) },
                 authors: [.bozo, .omarAziz],
                 folders: [.mockA, .mockB],
-                reactionsMatchingTitle: [.viralMock, .choqueMock]
+                reactionsMatchingTitle: [.viralMock, .choqueMock],
+                reactionsMatchingFeeling: [.viralMock]
             )
         )
     }

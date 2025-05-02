@@ -35,13 +35,19 @@ final class FakeContentRepository: ContentRepositoryProtocol {
         []
     }
 
-    func content(matching description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+    func sounds(matchingTitle title: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+        []
+    }
+
+    func sounds(matchingDescription description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
         []
     }
 
     func randomSound(_ allowSensitive: Bool) -> Sound? {
         nil
     }
+
+    // Favorite
 
     func favorites() throws -> [Favorite] {
         []
@@ -58,6 +64,18 @@ final class FakeContentRepository: ContentRepositoryProtocol {
     func deleteFavorite(_ contentId: String) throws {
         //
     }
+
+    // Song
+
+    func songs(matchingTitle title: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+        []
+    }
+
+    func songs(matchingDescription description: String, _ allowSensitive: Bool) -> [AnyEquatableMedoContent] {
+        []
+    }
+
+    // Author
 
     func author(withId authorId: String) throws -> Author? {
         nil

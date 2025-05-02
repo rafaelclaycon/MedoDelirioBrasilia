@@ -56,6 +56,7 @@ struct ContentGrid<
 
     @Environment(\.sizeCategory) private var sizeCategory
     @Environment(\.push) private var push
+    @Environment(\.isSearching) private var isSearching
 
     // MARK: - Initializer
 
@@ -303,6 +304,14 @@ struct ContentGrid<
                     viewModel.onViewAppeared()
                     updateGridLayout()
                 }
+                .overlay {
+                    if isSearching && !viewModel.searchText.isEmpty {
+                        SearchResultsView(
+                            searchString: viewModel.searchText,
+                            results: viewModel.searchResults
+                        )
+                    }
+                }
             }
 
         case .error(_):
@@ -362,7 +371,11 @@ struct ContentGrid<
         state: .loading,
         viewModel: ContentGridViewModel(
             contentRepository: FakeContentRepository(),
-            searchService: SearchService(database: FakeLocalDatabase(), contentRepository: FakeContentRepository()),
+            searchService: SearchService(
+                database: FakeLocalDatabase(),
+                contentRepository: FakeContentRepository(),
+                authorService: FakeAuthorService()
+            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase()),
             screen: .mainContentView,
             menuOptions: [.sharingOptions()],
