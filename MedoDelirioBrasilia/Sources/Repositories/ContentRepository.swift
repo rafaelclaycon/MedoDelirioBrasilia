@@ -154,7 +154,11 @@ final class ContentRepository: ContentRepositoryProtocol {
             content = content.filter { !$0.isOffensive }
         }
         content = content.filter {
-            $0.description.lowercased().withoutDiacritics().contains(description.lowercased().withoutDiacritics())
+            $0.description.lowercased().withoutDiacritics().contains(
+                description.lowercased().withoutDiacritics()
+            ) && !$0.title.lowercased().withoutDiacritics().contains(
+                description.lowercased().withoutDiacritics()
+            )
         }
         return sort(content: content, by: .titleAscending)
     }
@@ -210,7 +214,11 @@ final class ContentRepository: ContentRepositoryProtocol {
             content = content.filter { !$0.isOffensive }
         }
         content = content.filter {
-            $0.description.lowercased().withoutDiacritics().contains(description.lowercased().withoutDiacritics())
+            $0.description.lowercased().withoutDiacritics().contains(
+                description.lowercased().withoutDiacritics()
+            ) && !$0.title.lowercased().withoutDiacritics().contains(
+                description.lowercased().withoutDiacritics()
+            )
         }
         return sort(content: content, by: .titleAscending)
     }

@@ -11,122 +11,156 @@ struct SearchResultsView: View {
 
     let searchString: String
     let results: SearchResults
+    let containerWidth: CGFloat
 
-    @State private var columns: [GridItem] = [
-        GridItem(.flexible(), spacing: .spacing(.small)),
-        GridItem(.flexible(), spacing: .spacing(.small))
-    ]
+    @State private var columns: [GridItem] = []
+
+    // MARK: - Environment
+
+    @Environment(\.sizeCategory) private var sizeCategory
+    @Environment(\.push) private var push
+
+    // MARK: - View Body
 
     var body: some View {
-        LazyVGrid(columns: columns, spacing: .spacing(.medium), pinnedViews: .sectionHeaders) {
-            if let soundsMatchingTitle = results.soundsMatchingTitle {
-                Section {
-                    ForEach(soundsMatchingTitle.prefix(4)) { item in
-                        PlayableContentView(
-                            content: item,
-                            favorites: Set<String>(arrayLiteral: ""),
-                            highlighted: Set<String>(arrayLiteral: ""),
-                            nowPlaying: Set<String>(arrayLiteral: ""),
-                            selectedItems: Set<String>(arrayLiteral: ""),
-                            currentContentListMode: .constant(.regular)
-                        )
-                        .searchCompletion(item)
+        if results.noResults {
+            NoSearchResultsView(searchText: searchString)
+        } else {
+            LazyVGrid(
+                columns: columns,
+                spacing: .spacing(.small),
+                pinnedViews: .sectionHeaders
+            ) {
+                if let soundsMatchingTitle = results.soundsMatchingTitle, !soundsMatchingTitle.isEmpty {
+                    Section {
+                        ForEach(soundsMatchingTitle.prefix(4)) { item in
+                            PlayableContentView(
+                                content: item,
+                                favorites: Set<String>(arrayLiteral: ""),
+                                highlighted: Set<String>(arrayLiteral: ""),
+                                nowPlaying: Set<String>(arrayLiteral: ""),
+                                selectedItems: Set<String>(arrayLiteral: ""),
+                                currentContentListMode: .constant(.regular)
+                            )
+                        }
+                    } header: {
+                        HeaderView(title: "SONS QUE CORRESPONDEM NO TÍTULO (\(soundsMatchingTitle.count))")
+                    } footer: {
+                        Button {
+                            print("Tapped")
+                        } label: {
+                            HStack {
+                                Spacer()
+                                Text("Ver Todos")
+                                Spacer()
+                            }
+                        }
                     }
-                } header: {
-                    HeaderView(title: "SONS - CORRESPONDEM NO TÍTULO (\(soundsMatchingTitle.count))")
+                }
+
+                if let soundsMatchingContent = results.soundsMatchingContent, !soundsMatchingContent.isEmpty {
+                    Section {
+                        ForEach(soundsMatchingContent.prefix(4)) { item in
+                            ContentWithDescriptionMatch(
+                                content: item,
+                                highlight: searchString
+                            )
+                        }
+                    } header: {
+                        HeaderView(title: "SONS QUE CORRESPONDEM NO CONTEÚDO (\(soundsMatchingContent.count))")
+                    }
+                }
+
+                if let songsMatchingTitle = results.songsMatchingTitle, !songsMatchingTitle.isEmpty {
+                    Section {
+                        ForEach(songsMatchingTitle.prefix(4)) { item in
+                            PlayableContentView(
+                                content: item,
+                                favorites: Set<String>(arrayLiteral: ""),
+                                highlighted: Set<String>(arrayLiteral: ""),
+                                nowPlaying: Set<String>(arrayLiteral: ""),
+                                selectedItems: Set<String>(arrayLiteral: ""),
+                                currentContentListMode: .constant(.regular)
+                            )
+                        }
+                    } header: {
+                        HeaderView(title: "MÚSICAS QUE CORRESPONDEM NO TÍTULO (\(songsMatchingTitle.count))")
+                    }
+                }
+
+                if let songsMatchingContent = results.songsMatchingContent, !songsMatchingContent.isEmpty {
+                    Section {
+                        ForEach(songsMatchingContent.prefix(4)) { item in
+                            ContentWithDescriptionMatch(
+                                content: item,
+                                highlight: searchString
+                            )
+                        }
+                    } header: {
+                        HeaderView(title: "MÚSICAS QUE CORRESPONDEM NO CONTEÚDO (\(songsMatchingContent.count))")
+                    }
+                }
+
+                if let authors = results.authors, !authors.isEmpty {
+                    Section {
+                        ForEach(authors) { author in
+                            VerticalAuthorView(author: author)
+                                .onTapGesture {
+                                    push(GeneralNavigationDestination.authorDetail(author))
+                                }
+                        }
+                    } header: {
+                        HeaderView(title: "AUTORES QUE CORRESPONDEM NO NOME (\(authors.count))")
+                    }
+                }
+
+                if let folders = results.folders, !folders.isEmpty {
+                    Section {
+                        ForEach(folders) { folder in
+                            FolderView(folder: folder)
+                        }
+                    } header: {
+                        HeaderView(title: "PASTAS QUE CORRESPONDEM NO NOME (\(folders.count))")
+                    }
+                }
+
+                if let reactionsMatchingTitle = results.reactionsMatchingTitle, !reactionsMatchingTitle.isEmpty {
+                    Section {
+                        ForEach(reactionsMatchingTitle) { reaction in
+                            ReactionItem(reaction: reaction)
+                        }
+                    } header: {
+                        HeaderView(title: "REAÇÕES QUE CORRESPONDEM NO TÍTULO (\(reactionsMatchingTitle.count))")
+                    }
+                }
+
+                if let reactionsMatchingFeeling = results.reactionsMatchingFeeling, !reactionsMatchingFeeling.isEmpty {
+                    Section {
+                        ForEach(reactionsMatchingFeeling) { reaction in
+                            ReactionItem(reaction: reaction)
+                        }
+                    } header: {
+                        HeaderView(title: "REAÇÕES QUE EXPRESSAM O SENTIMENTO DE \"\(searchString.uppercased())\" (\(reactionsMatchingFeeling.count))")
+                    }
                 }
             }
-
-            if let soundsMatchingContent = results.soundsMatchingContent {
-                Section {
-                    ForEach(soundsMatchingContent.prefix(4)) { item in
-                        ContentWithDescriptionMatch(
-                            content: item,
-                            highlight: searchString
-                        )
-                        .searchCompletion(item)
-                    }
-                } header: {
-                    HeaderView(title: "SONS - CORRESPONDEM NO CONTEÚDO (\(soundsMatchingContent.count))")
-                }
+            .onAppear {
+                updateGridLayout()
             }
-
-            if let songsMatchingTitle = results.songsMatchingTitle {
-                Section {
-                    ForEach(songsMatchingTitle.prefix(4)) { item in
-                        PlayableContentView(
-                            content: item,
-                            favorites: Set<String>(arrayLiteral: ""),
-                            highlighted: Set<String>(arrayLiteral: ""),
-                            nowPlaying: Set<String>(arrayLiteral: ""),
-                            selectedItems: Set<String>(arrayLiteral: ""),
-                            currentContentListMode: .constant(.regular)
-                        )
-                        .searchCompletion(item)
-                    }
-                } header: {
-                    HeaderView(title: "SONS - CORRESPONDEM NO TÍTULO (\(songsMatchingTitle.count))")
-                }
-            }
-
-            if let songsMatchingContent = results.songsMatchingContent {
-                Section {
-                    ForEach(songsMatchingContent.prefix(4)) { item in
-                        ContentWithDescriptionMatch(
-                            content: item,
-                            highlight: searchString
-                        )
-                        .searchCompletion(item)
-                    }
-                } header: {
-                    HeaderView(title: "SONS - CORRESPONDEM NO CONTEÚDO (\(songsMatchingContent.count))")
-                }
-            }
-
-            if let authors = results.authors {
-                Section {
-                    ForEach(authors) { author in
-                        VerticalAuthorView(author: author)
-                            .searchCompletion(author)
-                    }
-                } header: {
-                    HeaderView(title: "AUTORES - CORRESPONDEM NO NOME (\(authors.count))")
-                }
-            }
-
-            if let folders = results.folders {
-                Section {
-                    ForEach(folders) { folder in
-                        FolderView(folder: folder)
-                            .searchCompletion(folder)
-                    }
-                } header: {
-                    HeaderView(title: "PASTAS - CORRESPONDEM NO NOME (\(folders.count))")
-                }
-            }
-
-            if let reactionsMatchingTitle = results.reactionsMatchingTitle {
-                Section {
-                    ForEach(reactionsMatchingTitle) { reaction in
-                        ReactionItem(reaction: reaction)
-                            .searchCompletion(reaction)
-                    }
-                } header: {
-                    HeaderView(title: "REAÇÕES - CORRESPONDEM NO TÍTULO (\(reactionsMatchingTitle.count))")
-                }
-            }
-
-            if let reactionsMatchingFeeling = results.reactionsMatchingFeeling {
-                Section {
-                    ForEach(reactionsMatchingFeeling) { reaction in
-                        ReactionItem(reaction: reaction)
-                            .searchCompletion(reaction)
-                    }
-                } header: {
-                    HeaderView(title: "REAÇÕES - EXPRESSAM O SENTIMENTO DE \"\(searchString.uppercased())\" (\(reactionsMatchingFeeling.count))")
-                }
+            .onChange(of: containerWidth) {
+                updateGridLayout()
             }
         }
+    }
+
+    // MARK: - Functions
+
+    private func updateGridLayout() {
+        columns = GridHelper.adaptableColumns(
+            listWidth: containerWidth,
+            sizeCategory: sizeCategory,
+            spacing: .spacing(.small)
+        )
     }
 }
 
@@ -143,9 +177,12 @@ extension SearchResultsView {
                 Text(title)
                     .font(.callout)
                     .foregroundStyle(.gray)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
 
                 Spacer()
             }
+            .padding(.vertical, .spacing(.xSmall))
             .background(Color.systemBackground)
         }
     }
@@ -159,6 +196,7 @@ extension SearchResultsView {
             var attributedString = AttributedString(content.description)
             if let range = attributedString.range(of: highlight, options: .caseInsensitive) {
                 attributedString[range].foregroundColor = .yellow
+                attributedString[range].font = .headline
             }
             return attributedString
         }
@@ -178,6 +216,9 @@ extension SearchResultsView {
                     .italic()
                     .lineLimit(3)
                     .multilineTextAlignment(.leading)
+                    .foregroundStyle(.gray)
+
+                Spacer()
             }
         }
     }
@@ -185,19 +226,35 @@ extension SearchResultsView {
 
 // MARK: - Preview
 
-#Preview("Complete") {
-    ScrollView {
-        SearchResultsView(
-            searchString: "bolso",
-            results: SearchResults(
-                soundsMatchingTitle: Sound.sampleSounds.map { AnyEquatableMedoContent($0) },
-                soundsMatchingContent: [Sound.sampleBolsoA, Sound.sampleBolsoB].map { AnyEquatableMedoContent($0) },
-                authors: [.bozo, .omarAziz],
-                folders: [.mockA, .mockB],
-                reactionsMatchingTitle: [.viralMock, .choqueMock],
-                reactionsMatchingFeeling: [.viralMock]
+#Preview("No Results") {
+    GeometryReader { geometry in
+        ScrollView {
+            SearchResultsView(
+                searchString: "bolsorrrgnnn",
+                results: SearchResults(),
+                containerWidth: geometry.size.width
             )
-        )
+            .padding(.all, .spacing(.medium))
+        }
     }
-    .padding(.all, .spacing(.medium))
+}
+
+#Preview("Complete") {
+    GeometryReader { geometry in
+        ScrollView {
+            SearchResultsView(
+                searchString: "bolso",
+                results: SearchResults(
+                    soundsMatchingTitle: Sound.sampleSounds.map { AnyEquatableMedoContent($0) },
+                    soundsMatchingContent: [Sound.sampleBolsoA, Sound.sampleBolsoB].map { AnyEquatableMedoContent($0) },
+                    authors: [.bozo, .omarAziz],
+                    folders: [.mockA, .mockB],
+                    reactionsMatchingTitle: [.viralMock, .choqueMock],
+                    reactionsMatchingFeeling: [.viralMock]
+                ),
+                containerWidth: geometry.size.width
+            )
+            .padding(.all, .spacing(.medium))
+        }
+    }
 }

@@ -152,6 +152,7 @@
 		D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */; };
 		D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */; };
 		D91895F9297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91895F8297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 */; };
+		D91A177F2DC68032006647E6 /* StandaloneSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91A177E2DC68032006647E6 /* StandaloneSearchView.swift */; };
 		D91B39A92A67448500C7FE4F /* Kajuru - Exatamente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39A62A67448500C7FE4F /* Kajuru - Exatamente.mp3 */; };
 		D91B39AA2A67448500C7FE4F /* Bolsonaro - Exatamente isso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39A72A67448500C7FE4F /* Bolsonaro - Exatamente isso.mp3 */; };
 		D91B39AB2A67448500C7FE4F /* Vinheta do Plantao da Globo (versao funk).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39A82A67448500C7FE4F /* Vinheta do Plantao da Globo (versao funk).mp3 */; };
@@ -1716,6 +1717,7 @@
 		D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3"; sourceTree = "<group>"; };
 		D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3"; sourceTree = "<group>"; };
 		D91895F8297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3"; sourceTree = "<group>"; };
+		D91A177E2DC68032006647E6 /* StandaloneSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneSearchView.swift; sourceTree = "<group>"; };
 		D91B39A62A67448500C7FE4F /* Kajuru - Exatamente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kajuru - Exatamente.mp3"; sourceTree = "<group>"; };
 		D91B39A72A67448500C7FE4F /* Bolsonaro - Exatamente isso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Exatamente isso.mp3"; sourceTree = "<group>"; };
 		D91B39A82A67448500C7FE4F /* Vinheta do Plantao da Globo (versao funk).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vinheta do Plantao da Globo (versao funk).mp3"; sourceTree = "<group>"; };
@@ -4780,6 +4782,7 @@
 				D9400DE32DAA992500EFBE20 /* StandaloneFavoritesView.swift */,
 				D9400DE52DAAAF4800EFBE20 /* StandaloneFavoritesViewModel.swift */,
 				D965DCD32DAAD06F00BF6920 /* StandaloneAuthorsView.swift */,
+				D91A177E2DC68032006647E6 /* StandaloneSearchView.swift */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -7124,6 +7127,7 @@
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
 				D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */,
 				D992EF582BCB24310080C892 /* MainContentView.swift in Sources */,
+				D91A177F2DC68032006647E6 /* StandaloneSearchView.swift in Sources */,
 				D9A8AB282854436500B5A94B /* Date+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,6 +27,17 @@ struct SearchResults {
     var reactionsMatchingTitle: [Reaction]?
     var reactionsMatchingFeeling: [Reaction]?
 
+    var noResults: Bool {
+        return soundsMatchingTitle?.isEmpty ?? true &&
+            soundsMatchingContent?.isEmpty ?? true &&
+            songsMatchingTitle?.isEmpty ?? true &&
+            songsMatchingContent?.isEmpty ?? true &&
+            authors?.isEmpty ?? true &&
+            folders?.isEmpty ?? true &&
+            reactionsMatchingTitle?.isEmpty ?? true &&
+            reactionsMatchingFeeling?.isEmpty ?? true
+    }
+
     public mutating func clearAll() {
         self.soundsMatchingTitle = nil
         self.soundsMatchingContent = nil

@@ -16,6 +16,7 @@ struct MainView: View {
     @State private var favoritesPath = NavigationPath()
     @State private var reactionsPath = NavigationPath()
     @State private var authorsPath = NavigationPath()
+    @State private var searchTabPath = NavigationPath()
     @State private var foldersPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
@@ -229,6 +230,22 @@ struct MainView: View {
                                 )
                                 .environment(trendsHelper)
                             }
+                        }
+
+                        Tab(role: .search) {
+                            NavigationStack(path: $searchTabPath) {
+                                StandaloneSearchView(
+                                    searchService: SearchService(
+                                        database: LocalDatabase.shared,
+                                        contentRepository: ContentRepository(database: LocalDatabase.shared),
+                                        authorService: AuthorService(database: LocalDatabase.shared)
+                                    )
+                                )
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
+                                }
+                            }
+                            .environment(\.push, PushAction { searchTabPath.append($0) })
                         }
 
                         TabSection("Minhas Pastas") {

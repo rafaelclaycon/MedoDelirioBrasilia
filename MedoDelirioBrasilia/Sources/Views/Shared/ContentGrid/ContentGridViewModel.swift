@@ -31,7 +31,6 @@ final class ContentGridViewModel {
     var shareAsVideoResult = ShareAsVideoResult()
 
     // Search
-    var searchText: String = ""
     var searchResults = SearchResults()
 
     // Sharing
@@ -619,7 +618,7 @@ extension ContentGridViewModel {
         currentListMode.wrappedValue = .regular
         selectionKeeper.removeAll()
         selectedContentMultiple = nil
-        searchText = ""
+        //searchText = ""
         floatingOptions.wrappedValue = nil
     }
 
@@ -760,10 +759,10 @@ extension ContentGridViewModel {
 extension ContentGridViewModel {
 
     public func cancelSearchAndHighlight(id contentId: String) {
-        if !searchText.isEmpty {
-            searchText = ""
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
+//        if !searchText.isEmpty {
+//            searchText = ""
+//            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//        }
 
         highlightKeeper.insert(contentId)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {

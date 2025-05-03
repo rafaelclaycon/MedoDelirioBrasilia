@@ -19,7 +19,6 @@ struct MainContentView: View {
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
-    @State private var contentSearchTextIsEmpty: Bool? = true
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -102,7 +101,7 @@ struct MainContentView: View {
             ScrollView {
                 ScrollViewReader { proxy in
                     VStack(spacing: .spacing(.xSmall)) {
-                        if contentSearchTextIsEmpty ?? true, currentContentListMode.wrappedValue == .regular {
+                        if viewModel.searchText.isEmpty, currentContentListMode.wrappedValue == .regular {
                             ContentModePicker(
                                 options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
                                 selected: $viewModel.currentViewMode,
@@ -121,7 +120,7 @@ struct MainContentView: View {
                                         )
                                     }
 
-                                    if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
+                                    if viewModel.currentViewMode == .all, viewModel.searchText.isEmpty {
                                         BannersView(
                                             bannerRepository: bannerRepository,
                                             toast: viewModel.toast
@@ -132,8 +131,7 @@ struct MainContentView: View {
                                 ContentGrid(
                                     state: viewModel.state,
                                     viewModel: contentGridViewModel,
-                                    searchTextIsEmpty: $contentSearchTextIsEmpty,
-                                    allowSearch: true,
+                                    searchText: viewModel.searchText,
                                     isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
                                     containerSize: geometry.size,
                                     scrollViewProxy: proxy,
@@ -161,6 +159,12 @@ struct MainContentView: View {
                                     ,
                                     errorView: VStack { ContentLoadErrorView() }
                                 )
+                                .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt) /*{
+                                    if viewModel.searchText.isEmpty {
+                                        Text("Sugestões")
+                                    }
+                                }*/
+                                .disableAutocorrection(true)
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
                                     ExplicitDisabledWarning(
@@ -169,7 +173,7 @@ struct MainContentView: View {
                                     .padding(.top, explicitOffWarningTopPadding)
                                 }
 
-                                if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
+                                if viewModel.currentViewMode == .all, viewModel.searchText.isEmpty {
                                     Text("\(loadedContent.count) ITENS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
