@@ -153,6 +153,7 @@
 		D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */; };
 		D91895F9297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91895F8297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 */; };
 		D91A177F2DC68032006647E6 /* StandaloneSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91A177E2DC68032006647E6 /* StandaloneSearchView.swift */; };
+		D91A17822DC69340006647E6 /* SearchSuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91A17812DC69340006647E6 /* SearchSuggestionsView.swift */; };
 		D91B39A92A67448500C7FE4F /* Kajuru - Exatamente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39A62A67448500C7FE4F /* Kajuru - Exatamente.mp3 */; };
 		D91B39AA2A67448500C7FE4F /* Bolsonaro - Exatamente isso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39A72A67448500C7FE4F /* Bolsonaro - Exatamente isso.mp3 */; };
 		D91B39AB2A67448500C7FE4F /* Vinheta do Plantao da Globo (versao funk).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39A82A67448500C7FE4F /* Vinheta do Plantao da Globo (versao funk).mp3 */; };
@@ -1718,6 +1719,7 @@
 		D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3"; sourceTree = "<group>"; };
 		D91895F8297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3"; sourceTree = "<group>"; };
 		D91A177E2DC68032006647E6 /* StandaloneSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneSearchView.swift; sourceTree = "<group>"; };
+		D91A17812DC69340006647E6 /* SearchSuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionsView.swift; sourceTree = "<group>"; };
 		D91B39A62A67448500C7FE4F /* Kajuru - Exatamente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kajuru - Exatamente.mp3"; sourceTree = "<group>"; };
 		D91B39A72A67448500C7FE4F /* Bolsonaro - Exatamente isso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Exatamente isso.mp3"; sourceTree = "<group>"; };
 		D91B39A82A67448500C7FE4F /* Vinheta do Plantao da Globo (versao funk).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vinheta do Plantao da Globo (versao funk).mp3"; sourceTree = "<group>"; };
@@ -3187,6 +3189,16 @@
 				D97FFA642CA1EEFD00899285 /* WhatsNew */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D91A17802DC69310006647E6 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D92E22ED2DC4127500FEA890 /* SearchResultsView.swift */,
+				D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */,
+				D91A17812DC69340006647E6 /* SearchSuggestionsView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		D91E37562C4C8EEE003A1107 /* Navigation */ = {
@@ -4837,6 +4849,7 @@
 		D9759ACA2872B1D1005F9871 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D91A17802DC69310006647E6 /* Search */,
 				D91E37562C4C8EEE003A1107 /* Navigation */,
 				D9DBEA9F2BCC10F200220679 /* ContentGrid */,
 				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
@@ -5176,7 +5189,6 @@
 				D992EF572BCB24310080C892 /* MainContentView.swift */,
 				D9DBEA992BCBFB8600220679 /* MainContentViewModel.swift */,
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
-				D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */,
 				D94EAB5C29FC4D51004CD604 /* Sync */,
 				D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */,
 				D9F82F702D98712600DE3AF2 /* ContentModePicker.swift */,
@@ -5370,7 +5382,6 @@
 		D9DBEA9F2BCC10F200220679 /* ContentGrid */ = {
 			isa = PBXGroup;
 			children = (
-				D92E22ED2DC4127500FEA890 /* SearchResultsView.swift */,
 				D992EF592BCB24FB0080C892 /* ContentGrid.swift */,
 				D992EF5B2BCB25820080C892 /* ContentGridViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* PlayableContentView.swift */,
@@ -7100,6 +7111,7 @@
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
 				D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
+				D91A17822DC69340006647E6 /* SearchSuggestionsView.swift in Sources */,
 				D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */,
 				D949181228860ABC0079F545 /* StandaloneFolderGridView.swift in Sources */,
 				D9B8DE7F2BE5CEFD000C9035 /* ReactionContent.swift in Sources */,

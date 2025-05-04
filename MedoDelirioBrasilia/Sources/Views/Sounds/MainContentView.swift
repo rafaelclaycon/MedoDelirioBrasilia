@@ -41,6 +41,7 @@ struct MainContentView: View {
     @Environment(TrendsHelper.self) private var trendsHelper
     @Environment(SettingsHelper.self) private var settingsHelper 
     @Environment(PlayRandomSoundHelper.self) private var playRandomSoundHelper
+    @Environment(\.push) private var push
 
     // MARK: - Computed Properties
 
@@ -161,10 +162,16 @@ struct MainContentView: View {
                                 )
                                 .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt) /*{
                                     if viewModel.searchText.isEmpty {
-                                        Text("Sugestões")
+                                        SearchSuggestionsView(
+                                            onRecentSelectedAction: { viewModel.searchText = $0 },
+                                            popularContent: Sound.sampleSounds.prefix(3).map { AnyEquatableMedoContent($0) },
+                                            popularReactions: [Reaction.acidMock, Reaction.classicsMock, Reaction.frustrationMock],
+                                            onReactionSelectedAction: { push($0) }
+                                        )
+                                        .border(.orange)
                                     }
                                 }*/
-                                .disableAutocorrection(true)
+                                .autocorrectionDisabled()
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
                                     ExplicitDisabledWarning(

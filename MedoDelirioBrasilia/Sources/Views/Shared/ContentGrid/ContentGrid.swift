@@ -102,7 +102,7 @@ struct ContentGrid<
             case .loaded(let loadedContent):
                 if loadedContent.isEmpty {
                     emptyStateView
-                } else if let searchText, isSearching && !searchText.isEmpty {
+                } else if let searchText, isSearching {
                     SearchResultsView(
                         searchString: searchText,
                         results: viewModel.searchResults,

@@ -63,7 +63,7 @@ struct AuthorsGrid: View {
                         }
                     }
                     .searchable(text: $viewModel.searchText)
-                    .disableAutocorrection(true)
+                    .autocorrectionDisabled()
                     .padding(.top, .spacing(.xxSmall))
                     .onChange(of: containerWidth) {
                         viewModel.onContainerWidthChanged(newWidth: containerWidth)

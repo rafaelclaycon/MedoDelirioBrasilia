@@ -60,7 +60,6 @@ struct StandaloneFavoritesView: View {
                     ContentGrid(
                         state: viewModel.state,
                         viewModel: contentGridViewModel,
-                        searchText: viewModel.searchText,
                         isFavoritesOnlyView: true,
                         containerSize: geometry.size,
                         loadingView:
