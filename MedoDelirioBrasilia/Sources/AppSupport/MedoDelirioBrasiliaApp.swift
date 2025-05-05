@@ -155,18 +155,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        if AppPersistentMemory().getShouldRetrySendingDevicePushToken() {
-            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-            let token = tokenParts.joined()
-            //print("Device Token: \(token)")
+        Task {
+            if AppPersistentMemory().getShouldRetrySendingDevicePushToken() {
+                let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+                let token = tokenParts.joined()
+                //print("Device Token: \(token)")
 
-            let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
-            APIClient.shared.post(pushDevice: device) { success, error in
-                guard let success = success, success else {
+                let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
+
+                do {
+                    let success = try await APIClient.shared.register(pushDevice: device)
+                    AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: !success)
+                } catch {
                     AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
-                    return
                 }
-                AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: false)
             }
         }
     }
