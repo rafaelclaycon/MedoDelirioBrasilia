@@ -1242,7 +1242,6 @@
 		D9A9375D29CDDC0A00758A5A /* Michelle Bolsonaro - Senhor, meu leitinho ainda ta ralo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A9375929CDDC0900758A5A /* Michelle Bolsonaro - Senhor, meu leitinho ainda ta ralo.mp3 */; };
 		D9AB63F02A5A063700390778 /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+.swift */; };
 		D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB63F32A5A085800390778 /* SyncServiceStub.swift */; };
-		D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABDDAF287411C9007B25EA /* SongHelpView.swift */; };
 		D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */; };
 		D9ACB4F32DB4070F00CCCDD8 /* AuthorHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ACB4F22DB4070F00CCCDD8 /* AuthorHeaderView.swift */; };
 		D9ADEB6329861A79001CB004 /* Ai eu acho exagero.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6229861A79001CB004 /* Ai eu acho exagero.mp3 */; };
@@ -1319,7 +1318,7 @@
 		D9BB9265285DAA8E005CD6DD /* HelpTheAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB9264285DAA8E005CD6DD /* HelpTheAppView.swift */; };
 		D9BC1E1328F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BC1E1228F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 */; };
 		D9BC1E1528F1CFBD00AC0C8D /* Eu acho e pouco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */; };
-		D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */; };
+		D9BCAC2D28B598FB0098FE15 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BCAC2C28B598FA0098FE15 /* AppIconView.swift */; };
 		D9BCC5922978A50600BE70E9 /* As Forcas Armadas sao burocracia do Estado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BCC5912978A50600BE70E9 /* As Forcas Armadas sao burocracia do Estado.mp3 */; };
 		D9BE7701290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */; };
 		D9BE7703290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */; };
@@ -2805,7 +2804,6 @@
 		D9A9375829CDDC0900758A5A /* Lula - Eu posso tomar cafe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Eu posso tomar cafe.mp3"; sourceTree = "<group>"; };
 		D9A9375929CDDC0900758A5A /* Michelle Bolsonaro - Senhor, meu leitinho ainda ta ralo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Senhor, meu leitinho ainda ta ralo.mp3"; sourceTree = "<group>"; };
 		D9AB63F32A5A085800390778 /* SyncServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceStub.swift; sourceTree = "<group>"; };
-		D9ABDDAF287411C9007B25EA /* SongHelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
 		D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRandomSoundHelper.swift; sourceTree = "<group>"; };
 		D9ACB4F22DB4070F00CCCDD8 /* AuthorHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorHeaderView.swift; sourceTree = "<group>"; };
 		D9ADEB6229861A79001CB004 /* Ai eu acho exagero.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ai eu acho exagero.mp3"; sourceTree = "<group>"; };
@@ -2882,7 +2880,7 @@
 		D9BB9264285DAA8E005CD6DD /* HelpTheAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTheAppView.swift; sourceTree = "<group>"; };
 		D9BC1E1228F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3"; sourceTree = "<group>"; };
 		D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu acho e pouco.mp3"; sourceTree = "<group>"; };
-		D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
+		D9BCAC2C28B598FA0098FE15 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		D9BCC5912978A50600BE70E9 /* As Forcas Armadas sao burocracia do Estado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "As Forcas Armadas sao burocracia do Estado.mp3"; sourceTree = "<group>"; };
 		D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Henrique Mandetta - Ta certissimo.mp3"; sourceTree = "<group>"; };
 		D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao Bueno - Virou passeio.mp3"; sourceTree = "<group>"; };
@@ -5101,7 +5099,6 @@
 			isa = PBXGroup;
 			children = (
 				D961D024283731AA00EFEDEB /* HelpView.swift */,
-				D9ABDDAF287411C9007B25EA /* SongHelpView.swift */,
 			);
 			path = Help;
 			sourceTree = "<group>";
@@ -5441,7 +5438,7 @@
 			children = (
 				D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */,
 				D9ECD81428B3C470003C033A /* IconImage.swift */,
-				D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */,
+				D9BCAC2C28B598FA0098FE15 /* AppIconView.swift */,
 			);
 			path = AlternateAppIcons;
 			sourceTree = "<group>";
@@ -6899,8 +6896,7 @@
 				D9715F032CF2D61800DD24BB /* ToastView.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */,
-				D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */,
-				D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */,
+				D9BCAC2D28B598FB0098FE15 /* AppIconView.swift in Sources */,
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
 				D93B31BB2A1E921F00A7EB68 /* SyncLog.swift in Sources */,
 				D9C67C132A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift in Sources */,
@@ -7295,6 +7291,7 @@
 		D9625E9F28238F9B00080852 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APP_VERSION = 9.0.1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -7335,6 +7332,7 @@
 		D9625EA028238F9B00080852 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APP_VERSION = 9.0.1;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Prod";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;

@@ -1,20 +1,31 @@
+//
+//  AppIconView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 24/08/22.
+//
+
 import SwiftUI
 
-struct AppIconCell: View {
+struct AppIconView: View {
 
-    @State var icon: Icon
+    let icon: Icon
+
     @Binding var selectedItem: String
     @Environment(\.colorScheme) var colorScheme
+
     var isSelected: Bool {
         selectedItem == icon.id
     }
-    
+
     private let circleSize: CGFloat = 24.0
-    
+
     var body: some View {
-        HStack(spacing: 25) {
+        HStack(spacing: .spacing(.xLarge)) {
             IconImage(icon: icon)
+
             Text(icon.marketingName)
+
             Spacer()
             
             if isSelected {
@@ -31,17 +42,16 @@ struct AppIconCell: View {
             }
         }
     }
-
 }
 
-struct AppIconCell_Previews: PreviewProvider {
+// MARK: - Previews
 
-    static var previews: some View {
-        Group {
-            AppIconCell(icon: Icon.primary, selectedItem: .constant(Icon.primary.id))
-            AppIconCell(icon: Icon.medoDelicia, selectedItem: .constant(Icon.primary.id))
-        }
-        .previewLayout(.fixed(width: 350, height: 100))
-    }
+#Preview {
+    AppIconView(icon: Icon.primary, selectedItem: .constant(Icon.primary.id))
+        .padding()
+}
 
+#Preview {
+    AppIconView(icon: Icon.medoDelicia, selectedItem: .constant(Icon.primary.id))
+        .padding()
 }
