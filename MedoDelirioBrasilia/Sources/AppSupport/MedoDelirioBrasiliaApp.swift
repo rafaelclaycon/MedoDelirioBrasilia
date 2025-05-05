@@ -117,7 +117,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         
         let info = ClientDeviceInfo(installId: AppPersistentMemory().customInstallId, modelName: UIDevice.modelName)
-        NetworkRabbit.shared.post(clientDeviceInfo: info) { success, error in
+        APIClient.shared.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
                 AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
             }
@@ -142,7 +142,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             currentTimeZone: TimeZone.current.abbreviation() ?? "",
             dateTime: Date.now.iso8601withFractionalSeconds
         )
-        NetworkRabbit.shared.post(signal: signal) { success, error in
+        APIClient.shared.post(signal: signal) { success, error in
             if success != nil, success == true {
                 UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)
             }
@@ -161,7 +161,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             //print("Device Token: \(token)")
 
             let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
-            NetworkRabbit.shared.post(pushDevice: device) { success, error in
+            APIClient.shared.post(pushDevice: device) { success, error in
                 guard let success = success, success else {
                     AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
                     return
@@ -267,9 +267,9 @@ extension AppDelegate {
     func updateExternalLinks() {
         if !hasUpdatedExternalLinksOnFirstRun {
             Task {
-                let url = URL(string: NetworkRabbit.shared.serverPath + "v4/author-links-first-open")!
+                let url = URL(string: APIClient.shared.serverPath + "v4/author-links-first-open")!
                 do {
-                    let authorsWithLinks: [Author] = try await NetworkRabbit.shared.get(from: url)
+                    let authorsWithLinks: [Author] = try await APIClient.shared.get(from: url)
                     try authorsWithLinks.forEach { author in
                         try LocalDatabase.shared.update(author: author)
                     }

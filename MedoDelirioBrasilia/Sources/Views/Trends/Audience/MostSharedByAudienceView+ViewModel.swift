@@ -82,7 +82,7 @@ extension MostSharedByAudienceView.ViewModel {
     private func loadSoundsList() async {
         soundsState = .loading
         do {
-            let soundRanking = try await NetworkRabbit.shared.getShareCountStats(
+            let soundRanking = try await APIClient.shared.getShareCountStats(
                 for: .sounds,
                 in: soundsTimeInterval
             ).ranked
@@ -100,7 +100,7 @@ extension MostSharedByAudienceView.ViewModel {
     private func loadSongsList() async {
         songsState = .loading
         do {
-            let songRanking = try await NetworkRabbit.shared.getShareCountStats(
+            let songRanking = try await APIClient.shared.getShareCountStats(
                 for: .songs,
                 in: songsTimeInterval
             ).ranked
@@ -118,7 +118,7 @@ extension MostSharedByAudienceView.ViewModel {
     private func loadReactionsGrid() async {
         reactionsState = .loading
         do {
-            let ranking = try await NetworkRabbit.shared.getReactionsStats()
+            let ranking = try await APIClient.shared.getReactionsStats()
             reactionsState = .loaded(ranking)
 
             reactionsLastCheckDate = .now

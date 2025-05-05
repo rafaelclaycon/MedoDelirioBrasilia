@@ -58,7 +58,7 @@ class MainContentViewModel {
 
         self.syncManager = SyncManager(
             service: SyncService(
-                networkRabbit: NetworkRabbit.shared,
+                networkRabbit: APIClient.shared,
                 localDatabase: LocalDatabase.shared
             ),
             database: LocalDatabase.shared,

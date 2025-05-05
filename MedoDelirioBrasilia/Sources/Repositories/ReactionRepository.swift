@@ -19,13 +19,13 @@ protocol ReactionRepositoryProtocol {
 
 final class ReactionRepository: ReactionRepositoryProtocol {
 
-    private let apiClient: NetworkRabbitProtocol
+    private let apiClient: APIClientProtocol
     private let database: LocalDatabaseProtocol
 
     // MARK: - Initializer
 
     init(
-        apiClient: NetworkRabbit = NetworkRabbit(serverPath: APIConfig.apiURL),
+        apiClient: APIClient = APIClient(serverPath: APIConfig.apiURL),
         database: LocalDatabaseProtocol = LocalDatabase()
     ) {
         self.apiClient = apiClient

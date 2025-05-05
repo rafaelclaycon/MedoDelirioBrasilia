@@ -1,6 +1,13 @@
+//
+//  APIClient+PushDevice.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 18/08/22.
+//
+
 import Foundation
 
-extension NetworkRabbit {
+extension APIClient {
 
     func post(pushDevice: PushDevice, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
         let url = URL(string: serverPath + "v1/push-device")!
@@ -35,5 +42,4 @@ extension NetworkRabbit {
 
         task.resume()
     }
-
 }

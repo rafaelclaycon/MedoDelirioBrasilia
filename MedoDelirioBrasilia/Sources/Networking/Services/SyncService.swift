@@ -16,11 +16,11 @@ internal protocol SyncServiceProtocol {
 
 class SyncService: SyncServiceProtocol {
 
-    private let networkRabbit: NetworkRabbitProtocol
+    private let networkRabbit: APIClientProtocol
     let injectedDatabase: LocalDatabaseProtocol
     
     init(
-        networkRabbit: NetworkRabbitProtocol,
+        networkRabbit: APIClientProtocol,
         localDatabase: LocalDatabaseProtocol
     ) {
         self.networkRabbit = networkRabbit
@@ -118,7 +118,7 @@ extension SyncService {
         contentId: String
     ) async throws {
         try removeContentFile(named: contentId, atFolder: localFolderName)
-        let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: localFolderName)
+        let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: localFolderName)
         print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 }

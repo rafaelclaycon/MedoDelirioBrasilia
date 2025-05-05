@@ -1,7 +1,7 @@
 @testable import MedoDelirio
 import Foundation
 
-class NetworkRabbitStub: NetworkRabbitProtocol {
+class NetworkRabbitStub: APIClientProtocol {
 
     var serverPath: String
     

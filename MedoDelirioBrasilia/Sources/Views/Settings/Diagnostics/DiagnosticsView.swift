@@ -58,7 +58,7 @@ extension DiagnosticsView {
             Section {
                 Button("Testar conexão com o servidor") {
                     Task {
-                        let serverIsAvailable = await NetworkRabbit.shared.serverIsAvailable()
+                        let serverIsAvailable = await APIClient.shared.serverIsAvailable()
                         serverConnectionTestAlertTitle = serverIsAvailable ? "A conexão com o servidor está OK." : "Erro ao tentar contatar o servidor; é possível que ele esteja fora para manutenção temporária. Se o erro persistir, use o botão Entrar Em Contato Por E-mail na tela anterior."
                         showServerConnectionTestAlert = true
                     }

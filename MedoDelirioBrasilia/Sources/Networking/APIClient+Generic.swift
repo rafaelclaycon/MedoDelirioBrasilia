@@ -1,5 +1,5 @@
 //
-//  NetworkRabbit+Generic.swift
+//  APIClient+Generic.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 04/05/23.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension NetworkRabbit {
-    
+extension APIClient {
+
     func `get`<T: Codable>(from url: URL) async throws -> T {
         let (data, response) = try await URLSession.shared.data(from: url)
         

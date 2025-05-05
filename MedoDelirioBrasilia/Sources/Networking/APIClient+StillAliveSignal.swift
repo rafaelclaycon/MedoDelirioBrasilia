@@ -1,5 +1,5 @@
 //
-//  NetworkRabbit+StillAliveSignal.swift
+//  APIClient+StillAliveSignal.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 26/10/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NetworkRabbit {
+extension APIClient {
 
     func post(signal: StillAliveSignal, completion: @escaping (Bool?, NetworkRabbitError?) -> Void) {
         let url = URL(string: serverPath + "v1/still-alive-signal")!
@@ -35,5 +35,4 @@ extension NetworkRabbit {
 
         task.resume()
     }
-
 }

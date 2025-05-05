@@ -1,5 +1,5 @@
 //
-//  NetworkRabbit+Sync.swift
+//  APIClient+Sync.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 03/05/23.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension NetworkRabbit {
-    
+extension APIClient {
+
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent] {
         let url = URL(string: serverPath + "v3/update-events/\(lastDate)")!
 

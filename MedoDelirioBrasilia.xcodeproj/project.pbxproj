@@ -399,7 +399,7 @@
 		D94DDEA92DB6B653008F2B22 /* FakeLocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06419298B6749006075D1 /* FakeLocalDatabase.swift */; };
 		D94EAB4929FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94EAB4829FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 */; };
 		D94EAB4D29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94EAB4C29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 */; };
-		D94EAB4F29FB1524004CD604 /* NetworkRabbit+FileDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB4E29FB1524004CD604 /* NetworkRabbit+FileDownload.swift */; };
+		D94EAB4F29FB1524004CD604 /* APIClient+FileDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB4E29FB1524004CD604 /* APIClient+FileDownload.swift */; };
 		D94EAB5129FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */; };
 		D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5229FC09A8004CD604 /* LocalDatabase+Sound.swift */; };
 		D94EAB5529FC141F004CD604 /* LocalDatabase+Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */; };
@@ -476,7 +476,7 @@
 		D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF229E88C9800E42A23 /* DonorView.swift */; };
 		D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF429E8CD2600E42A23 /* DonorsView.swift */; };
 		D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E092A02AB1800172C17 /* SyncServiceTests.swift */; };
-		D95C3E0F2A02D7C400172C17 /* NetworkRabbit+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */; };
+		D95C3E0F2A02D7C400172C17 /* APIClient+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E0E2A02D7C400172C17 /* APIClient+Sync.swift */; };
 		D95C3E122A02E6D300172C17 /* SyncEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E112A02E6D300172C17 /* SyncEnums.swift */; };
 		D95C3E142A02E70D00172C17 /* UpdateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E132A02E70D00172C17 /* UpdateEvent.swift */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
@@ -1132,8 +1132,8 @@
 		D98D13802CD5B880001CF5BB /* UserFolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */; };
 		D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13812CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift */; };
 		D98D13852CD5CD19001CF5BB /* UserFolder+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */; };
-		D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* NetworkRabbit.swift */; };
-		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
+		D98DBD35284919B1008544F8 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* APIClient.swift */; };
+		D98DBD38284921B5008544F8 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* APIClientTests.swift */; };
 		D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */; };
 		D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */; };
 		D98EC5DE282596C300340BE5 /* PlayableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* PlayableContentView.swift */; };
@@ -1226,7 +1226,7 @@
 		D9A3984B28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */; };
 		D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6A28F03C970064CB7A /* ViewStates.swift */; };
 		D9A3AB6F28F063FF0064CB7A /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6E28F063FF0064CB7A /* DateExtensionTests.swift */; };
-		D9A4D010290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */; };
+		D9A4D010290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D00F290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift */; };
 		D9A7AAA02A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9B2A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 */; };
 		D9A7AAA12A2A9B580039012E /* Silas Malafaia - O PT.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9C2A2A9B580039012E /* Silas Malafaia - O PT.mp3 */; };
 		D9A7AAA22A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9D2A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 */; };
@@ -1253,7 +1253,7 @@
 		D9AE4442299BF1D2009E8597 /* Kaelzinho Ferraz - Ja ta claro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AE443E299BF1D2009E8597 /* Kaelzinho Ferraz - Ja ta claro.mp3 */; };
 		D9AE4443299BF1D2009E8597 /* Juliane Furno - Foda-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AE443F299BF1D2009E8597 /* Juliane Furno - Foda-se.mp3 */; };
 		D9AE4447299BF78C009E8597 /* Odio e Nojo (Versao Militar).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AE4446299BF78C009E8597 /* Odio e Nojo (Versao Militar).mp3 */; };
-		D9AE70442D74AA6800117009 /* NetworkRabbit+ShareStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AE70432D74AA6800117009 /* NetworkRabbit+ShareStats.swift */; };
+		D9AE70442D74AA6800117009 /* APIClient+ShareStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AE70432D74AA6800117009 /* APIClient+ShareStats.swift */; };
 		D9AF10AF290ACD540054741F /* Luiz Henrique Mandetta - Ele tinha um assessoramento paralelo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10AE290ACD540054741F /* Luiz Henrique Mandetta - Ele tinha um assessoramento paralelo.mp3 */; };
 		D9AF10C2290AD50D0054741F /* Crianca - Bora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10B0290AD50D0054741F /* Crianca - Bora.mp3 */; };
 		D9AF10C3290AD50D0054741F /* CARA A TAPA - General Pazuello - Fala serio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10B1290AD50D0054741F /* CARA A TAPA - General Pazuello - Fala serio.mp3 */; };
@@ -1345,7 +1345,7 @@
 		D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */; };
 		D9C91F842A1534EF008F0BCD /* Esse Menino - Rimou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C91F822A1534EF008F0BCD /* Esse Menino - Rimou.mp3 */; };
 		D9C91F852A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C91F832A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 */; };
-		D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */; };
+		D9CA301E2A03EE2300F1F23D /* APIClient+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CA301D2A03EE2300F1F23D /* APIClient+Generic.swift */; };
 		D9CA8BB72908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */; };
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9CBBB86296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */; };
@@ -1401,11 +1401,11 @@
 		D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */; };
 		D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */; };
 		D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */; };
-		D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */; };
+		D9DBCEA42B12888D003B4A46 /* APIClient+Retro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBCEA32B12888D003B4A46 /* APIClient+Retro.swift */; };
 		D9DBEA9A2BCBFB8600220679 /* MainContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBEA992BCBFB8600220679 /* MainContentViewModel.swift */; };
 		D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */; };
 		D9DC68902AD38648005D3F81 /* RetroBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC688F2AD38648005D3F81 /* RetroBanner.swift */; };
-		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
+		D9DCC5D3287536EC008DD4A3 /* APIClient+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* APIClient+PushDevice.swift */; };
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
 		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
 		D9DCF737290C2C4B00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */; };
@@ -1957,7 +1957,7 @@
 		D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDateAndVersionToUserFolderTables.swift; sourceTree = "<group>"; };
 		D94EAB4829FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mauro Reginato - Olha que legal.mp3"; sourceTree = "<group>"; };
 		D94EAB4C29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sergio Moro - Descont... Des... Contextualizadas (completo).mp3"; sourceTree = "<group>"; };
-		D94EAB4E29FB1524004CD604 /* NetworkRabbit+FileDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+FileDownload.swift"; sourceTree = "<group>"; };
+		D94EAB4E29FB1524004CD604 /* APIClient+FileDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+FileDownload.swift"; sourceTree = "<group>"; };
 		D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+MoveFixedDataToDatabase.swift"; sourceTree = "<group>"; };
 		D94EAB5229FC09A8004CD604 /* LocalDatabase+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Sound.swift"; sourceTree = "<group>"; };
 		D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Author.swift"; sourceTree = "<group>"; };
@@ -2035,7 +2035,7 @@
 		D95BFEF229E88C9800E42A23 /* DonorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorView.swift; sourceTree = "<group>"; };
 		D95BFEF429E8CD2600E42A23 /* DonorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorsView.swift; sourceTree = "<group>"; };
 		D95C3E092A02AB1800172C17 /* SyncServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceTests.swift; sourceTree = "<group>"; };
-		D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Sync.swift"; sourceTree = "<group>"; };
+		D95C3E0E2A02D7C400172C17 /* APIClient+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Sync.swift"; sourceTree = "<group>"; };
 		D95C3E112A02E6D300172C17 /* SyncEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEnums.swift; sourceTree = "<group>"; };
 		D95C3E132A02E70D00172C17 /* UpdateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEvent.swift; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
@@ -2695,8 +2695,8 @@
 		D98D13812CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChangeHashFieldToUserFolderTable.swift; sourceTree = "<group>"; };
 		D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFolder+Mocks.swift"; sourceTree = "<group>"; };
 		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
-		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
+		D98DBD34284919B1008544F8 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		D98DBD37284921B5008544F8 /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
 		D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinReactionsBanner.swift; sourceTree = "<group>"; };
 		D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDetailHeader.swift; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* PlayableContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentView.swift; sourceTree = "<group>"; };
@@ -2789,7 +2789,7 @@
 		D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Samira Close - 22 so se for de pica.mp3"; sourceTree = "<group>"; };
 		D9A3AB6A28F03C970064CB7A /* ViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStates.swift; sourceTree = "<group>"; };
 		D9A3AB6E28F063FF0064CB7A /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
-		D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+StillAliveSignal.swift"; sourceTree = "<group>"; };
+		D9A4D00F290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+StillAliveSignal.swift"; sourceTree = "<group>"; };
 		D9A7AA9B2A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3"; sourceTree = "<group>"; };
 		D9A7AA9C2A2A9B580039012E /* Silas Malafaia - O PT.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - O PT.mp3"; sourceTree = "<group>"; };
 		D9A7AA9D2A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3"; sourceTree = "<group>"; };
@@ -2815,7 +2815,7 @@
 		D9AE443E299BF1D2009E8597 /* Kaelzinho Ferraz - Ja ta claro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kaelzinho Ferraz - Ja ta claro.mp3"; sourceTree = "<group>"; };
 		D9AE443F299BF1D2009E8597 /* Juliane Furno - Foda-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Juliane Furno - Foda-se.mp3"; sourceTree = "<group>"; };
 		D9AE4446299BF78C009E8597 /* Odio e Nojo (Versao Militar).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Odio e Nojo (Versao Militar).mp3"; sourceTree = "<group>"; };
-		D9AE70432D74AA6800117009 /* NetworkRabbit+ShareStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+ShareStats.swift"; sourceTree = "<group>"; };
+		D9AE70432D74AA6800117009 /* APIClient+ShareStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+ShareStats.swift"; sourceTree = "<group>"; };
 		D9AF10AE290ACD540054741F /* Luiz Henrique Mandetta - Ele tinha um assessoramento paralelo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Henrique Mandetta - Ele tinha um assessoramento paralelo.mp3"; sourceTree = "<group>"; };
 		D9AF10B0290AD50D0054741F /* Crianca - Bora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Crianca - Bora.mp3"; sourceTree = "<group>"; };
 		D9AF10B1290AD50D0054741F /* CARA A TAPA - General Pazuello - Fala serio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CARA A TAPA - General Pazuello - Fala serio.mp3"; sourceTree = "<group>"; };
@@ -2907,7 +2907,7 @@
 		D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3"; sourceTree = "<group>"; };
 		D9C91F822A1534EF008F0BCD /* Esse Menino - Rimou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Esse Menino - Rimou.mp3"; sourceTree = "<group>"; };
 		D9C91F832A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Vamos apoiar o circo.mp3"; sourceTree = "<group>"; };
-		D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Generic.swift"; sourceTree = "<group>"; };
+		D9CA301D2A03EE2300F1F23D /* APIClient+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Generic.swift"; sourceTree = "<group>"; };
 		D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nao tenho provas.mp3"; sourceTree = "<group>"; };
 		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
 		D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3"; sourceTree = "<group>"; };
@@ -2963,11 +2963,11 @@
 		D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL - JOAO GORDO - Doidao de droga.mp3"; sourceTree = "<group>"; };
 		D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edu Santos - Totalmente embriagado.mp3"; sourceTree = "<group>"; };
 		D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernanda Torres - Totalmente drogada.mp3"; sourceTree = "<group>"; };
-		D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Retro.swift"; sourceTree = "<group>"; };
+		D9DBCEA32B12888D003B4A46 /* APIClient+Retro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Retro.swift"; sourceTree = "<group>"; };
 		D9DBEA992BCBFB8600220679 /* MainContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentViewModel.swift; sourceTree = "<group>"; };
 		D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopChartItem+.swift"; sourceTree = "<group>"; };
 		D9DC688F2AD38648005D3F81 /* RetroBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroBanner.swift; sourceTree = "<group>"; };
-		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
+		D9DCC5D2287536EC008DD4A3 /* APIClient+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+PushDevice.swift"; sourceTree = "<group>"; };
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
 		D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3"; sourceTree = "<group>"; };
@@ -4946,14 +4946,14 @@
 			isa = PBXGroup;
 			children = (
 				D92694042A02999B007872D9 /* Services */,
-				D98DBD34284919B1008544F8 /* NetworkRabbit.swift */,
-				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */,
-				D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */,
-				D94EAB4E29FB1524004CD604 /* NetworkRabbit+FileDownload.swift */,
-				D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */,
-				D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */,
-				D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */,
-				D9AE70432D74AA6800117009 /* NetworkRabbit+ShareStats.swift */,
+				D98DBD34284919B1008544F8 /* APIClient.swift */,
+				D9DCC5D2287536EC008DD4A3 /* APIClient+PushDevice.swift */,
+				D9A4D00F290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift */,
+				D94EAB4E29FB1524004CD604 /* APIClient+FileDownload.swift */,
+				D95C3E0E2A02D7C400172C17 /* APIClient+Sync.swift */,
+				D9CA301D2A03EE2300F1F23D /* APIClient+Generic.swift */,
+				D9DBCEA32B12888D003B4A46 /* APIClient+Retro.swift */,
+				D9AE70432D74AA6800117009 /* APIClient+ShareStats.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -4962,7 +4962,7 @@
 			isa = PBXGroup;
 			children = (
 				D95C3E082A02AAFC00172C17 /* Services */,
-				D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */,
+				D98DBD37284921B5008544F8 /* APIClientTests.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -6869,7 +6869,7 @@
 				D9DBEA9A2BCBFB8600220679 /* MainContentViewModel.swift in Sources */,
 				D95C3E122A02E6D300172C17 /* SyncEnums.swift in Sources */,
 				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
-				D9AE70442D74AA6800117009 /* NetworkRabbit+ShareStats.swift in Sources */,
+				D9AE70442D74AA6800117009 /* APIClient+ShareStats.swift in Sources */,
 				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchRepository.swift in Sources */,
 				D92ABB542DBDAC60002E4315 /* AuthorService.swift in Sources */,
@@ -6891,7 +6891,7 @@
 				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
 				D984D5612CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift in Sources */,
 				D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift in Sources */,
-				D94EAB4F29FB1524004CD604 /* NetworkRabbit+FileDownload.swift in Sources */,
+				D94EAB4F29FB1524004CD604 /* APIClient+FileDownload.swift in Sources */,
 				D992E8282A1BFF3100137469 /* SyncService+Sound.swift in Sources */,
 				D9715F032CF2D61800DD24BB /* ToastView.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
@@ -6901,7 +6901,7 @@
 				D93B31BB2A1E921F00A7EB68 /* SyncLog.swift in Sources */,
 				D9C67C132A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift in Sources */,
 				D9D3D493288750C400C42FDE /* FolderGridViewModel.swift in Sources */,
-				D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */,
+				D9DCC5D3287536EC008DD4A3 /* APIClient+PushDevice.swift in Sources */,
 				D9AF8B752ABD0D320051D028 /* OneTimeTask.swift in Sources */,
 				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
@@ -6929,7 +6929,7 @@
 				D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
 				D98D13802CD5B880001CF5BB /* UserFolderRepository.swift in Sources */,
-				D9A4D010290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift in Sources */,
+				D9A4D010290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift in Sources */,
 				D90E21752CCD793E00FC979C /* ReactionRepository.swift in Sources */,
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
@@ -6948,7 +6948,7 @@
 				D984D5652CF21DA700680C7D /* ContentDetailView+InfoSection.swift in Sources */,
 				D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */,
 				D9BACC012B13BF5400BBD0BE /* AnalyticsService.swift in Sources */,
-				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
+				D98DBD35284919B1008544F8 /* APIClient.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
 				D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */,
@@ -7000,7 +7000,7 @@
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* PlayableContentView.swift in Sources */,
 				D992EF562BCB222B0080C892 /* ContextMenuOption.swift in Sources */,
-				D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */,
+				D9DBCEA42B12888D003B4A46 /* APIClient+Retro.swift in Sources */,
 				D9115BB12DB295C10089A0CF /* ContentToolbarOptionsView.swift in Sources */,
 				D9EB18A52857CDFF00A2F8A8 /* ReactionsView.swift in Sources */,
 				D92ABB522DBD69E5002E4315 /* AuthorToolbarOptionsView.swift in Sources */,
@@ -7049,7 +7049,7 @@
 				D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,
 				D91B4DF4299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift in Sources */,
-				D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */,
+				D9CA301E2A03EE2300F1F23D /* APIClient+Generic.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderGrid.swift in Sources */,
 				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
 				D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */,
@@ -7078,7 +7078,7 @@
 				D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */,
 				D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
-				D95C3E0F2A02D7C400172C17 /* NetworkRabbit+Sync.swift in Sources */,
+				D95C3E0F2A02D7C400172C17 /* APIClient+Sync.swift in Sources */,
 				D904BDE32DAF744F004AF550 /* LocalDatabase+Content.swift in Sources */,
 				D928286F2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift in Sources */,
 				D9E39DBB2A1E8B320053A527 /* LocalDatabase+SyncLog.swift in Sources */,
@@ -7127,7 +7127,7 @@
 				D9D22D862A59FA1D00ABDCDC /* MainViewViewModelTests.swift in Sources */,
 				D91255B42DB0346E006AC71C /* FakeUserFolderRepository.swift in Sources */,
 				D920BF662CD1F52500C6BD72 /* MockUserSettings.swift in Sources */,
-				D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */,
+				D98DBD38284921B5008544F8 /* APIClientTests.swift in Sources */,
 				D9CF3BDA2DB06036002C6E6B /* ContentGridViewModelTests.swift in Sources */,
 				D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */,
 				D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */,

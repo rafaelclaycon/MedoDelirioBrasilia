@@ -1,6 +1,13 @@
+//
+//  APIClient.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 08/06/22.
+//
+
 import Foundation
 
-internal protocol NetworkRabbitProtocol {
+internal protocol APIClientProtocol {
     
     var serverPath: String { get }
 
@@ -18,12 +25,12 @@ internal protocol NetworkRabbitProtocol {
     func post<T: Encodable>(to url: URL, body: T) async throws
 }
 
-class NetworkRabbit: NetworkRabbitProtocol {
+class APIClient: APIClientProtocol {
 
     let serverPath: String
 
-    // NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
-    static let shared = NetworkRabbit(
+    // APIClient(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
+    static let shared = APIClient(
         serverPath: APIConfig.apiURL
     )
 

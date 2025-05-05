@@ -171,7 +171,7 @@ extension ClassicRetroView.ViewModel {
 
     static func versionIsAllowedToDisplayRetro(
         currentVersion: String = Versioneer.appVersion,
-        network: NetworkRabbitProtocol = NetworkRabbit.shared
+        network: APIClientProtocol = APIClient.shared
     ) async -> Bool {
 //        guard let allowedVersion = await network.retroStartingVersion() else { return false }
 //        return currentVersion >= allowedVersion
