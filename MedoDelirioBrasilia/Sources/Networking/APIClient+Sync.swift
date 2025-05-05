@@ -16,11 +16,11 @@ extension APIClient {
             let (data, response) = try await URLSession.shared.data(from: url)
 
             guard let response = response as? HTTPURLResponse else {
-                throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
+                throw APIClientError.responseWasNotAnHTTPURLResponse
             }
             guard (200...299).contains(response.statusCode) else {
                 print(serverPath + "v3/update-events/\(lastDate) - Response: \(response.statusCode)")
-                throw NetworkRabbitError.unexpectedStatusCode
+                throw APIClientError.unexpectedStatusCode
             }
 
             let decoder = JSONDecoder()
@@ -28,7 +28,7 @@ extension APIClient {
 
             return try decoder.decode([UpdateEvent].self, from: data)
         } catch {
-            throw NetworkRabbitError.errorFetchingUpdateEvents(error.localizedDescription)
+            throw APIClientError.errorFetchingUpdateEvents(error.localizedDescription)
         }
     }
 }

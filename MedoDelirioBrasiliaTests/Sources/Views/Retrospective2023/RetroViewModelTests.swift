@@ -131,7 +131,7 @@ final class RetroViewModelTests: XCTestCase {
 //extension RetroViewModelTests {
 //
 //    func testVersionIsAllowedToDisplayRetro_whenVersionIsNotSet_shouldReturnFalse() async throws {
-//        let stub: NetworkRabbitStub = .init()
+//        let stub: FakeAPIClient = .init()
 //        // Not setting retro version; it will return nil.
 //        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
 //            currentVersion: "7.5",
@@ -141,7 +141,7 @@ final class RetroViewModelTests: XCTestCase {
 //    }
 //
 //    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetAllowsAndIsTheSame_shouldReturnTrue() async throws {
-//        let stub: NetworkRabbitStub = .init()
+//        let stub: FakeAPIClient = .init()
 //        stub.retroStartingVersion = "7.5"
 //        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
 //            currentVersion: "7.5",
@@ -151,7 +151,7 @@ final class RetroViewModelTests: XCTestCase {
 //    }
 //
 //    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetAllowsButIsDifferent_shouldReturnTrue() async throws {
-//        let stub: NetworkRabbitStub = .init()
+//        let stub: FakeAPIClient = .init()
 //        stub.retroStartingVersion = "7.5"
 //        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
 //            currentVersion: "7.5.1",
@@ -161,7 +161,7 @@ final class RetroViewModelTests: XCTestCase {
 //    }
 //
 //    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetButDoesNotAllow_shouldReturnFalse() async throws {
-//        let stub: NetworkRabbitStub = .init()
+//        let stub: FakeAPIClient = .init()
 //        stub.retroStartingVersion = "99"
 //        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
 //            currentVersion: "7.5",

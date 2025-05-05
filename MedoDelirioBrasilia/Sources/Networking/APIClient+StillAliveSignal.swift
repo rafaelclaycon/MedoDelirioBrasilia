@@ -9,7 +9,7 @@ import Foundation
 
 extension APIClient {
 
-    func post(signal: StillAliveSignal, completion: @escaping (Bool?, NetworkRabbitError?) -> Void) {
+    func post(signal: StillAliveSignal, completion: @escaping (Bool?, APIClientError?) -> Void) {
         let url = URL(string: serverPath + "v1/still-alive-signal")!
 
         var request = URLRequest(url: url)

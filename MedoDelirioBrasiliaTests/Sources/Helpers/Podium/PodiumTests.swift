@@ -3,21 +3,21 @@ import XCTest
 
 class PodiumTests: XCTestCase {
 
-    var networkRabbitStub: NetworkRabbitStub!
+    var apiClientStub: FakeAPIClient!
     var databaseSpy: LocalDatabaseSpy!
     var sut: Podium!
     
     override func setUp() {
         super.setUp()
-        networkRabbitStub = .init()
+        apiClientStub = .init()
         databaseSpy = .init()
-        sut = Podium(database: databaseSpy, networkRabbit: networkRabbitStub)
+        sut = Podium(database: databaseSpy, apiClient: apiClientStub)
     }
 
     override func tearDown() {
         sut = nil
         databaseSpy = nil
-        networkRabbitStub = nil
+        apiClientStub = nil
         super.tearDown()
     }
     
@@ -26,7 +26,7 @@ class PodiumTests: XCTestCase {
 //        var testBoolResult: Podium.ShareCountStatServerExchangeResult = .successful
 //        var testStringResult = ""
 //        
-//        networkRabbitStub.serverShouldBeUnavailable = true
+//        apiClientStub.serverShouldBeUnavailable = true
 //        
 //        sut.sendShareCountStatsToServer { result, resultString in
 //            testBoolResult = result

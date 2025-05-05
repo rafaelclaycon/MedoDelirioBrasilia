@@ -13,14 +13,14 @@ extension APIClient {
         let (data, response) = try await URLSession.shared.data(from: url)
         
         guard let response = response as? HTTPURLResponse else {
-            throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
+            throw APIClientError.responseWasNotAnHTTPURLResponse
         }
         if response.statusCode == 404 {
-            throw NetworkRabbitError.resourceNotFound
+            throw APIClientError.resourceNotFound
         }
         guard response.statusCode == 200 else {
             print(response.statusCode)
-            throw NetworkRabbitError.unexpectedStatusCode
+            throw APIClientError.unexpectedStatusCode
         }
         
         let decoder = JSONDecoder()
@@ -41,11 +41,11 @@ extension APIClient {
         let (data, response) = try await URLSession.shared.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
+            throw APIClientError.responseWasNotAnHTTPURLResponse
         }
 
         guard httpResponse.statusCode == 200 else {
-            throw NetworkRabbitError.unexpectedStatusCode
+            throw APIClientError.unexpectedStatusCode
         }
 
         let decoder = JSONDecoder()
@@ -66,11 +66,11 @@ extension APIClient {
         let (data, response) = try await URLSession.shared.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
+            throw APIClientError.responseWasNotAnHTTPURLResponse
         }
 
         guard httpResponse.statusCode == 200 else {
-            throw NetworkRabbitError.unexpectedStatusCode
+            throw APIClientError.unexpectedStatusCode
         }
     }
 }

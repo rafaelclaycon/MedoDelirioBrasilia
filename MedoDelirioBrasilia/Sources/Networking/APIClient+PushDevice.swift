@@ -9,7 +9,7 @@ import Foundation
 
 extension APIClient {
 
-    func post(pushDevice: PushDevice, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
+    func post(pushDevice: PushDevice, completionHandler: @escaping (Bool?, APIClientError?) -> Void) {
         let url = URL(string: serverPath + "v1/push-device")!
 
         var request = URLRequest(url: url)

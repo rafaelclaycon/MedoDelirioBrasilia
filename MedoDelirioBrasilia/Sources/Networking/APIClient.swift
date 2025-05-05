@@ -16,7 +16,7 @@ internal protocol APIClientProtocol {
 
     func serverIsAvailable() async -> Bool
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
-    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
+    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, APIClientError?) -> Void)
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 
     func displayAskForMoneyView(appVersion: String) async -> Bool
@@ -70,13 +70,13 @@ class APIClient: APIClientProtocol {
         let (data, response) = try await URLSession.shared.data(from: url)
 
         guard let response = response as? HTTPURLResponse else {
-            throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
+            throw APIClientError.responseWasNotAnHTTPURLResponse
         }
         if response.statusCode == 404 {
-            throw NetworkRabbitError.resourceNotFound
+            throw APIClientError.resourceNotFound
         }
         guard response.statusCode == 200 else {
-            throw NetworkRabbitError.unexpectedStatusCode
+            throw APIClientError.unexpectedStatusCode
         }
         return String(data: data, encoding: .utf8)
     }
@@ -130,7 +130,7 @@ class APIClient: APIClientProtocol {
         task.resume()
     }
     
-    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
+    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, APIClientError?) -> Void) {
         let url = URL(string: serverPath + "v1/client-device-info")!
 
         var request = URLRequest(url: url)
@@ -165,7 +165,7 @@ class APIClient: APIClientProtocol {
     }
 }
 
-enum NetworkRabbitError: Error, LocalizedError {
+enum APIClientError: Error, LocalizedError {
 
     case unexpectedStatusCode
     case responseWasNotAnHTTPURLResponse

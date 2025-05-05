@@ -140,7 +140,7 @@ extension ContentDetailView.ViewModel {
         do {
             let stats: ContentShareCountStats = try await APIClient.shared.get(from: url)
             soundStatistics = .loaded(stats)
-        } catch NetworkRabbitError.resourceNotFound {
+        } catch APIClientError.resourceNotFound {
             soundStatistics = .noDataYet
         } catch {
             debugPrint(error.localizedDescription)

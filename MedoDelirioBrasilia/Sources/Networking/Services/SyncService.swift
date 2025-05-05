@@ -16,20 +16,20 @@ internal protocol SyncServiceProtocol {
 
 class SyncService: SyncServiceProtocol {
 
-    private let networkRabbit: APIClientProtocol
+    private let apiClient: APIClientProtocol
     let injectedDatabase: LocalDatabaseProtocol
     
     init(
-        networkRabbit: APIClientProtocol,
+        apiClient: APIClientProtocol,
         localDatabase: LocalDatabaseProtocol
     ) {
-        self.networkRabbit = networkRabbit
+        self.apiClient = apiClient
         self.injectedDatabase = localDatabase
     }
     
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {
         print(updateDateToConsider)
-        return try await networkRabbit.fetchUpdateEvents(from: updateDateToConsider)
+        return try await apiClient.fetchUpdateEvents(from: updateDateToConsider)
     }
     
     func process(updateEvent: UpdateEvent) async {

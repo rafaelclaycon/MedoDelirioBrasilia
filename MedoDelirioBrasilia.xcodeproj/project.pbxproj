@@ -411,7 +411,7 @@
 		D94FBF442A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBF432A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 */; };
 		D94FBF462A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBF452A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 */; };
 		D950A9372A5BA77500F03E65 /* Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D950A9362A5BA77500F03E65 /* Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3 */; };
-		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
+		D9523741285BF98A00E6C838 /* FakeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* FakeAPIClient.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
 		D952DB7E29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */; };
 		D952DB7F29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7C29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 */; };
@@ -1970,7 +1970,7 @@
 		D94FBF432A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Falha de Cobertura - Eu nao sou povo desse rapaz.mp3"; sourceTree = "<group>"; };
 		D94FBF452A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um pouco droga, um pouco salada.mp3"; sourceTree = "<group>"; };
 		D950A9362A5BA77500F03E65 /* Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3"; sourceTree = "<group>"; };
-		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
+		D9523740285BF98A00E6C838 /* FakeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAPIClient.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
 		D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele.mp3"; sourceTree = "<group>"; };
 		D952DB7C29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele mil vezes.mp3"; sourceTree = "<group>"; };
@@ -5354,7 +5354,7 @@
 		D9DC8D482A643CA500467DBA /* SharedDoubles */ = {
 			isa = PBXGroup;
 			children = (
-				D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */,
+				D9523740285BF98A00E6C838 /* FakeAPIClient.swift */,
 				D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */,
 				D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */,
 				D9E5F5152CD7114600C2FF64 /* FakeFolderResearchRepository.swift */,
@@ -7103,7 +7103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9DE92102B9B98F800268626 /* SyncManagerTests.swift in Sources */,
-				D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */,
+				D9523741285BF98A00E6C838 /* FakeAPIClient.swift in Sources */,
 				D920BF642CD1E5A800C6BD72 /* FolderResearchProviderTests.swift in Sources */,
 				D9A3AB6F28F063FF0064CB7A /* DateExtensionTests.swift in Sources */,
 				D9FF3F9B2B14325A007AE773 /* UpdateIncentiveTests.swift in Sources */,
