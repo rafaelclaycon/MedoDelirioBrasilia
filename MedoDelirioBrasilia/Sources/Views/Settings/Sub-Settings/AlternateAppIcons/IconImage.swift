@@ -1,16 +1,23 @@
+//
+//  IconImage.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 24/08/22.
+//
+
 import SwiftUI
 
 struct IconImage: View {
 
     var icon: Icon
-    
-    private let cornerRadius: CGFloat = 11.0
-    
+
+    private let cornerRadius: CGFloat = .spacing(.small)
+
     var body: some View {
         Label {
             Text(icon.rawValue)
         } icon: {
-            Image(uiImage: UIImage(named: icon.rawValue) ?? UIImage())
+           Image(icon.imageNameForInsideTheApp)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 60)
@@ -23,14 +30,8 @@ struct IconImage: View {
         }
         .labelStyle(.iconOnly)
     }
-
 }
 
-struct IconImage_Previews: PreviewProvider {
-
-    static var previews: some View {
-        IconImage(icon: Icon.primary)
-            .previewInterfaceOrientation(.portrait)
-    }
-
+#Preview {
+    IconImage(icon: Icon.odioNojo)
 }
