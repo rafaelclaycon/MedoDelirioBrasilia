@@ -16,7 +16,7 @@ struct SongsView: View {
     @State private var toast: Toast?
 
     // Share as Video
-    @State private var shareAsVideo_Result = ShareAsVideoResult()
+    @State private var shareAsVideo_Result = ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .shareSheet)
 
     @Environment(TrendsHelper.self) private var trendsHelper
     @Environment(SettingsHelper.self) private var settingsHelper
@@ -206,9 +206,9 @@ struct SongsView: View {
             ShareAsVideoView(
                 viewModel: ShareAsVideoViewModel(
                     content: AnyEquatableMedoContent(song),
-                    contentType: .videoFromSong
+                    contentType: .videoFromSong,
+                    result: $shareAsVideo_Result
                 ),
-                result: $shareAsVideo_Result,
                 useLongerGeneratingVideoMessage: true
             )
         }

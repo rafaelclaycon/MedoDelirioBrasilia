@@ -28,7 +28,7 @@ final class ContentGridViewModel {
     var authorToOpen: Author? = nil
 
     // Share as Video
-    var shareAsVideoResult = ShareAsVideoResult()
+    var shareAsVideoResult = ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .shareSheet)
 
     // Search
     var searchText: String = ""
@@ -193,7 +193,7 @@ extension ContentGridViewModel {
     }
 
     public func onDidExitShareAsVideoSheet() {
-        if shareAsVideoResult.videoFilepath.isEmpty == false {
+        if !shareAsVideoResult.videoFilepath.isEmpty {
             if shareAsVideoResult.exportMethod == .saveAsVideo {
                 showVideoSavedSuccessfullyToast()
             } else {
