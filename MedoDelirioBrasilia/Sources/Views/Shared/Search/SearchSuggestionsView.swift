@@ -38,11 +38,11 @@ struct SearchSuggestionsView: View {
                 }
             }
 
-            if case .loaded(let content) = popularContent {
+            if case .loaded(let content) = popularContent, !content.isEmpty {
                 PopularContentView(content: content)
             }
 
-            if case .loaded(let reactions) = popularReactions {
+            if case .loaded(let reactions) = popularReactions, !reactions.isEmpty {
                 VStack(alignment: .leading, spacing: .spacing(.small)) {
                     Text("Reações Populares")
                         .font(.headline)
@@ -72,9 +72,16 @@ struct SearchSuggestionsView: View {
     // MARK: - Functions
 
     private func loadContent() async {
+        popularContent = .loading
+        popularReactions = .loading
         do {
-            popularContent = .loaded(try await trendsService.top3())
+            popularContent = .loaded(try await trendsService.top3Content())
+            popularReactions = .loaded(try await trendsService.top3Reactions())
+            print("COMUNISTAAAA")
+            dump(popularReactions)
         } catch {
+            popularContent = .error("")
+            popularReactions = .error("")
             debugPrint(error)
         }
     }

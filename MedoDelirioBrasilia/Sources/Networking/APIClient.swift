@@ -24,6 +24,7 @@ internal protocol APIClientProtocol {
 
     func post<T: Encodable>(to url: URL, body: T) async throws
 
+    func top3Reactions() async throws -> [Reaction]
     func getReactionsStats() async throws -> [TopChartReaction]
     func getShareCountStats(
         for contentType: TrendsContentType,

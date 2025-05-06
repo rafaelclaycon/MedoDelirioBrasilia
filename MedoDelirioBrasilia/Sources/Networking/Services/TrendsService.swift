@@ -16,8 +16,10 @@ protocol TrendsServiceProtocol {
         in timeInterval: TrendsTimeInterval
     ) async throws -> [TopChartItem]
 
-    /// Returns top 3 most shared content in the last week.
-    func top3() async throws -> [AnyEquatableMedoContent]
+    /// Returns top 3 most shared Content in the last week.
+    func top3Content() async throws -> [AnyEquatableMedoContent]
+    /// Returns top 3 most opened Reactions in the current day.
+    func top3Reactions() async throws -> [Reaction]
 
     func reactionsStats() async throws -> [TopChartReaction]
 
@@ -39,10 +41,12 @@ final class TrendsService: TrendsServiceProtocol {
 
     private var defaultSoundStats: [TopChartItem]
     private var defaultSongStats: [TopChartItem]
+    private var todaysTop3Reactions: [Reaction]
     private var reactionStats: [TopChartReaction]
 
     public var soundsLastUpdate: Date = Date(timeIntervalSince1970: 0)
     public var songsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    public var top3ReactionsLastUpdate: Date = Date(timeIntervalSince1970: 0)
     public var reactionsLastUpdate: Date = Date(timeIntervalSince1970: 0)
 
     // MARK: - Initializer
@@ -57,12 +61,14 @@ final class TrendsService: TrendsServiceProtocol {
         self.contentRepository = contentRepository
         self.defaultSoundStats = []
         self.defaultSongStats = []
+        self.todaysTop3Reactions = []
         self.reactionStats = []
 
         Task {
             await loadSoundStats(timeInterval: TrendsService.defaultSoundsTimeInterval)
             await loadSongStats(timeInterval: TrendsService.defaultSongsTimeInterval)
             await loadReactions()
+            await loadTop3Reactions()
         }
     }
 
@@ -105,11 +111,18 @@ final class TrendsService: TrendsServiceProtocol {
         }
     }
 
-    func top3() async throws -> [AnyEquatableMedoContent] {
+    func top3Content() async throws -> [AnyEquatableMedoContent] {
         if soundsLastUpdate.minutesPassed(60) {
             await loadSoundStats(timeInterval: .lastWeek)
         }
-        return try contentRepository.content(withIds: defaultSoundStats.prefix(3).map { $0.contentId })
+        return try contentRepository.content(withIds: defaultSoundStats.prefix(3).map { $0.contentId }) // TODO: Include songs here
+    }
+
+    func top3Reactions() async throws -> [Reaction] {
+        if top3ReactionsLastUpdate.minutesPassed(60) {
+            await loadTop3Reactions()
+        }
+        return todaysTop3Reactions
     }
 
     func reactionsStats() async throws -> [TopChartReaction] {
@@ -157,6 +170,15 @@ extension TrendsService {
                 in: timeInterval
             )
             songsLastUpdate = .now
+        } catch {
+            debugPrint(error)
+        }
+    }
+
+    private func loadTop3Reactions() async {
+        do {
+            todaysTop3Reactions = try await apiClient.top3Reactions()
+            top3ReactionsLastUpdate = .now
         } catch {
             debugPrint(error)
         }

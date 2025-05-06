@@ -72,4 +72,8 @@ class FakeAPIClient: APIClientProtocol {
     ) async throws -> [TopChartItem] {
         []
     }
+
+    func top3Reactions() async throws -> [Reaction] {
+        []
+    }
 }

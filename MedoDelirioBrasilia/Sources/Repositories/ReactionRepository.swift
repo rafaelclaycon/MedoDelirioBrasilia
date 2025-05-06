@@ -13,6 +13,9 @@ protocol ReactionRepositoryProtocol {
     func reaction(_ reactionId: String) async throws -> Reaction
     func reactionContent(reactionId: String) async throws -> [ReactionContent]
     func pinnedReactions(_ serverReactions: [Reaction]) async throws -> [Reaction]
+
+    // Manage
+
     func savePin(reaction: Reaction) throws
     func removePin(reactionId: String) throws
 }
