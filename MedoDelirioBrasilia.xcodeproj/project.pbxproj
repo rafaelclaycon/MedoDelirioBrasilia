@@ -232,7 +232,6 @@
 		D9272300289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */; };
 		D927230228924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */; };
 		D927230428924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927230328924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 */; };
-		D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927C423285245CE0041970A /* SoundOptionsHelper.swift */; };
 		D928286F2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D928286E2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
@@ -1791,7 +1790,6 @@
 		D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Ah, como o cara e grosso.mp3"; sourceTree = "<group>"; };
 		D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3"; sourceTree = "<group>"; };
 		D927230328924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Carla Zambelliii (Happy cover).mp3"; sourceTree = "<group>"; };
-		D927C423285245CE0041970A /* SoundOptionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundOptionsHelper.swift; sourceTree = "<group>"; };
 		D928286E2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+MusicGenre.swift"; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
@@ -4440,7 +4438,6 @@
 				D96E115C28459D8800306859 /* UserActivityWaiter.swift */,
 				D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */,
 				D991E597284A94F70005705F /* Podium.swift */,
-				D927C423285245CE0041970A /* SoundOptionsHelper.swift */,
 				D9877D2A2869845400B541F9 /* SharingUtility.swift */,
 				D9FB48992870FE7800FF90D0 /* HapticFeedback.swift */,
 				D938132E287E12B3009EE24F /* NotificationAide.swift */,
@@ -7088,7 +7085,6 @@
 				D912A33828B3F2C000F7293D /* TipView.swift in Sources */,
 				D92249772A8DB08C002B2C43 /* SyncStatusView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
-				D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */,
 				D992EF582BCB24310080C892 /* MainContentView.swift in Sources */,
 				D9A8AB282854436500B5A94B /* Date+.swift in Sources */,
 			);
