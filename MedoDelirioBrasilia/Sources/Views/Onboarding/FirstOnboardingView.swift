@@ -32,10 +32,11 @@ struct FirstOnboardingView: View {
             .safeAreaInset(edge: .bottom) {
                 VStack(alignment: .center, spacing: 18) {
                     Button {
-                        NotificationAide.registerForRemoteNotifications() { _ in
+                        Task {
+                            await NotificationAide.registerForRemoteNotifications()
                             AppPersistentMemory().hasShownNotificationsOnboarding(true)
+                            showWhatsNew = true
                         }
-                        showWhatsNew = true
                     } label: {
                         Text("Permitir notificações")
                             .bold()
