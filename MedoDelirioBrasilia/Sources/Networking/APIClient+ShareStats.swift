@@ -55,7 +55,8 @@ extension APIClient {
 
     func top3Reactions() async throws -> [Reaction] {
         let url = URL(string: serverPath + "v4/top-3-reactions")!
-        return try await self.get(from: url)
+        let reactions: [ReactionDTO] = try await self.get(from: url)
+        return reactions.map { $0.reaction }
     }
 
     func getReactionsStats() async throws -> [TopChartReaction] {

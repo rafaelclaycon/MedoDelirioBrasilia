@@ -77,8 +77,6 @@ struct SearchSuggestionsView: View {
         do {
             popularContent = .loaded(try await trendsService.top3Content())
             popularReactions = .loaded(try await trendsService.top3Reactions())
-            print("COMUNISTAAAA")
-            dump(popularReactions)
         } catch {
             popularContent = .error("")
             popularReactions = .error("")
