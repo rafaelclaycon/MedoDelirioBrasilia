@@ -23,6 +23,12 @@ internal protocol APIClientProtocol {
     func getPixDonorNames() async -> [Donor]?
 
     func post<T: Encodable>(to url: URL, body: T) async throws
+
+    func getReactionsStats() async throws -> [TopChartReaction]
+    func getShareCountStats(
+        for contentType: TrendsContentType,
+        in timeInterval: TrendsTimeInterval
+    ) async throws -> [TopChartItem]
 }
 
 class APIClient: APIClientProtocol {

@@ -414,7 +414,6 @@
 		D94FBF442A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBF432A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 */; };
 		D94FBF462A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBF452A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 */; };
 		D950A9372A5BA77500F03E65 /* Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D950A9362A5BA77500F03E65 /* Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3 */; };
-		D9523741285BF98A00E6C838 /* FakeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* FakeAPIClient.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
 		D952DB7E29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */; };
 		D952DB7F29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7C29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 */; };
@@ -1383,6 +1382,8 @@
 		D9D22D862A59FA1D00ABDCDC /* MainViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D22D852A59FA1D00ABDCDC /* MainViewViewModelTests.swift */; };
 		D9D3D4912887495B00C42FDE /* FolderGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderGrid.swift */; };
 		D9D3D493288750C400C42FDE /* FolderGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderGridViewModel.swift */; };
+		D9D449CE2DCAA15F00D72D94 /* TrendsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D449CD2DCAA15F00D72D94 /* TrendsService.swift */; };
+		D9D449CF2DCAAC3F00D72D94 /* FakeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* FakeAPIClient.swift */; };
 		D9D474432D9C8A03007371C3 /* AddToFolderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D474422D9C8A03007371C3 /* AddToFolderDetails.swift */; };
 		D9D53E3D2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */; };
 		D9D627122B266389000EB791 /* HorizontalAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D627112B266389000EB791 /* HorizontalAuthorView.swift */; };
@@ -2950,6 +2951,7 @@
 		D9D22D852A59FA1D00ABDCDC /* MainViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModelTests.swift; sourceTree = "<group>"; };
 		D9D3D4902887495B00C42FDE /* FolderGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderGrid.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderGridViewModel.swift; sourceTree = "<group>"; };
+		D9D449CD2DCAA15F00D72D94 /* TrendsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsService.swift; sourceTree = "<group>"; };
 		D9D474422D9C8A03007371C3 /* AddToFolderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderDetails.swift; sourceTree = "<group>"; };
 		D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano - Advogados malucos.mp3"; sourceTree = "<group>"; };
 		D9D627112B266389000EB791 /* HorizontalAuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalAuthorView.swift; sourceTree = "<group>"; };
@@ -4348,6 +4350,7 @@
 				D9BACC002B13BF5400BBD0BE /* AnalyticsService.swift */,
 				D92ABB532DBDAC60002E4315 /* AuthorService.swift */,
 				D92E22EF2DC418AC00FEA890 /* SearchService.swift */,
+				D9D449CD2DCAA15F00D72D94 /* TrendsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -4932,6 +4935,7 @@
 				D9855DBD2BE4123E00965E9D /* Reaction+Mocks.swift */,
 				D904BDD02DAE1E80004AF550 /* FakeContentRepository.swift */,
 				D9A06419298B6749006075D1 /* FakeLocalDatabase.swift */,
+				D9523740285BF98A00E6C838 /* FakeAPIClient.swift */,
 				D92ABB552DBDAFBA002E4315 /* FakeAuthorService.swift */,
 			);
 			path = Mocks;
@@ -5384,7 +5388,6 @@
 		D9DC8D482A643CA500467DBA /* SharedDoubles */ = {
 			isa = PBXGroup;
 			children = (
-				D9523740285BF98A00E6C838 /* FakeAPIClient.swift */,
 				D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */,
 				D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */,
 				D9E5F5152CD7114600C2FF64 /* FakeFolderResearchRepository.swift */,
@@ -6949,6 +6952,7 @@
 				D958B1AC28394DCD0010F133 /* AuthorsGrid.swift in Sources */,
 				D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */,
 				D9C67C102A3E3C2200E74E9D /* MiniButtonStyle.swift in Sources */,
+				D9D449CE2DCAA15F00D72D94 /* TrendsService.swift in Sources */,
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
 				D94DDEA92DB6B653008F2B22 /* FakeLocalDatabase.swift in Sources */,
 				D9FB70C92AC8DED4002FD8E1 /* View+.swift in Sources */,
@@ -7040,6 +7044,7 @@
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
 				D9943F2828642200002C6B97 /* AddToFolderViewModel.swift in Sources */,
 				D9838A0E2CC5830400E58C2E /* StoriesView.swift in Sources */,
+				D9D449CF2DCAAC3F00D72D94 /* FakeAPIClient.swift in Sources */,
 				D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */,
 				D992E8262A185C8A00137469 /* InternalFolderNames.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
@@ -7137,7 +7142,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9DE92102B9B98F800268626 /* SyncManagerTests.swift in Sources */,
-				D9523741285BF98A00E6C838 /* FakeAPIClient.swift in Sources */,
 				D920BF642CD1E5A800C6BD72 /* FolderResearchProviderTests.swift in Sources */,
 				D9A3AB6F28F063FF0064CB7A /* DateExtensionTests.swift in Sources */,
 				D9FF3F9B2B14325A007AE773 /* UpdateIncentiveTests.swift in Sources */,

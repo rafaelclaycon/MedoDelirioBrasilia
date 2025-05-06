@@ -45,6 +45,10 @@ struct MainView: View {
     @State private var syncValues = SyncValues()
 
     @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
+    @State private var trendsService = TrendsService(
+        database: LocalDatabase.shared,
+        apiClient: APIClient.shared
+    )
 
     // MARK: - View Body
 
@@ -111,6 +115,7 @@ struct MainView: View {
                     
                     NavigationView {
                         TrendsView(
+                            audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
                             tabSelection: $tabSelection,
                             activePadScreen: .constant(.trends)
                         )
@@ -225,6 +230,7 @@ struct MainView: View {
                         Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
                             NavigationStack {
                                 TrendsView(
+                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
                                     tabSelection: $tabSelection,
                                     activePadScreen: .constant(.trends)
                                 )
@@ -237,7 +243,7 @@ struct MainView: View {
                                 StandaloneSearchView(
                                     searchService: SearchService(
                                         database: LocalDatabase.shared,
-                                        contentRepository: ContentRepository(database: LocalDatabase.shared),
+                                        contentRepository: contentRepository,
                                         authorService: AuthorService(database: LocalDatabase.shared)
                                     )
                                 )
@@ -347,7 +353,8 @@ struct MainView: View {
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
                             floatingOptions: $floatingOptions,
-                            contentRepository: contentRepository
+                            contentRepository: contentRepository,
+                            trendsService: trendsService
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)

@@ -1,4 +1,10 @@
-@testable import MedoDelirio
+//
+//  FakeAPIClient.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 20/06/22.
+//
+
 import Foundation
 
 class FakeAPIClient: APIClientProtocol {
@@ -54,5 +60,16 @@ class FakeAPIClient: APIClientProtocol {
 
     func getPixDonorNames() async -> [Donor]? {
         nil
+    }
+
+    func getReactionsStats() async throws -> [TopChartReaction] {
+        []
+    }
+
+    func getShareCountStats(
+        for contentType: TrendsContentType,
+        in timeInterval: TrendsTimeInterval
+    ) async throws -> [TopChartItem] {
+        []
     }
 }

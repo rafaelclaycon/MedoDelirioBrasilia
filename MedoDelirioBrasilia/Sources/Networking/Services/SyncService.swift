@@ -17,14 +17,14 @@ internal protocol SyncServiceProtocol {
 class SyncService: SyncServiceProtocol {
 
     private let apiClient: APIClientProtocol
-    let injectedDatabase: LocalDatabaseProtocol
+    let database: LocalDatabaseProtocol
     
     init(
         apiClient: APIClientProtocol,
         localDatabase: LocalDatabaseProtocol
     ) {
         self.apiClient = apiClient
-        self.injectedDatabase = localDatabase
+        self.database = localDatabase
     }
     
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {

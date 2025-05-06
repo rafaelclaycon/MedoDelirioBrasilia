@@ -14,9 +14,9 @@ extension SyncService {
         do {
             let genre: MusicGenre = try await APIClient.shared.get(from: url)
 
-            try injectedDatabase.insert(genre: genre)
+            try database.insert(genre: genre)
             
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Gênero Musical \"\(genre.name)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -27,8 +27,8 @@ extension SyncService {
         let url = URL(string: APIClient.shared.serverPath + "v3/music-genre/\(updateEvent.contentId)")!
         do {
             let genre: MusicGenre = try await APIClient.shared.get(from: url)
-            try injectedDatabase.update(genre: genre)
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.update(genre: genre)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Metadados do Gênero Musical \"\(genre.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -37,8 +37,8 @@ extension SyncService {
 
     func deleteMusicGenre(with updateEvent: UpdateEvent) async {
         do {
-            try injectedDatabase.delete(genreId: updateEvent.contentId)
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.delete(genreId: updateEvent.contentId)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Gênero Musical \"\(updateEvent.contentId)\" removido com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)

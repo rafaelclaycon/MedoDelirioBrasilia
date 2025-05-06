@@ -50,12 +50,12 @@ extension APIClient {
             url = URL(string: serverPath + "v3/\(keyword)-share-count-stats-all-time")!
         }
 
-        return try await APIClient.shared.get(from: url)
+        return try await self.get(from: url)
     }
 
     func getReactionsStats() async throws -> [TopChartReaction] {
         let url = URL(string: serverPath + "v3/reaction-popularity-stats")!
-        let serverStats: [TopChartReactionDTO] = try await APIClient.shared.get(from: url)
+        let serverStats: [TopChartReactionDTO] = try await self.get(from: url)
         return APIClient.groupedStats(from: serverStats)
     }
 

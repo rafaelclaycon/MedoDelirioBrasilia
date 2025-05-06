@@ -13,7 +13,7 @@ struct TrendsView: View {
         case audience, me
     }
 
-    @State private var audienceViewModel = MostSharedByAudienceView.ViewModel()
+    @State public var audienceViewModel: MostSharedByAudienceView.ViewModel
     @State private var toast: Toast?
 
     @Binding var tabSelection: PhoneTab
@@ -32,21 +32,9 @@ struct TrendsView: View {
         UserSettings().getEnableTrends()
     }
 
-    /*var showMostSharedSoundsByTheUser: Bool {
-        UserSettings().getEnableMostSharedSoundsByTheUser()
-    }*/
-
-    /*var showDayOfTheWeekTheUserSharesTheMost: Bool {
-        UserSettings().getEnableDayOfTheWeekTheUserSharesTheMost()
-    }*/
-
     private var showSoundsMostSharedByTheAudience: Bool {
         UserSettings().getEnableSoundsMostSharedByTheAudience()
     }
-
-    /*var showAppsThroughWhichTheUserSharesTheMost: Bool {
-        UserSettings().getEnableAppsThroughWhichTheUserSharesTheMost()
-    }*/
 
     // MARK: - View Body
 
@@ -77,10 +65,8 @@ struct TrendsView: View {
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
-                            //if showMostSharedSoundsByTheUser {
                             MostSharedByMeView()
                                 .environment(trendsHelper)
-                            //}
                             
                             /*if showDayOfTheWeekTheUserSharesTheMost {
                              Text("Dia da Semana No Qual Eu Mais Compartilho")
@@ -114,7 +100,7 @@ struct TrendsView: View {
             }
 
             Task {
-                try await AnalyticsService().send(
+                await AnalyticsService().send(
                     originatingScreen: "TrendsView",
                     action: "didViewTrendsTab"
                 )
@@ -128,6 +114,12 @@ struct TrendsView: View {
 
 #Preview {
     TrendsView(
+        audienceViewModel: MostSharedByAudienceView.ViewModel(
+            trendsService: TrendsService(
+                database: FakeLocalDatabase(),
+                apiClient: FakeAPIClient()
+            )
+        ),
         tabSelection: .constant(.trends),
         activePadScreen: .constant(.trends)
     )

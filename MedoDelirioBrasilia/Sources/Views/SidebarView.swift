@@ -19,6 +19,7 @@ struct SidebarView: View {
     @Binding var toast: Toast?
     @Binding var floatingOptions: FloatingContentOptions?
     let contentRepository: ContentRepositoryProtocol
+    let trendsService: TrendsServiceProtocol
 
     // MARK: - View State
 
@@ -86,6 +87,7 @@ struct SidebarView: View {
 
                 NavigationLink(
                     destination: TrendsView(
+                        audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
                         tabSelection: .constant(.trends),
                         activePadScreen: $state
                     ).environment(trendsHelper),
@@ -192,6 +194,7 @@ struct SidebarView: View {
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
         floatingOptions: .constant(nil),
-        contentRepository: FakeContentRepository()
+        contentRepository: FakeContentRepository(),
+        trendsService: TrendsService(database: FakeLocalDatabase(), apiClient: FakeAPIClient())
     )
 }
