@@ -24,7 +24,7 @@ struct AddToFolderView: View {
     // MARK: - Computed Properties
 
     private var createNewFolderCellWidth: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             return (UIScreen.main.bounds.size.width / 2) - 20
         } else {
             return 250

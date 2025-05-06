@@ -56,7 +56,7 @@ struct FirstOnboardingView: View {
                     }
                     .foregroundColor(.blue)
 
-                    if UIDevice.current.userInterfaceIdiom != .phone {
+                    if !UIDevice.isiPhone {
                         Text("Caso a tela não feche automaticamente ao escolher uma das opções, toque fora dela (na área apagada).")
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)

@@ -129,7 +129,7 @@ extension SongsViewViewModel {
     }
 
     func share(song: Song) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             do {
                 try SharingUtility.shareSound(
                     from: song.fileURL(),
@@ -171,7 +171,7 @@ extension SongsViewViewModel {
     }
     
     func shareVideo(withPath filepath: String, andContentId contentId: String) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             do {
                 try SharingUtility.share(
                     .videoFromSong,

@@ -296,7 +296,7 @@ extension ContentGridViewModel {
         andContentId contentId: String,
         title soundTitle: String
     ) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             do {
                 try SharingUtility.share(
                     .videoFromSound,

@@ -28,7 +28,7 @@ struct HelpTheAppView: View {
                 
                 Text("Rafael aqui, criador do app Medo e Delírio para iPhone, iPad e Mac.")
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 15)
+                    .padding(.horizontal, UIDevice.isiPhone ? 0 : 15)
             }
             
             VStack(alignment: .leading, spacing: 18) {

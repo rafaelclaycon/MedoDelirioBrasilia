@@ -101,7 +101,7 @@ struct ShareAsVideoView: View {
                                 .disabled(viewModel.isShowingProcessingView)
                         }
                         
-                        if UIDevice.current.userInterfaceIdiom == .phone {
+                        if UIDevice.isiPhone {
                             VStack(spacing: vstackSpacing) {
                                 if viewModel.selectedSocialNetwork == 0 {
                                     shareButton(view: squareImage)
