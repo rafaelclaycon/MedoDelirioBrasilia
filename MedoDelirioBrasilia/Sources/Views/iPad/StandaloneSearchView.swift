@@ -10,6 +10,7 @@ import SwiftUI
 struct StandaloneSearchView: View {
 
     let searchService: SearchServiceProtocol
+    let trendsService: TrendsServiceProtocol
 
     @State private var searchText: String = ""
     @State private var searchResults = SearchResults()
@@ -22,11 +23,10 @@ struct StandaloneSearchView: View {
                 VStack(spacing: .spacing(.xSmall)) {
                     if searchText.isEmpty {
                         SearchSuggestionsView(
+                            trendsService: trendsService,
                             onRecentSelectedAction: {
                                 searchText = $0
                             },
-                            popularContent: Sound.sampleSounds.prefix(3).map { AnyEquatableMedoContent($0) },
-                            popularReactions: [Reaction.acidMock, Reaction.classicsMock, Reaction.frustrationMock],
                             onReactionSelectedAction: { push(GeneralNavigationDestination.reactionDetail($0)) }
                         )
                         .padding(.leading, .spacing(.medium))
@@ -65,11 +65,16 @@ struct StandaloneSearchView: View {
 // MARK: - Preview
 
 #Preview {
-    StandaloneSearchView(searchService:
-        SearchService(
+    StandaloneSearchView(
+        searchService: SearchService(
             database: FakeLocalDatabase(),
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService()
+        ),
+        trendsService: TrendsService(
+            database: FakeLocalDatabase(),
+            apiClient: FakeAPIClient(),
+            contentRepository: FakeContentRepository()
         )
     )
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MainView: View {
 
-    @Binding var tabSelection: PhoneTab
-    @Binding var padSelection: PadScreen?
+    private var tabSelection: Binding<PhoneTab>
+    private var padSelection: Binding<PadScreen?>
 
     @State private var soundsPath = NavigationPath()
     @State private var favoritesPath = NavigationPath()
@@ -44,18 +44,30 @@ struct MainView: View {
     // Sync
     @State private var syncValues = SyncValues()
 
-    @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
-    @State private var trendsService = TrendsService(
-        database: LocalDatabase.shared,
-        apiClient: APIClient.shared
-    )
+    @State private var contentRepository: ContentRepository
+    @State private var trendsService: TrendsService
+
+    init(
+        tabSelection: Binding<PhoneTab>,
+        padSelection: Binding<PadScreen?>,
+        contentRepository: ContentRepository = ContentRepository(database: LocalDatabase.shared)
+    ) {
+        self.tabSelection = tabSelection
+        self.padSelection = padSelection
+        self.contentRepository = contentRepository
+        self.trendsService = TrendsService(
+            database: LocalDatabase.shared,
+            apiClient: APIClient.shared,
+            contentRepository: contentRepository
+        )
+    }
 
     // MARK: - View Body
 
     var body: some View {
         ZStack {
             if UIDevice.isiPhone {
-                TabView(selection: $tabSelection) {
+                TabView(selection: tabSelection) {
                     NavigationStack(path: $soundsPath) {
                         MainContentView(
                             viewModel: MainContentViewModel(
@@ -116,7 +128,7 @@ struct MainView: View {
                     NavigationView {
                         TrendsView(
                             audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                            tabSelection: $tabSelection,
+                            tabSelection: tabSelection,
                             activePadScreen: .constant(.trends)
                         )
                         .environment(trendsHelper)
@@ -127,7 +139,7 @@ struct MainView: View {
                     .tag(PhoneTab.trends)
                 }
                 .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
-                    tabSelection = .sounds
+                    tabSelection.wrappedValue = .sounds
                 })
 //                .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
 //                    tabSelection = .collections
@@ -136,19 +148,19 @@ struct MainView: View {
 //                    tabSelection = .songs
 //                })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
-                    tabSelection = .trends
+                    tabSelection.wrappedValue = .trends
                     trendsHelper.timeIntervalToGoTo = .last24Hours
                 })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
-                    tabSelection = .trends
+                    tabSelection.wrappedValue = .trends
                     trendsHelper.timeIntervalToGoTo = .lastWeek
                 })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
-                    tabSelection = .trends
+                    tabSelection.wrappedValue = .trends
                     trendsHelper.timeIntervalToGoTo = .lastMonth
                 })
                 .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
-                    tabSelection = .trends
+                    tabSelection.wrappedValue = .trends
                     trendsHelper.timeIntervalToGoTo = .allTime
                 })
             } else {
@@ -231,7 +243,7 @@ struct MainView: View {
                             NavigationStack {
                                 TrendsView(
                                     audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                    tabSelection: $tabSelection,
+                                    tabSelection: tabSelection,
                                     activePadScreen: .constant(.trends)
                                 )
                                 .environment(trendsHelper)
@@ -245,7 +257,8 @@ struct MainView: View {
                                         database: LocalDatabase.shared,
                                         contentRepository: contentRepository,
                                         authorService: AuthorService(database: LocalDatabase.shared)
-                                    )
+                                    ),
+                                    trendsService: trendsService
                                 )
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
@@ -346,7 +359,7 @@ struct MainView: View {
                 } else {
                     NavigationSplitView {
                         SidebarView(
-                            state: $padSelection,
+                            state: padSelection,
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             folderForEditing: $folderForEditing,
                             updateFolderList: $updateFolderList,

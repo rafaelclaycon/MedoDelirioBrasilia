@@ -117,7 +117,8 @@ struct TrendsView: View {
         audienceViewModel: MostSharedByAudienceView.ViewModel(
             trendsService: TrendsService(
                 database: FakeLocalDatabase(),
-                apiClient: FakeAPIClient()
+                apiClient: FakeAPIClient(),
+                contentRepository: FakeContentRepository()
             )
         ),
         tabSelection: .constant(.trends),

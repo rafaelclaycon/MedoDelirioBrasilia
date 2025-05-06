@@ -16,6 +16,9 @@ protocol TrendsServiceProtocol {
         in timeInterval: TrendsTimeInterval
     ) async throws -> [TopChartItem]
 
+    /// Returns top 3 most shared content in the last week.
+    func top3() async throws -> [AnyEquatableMedoContent]
+
     func reactionsStats() async throws -> [TopChartReaction]
 
     func top10SoundsSharedByTheUser() -> [TopChartItem]?
@@ -32,6 +35,7 @@ final class TrendsService: TrendsServiceProtocol {
 
     private let database: LocalDatabaseProtocol
     private let apiClient: APIClientProtocol
+    private let contentRepository: ContentRepositoryProtocol
 
     private var defaultSoundStats: [TopChartItem]
     private var defaultSongStats: [TopChartItem]
@@ -45,10 +49,12 @@ final class TrendsService: TrendsServiceProtocol {
 
     init(
         database: LocalDatabaseProtocol,
-        apiClient: APIClientProtocol
+        apiClient: APIClientProtocol,
+        contentRepository: ContentRepositoryProtocol
     ) {
         self.database = database
         self.apiClient = apiClient
+        self.contentRepository = contentRepository
         self.defaultSoundStats = []
         self.defaultSongStats = []
         self.reactionStats = []
@@ -97,6 +103,13 @@ final class TrendsService: TrendsServiceProtocol {
                 )
             }
         }
+    }
+
+    func top3() async throws -> [AnyEquatableMedoContent] {
+        if soundsLastUpdate.minutesPassed(60) {
+            await loadSoundStats(timeInterval: .lastWeek)
+        }
+        return try contentRepository.content(withIds: defaultSoundStats.prefix(3).map { $0.contentId })
     }
 
     func reactionsStats() async throws -> [TopChartReaction] {

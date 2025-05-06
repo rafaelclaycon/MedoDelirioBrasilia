@@ -10,12 +10,14 @@ import SwiftUI
 struct SearchSuggestionsView: View {
 
     let recent: [String]? = ["Anitta", "alegria", "pazuello"]
+    let trendsService: TrendsServiceProtocol
     let onRecentSelectedAction: (String) -> Void
-
-    let popularContent: [AnyEquatableMedoContent]?
-
-    let popularReactions: [Reaction]?
     let onReactionSelectedAction: (Reaction) -> Void
+
+    @State private var popularContent: LoadingState<[AnyEquatableMedoContent]> = .loading
+    @State private var popularReactions: LoadingState<[Reaction]> = .loading
+
+    // MARK: - View Body
 
     var body: some View {
         VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
@@ -36,38 +38,18 @@ struct SearchSuggestionsView: View {
                 }
             }
 
-            if let popularContent {
-                VStack(alignment: .leading, spacing: .spacing(.small)) {
-                    Text("Conteúdos Populares")
-                        .font(.headline)
-
-                    ScrollView(.horizontal) {
-                        HStack(spacing: .spacing(.medium)) {
-                            ForEach(popularContent) { content in
-                                PlayableContentView(
-                                    content: content,
-                                    favorites: Set<String>(),
-                                    highlighted: Set<String>(),
-                                    nowPlaying: Set<String>(),
-                                    selectedItems: Set<String>(),
-                                    currentContentListMode: .constant(.regular)
-                                )
-                                .frame(width: 200)
-                            }
-                        }
-                    }
-                    .scrollBounceBehavior(.basedOnSize)
-                }
+            if case .loaded(let content) = popularContent {
+                PopularContentView(content: content)
             }
 
-            if let popularReactions {
+            if case .loaded(let reactions) = popularReactions {
                 VStack(alignment: .leading, spacing: .spacing(.small)) {
                     Text("Reações Populares")
                         .font(.headline)
 
                     ScrollView(.horizontal) {
                         HStack(spacing: .spacing(.medium)) {
-                            ForEach(popularReactions) { reaction in
+                            ForEach(reactions) { reaction in
                                 ReactionItem(reaction: reaction)
                                     .frame(width: 220)
                                     .onTapGesture {
@@ -79,6 +61,21 @@ struct SearchSuggestionsView: View {
                     .scrollBounceBehavior(.basedOnSize)
                 }
             }
+        }
+        .onAppear {
+            Task {
+                await loadContent()
+            }
+        }
+    }
+
+    // MARK: - Functions
+
+    private func loadContent() async {
+        do {
+            popularContent = .loaded(try await trendsService.top3())
+        } catch {
+            debugPrint(error)
         }
     }
 }
@@ -102,6 +99,35 @@ extension SearchSuggestionsView {
             .padding(.vertical, .spacing(.xSmall))
         }
     }
+
+    struct PopularContentView: View {
+
+        let content: [AnyEquatableMedoContent]
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: .spacing(.small)) {
+                Text("Conteúdos Populares")
+                    .font(.headline)
+
+                ScrollView(.horizontal) {
+                    HStack(spacing: .spacing(.medium)) {
+                        ForEach(content) { item in
+                            PlayableContentView(
+                                content: item,
+                                favorites: Set<String>(),
+                                highlighted: Set<String>(),
+                                nowPlaying: Set<String>(),
+                                selectedItems: Set<String>(),
+                                currentContentListMode: .constant(.regular)
+                            )
+                            .frame(width: 200)
+                        }
+                    }
+                }
+                .scrollBounceBehavior(.basedOnSize)
+            }
+        }
+    }
 }
 
 // MARK: - Preview
@@ -111,9 +137,12 @@ extension SearchSuggestionsView {
         VStack(alignment: .leading) {
             HStack {
                 SearchSuggestionsView(
+                    trendsService: TrendsService(
+                        database: FakeLocalDatabase(),
+                        apiClient: FakeAPIClient(),
+                        contentRepository: FakeContentRepository()
+                    ),
                     onRecentSelectedAction: { _ in },
-                    popularContent: Sound.sampleSounds.prefix(3).map { AnyEquatableMedoContent($0) },
-                    popularReactions: [Reaction.acidMock, Reaction.classicsMock, Reaction.frustrationMock],
                     onReactionSelectedAction: { _ in }
                 )
 

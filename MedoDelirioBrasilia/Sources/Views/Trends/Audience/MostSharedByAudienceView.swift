@@ -395,7 +395,13 @@ extension MostSharedByAudienceView {
 
 #Preview {
     MostSharedByAudienceView(
-        viewModel: .init(trendsService: TrendsService(database: FakeLocalDatabase(), apiClient: APIClient(serverPath: ""))),
+        viewModel: MostSharedByAudienceView.ViewModel(
+            trendsService: TrendsService(
+                database: FakeLocalDatabase(),
+                apiClient: FakeAPIClient(),
+                contentRepository: FakeContentRepository()
+            )
+        ),
         tabSelection: .constant(.trends),
         activePadScreen: .constant(.trends)
     )

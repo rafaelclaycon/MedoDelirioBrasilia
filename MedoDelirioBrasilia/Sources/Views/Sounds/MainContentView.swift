@@ -160,17 +160,7 @@ struct MainContentView: View {
                                     ,
                                     errorView: VStack { ContentLoadErrorView() }
                                 )
-                                .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt) /*{
-                                    if viewModel.searchText.isEmpty {
-                                        SearchSuggestionsView(
-                                            onRecentSelectedAction: { viewModel.searchText = $0 },
-                                            popularContent: Sound.sampleSounds.prefix(3).map { AnyEquatableMedoContent($0) },
-                                            popularReactions: [Reaction.acidMock, Reaction.classicsMock, Reaction.frustrationMock],
-                                            onReactionSelectedAction: { push($0) }
-                                        )
-                                        .border(.orange)
-                                    }
-                                }*/
+                                .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt)
                                 .autocorrectionDisabled()
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {

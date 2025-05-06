@@ -195,6 +195,10 @@ struct SidebarView: View {
         toast: .constant(nil),
         floatingOptions: .constant(nil),
         contentRepository: FakeContentRepository(),
-        trendsService: TrendsService(database: FakeLocalDatabase(), apiClient: FakeAPIClient())
+        trendsService: TrendsService(
+            database: FakeLocalDatabase(),
+            apiClient: FakeAPIClient(),
+            contentRepository: FakeContentRepository()
+        )
     )
 }
