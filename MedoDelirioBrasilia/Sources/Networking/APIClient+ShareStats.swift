@@ -1,5 +1,5 @@
 //
-//  NetworkRabbit+ShareStats.swift
+//  APIClient+ShareStats.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 02/03/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NetworkRabbit {
+extension APIClient {
 
     func getShareCountStats(
         for contentType: TrendsContentType,
@@ -50,13 +50,13 @@ extension NetworkRabbit {
             url = URL(string: serverPath + "v3/\(keyword)-share-count-stats-all-time")!
         }
 
-        return try await NetworkRabbit.shared.get(from: url)
+        return try await APIClient.shared.get(from: url)
     }
 
     func getReactionsStats() async throws -> [TopChartReaction] {
         let url = URL(string: serverPath + "v3/reaction-popularity-stats")!
-        let serverStats: [TopChartReactionDTO] = try await NetworkRabbit.shared.get(from: url)
-        return NetworkRabbit.groupedStats(from: serverStats)
+        let serverStats: [TopChartReactionDTO] = try await APIClient.shared.get(from: url)
+        return APIClient.groupedStats(from: serverStats)
     }
 
     public static func groupedStats(from stats: [TopChartReactionDTO]) -> [TopChartReaction] {

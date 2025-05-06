@@ -32,10 +32,11 @@ struct FirstOnboardingView: View {
             .safeAreaInset(edge: .bottom) {
                 VStack(alignment: .center, spacing: 18) {
                     Button {
-                        NotificationAide.registerForRemoteNotifications() { _ in
+                        Task {
+                            await NotificationAide.registerForRemoteNotifications()
                             AppPersistentMemory().hasShownNotificationsOnboarding(true)
+                            showWhatsNew = true
                         }
-                        showWhatsNew = true
                     } label: {
                         Text("Permitir notificações")
                             .bold()
@@ -55,7 +56,7 @@ struct FirstOnboardingView: View {
                     }
                     .foregroundColor(.blue)
 
-                    if UIDevice.current.userInterfaceIdiom != .phone {
+                    if !UIDevice.isiPhone {
                         Text("Caso a tela não feche automaticamente ao escolher uma das opções, toque fora dela (na área apagada).")
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)

@@ -1,10 +1,10 @@
 @testable import MedoDelirio
 import Foundation
 
-class NetworkRabbitStub: NetworkRabbitProtocol {
+class FakeAPIClient: APIClientProtocol {
 
     var serverPath: String
-    
+
     var serverShouldBeUnavailable = false
     var fetchUpdateEventsResult: SyncResult = .nothingToUpdate
     var retroStartingVersion: String?
@@ -20,23 +20,23 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
     func serverIsAvailable() async -> Bool {
         return !serverShouldBeUnavailable
     }
-    
-    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
+
+    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, APIClientError?) -> Void) {
         completionHandler(nil, nil)
     }
-    
+
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {
         completionHandler(false, "")
     }
-    
-    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
+
+    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, APIClientError?) -> Void) {
         completionHandler(nil, nil)
     }
-    
+
     func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void) {
         completionHandler(false, "")
     }
-    
+
     func fetchUpdateEvents(from lastDate: String) async throws -> [MedoDelirio.UpdateEvent] {
         switch fetchUpdateEventsResult {
         default:

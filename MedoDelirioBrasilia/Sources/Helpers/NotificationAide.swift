@@ -3,21 +3,16 @@ import UserNotifications
 
 class NotificationAide {
 
-    static func registerForRemoteNotifications(completionHandler: @escaping (Bool) -> Void) {
+    static func registerForRemoteNotifications() async {
         let center = UNUserNotificationCenter.current()
-        
-        center.requestAuthorization(options: [.sound, .alert]) { granted, error in
-            if error == nil {
-                DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
-                UserSettings().setUserAllowedNotifications(to: granted)
-                completionHandler(granted)
-            } else {
-                UserSettings().setUserAllowedNotifications(to: false)
-                completionHandler(false)
+        do {
+            let granted = try await center.requestAuthorization(options: [.sound, .alert])
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
             }
+            UserSettings().setUserAllowedNotifications(to: granted)
+        } catch {
+            UserSettings().setUserAllowedNotifications(to: false)
         }
     }
-
 }

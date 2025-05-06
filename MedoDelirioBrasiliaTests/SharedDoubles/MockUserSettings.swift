@@ -15,4 +15,8 @@ final class MockUserSettings: UserSettingsProtocol {
     func getHasJoinedFolderResearch() -> Bool {
         return hasJoinedFolderResearch
     }
+
+    func authorSortOption(_ newValue: Int) {
+        //
+    }
 }

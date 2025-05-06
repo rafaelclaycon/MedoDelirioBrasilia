@@ -1,5 +1,5 @@
 //
-//  NetworkRabbit+FileDownload.swift
+//  APIClient+FileDownload.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 27/04/23.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension NetworkRabbit {
-    
+extension APIClient {
+
     static func downloadFile(from url: URL, into subfolder: String) async throws -> String {
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         print(documentsUrl.absoluteString)

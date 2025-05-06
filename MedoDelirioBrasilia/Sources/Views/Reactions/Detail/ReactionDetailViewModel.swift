@@ -91,7 +91,7 @@ extension ReactionDetailViewModel {
             self.reaction.lastUpdate = reaction.lastUpdate
             self.reaction.attributionText = reaction.attributionText
             self.reaction.attributionURL = reaction.attributionURL
-        } catch NetworkRabbitError.resourceNotFound {
+        } catch APIClientError.resourceNotFound {
             state = .error("")
             reactionNoLongerExists = true
             return

@@ -142,7 +142,7 @@ extension ClassicRetroView.ViewModel {
     func save(image: UIImage) async throws {
         isShowingProcessingView = true
 
-        try await CustomPhotoAlbum.sharedInstance.save(image: image)
+        try await CustomPhotoAlbum.shared.save(image: image)
 
         isShowingProcessingView = false
     }
@@ -171,7 +171,7 @@ extension ClassicRetroView.ViewModel {
 
     static func versionIsAllowedToDisplayRetro(
         currentVersion: String = Versioneer.appVersion,
-        network: NetworkRabbitProtocol = NetworkRabbit.shared
+        network: APIClientProtocol = APIClient.shared
     ) async -> Bool {
 //        guard let allowedVersion = await network.retroStartingVersion() else { return false }
 //        return currentVersion >= allowedVersion

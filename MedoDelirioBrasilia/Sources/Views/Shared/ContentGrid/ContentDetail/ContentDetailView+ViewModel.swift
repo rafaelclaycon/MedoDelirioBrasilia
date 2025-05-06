@@ -136,11 +136,11 @@ extension ContentDetailView.ViewModel {
 
     private func loadStatistics() async {
         soundStatistics = .loading
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound-share-count-stats-for/\(content.id)")!
+        let url = URL(string: APIClient.shared.serverPath + "v3/sound-share-count-stats-for/\(content.id)")!
         do {
-            let stats: ContentShareCountStats = try await NetworkRabbit.shared.get(from: url)
+            let stats: ContentShareCountStats = try await APIClient.shared.get(from: url)
             soundStatistics = .loaded(stats)
-        } catch NetworkRabbitError.resourceNotFound {
+        } catch APIClientError.resourceNotFound {
             soundStatistics = .noDataYet
         } catch {
             debugPrint(error.localizedDescription)
@@ -150,9 +150,9 @@ extension ContentDetailView.ViewModel {
 
     private func loadReactions() async {
         reactionsState = .loading
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reactions-for-sound/\(content.id)")!
+        let url = URL(string: APIClient.shared.serverPath + "v4/reactions-for-sound/\(content.id)")!
         do {
-            var reactions: [ReactionDTO] = try await NetworkRabbit.shared.get(from: url)
+            var reactions: [ReactionDTO] = try await APIClient.shared.get(from: url)
             reactions.sort(by: { $0.position < $1.position })
             reactionsState = .loaded(reactions.map { Reaction(dto: $0, type: .regular) })
         } catch {

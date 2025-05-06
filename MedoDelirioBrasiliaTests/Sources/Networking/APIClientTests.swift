@@ -2,7 +2,7 @@
 import Testing
 import Foundation
 
-@Suite("NetworkRabbit tests") struct NetworkRabbitTests {
+@Suite("APIClient tests") struct APIClientTests {
 
     @Test func threeDifferentReactions() {
         let today = TopChartReactionDTO(
@@ -21,7 +21,7 @@ import Foundation
             description: "todos os tempos"
         )
 
-        let result = NetworkRabbit.groupedStats(from: [today, lastWeek, allTime])
+        let result = APIClient.groupedStats(from: [today, lastWeek, allTime])
 
         #expect(result.count == 3)
         #expect(result.first?.description == "hoje")
@@ -46,7 +46,7 @@ import Foundation
             description: "todos os tempos"
         )
 
-        let result = NetworkRabbit.groupedStats(from: [today, lastWeek, allTime])
+        let result = APIClient.groupedStats(from: [today, lastWeek, allTime])
 
         #expect(result.count == 2)
         #expect(result.first?.description == "hoje & última semana")
@@ -70,7 +70,7 @@ import Foundation
             description: "todos os tempos"
         )
 
-        let result = NetworkRabbit.groupedStats(from: [today, lastWeek, allTime])
+        let result = APIClient.groupedStats(from: [today, lastWeek, allTime])
 
         #expect(result.count == 1)
         #expect(result.first?.description == "hoje, última semana & todos os tempos")
@@ -98,7 +98,7 @@ import Foundation
             description: "todos os tempos"
         )
 
-        let result = NetworkRabbit.groupedStats(from: [today, lastWeek, lastMonth, allTime])
+        let result = APIClient.groupedStats(from: [today, lastWeek, lastMonth, allTime])
 
         #expect(result.count == 1)
         #expect(result.first?.description == "hoje, última semana, último mês & todos os tempos")

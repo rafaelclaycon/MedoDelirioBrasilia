@@ -16,20 +16,20 @@ internal protocol SyncServiceProtocol {
 
 class SyncService: SyncServiceProtocol {
 
-    private let networkRabbit: NetworkRabbitProtocol
+    private let apiClient: APIClientProtocol
     let injectedDatabase: LocalDatabaseProtocol
     
     init(
-        networkRabbit: NetworkRabbitProtocol,
+        apiClient: APIClientProtocol,
         localDatabase: LocalDatabaseProtocol
     ) {
-        self.networkRabbit = networkRabbit
+        self.apiClient = apiClient
         self.injectedDatabase = localDatabase
     }
     
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {
         print(updateDateToConsider)
-        return try await networkRabbit.fetchUpdateEvents(from: updateDateToConsider)
+        return try await apiClient.fetchUpdateEvents(from: updateDateToConsider)
     }
     
     func process(updateEvent: UpdateEvent) async {
@@ -118,7 +118,7 @@ extension SyncService {
         contentId: String
     ) async throws {
         try removeContentFile(named: contentId, atFolder: localFolderName)
-        let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: localFolderName)
+        let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: localFolderName)
         print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 }

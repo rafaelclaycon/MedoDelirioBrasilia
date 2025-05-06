@@ -28,7 +28,7 @@ struct LargeCreatorView: View {
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
-                    .frame(maxWidth: UIDevice.current.userInterfaceIdiom == .phone ? .infinity : 500)
+                    .frame(maxWidth: UIDevice.isiPhone ? .infinity : 500)
                     .onTapGesture {
                         withAnimation {
                             showLargeCreatorImage = false

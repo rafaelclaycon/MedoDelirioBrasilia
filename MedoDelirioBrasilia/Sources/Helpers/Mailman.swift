@@ -24,5 +24,4 @@ class Mailman {
     static var hasSpark: Bool {
         return UIApplication.shared.canOpenURL(URL(string: sparkMailToUrl)!)
     }
-
 }

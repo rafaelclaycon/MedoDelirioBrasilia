@@ -97,7 +97,7 @@ struct MostSharedByAudienceView: View {
     // MARK: - Functions
 
     private func navigateTo(content contentId: String) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             tabSelection = .sounds
         } else {
             activePadScreen = .allSounds
@@ -106,7 +106,7 @@ struct MostSharedByAudienceView: View {
     }
 
     private func navigateTo(reaction reactionId: String) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             tabSelection = .reactions
         } else {
             activePadScreen = .reactions

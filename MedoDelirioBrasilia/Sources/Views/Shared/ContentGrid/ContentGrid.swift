@@ -222,9 +222,9 @@ struct ContentGrid<
                             viewModel: ShareAsVideoViewModel(
                                 content: viewModel.selectedContentSingle!,
                                 subtitle: viewModel.selectedContentSingle!.subtitle,
-                                contentType: viewModel.typeForShareAsVideo()
+                                contentType: viewModel.typeForShareAsVideo(),
+                                result: $viewModel.shareAsVideoResult
                             ),
-                            result: $viewModel.shareAsVideoResult,
                             useLongerGeneratingVideoMessage: viewModel.selectedContentSingle!.type == .song
                         )
 

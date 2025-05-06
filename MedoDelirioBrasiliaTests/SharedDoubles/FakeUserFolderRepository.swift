@@ -50,4 +50,8 @@ final class FakeUserFolderRepository: UserFolderRepositoryProtocol {
     func addHashToExistingFolders() throws {
         didCallAddHashToExistingFolder = true
     }
+
+    func delete(_ folderId: String) throws {
+        //
+    }
 }

@@ -10,9 +10,9 @@ import Foundation
 extension SyncService {
 
     func createSound(from updateEvent: UpdateEvent) async {
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
+        let url = URL(string: APIClient.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
-            let sound: Sound = try await NetworkRabbit.shared.get(from: url)
+            let sound: Sound = try await APIClient.shared.get(from: url)
             try injectedDatabase.insert(sound: sound)
             
             try await SyncService.downloadFile(updateEvent.contentId)
@@ -26,9 +26,9 @@ extension SyncService {
     }
 
     func updateSoundMetadata(with updateEvent: UpdateEvent) async {
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
+        let url = URL(string: APIClient.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
-            let sound: Sound = try await NetworkRabbit.shared.get(from: url)
+            let sound: Sound = try await APIClient.shared.get(from: url)
             try injectedDatabase.update(sound: sound)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
@@ -79,7 +79,7 @@ extension SyncService {
         
         try removeSoundFileIfExists(named: contentId)
         
-        let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
+        let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
         print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 }

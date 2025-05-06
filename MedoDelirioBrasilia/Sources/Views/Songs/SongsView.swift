@@ -16,7 +16,7 @@ struct SongsView: View {
     @State private var toast: Toast?
 
     // Share as Video
-    @State private var shareAsVideo_Result = ShareAsVideoResult()
+    @State private var shareAsVideo_Result = ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .shareSheet)
 
     @Environment(TrendsHelper.self) private var trendsHelper
     @Environment(SettingsHelper.self) private var settingsHelper
@@ -66,7 +66,7 @@ struct SongsView: View {
                                     highlighted: $viewModel.highlightKeeper
                                 )
                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
                                 .onTapGesture {
                                     if viewModel.nowPlayingKeeper.contains(song.id) {
                                         AudioPlayer.shared?.togglePlay()
@@ -121,7 +121,7 @@ struct SongsView: View {
 
                     if UserSettings().getShowExplicitContent() == false {
                         ExplicitDisabledWarning(
-                            text: UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
+                            text: UIDevice.isiPhone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
                         )
                         .padding(.top, explicitOffWarningTopPadding)
                         .padding(.horizontal, explicitOffWarningBottomPadding)
@@ -206,9 +206,9 @@ struct SongsView: View {
             ShareAsVideoView(
                 viewModel: ShareAsVideoViewModel(
                     content: AnyEquatableMedoContent(song),
-                    contentType: .videoFromSong
+                    contentType: .videoFromSong,
+                    result: $shareAsVideo_Result
                 ),
-                result: $shareAsVideo_Result,
                 useLongerGeneratingVideoMessage: true
             )
         }

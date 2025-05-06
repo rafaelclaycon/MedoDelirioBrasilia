@@ -15,12 +15,12 @@ protocol AnalyticsServiceProtocol {
 
 final class AnalyticsService: AnalyticsServiceProtocol {
 
-    private let apiClient: NetworkRabbitProtocol
+    private let apiClient: APIClientProtocol
 
     // MARK: - Initializer
 
     init(
-        apiClient: NetworkRabbitProtocol = NetworkRabbit.shared
+        apiClient: APIClientProtocol = APIClient.shared
     ) {
         self.apiClient = apiClient
     }
