@@ -12,25 +12,25 @@ final class SyncServiceTests: XCTestCase {
 
     private var sut: SyncService!
 
-    private var networkRabbit: NetworkRabbitStub!
+    private var apiClient: FakeAPIClient!
     private var localDatabase: FakeLocalDatabase!
 
     override func setUp() {
-        networkRabbit = NetworkRabbitStub()
+        apiClient = FakeAPIClient()
         localDatabase = FakeLocalDatabase()
-        sut = SyncService(networkRabbit: networkRabbit, localDatabase: localDatabase)
+        sut = SyncService(apiClient: apiClient, localDatabase: localDatabase)
     }
 
     override func tearDown() {
         sut = nil
         localDatabase = nil
-        networkRabbit = nil
+        apiClient = nil
         super.tearDown()
     }
 
     func testGetUpdates_whenNoInternetConnection_shouldReturnSyncError() async throws {
         // Given
-        networkRabbit.serverShouldBeUnavailable = true
+        apiClient.serverShouldBeUnavailable = true
 
         // When
         let updates = try await sut.getUpdates(from: "all")
@@ -40,7 +40,7 @@ final class SyncServiceTests: XCTestCase {
     }
 
     func testGetUpdates_whenNoChanges_shouldReturnNothingToUpdate() async throws {
-        networkRabbit.fetchUpdateEventsResult = .nothingToUpdate
+        apiClient.fetchUpdateEventsResult = .nothingToUpdate
         
         let updates = try await sut.getUpdates(from: "all")
 
@@ -48,7 +48,7 @@ final class SyncServiceTests: XCTestCase {
     }
 
 //    func testGetUpdates_syncWithServer_serverError() async throws {
-//        networkRabbit.fetchUpdateEventsResult = .updateError
+//        apiClient.fetchUpdateEventsResult = .updateError
 //        
 //        let updates = try await sut.getUpdates(from: "all")
 //

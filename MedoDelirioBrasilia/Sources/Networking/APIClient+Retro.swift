@@ -1,5 +1,5 @@
 //
-//  NetworkRabbit+Retro.swift
+//  APIClient+Retro.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 25/11/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NetworkRabbit {
+extension APIClient {
 
     func retroStartingVersion() async -> String? {
         let url = URL(string: serverPath + "v4/classic-retro-starting-version")!

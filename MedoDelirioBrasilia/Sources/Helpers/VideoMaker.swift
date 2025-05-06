@@ -6,35 +6,23 @@ class VideoMaker {
     static func createVideo(
         from content: any MedoContentProtocol,
         with sourceImage: UIImage,
-        exportType: IntendedVideoDestination,
-        completion: @escaping (String?, VideoMakerError?) -> Void
-    ) throws {
+        exportType: IntendedVideoDestination
+    ) async throws -> String? {
         let contentUrl = try content.fileURL()
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            guard let audioDuration = VideoMaker.getAudioFileDuration(fileURL: contentUrl) else {
-                return completion(nil, .couldNotObtainAudioDuration)
-            }
-            
-            do {
-                try VideoMaker.createVideo(
-                    fromImage: sourceImage,
-                    withDuration: audioDuration,
-                    andName: content.title,
-                    contentUrl: contentUrl,
-                    exportType: exportType
-                ) { videoPath, error in
-                    guard let videoPath = videoPath else {
-                        return completion(nil, .unableToFindVideoFile)
-                    }
-                    completion(videoPath, nil)
-                }
-            } catch {
-                completion(nil, .unknownError)
-            }
+        guard let audioDuration = VideoMaker.getAudioFileDuration(fileURL: contentUrl) else {
+            throw VideoMakerError.couldNotObtainAudioDuration
         }
+
+        return try await VideoMaker.createVideo(
+            fromImage: sourceImage,
+            withDuration: audioDuration,
+            andName: content.title,
+            contentUrl: contentUrl,
+            exportType: exportType
+        )
     }
-    
+
     static func getAudioFileDuration(fileURL: URL) -> CGFloat? {
         do {
             let audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
@@ -45,22 +33,20 @@ class VideoMaker {
         }
     }
     
-    static func mergeVideoWithAudio(
-        videoUrl: URL,
-        audioUrl: URL,
+    static func merge(
+        audio audioUrl: URL,
+        and videoUrl: URL,
         videoName: String,
-        exportType: IntendedVideoDestination,
-        success: @escaping ((URL) -> Void),
-        failure: @escaping ((Error?) -> Void)
-    ) {
+        exportType: IntendedVideoDestination
+    ) async throws -> URL? {
         let mixComposition: AVMutableComposition = AVMutableComposition()
         var mutableCompositionVideoTrack: [AVMutableCompositionTrack] = []
         var mutableCompositionAudioTrack: [AVMutableCompositionTrack] = []
         let totalVideoCompositionInstruction: AVMutableVideoCompositionInstruction = AVMutableVideoCompositionInstruction()
-        
+
         let aVideoAsset: AVAsset = AVAsset(url: videoUrl)
         let aAudioAsset: AVAsset = AVAsset(url: audioUrl)
-        
+
         if
             let videoTrack = mixComposition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid),
             let audioTrack = mixComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
@@ -115,73 +101,60 @@ class VideoMaker {
                 }
                 
                 totalVideoCompositionInstruction.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration)
-               }
-            }
-
-            let mutableVideoComposition: AVMutableVideoComposition = AVMutableVideoComposition()
-            mutableVideoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
-            
-            var videoWidth: Int = 0
-            var videoHeight: Int = 0
-            
-            if exportType == IntendedVideoDestination.twitter {
-                videoWidth = 1000
-                videoHeight = 1000
-            } else {
-                videoWidth = 1080
-                videoHeight = 1920
-            }
-        
-            mutableVideoComposition.renderSize = CGSize(width: videoWidth, height: videoHeight)
-
-            if let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
-                let outputURL = URL(fileURLWithPath: documentsPath).appendingPathComponent("\(videoName).mov")
-
-                do {
-                    if FileManager.default.fileExists(atPath: outputURL.path) {
-                        try FileManager.default.removeItem(at: outputURL)
-                    }
-                } catch {
-                    print("Could not remove file: \(error.localizedDescription)")
-                }
-
-                if let exportSession = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality) {
-                    exportSession.outputURL = outputURL
-                    exportSession.outputFileType = AVFileType.mp4
-                    exportSession.shouldOptimizeForNetworkUse = true
-                   
-                    // try to export the file and handle the status cases
-                    exportSession.exportAsynchronously(completionHandler: {
-                        switch exportSession.status {
-                        case .failed:
-                            if let error = exportSession.error {
-                                failure(error)
-                            }
-
-                        case .cancelled:
-                            if let error = exportSession.error {
-                                failure(error)
-                            }
-
-                        default:
-                            print("finished")
-                            success(outputURL)
-                        }
-                    })
-            } else {
-                failure(nil)
             }
         }
+
+        let mutableVideoComposition: AVMutableVideoComposition = AVMutableVideoComposition()
+        mutableVideoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
+
+        var videoWidth: Int = 0
+        var videoHeight: Int = 0
+
+        if exportType == IntendedVideoDestination.twitter {
+            videoWidth = 1000
+            videoHeight = 1000
+        } else {
+            videoWidth = 1080
+            videoHeight = 1920
+        }
+
+        mutableVideoComposition.renderSize = CGSize(width: videoWidth, height: videoHeight)
+
+        guard
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        else { return nil }
+        let outputURL = URL(fileURLWithPath: documentsPath).appendingPathComponent("\(videoName).mov")
+
+        do {
+            if FileManager.default.fileExists(atPath: outputURL.path) {
+                try FileManager.default.removeItem(at: outputURL)
+            }
+        } catch {
+            print("Could not remove file: \(error.localizedDescription)")
+        }
+
+        guard
+            let exportSession = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality)
+        else { return nil }
+
+        exportSession.outputURL = outputURL
+        exportSession.outputFileType = AVFileType.mp4
+        exportSession.shouldOptimizeForNetworkUse = true
+
+        // try to export the file and handle the status cases
+        await exportSession.export()
+
+        return outputURL
     }
-    
+
+    /// Creates the video in the app's Documents folder and returns the path to the file.
     static func createVideo(
         fromImage image: UIImage,
         withDuration duration: CGFloat,
         andName videoName: String,
         contentUrl: URL,
-        exportType: IntendedVideoDestination,
-        completionHandler: @escaping (String?, VideoMakerError?) -> Void
-    ) throws {
+        exportType: IntendedVideoDestination
+    ) async throws -> String? {
         guard let staticImage = CIImage(image: image) else {
             throw VideoMakerError.invalidImage
         }
@@ -207,7 +180,13 @@ class VideoMaker {
         
         context.render(staticImage, to: pixelBuffer!)
         
-        guard let imageNameRoot = videoName.split(separator: ".").first, let outputMovieURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(imageNameRoot).mov") else {
+        guard
+            let imageNameRoot = videoName.split(separator: ".").first,
+            let outputMovieURL = FileManager.default.urls(
+                for: .documentDirectory,
+                in: .userDomainMask).first?.appendingPathComponent("\(imageNameRoot).mov"
+            )
+        else {
             throw VideoMakerError.invalidURL
         }
         
@@ -253,19 +232,21 @@ class VideoMaker {
                 frameCount+=1
             }
         }
-        
-        assetWriterInput.markAsFinished()
-        assetwriter.finishWriting {
-            pixelBuffer = nil
 
-            mergeVideoWithAudio(videoUrl: outputMovieURL, audioUrl: contentUrl, videoName: videoName, exportType: exportType) { videoURL in
-                completionHandler(videoURL.path, nil)
-            } failure: { error in
-                if error != nil {
-                    completionHandler(nil, VideoMakerError.failedToMergeSoundAndVideo)
-                }
-            }
-        }
+        assetWriterInput.markAsFinished()
+        await assetwriter.finishWriting()
+
+        pixelBuffer = nil
+
+        guard
+            let videoUrl = try await merge(
+                audio: contentUrl,
+                and: outputMovieURL,
+                videoName: videoName,
+                exportType: exportType
+            )
+        else { return nil }
+        return videoUrl.path
     }
 }
 

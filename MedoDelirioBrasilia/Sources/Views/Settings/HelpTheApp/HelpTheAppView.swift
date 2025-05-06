@@ -28,11 +28,11 @@ struct HelpTheAppView: View {
                 
                 Text("Rafael aqui, criador do app Medo e Delírio para iPhone, iPad e Mac.")
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 15)
+                    .padding(.horizontal, UIDevice.isiPhone ? 0 : 15)
             }
             
             VStack(alignment: .leading, spacing: 18) {
-                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 80) e anuais com a Apple (~R$ 700 🥲). Toda contribuição é bem-vinda!")
+                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 70) e anuais com a Apple (~R$ 550 🥲). Toda contribuição é bem-vinda!")
                     .fixedSize(horizontal: false, vertical: true)
                 
                 if donors != nil {

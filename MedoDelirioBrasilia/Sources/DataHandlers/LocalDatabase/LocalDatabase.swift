@@ -76,6 +76,9 @@ internal protocol LocalDatabaseProtocol {
     func insert(_ pinnedReaction: Reaction) throws
     func pinnedReactions() throws -> [Reaction]
     func delete(reactionId: String) throws
+
+    func markAllUserShareLogsAsSentToServer() throws
+    func clearAudienceSharingStatisticTable() throws
 }
 
 class LocalDatabase: LocalDatabaseProtocol {

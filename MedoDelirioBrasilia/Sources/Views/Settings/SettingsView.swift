@@ -25,7 +25,7 @@ struct SettingsView: View {
         .init(name: "Bluesky", imageName: "bluesky", link: "https://bsky.app/profile/rafaelschmitt.bsky.social"),
         .init(name: "Mastodon", imageName: "mastodon", link: "https://burnthis.town/@rafael")
     ]
-    private let apiClient: NetworkRabbitProtocol
+    private let apiClient: APIClientProtocol
 
     // MARK: - Environment
 
@@ -34,7 +34,7 @@ struct SettingsView: View {
     // MARK: - Initializer
 
     init(
-        apiClient: NetworkRabbitProtocol
+        apiClient: APIClientProtocol
     ) {
         self.apiClient = apiClient
     }
@@ -350,5 +350,5 @@ extension SettingsView {
 // MARK: - Preview
 
 #Preview {
-    SettingsView(apiClient: NetworkRabbit.shared)
+    SettingsView(apiClient: APIClient.shared)
 }

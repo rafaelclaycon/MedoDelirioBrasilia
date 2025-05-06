@@ -5,7 +5,7 @@
 //  Created by Rafael Schmitt on 22/02/23.
 //
 
-import Foundation
+import SwiftUI
 import PhotosUI
 
 @Observable
@@ -14,7 +14,8 @@ class ShareAsVideoViewModel {
     var content: AnyEquatableMedoContent
     var subtitle: String
     private let type: ContentType
-    
+    private var result: Binding<ShareAsVideoResult>
+
     var includeSoundWarning: Bool = true
     var isShowingProcessingView = false
 
@@ -32,53 +33,82 @@ class ShareAsVideoViewModel {
     init(
         content: AnyEquatableMedoContent,
         subtitle: String = "",
-        contentType: ContentType
+        contentType: ContentType,
+        result: Binding<ShareAsVideoResult>
     ) {
         self.content = content
         self.subtitle = subtitle
         self.type = contentType
+        self.result = result
+    }
+}
+
+// MARK: - User Actions
+
+extension ShareAsVideoViewModel {
+
+    public func onViewAppeared() {
+        // Cleaning this string is needed in case the user decides do re-export the same sound.
+        result.wrappedValue = ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .shareSheet)
     }
 
-    // MARK: - Functions
+    public func onSaveVideoSelected(_ image: UIImage) async {
+        guard let videoPath = await saveVideoToPhotos(withImage: image) else { return }
+        result.wrappedValue = ShareAsVideoResult(
+            videoFilepath: videoPath,
+            contentId: content.id,
+            exportMethod: .saveAsVideo
+        )
+        shouldCloseView = true
+    }
 
-    func generateVideo(withImage image: UIImage, completion: @escaping (String?, VideoMakerError?) -> Void) {
-        DispatchQueue.main.async {
-            self.isShowingProcessingView = true
-        }
-        
+    public func onShareVideoSelected(_ image: UIImage) async {
+        guard
+            let videoPath = await generateVideo(withImage: image)
+        else { return }
+        isShowingProcessingView = false
+        result.wrappedValue = ShareAsVideoResult(
+            videoFilepath: videoPath,
+            contentId: content.id,
+            exportMethod: .shareSheet
+        )
+        shouldCloseView = true
+    }
+}
+
+// MARK: - Internal Functions
+
+extension ShareAsVideoViewModel {
+
+    private func generateVideo(withImage image: UIImage) async -> String? {
+        isShowingProcessingView = true
+
         do {
-            try VideoMaker.createVideo(
+            return try await VideoMaker.createVideo(
                 from: content,
                 with: image,
                 exportType: IntendedVideoDestination(rawValue: selectedSocialNetwork)!
-            ) { videoPath, error in
-                guard error == nil else {
-                    return completion(nil, error)
-                }
-                completion(videoPath, nil)
-            }
+            )
         } catch VideoMakerError.soundFilepathIsEmpty {
-            DispatchQueue.main.async {
-                self.isShowingProcessingView = false
-                self.showOtherError(
-                    errorTitle: Shared.contentNotFoundAlertTitle(""),
-                    errorBody: Shared.contentNotFoundAlertMessage
-                )
-            }
+            isShowingProcessingView = false
+            showOtherError(
+                errorTitle: Shared.contentNotFoundAlertTitle(""),
+                errorBody: Shared.contentNotFoundAlertMessage
+            )
+            return nil
         } catch {
-            DispatchQueue.main.async {
-                self.isShowingProcessingView = false
-                self.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                    errorBody: error.localizedDescription)
-            }
+            isShowingProcessingView = false
+            showOtherError(
+                errorTitle: "Falha na Geração do Vídeo",
+                errorBody: error.localizedDescription
+            )
+            return nil
         }
     }
-    
-    func saveVideoToPhotos(withImage image: UIImage, completion: @escaping (Bool, String?) -> Void) {
-        DispatchQueue.main.async {
-            self.isShowingProcessingView = true
-        }
-        
+
+    private func saveVideoToPhotos(withImage image: UIImage) async -> String? {
+        isShowingProcessingView = true
+
         // Create video album
 //        let photos = PHPhotoLibrary.authorizationStatus()
 //        if photos == .notDetermined {
@@ -92,40 +122,33 @@ class ShareAsVideoViewModel {
 //        } else {
 //            CustomPhotoAlbum.sharedInstance.requestAuthorizationHandler(status: .authorized)
 //        }
-        
-        generateVideo(withImage: image) { videoPath, error in
-            if let error = error {
-                DispatchQueue.main.async {
-                    self.isShowingProcessingView = false
-                    self.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                        errorBody: error.localizedDescription)
-                }
-                completion(false, nil)
-                return
-            }
-            guard let videoPath = videoPath else {
-                completion(false, nil)
-                return
-            }
-            CustomPhotoAlbum.sharedInstance.save(video: URL(fileURLWithPath: videoPath)) { success, error in
-                // TODO: Deal with error.
-                DispatchQueue.main.async {
-                    self.isShowingProcessingView = false
-                }
 
-                Logger.shared.logShared(
-                    self.type,
-                    contentId: self.content.id,
-                    destination: .other,
-                    destinationBundleId: Shared.BundleIds.applePhotosApp
-                )
+        guard
+            let videoPath = await generateVideo(withImage: image)
+        else { return nil }
 
-                completion(true, videoPath)
-            }
+        do {
+            try await CustomPhotoAlbum.shared.save(video: URL(fileURLWithPath: videoPath))
+
+            isShowingProcessingView = false
+            Logger.shared.logShared(
+                self.type,
+                contentId: self.content.id,
+                destination: .other,
+                destinationBundleId: Shared.BundleIds.applePhotosApp
+            )
+            return videoPath
+        } catch {
+            isShowingProcessingView = false
+            showOtherError(
+                errorTitle: "Falha na Geração do Vídeo",
+                errorBody: error.localizedDescription
+            )
+            return nil
         }
     }
-    
-    func showOtherError(errorTitle: String, errorBody: String) {
+
+    private func showOtherError(errorTitle: String, errorBody: String) {
         alertTitle = errorTitle
         alertMessage = errorBody
         showAlert = true

@@ -293,4 +293,12 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
     func delete(reactionId: String) throws {
         didCallDeletePinnedReaction = true
     }
+
+    func markAllUserShareLogsAsSentToServer() throws {
+        //
+    }
+
+    func clearAudienceSharingStatisticTable() throws {
+        //
+    }
 }

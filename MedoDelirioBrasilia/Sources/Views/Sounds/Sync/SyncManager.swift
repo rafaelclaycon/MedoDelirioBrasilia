@@ -57,7 +57,7 @@ class SyncManager {
                 status: .done,
                 updateSoundList: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
             )
-        } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
+        } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage)
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)

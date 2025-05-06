@@ -10,8 +10,7 @@ import SwiftUI
 struct ShareAsVideoView: View {
 
     @State var viewModel: ShareAsVideoViewModel
-    @Binding var result: ShareAsVideoResult
-    @State var useLongerGeneratingVideoMessage: Bool
+    let useLongerGeneratingVideoMessage: Bool
 
     @State private var didCloseTip: Bool = false
     @State private var showTextSocialNetworkTip: Bool = true
@@ -102,7 +101,7 @@ struct ShareAsVideoView: View {
                                 .disabled(viewModel.isShowingProcessingView)
                         }
                         
-                        if UIDevice.current.userInterfaceIdiom == .phone {
+                        if UIDevice.isiPhone {
                             VStack(spacing: vstackSpacing) {
                                 if viewModel.selectedSocialNetwork == 0 {
                                     shareButton(view: squareImage)
@@ -138,8 +137,6 @@ struct ShareAsVideoView: View {
                     }
                     .onChange(of: viewModel.shouldCloseView) {
                         if viewModel.shouldCloseView {
-                            result.videoFilepath = viewModel.pathToVideoFile
-                            result.contentId = viewModel.content.id
                             dismiss()
                         }
                     }
@@ -171,13 +168,9 @@ struct ShareAsVideoView: View {
         }
         .onAppear {
             tipText = textSocialNetworkTip
-            
-            // Cleaning this string is needed in case the user decides do re-export the same sound
-            result.videoFilepath = ""
-            result.contentId = ""
-            
             showTextSocialNetworkTip = AppPersistentMemory().getHasHiddenShareAsVideoTextSocialNetworkTip() == false
             showInstagramTip = AppPersistentMemory().getHasHiddenShareAsVideoInstagramTip() == false
+            viewModel.onViewAppeared()
         }
     }
 
@@ -244,26 +237,11 @@ struct ShareAsVideoView: View {
     
     @ViewBuilder func shareButton(view: some View) -> some View {
         Button {
-            let renderer = ImageRenderer(content: view)
-            renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
-            if let image = renderer.uiImage {
-                viewModel.generateVideo(withImage: image) { videoPath, error in
-                    if let error = error {
-                        DispatchQueue.main.async {
-                            viewModel.isShowingProcessingView = false
-                            viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                                     errorBody: error.localizedDescription)
-                        }
-                        return
-                    }
-                    guard let videoPath = videoPath else { return }
-                    DispatchQueue.main.async {
-                        viewModel.isShowingProcessingView = false
-                        viewModel.pathToVideoFile = videoPath
-                        result.exportMethod = .shareSheet
-                        viewModel.shouldCloseView = true
-                    }
-                }
+            Task {
+                let renderer = ImageRenderer(content: view)
+                renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
+                guard let image = renderer.uiImage else { return } // TODO: Show an error?
+                await viewModel.onShareVideoSelected(image)
             }
         } label: {
             HStack(spacing: 15) {
@@ -286,18 +264,11 @@ struct ShareAsVideoView: View {
     
     @ViewBuilder func saveVideoButton(view: some View) -> some View {
         Button {
-            let renderer = ImageRenderer(content: view)
-            renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
-            if let image = renderer.uiImage {
-                viewModel.saveVideoToPhotos(withImage: image) { success, videoPath in
-                    if success {
-                        DispatchQueue.main.async {
-                            viewModel.pathToVideoFile = videoPath ?? ""
-                            result.exportMethod = .saveAsVideo
-                            viewModel.shouldCloseView = true
-                        }
-                    }
-                }
+            Task {
+                let renderer = ImageRenderer(content: view)
+                renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
+                guard let image = renderer.uiImage else { return } // TODO: Show an error?
+                await viewModel.onSaveVideoSelected(image)
             }
         } label: {
             HStack(spacing: 15) {
@@ -327,9 +298,9 @@ struct ShareAsVideoView: View {
         viewModel: ShareAsVideoViewModel(
             content: AnyEquatableMedoContent(Sound(title: "Você é maluco ou você é idiota, companheiro?")),
             subtitle: "Lula (Cristiano Botafogo)",
-            contentType: .videoFromSound
+            contentType: .videoFromSound,
+            result: .constant(ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .saveAsVideo))
         ),
-        result: .constant(ShareAsVideoResult()),
         useLongerGeneratingVideoMessage: false
     )
 }

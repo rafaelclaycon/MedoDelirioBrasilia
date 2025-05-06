@@ -87,7 +87,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         
         prepareAudioPlayerOnMac()
-        collectTelemetry()
+        Task {
+            await collectTelemetry()
+        }
         createFoldersForDownloadedContent()
         updateExternalLinks()
         updateFolderChangeHashes()
@@ -105,26 +107,27 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     // MARK: - Telemetry
-    
-    private func collectTelemetry() {
-        sendDeviceModelNameToServer()
-        sendStillAliveSignalToServer()
+
+    private func collectTelemetry() async {
+        await sendDeviceModelNameToServer()
+        await sendStillAliveSignalToServer()
     }
-    
-    private func sendDeviceModelNameToServer() {
+
+    private func sendDeviceModelNameToServer() async {
         guard AppPersistentMemory().getHasSentDeviceModelToServer() == false else {
             return
         }
-        
         let info = ClientDeviceInfo(installId: AppPersistentMemory().customInstallId, modelName: UIDevice.modelName)
-        NetworkRabbit.shared.post(clientDeviceInfo: info) { success, error in
-            if let success = success, success {
-                AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
-            }
+        do {
+            try await APIClient.shared.post(clientDeviceInfo: info)
+            AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
+        } catch {
+            print("Erro enviando device model para o servidor:")
+            debugPrint(error)
         }
     }
 
-    private func sendStillAliveSignalToServer() {
+    private func sendStillAliveSignalToServer() async {
         let lastDate = UserSettings().getLastSendDateOfStillAliveSignalToServer()
 
         // Should only send 1 still alive signal per day
@@ -142,31 +145,36 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             currentTimeZone: TimeZone.current.abbreviation() ?? "",
             dateTime: Date.now.iso8601withFractionalSeconds
         )
-        NetworkRabbit.shared.post(signal: signal) { success, error in
-            if success != nil, success == true {
-                UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)
-            }
+
+        do {
+            let url = URL(string: APIClient.shared.serverPath + "v1/still-alive-signal")!
+            try await APIClient.shared.post(to: url, body: signal)
+            UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)
+        } catch {
+            debugPrint(error)
         }
     }
-    
+
     // MARK: - Push notifications
     
     func application(
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        if AppPersistentMemory().getShouldRetrySendingDevicePushToken() {
-            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-            let token = tokenParts.joined()
-            //print("Device Token: \(token)")
+        Task {
+            if AppPersistentMemory().getShouldRetrySendingDevicePushToken() {
+                let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+                let token = tokenParts.joined()
+                //print("Device Token: \(token)")
 
-            let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
-            NetworkRabbit.shared.post(pushDevice: device) { success, error in
-                guard let success = success, success else {
+                let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
+
+                do {
+                    let success = try await APIClient.shared.register(pushDevice: device)
+                    AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: !success)
+                } catch {
                     AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
-                    return
                 }
-                AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: false)
             }
         }
     }
@@ -267,9 +275,9 @@ extension AppDelegate {
     func updateExternalLinks() {
         if !hasUpdatedExternalLinksOnFirstRun {
             Task {
-                let url = URL(string: NetworkRabbit.shared.serverPath + "v4/author-links-first-open")!
+                let url = URL(string: APIClient.shared.serverPath + "v4/author-links-first-open")!
                 do {
-                    let authorsWithLinks: [Author] = try await NetworkRabbit.shared.get(from: url)
+                    let authorsWithLinks: [Author] = try await APIClient.shared.get(from: url)
                     try authorsWithLinks.forEach { author in
                         try LocalDatabase.shared.update(author: author)
                     }

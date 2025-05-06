@@ -36,7 +36,7 @@ struct FolderGrid: View {
     // MARK: - Computed Properties
 
     private var noFoldersScrollHeight: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             let screenWidth = UIScreen.main.bounds.height
             if screenWidth < 600 {
                 return 0

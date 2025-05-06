@@ -5,7 +5,7 @@ struct FoldersAreTagsBannerView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var roundedRectangleHeight: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             switch UIScreen.main.bounds.width {
             case 320: // iPod touch 7
                 return 204

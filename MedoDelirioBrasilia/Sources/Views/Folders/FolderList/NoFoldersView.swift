@@ -10,7 +10,7 @@ import SwiftUI
 struct NoFoldersView: View {
     
     private var text: String {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             return "Toque no + no canto superior direito para criar uma nova pasta de sons."
         } else {
             if UIDevice.isMac {

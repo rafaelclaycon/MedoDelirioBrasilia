@@ -10,9 +10,9 @@ import Foundation
 extension SyncService {
 
     func createAuthor(from updateEvent: UpdateEvent) async {
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/author/\(updateEvent.contentId)")!
+        let url = URL(string: APIClient.shared.serverPath + "v3/author/\(updateEvent.contentId)")!
         do {
-            let author: Author = try await NetworkRabbit.shared.get(from: url)
+            let author: Author = try await APIClient.shared.get(from: url)
 
             try injectedDatabase.insert(author: author)
             
@@ -25,9 +25,9 @@ extension SyncService {
     }
 
     func updateAuthorMetadata(with updateEvent: UpdateEvent) async {
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/author/\(updateEvent.contentId)")!
+        let url = URL(string: APIClient.shared.serverPath + "v3/author/\(updateEvent.contentId)")!
         do {
-            let author: Author = try await NetworkRabbit.shared.get(from: url)
+            let author: Author = try await APIClient.shared.get(from: url)
             try injectedDatabase.update(author: author)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Metadados do(a) Autor(a) \"\(author.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)

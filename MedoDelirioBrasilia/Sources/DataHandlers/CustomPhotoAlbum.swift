@@ -11,7 +11,7 @@ import PhotosUI
 class CustomPhotoAlbum: NSObject {
 
     static let albumName = "Medo e Delírio"
-    static let sharedInstance = CustomPhotoAlbum()
+    static let shared = CustomPhotoAlbum()
     
     var assetCollection: PHAssetCollection!
     
@@ -57,21 +57,15 @@ class CustomPhotoAlbum: NSObject {
         return nil
     }
     
-    func save(video videoURL: URL, completion: @escaping (Bool, String?) -> ()) {
+    func save(video videoURL: URL) async throws {
 //        if assetCollection == nil {
 //            return // if there was an error upstream, skip the save
 //        }
-        
-        PHPhotoLibrary.shared().performChanges({
+
+        try await PHPhotoLibrary.shared().performChanges() {
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
-        }, completionHandler: { success, error in
-            if let error = error {
-                completion(false, error.localizedDescription)
-                return
-            }
-            completion(true, nil)
-        })
-        
+        }
+
         /*var placeholder: PHObjectPlaceholder
         var identifier: String
         

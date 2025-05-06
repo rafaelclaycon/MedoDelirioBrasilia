@@ -32,47 +32,33 @@ final class VideoMakerTests: XCTestCase {
         }
     }
 
-    func testCreateVideo_whenTwitterVideoWithKnownToWorkSound_shouldReturnVideoURL() throws {
-        let expectation = self.expectation(description: "Video generated successfully")
+    func testCreateVideo_whenTwitterVideoWithKnownToWorkSound_shouldReturnVideoURL() async throws {
         let soundName = "Se insere no mesmo continente mental"
         let sound = Sound(
             title: soundName,
             filename: "Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3"
         )
 
-        try VideoMaker.createVideo(
+        let videoPath = try await VideoMaker.createVideo(
             from: sound,
             with: testImage!,
             exportType: .twitter
-        ) { videoPath, error in
-            if let error {
-                return XCTFail(error.localizedDescription)
-            }
-            XCTAssertTrue(videoPath?.contains("Documents/\(soundName).mov") ?? false)
-            expectation.fulfill()
-        }
+        )
 
-        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertTrue(videoPath?.contains("Documents/\(soundName).mov") ?? false)
     }
 
-    func testCreateVideo_whenTwitterVideoWithKnownProblematicSound_shouldReturnVideoURL() throws {
-        let expectation = self.expectation(description: "Video generated successfully")
+    func testCreateVideo_whenTwitterVideoWithKnownProblematicSound_shouldReturnVideoURL() async throws {
         let soundName = "Cadê os machos?"
         let sound = FakeServerSound(id: "A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5", title: soundName)
 
-        try VideoMaker.createVideo(
+        let videoPath = try await VideoMaker.createVideo(
             from: sound,
             with: testImage!,
             exportType: .twitter
-        ) { videoPath, error in
-            if let error {
-                return XCTFail(error.localizedDescription)
-            }
-            XCTAssertTrue(videoPath?.contains("Documents/\(soundName).mov") ?? false)
-            expectation.fulfill()
-        }
+        )
 
-        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertTrue(videoPath?.contains("Documents/\(soundName).mov") ?? false)
     }
 
 //    func testCreateVideo_whenTwitterVideoWithKnownToWorkSound_shouldReturnVideoURL() async throws {

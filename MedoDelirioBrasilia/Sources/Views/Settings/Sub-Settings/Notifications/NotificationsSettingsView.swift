@@ -37,13 +37,14 @@ struct NotificationsSettingsView: View {
                     .padding()
                 
                 Toggle("Habilitar Notificações", isOn: $enableNotifications)
-                    .onChange(of: enableNotifications) { newValue in
-                        if newValue == true {
-                            NotificationAide.registerForRemoteNotifications() { _ in
+                    .onChange(of: enableNotifications) {
+                        if enableNotifications {
+                            Task {
+                                await NotificationAide.registerForRemoteNotifications()
                                 enableNotifications = UserSettings().getUserAllowedNotifications()
                             }
                         } else {
-                            UserSettings().setUserAllowedNotifications(to: newValue)
+                            UserSettings().setUserAllowedNotifications(to: false)
                         }
                     }
             } header: {
@@ -78,13 +79,8 @@ struct NotificationsSettingsView: View {
             enableNotifications = UserSettings().getUserAllowedNotifications()
         }
     }
-
 }
 
-struct NotificationsSettingsView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        NotificationsSettingsView()
-    }
-
+#Preview {
+    NotificationsSettingsView()
 }

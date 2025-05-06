@@ -14,13 +14,13 @@ protocol BannerRepositoryProtocol {
 
 final class BannerRepository: BannerRepositoryProtocol {
 
-    private let apiClient: NetworkRabbitProtocol
+    private let apiClient: APIClientProtocol
     private let currentAppVersion: String
 
     // MARK: - Initializer
 
     init(
-        apiClient: NetworkRabbit = NetworkRabbit(serverPath: APIConfig.apiURL),
+        apiClient: APIClientProtocol = APIClient(serverPath: APIConfig.apiURL),
         currentAppVersion: String = Versioneer.appVersion
     ) {
         self.apiClient = apiClient

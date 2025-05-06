@@ -398,7 +398,7 @@ struct MainView: View {
 
             case .onboarding:
                 FirstOnboardingView(isBeingShown: $showingModalView)
-                    .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
+                    .interactiveDismissDisabled(UIDevice.isiPhone)
 
             case .whatsNew:
                 Version9WhatsNewView(appMemory: AppPersistentMemory())

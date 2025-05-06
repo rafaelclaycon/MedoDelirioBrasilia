@@ -28,7 +28,7 @@ final class ContentGridViewModel {
     var authorToOpen: Author? = nil
 
     // Share as Video
-    var shareAsVideoResult = ShareAsVideoResult()
+    var shareAsVideoResult = ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .shareSheet)
 
     // Search
     var searchResults = SearchResults()
@@ -198,7 +198,7 @@ extension ContentGridViewModel {
     }
 
     public func onDidExitShareAsVideoSheet() {
-        if shareAsVideoResult.videoFilepath.isEmpty == false {
+        if !shareAsVideoResult.videoFilepath.isEmpty {
             if shareAsVideoResult.exportMethod == .saveAsVideo {
                 showVideoSavedSuccessfullyToast()
             } else {
@@ -311,7 +311,7 @@ extension ContentGridViewModel {
         andContentId contentId: String,
         title soundTitle: String
     ) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.isiPhone {
             do {
                 try SharingUtility.share(
                     .videoFromSound,

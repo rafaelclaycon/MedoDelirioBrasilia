@@ -1,26 +1,26 @@
+//
+//  ChangeAppIconView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 24/08/22.
+//
+
 import SwiftUI
 
 struct ChangeAppIconView: View {
 
     private var model = AppIcon()
+
     @State private var selectedIcon: String = ""
-    
-    private var icons: [Icon] {
-        if UserSettings().getShowExplicitContent() {
-            return Icon.allCases
-        } else {
-            return Icon.allCases.filter({ $0.isOffensive == false })
-        }
-    }
-    
+
     var body: some View {
         VStack {
-            List(icons) { icon in
+            List(Icon.allCases) { icon in
                 Button {
                     model.setAlternateAppIcon(icon: icon)
                     selectedIcon = icon.id
                 } label: {
-                    AppIconCell(icon: icon, selectedItem: $selectedIcon)
+                    AppIconView(icon: icon, selectedItem: $selectedIcon)
                 }
                 .foregroundColor(.primary)
             }
@@ -30,17 +30,15 @@ struct ChangeAppIconView: View {
         .onAppear {
             selectedIcon = UIApplication.shared.alternateIconName ?? Icon.primary.id
             Task {
-                await AnalyticsService().send(originatingScreen: "ChangeAppIconView", action: "didViewAlternateIconsView")
+                await AnalyticsService().send(
+                    originatingScreen: "ChangeAppIconView",
+                    action: "didViewAlternateIconsView"
+                )
             }
         }
     }
-
 }
 
-struct ChangeAppIconView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        ChangeAppIconView()
-    }
-
+#Preview {
+    ChangeAppIconView()
 }

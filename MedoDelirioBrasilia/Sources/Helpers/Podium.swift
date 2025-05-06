@@ -1,18 +1,25 @@
+//
+//  Podium.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Schmitt on 08/06/22.
+//
+
 import Foundation
 
 class Podium {
 
-    static let shared = Podium(database: LocalDatabase.shared, networkRabbit: NetworkRabbit.shared)
+    static let shared = Podium(database: LocalDatabase.shared, apiClient: APIClient.shared)
 
-    private let database: LocalDatabase
-    private let networkRabbit: any NetworkRabbitProtocol
+    private let database: LocalDatabaseProtocol
+    private let apiClient: any APIClientProtocol
 
     init(
-        database injectedDatabase: LocalDatabase,
-        networkRabbit injectedNetwork: some NetworkRabbitProtocol
+        database: LocalDatabaseProtocol,
+        apiClient: some APIClientProtocol
     ) {
-        self.database = injectedDatabase
-        self.networkRabbit = injectedNetwork
+        self.database = database
+        self.apiClient = apiClient
     }
     
     func top10SoundsSharedByTheUser() -> [TopChartItem]? {
@@ -30,7 +37,7 @@ class Podium {
     }
 
     func sendShareCountStatsToServer() async -> ShareCountStatServerExchangeResult {
-        guard await networkRabbit.serverIsAvailable() else { return .failed("Servidor indisponível.") }
+        guard await apiClient.serverIsAvailable() else { return .failed("Servidor indisponível.") }
 
         // Prepare local stats to be sent
         guard let stats = Logger.shared.shareCountStatsForServer() else {
@@ -38,21 +45,21 @@ class Podium {
         }
 
         // Send them
-        stats.forEach { stat in
-            self.networkRabbit.post(shareCountStat: stat) { wasSuccessful, errorString in
-                if wasSuccessful == false {
-                    print("Sending of \(stat) failed: \(errorString)")
-                }
+        for stat in stats {
+            do {
+                try await self.apiClient.post(shareCountStat: stat)
+            } catch {
+                print("Sending of \(stat) failed: \(error.localizedDescription)")
             }
         }
 
-        let bundleIdUrl = URL(string: networkRabbit.serverPath + "v1/shared-to-bundle-id")!
+        let bundleIdUrl = URL(string: apiClient.serverPath + "v1/shared-to-bundle-id")!
 
         // Send bundles IDs as well
         if let bundleIdLogs = Logger.shared.uniqueBundleIdsForServer() {
             for log in bundleIdLogs {
                 do {
-                    let _: ServerShareBundleIdLog = try await NetworkRabbit.shared.post(to: bundleIdUrl, body: log)
+                    let _: ServerShareBundleIdLog = try await APIClient.shared.post(to: bundleIdUrl, body: log)
                 } catch {
                     return .failed("Sending of \(log) failed.")
                 }
