@@ -43,10 +43,10 @@ class VideoMaker {
         var mutableCompositionVideoTrack: [AVMutableCompositionTrack] = []
         var mutableCompositionAudioTrack: [AVMutableCompositionTrack] = []
         let totalVideoCompositionInstruction: AVMutableVideoCompositionInstruction = AVMutableVideoCompositionInstruction()
-        
+
         let aVideoAsset: AVAsset = AVAsset(url: videoUrl)
         let aAudioAsset: AVAsset = AVAsset(url: audioUrl)
-        
+
         if
             let videoTrack = mixComposition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid),
             let audioTrack = mixComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
