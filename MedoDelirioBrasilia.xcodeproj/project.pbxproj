@@ -1226,7 +1226,6 @@
 		D9A3984B28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */; };
 		D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6A28F03C970064CB7A /* ViewStates.swift */; };
 		D9A3AB6F28F063FF0064CB7A /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6E28F063FF0064CB7A /* DateExtensionTests.swift */; };
-		D9A4D010290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D00F290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift */; };
 		D9A7AAA02A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9B2A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 */; };
 		D9A7AAA12A2A9B580039012E /* Silas Malafaia - O PT.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9C2A2A9B580039012E /* Silas Malafaia - O PT.mp3 */; };
 		D9A7AAA22A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9D2A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 */; };
@@ -2789,7 +2788,6 @@
 		D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Samira Close - 22 so se for de pica.mp3"; sourceTree = "<group>"; };
 		D9A3AB6A28F03C970064CB7A /* ViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStates.swift; sourceTree = "<group>"; };
 		D9A3AB6E28F063FF0064CB7A /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
-		D9A4D00F290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+StillAliveSignal.swift"; sourceTree = "<group>"; };
 		D9A7AA9B2A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3"; sourceTree = "<group>"; };
 		D9A7AA9C2A2A9B580039012E /* Silas Malafaia - O PT.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - O PT.mp3"; sourceTree = "<group>"; };
 		D9A7AA9D2A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3"; sourceTree = "<group>"; };
@@ -4948,7 +4946,6 @@
 				D92694042A02999B007872D9 /* Services */,
 				D98DBD34284919B1008544F8 /* APIClient.swift */,
 				D9DCC5D2287536EC008DD4A3 /* APIClient+PushDevice.swift */,
-				D9A4D00F290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift */,
 				D94EAB4E29FB1524004CD604 /* APIClient+FileDownload.swift */,
 				D95C3E0E2A02D7C400172C17 /* APIClient+Sync.swift */,
 				D9CA301D2A03EE2300F1F23D /* APIClient+Generic.swift */,
@@ -6929,7 +6926,6 @@
 				D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
 				D98D13802CD5B880001CF5BB /* UserFolderRepository.swift in Sources */,
-				D9A4D010290A18ED00EB57B3 /* APIClient+StillAliveSignal.swift in Sources */,
 				D90E21752CCD793E00FC979C /* ReactionRepository.swift in Sources */,
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,

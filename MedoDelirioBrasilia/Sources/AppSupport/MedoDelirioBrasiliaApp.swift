@@ -87,7 +87,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         
         prepareAudioPlayerOnMac()
-        collectTelemetry()
+        Task {
+            await collectTelemetry()
+        }
         createFoldersForDownloadedContent()
         updateExternalLinks()
         updateFolderChangeHashes()
@@ -106,9 +108,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     // MARK: - Telemetry
     
-    private func collectTelemetry() {
+    private func collectTelemetry() async {
         sendDeviceModelNameToServer()
-        sendStillAliveSignalToServer()
+        await sendStillAliveSignalToServer()
     }
     
     private func sendDeviceModelNameToServer() {
@@ -124,7 +126,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
 
-    private func sendStillAliveSignalToServer() {
+    private func sendStillAliveSignalToServer() async {
         let lastDate = UserSettings().getLastSendDateOfStillAliveSignalToServer()
 
         // Should only send 1 still alive signal per day
@@ -142,13 +144,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             currentTimeZone: TimeZone.current.abbreviation() ?? "",
             dateTime: Date.now.iso8601withFractionalSeconds
         )
-        APIClient.shared.post(signal: signal) { success, error in
-            if success != nil, success == true {
-                UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)
-            }
+
+        do {
+            let url = URL(string: APIClient.shared.serverPath + "v1/still-alive-signal")!
+            try await APIClient.shared.post(to: url, body: signal)
+            UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)
+        } catch {
+            debugPrint(error)
         }
     }
-    
+
     // MARK: - Push notifications
     
     func application(
