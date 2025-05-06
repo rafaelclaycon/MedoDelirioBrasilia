@@ -25,7 +25,7 @@ final class ReactionRepository: ReactionRepositoryProtocol {
     // MARK: - Initializer
 
     init(
-        apiClient: APIClient = APIClient(serverPath: APIConfig.apiURL),
+        apiClient: APIClientProtocol = APIClient(serverPath: APIConfig.apiURL),
         database: LocalDatabaseProtocol = LocalDatabase()
     ) {
         self.apiClient = apiClient

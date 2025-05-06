@@ -20,7 +20,7 @@ final class BannerRepository: BannerRepositoryProtocol {
     // MARK: - Initializer
 
     init(
-        apiClient: APIClient = APIClient(serverPath: APIConfig.apiURL),
+        apiClient: APIClientProtocol = APIClient(serverPath: APIConfig.apiURL),
         currentAppVersion: String = Versioneer.appVersion
     ) {
         self.apiClient = apiClient

@@ -18,12 +18,12 @@ protocol FolderResearchRepositoryProtocol {
 
 final class FolderResearchRepository: FolderResearchRepositoryProtocol {
 
-    private let apiClient: APIClient
+    private let apiClient: APIClientProtocol
 
     // MARK: - Initializer
 
     init(
-        apiClient: APIClient = APIClient(serverPath: APIConfig.apiURL)
+        apiClient: APIClientProtocol = APIClient(serverPath: APIConfig.apiURL)
     ) {
         self.apiClient = apiClient
     }
