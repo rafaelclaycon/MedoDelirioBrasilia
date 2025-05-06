@@ -15,8 +15,8 @@ internal protocol APIClientProtocol {
     func getString(from url: URL) async throws -> String?
 
     func serverIsAvailable() async -> Bool
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
-    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, APIClientError?) -> Void)
+    func post(shareCountStat: ServerShareCountStat) async throws
+    func post(clientDeviceInfo: ClientDeviceInfo) async throws
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 
     func displayAskForMoneyView(appVersion: String) async -> Bool
@@ -92,76 +92,15 @@ class APIClient: APIClientProtocol {
     }
 
     // MARK: - POST
-    
-    func post(
-        shareCountStat: ServerShareCountStat,
-        completionHandler: @escaping (Bool, String) -> Void
-    ) {
+
+    func post(shareCountStat: ServerShareCountStat) async throws {
         let url = URL(string: serverPath + "v1/share-count-stat")!
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try? jsonEncoder.encode(shareCountStat)
-        request.httpBody = jsonData
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return
-            }
-             
-            guard httpResponse.statusCode == 200 else {
-                return completionHandler(false, "Failed")
-            }
-            
-            if let data = data {
-                if let stat = try? JSONDecoder().decode(ServerShareCountStat.self, from: data) {
-                    completionHandler(true, stat.contentId)
-                } else {
-                    completionHandler(false, "Failed: Invalid Response")
-                }
-            } else if let error = error {
-                completionHandler(false, "HTTP Request Failed \(error.localizedDescription)")
-            }
-        }
-
-        task.resume()
+        try await post(to: url, body: shareCountStat)
     }
-    
-    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, APIClientError?) -> Void) {
+
+    func post(clientDeviceInfo: ClientDeviceInfo) async throws {
         let url = URL(string: serverPath + "v1/client-device-info")!
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try? jsonEncoder.encode(clientDeviceInfo)
-        request.httpBody = jsonData
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return completionHandler(nil, .responseWasNotAnHTTPURLResponse)
-            }
-             
-            guard httpResponse.statusCode == 200 else {
-                return completionHandler(nil, .unexpectedStatusCode)
-            }
-            
-            if let data = data {
-                if (try? JSONDecoder().decode(ClientDeviceInfo.self, from: data)) != nil {
-                    completionHandler(true, nil)
-                } else {
-                    completionHandler(nil, .invalidResponse)
-                }
-            } else if error != nil {
-                completionHandler(nil, .httpRequestFailed)
-            }
-        }
-
-        task.resume()
+        try await post(to: url, body: clientDeviceInfo)
     }
 }
 

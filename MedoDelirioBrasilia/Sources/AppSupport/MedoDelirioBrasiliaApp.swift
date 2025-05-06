@@ -107,22 +107,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     // MARK: - Telemetry
-    
+
     private func collectTelemetry() async {
-        sendDeviceModelNameToServer()
+        await sendDeviceModelNameToServer()
         await sendStillAliveSignalToServer()
     }
-    
-    private func sendDeviceModelNameToServer() {
+
+    private func sendDeviceModelNameToServer() async {
         guard AppPersistentMemory().getHasSentDeviceModelToServer() == false else {
             return
         }
-        
         let info = ClientDeviceInfo(installId: AppPersistentMemory().customInstallId, modelName: UIDevice.modelName)
-        APIClient.shared.post(clientDeviceInfo: info) { success, error in
-            if let success = success, success {
-                AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
-            }
+        do {
+            try await APIClient.shared.post(clientDeviceInfo: info)
+            AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
+        } catch {
+            print("Erro enviando device model para o servidor:")
+            debugPrint(error)
         }
     }
 

@@ -21,20 +21,12 @@ class FakeAPIClient: APIClientProtocol {
         return !serverShouldBeUnavailable
     }
 
-    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, APIClientError?) -> Void) {
-        completionHandler(nil, nil)
+    func post(shareCountStat: ServerShareCountStat) async throws {
+        //
     }
 
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {
-        completionHandler(false, "")
-    }
-
-    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, APIClientError?) -> Void) {
-        completionHandler(nil, nil)
-    }
-
-    func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void) {
-        completionHandler(false, "")
+    func post(clientDeviceInfo: ClientDeviceInfo) async throws {
+        //
     }
 
     func fetchUpdateEvents(from lastDate: String) async throws -> [MedoDelirio.UpdateEvent] {

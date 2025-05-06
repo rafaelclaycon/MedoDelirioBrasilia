@@ -45,11 +45,11 @@ class Podium {
         }
 
         // Send them
-        stats.forEach { stat in
-            self.apiClient.post(shareCountStat: stat) { wasSuccessful, errorString in
-                if wasSuccessful == false {
-                    print("Sending of \(stat) failed: \(errorString)")
-                }
+        for stat in stats {
+            do {
+                try await self.apiClient.post(shareCountStat: stat)
+            } catch {
+                print("Sending of \(stat) failed: \(error.localizedDescription)")
             }
         }
 
