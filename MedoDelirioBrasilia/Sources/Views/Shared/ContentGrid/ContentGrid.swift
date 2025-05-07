@@ -111,6 +111,7 @@ struct ContentGrid<
                 } else if let searchText, let trendsService, isSearching {
                     if searchText.isEmpty {
                         SearchSuggestionsView(
+                            recent: viewModel.searchService.recentSearches(),
                             trendsService: trendsService,
                             onRecentSelectedAction: {
                                 //searchText = $0

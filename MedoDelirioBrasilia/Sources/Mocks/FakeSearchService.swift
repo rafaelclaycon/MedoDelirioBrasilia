@@ -14,4 +14,16 @@ final class FakeSearchService: SearchServiceProtocol {
     func results(matching searchString: String) -> SearchResults {
         SearchResults()
     }
+
+    func save(searchString: String) {
+        //
+    }
+
+    func recentSearches() -> [String] {
+        []
+    }
+
+    func clearRecentSearches() {
+        //
+    }
 }

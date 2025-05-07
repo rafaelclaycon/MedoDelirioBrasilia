@@ -62,7 +62,7 @@ final class ContentGridViewModel {
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let multiSelectFolderOperation: FolderOperation
     private let contentRepository: ContentRepositoryProtocol
-    private var searchService: SearchServiceProtocol
+    public var searchService: SearchServiceProtocol
     private let userFolderRepository: UserFolderRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
     private let currentScreen: ContentGridScreen
@@ -242,6 +242,7 @@ extension ContentGridViewModel {
             return
         }
         searchResults = searchService.results(matching: newString)
+
         print(searchResults.soundsMatchingTitle?.count)
     }
 }

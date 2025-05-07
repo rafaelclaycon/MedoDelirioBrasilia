@@ -23,6 +23,7 @@ struct StandaloneSearchView: View {
                 VStack(spacing: .spacing(.xSmall)) {
                     if searchText.isEmpty {
                         SearchSuggestionsView(
+                            recent: searchService.recentSearches(),
                             trendsService: trendsService,
                             onRecentSelectedAction: {
                                 searchText = $0

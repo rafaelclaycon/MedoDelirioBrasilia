@@ -12,6 +12,10 @@ protocol SearchServiceProtocol {
     var allowSensitive: Bool { get set }
 
     func results(matching searchString: String) -> SearchResults
+
+    func save(searchString: String)
+    func recentSearches() -> [String]
+    func clearRecentSearches()
 }
 
 final class SearchService: SearchServiceProtocol {
@@ -42,6 +46,7 @@ final class SearchService: SearchServiceProtocol {
     // MARK: - Functions
 
     func results(matching searchString: String) -> SearchResults {
+        save(searchString: searchString)
         return SearchResults(
             soundsMatchingTitle: contentRepository.sounds(matchingTitle: searchString, allowSensitive),
             soundsMatchingContent: contentRepository.sounds(matchingDescription: searchString, allowSensitive),
@@ -55,8 +60,9 @@ final class SearchService: SearchServiceProtocol {
         guard !searchString.isEmpty else { return }
 
         if let index = firstIndexOf(searchString: searchString) {
+            guard searches[index].count < searchString.count else { return }
             searches[index] = searchString
-        } else if !searches.contains(searchString) {
+        } else {
             searches.insert(searchString, at: 0)
         }
 
@@ -66,19 +72,29 @@ final class SearchService: SearchServiceProtocol {
         appMemory.saveRecentSearches(searches)
     }
 
+    func recentSearches() -> [String] {
+        searches
+    }
+
+    func clearRecentSearches() {
+        searches = []
+        appMemory.saveRecentSearches([])
+    }
+}
+
+// MARK: - Internal Functions
+
+extension SearchService {
+
     private func firstIndexOf(searchString: String) -> Int? {
         for i in stride(from: 0, to: searches.count, by: 1) {
             if
-                searchString.starts(with: searches[i]),
-                searches[i].count < searchString.count
+                searches[i].starts(with: searchString) ||
+                searchString.contains(searches[i])
             {
                 return i
             }
         }
         return nil
-    }
-
-    func recentSearches() -> [String] {
-        searches
     }
 }

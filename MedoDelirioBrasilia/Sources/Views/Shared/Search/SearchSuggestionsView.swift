@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchSuggestionsView: View {
 
-    let recent: [String]? = []
+    let recent: [String]
     let trendsService: TrendsServiceProtocol
     let onRecentSelectedAction: (String) -> Void
     let onReactionSelectedAction: (Reaction) -> Void
@@ -29,7 +29,7 @@ struct SearchSuggestionsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
-            if let recent, !recent.isEmpty {
+            if !recent.isEmpty {
                 VStack(alignment: .leading, spacing: .spacing(.medium)) {
                     Text("Pesquisas Recentes")
                         .font(.headline)
@@ -182,6 +182,7 @@ extension SearchSuggestionsView {
             VStack(alignment: .leading) {
                 HStack {
                     SearchSuggestionsView(
+                        recent: [],
                         trendsService: TrendsService(
                             database: FakeLocalDatabase(),
                             apiClient: FakeAPIClient(),
