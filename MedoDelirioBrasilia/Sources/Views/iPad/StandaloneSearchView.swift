@@ -29,9 +29,10 @@ struct StandaloneSearchView: View {
                                 searchText = $0
                             },
                             onReactionSelectedAction: { push(GeneralNavigationDestination.reactionDetail($0)) },
-                            containerWidth: geometry.size.width
+                            containerWidth: geometry.size.width,
+                            onClearSearchesAction: searchService.clearRecentSearches
                         )
-                        .padding(.leading, .spacing(.medium))
+                        .padding(.horizontal, .spacing(.medium))
                     } else {
                         SearchResultsView(
                             searchString: searchText,
@@ -40,7 +41,7 @@ struct StandaloneSearchView: View {
                         )
                     }
                 }
-                .padding([.leading, .vertical], .spacing(.medium))
+                .padding(.all, .spacing(.medium))
                 .navigationTitle(Text("Buscar"))
                 .searchable(text: $searchText, placement: .navigationBarDrawer, prompt: Shared.Search.searchPrompt)
                 .autocorrectionDisabled()

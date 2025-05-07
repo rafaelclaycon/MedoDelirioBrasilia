@@ -120,7 +120,10 @@ struct ContentGrid<
                             onReactionSelectedAction: {
                                 push(GeneralNavigationDestination.reactionDetail($0))
                             },
-                            containerWidth: containerSize.width
+                            containerWidth: containerSize.width,
+                            onClearSearchesAction: {
+                                viewModel.searchService.clearRecentSearches()
+                            }
                         )
                     } else {
                         SearchResultsView(

@@ -9,11 +9,12 @@ import SwiftUI
 
 struct SearchSuggestionsView: View {
 
-    let recent: [String]
+    @State var recent: [String]
     let trendsService: TrendsServiceProtocol
     let onRecentSelectedAction: (String) -> Void
     let onReactionSelectedAction: (Reaction) -> Void
     let containerWidth: CGFloat
+    let onClearSearchesAction: () -> Void
 
     @State private var popularContent: LoadingState<[AnyEquatableMedoContent]> = .loading
     @State private var popularReactions: LoadingState<[Reaction]> = .loading
@@ -31,8 +32,20 @@ struct SearchSuggestionsView: View {
         VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
             if !recent.isEmpty {
                 VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                    Text("Pesquisas Recentes")
-                        .font(.headline)
+                    HStack {
+                        Text("Pesquisas Recentes")
+                            .font(.headline)
+
+                        Spacer()
+
+                        Button {
+                            recent.removeAll()
+                            onClearSearchesAction()
+                        } label: {
+                            Text("Limpar")
+                        }
+                        .miniButton(colored: .green)
+                    }
 
                     VStack(alignment: .leading, spacing: .spacing(.medium)) {
                         ForEach(recent, id: \.self) { text in
@@ -190,7 +203,8 @@ extension SearchSuggestionsView {
                         ),
                         onRecentSelectedAction: { _ in },
                         onReactionSelectedAction: { _ in },
-                        containerWidth: geometry.size.width
+                        containerWidth: geometry.size.width,
+                        onClearSearchesAction: {}
                     )
 
                     Spacer()
