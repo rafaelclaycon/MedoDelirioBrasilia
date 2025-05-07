@@ -28,6 +28,8 @@ struct ContentGrid<
     private var state: LoadingState<[AnyEquatableMedoContent]>
     @State private var viewModel: ContentGridViewModel
     private var searchText: String?
+    private let trendsService: TrendsServiceProtocol?
+    private var contentGridIsSearching: Binding<Bool>
     private let showNewTag: Bool
     private let isFavoritesOnlyView: Bool
     private let authorId: String?
@@ -42,8 +44,8 @@ struct ContentGrid<
     // MARK: - Stored Properties
 
     @State private var columns: [GridItem] = []
-    private let phoneItemSpacing: CGFloat = 9
-    private let padItemSpacing: CGFloat = 14
+    private let phoneItemSpacing: CGFloat = .spacing(.small)
+    private let padItemSpacing: CGFloat = .spacing(.medium)
     @State private var showMultiSelectButtons: Bool = false
     @State private var multiSelectButtonsEnabled: Bool = false
     @State private var allSelectedAreFavorites: Bool = false
@@ -64,6 +66,8 @@ struct ContentGrid<
         viewModel: ContentGridViewModel,
 
         searchText: String? = nil,
+        trendsService: TrendsServiceProtocol? = nil,
+        contentGridIsSearching: Binding<Bool> = .constant(false),
         showNewTag: Bool = true,
         isFavoritesOnlyView: Bool = false,
         authorId: String? = nil,
@@ -78,6 +82,8 @@ struct ContentGrid<
         self.state = state
         self.viewModel = viewModel
         self.searchText = searchText
+        self.trendsService = trendsService
+        self.contentGridIsSearching = contentGridIsSearching
         self.showNewTag = showNewTag
         self.isFavoritesOnlyView = isFavoritesOnlyView
         self.authorId = authorId
@@ -102,12 +108,26 @@ struct ContentGrid<
             case .loaded(let loadedContent):
                 if loadedContent.isEmpty {
                     emptyStateView
-                } else if let searchText, isSearching {
-                    SearchResultsView(
-                        searchString: searchText,
-                        results: viewModel.searchResults,
-                        containerWidth: containerSize.width
-                    )
+                } else if let searchText, let trendsService, isSearching {
+                    if searchText.isEmpty {
+                        SearchSuggestionsView(
+                            trendsService: trendsService,
+                            onRecentSelectedAction: {
+                                //searchText = $0
+                                print("Send to searchText: \($0)")
+                            },
+                            onReactionSelectedAction: {
+                                push(GeneralNavigationDestination.reactionDetail($0))
+                            },
+                            containerWidth: containerSize.width
+                        )
+                    } else {
+                        SearchResultsView(
+                            searchString: searchText,
+                            results: viewModel.searchResults,
+                            containerWidth: containerSize.width
+                        )
+                    }
                 } else {
                     LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
                         ForEach(loadedContent) { content in
@@ -281,6 +301,10 @@ struct ContentGrid<
                         guard let author = viewModel.authorToOpen else { return }
                         push(GeneralNavigationDestination.authorDetail(author))
                         viewModel.authorToOpen = nil
+                    }
+                    .onChange(of: isSearching) {
+                        contentGridIsSearching.wrappedValue = isSearching
+                        print("RAFAAAA - isSearching: \(isSearching)")
                     }
                     .onAppear {
                         viewModel.onViewAppeared()

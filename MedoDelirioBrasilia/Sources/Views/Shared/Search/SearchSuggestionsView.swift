@@ -13,9 +13,17 @@ struct SearchSuggestionsView: View {
     let trendsService: TrendsServiceProtocol
     let onRecentSelectedAction: (String) -> Void
     let onReactionSelectedAction: (Reaction) -> Void
+    let containerWidth: CGFloat
 
     @State private var popularContent: LoadingState<[AnyEquatableMedoContent]> = .loading
     @State private var popularReactions: LoadingState<[Reaction]> = .loading
+
+    @State private var columns: [GridItem] = []
+
+    private let phoneItemSpacing: CGFloat = .spacing(.small)
+    private let padItemSpacing: CGFloat = .spacing(.medium)
+
+    @Environment(\.sizeCategory) private var sizeCategory
 
     // MARK: - View Body
 
@@ -39,33 +47,32 @@ struct SearchSuggestionsView: View {
             }
 
             if case .loaded(let content) = popularContent, !content.isEmpty {
-                PopularContentView(content: content)
+                PopularContentView(
+                    content: content,
+                    columns: columns,
+                    phoneItemSpacing: phoneItemSpacing,
+                    padItemSpacing: padItemSpacing
+                )
             }
 
             if case .loaded(let reactions) = popularReactions, !reactions.isEmpty {
-                VStack(alignment: .leading, spacing: .spacing(.small)) {
-                    Text("Reações Populares")
-                        .font(.headline)
-
-                    ScrollView(.horizontal) {
-                        HStack(spacing: .spacing(.medium)) {
-                            ForEach(reactions) { reaction in
-                                ReactionItem(reaction: reaction)
-                                    .frame(width: 220)
-                                    .onTapGesture {
-                                        onReactionSelectedAction(reaction)
-                                    }
-                            }
-                        }
-                    }
-                    .scrollBounceBehavior(.basedOnSize)
-                }
+                PopularReactionsView(
+                    reactions: reactions,
+                    onReactionSelectedAction: onReactionSelectedAction,
+                    columns: columns,
+                    phoneItemSpacing: phoneItemSpacing,
+                    padItemSpacing: padItemSpacing
+                )
             }
         }
         .onAppear {
             Task {
                 await loadContent()
             }
+            updateGridLayout()
+        }
+        .onChange(of: containerWidth) {
+            updateGridLayout()
         }
     }
 
@@ -82,6 +89,14 @@ struct SearchSuggestionsView: View {
             popularReactions = .error("")
             debugPrint(error)
         }
+    }
+
+    private func updateGridLayout() {
+        columns = GridHelper.adaptableColumns(
+            listWidth: containerWidth,
+            sizeCategory: sizeCategory,
+            spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing
+        )
     }
 }
 
@@ -108,28 +123,52 @@ extension SearchSuggestionsView {
     struct PopularContentView: View {
 
         let content: [AnyEquatableMedoContent]
+        let columns: [GridItem]
+        let phoneItemSpacing: CGFloat
+        let padItemSpacing: CGFloat
 
         var body: some View {
-            VStack(alignment: .leading, spacing: .spacing(.small)) {
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
                 Text("Conteúdos Populares")
                     .font(.headline)
 
-                ScrollView(.horizontal) {
-                    HStack(spacing: .spacing(.medium)) {
-                        ForEach(content) { item in
-                            PlayableContentView(
-                                content: item,
-                                favorites: Set<String>(),
-                                highlighted: Set<String>(),
-                                nowPlaying: Set<String>(),
-                                selectedItems: Set<String>(),
-                                currentContentListMode: .constant(.regular)
-                            )
-                            .frame(width: 200)
-                        }
+                LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
+                    ForEach(content) { item in
+                        PlayableContentView(
+                            content: item,
+                            favorites: Set<String>(),
+                            highlighted: Set<String>(),
+                            nowPlaying: Set<String>(),
+                            selectedItems: Set<String>(),
+                            currentContentListMode: .constant(.regular)
+                        )
                     }
                 }
-                .scrollBounceBehavior(.basedOnSize)
+            }
+        }
+    }
+
+    struct PopularReactionsView: View {
+
+        let reactions: [Reaction]
+        let onReactionSelectedAction: (Reaction) -> Void
+        let columns: [GridItem]
+        let phoneItemSpacing: CGFloat
+        let padItemSpacing: CGFloat
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("Reações Populares")
+                    .font(.headline)
+
+                LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
+                    ForEach(reactions) { reaction in
+                        ReactionItem(reaction: reaction)
+                            .onTapGesture {
+                                onReactionSelectedAction(reaction)
+                            }
+                    }
+                }
             }
         }
     }
@@ -138,22 +177,25 @@ extension SearchSuggestionsView {
 // MARK: - Preview
 
 #Preview {
-    ScrollView {
-        VStack(alignment: .leading) {
-            HStack {
-                SearchSuggestionsView(
-                    trendsService: TrendsService(
-                        database: FakeLocalDatabase(),
-                        apiClient: FakeAPIClient(),
-                        contentRepository: FakeContentRepository()
-                    ),
-                    onRecentSelectedAction: { _ in },
-                    onReactionSelectedAction: { _ in }
-                )
+    GeometryReader { geometry in
+        ScrollView {
+            VStack(alignment: .leading) {
+                HStack {
+                    SearchSuggestionsView(
+                        trendsService: TrendsService(
+                            database: FakeLocalDatabase(),
+                            apiClient: FakeAPIClient(),
+                            contentRepository: FakeContentRepository()
+                        ),
+                        onRecentSelectedAction: { _ in },
+                        onReactionSelectedAction: { _ in },
+                        containerWidth: geometry.size.width
+                    )
 
-                Spacer()
+                    Spacer()
+                }
             }
+            .padding(.spacing(.medium))
         }
-        .padding(.spacing(.medium))
     }
 }

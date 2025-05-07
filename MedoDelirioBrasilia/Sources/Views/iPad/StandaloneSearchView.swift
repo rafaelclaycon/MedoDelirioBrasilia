@@ -27,7 +27,8 @@ struct StandaloneSearchView: View {
                             onRecentSelectedAction: {
                                 searchText = $0
                             },
-                            onReactionSelectedAction: { push(GeneralNavigationDestination.reactionDetail($0)) }
+                            onReactionSelectedAction: { push(GeneralNavigationDestination.reactionDetail($0)) },
+                            containerWidth: geometry.size.width
                         )
                         .padding(.leading, .spacing(.medium))
                     } else {

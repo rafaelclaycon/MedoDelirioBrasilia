@@ -16,6 +16,8 @@ struct MainContentView: View {
     private let openSettingsAction: () -> Void
     private let contentRepository: ContentRepositoryProtocol
     private let bannerRepository: BannerRepositoryProtocol
+    private let trendsService: TrendsServiceProtocol
+    @State private var contentGridIsSearching = false
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -70,7 +72,8 @@ struct MainContentView: View {
         floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void,
         contentRepository: ContentRepositoryProtocol,
-        bannerRepository: BannerRepositoryProtocol
+        bannerRepository: BannerRepositoryProtocol,
+        trendsService: TrendsServiceProtocol
     ) {
         self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
@@ -93,6 +96,7 @@ struct MainContentView: View {
         self.openSettingsAction = openSettingsAction
         self.contentRepository = contentRepository
         self.bannerRepository = bannerRepository
+        self.trendsService = trendsService
     }
 
     // MARK: - View Body
@@ -102,7 +106,7 @@ struct MainContentView: View {
             ScrollView {
                 ScrollViewReader { proxy in
                     VStack(spacing: .spacing(.xSmall)) {
-                        if viewModel.searchText.isEmpty, currentContentListMode.wrappedValue == .regular {
+                        if !contentGridIsSearching && currentContentListMode.wrappedValue == .regular {
                             ContentModePicker(
                                 options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
                                 selected: $viewModel.currentViewMode,
@@ -121,7 +125,7 @@ struct MainContentView: View {
                                         )
                                     }
 
-                                    if viewModel.currentViewMode == .all, viewModel.searchText.isEmpty {
+                                    if viewModel.currentViewMode == .all && !contentGridIsSearching {
                                         BannersView(
                                             bannerRepository: bannerRepository,
                                             toast: viewModel.toast
@@ -133,6 +137,8 @@ struct MainContentView: View {
                                     state: viewModel.state,
                                     viewModel: contentGridViewModel,
                                     searchText: viewModel.searchText,
+                                    trendsService: trendsService,
+                                    contentGridIsSearching: $contentGridIsSearching,
                                     isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
                                     containerSize: geometry.size,
                                     scrollViewProxy: proxy,
@@ -162,6 +168,9 @@ struct MainContentView: View {
                                 )
                                 .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt)
                                 .autocorrectionDisabled()
+                                .onChange(of: contentGridIsSearching) {
+                                    print("RAFA OUTSIDE - isSearching: \(contentGridIsSearching)")
+                                }
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
                                     ExplicitDisabledWarning(
@@ -425,6 +434,11 @@ extension MainContentView {
         floatingOptions: .constant(nil),
         openSettingsAction: {},
         contentRepository: FakeContentRepository(),
-        bannerRepository: BannerRepository()
+        bannerRepository: BannerRepository(),
+        trendsService: TrendsService(
+            database: FakeLocalDatabase(),
+            apiClient: FakeAPIClient(),
+            contentRepository: FakeContentRepository()
+        )
     )
 }
