@@ -169,9 +169,6 @@ struct MainContentView: View {
                                 )
                                 .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt)
                                 .autocorrectionDisabled()
-                                .onChange(of: contentGridIsSearching) {
-                                    print("RAFA OUTSIDE - isSearching: \(contentGridIsSearching)")
-                                }
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
                                     ExplicitDisabledWarning(

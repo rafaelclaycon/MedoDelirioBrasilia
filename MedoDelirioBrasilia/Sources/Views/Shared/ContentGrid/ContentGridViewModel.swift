@@ -236,14 +236,11 @@ extension ContentGridViewModel {
     }
 
     public func onSearchStringChanged(newString: String) {
-        print("RAFA - new search string: \(newString)")
         guard !newString.isEmpty else {
             searchResults.clearAll()
             return
         }
         searchResults = searchService.results(matching: newString)
-
-        print(searchResults.soundsMatchingTitle?.count)
     }
 }
 

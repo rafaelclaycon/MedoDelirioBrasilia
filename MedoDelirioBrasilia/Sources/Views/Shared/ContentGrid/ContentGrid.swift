@@ -318,12 +318,10 @@ struct ContentGrid<
         }
         .onChange(of: searchText) {
             guard let searchText else { return }
-            print("RAFA - isSearching: \(isSearching)")
             viewModel.onSearchStringChanged(newString: searchText)
         }
         .onChange(of: isSearching) {
             contentGridIsSearching.wrappedValue = isSearching
-            print("RAFAAAA - isSearching: \(isSearching)")
         }
     }
 
