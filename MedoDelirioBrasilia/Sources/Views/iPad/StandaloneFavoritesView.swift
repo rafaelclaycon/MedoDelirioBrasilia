@@ -36,9 +36,9 @@ struct StandaloneFavoritesView: View {
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             searchService: SearchService(
-                database: LocalDatabase.shared,
                 contentRepository: contentRepository,
-                authorService: AuthorService(database: LocalDatabase.shared)
+                authorService: AuthorService(database: LocalDatabase.shared),
+                appMemory: AppPersistentMemory()
             ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .standaloneFavoritesView,

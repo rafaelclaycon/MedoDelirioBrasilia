@@ -376,9 +376,9 @@ struct ContentGrid<
         viewModel: ContentGridViewModel(
             contentRepository: FakeContentRepository(),
             searchService: SearchService(
-                database: FakeLocalDatabase(),
                 contentRepository: FakeContentRepository(),
-                authorService: FakeAuthorService()
+                authorService: FakeAuthorService(),
+                appMemory: FakeAppPersistentMemory()
             ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase()),
             screen: .mainContentView,

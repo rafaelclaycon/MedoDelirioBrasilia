@@ -15,6 +15,8 @@ struct SearchResultsView: View {
 
     @State private var columns: [GridItem] = []
 
+    private let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+
     // MARK: - Environment
 
     @Environment(\.sizeCategory) private var sizeCategory
@@ -149,6 +151,9 @@ struct SearchResultsView: View {
             }
             .onChange(of: containerWidth) {
                 updateGridLayout()
+            }
+            .onReceive(timer) { time in
+                // save search
             }
         }
     }

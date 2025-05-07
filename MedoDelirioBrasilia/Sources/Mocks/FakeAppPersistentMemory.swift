@@ -1,14 +1,13 @@
 //
-//  MockAppPersistentMemory.swift
+//  FakeAppPersistentMemory.swift
 //  MedoDelirioBrasiliaTests
 //
 //  Created by Rafael Schmitt on 30/10/24.
 //
 
 import Foundation
-@testable import MedoDelirio
 
-final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
+final class FakeAppPersistentMemory: AppPersistentMemoryProtocol {
 
     var folderResearchHashValue: [String: String]? = nil
     var hasSentFolderResearchInfo = false
@@ -16,6 +15,8 @@ final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
     var hasDismissedJoinFolderResearchBanner = false
 
     var customInstallId: String = ""
+
+    private var internalRecentSearches: [String] = []
 
     func folderResearchHashes() -> [String: String]? {
         return folderResearchHashValue
@@ -51,5 +52,13 @@ final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
 
     func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
         //
+    }
+
+    func saveRecentSearches(_ searchTerms: [String]) {
+        internalRecentSearches = searchTerms
+    }
+
+    func recentSearches() -> [String]? {
+        internalRecentSearches
     }
 }

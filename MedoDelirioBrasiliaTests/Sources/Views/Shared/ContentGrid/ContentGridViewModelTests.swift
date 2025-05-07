@@ -20,6 +20,7 @@ struct ContentGridViewModelTests {
 
         let sut = await ContentGridViewModel(
             contentRepository: FakeContentRepository(),
+            searchService: FakeSearchService(),
             userFolderRepository: FakeUserFolderRepository(),
             screen: .mainContentView,
             menuOptions: [],

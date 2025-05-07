@@ -68,9 +68,9 @@ struct StandaloneSearchView: View {
 #Preview {
     StandaloneSearchView(
         searchService: SearchService(
-            database: FakeLocalDatabase(),
             contentRepository: FakeContentRepository(),
-            authorService: FakeAuthorService()
+            authorService: FakeAuthorService(),
+            appMemory: FakeAppPersistentMemory()
         ),
         trendsService: TrendsService(
             database: FakeLocalDatabase(),

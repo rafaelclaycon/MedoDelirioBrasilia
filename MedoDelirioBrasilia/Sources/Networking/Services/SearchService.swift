@@ -16,24 +16,27 @@ protocol SearchServiceProtocol {
 
 final class SearchService: SearchServiceProtocol {
 
-    private let database: LocalDatabaseProtocol
     private let contentRepository: ContentRepositoryProtocol
     private let authorService: AuthorServiceProtocol
+    private let appMemory: AppPersistentMemoryProtocol
 
     public var allowSensitive: Bool
+
+    private var searches: [String] = []
 
     // MARK: - Initializer
 
     init(
-        database: LocalDatabaseProtocol,
         contentRepository: ContentRepositoryProtocol,
         authorService: AuthorServiceProtocol,
+        appMemory: AppPersistentMemoryProtocol,
         allowSensitive: Bool = false
     ) {
-        self.database = database
         self.contentRepository = contentRepository
         self.authorService = authorService
+        self.appMemory = appMemory
         self.allowSensitive = allowSensitive
+        self.searches = appMemory.recentSearches() ?? []
     }
 
     // MARK: - Functions
@@ -46,5 +49,36 @@ final class SearchService: SearchServiceProtocol {
             songsMatchingContent: contentRepository.songs(matchingDescription: searchString, allowSensitive),
             authors: authorService.authors(matchingName: searchString)
         )
+    }
+
+    func save(searchString: String) {
+        guard !searchString.isEmpty else { return }
+
+        if let index = firstIndexOf(searchString: searchString) {
+            searches[index] = searchString
+        } else if !searches.contains(searchString) {
+            searches.insert(searchString, at: 0)
+        }
+
+        if searches.count > 3 {
+            searches.removeLast()
+        }
+        appMemory.saveRecentSearches(searches)
+    }
+
+    private func firstIndexOf(searchString: String) -> Int? {
+        for i in stride(from: 0, to: searches.count, by: 1) {
+            if
+                searchString.starts(with: searches[i]),
+                searches[i].count < searchString.count
+            {
+                return i
+            }
+        }
+        return nil
+    }
+
+    func recentSearches() -> [String] {
+        searches
     }
 }
