@@ -382,7 +382,8 @@ struct ContentGrid<
             searchService: SearchService(
                 contentRepository: FakeContentRepository(),
                 authorService: FakeAuthorService(),
-                appMemory: FakeAppPersistentMemory()
+                appMemory: FakeAppPersistentMemory(),
+                userFolderRepository: FakeUserFolderRepository()
             ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase()),
             screen: .mainContentView,

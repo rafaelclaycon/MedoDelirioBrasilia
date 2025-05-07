@@ -23,6 +23,7 @@ final class SearchService: SearchServiceProtocol {
     private let contentRepository: ContentRepositoryProtocol
     private let authorService: AuthorServiceProtocol
     private let appMemory: AppPersistentMemoryProtocol
+    private let userFolderRepository: UserFolderRepositoryProtocol
 
     public var allowSensitive: Bool
 
@@ -34,11 +35,13 @@ final class SearchService: SearchServiceProtocol {
         contentRepository: ContentRepositoryProtocol,
         authorService: AuthorServiceProtocol,
         appMemory: AppPersistentMemoryProtocol,
+        userFolderRepository: UserFolderRepositoryProtocol,
         allowSensitive: Bool = false
     ) {
         self.contentRepository = contentRepository
         self.authorService = authorService
         self.appMemory = appMemory
+        self.userFolderRepository = userFolderRepository
         self.allowSensitive = allowSensitive
         self.searches = appMemory.recentSearches() ?? []
     }
@@ -52,7 +55,8 @@ final class SearchService: SearchServiceProtocol {
             soundsMatchingContent: contentRepository.sounds(matchingDescription: searchString, allowSensitive),
             songsMatchingTitle: contentRepository.songs(matchingTitle: searchString, allowSensitive),
             songsMatchingContent: contentRepository.songs(matchingDescription: searchString, allowSensitive),
-            authors: authorService.authors(matchingName: searchString)
+            authors: authorService.authors(matchingName: searchString),
+            folders: userFolderRepository.folders(matchingName: searchString)
         )
     }
 

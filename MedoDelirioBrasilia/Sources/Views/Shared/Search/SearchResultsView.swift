@@ -224,7 +224,7 @@ extension SearchResultsView {
     }
 }
 
-// MARK: - Preview
+// MARK: - Previews
 
 #Preview("No Results") {
     GeometryReader { geometry in

@@ -1,11 +1,10 @@
 //
 //  FakeUserFolderRepository.swift
-//  MedoDelirioBrasiliaTests
+//  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 16/04/25.
 //
 
-@testable import MedoDelirio
 import Foundation
 
 final class FakeUserFolderRepository: UserFolderRepositoryProtocol {
@@ -23,6 +22,10 @@ final class FakeUserFolderRepository: UserFolderRepositoryProtocol {
     func allFolders() throws -> [UserFolder] {
         didCallAllFolders = true
         return []
+    }
+
+    func folders(matchingName name: String) -> [UserFolder]? {
+        nil
     }
 
     func add(_ userFolder: UserFolder) throws {

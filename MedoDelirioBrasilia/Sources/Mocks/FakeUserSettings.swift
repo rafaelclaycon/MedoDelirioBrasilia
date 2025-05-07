@@ -1,14 +1,13 @@
 //
-//  MockUserSettings.swift
-//  MedoDelirioBrasiliaTests
+//  FakeUserSettings.swift
+//  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 30/10/24.
 //
 
 import Foundation
-@testable import MedoDelirio
 
-final class MockUserSettings: UserSettingsProtocol {
+final class FakeUserSettings: UserSettingsProtocol {
 
     var hasJoinedFolderResearch = false
 

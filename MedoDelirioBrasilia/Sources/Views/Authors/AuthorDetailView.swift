@@ -74,7 +74,8 @@ struct AuthorDetailView: View {
             searchService: SearchService(
                 contentRepository: contentRepository,
                 authorService: AuthorService(database: LocalDatabase.shared),
-                appMemory: AppPersistentMemory()
+                appMemory: AppPersistentMemory(),
+                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
             ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .authorDetailView,

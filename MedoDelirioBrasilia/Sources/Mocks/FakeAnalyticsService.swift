@@ -1,12 +1,11 @@
 //
 //  FakeAnalyticsService.swift
-//  MedoDelirioBrasiliaTests
+//  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 16/04/25.
 //
 
 import Foundation
-@testable import MedoDelirio
 
 final class FakeAnalyticsService: AnalyticsServiceProtocol {
 
