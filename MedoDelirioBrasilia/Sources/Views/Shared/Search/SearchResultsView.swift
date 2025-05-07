@@ -15,6 +15,8 @@ struct SearchResultsView: View {
 
     @State private var columns: [GridItem] = []
 
+    private let itemCountWhenCollapsed: Int = 4
+
     // MARK: - Environment
 
     @Environment(\.sizeCategory) private var sizeCategory
@@ -28,12 +30,18 @@ struct SearchResultsView: View {
         } else {
             LazyVGrid(
                 columns: columns,
-                spacing: .spacing(.small),
+                spacing: .spacing(.medium),
                 pinnedViews: .sectionHeaders
             ) {
+                // MARK: - Sounds
+
                 if let soundsMatchingTitle = results.soundsMatchingTitle, !soundsMatchingTitle.isEmpty {
-                    Section {
-                        ForEach(soundsMatchingTitle.prefix(4)) { item in
+                    CollapsibleResultSection(
+                        items: soundsMatchingTitle,
+                        itemCountWhenCollapsed: itemCountWhenCollapsed,
+                        headerSymbol: "speaker.wave.3",
+                        headerTitle: "Sons",
+                        contentView: { item in
                             PlayableContentView(
                                 content: item,
                                 favorites: Set<String>(arrayLiteral: ""),
@@ -43,37 +51,33 @@ struct SearchResultsView: View {
                                 currentContentListMode: .constant(.regular)
                             )
                         }
-                    } header: {
-                        HeaderView(title: "SONS QUE CORRESPONDEM NO TÍTULO (\(soundsMatchingTitle.count))")
-                    } footer: {
-                        Button {
-                            print("Tapped")
-                        } label: {
-                            HStack {
-                                Spacer()
-                                Text("Ver Todos")
-                                Spacer()
-                            }
-                        }
-                    }
+                    )
                 }
 
                 if let soundsMatchingContent = results.soundsMatchingContent, !soundsMatchingContent.isEmpty {
-                    Section {
-                        ForEach(soundsMatchingContent.prefix(4)) { item in
+                    CollapsibleResultSection(
+                        items: soundsMatchingContent,
+                        itemCountWhenCollapsed: itemCountWhenCollapsed,
+                        headerSymbol: "speaker.wave.3",
+                        headerTitle: "Conteúdo dos Sons",
+                        contentView: { item in
                             ContentWithDescriptionMatch(
                                 content: item,
                                 highlight: searchString
                             )
                         }
-                    } header: {
-                        HeaderView(title: "SONS QUE CORRESPONDEM NO CONTEÚDO (\(soundsMatchingContent.count))")
-                    }
+                    )
                 }
 
+                // MARK: - Songs
+
                 if let songsMatchingTitle = results.songsMatchingTitle, !songsMatchingTitle.isEmpty {
-                    Section {
-                        ForEach(songsMatchingTitle.prefix(4)) { item in
+                    CollapsibleResultSection(
+                        items: songsMatchingTitle,
+                        itemCountWhenCollapsed: itemCountWhenCollapsed,
+                        headerSymbol: "music.quarternote.3",
+                        headerTitle: "Músicas",
+                        contentView: { item in
                             PlayableContentView(
                                 content: item,
                                 favorites: Set<String>(arrayLiteral: ""),
@@ -83,65 +87,88 @@ struct SearchResultsView: View {
                                 currentContentListMode: .constant(.regular)
                             )
                         }
-                    } header: {
-                        HeaderView(title: "MÚSICAS QUE CORRESPONDEM NO TÍTULO (\(songsMatchingTitle.count))")
-                    }
+                    )
                 }
 
                 if let songsMatchingContent = results.songsMatchingContent, !songsMatchingContent.isEmpty {
-                    Section {
-                        ForEach(songsMatchingContent.prefix(4)) { item in
+                    CollapsibleResultSection(
+                        items: songsMatchingContent,
+                        itemCountWhenCollapsed: itemCountWhenCollapsed,
+                        headerSymbol: "music.quarternote.3",
+                        headerTitle: "Conteúdo das Músicas",
+                        contentView: { item in
                             ContentWithDescriptionMatch(
                                 content: item,
                                 highlight: searchString
                             )
                         }
-                    } header: {
-                        HeaderView(title: "MÚSICAS QUE CORRESPONDEM NO CONTEÚDO (\(songsMatchingContent.count))")
-                    }
+                    )
                 }
+
+                // MARK: - Authors
 
                 if let authors = results.authors, !authors.isEmpty {
-                    Section {
-                        ForEach(authors) { author in
-                            VerticalAuthorView(author: author)
+                    CollapsibleResultSection(
+                        items: authors,
+                        itemCountWhenCollapsed: itemCountWhenCollapsed,
+                        headerSymbol: "person.2",
+                        headerTitle: "Autores",
+                        contentView: { item in
+                            VerticalAuthorView(author: item)
                                 .onTapGesture {
-                                    push(GeneralNavigationDestination.authorDetail(author))
+                                    push(GeneralNavigationDestination.authorDetail(item))
                                 }
                         }
-                    } header: {
-                        HeaderView(title: "AUTORES QUE CORRESPONDEM NO NOME (\(authors.count))")
-                    }
+                    )
                 }
+
+                // MARK: - Folders
 
                 if let folders = results.folders, !folders.isEmpty {
-                    Section {
-                        ForEach(folders) { folder in
-                            FolderView(folder: folder)
+                    CollapsibleResultSection(
+                        items: folders,
+                        itemCountWhenCollapsed: itemCountWhenCollapsed,
+                        headerSymbol: "folder",
+                        headerTitle: "Pastas",
+                        contentView: { item in
+                            FolderView(folder: item)
+                                .onTapGesture {
+                                    push(GeneralNavigationDestination.folderDetail(item))
+                                }
                         }
-                    } header: {
-                        HeaderView(title: "PASTAS QUE CORRESPONDEM NO NOME (\(folders.count))")
-                    }
+                    )
                 }
 
+                // MARK: - Reactions
+
                 if let reactionsMatchingTitle = results.reactionsMatchingTitle, !reactionsMatchingTitle.isEmpty {
-                    Section {
-                        ForEach(reactionsMatchingTitle) { reaction in
-                            ReactionItem(reaction: reaction)
+                    CollapsibleResultSection(
+                        items: reactionsMatchingTitle,
+                        itemCountWhenCollapsed: itemCountWhenCollapsed,
+                        headerSymbol: "rectangle.grid.2x2",
+                        headerTitle: "Reações",
+                        contentView: { item in
+                            ReactionItem(reaction: item)
+                                .onTapGesture {
+                                    push(GeneralNavigationDestination.reactionDetail(item))
+                                }
                         }
-                    } header: {
-                        HeaderView(title: "REAÇÕES QUE CORRESPONDEM NO TÍTULO (\(reactionsMatchingTitle.count))")
-                    }
+                    )
                 }
 
                 if let reactionsMatchingFeeling = results.reactionsMatchingFeeling, !reactionsMatchingFeeling.isEmpty {
-                    Section {
-                        ForEach(reactionsMatchingFeeling) { reaction in
-                            ReactionItem(reaction: reaction)
+                    CollapsibleResultSection(
+                        items: reactionsMatchingFeeling,
+                        itemCountWhenCollapsed: itemCountWhenCollapsed,
+                        headerSymbol: "theatermasks",
+                        headerTitle: "Reações que expressam o sentimento de \"\(searchString)\"",
+                        contentView: { item in
+                            ReactionItem(reaction: item)
+                                .onTapGesture {
+                                    push(GeneralNavigationDestination.reactionDetail(item))
+                                }
                         }
-                    } header: {
-                        HeaderView(title: "REAÇÕES QUE EXPRESSAM O SENTIMENTO DE \"\(searchString.uppercased())\" (\(reactionsMatchingFeeling.count))")
-                    }
+                    )
                 }
             }
             .onAppear {
@@ -170,17 +197,29 @@ extension SearchResultsView {
 
     struct HeaderView: View {
 
+        let symbol: String
         let title: String
+        let resultCount: Int
+
+        private var countText: String {
+            resultCount == 1 ? "1 RESULTADO" : "\(resultCount) RESULTADOS"
+        }
 
         var body: some View {
             HStack {
+                Image(systemName: symbol)
+
                 Text(title)
-                    .font(.callout)
-                    .foregroundStyle(.gray)
+                    .font(.headline)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
 
                 Spacer()
+
+
+                Text(countText)
+                    .font(.callout)
+                    .foregroundStyle(.gray)
             }
             .padding(.vertical, .spacing(.xSmall))
             .background(Color.systemBackground)
@@ -222,6 +261,53 @@ extension SearchResultsView {
             }
         }
     }
+
+    struct CollapsibleResultSection<T: Identifiable, ItemView: View>: View {
+
+        let items: [T]
+        let itemCountWhenCollapsed: Int
+        let headerSymbol: String
+        let headerTitle: String
+        let contentView: (T) -> ItemView
+
+        @State private var isCollapsed: Bool = true
+
+        var body: some View {
+            Section {
+                if isCollapsed {
+                    ForEach(items.prefix(itemCountWhenCollapsed)) { item in
+                        contentView(item)
+                    }
+                } else {
+                    ForEach(items) { item in
+                        contentView(item)
+                    }
+                }
+            } header: {
+                HeaderView(
+                    symbol: headerSymbol,
+                    title: headerTitle,
+                    resultCount: items.count
+                )
+            } footer: {
+                if items.count > itemCountWhenCollapsed && isCollapsed {
+                    Button {
+                        withAnimation {
+                            isCollapsed.toggle()
+                        }
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("Ver Tudo")
+                                .bold()
+                            Spacer()
+                        }
+                    }
+                    .largeRoundedRectangleBordered(colored: .green)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Previews
@@ -230,7 +316,7 @@ extension SearchResultsView {
     GeometryReader { geometry in
         ScrollView {
             SearchResultsView(
-                searchString: "bolsorrrgnnn",
+                searchString: "Bolsorrrgnnn",
                 results: SearchResults(),
                 containerWidth: geometry.size.width
             )
@@ -243,7 +329,7 @@ extension SearchResultsView {
     GeometryReader { geometry in
         ScrollView {
             SearchResultsView(
-                searchString: "bolso",
+                searchString: "Bolso",
                 results: SearchResults(
                     soundsMatchingTitle: Sound.sampleSounds.map { AnyEquatableMedoContent($0) },
                     soundsMatchingContent: [Sound.sampleBolsoA, Sound.sampleBolsoB].map { AnyEquatableMedoContent($0) },
