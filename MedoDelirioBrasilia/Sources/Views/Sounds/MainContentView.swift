@@ -180,7 +180,7 @@ struct MainContentView: View {
                                     .padding(.top, explicitOffWarningTopPadding)
                                 }
 
-                                if viewModel.currentViewMode == .all, viewModel.searchText.isEmpty {
+                                if viewModel.currentViewMode == .all && !contentGridIsSearching {
                                     Text("\(loadedContent.count) ITENS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)

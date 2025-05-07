@@ -306,10 +306,6 @@ struct ContentGrid<
                         push(GeneralNavigationDestination.authorDetail(author))
                         viewModel.authorToOpen = nil
                     }
-                    .onChange(of: isSearching) {
-                        contentGridIsSearching.wrappedValue = isSearching
-                        print("RAFAAAA - isSearching: \(isSearching)")
-                    }
                     .onAppear {
                         viewModel.onViewAppeared()
                         updateGridLayout()
@@ -324,6 +320,10 @@ struct ContentGrid<
             guard let searchText else { return }
             print("RAFA - isSearching: \(isSearching)")
             viewModel.onSearchStringChanged(newString: searchText)
+        }
+        .onChange(of: isSearching) {
+            contentGridIsSearching.wrappedValue = isSearching
+            print("RAFAAAA - isSearching: \(isSearching)")
         }
     }
 
