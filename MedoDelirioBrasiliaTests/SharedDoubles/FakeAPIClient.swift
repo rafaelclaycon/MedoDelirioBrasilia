@@ -52,7 +52,7 @@ class FakeAPIClient: APIClientProtocol {
         false
     }
 
-    func getPixDonorNames() async -> [Donor]? {
+    func getDonorNames() async -> [Donor]? {
         nil
     }
 }

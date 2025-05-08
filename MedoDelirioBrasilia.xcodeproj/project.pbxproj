@@ -436,6 +436,8 @@
 		D9547D8228FDD7190020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7A28FDD7180020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 */; };
 		D9547D8328FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7B28FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 */; };
 		D9547D8428FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7C28FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 */; };
+		D954D1D92DCD4D4200A7D949 /* MoneyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D954D1D82DCD4D4200A7D949 /* MoneyInfo.swift */; };
+		D954D1DB2DCD536500A7D949 /* APIClient+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D954D1DA2DCD536500A7D949 /* APIClient+Settings.swift */; };
 		D955755F29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */; };
 		D95575622910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */; };
 		D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */; };
@@ -1993,6 +1995,8 @@
 		D9547D7A28FDD7180020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3"; sourceTree = "<group>"; };
 		D9547D7B28FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Filho, eu estou achando voce nervoso.mp3"; sourceTree = "<group>"; };
 		D9547D7C28FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Pelo amor de Deus ele e muito burro.mp3"; sourceTree = "<group>"; };
+		D954D1D82DCD4D4200A7D949 /* MoneyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyInfo.swift; sourceTree = "<group>"; };
+		D954D1DA2DCD536500A7D949 /* APIClient+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Settings.swift"; sourceTree = "<group>"; };
 		D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3"; sourceTree = "<group>"; };
 		D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3"; sourceTree = "<group>"; };
 		D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3"; sourceTree = "<group>"; };
@@ -4828,6 +4832,7 @@
 		D97B2DD728E5E9E400C3B50B /* ViewAid */ = {
 			isa = PBXGroup;
 			children = (
+				D994AD612C9DFE84004FAE25 /* LoadingState.swift */,
 				D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */,
 				D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */,
 				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */,
@@ -4948,6 +4953,7 @@
 				D9CA301D2A03EE2300F1F23D /* APIClient+Generic.swift */,
 				D9DBCEA32B12888D003B4A46 /* APIClient+Retro.swift */,
 				D9AE70432D74AA6800117009 /* APIClient+ShareStats.swift */,
+				D954D1DA2DCD536500A7D949 /* APIClient+Settings.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -4967,7 +4973,6 @@
 				D98D13832CD5CD09001CF5BB /* Mocks */,
 				D96892DB2C9F13BB0084F646 /* APIConfig.swift */,
 				D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */,
-				D994AD612C9DFE84004FAE25 /* LoadingState.swift */,
 				D9F45DD82BED39E100D49340 /* ServerDriven */,
 				D9BB1E7928B3212000C5FFAA /* Core */,
 				D95C3E102A02E6BB00172C17 /* Sync */,
@@ -4977,8 +4982,6 @@
 				D97B2DD728E5E9E400C3B50B /* ViewAid */,
 				D9BB1E7828B3210D00C5FFAA /* Logs */,
 				D9DBEA9E2BCC0CF400220679 /* Other */,
-				D98CFB592C95C9710038C26C /* SocialMediaLink.swift */,
-				D91255B12DAFF335006AC71C /* ContentGridScreen.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -5313,6 +5316,8 @@
 		D9DBEA9E2BCC0CF400220679 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D98CFB592C95C9710038C26C /* SocialMediaLink.swift */,
+				D91255B12DAFF335006AC71C /* ContentGridScreen.swift */,
 				D9E7BE7F2C9E1D9D0094AD28 /* AlertType.swift */,
 				D9E7BE802C9E1D9D0094AD28 /* AppIcon.swift */,
 				D9E7BE812C9E1D9D0094AD28 /* ClientDeviceInfo.swift */,
@@ -5441,6 +5446,7 @@
 			isa = PBXGroup;
 			children = (
 				D9F45DD92BED39F800D49340 /* DynamicBannerData.swift */,
+				D954D1D82DCD4D4200A7D949 /* MoneyInfo.swift */,
 			);
 			path = ServerDriven;
 			sourceTree = "<group>";
@@ -6928,9 +6934,11 @@
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D904BDCF2DADAA09004AF550 /* ContentRepository.swift in Sources */,
+				D954D1D92DCD4D4200A7D949 /* MoneyInfo.swift in Sources */,
 				D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
+				D954D1DB2DCD536500A7D949 /* APIClient+Settings.swift in Sources */,
 				D992EF5C2BCB25820080C892 /* ContentGridViewModel.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
@@ -7283,7 +7291,7 @@
 		D9625E9F28238F9B00080852 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_VERSION = 9.0.1;
+				APP_VERSION = 9.0.2;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -7324,7 +7332,7 @@
 		D9625EA028238F9B00080852 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_VERSION = 9.0.1;
+				APP_VERSION = 9.0.2;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Prod";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;

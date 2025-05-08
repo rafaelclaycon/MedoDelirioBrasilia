@@ -11,15 +11,13 @@ struct SettingsView: View {
 
     @State private var showExplicitSounds: Bool = UserSettings().getShowExplicitContent()
 
-    @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
+    @State private var showChangeAppIcon: Bool = !UIDevice.isMac
 
     @State private var showAskForMoneyView: Bool = false
     @State private var toast: Toast?
     @State private var donors: [Donor]? = nil
 
     @State private var showEmailSheet: Bool = false
-
-    @State private var showLargeCreatorImage: Bool = false
 
     private let authorSocials: [SocialMediaLink] = [
         .init(name: "Bluesky", imageName: "bluesky", link: "https://bsky.app/profile/rafaelschmitt.bsky.social"),
@@ -45,24 +43,13 @@ struct SettingsView: View {
         Form {
             Section {
                 Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
-                    .onChange(of: showExplicitSounds) { showExplicitSounds in
+                    .onChange(of: showExplicitSounds) {
                         UserSettings().setShowExplicitContent(to: showExplicitSounds)
                         helper.updateSoundsList = true
                     }
             } footer: {
                 Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
             }
-
-//                if RetroView.ViewModel.shouldDisplayBanner() {
-//                    Section {
-//                        Button {
-//                            print("Retro")
-//                        } label: {
-//                            Label("Retrospectiva 2023", systemImage: "airpodsmax")
-//                        }
-//                        .foregroundStyle(Color.green)
-//                    }
-//                }
 
             Section {
                 NavigationLink(destination: NotificationsSettingsView()) {
@@ -106,16 +93,7 @@ struct SettingsView: View {
             }
 
             if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
-                Section {
-                    HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
-                        .padding(donors != nil ? .top : .vertical)
-
-                    DonateButtons(toast: $toast)
-                } header: {
-                    Text("Ajude o app")
-                } footer: {
-                    Text("Doações recorrentes a partir de R$ 30 ganham um selo especial aqui.")
-                }
+                HelpTheAppView(donors: donors, toast: $toast, apiClient: APIClient.shared)
             }
 
             Section("Sobre") {
@@ -216,18 +194,13 @@ struct SettingsView: View {
             )
         }
         .toast($toast)
-        .overlay {
-            if showLargeCreatorImage {
-                LargeCreatorView(showLargeCreatorImage: $showLargeCreatorImage)
-            }
-        }
     }
 
     // MARK: - Functions
 
     private func onViewAppeared() async {
         showAskForMoneyView = await apiClient.displayAskForMoneyView(appVersion: Versioneer.appVersion)
-        let copy = await apiClient.getPixDonorNames()?.shuffled()
+        let copy = await apiClient.getDonorNames()?.shuffled()
         self.donors = copy
     }
 
@@ -236,114 +209,6 @@ struct SettingsView: View {
             originatingScreen: "SettingsView",
             action: action
         )
-    }
-}
-
-// MARK: - Subviews
-
-extension SettingsView {
-
-    struct DonateButtons: View {
-
-        @Binding var toast: Toast?
-
-        private var copyPixKeyButtonHorizontalPadding: CGFloat {
-            UIScreen.main.bounds.width > 400 ? 20 : 10
-        }
-
-        private let pixKey: String = "medodeliriosuporte@gmail.com"
-
-        var body: some View {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("DOAÇÃO RECORRENTE:")
-                    .font(.footnote)
-                    .bold()
-
-                HStack {
-                    Spacer()
-
-                    Button {
-                        Task {
-                            OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-                            await sendAnalytics(for: "didTapApoiaseButton")
-                        }
-                    } label: {
-                        HStack(spacing: 15) {
-                            Image(systemName: "dollarsign.circle")
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 22)
-
-                            Text("Ver campanha no Apoia.se")
-                                .bold()
-                                .foregroundColor(.red)
-                        }
-                        .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
-                        .padding(.vertical, 8)
-                    }
-                    .tint(.red)
-                    .controlSize(.regular)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
-
-                    Spacer()
-                }
-                
-                Text("DOAÇÃO ÚNICA:")
-                    .font(.footnote)
-                    .bold()
-
-                HStack {
-                    Spacer()
-
-                    Button {
-                        Task {
-                            UIPasteboard.general.string = pixKey
-                            toast = Toast(message: randomThankYouString(), type: .thankYou)
-                            await sendAnalytics(for: "didCopyPixKey")
-                        }
-                    } label: {
-                        HStack(spacing: 15) {
-                            Image(systemName: "doc.on.doc")
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 17)
-
-                            Text("Copiar chave Pix (e-mail)")
-                                .bold()
-                                .foregroundColor(.green)
-                        }
-                        .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
-                        .padding(.vertical, 8)
-                    }
-                    .tint(.green)
-                    .controlSize(.regular)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
-
-                    Spacer()
-                }
-            }
-            .padding(.vertical, 10)
-        }
-
-        private func randomThankYouString() -> String {
-            let ending = [
-                "Obrigado!",
-                "Tem que manter isso, viu?",
-                "Alegria!",
-                "Éééé!",
-                "Vamos apoiar o circo!",
-                "Olha-Que-Legal!",
-                "Ai, que delícia!",
-                "Maravilhoso!",
-                "Vamo, comunistada!",
-                "Bora!"
-            ].randomElement() ?? ""
-            return "Chave copiada. \(ending)"
-        }
     }
 }
 
