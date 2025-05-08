@@ -31,6 +31,15 @@ extension APIClient {
 
     func moneyInfo() async throws -> [MoneyInfo] {
         let url = URL(string: serverPath + "v4/money-info")!
-        return try await get(from: url)
+        let dtos: [MoneyInfoDTO] = try await get(from: url)
+        return dtos.map { dto in
+            MoneyInfo(
+                title: dto.title,
+                subtitle: dto.subtitle,
+                currentValue: dto.currentValue,
+                totalValue: dto.totalValue,
+                barColor: dto.barColor.toColor()
+            )
+        }
     }
 }

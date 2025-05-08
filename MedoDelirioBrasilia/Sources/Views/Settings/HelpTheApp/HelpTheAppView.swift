@@ -31,10 +31,8 @@ struct HelpTheAppView: View {
                     }
 
                     if let moneyInfo {
-                        MoneyInfoView(
-                            spendInfo: moneyInfo.first,
-                            apoiaSeInfo: moneyInfo[1]
-                        )
+                        MoneyInfoView(info: moneyInfo)
+                            .padding(.top, -4)
                     }
 
                     DonateButtons(toast: $toast)
@@ -96,32 +94,20 @@ extension HelpTheAppView {
 
     struct MoneyInfoView: View {
 
-        let spendInfo: MoneyInfo?
-        let apoiaSeInfo: MoneyInfo?
+        let info: [MoneyInfo]
 
         var body: some View {
             VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
-                if let spendInfo {
-                    ProgressView(value: spendInfo.currentValue, total: spendInfo.totalValue) {
-                        Text(spendInfo.title)
+                ForEach(info, id: \.title) { info in
+                    ProgressView(value: info.currentValue, total: info.totalValue) {
+                        Text(info.title)
                             .font(.caption)
                             .bold()
                             .foregroundStyle(.gray)
                     } currentValueLabel: {
-                        Text(spendInfo.subtitle)
+                        Text(info.subtitle)
                     }
-                }
-
-                if let apoiaSeInfo {
-                    ProgressView(value: apoiaSeInfo.currentValue, total: apoiaSeInfo.totalValue) {
-                        Text(apoiaSeInfo.title)
-                            .font(.caption)
-                            .bold()
-                            .foregroundStyle(.gray)
-                    } currentValueLabel: {
-                        Text(apoiaSeInfo.subtitle)
-                    }
-                    .tint(.red)
+                    .tint(info.barColor)
                 }
             }
         }
@@ -149,7 +135,7 @@ extension HelpTheAppView {
                         Spacer()
                     }
                 }
-                .borderedProminentButton(colored: .green)
+                .borderedButton(colored: .green)
 
                 Button {
                     Task {
@@ -164,7 +150,7 @@ extension HelpTheAppView {
                         Spacer()
                     }
                 }
-                .borderedProminentButton(colored: .red)
+                .borderedButton(colored: .red)
             }
         }
 
