@@ -9,60 +9,68 @@ import SwiftUI
 
 struct DonorView: View {
 
-    @State var donor: Donor
+    let donor: Donor
+
+    private var text: String {
+        if donor.hasDonatedBefore {
+            return "\(donor.name)  ⭐️"
+        } else if donor.isRecurringDonor30OrOver ?? false {
+            return "✨  \(donor.name)  ✨"
+        } else {
+            return donor.name
+        }
+    }
+
+    private var border: Color {
+        if donor.hasDonatedBefore {
+            return .primary.opacity(0.7)
+        } else if
+            (donor.isRecurringDonorBelow30 ?? false) ||
+            (donor.isRecurringDonor30OrOver ?? false)
+        {
+            return .red
+        } else {
+            return .primary.opacity(0.3)
+        }
+    }
+
+    private var borderWidth: CGFloat {
+        if
+            donor.hasDonatedBefore ||
+            (donor.isRecurringDonorBelow30 ?? false) ||
+            (donor.isRecurringDonor30OrOver ?? false)
+        {
+            return 2
+        } else {
+            return 1.2
+        }
+    }
+
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        ZStack {
-            Text(donor.name)
-                .foregroundColor(.primary)
-                .bold()
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(RoundedRectangle(cornerRadius: 9).fill(.gray).opacity(colorScheme == .dark ? 0.5 : 0.1))
-
-            if donor.hasDonatedBefore {
-                SpecialDonorTag(text: "⭐️  JÁ DOOU ANTES", backgroundColor: .primary)
-            } else if donor.isRecurringDonorBelow30 ?? false {
-                SpecialDonorTag(text: "RECORRENTE", backgroundColor: .red)
-            } else if donor.isRecurringDonor30OrOver ?? false {
-                SpecialDonorTag(text: "✨RECORRENTE+✨", backgroundColor: .red)
+        Text(text)
+            .foregroundColor(.primary)
+            .bold()
+            .padding(.horizontal, .spacing(.medium))
+            .padding(.vertical, .spacing(.xSmall))
+            .background {
+                RoundedRectangle(cornerRadius: 99)
+                    .fill(.gray)
+                    .opacity(colorScheme == .dark ? 0.5 : 0.05)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 99)
+                            .stroke(border, lineWidth: borderWidth)
+                    )
             }
-        }
-        .fixedSize()
     }
 }
 
-extension DonorView {
-
-    struct SpecialDonorTag: View {
-
-        let text: String
-        let backgroundColor: Color
-
-        @Environment(\.colorScheme) var colorScheme
-
-        var body: some View {
-            Text(text)
-                .font(.caption)
-                .foregroundColor(colorScheme == .dark ? .black : .white)
-                .bold()
-                .padding(.horizontal, 10)
-                .padding(.vertical, 4)
-                .background(RoundedRectangle(cornerRadius: 9).fill(backgroundColor))
-                .offset(y: 22)
-        }
-    }
-}
-
-struct DonorView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        VStack(spacing: 50) {
-            DonorView(donor: Donor(name: "Bruno P. G. P."))
-            DonorView(donor: Donor(name: "Clarissa P. S.", hasDonatedBefore: true))
-            DonorView(donor: Donor(name: "Douglas B."))
-            DonorView(donor: Donor(name: "Pedro Henrique B. P."))
-        }
+#Preview {
+    VStack(spacing: 50) {
+        DonorView(donor: Donor(name: "Bruno P. G. P."))
+        DonorView(donor: Donor(name: "Clarissa P. S.", hasDonatedBefore: true))
+        DonorView(donor: Donor(name: "Douglas B.", isRecurringDonorBelow30: true))
+        DonorView(donor: Donor(name: "Pedro Henrique B. P.", isRecurringDonor30OrOver: true))
     }
 }

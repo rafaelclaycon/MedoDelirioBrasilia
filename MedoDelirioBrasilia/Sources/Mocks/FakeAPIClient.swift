@@ -58,7 +58,7 @@ class FakeAPIClient: APIClientProtocol {
         false
     }
 
-    func getPixDonorNames() async -> [Donor]? {
+    func getDonorNames() async -> [Donor]? {
         nil
     }
 
@@ -74,6 +74,10 @@ class FakeAPIClient: APIClientProtocol {
     }
 
     func top3Reactions() async throws -> [Reaction] {
+        []
+    }
+
+    func moneyInfo() async throws -> [MoneyInfo] {
         []
     }
 }
