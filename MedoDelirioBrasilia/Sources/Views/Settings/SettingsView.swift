@@ -93,7 +93,7 @@ struct SettingsView: View {
             }
 
             if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
-                HelpTheAppView(donors: donors, toast: $toast)
+                HelpTheAppView(donors: donors, toast: $toast, apiClient: APIClient.shared)
             }
 
             Section("Sobre") {
@@ -200,7 +200,7 @@ struct SettingsView: View {
 
     private func onViewAppeared() async {
         showAskForMoneyView = await apiClient.displayAskForMoneyView(appVersion: Versioneer.appVersion)
-        let copy = await apiClient.getPixDonorNames()?.shuffled()
+        let copy = await apiClient.getDonorNames()?.shuffled()
         self.donors = copy
     }
 

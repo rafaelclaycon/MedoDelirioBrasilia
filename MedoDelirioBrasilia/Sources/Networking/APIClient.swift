@@ -20,7 +20,8 @@ internal protocol APIClientProtocol {
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 
     func displayAskForMoneyView(appVersion: String) async -> Bool
-    func getPixDonorNames() async -> [Donor]?
+    func getDonorNames() async -> [Donor]?
+    func moneyInfo() async throws -> [MoneyInfo]
 
     func post<T: Encodable>(to url: URL, body: T) async throws
 }
@@ -56,16 +57,6 @@ class APIClient: APIClientProtocol {
         }
     }
 
-    func displayAskForMoneyView(appVersion: String) async -> Bool {
-        let url = URL(string: serverPath + "v2/current-test-version")!
-        do {
-            guard let versionFromServer = try await getString(from: url) else { return false }
-            return versionFromServer != appVersion
-        } catch {
-            return false
-        }
-    }
-
     func getString(from url: URL) async throws -> String? {
         let (data, response) = try await URLSession.shared.data(from: url)
 
@@ -79,16 +70,6 @@ class APIClient: APIClientProtocol {
             throw APIClientError.unexpectedStatusCode
         }
         return String(data: data, encoding: .utf8)
-    }
-
-    func getPixDonorNames() async -> [Donor]? {
-        let url = URL(string: serverPath + "v3/donor-names")!
-
-        do {
-            return try await get(from: url)
-        } catch {
-            return nil
-        }
     }
 
     // MARK: - POST

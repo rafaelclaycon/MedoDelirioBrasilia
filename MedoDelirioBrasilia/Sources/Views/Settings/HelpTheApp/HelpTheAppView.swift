@@ -11,26 +11,14 @@ struct HelpTheAppView: View {
 
     let donors: [Donor]?
     @Binding var toast: Toast?
+    let apiClient: APIClientProtocol
+
+    @State private var moneyInfo: [MoneyInfo]?
 
     var body: some View {
         Section("Ajude o app") {
             VStack(alignment: .center, spacing: .spacing(.large)) {
-                Rectangle()
-                    .fill(Color.clear)
-                    .frame(height: 150)
-                    .background {
-                        Image("help_the_app_header")
-                            .resizable()
-                            .scaledToFill()
-                            .mask {
-                                LinearGradient(
-                                    gradient: Gradient(colors: [.clear, .systemBackground]),
-                                    startPoint: .bottom,
-                                    endPoint: .top
-                                )
-                            }
-                            .scaleEffect(1.2)
-                    }
+                ImageView()
 
                 VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
                     VStack(alignment: .leading, spacing: .spacing(.medium)) {
@@ -42,29 +30,12 @@ struct HelpTheAppView: View {
                             .font(.callout)
                     }
 
-                    ProgressView(value: 1071, total: 1462) {
-                        Text("ARRECADADO VS GASTOS 2025")
-                            .font(.caption)
-                            .bold()
-                            .foregroundStyle(.gray)
-                    } currentValueLabel: {
-                        Text("R$ 1.071 / R$ 1.462")
+                    if let moneyInfo {
+                        MoneyInfoView(
+                            spendInfo: moneyInfo.first,
+                            apoiaSeInfo: moneyInfo[1]
+                        )
                     }
-
-                    ProgressView(
-                        value: 115,
-                        total: 500,
-                        label: {
-                            Text("META APOIA.SE")
-                                .font(.caption)
-                                .bold()
-                                .foregroundStyle(.gray)
-                        },
-                        currentValueLabel: {
-                            Text("R$ 115 / R$ 500")
-                        }
-                    )
-                    .tint(.red)
 
                     DonateButtons(toast: $toast)
 
@@ -82,12 +53,79 @@ struct HelpTheAppView: View {
             }
             .padding(.bottom, .spacing(.xxSmall))
         }
+        .task {
+            await loadMoneyInfo()
+        }
+    }
+
+    private func loadMoneyInfo() async {
+        guard moneyInfo == nil else { return }
+        do {
+            moneyInfo = try await apiClient.moneyInfo()
+        } catch {
+            debugPrint(error)
+        }
     }
 }
 
 // MARK: - Subviews
 
 extension HelpTheAppView {
+
+    struct ImageView: View {
+
+        var body: some View {
+            Rectangle()
+                .fill(Color.clear)
+                .frame(height: 150)
+                .background {
+                    Image("help_the_app_header")
+                        .resizable()
+                        .scaledToFill()
+                        .mask {
+                            LinearGradient(
+                                gradient: Gradient(colors: [.clear, .systemBackground]),
+                                startPoint: .bottom,
+                                endPoint: .top
+                            )
+                        }
+                        .scaleEffect(1.2)
+                }
+        }
+    }
+
+    struct MoneyInfoView: View {
+
+        let spendInfo: MoneyInfo?
+        let apoiaSeInfo: MoneyInfo?
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
+                if let spendInfo {
+                    ProgressView(value: spendInfo.currentValue, total: spendInfo.totalValue) {
+                        Text(spendInfo.title)
+                            .font(.caption)
+                            .bold()
+                            .foregroundStyle(.gray)
+                    } currentValueLabel: {
+                        Text(spendInfo.subtitle)
+                    }
+                }
+
+                if let apoiaSeInfo {
+                    ProgressView(value: apoiaSeInfo.currentValue, total: apoiaSeInfo.totalValue) {
+                        Text(apoiaSeInfo.title)
+                            .font(.caption)
+                            .bold()
+                            .foregroundStyle(.gray)
+                    } currentValueLabel: {
+                        Text(apoiaSeInfo.subtitle)
+                    }
+                    .tint(.red)
+                }
+            }
+        }
+    }
 
     struct DonateButtons: View {
 
@@ -165,7 +203,8 @@ extension HelpTheAppView {
                 Donor(name: "Clarissa P. S.", hasDonatedBefore: true),
                 Donor(name: "Pedro Henrique B. P.")
             ],
-            toast: .constant(nil)
+            toast: .constant(nil),
+            apiClient: APIClient(serverPath: "")
         )
     }
 }
