@@ -65,7 +65,8 @@ final class SearchService: SearchServiceProtocol {
 
         if let index = firstIndexOf(searchString: searchString) {
             guard searches[index].count < searchString.count else { return }
-            searches[index] = searchString
+            searches.remove(at: index)
+            searches.insert(searchString, at: 0)
         } else {
             searches.insert(searchString, at: 0)
         }

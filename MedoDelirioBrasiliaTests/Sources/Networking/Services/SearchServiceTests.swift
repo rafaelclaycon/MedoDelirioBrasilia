@@ -16,7 +16,8 @@ struct SearchServiceTests {
         let service = SearchService(
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
-            appMemory: memory
+            appMemory: memory,
+            userFolderRepository: FakeUserFolderRepository()
         )
         service.save(searchString: "")
 
@@ -30,7 +31,8 @@ struct SearchServiceTests {
         let service = SearchService(
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
-            appMemory: memory
+            appMemory: memory,
+            userFolderRepository: FakeUserFolderRepository()
         )
         service.save(searchString: "Anitt")
         service.save(searchString: "Anitt")
@@ -46,7 +48,8 @@ struct SearchServiceTests {
         let service = SearchService(
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
-            appMemory: memory
+            appMemory: memory,
+            userFolderRepository: FakeUserFolderRepository()
         )
         service.save(searchString: "Anitt")
         service.save(searchString: "Meme")
@@ -62,7 +65,8 @@ struct SearchServiceTests {
         let service = SearchService(
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
-            appMemory: memory
+            appMemory: memory,
+            userFolderRepository: FakeUserFolderRepository()
         )
         service.save(searchString: "Anitt")
         service.save(searchString: "Meme")
@@ -74,5 +78,24 @@ struct SearchServiceTests {
 
         #expect(service.recentSearches() == ["Jair Bolsonaro", "Meme", "Anitt"])
         #expect(memory.recentSearches() == ["Jair Bolsonaro", "Meme", "Anitt"])
+    }
+
+    @Test("Longer version takes the top spot")
+    func test_longerVersionTakesTheTopSpot() async throws {
+        let memory = FakeAppPersistentMemory()
+        let service = SearchService(
+            contentRepository: FakeContentRepository(),
+            authorService: FakeAuthorService(),
+            appMemory: memory,
+            userFolderRepository: FakeUserFolderRepository()
+        )
+        service.save(searchString: "Meme")
+        service.save(searchString: "Jair")
+        service.save(searchString: "Anitt")
+
+        service.save(searchString: "Jair Bolsonaro")
+
+        #expect(service.recentSearches() == ["Jair Bolsonaro", "Anitt", "Meme"])
+        #expect(memory.recentSearches() == ["Jair Bolsonaro", "Anitt", "Meme"])
     }
 }
