@@ -46,6 +46,7 @@ struct MainView: View {
 
     @State private var contentRepository: ContentRepository
     @State private var trendsService: TrendsService
+    @State private var reactionRepository = ReactionRepository()
 
     init(
         tabSelection: Binding<PhoneTab>,
