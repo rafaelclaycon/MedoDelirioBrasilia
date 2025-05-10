@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchResultsView: View {
 
+    @State var viewModel: PlayableContentViewModel
+
     let searchString: String
     let results: SearchResults
     let containerWidth: CGFloat
@@ -44,12 +46,27 @@ struct SearchResultsView: View {
                         contentView: { item in
                             PlayableContentView(
                                 content: item,
-                                favorites: Set<String>(arrayLiteral: ""),
+                                favorites: viewModel.favoritesKeeper,
                                 highlighted: Set<String>(arrayLiteral: ""),
-                                nowPlaying: Set<String>(arrayLiteral: ""),
+                                nowPlaying: viewModel.nowPlayingKeeper,
                                 selectedItems: Set<String>(arrayLiteral: ""),
                                 currentContentListMode: .constant(.regular)
                             )
+                            .contentShape(
+                                .contextMenuPreview,
+                                RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
+                            )
+                            .onTapGesture {
+                                viewModel.onContentSelected(item, loadedContent: soundsMatchingTitle)
+                            }
+                            .contextMenu {
+                                contextMenuOptionsView(
+                                    content: item,
+                                    menuOptions: viewModel.menuOptions,
+                                    favorites: viewModel.favoritesKeeper,
+                                    loadedContent: soundsMatchingTitle
+                                )
+                            }
                         }
                     )
                 }
@@ -176,6 +193,40 @@ struct SearchResultsView: View {
             }
             .onChange(of: containerWidth) {
                 updateGridLayout()
+            }
+        }
+    }
+
+    // MARK: - Subviews
+
+    @MainActor @ViewBuilder
+    private func contextMenuOptionsView(
+        content: AnyEquatableMedoContent,
+        menuOptions: [ContextMenuSection],
+        favorites: Set<String>,
+        loadedContent: [AnyEquatableMedoContent]
+    ) -> some View {
+        ForEach(menuOptions, id: \.title) { section in
+            Section {
+                ForEach(section.options(content)) { option in
+                    if option.appliesTo.contains(content.type) {
+                        Button {
+                            option.action(
+                                viewModel,
+                                ContextMenuPassthroughData(
+                                    selectedContent: content,
+                                    loadedContent: loadedContent,
+                                    isFavoritesOnlyView: isFavoritesOnlyView
+                                )
+                            )
+                        } label: {
+                            Label(
+                                option.title(favorites.contains(content.id)),
+                                systemImage: option.symbol(favorites.contains(content.id))
+                            )
+                        }
+                    }
+                }
             }
         }
     }

@@ -127,6 +127,15 @@ struct ContentGrid<
                         )
                     } else {
                         SearchResultsView(
+                            viewModel: PlayableContentViewModel(
+                                contentRepository: contentRepository,
+                                userFolderRepository: userFolderRepository,
+                                screen: .searchResultsView,
+                                menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                                toast: viewModel.toast,
+                                floatingOptions: viewModel.floatingOptions,
+                                analyticsService: analyticsService
+                            ),
                             searchString: searchText,
                             results: viewModel.searchResults,
                             containerWidth: containerSize.width

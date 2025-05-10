@@ -14,4 +14,5 @@ enum ContentGridScreen: String {
     case folderDetailView = "FolderDetailView"
     case reactionDetailView = "ReactionDetailView"
     case standaloneFavoritesView = "StandaloneFavoritesView"
+    case searchResultsView = "SearchResultsView"
 }

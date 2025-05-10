@@ -1099,6 +1099,7 @@
 		D97B2DE528E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDE28E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 */; };
 		D97B2DE628E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */; };
 		D97B2DE728E60B8600C3B50B /* Michael The Office - No god please no.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */; };
+		D97BD4FE2DCEB6F70023CA47 /* PlayableContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97BD4FD2DCEB6F70023CA47 /* PlayableContentViewModel.swift */; };
 		D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */; };
 		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
 		D97FFA662CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FFA652CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift */; };
@@ -2670,6 +2671,7 @@
 		D97B2DDE28E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Cunha - E Lula o nosso candidato maravilhoso.mp3"; sourceTree = "<group>"; };
 		D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes - Reaja a assaltos.mp3"; sourceTree = "<group>"; };
 		D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michael The Office - No god please no.mp3"; sourceTree = "<group>"; };
+		D97BD4FD2DCEB6F70023CA47 /* PlayableContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentViewModel.swift; sourceTree = "<group>"; };
 		D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFolderIcon.swift; sourceTree = "<group>"; };
 		D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAppPickerView.swift; sourceTree = "<group>"; };
 		D97FFA652CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingiOS18ControlAndSiriIntentView.swift; sourceTree = "<group>"; };
@@ -5396,6 +5398,7 @@
 				D992EF5B2BCB25820080C892 /* ContentGridViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* PlayableContentView.swift */,
 				D984D55D2CF218E100680C7D /* ContentDetail */,
+				D97BD4FD2DCEB6F70023CA47 /* PlayableContentViewModel.swift */,
 			);
 			path = ContentGrid;
 			sourceTree = "<group>";
@@ -6919,6 +6922,7 @@
 				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,
 				D955DA302AA6B94C00AC4169 /* ContentDetailView.swift in Sources */,
 				D99BAF732CE05B1500250900 /* HowReactionsWorkView.swift in Sources */,
+				D97BD4FE2DCEB6F70023CA47 /* PlayableContentViewModel.swift in Sources */,
 				D920BF622CD1E52200C6BD72 /* FolderResearchProvider.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
