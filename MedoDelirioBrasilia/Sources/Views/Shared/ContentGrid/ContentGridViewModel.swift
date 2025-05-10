@@ -31,7 +31,7 @@ final class ContentGridViewModel {
     var shareAsVideoResult = ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .shareSheet)
 
     // Search
-    var searchText: String = ""
+    var searchResults = SearchResults()
 
     // Sharing
     var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
@@ -62,6 +62,7 @@ final class ContentGridViewModel {
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let multiSelectFolderOperation: FolderOperation
     private let contentRepository: ContentRepositoryProtocol
+    public var searchService: SearchServiceProtocol
     private let userFolderRepository: UserFolderRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
     private let currentScreen: ContentGridScreen
@@ -70,6 +71,7 @@ final class ContentGridViewModel {
 
     init(
         contentRepository: ContentRepositoryProtocol,
+        searchService: SearchServiceProtocol,
         userFolderRepository: UserFolderRepositoryProtocol,
         screen: ContentGridScreen,
         menuOptions: [ContextMenuSection],
@@ -82,6 +84,7 @@ final class ContentGridViewModel {
         analyticsService: AnalyticsServiceProtocol
     ) {
         self.contentRepository = contentRepository
+        self.searchService = searchService
         self.userFolderRepository = userFolderRepository
         self.analyticsService = analyticsService
         self.currentScreen = screen
@@ -92,6 +95,8 @@ final class ContentGridViewModel {
         self.refreshAction = refreshAction
         self.folder = insideFolder
         self.multiSelectFolderOperation = multiSelectFolderOperation
+
+        self.searchService.allowSensitive = UserSettings().getShowExplicitContent()
 
         loadFavorites()
     }
@@ -228,6 +233,14 @@ extension ContentGridViewModel {
         guard currentListMode.wrappedValue == .selection else { return }
         floatingOptions.wrappedValue?.areButtonsEnabled = selectionKeeper.count > 0
         floatingOptions.wrappedValue?.allSelectedAreFavorites = allSelectedAreFavorites()
+    }
+
+    public func onSearchStringChanged(newString: String) {
+        guard !newString.isEmpty else {
+            searchResults.clearAll()
+            return
+        }
+        searchResults = searchService.results(matching: newString)
     }
 }
 
@@ -603,7 +616,7 @@ extension ContentGridViewModel {
         currentListMode.wrappedValue = .regular
         selectionKeeper.removeAll()
         selectedContentMultiple = nil
-        searchText = ""
+        //searchText = ""
         floatingOptions.wrappedValue = nil
     }
 
@@ -744,10 +757,10 @@ extension ContentGridViewModel {
 extension ContentGridViewModel {
 
     public func cancelSearchAndHighlight(id contentId: String) {
-        if !searchText.isEmpty {
-            searchText = ""
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
+//        if !searchText.isEmpty {
+//            searchText = ""
+//            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//        }
 
         highlightKeeper.insert(contentId)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {

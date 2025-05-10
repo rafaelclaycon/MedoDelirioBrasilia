@@ -9,13 +9,14 @@ import SwiftUI
 
 struct MainView: View {
 
-    @Binding var tabSelection: PhoneTab
-    @Binding var padSelection: PadScreen?
+    private var tabSelection: Binding<PhoneTab>
+    private var padSelection: Binding<PadScreen?>
 
     @State private var soundsPath = NavigationPath()
     @State private var favoritesPath = NavigationPath()
     @State private var reactionsPath = NavigationPath()
     @State private var authorsPath = NavigationPath()
+    @State private var searchTabPath = NavigationPath()
     @State private var foldersPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
@@ -43,14 +44,31 @@ struct MainView: View {
     // Sync
     @State private var syncValues = SyncValues()
 
-    @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
+    @State private var contentRepository: ContentRepository
+    @State private var trendsService: TrendsService
+    @State private var reactionRepository = ReactionRepository()
+
+    init(
+        tabSelection: Binding<PhoneTab>,
+        padSelection: Binding<PadScreen?>,
+        contentRepository: ContentRepository = ContentRepository(database: LocalDatabase.shared)
+    ) {
+        self.tabSelection = tabSelection
+        self.padSelection = padSelection
+        self.contentRepository = contentRepository
+        self.trendsService = TrendsService(
+            database: LocalDatabase.shared,
+            apiClient: APIClient.shared,
+            contentRepository: contentRepository
+        )
+    }
 
     // MARK: - View Body
 
     var body: some View {
         ZStack {
             if UIDevice.isiPhone {
-                TabView(selection: $tabSelection) {
+                TabView(selection: tabSelection) {
                     NavigationStack(path: $soundsPath) {
                         MainContentView(
                             viewModel: MainContentViewModel(
@@ -71,7 +89,10 @@ struct MainView: View {
                                 isShowingSettingsSheet.toggle()
                             },
                             contentRepository: contentRepository,
-                            bannerRepository: BannerRepository()
+                            bannerRepository: BannerRepository(),
+                            trendsService: trendsService,
+                            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                            analyticsService: AnalyticsService()
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)
@@ -110,7 +131,8 @@ struct MainView: View {
                     
                     NavigationView {
                         TrendsView(
-                            tabSelection: $tabSelection,
+                            audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
+                            tabSelection: tabSelection,
                             activePadScreen: .constant(.trends)
                         )
                         .environment(trendsHelper)
@@ -121,7 +143,7 @@ struct MainView: View {
                     .tag(PhoneTab.trends)
                 }
                 .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
-                    tabSelection = .sounds
+                    tabSelection.wrappedValue = .sounds
                 })
 //                .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
 //                    tabSelection = .collections
@@ -130,19 +152,19 @@ struct MainView: View {
 //                    tabSelection = .songs
 //                })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
-                    tabSelection = .trends
+                    tabSelection.wrappedValue = .trends
                     trendsHelper.timeIntervalToGoTo = .last24Hours
                 })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
-                    tabSelection = .trends
+                    tabSelection.wrappedValue = .trends
                     trendsHelper.timeIntervalToGoTo = .lastWeek
                 })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
-                    tabSelection = .trends
+                    tabSelection.wrappedValue = .trends
                     trendsHelper.timeIntervalToGoTo = .lastMonth
                 })
                 .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
-                    tabSelection = .trends
+                    tabSelection.wrappedValue = .trends
                     trendsHelper.timeIntervalToGoTo = .allTime
                 })
             } else {
@@ -167,7 +189,10 @@ struct MainView: View {
                                     floatingOptions: $floatingOptions,
                                     openSettingsAction: {},
                                     contentRepository: contentRepository,
-                                    bannerRepository: BannerRepository()
+                                    bannerRepository: BannerRepository(),
+                                    trendsService: trendsService,
+                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    analyticsService: AnalyticsService()
                                 )
                                 .environment(trendsHelper)
                                 .environment(settingsHelper)
@@ -224,11 +249,33 @@ struct MainView: View {
                         Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
                             NavigationStack {
                                 TrendsView(
-                                    tabSelection: $tabSelection,
+                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
+                                    tabSelection: tabSelection,
                                     activePadScreen: .constant(.trends)
                                 )
                                 .environment(trendsHelper)
                             }
+                        }
+
+                        Tab(role: .search) {
+                            NavigationStack(path: $searchTabPath) {
+                                StandaloneSearchView(
+                                    searchService: SearchService(
+                                        contentRepository: contentRepository,
+                                        authorService: AuthorService(database: LocalDatabase.shared),
+                                        appMemory: AppPersistentMemory(),
+                                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+                                    ),
+                                    trendsService: trendsService,
+                                    contentRepository: contentRepository,
+                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    analyticsService: AnalyticsService()
+                                )
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
+                                }
+                            }
+                            .environment(\.push, PushAction { searchTabPath.append($0) })
                         }
 
                         TabSection("Minhas Pastas") {
@@ -323,14 +370,15 @@ struct MainView: View {
                 } else {
                     NavigationSplitView {
                         SidebarView(
-                            state: $padSelection,
+                            state: padSelection,
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             folderForEditing: $folderForEditing,
                             updateFolderList: $updateFolderList,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
                             floatingOptions: $floatingOptions,
-                            contentRepository: contentRepository
+                            contentRepository: contentRepository,
+                            trendsService: trendsService
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)
@@ -354,7 +402,10 @@ struct MainView: View {
                                 floatingOptions: $floatingOptions,
                                 openSettingsAction: {},
                                 contentRepository: contentRepository,
-                                bannerRepository: BannerRepository()
+                                bannerRepository: BannerRepository(),
+                                trendsService: trendsService,
+                                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                analyticsService: AnalyticsService()
                             )
                             .environment(trendsHelper)
                             .environment(settingsHelper)

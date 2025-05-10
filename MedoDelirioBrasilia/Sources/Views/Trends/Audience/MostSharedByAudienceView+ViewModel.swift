@@ -13,12 +13,12 @@ extension MostSharedByAudienceView {
     @Observable class ViewModel {
 
         var soundsState: LoadingState<[TopChartItem]> = .loading
-        var soundsTimeInterval: TrendsTimeInterval = .last24Hours
+        var soundsTimeInterval: TrendsTimeInterval = TrendsService.defaultSoundsTimeInterval
         var soundsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
         var soundsLastCheckString: String = ""
 
         var songsState: LoadingState<[TopChartItem]> = .loading
-        var songsTimeInterval: TrendsTimeInterval = .lastWeek
+        var songsTimeInterval: TrendsTimeInterval = TrendsService.defaultSongsTimeInterval
         var songsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
         var songsLastCheckString: String = ""
 
@@ -40,6 +40,14 @@ extension MostSharedByAudienceView {
         private let lastCheckText: String = "Última consulta: "
         private let unavailableText: String = "indisponível"
         private let justNowText: String = "agora mesmo"
+
+        private let trendsService: TrendsServiceProtocol
+
+        init(
+            trendsService: TrendsServiceProtocol
+        ) {
+            self.trendsService = trendsService
+        }
     }
 }
 
@@ -82,7 +90,7 @@ extension MostSharedByAudienceView.ViewModel {
     private func loadSoundsList() async {
         soundsState = .loading
         do {
-            let soundRanking = try await APIClient.shared.getShareCountStats(
+            let soundRanking = try await trendsService.shareCountStats(
                 for: .sounds,
                 in: soundsTimeInterval
             ).ranked
@@ -100,7 +108,7 @@ extension MostSharedByAudienceView.ViewModel {
     private func loadSongsList() async {
         songsState = .loading
         do {
-            let songRanking = try await APIClient.shared.getShareCountStats(
+            let songRanking = try await trendsService.shareCountStats(
                 for: .songs,
                 in: songsTimeInterval
             ).ranked
@@ -118,7 +126,7 @@ extension MostSharedByAudienceView.ViewModel {
     private func loadReactionsGrid() async {
         reactionsState = .loading
         do {
-            let ranking = try await APIClient.shared.getReactionsStats()
+            let ranking = try await trendsService.reactionsStats()
             reactionsState = .loaded(ranking)
 
             reactionsLastCheckDate = .now

@@ -13,6 +13,9 @@ protocol ReactionRepositoryProtocol {
     func reaction(_ reactionId: String) async throws -> Reaction
     func reactionContent(reactionId: String) async throws -> [ReactionContent]
     func pinnedReactions(_ serverReactions: [Reaction]) async throws -> [Reaction]
+
+    // Manage
+
     func savePin(reaction: Reaction) throws
     func removePin(reactionId: String) throws
 }
@@ -22,11 +25,13 @@ final class ReactionRepository: ReactionRepositoryProtocol {
     private let apiClient: APIClientProtocol
     private let database: LocalDatabaseProtocol
 
+    private var reactions: [Reaction]?
+
     // MARK: - Initializer
 
     init(
-        apiClient: APIClientProtocol = APIClient(serverPath: APIConfig.apiURL),
-        database: LocalDatabaseProtocol = LocalDatabase()
+        apiClient: APIClientProtocol = APIClient.shared,
+        database: LocalDatabaseProtocol = LocalDatabase.shared
     ) {
         self.apiClient = apiClient
         self.database = database

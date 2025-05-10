@@ -18,6 +18,7 @@ internal protocol LocalDatabaseProtocol {
     func update(sound updatedSound: Sound) throws
     func delete(soundId: String) throws
     func setIsFromServer(to value: Bool, onSoundId soundId: String) throws
+    func sounds(matchingDescription searchText: String) throws -> [Sound]
     func contentExists(withId contentId: String) throws -> Bool
     func sounds(withIds soundIds: [String]) throws -> [Sound]
     func sounds(allowSensitive: Bool) throws -> [Sound]
@@ -109,7 +110,11 @@ class LocalDatabase: LocalDatabaseProtocol {
         } catch {
             fatalError(error.localizedDescription)
         }
-        
+
+        db.trace { sql in
+            print("SQL Trace HA! - \(sql)")
+        }
+
         self.migrationManager = SQLiteMigrationManager(db: self.db, migrations: LocalDatabase.migrations())
     }
     

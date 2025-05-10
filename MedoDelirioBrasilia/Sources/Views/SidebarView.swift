@@ -19,6 +19,7 @@ struct SidebarView: View {
     @Binding var toast: Toast?
     @Binding var floatingOptions: FloatingContentOptions?
     let contentRepository: ContentRepositoryProtocol
+    let trendsService: TrendsServiceProtocol
 
     // MARK: - View State
 
@@ -56,7 +57,10 @@ struct SidebarView: View {
                         floatingOptions: $floatingOptions,
                         openSettingsAction: {},
                         contentRepository: contentRepository,
-                        bannerRepository: BannerRepository()
+                        bannerRepository: BannerRepository(),
+                        trendsService: trendsService,
+                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                        analyticsService: AnalyticsService()
                     ).environment(trendsHelper).environment(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
@@ -86,6 +90,7 @@ struct SidebarView: View {
 
                 NavigationLink(
                     destination: TrendsView(
+                        audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
                         tabSelection: .constant(.trends),
                         activePadScreen: $state
                     ).environment(trendsHelper),
@@ -192,6 +197,11 @@ struct SidebarView: View {
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
         floatingOptions: .constant(nil),
-        contentRepository: FakeContentRepository()
+        contentRepository: FakeContentRepository(),
+        trendsService: TrendsService(
+            database: FakeLocalDatabase(),
+            apiClient: FakeAPIClient(),
+            contentRepository: FakeContentRepository()
+        )
     )
 }

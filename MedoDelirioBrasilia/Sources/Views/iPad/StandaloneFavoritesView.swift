@@ -35,6 +35,12 @@ struct StandaloneFavoritesView: View {
         self.openSettingsAction = openSettingsAction
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(
+                contentRepository: contentRepository,
+                authorService: AuthorService(database: LocalDatabase.shared),
+                appMemory: AppPersistentMemory(),
+                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .standaloneFavoritesView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
@@ -55,8 +61,6 @@ struct StandaloneFavoritesView: View {
                     ContentGrid(
                         state: viewModel.state,
                         viewModel: contentGridViewModel,
-                        searchTextIsEmpty: $soundSearchTextIsEmpty,
-                        allowSearch: true,
                         isFavoritesOnlyView: true,
                         containerSize: geometry.size,
                         loadingView:
