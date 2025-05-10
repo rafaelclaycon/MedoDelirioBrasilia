@@ -11,6 +11,9 @@ struct StandaloneSearchView: View {
 
     let searchService: SearchServiceProtocol
     let trendsService: TrendsServiceProtocol
+    let contentRepository: ContentRepositoryProtocol
+    let userFolderRepository: UserFolderRepositoryProtocol
+    let analyticsService: AnalyticsServiceProtocol
 
     @State private var searchText: String = ""
     @State private var searchResults = SearchResults()
@@ -35,6 +38,15 @@ struct StandaloneSearchView: View {
                         .padding(.horizontal, .spacing(.medium))
                     } else {
                         SearchResultsView(
+                            viewModel: PlayableContentViewModel(
+                                contentRepository: contentRepository,
+                                userFolderRepository: userFolderRepository,
+                                screen: .searchResultsView,
+                                menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                                toast: .constant(nil), // TODO
+                                floatingOptions: .constant(nil), // TODO
+                                analyticsService: analyticsService
+                            ),
                             searchString: searchText,
                             results: searchResults,
                             containerWidth: geometry.size.width
@@ -79,6 +91,9 @@ struct StandaloneSearchView: View {
             database: FakeLocalDatabase(),
             apiClient: FakeAPIClient(),
             contentRepository: FakeContentRepository()
-        )
+        ),
+        contentRepository: FakeContentRepository(),
+        userFolderRepository: FakeUserFolderRepository(),
+        analyticsService: FakeAnalyticsService()
     )
 }

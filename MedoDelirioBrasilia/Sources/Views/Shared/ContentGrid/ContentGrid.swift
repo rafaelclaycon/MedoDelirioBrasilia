@@ -53,6 +53,9 @@ struct ContentGrid<
     // Add to Folder details
     @State private var addToFolderHelper = AddToFolderDetails()
 
+    // Search
+    @State private var searchPlayableContentViewModel: PlayableContentViewModel
+
     // MARK: - Environment
 
     @Environment(\.sizeCategory) private var sizeCategory
@@ -75,6 +78,10 @@ struct ContentGrid<
         containerSize: CGSize,
         scrollViewProxy: ScrollViewProxy? = nil,
 
+        contentRepository: ContentRepositoryProtocol? = nil,
+        userFolderRepository: UserFolderRepositoryProtocol? = nil,
+        analyticsService: AnalyticsServiceProtocol? = nil,
+
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
         errorView: ErrorView
@@ -93,6 +100,16 @@ struct ContentGrid<
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
         self.errorView = errorView
+
+        self.searchPlayableContentViewModel = PlayableContentViewModel(
+            contentRepository: contentRepository ?? FakeContentRepository(),
+            userFolderRepository: userFolderRepository ?? FakeUserFolderRepository(),
+            screen: .searchResultsView,
+            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+            toast: viewModel.toast,
+            floatingOptions: viewModel.floatingOptions,
+            analyticsService: analyticsService ?? FakeAnalyticsService()
+        )
     }
 
     // MARK: - View Body
@@ -127,15 +144,7 @@ struct ContentGrid<
                         )
                     } else {
                         SearchResultsView(
-                            viewModel: PlayableContentViewModel(
-                                contentRepository: contentRepository,
-                                userFolderRepository: userFolderRepository,
-                                screen: .searchResultsView,
-                                menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-                                toast: viewModel.toast,
-                                floatingOptions: viewModel.floatingOptions,
-                                analyticsService: analyticsService
-                            ),
+                            viewModel: searchPlayableContentViewModel,
                             searchString: searchText,
                             results: viewModel.searchResults,
                             containerWidth: containerSize.width
@@ -401,6 +410,9 @@ struct ContentGrid<
             analyticsService: AnalyticsService()
         ),
         containerSize: CGSize(width: 390, height: 1200),
+        contentRepository: FakeContentRepository(),
+        userFolderRepository: FakeUserFolderRepository(),
+        analyticsService: FakeAnalyticsService(),
         loadingView: ProgressView(),
         emptyStateView: Text("No Sounds to Display"),
         errorView: Text("Error")

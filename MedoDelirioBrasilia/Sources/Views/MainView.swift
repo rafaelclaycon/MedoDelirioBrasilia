@@ -90,7 +90,9 @@ struct MainView: View {
                             },
                             contentRepository: contentRepository,
                             bannerRepository: BannerRepository(),
-                            trendsService: trendsService
+                            trendsService: trendsService,
+                            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                            analyticsService: AnalyticsService()
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)
@@ -188,7 +190,9 @@ struct MainView: View {
                                     openSettingsAction: {},
                                     contentRepository: contentRepository,
                                     bannerRepository: BannerRepository(),
-                                    trendsService: trendsService
+                                    trendsService: trendsService,
+                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    analyticsService: AnalyticsService()
                                 )
                                 .environment(trendsHelper)
                                 .environment(settingsHelper)
@@ -262,7 +266,10 @@ struct MainView: View {
                                         appMemory: AppPersistentMemory(),
                                         userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
                                     ),
-                                    trendsService: trendsService
+                                    trendsService: trendsService,
+                                    contentRepository: contentRepository,
+                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    analyticsService: AnalyticsService()
                                 )
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
@@ -396,7 +403,9 @@ struct MainView: View {
                                 openSettingsAction: {},
                                 contentRepository: contentRepository,
                                 bannerRepository: BannerRepository(),
-                                trendsService: trendsService
+                                trendsService: trendsService,
+                                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                analyticsService: AnalyticsService()
                             )
                             .environment(trendsHelper)
                             .environment(settingsHelper)

@@ -216,7 +216,7 @@ struct SearchResultsView: View {
                                 ContextMenuPassthroughData(
                                     selectedContent: content,
                                     loadedContent: loadedContent,
-                                    isFavoritesOnlyView: isFavoritesOnlyView
+                                    isFavoritesOnlyView: false
                                 )
                             )
                         } label: {
@@ -367,6 +367,15 @@ extension SearchResultsView {
     GeometryReader { geometry in
         ScrollView {
             SearchResultsView(
+                viewModel: PlayableContentViewModel(
+                    contentRepository: FakeContentRepository(),
+                    userFolderRepository: FakeUserFolderRepository(),
+                    screen: .searchResultsView,
+                    menuOptions: [],
+                    toast: .constant(nil),
+                    floatingOptions: .constant(nil),
+                    analyticsService: FakeAnalyticsService()
+                ),
                 searchString: "Bolsorrrgnnn",
                 results: SearchResults(),
                 containerWidth: geometry.size.width
@@ -380,6 +389,15 @@ extension SearchResultsView {
     GeometryReader { geometry in
         ScrollView {
             SearchResultsView(
+                viewModel: PlayableContentViewModel(
+                    contentRepository: FakeContentRepository(),
+                    userFolderRepository: FakeUserFolderRepository(),
+                    screen: .searchResultsView,
+                    menuOptions: [],
+                    toast: .constant(nil),
+                    floatingOptions: .constant(nil),
+                    analyticsService: FakeAnalyticsService()
+                ),
                 searchString: "Bolso",
                 results: SearchResults(
                     soundsMatchingTitle: Sound.sampleSounds.map { AnyEquatableMedoContent($0) },

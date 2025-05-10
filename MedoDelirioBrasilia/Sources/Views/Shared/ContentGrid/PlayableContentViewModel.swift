@@ -318,6 +318,108 @@ extension PlayableContentViewModel {
     }
 }
 
+// MARK: - ContextMenuOption Communication
+
+extension PlayableContentViewModel: ContentGridDisplaying {
+
+    func share(content: AnyEquatableMedoContent) {
+        if UIDevice.isiPhone {
+            do {
+                try SharingUtility.shareSound(
+                    from: content.fileURL(),
+                    andContentId: content.id,
+                    context: .sound
+                ) { didShare in
+                    if didShare {
+                        self.toast.wrappedValue = Toast(message: Shared.soundSharedSuccessfullyMessage, type: .success)
+                    }
+                }
+            } catch {
+                showUnableToGetSoundAlert(content.title)
+            }
+        } else {
+            do {
+                let url = try content.fileURL()
+                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                    if completed {
+                        self.isShowingShareSheet = false
+
+                        guard let activity = activity else {
+                            return
+                        }
+                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                        Logger.shared.logShared(.sound, contentId: content.id, destination: destination, destinationBundleId: activity.rawValue)
+
+                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                        self.toast.wrappedValue = Toast(message: Shared.soundSharedSuccessfullyMessage, type: .success)
+                    }
+                }
+            } catch {
+                showUnableToGetSoundAlert(content.title)
+            }
+
+            isShowingShareSheet = true
+        }
+    }
+
+    func openShareAsVideoModal(for content: AnyEquatableMedoContent) {
+        selectedContentSingle = content
+        subviewToOpen = .shareAsVideo
+        showingModalView = true
+    }
+
+    func toggleFavorite(_ contentId: String, isFavoritesOnlyView: Bool) {
+        if favoritesKeeper.contains(contentId) {
+            removeFromFavorites(contentId: contentId)
+        } else {
+            addToFavorites(contentId: contentId)
+        }
+    }
+
+    func addToFolder(_ content: AnyEquatableMedoContent) {
+        selectedContentMultiple = [AnyEquatableMedoContent]()
+        selectedContentMultiple?.append(content)
+        subviewToOpen = .addToFolder
+        showingModalView = true
+    }
+
+    func playFrom(
+        content: AnyEquatableMedoContent,
+        loadedContent: [AnyEquatableMedoContent]
+    ) {
+//        guard let index = loadedContent.firstIndex(where: { $0.id == content.id }) else { return }
+//        let soundInArray = loadedContent[index]
+//        currentTrackIndex = index
+//        isPlayingPlaylist = true
+//        play(soundInArray, scrollToPlaying: true, loadedContent: loadedContent)
+    }
+
+    func removeFromFolder(_ content: AnyEquatableMedoContent) {
+//        selectedContentSingle = content
+//        showSoundRemovalConfirmation(soundTitle: content.title)
+    }
+
+    func showDetails(for content: AnyEquatableMedoContent) {
+        selectedContentSingle = content
+        subviewToOpen = .contentDetail
+        showingModalView = true
+    }
+
+    func showAuthor(withId authorId: String) {
+        guard let author = try? contentRepository.author(withId: authorId) else {
+            print("ContentGrid error: unable to find author with id \(authorId)")
+            return
+        }
+        authorToOpen = author
+    }
+
+    func suggestOtherAuthorName(for content: AnyEquatableMedoContent) {
+        subviewToOpen = .authorIssueEmailPicker(content)
+        showingModalView = true
+    }
+}
+
 // MARK: - Alerts
 
 extension PlayableContentViewModel {

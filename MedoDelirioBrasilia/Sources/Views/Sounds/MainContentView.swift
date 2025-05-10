@@ -17,6 +17,8 @@ struct MainContentView: View {
     private let contentRepository: ContentRepositoryProtocol
     private let bannerRepository: BannerRepositoryProtocol
     private let trendsService: TrendsServiceProtocol
+    private let userFolderRepository: UserFolderRepositoryProtocol
+    private let analyticsService: AnalyticsServiceProtocol
     @State private var contentGridIsSearching = false
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
@@ -73,7 +75,9 @@ struct MainContentView: View {
         openSettingsAction: @escaping () -> Void,
         contentRepository: ContentRepositoryProtocol,
         bannerRepository: BannerRepositoryProtocol,
-        trendsService: TrendsServiceProtocol
+        trendsService: TrendsServiceProtocol,
+        userFolderRepository: UserFolderRepositoryProtocol,
+        analyticsService: AnalyticsServiceProtocol
     ) {
         self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
@@ -98,6 +102,8 @@ struct MainContentView: View {
         self.contentRepository = contentRepository
         self.bannerRepository = bannerRepository
         self.trendsService = trendsService
+        self.userFolderRepository = userFolderRepository
+        self.analyticsService = analyticsService
     }
 
     // MARK: - View Body
@@ -143,6 +149,9 @@ struct MainContentView: View {
                                     isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
                                     containerSize: geometry.size,
                                     scrollViewProxy: proxy,
+                                    contentRepository: contentRepository,
+                                    userFolderRepository: userFolderRepository,
+                                    analyticsService: analyticsService,
                                     loadingView:
                                         VStack {
                                             HStack(spacing: .spacing(.small)) {
@@ -437,6 +446,8 @@ extension MainContentView {
             database: FakeLocalDatabase(),
             apiClient: FakeAPIClient(),
             contentRepository: FakeContentRepository()
-        )
+        ),
+        userFolderRepository: FakeUserFolderRepository(),
+        analyticsService: FakeAnalyticsService()
     )
 }
