@@ -140,44 +140,53 @@ struct MainContentView: View {
                                     }
                                 }
 
-                                ContentGrid(
-                                    state: viewModel.state,
-                                    viewModel: contentGridViewModel,
-                                    searchText: viewModel.searchText,
-                                    trendsService: trendsService,
-                                    contentGridIsSearching: $contentGridIsSearching,
-                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
-                                    containerSize: geometry.size,
-                                    scrollViewProxy: proxy,
-                                    contentRepository: contentRepository,
-                                    userFolderRepository: userFolderRepository,
-                                    analyticsService: analyticsService,
-                                    loadingView:
-                                        VStack {
-                                            HStack(spacing: .spacing(.small)) {
-                                                ProgressView()
-
-                                                Text("Carregando sons...")
-                                                    .foregroundColor(.gray)
-                                            }
-                                            .frame(maxWidth: .infinity)
-                                        }
-                                    ,
-                                    emptyStateView:
-                                        VStack {
-                                            if viewModel.currentViewMode == .favorites {
-                                                NoFavoritesView()
-                                                    .padding(.vertical, .spacing(.huge))
-                                            } else {
-                                                Text("Nenhum som a ser exibido. Isso é esquisito.")
-                                                    .foregroundColor(.gray)
-                                            }
-                                        }
-                                    ,
-                                    errorView: VStack { ContentLoadErrorView() }
-                                )
-                                .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt)
-                                .autocorrectionDisabled()
+//                                ContentGrid(
+//                                    viewModel: contentGridViewModel,
+//                                    playableContentViewModel: PlayableContentViewModel(
+//                                        contentRepository: contentRepository,
+//                                        userFolderRepository: userFolderRepository,
+//                                        screen: .mainContentView,
+//                                        menuOptions: [],
+//                                        toast: viewModel.toast,
+//                                        floatingOptions: viewModel.floatingOptions,
+//                                        analyticsService: analyticsService
+//                                    ),
+//                                    state: viewModel.state,
+//                                    searchText: viewModel.searchText,
+//                                    trendsService: trendsService,
+//                                    contentGridIsSearching: $contentGridIsSearching,
+//                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
+//                                    containerSize: geometry.size,
+//                                    scrollViewProxy: proxy,
+//                                    contentRepository: contentRepository,
+//                                    userFolderRepository: userFolderRepository,
+//                                    analyticsService: analyticsService,
+//                                    loadingView:
+//                                        VStack {
+//                                            HStack(spacing: .spacing(.small)) {
+//                                                ProgressView()
+//
+//                                                Text("Carregando sons...")
+//                                                    .foregroundColor(.gray)
+//                                            }
+//                                            .frame(maxWidth: .infinity)
+//                                        }
+//                                    ,
+//                                    emptyStateView:
+//                                        VStack {
+//                                            if viewModel.currentViewMode == .favorites {
+//                                                NoFavoritesView()
+//                                                    .padding(.vertical, .spacing(.huge))
+//                                            } else {
+//                                                Text("Nenhum som a ser exibido. Isso é esquisito.")
+//                                                    .foregroundColor(.gray)
+//                                            }
+//                                        }
+//                                    ,
+//                                    errorView: VStack { ContentLoadErrorView() }
+//                                )
+//                                .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt)
+//                                .autocorrectionDisabled()
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
                                     ExplicitDisabledWarning(
@@ -262,14 +271,14 @@ struct MainContentView: View {
                         }
                     }
                     .onChange(of: playRandomSoundHelper.soundIdToPlay) {
-                        if !playRandomSoundHelper.soundIdToPlay.isEmpty {
-                            viewModel.currentViewMode = .all
-                            contentGridViewModel.scrollAndPlay(
-                                contentId: playRandomSoundHelper.soundIdToPlay,
-                                loadedContent: loadedContent
-                            )
-                            playRandomSoundHelper.soundIdToPlay = ""
-                        }
+//                        if !playRandomSoundHelper.soundIdToPlay.isEmpty {
+//                            viewModel.currentViewMode = .all
+//                            contentGridViewModel.scrollAndPlay(
+//                                contentId: playRandomSoundHelper.soundIdToPlay,
+//                                loadedContent: loadedContent
+//                            )
+//                            playRandomSoundHelper.soundIdToPlay = ""
+//                        }
                     }
                     .sheet(isPresented: $showingModalView) {
                         SyncInfoView(

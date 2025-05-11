@@ -1481,6 +1481,7 @@
 		D9EDB87828E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */; };
 		D9EDB87928E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87628E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 */; };
 		D9EDB87A28E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87728E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 */; };
+		D9EFDEAD2DCFBB9200531462 /* PlayableContentWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EFDEAC2DCFBB9200531462 /* PlayableContentWrapperView.swift */; };
 		D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */; };
 		D9F185CF28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */; };
 		D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */; };
@@ -3053,6 +3054,7 @@
 		D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciro Nogueira - Restricao porque e um fascista.mp3"; sourceTree = "<group>"; };
 		D9EDB87628E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Bolsonaro - Im a little bit nirvous.mp3"; sourceTree = "<group>"; };
 		D9EDB87728E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Bolsonaro - Quando o couro comer.mp3"; sourceTree = "<group>"; };
+		D9EFDEAC2DCFBB9200531462 /* PlayableContentWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentWrapperView.swift; sourceTree = "<group>"; };
 		D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Presta atencao que e importante, pessoal.mp3"; sourceTree = "<group>"; };
 		D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Chupou, acabou.mp3"; sourceTree = "<group>"; };
 		D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3"; sourceTree = "<group>"; };
@@ -5399,6 +5401,7 @@
 				D98EC5DD282596C300340BE5 /* PlayableContentView.swift */,
 				D984D55D2CF218E100680C7D /* ContentDetail */,
 				D97BD4FD2DCEB6F70023CA47 /* PlayableContentViewModel.swift */,
+				D9EFDEAC2DCFBB9200531462 /* PlayableContentWrapperView.swift */,
 			);
 			path = ContentGrid;
 			sourceTree = "<group>";
@@ -7109,6 +7112,7 @@
 				D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */,
 				D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */,
 				D904495A2BB283C20023088B /* ExternalLinkButton.swift in Sources */,
+				D9EFDEAD2DCFBB9200531462 /* PlayableContentWrapperView.swift in Sources */,
 				D9DC68902AD38648005D3F81 /* RetroBanner.swift in Sources */,
 				D91255B22DAFF335006AC71C /* ContentGridScreen.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,

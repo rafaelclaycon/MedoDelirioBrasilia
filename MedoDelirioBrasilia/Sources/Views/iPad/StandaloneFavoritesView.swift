@@ -58,31 +58,31 @@ struct StandaloneFavoritesView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
-                    ContentGrid(
-                        state: viewModel.state,
-                        viewModel: contentGridViewModel,
-                        isFavoritesOnlyView: true,
-                        containerSize: geometry.size,
-                        loadingView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Carregando sons...")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        ,
-                        emptyStateView:
-                            VStack {
-                                NoFavoritesView()
-                                    .padding(.horizontal, .spacing(.xLarge))
-                                    .padding(.vertical, .spacing(.huge))
-                            }
-                        ,
-                        errorView: VStack { ContentLoadErrorView() }
-                    )
+//                    ContentGrid(
+//                        state: viewModel.state,
+//                        viewModel: contentGridViewModel,
+//                        isFavoritesOnlyView: true,
+//                        containerSize: geometry.size,
+//                        loadingView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Carregando sons...")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                        ,
+//                        emptyStateView:
+//                            VStack {
+//                                NoFavoritesView()
+//                                    .padding(.horizontal, .spacing(.xLarge))
+//                                    .padding(.vertical, .spacing(.huge))
+//                            }
+//                        ,
+//                        errorView: VStack { ContentLoadErrorView() }
+//                    )
 
                     Spacer()
                         .frame(height: .spacing(.large))
@@ -111,7 +111,6 @@ struct StandaloneFavoritesView: View {
                 )
                 .onAppear {
                     viewModel.onViewDidAppear()
-                    contentGridViewModel.onViewAppeared()
                 }
             }
             .toast(contentGridViewModel.toast)

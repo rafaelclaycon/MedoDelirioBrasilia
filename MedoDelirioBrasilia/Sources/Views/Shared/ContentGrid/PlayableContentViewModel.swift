@@ -35,7 +35,7 @@ final class PlayableContentViewModel {
     var alertTitle: String = ""
     var alertMessage: String = ""
     var showAlert: Bool = false
-    var alertType: SoundListAlertType = .soundFileNotFound
+    var alertType: PlayableContentAlert = .contentFileNotFound
 
     // MARK: - Stored Properties
 
@@ -426,7 +426,7 @@ extension PlayableContentViewModel {
 
     private func showUnableToGetSoundAlert(_ soundTitle: String) {
         HapticFeedback.error()
-        alertType = .issueSharingSound
+        alertType = .issueSharingContent
         alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.contentNotFoundAlertMessage
         showAlert = true
@@ -435,7 +435,7 @@ extension PlayableContentViewModel {
     private func showServerSoundNotAvailableAlert(_ content: AnyEquatableMedoContent) {
         selectedContentSingle = content
         HapticFeedback.error()
-        alertType = .soundFileNotFound
+        alertType = .contentFileNotFound
         alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
@@ -444,7 +444,7 @@ extension PlayableContentViewModel {
     private func showUnableToRedownloadSoundAlert() {
         alertTitle = "Não Foi Possível Baixar o Conteúdo"
         alertMessage = "Tente novamente mais tarde."
-        alertType = .unableToRedownloadSound
+        alertType = .unableToRedownloadContent
         showAlert = true
     }
 }
