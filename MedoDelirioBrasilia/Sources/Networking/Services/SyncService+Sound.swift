@@ -13,11 +13,11 @@ extension SyncService {
         let url = URL(string: APIClient.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
             let sound: Sound = try await APIClient.shared.get(from: url)
-            try injectedDatabase.insert(sound: sound)
+            try database.insert(sound: sound)
             
             try await SyncService.downloadFile(updateEvent.contentId)
             
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Som \"\(sound.title)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
@@ -29,8 +29,8 @@ extension SyncService {
         let url = URL(string: APIClient.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
             let sound: Sound = try await APIClient.shared.get(from: url)
-            try injectedDatabase.update(sound: sound)
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.update(sound: sound)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
@@ -41,8 +41,8 @@ extension SyncService {
     func updateSoundFile(_ updateEvent: UpdateEvent) async {
         do {
             try await SyncService.downloadFile(updateEvent.contentId)
-            try injectedDatabase.setIsFromServer(to: true, onSoundId: updateEvent.contentId)
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.setIsFromServer(to: true, onSoundId: updateEvent.contentId)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Arquivo do Som \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
@@ -52,9 +52,9 @@ extension SyncService {
 
     func deleteSound(_ updateEvent: UpdateEvent) {
         do {
-            try injectedDatabase.delete(soundId: updateEvent.contentId)
+            try database.delete(soundId: updateEvent.contentId)
             try SyncService.removeSoundFileIfExists(named: updateEvent.contentId)
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)

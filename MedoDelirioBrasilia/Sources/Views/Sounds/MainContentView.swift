@@ -16,10 +16,13 @@ struct MainContentView: View {
     private let openSettingsAction: () -> Void
     private let contentRepository: ContentRepositoryProtocol
     private let bannerRepository: BannerRepositoryProtocol
+    private let trendsService: TrendsServiceProtocol
+    private let userFolderRepository: UserFolderRepositoryProtocol
+    private let analyticsService: AnalyticsServiceProtocol
+    @State private var contentGridIsSearching = false
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
-    @State private var contentSearchTextIsEmpty: Bool? = true
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -42,6 +45,7 @@ struct MainContentView: View {
     @Environment(TrendsHelper.self) private var trendsHelper
     @Environment(SettingsHelper.self) private var settingsHelper 
     @Environment(PlayRandomSoundHelper.self) private var playRandomSoundHelper
+    @Environment(\.push) private var push
 
     // MARK: - Computed Properties
 
@@ -70,11 +74,20 @@ struct MainContentView: View {
         floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void,
         contentRepository: ContentRepositoryProtocol,
-        bannerRepository: BannerRepositoryProtocol
+        bannerRepository: BannerRepositoryProtocol,
+        trendsService: TrendsServiceProtocol,
+        userFolderRepository: UserFolderRepositoryProtocol,
+        analyticsService: AnalyticsServiceProtocol
     ) {
         self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(
+                contentRepository: contentRepository,
+                authorService: AuthorService(database: LocalDatabase.shared),
+                appMemory: AppPersistentMemory(),
+                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .mainContentView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
@@ -88,6 +101,9 @@ struct MainContentView: View {
         self.openSettingsAction = openSettingsAction
         self.contentRepository = contentRepository
         self.bannerRepository = bannerRepository
+        self.trendsService = trendsService
+        self.userFolderRepository = userFolderRepository
+        self.analyticsService = analyticsService
     }
 
     // MARK: - View Body
@@ -97,7 +113,7 @@ struct MainContentView: View {
             ScrollView {
                 ScrollViewReader { proxy in
                     VStack(spacing: .spacing(.xSmall)) {
-                        if contentSearchTextIsEmpty ?? true, currentContentListMode.wrappedValue == .regular {
+                        if !contentGridIsSearching && currentContentListMode.wrappedValue == .regular {
                             ContentModePicker(
                                 options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
                                 selected: $viewModel.currentViewMode,
@@ -116,7 +132,7 @@ struct MainContentView: View {
                                         )
                                     }
 
-                                    if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
+                                    if viewModel.currentViewMode == .all && !contentGridIsSearching {
                                         BannersView(
                                             bannerRepository: bannerRepository,
                                             toast: viewModel.toast
@@ -124,38 +140,53 @@ struct MainContentView: View {
                                     }
                                 }
 
-                                ContentGrid(
-                                    state: viewModel.state,
-                                    viewModel: contentGridViewModel,
-                                    searchTextIsEmpty: $contentSearchTextIsEmpty,
-                                    allowSearch: true,
-                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
-                                    containerSize: geometry.size,
-                                    scrollViewProxy: proxy,
-                                    loadingView:
-                                        VStack {
-                                            HStack(spacing: .spacing(.small)) {
-                                                ProgressView()
-
-                                                Text("Carregando sons...")
-                                                    .foregroundColor(.gray)
-                                            }
-                                            .frame(maxWidth: .infinity)
-                                        }
-                                    ,
-                                    emptyStateView:
-                                        VStack {
-                                            if viewModel.currentViewMode == .favorites {
-                                                NoFavoritesView()
-                                                    .padding(.vertical, .spacing(.huge))
-                                            } else {
-                                                Text("Nenhum som a ser exibido. Isso é esquisito.")
-                                                    .foregroundColor(.gray)
-                                            }
-                                        }
-                                    ,
-                                    errorView: VStack { ContentLoadErrorView() }
-                                )
+//                                ContentGrid(
+//                                    viewModel: contentGridViewModel,
+//                                    playableContentViewModel: PlayableContentViewModel(
+//                                        contentRepository: contentRepository,
+//                                        userFolderRepository: userFolderRepository,
+//                                        screen: .mainContentView,
+//                                        menuOptions: [],
+//                                        toast: viewModel.toast,
+//                                        floatingOptions: viewModel.floatingOptions,
+//                                        analyticsService: analyticsService
+//                                    ),
+//                                    state: viewModel.state,
+//                                    searchText: viewModel.searchText,
+//                                    trendsService: trendsService,
+//                                    contentGridIsSearching: $contentGridIsSearching,
+//                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
+//                                    containerSize: geometry.size,
+//                                    scrollViewProxy: proxy,
+//                                    contentRepository: contentRepository,
+//                                    userFolderRepository: userFolderRepository,
+//                                    analyticsService: analyticsService,
+//                                    loadingView:
+//                                        VStack {
+//                                            HStack(spacing: .spacing(.small)) {
+//                                                ProgressView()
+//
+//                                                Text("Carregando sons...")
+//                                                    .foregroundColor(.gray)
+//                                            }
+//                                            .frame(maxWidth: .infinity)
+//                                        }
+//                                    ,
+//                                    emptyStateView:
+//                                        VStack {
+//                                            if viewModel.currentViewMode == .favorites {
+//                                                NoFavoritesView()
+//                                                    .padding(.vertical, .spacing(.huge))
+//                                            } else {
+//                                                Text("Nenhum som a ser exibido. Isso é esquisito.")
+//                                                    .foregroundColor(.gray)
+//                                            }
+//                                        }
+//                                    ,
+//                                    errorView: VStack { ContentLoadErrorView() }
+//                                )
+//                                .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt)
+//                                .autocorrectionDisabled()
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
                                     ExplicitDisabledWarning(
@@ -164,7 +195,7 @@ struct MainContentView: View {
                                     .padding(.top, explicitOffWarningTopPadding)
                                 }
 
-                                if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
+                                if viewModel.currentViewMode == .all && !contentGridIsSearching {
                                     Text("\(loadedContent.count) ITENS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
@@ -240,14 +271,14 @@ struct MainContentView: View {
                         }
                     }
                     .onChange(of: playRandomSoundHelper.soundIdToPlay) {
-                        if !playRandomSoundHelper.soundIdToPlay.isEmpty {
-                            viewModel.currentViewMode = .all
-                            contentGridViewModel.scrollAndPlay(
-                                contentId: playRandomSoundHelper.soundIdToPlay,
-                                loadedContent: loadedContent
-                            )
-                            playRandomSoundHelper.soundIdToPlay = ""
-                        }
+//                        if !playRandomSoundHelper.soundIdToPlay.isEmpty {
+//                            viewModel.currentViewMode = .all
+//                            contentGridViewModel.scrollAndPlay(
+//                                contentId: playRandomSoundHelper.soundIdToPlay,
+//                                loadedContent: loadedContent
+//                            )
+//                            playRandomSoundHelper.soundIdToPlay = ""
+//                        }
                     }
                     .sheet(isPresented: $showingModalView) {
                         SyncInfoView(
@@ -419,6 +450,13 @@ extension MainContentView {
         floatingOptions: .constant(nil),
         openSettingsAction: {},
         contentRepository: FakeContentRepository(),
-        bannerRepository: BannerRepository()
+        bannerRepository: BannerRepository(),
+        trendsService: TrendsService(
+            database: FakeLocalDatabase(),
+            apiClient: FakeAPIClient(),
+            contentRepository: FakeContentRepository()
+        ),
+        userFolderRepository: FakeUserFolderRepository(),
+        analyticsService: FakeAnalyticsService()
     )
 }

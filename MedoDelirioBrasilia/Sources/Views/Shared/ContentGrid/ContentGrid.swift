@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-/// A generic view that displays a list of sounds with customizable states for loading, empty, and error conditions.
+/// A generic view that displays a list of content (Sounds and Songs) with customizable states for loading, empty, and error conditions.
 ///
-/// `ContentGrid` supports various customization options, including search functionality, multi-selection, and conditional UI elements like
-/// sound counts, explicit content warnings, and more. It relies on `ContentGridViewModel` to manage its data and state.
+/// `ContentGrid` supports various customization options, including search functionality. It relies on `ContentGridViewModel` to manage its logic.
 ///
 /// - Parameters:
 ///   - authorId: The author's ID when `ContentGrid` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `ContentDetailView`.
@@ -25,10 +24,13 @@ struct ContentGrid<
 
     // MARK: - Dependencies
 
-    private var state: LoadingState<[AnyEquatableMedoContent]>
     @State private var viewModel: ContentGridViewModel
-    private var searchTextIsEmpty: Binding<Bool?>
-    private let allowSearch: Bool
+    @State private var playableContentViewModel: PlayableContentViewModel
+
+    private var state: LoadingState<[AnyEquatableMedoContent]>
+    private var searchText: String?
+    private let trendsService: TrendsServiceProtocol?
+    private var contentGridIsSearching: Binding<Bool>
     private let showNewTag: Bool
     private let isFavoritesOnlyView: Bool
     private let authorId: String?
@@ -43,8 +45,8 @@ struct ContentGrid<
     // MARK: - Stored Properties
 
     @State private var columns: [GridItem] = []
-    private let phoneItemSpacing: CGFloat = 9
-    private let padItemSpacing: CGFloat = 14
+    private let phoneItemSpacing: CGFloat = .spacing(.small)
+    private let padItemSpacing: CGFloat = .spacing(.medium)
     @State private var showMultiSelectButtons: Bool = false
     @State private var multiSelectButtonsEnabled: Bool = false
     @State private var allSelectedAreFavorites: Bool = false
@@ -52,28 +54,11 @@ struct ContentGrid<
     // Add to Folder details
     @State private var addToFolderHelper = AddToFolderDetails()
 
-    // MARK: - Computed Properties
-
-    private var searchResults: [AnyEquatableMedoContent] {
-        switch state {
-        case .loaded(let content):
-            if viewModel.searchText.isEmpty {
-                return content
-            } else {
-                return content.filter { item in
-                    let searchString = "\(item.description.lowercased().withoutDiacritics()) \(item.subtitle.lowercased().withoutDiacritics())"
-                    return searchString.contains(viewModel.searchText.lowercased().withoutDiacritics())
-                }
-            }
-        case .loading, .error:
-            return []
-        }
-    }
-
     // MARK: - Environment
 
     @Environment(\.sizeCategory) private var sizeCategory
     @Environment(\.push) private var push
+    @Environment(\.isSearching) private var isSearching
 
     // MARK: - Initializer
 
@@ -81,8 +66,9 @@ struct ContentGrid<
         state: LoadingState<[AnyEquatableMedoContent]>,
         viewModel: ContentGridViewModel,
 
-        searchTextIsEmpty: Binding<Bool?> = .constant(nil),
-        allowSearch: Bool = false,
+        searchText: String? = nil,
+        trendsService: TrendsServiceProtocol? = nil,
+        contentGridIsSearching: Binding<Bool> = .constant(false),
         showNewTag: Bool = true,
         isFavoritesOnlyView: Bool = false,
         authorId: String? = nil,
@@ -90,14 +76,19 @@ struct ContentGrid<
         containerSize: CGSize,
         scrollViewProxy: ScrollViewProxy? = nil,
 
+        contentRepository: ContentRepositoryProtocol? = nil,
+        userFolderRepository: UserFolderRepositoryProtocol? = nil,
+        analyticsService: AnalyticsServiceProtocol? = nil,
+
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
         errorView: ErrorView
     ) {
         self.state = state
         self.viewModel = viewModel
-        self.searchTextIsEmpty = searchTextIsEmpty
-        self.allowSearch = allowSearch
+        self.searchText = searchText
+        self.trendsService = trendsService
+        self.contentGridIsSearching = contentGridIsSearching
         self.showNewTag = showNewTag
         self.isFavoritesOnlyView = isFavoritesOnlyView
         self.authorId = authorId
@@ -107,221 +98,172 @@ struct ContentGrid<
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
         self.errorView = errorView
+
+        self.playableContentViewModel = PlayableContentViewModel(
+            contentRepository: contentRepository ?? FakeContentRepository(),
+            userFolderRepository: userFolderRepository ?? FakeUserFolderRepository(),
+            screen: .searchResultsView,
+            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+            toast: viewModel.toast,
+            floatingOptions: viewModel.floatingOptions,
+            analyticsService: analyticsService ?? FakeAnalyticsService()
+        )
     }
 
     // MARK: - View Body
 
     var body: some View {
-        switch state {
-        case .loading:
-            loadingView
-                .frame(width: containerSize.width)
-                .frame(minHeight: containerSize.height)
+        VStack {
+            switch state {
+            case .loading:
+                loadingView
+                    .frame(width: containerSize.width)
+                    .frame(minHeight: containerSize.height)
 
-        case .loaded(let loadedContent):
-            if loadedContent.isEmpty {
-                emptyStateView
-            } else {
-                LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
-                    if searchResults.isEmpty {
-                        NoSearchResultsView(searchText: viewModel.searchText)
-                    } else {
-                        ForEach(searchResults) { content in
-                            PlayableContentView(
-                                content: content,
-                                showNewTag: showNewTag,
-                                favorites: viewModel.favoritesKeeper,
-                                highlighted: viewModel.highlightKeeper,
-                                nowPlaying: viewModel.nowPlayingKeeper,
-                                selectedItems: viewModel.selectionKeeper,
-                                currentContentListMode: viewModel.currentListMode
-                            )
-                            .contentShape(
-                                .contextMenuPreview,
-                                RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
-                            )
-                            .onTapGesture {
-                                viewModel.onContentSelected(content, loadedContent: loadedContent)
+            case .loaded(let loadedContent):
+                if loadedContent.isEmpty {
+                    emptyStateView
+                } else if let searchText, let trendsService, isSearching {
+                    if searchText.isEmpty {
+                        SearchSuggestionsView(
+                            recent: viewModel.searchService.recentSearches(),
+                            trendsService: trendsService,
+                            onRecentSelectedAction: {
+                                //searchText = $0
+                                print("Send to searchText: \($0)")
+                            },
+                            onReactionSelectedAction: {
+                                push(GeneralNavigationDestination.reactionDetail($0))
+                            },
+                            containerWidth: containerSize.width,
+                            onClearSearchesAction: {
+                                viewModel.searchService.clearRecentSearches()
                             }
-                            .contextMenu {
-                                if viewModel.currentListMode.wrappedValue != .selection {
-                                    contextMenuOptionsView(
+                        )
+                    } else {
+                        SearchResultsView(
+                            viewModel: playableContentViewModel,
+                            searchString: searchText,
+                            results: viewModel.searchResults,
+                            containerWidth: containerSize.width
+                        )
+                    }
+                } else {
+                    PlayableContentWrapperView(
+                        showAlert: playableContentViewModel.showAlert,
+                        showModalView: playableContentViewModel.showingModalView,
+                        showiPadShareSheet: playableContentViewModel.isShowingShareSheet,
+                        alertType: playableContentViewModel.alertType,
+                        subviewToOpen: playableContentViewModel.subviewToOpen,
+                        iPadShareSheet: playableContentViewModel.iPadShareSheet,
+                        alertTitle: playableContentViewModel.alertTitle,
+                        alertMessage: playableContentViewModel.alertMessage,
+                        onRedownloadContentOptionSelected: playableContentViewModel.onRedownloadContentOptionSelected,
+                        onReportContentIssueSelected: playableContentViewModel.onReportContentIssueSelected,
+                        innerView: {
+                            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
+                                ForEach(loadedContent) { content in
+                                    PlayableContentView(
                                         content: content,
-                                        menuOptions: viewModel.menuOptions,
-                                        favorites: viewModel.favoritesKeeper,
-                                        loadedContent: loadedContent
+                                        showNewTag: showNewTag,
+                                        favorites: playableContentViewModel.favoritesKeeper,
+                                        highlighted: viewModel.highlightKeeper,
+                                        nowPlaying: playableContentViewModel.nowPlayingKeeper,
+                                        selectedItems: viewModel.selectionKeeper,
+                                        currentContentListMode: viewModel.currentListMode
+                                    )
+                                    .contentShape(
+                                        .contextMenuPreview,
+                                        RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
+                                    )
+                                    .onTapGesture {
+                                        playableContentViewModel.onContentSelected(content, loadedContent: loadedContent)
+                                    }
+        //                            .contextMenu {
+        //                                if viewModel.currentListMode.wrappedValue != .selection {
+        //                                    contextMenuOptionsView(
+        //                                        content: content,
+        //                                        menuOptions: viewModel.menuOptions,
+        //                                        favorites: viewModel.favoritesKeeper,
+        //                                        loadedContent: loadedContent
+        //                                    )
+        //                                }
+        //                            }
+                                }
+                            }
+                            .alert(isPresented: $viewModel.showAlert) {
+                                switch viewModel.alertType {
+                                case .issueExportingManySounds, .issueRemovingContentFromFolder:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        dismissButton: .default(Text("OK"))
+                                    )
+
+                                case .removeSingleSound:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .destructive(
+                                            Text("Remover"),
+                                            action: { viewModel.onRemoveSingleContentSelected() }
+                                        ),
+                                        secondaryButton: .cancel(Text("Cancelar"))
+                                    )
+
+                                case .removeMultipleSounds:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .destructive(
+                                            Text("Remover"),
+                                            action: { Task { await viewModel.onRemoveMultipleContentSelected() } }
+                                        ),
+                                        secondaryButton: .cancel(Text("Cancelar"))
                                     )
                                 }
                             }
-                        }
-                    }
+//                            .sheet(isPresented: $viewModel.showingModalView) {
+//                                switch viewModel.subviewToOpen {
+//                                case .authorIssueEmailPicker(let content):
+//                                    EmailAppPickerView(
+//                                        isBeingShown: $viewModel.showingModalView,
+//                                        toast: viewModel.toast,
+//                                        subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
+//                                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id)
+//                                    )
+//                                }
+//                            }
+//                            .onChange(of: containerSize.width) {
+//                                updateGridLayout()
+//                            }
+//                            .onChange(of: viewModel.selectionKeeper.count) {
+//                                viewModel.onItemSelectionChanged()
+//                            }
+//                            .onChange(of: viewModel.scrollTo) {
+//                                if !viewModel.scrollTo.isEmpty {
+//                                    withAnimation {
+//                                        scrollViewProxy?.scrollTo(viewModel.scrollTo, anchor: .center)
+//                                    }
+//                                }
+//                            }
+//                            .onAppear {
+//                                updateGridLayout()
+//                            }
+//                        }
+//                    )
                 }
-                .if(allowSearch) {
-                    $0
-                        .searchable(text: $viewModel.searchText)
-                        .disableAutocorrection(true)
-                }
-                .alert(isPresented: $viewModel.showAlert) {
-                    switch viewModel.alertType {
-                    case .soundFileNotFound:
-                        return Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            primaryButton: .default(
-                                Text("Baixar Novamente"),
-                                action: { viewModel.onRedownloadContentOptionSelected() }
-                            ),
-                            secondaryButton: .cancel(Text("Fechar"))
-                        )
 
-                    case .issueSharingSound:
-                        return Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            primaryButton: .default(
-                                Text("Relatar Problema por E-mail"),
-                                action: { viewModel.onReportContentIssueSelected() }
-                            ),
-                            secondaryButton: .cancel(Text("Fechar"))
-                        )
-
-                    case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
-                        return Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            dismissButton: .default(Text("OK"))
-                        )
-
-                    case .removeSingleSound:
-                        return Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            primaryButton: .destructive(
-                                Text("Remover"),
-                                action: { viewModel.onRemoveSingleContentSelected() }
-                            ),
-                            secondaryButton: .cancel(Text("Cancelar"))
-                        )
-
-                    case .removeMultipleSounds:
-                        return Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            primaryButton: .destructive(
-                                Text("Remover"),
-                                action: { Task { await viewModel.onRemoveMultipleContentSelected() } }
-                            ),
-                            secondaryButton: .cancel(Text("Cancelar"))
-                        )
-                    }
-                }
-                .sheet(isPresented: $viewModel.showingModalView) {
-                    switch viewModel.subviewToOpen {
-                    case .shareAsVideo:
-                        ShareAsVideoView(
-                            viewModel: ShareAsVideoViewModel(
-                                content: viewModel.selectedContentSingle!,
-                                subtitle: viewModel.selectedContentSingle!.subtitle,
-                                contentType: viewModel.typeForShareAsVideo(),
-                                result: $viewModel.shareAsVideoResult
-                            ),
-                            useLongerGeneratingVideoMessage: viewModel.selectedContentSingle!.type == .song
-                        )
-
-                    case .addToFolder:
-                        AddToFolderView(
-                            isBeingShown: $viewModel.showingModalView,
-                            details: $addToFolderHelper,
-                            selectedContent: viewModel.selectedContentMultiple ?? []
-                        )
-
-                    case .contentDetail:
-                        ContentDetailView(
-                            content: viewModel.selectedContentSingle ?? AnyEquatableMedoContent(Sound(title: "")),
-                            openAuthorDetailsAction: { author in
-                                guard author.id != self.authorId else { return }
-                                viewModel.showingModalView.toggle()
-                                push(GeneralNavigationDestination.authorDetail(author))
-                            },
-                            authorId: authorId,
-                            openReactionAction: { reaction in
-                                viewModel.showingModalView.toggle()
-                                push(GeneralNavigationDestination.reactionDetail(reaction))
-                            },
-                            reactionId: reactionId,
-                            dismissAction: { viewModel.showingModalView = false }
-                        )
-
-                    case .soundIssueEmailPicker:
-                        EmailAppPickerView(
-                            isBeingShown: $viewModel.showingModalView,
-                            toast: viewModel.toast,
-                            subject: Shared.issueSuggestionEmailSubject,
-                            emailBody: Shared.issueSuggestionEmailBody
-                        )
-
-                    case .authorIssueEmailPicker(let content):
-                        EmailAppPickerView(
-                            isBeingShown: $viewModel.showingModalView,
-                            toast: viewModel.toast,
-                            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
-                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id)
-                        )
-                    }
-                }
-                .sheet(isPresented: $viewModel.isShowingShareSheet) {
-                    viewModel.iPadShareSheet
-                }
-                .onChange(of: viewModel.searchText) {
-                    searchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
-                }
-                .onChange(of: viewModel.shareAsVideoResult.videoFilepath) {
-                    viewModel.onDidExitShareAsVideoSheet()
-                }
-                .onChange(of: viewModel.showingModalView) {
-                    if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
-                        Task {
-                            await viewModel.onAddedContentToFolderSuccessfully(
-                                folderName: addToFolderHelper.folderName ?? "",
-                                pluralization: addToFolderHelper.pluralization
-                            )
-                            addToFolderHelper = AddToFolderDetails()
-                        }
-                    }
-                }
-                .onChange(of: containerSize.width) {
-                    updateGridLayout()
-                }
-                .onChange(of: searchResults) {
-                    if searchResults.isEmpty {
-                        columns = [GridItem(.flexible())]
-                    } else {
-                        updateGridLayout()
-                    }
-                }
-                .onChange(of: viewModel.selectionKeeper.count) {
-                    viewModel.onItemSelectionChanged()
-                }
-                .onChange(of: viewModel.scrollTo) {
-                    if !viewModel.scrollTo.isEmpty {
-                        withAnimation {
-                            scrollViewProxy?.scrollTo(viewModel.scrollTo, anchor: .center)
-                        }
-                    }
-                }
-                .onChange(of: viewModel.authorToOpen) {
-                    guard let author = viewModel.authorToOpen else { return }
-                    push(GeneralNavigationDestination.authorDetail(author))
-                    viewModel.authorToOpen = nil
-                }
-                .onAppear {
-                    viewModel.onViewAppeared()
-                    updateGridLayout()
-                }
+            case .error(_):
+                errorView
             }
-
-        case .error(_):
-            errorView
+        }
+        .onChange(of: searchText) {
+            guard let searchText else { return }
+            viewModel.onSearchStringChanged(newString: searchText)
+        }
+        .onChange(of: isSearching) {
+            contentGridIsSearching.wrappedValue = isSearching
         }
     }
 
@@ -339,14 +281,14 @@ struct ContentGrid<
                 ForEach(section.options(content)) { option in
                     if option.appliesTo.contains(content.type) {
                         Button {
-                            option.action(
-                                viewModel,
-                                ContextMenuPassthroughData(
-                                    selectedContent: content,
-                                    loadedContent: loadedContent,
-                                    isFavoritesOnlyView: isFavoritesOnlyView
-                                )
-                            )
+//                            option.action(
+//                                viewModel,
+//                                ContextMenuPassthroughData(
+//                                    selectedContent: content,
+//                                    loadedContent: loadedContent,
+//                                    isFavoritesOnlyView: isFavoritesOnlyView
+//                                )
+//                            )
                         } label: {
                             Label(
                                 option.title(favorites.contains(content.id)),
@@ -377,6 +319,12 @@ struct ContentGrid<
         state: .loading,
         viewModel: ContentGridViewModel(
             contentRepository: FakeContentRepository(),
+            searchService: SearchService(
+                contentRepository: FakeContentRepository(),
+                authorService: FakeAuthorService(),
+                appMemory: FakeAppPersistentMemory(),
+                userFolderRepository: FakeUserFolderRepository()
+            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase()),
             screen: .mainContentView,
             menuOptions: [.sharingOptions()],
@@ -386,6 +334,9 @@ struct ContentGrid<
             analyticsService: AnalyticsService()
         ),
         containerSize: CGSize(width: 390, height: 1200),
+        contentRepository: FakeContentRepository(),
+        userFolderRepository: FakeUserFolderRepository(),
+        analyticsService: FakeAnalyticsService(),
         loadingView: ProgressView(),
         emptyStateView: Text("No Sounds to Display"),
         errorView: Text("Error")

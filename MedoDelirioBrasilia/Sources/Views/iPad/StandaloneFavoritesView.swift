@@ -35,6 +35,12 @@ struct StandaloneFavoritesView: View {
         self.openSettingsAction = openSettingsAction
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(
+                contentRepository: contentRepository,
+                authorService: AuthorService(database: LocalDatabase.shared),
+                appMemory: AppPersistentMemory(),
+                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .standaloneFavoritesView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
@@ -52,33 +58,31 @@ struct StandaloneFavoritesView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
-                    ContentGrid(
-                        state: viewModel.state,
-                        viewModel: contentGridViewModel,
-                        searchTextIsEmpty: $soundSearchTextIsEmpty,
-                        allowSearch: true,
-                        isFavoritesOnlyView: true,
-                        containerSize: geometry.size,
-                        loadingView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Carregando sons...")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        ,
-                        emptyStateView:
-                            VStack {
-                                NoFavoritesView()
-                                    .padding(.horizontal, .spacing(.xLarge))
-                                    .padding(.vertical, .spacing(.huge))
-                            }
-                        ,
-                        errorView: VStack { ContentLoadErrorView() }
-                    )
+//                    ContentGrid(
+//                        state: viewModel.state,
+//                        viewModel: contentGridViewModel,
+//                        isFavoritesOnlyView: true,
+//                        containerSize: geometry.size,
+//                        loadingView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Carregando sons...")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                        ,
+//                        emptyStateView:
+//                            VStack {
+//                                NoFavoritesView()
+//                                    .padding(.horizontal, .spacing(.xLarge))
+//                                    .padding(.vertical, .spacing(.huge))
+//                            }
+//                        ,
+//                        errorView: VStack { ContentLoadErrorView() }
+//                    )
 
                     Spacer()
                         .frame(height: .spacing(.large))
@@ -107,7 +111,6 @@ struct StandaloneFavoritesView: View {
                 )
                 .onAppear {
                     viewModel.onViewDidAppear()
-                    contentGridViewModel.onViewAppeared()
                 }
             }
             .toast(contentGridViewModel.toast)

@@ -44,6 +44,12 @@ struct ReactionDetailView: View {
         self.contentGridMode = currentListMode
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(
+                contentRepository: contentRepository,
+                authorService: AuthorService(database: LocalDatabase.shared),
+                appMemory: AppPersistentMemory(),
+                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .reactionDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
@@ -70,32 +76,32 @@ struct ReactionDetailView: View {
                     .frame(height: 260)
                     .padding(.bottom, 6)
 
-                    ContentGrid(
-                        state: viewModel.state,
-                        viewModel: contentGridViewModel,
-                        showNewTag: false,
-                        reactionId: viewModel.reaction.id,
-                        containerSize: geometry.size,
-                        loadingView: LoadingView(),
-                        emptyStateView: EmptyStateView(
-                            reloadAction: {
-                                Task {
-                                    await viewModel.onRetrySelected()
-                                }
-                            }
-                        ),
-                        errorView: ErrorView(
-                            reactionNoLongerExists: viewModel.reactionNoLongerExists,
-                            errorMessage: viewModel.errorMessage,
-                            tryAgainAction: {
-                                Task {
-                                    await viewModel.onRetrySelected()
-                                }
-                            }
-                        )
-                    )
-                    .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.medium))
+//                    ContentGrid(
+//                        state: viewModel.state,
+//                        viewModel: contentGridViewModel,
+//                        showNewTag: false,
+//                        reactionId: viewModel.reaction.id,
+//                        containerSize: geometry.size,
+//                        loadingView: LoadingView(),
+//                        emptyStateView: EmptyStateView(
+//                            reloadAction: {
+//                                Task {
+//                                    await viewModel.onRetrySelected()
+//                                }
+//                            }
+//                        ),
+//                        errorView: ErrorView(
+//                            reactionNoLongerExists: viewModel.reactionNoLongerExists,
+//                            errorMessage: viewModel.errorMessage,
+//                            tryAgainAction: {
+//                                Task {
+//                                    await viewModel.onRetrySelected()
+//                                }
+//                            }
+//                        )
+//                    )
+//                    .environment(TrendsHelper())
+//                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                         .frame(height: .spacing(.large))

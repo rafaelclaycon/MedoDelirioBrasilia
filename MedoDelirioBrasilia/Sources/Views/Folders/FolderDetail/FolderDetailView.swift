@@ -60,6 +60,12 @@ struct FolderDetailView: View {
 
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(
+                contentRepository: contentRepository,
+                authorService: AuthorService(database: LocalDatabase.shared),
+                appMemory: AppPersistentMemory(),
+                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .folderDetailView,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
@@ -84,42 +90,42 @@ struct FolderDetailView: View {
                         itemCountText: viewModel.contentCountText
                     )
 
-                    ContentGrid(
-                        state: viewModel.state,
-                        viewModel: contentGridViewModel,
-                        showNewTag: false,
-                        containerSize: geometry.size,
-                        loadingView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Carregando sons...")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        ,
-                        emptyStateView:
-                            VStack {
-                                EmptyFolderView()
-                                    .padding(.horizontal, .spacing(.xxLarge))
-                                    .padding(.vertical, .spacing(.huge))
-                            }
-                        ,
-                        errorView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Erro ao carregar sons.")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                    )
-                    .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.medium))
+//                    ContentGrid(
+//                        state: viewModel.state,
+//                        viewModel: contentGridViewModel,
+//                        showNewTag: false,
+//                        containerSize: geometry.size,
+//                        loadingView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Carregando sons...")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                        ,
+//                        emptyStateView:
+//                            VStack {
+//                                EmptyFolderView()
+//                                    .padding(.horizontal, .spacing(.xxLarge))
+//                                    .padding(.vertical, .spacing(.huge))
+//                            }
+//                        ,
+//                        errorView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Erro ao carregar sons.")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                    )
+//                    .environment(TrendsHelper())
+//                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                         .frame(height: .spacing(.large))

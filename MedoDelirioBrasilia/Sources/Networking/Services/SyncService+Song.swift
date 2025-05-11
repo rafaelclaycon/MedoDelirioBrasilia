@@ -17,7 +17,7 @@ extension SyncService {
 
         do {
             let song: Song = try await APIClient.shared.get(from: contentUrl)
-            try injectedDatabase.insert(song: song)
+            try database.insert(song: song)
 
             try await SyncService.downloadFile(
                 at: fileUrl,
@@ -25,7 +25,7 @@ extension SyncService {
                 contentId: updateEvent.contentId
             )
 
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Música \"\(song.title)\" criada com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             Logger.shared.logSyncError(description: "Erro ao tentar criar Música: \(error.localizedDescription)", updateEventId: updateEvent.id.uuidString)
@@ -36,8 +36,8 @@ extension SyncService {
         let url = URL(string: APIClient.shared.serverPath + "v3/song/\(updateEvent.contentId)")!
         do {
             let song: Song = try await APIClient.shared.get(from: url)
-            try injectedDatabase.update(song: song)
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.update(song: song)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Metadados da Música \"\(song.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
@@ -53,8 +53,8 @@ extension SyncService {
                 to: InternalFolderNames.downloadedSongs,
                 contentId: updateEvent.contentId
             )
-            try injectedDatabase.setIsFromServer(to: true, onSongId: updateEvent.contentId)
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.setIsFromServer(to: true, onSongId: updateEvent.contentId)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Arquivo da Música \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
@@ -64,12 +64,12 @@ extension SyncService {
 
     func deleteSong(_ updateEvent: UpdateEvent) {
         do {
-            try injectedDatabase.delete(songId: updateEvent.contentId)
+            try database.delete(songId: updateEvent.contentId)
             try SyncService.removeContentFile(
                 named: updateEvent.contentId,
                 atFolder: InternalFolderNames.downloadedSongs
             )
-            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try database.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)

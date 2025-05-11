@@ -10,6 +10,7 @@ import Foundation
 protocol UserFolderRepositoryProtocol {
 
     func allFolders() async throws -> [UserFolder]
+    func folders(matchingName name: String) -> [UserFolder]?
 
     func add(_ userFolder: UserFolder) throws
     func insert(contentId: String, intoUserFolder userFolderId: String) throws
@@ -28,12 +29,16 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
 
     private let database: LocalDatabaseProtocol
 
+    private var allFolders: [UserFolder]?
+
     // MARK: - Initializer
 
     init(
         database: LocalDatabaseProtocol
     ) {
         self.database = database
+        self.allFolders = []
+        loadAllFolders()
     }
 
     func allFolders() async throws -> [UserFolder] {
@@ -46,10 +51,19 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
         }
     }
 
+    func folders(matchingName name: String) -> [UserFolder]? {
+        guard let allFolders else { return nil }
+        return allFolders.filter { folder in
+            let normalizedFolderName = folder.name.lowercased().withoutDiacritics()
+            return normalizedFolderName.contains(name.lowercased().withoutDiacritics())
+        }
+    }
+
     func add(_ userFolder: UserFolder) throws {
         var newFolder = userFolder
         newFolder.changeHash = FolderResearchProvider.hash(userFolder.folderHash([]))
         try database.insert(newFolder)
+        loadAllFolders()
     }
 
     func insert(contentId: String, intoUserFolder userFolderId: String) throws {
@@ -65,10 +79,12 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
         let contents = try database.contentsInside(userFolder: folder.id)
         folder.changeHash = folder.folderHash(contents.map { $0.contentId })
         try database.update(folder)
+        loadAllFolders()
     }
 
     func delete(_ folderId: String) throws {
         try database.deleteUserFolder(withId: folderId)
+        loadAllFolders()
     }
 
     func deleteUserContentFromFolder(withId folderId: String, contentId: String) throws {
@@ -78,5 +94,18 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
     func addHashToExistingFolders() throws {
         let folders = try database.allFolders()
         try folders.forEach { try update($0) }
+    }
+}
+
+// MARK: - Internal Functions
+
+extension UserFolderRepository {
+
+    private func loadAllFolders() {
+        do {
+            allFolders = try database.allFolders()
+        } catch {
+            debugPrint(error)
+        }
     }
 }

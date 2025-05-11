@@ -71,6 +71,12 @@ struct AuthorDetailView: View {
         self.currentContentListMode = currentListMode
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
+            searchService: SearchService(
+                contentRepository: contentRepository,
+                authorService: AuthorService(database: LocalDatabase.shared),
+                appMemory: AppPersistentMemory(),
+                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .authorDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
@@ -115,41 +121,41 @@ struct AuthorDetailView: View {
                         }
                     )
 
-                    ContentGrid(
-                        state: viewModel.state,
-                        viewModel: contentGridViewModel,
-                        authorId: viewModel.author.id,
-                        containerSize: geometry.size,
-                        loadingView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Carregando sons...")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        ,
-                        emptyStateView:
-                            VStack {
-                                NoSoundsView()
-                                    .padding(.horizontal, 25)
-                            }
-                        ,
-                        errorView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Erro ao carregar sons.")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                    )
-                    .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.medium))
+//                    ContentGrid(
+//                        state: viewModel.state,
+//                        viewModel: contentGridViewModel,
+//                        authorId: viewModel.author.id,
+//                        containerSize: geometry.size,
+//                        loadingView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Carregando sons...")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                        ,
+//                        emptyStateView:
+//                            VStack {
+//                                NoSoundsView()
+//                                    .padding(.horizontal, 25)
+//                            }
+//                        ,
+//                        errorView:
+//                            VStack {
+//                                HStack(spacing: 10) {
+//                                    ProgressView()
+//
+//                                    Text("Erro ao carregar sons.")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                    )
+//                    .environment(TrendsHelper())
+//                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                         .frame(height: .spacing(.large))

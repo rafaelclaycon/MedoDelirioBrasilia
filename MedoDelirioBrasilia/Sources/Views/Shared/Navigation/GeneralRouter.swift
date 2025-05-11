@@ -8,8 +8,10 @@
 import SwiftUI
 
 enum GeneralNavigationDestination: Hashable {
+
     case authorDetail(Author)
     case reactionDetail(Reaction)
+    case folderDetail(UserFolder)
 }
 
 struct GeneralRouter: View {
@@ -35,6 +37,7 @@ struct GeneralRouter: View {
                 currentListMode: $currentContentListMode,
                 contentRepository: contentRepository
             )
+
         case .reactionDetail(let reaction):
             ReactionDetailView(
                 viewModel: ReactionDetailViewModel(
@@ -44,6 +47,19 @@ struct GeneralRouter: View {
                     contentRepository: contentRepository
                 ),
                 currentListMode: $currentContentListMode,
+                contentRepository: contentRepository
+            )
+
+        case .folderDetail(let folder):
+            FolderDetailView(
+                viewModel: FolderDetailViewModel(
+                    folder: folder,
+                    contentRepository: contentRepository
+                ),
+                folder: folder,
+                currentContentListMode: $currentContentListMode,
+                toast: $toast,
+                floatingOptions: $floatingOptions,
                 contentRepository: contentRepository
             )
         }

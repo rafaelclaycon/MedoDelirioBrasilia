@@ -55,7 +55,7 @@ struct AuthorsGrid: View {
                             NoSearchResultsView(searchText: viewModel.searchText)
                         } else {
                             ForEach(viewModel.searchResults) { author in
-                                AuthorCell(author: author)
+                                HorizontalAuthorView(author: author)
                                     .onTapGesture {
                                         push(GeneralNavigationDestination.authorDetail(author))
                                     }
@@ -63,7 +63,7 @@ struct AuthorsGrid: View {
                         }
                     }
                     .searchable(text: $viewModel.searchText)
-                    .disableAutocorrection(true)
+                    .autocorrectionDisabled()
                     .padding(.top, .spacing(.xxSmall))
                     .onChange(of: containerWidth) {
                         viewModel.onContainerWidthChanged(newWidth: containerWidth)
