@@ -140,7 +140,7 @@
 		D912A33828B3F2C000F7293D /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33728B3F2C000F7293D /* TipView.swift */; };
 		D914CF3B2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */; };
 		D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536328AD7FF7007F141D /* VideoMaker.swift */; };
-		D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* FirstOnboardingView.swift */; };
+		D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* OnboardingView.swift */; };
 		D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627E2874F838000A1B23 /* NotificationsSymbol.swift */; };
 		D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */; };
 		D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */; };
@@ -158,7 +158,6 @@
 		D91B39AD2A6745E500C7FE4F /* Vai chorar e (versao da urna).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39AC2A6745E400C7FE4F /* Vai chorar e (versao da urna).mp3 */; };
 		D91B39AF2A674A1800C7FE4F /* Augusto Aras - De forma discreta, estrategicamente discreta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39AE2A674A1800C7FE4F /* Augusto Aras - De forma discreta, estrategicamente discreta.mp3 */; };
 		D91B39B12A674D1000C7FE4F /* Sergio Moro - Copcao cupicao coopcao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B39B02A674D0F00C7FE4F /* Sergio Moro - Copcao cupicao coopcao.mp3 */; };
-		D91B4DF4299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B4DF3299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift */; };
 		D91B7F892943C44600B9A43F /* O homem e forte em Brasilia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B7F862943C44600B9A43F /* O homem e forte em Brasilia.mp3 */; };
 		D91B7F8A2943C44600B9A43F /* Arthur Lira e foda (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B7F872943C44600B9A43F /* Arthur Lira e foda (curto).mp3 */; };
 		D91B7F8B2943C44600B9A43F /* Arthur Lira e foda (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B7F882943C44600B9A43F /* Arthur Lira e foda (completo).mp3 */; };
@@ -1699,7 +1698,7 @@
 		D912A33728B3F2C000F7293D /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Primeiramente.mp3"; sourceTree = "<group>"; };
 		D916536328AD7FF7007F141D /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
-		D916627C2874F1F9000A1B23 /* FirstOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingView.swift; sourceTree = "<group>"; };
+		D916627C2874F1F9000A1B23 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D916627E2874F838000A1B23 /* NotificationsSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSymbol.swift; sourceTree = "<group>"; };
 		D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um Ministerio Tecnico.mp3"; sourceTree = "<group>"; };
 		D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3"; sourceTree = "<group>"; };
@@ -1717,7 +1716,6 @@
 		D91B39AC2A6745E400C7FE4F /* Vai chorar e (versao da urna).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai chorar e (versao da urna).mp3"; sourceTree = "<group>"; };
 		D91B39AE2A674A1800C7FE4F /* Augusto Aras - De forma discreta, estrategicamente discreta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Augusto Aras - De forma discreta, estrategicamente discreta.mp3"; sourceTree = "<group>"; };
 		D91B39B02A674D0F00C7FE4F /* Sergio Moro - Copcao cupicao coopcao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sergio Moro - Copcao cupicao coopcao.mp3"; sourceTree = "<group>"; };
-		D91B4DF3299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowExplicitContentOnboardingView.swift; sourceTree = "<group>"; };
 		D91B7F862943C44600B9A43F /* O homem e forte em Brasilia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O homem e forte em Brasilia.mp3"; sourceTree = "<group>"; };
 		D91B7F872943C44600B9A43F /* Arthur Lira e foda (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Arthur Lira e foda (curto).mp3"; sourceTree = "<group>"; };
 		D91B7F882943C44600B9A43F /* Arthur Lira e foda (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Arthur Lira e foda (completo).mp3"; sourceTree = "<group>"; };
@@ -3168,9 +3166,8 @@
 		D916627B2874F1E2000A1B23 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				D916627C2874F1F9000A1B23 /* FirstOnboardingView.swift */,
+				D916627C2874F1F9000A1B23 /* OnboardingView.swift */,
 				D916627E2874F838000A1B23 /* NotificationsSymbol.swift */,
-				D91B4DF3299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift */,
 				D97FFA642CA1EEFD00899285 /* WhatsNew */,
 			);
 			path = Onboarding;
@@ -6936,7 +6933,7 @@
 				D904BDCF2DADAA09004AF550 /* ContentRepository.swift in Sources */,
 				D954D1D92DCD4D4200A7D949 /* MoneyInfo.swift in Sources */,
 				D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */,
-				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
+				D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
 				D954D1DB2DCD536500A7D949 /* APIClient+Settings.swift in Sources */,
 				D992EF5C2BCB25820080C892 /* ContentGridViewModel.swift in Sources */,
@@ -7049,7 +7046,6 @@
 				D9D734FB2AD38AF300A25916 /* ClassicRetroView.swift in Sources */,
 				D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,
-				D91B4DF4299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift in Sources */,
 				D9CA301E2A03EE2300F1F23D /* APIClient+Generic.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderGrid.swift in Sources */,
 				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,

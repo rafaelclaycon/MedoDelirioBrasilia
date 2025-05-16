@@ -380,7 +380,7 @@ struct MainView: View {
                     .environment(settingsHelper)
 
             case .onboarding:
-                FirstOnboardingView(isBeingShown: $showingModalView)
+                OnboardingView()
                     .interactiveDismissDisabled(UIDevice.isiPhone)
 
             case .whatsNew:
