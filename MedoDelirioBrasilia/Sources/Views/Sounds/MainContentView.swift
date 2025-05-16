@@ -31,9 +31,6 @@ struct MainContentView: View {
         sortOption: UserSettings().authorSortOption()
     )
 
-    // Sync
-    @State private var displayLongUpdateBanner: Bool = false
-
     @ScaledMetric private var explicitOffWarningTopPadding: CGFloat = .spacing(.medium)
     @ScaledMetric private var explicitOffWarningBottomPadding: CGFloat = .spacing(.large)
 
@@ -109,10 +106,18 @@ struct MainContentView: View {
                         case .all, .favorites, .songs:
                             VStack(spacing: .spacing(.xSmall)) {
                                 VStack(spacing: .spacing(.xSmall)) {
-                                    if displayLongUpdateBanner {
+                                    if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
                                             completedNumber: viewModel.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.totalUpdateCount
+                                            totalUpdateCount: viewModel.totalUpdateCount,
+                                            continueDownloadAction: {
+                                                Task {
+                                                    await viewModel.onContinueFirstContentDownloadSelected()
+                                                }
+                                            },
+                                            dismissBannerAction: {
+                                                viewModel.onDismissFirstContentDownloadSelected()
+                                            }
                                         )
                                     }
 
@@ -236,7 +241,7 @@ struct MainContentView: View {
                     }
                     .onChange(of: viewModel.processedUpdateNumber) {
                         withAnimation {
-                            displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+                            viewModel.updateDisplayLongUpdateBanner()
                         }
                     }
                     .onChange(of: playRandomSoundHelper.soundIdToPlay) {

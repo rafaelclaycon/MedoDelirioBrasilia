@@ -21,6 +21,7 @@ class MainContentViewModel {
     var processedUpdateNumber: Int = 0
     var totalUpdateCount: Int = 0
     var firstRunSyncHappened: Bool = false
+    var dismissedLongUpdateBanner: Bool = false
 
     // MARK: - Stored Properties
 
@@ -34,6 +35,10 @@ class MainContentViewModel {
     private let syncManager: SyncManager
     private let syncValues: SyncValues
     private let isAllowedToSync: Bool
+
+    // MARK: - Computed Properties
+
+    var displayLongUpdateBanner: Bool = false
 
     // MARK: - Initializer
 
@@ -79,6 +84,11 @@ extension MainContentViewModel {
     public func onViewDidAppear() async {
         print("MAIN CONTENT VIEW - ON APPEAR")
 
+        guard !AppPersistentMemory().getLastUpdateAttempt().isEmpty else {
+            updateDisplayLongUpdateBanner()
+            return
+        }
+
         var hadAnyUpdates: Bool = false
 
         if !firstRunSyncHappened {
@@ -118,6 +128,23 @@ extension MainContentViewModel {
 
     public func onFavoritesChanged() {
         loadContent()
+    }
+
+    public func onContinueFirstContentDownloadSelected() async {
+        var hadAnyUpdates: Bool = false
+        
+        if !firstRunSyncHappened {
+            print("WILL START SYNCING")
+            hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+            print("DID FINISH SYNCING")
+        }
+
+        loadContent(clearCache: hadAnyUpdates)
+    }
+
+    public func onDismissFirstContentDownloadSelected() {
+        dismissedLongUpdateBanner = true
+        updateDisplayLongUpdateBanner()
     }
 }
 
@@ -236,5 +263,10 @@ extension MainContentViewModel: SyncManagerDelegate {
             }
         }
         print(status)
+    }
+
+    public func updateDisplayLongUpdateBanner() {
+        guard !dismissedLongUpdateBanner else { return displayLongUpdateBanner = false }
+        displayLongUpdateBanner = totalUpdateCount >= 10 && processedUpdateNumber != totalUpdateCount
     }
 }

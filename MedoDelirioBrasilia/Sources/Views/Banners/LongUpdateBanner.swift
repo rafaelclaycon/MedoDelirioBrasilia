@@ -11,6 +11,10 @@ struct LongUpdateBanner: View {
 
     let completedNumber: Int
     let totalUpdateCount: Int
+    let continueDownloadAction: () -> Void
+    let dismissBannerAction: () -> Void
+
+    @State private var isDownloading: Bool = false
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -27,29 +31,53 @@ struct LongUpdateBanner: View {
     // MARK: - View Body
 
     var body: some View {
-        HStack(spacing: 15) {
-            Image(systemName: "arrow.clockwise.icloud.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: .spacing(.huge))
-                .foregroundColor(.green)
+        VStack {
+            if isDownloading {
+                HStack(spacing: 15) {
+                    Image(systemName: "arrow.clockwise.icloud.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: .spacing(.huge))
+                        .foregroundColor(.green)
 
-            VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
-                Text("Atualização Longa Em Andamento")
-                    .bold()
-                    .multilineTextAlignment(.leading)
+                    VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
+                        Text("Atualização Longa Em Andamento")
+                            .bold()
+                            .multilineTextAlignment(.leading)
 
-                Text("Novidades estão sendo baixadas. Por favor, deixe o **app aberto** até a atualização ser concluída.")
-                    .opacity(0.8)
-                    .font(.callout)
+                        Text("Novidades estão sendo baixadas. Por favor, deixe o **app aberto** até a atualização ser concluída.")
+                            .opacity(0.8)
+                            .font(.callout)
 
-                ProgressView(
-                    percentageText,
-                    value: Double(completedNumber),
-                    total: Double(totalUpdateCount)
-                )
-                .padding(.top, .spacing(.xSmall))
-                .padding(.bottom, .spacing(.xSmall))
+                        ProgressView(
+                            percentageText,
+                            value: Double(completedNumber),
+                            total: Double(totalUpdateCount)
+                        )
+                        .padding(.top, .spacing(.xSmall))
+                        .padding(.bottom, .spacing(.xSmall))
+                    }
+                }
+            } else {
+                VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
+                    Text("Primeira Atualização")
+                        .bold()
+                        .multilineTextAlignment(.leading)
+
+                    Text("Parece que o app foi aberto pela primeira vez. Existem novos conteúdos .")
+                        .opacity(0.8)
+                        .font(.callout)
+
+                    HStack {
+                        Button("Continuar") {
+                            continueDownloadAction()
+                        }
+
+                        Button("Lembrar mais tarde") {
+                            dismissBannerAction()
+                        }
+                    }
+                }
             }
         }
         .padding()
@@ -66,31 +94,33 @@ struct LongUpdateBanner: View {
 #Preview("Partial") {
     LongUpdateBanner(
         completedNumber: 2,
-        totalUpdateCount: 10
+        totalUpdateCount: 10,
+        continueDownloadAction: {},
+        dismissBannerAction: {}
     )
     .padding()
 }
 
-#Preview("Complete") {
-    LongUpdateBanner(
-        completedNumber: 10,
-        totalUpdateCount: 10
-    )
-    .padding()
-}
-
-#Preview("Over") {
-    LongUpdateBanner(
-        completedNumber: 12,
-        totalUpdateCount: 10
-    )
-    .padding()
-}
-
-#Preview("Under") {
-    LongUpdateBanner(
-        completedNumber: -2,
-        totalUpdateCount: 10
-    )
-    .padding()
-}
+//#Preview("Complete") {
+//    LongUpdateBanner(
+//        completedNumber: 10,
+//        totalUpdateCount: 10
+//    )
+//    .padding()
+//}
+//
+//#Preview("Over") {
+//    LongUpdateBanner(
+//        completedNumber: 12,
+//        totalUpdateCount: 10
+//    )
+//    .padding()
+//}
+//
+//#Preview("Under") {
+//    LongUpdateBanner(
+//        completedNumber: -2,
+//        totalUpdateCount: 10
+//    )
+//    .padding()
+//}
