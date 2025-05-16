@@ -22,6 +22,9 @@ struct SyncStatusView: View {
         case .updateError:
             Image(systemName: "exclamationmark.triangle.fill") // "xmark.octagon"
                 .foregroundColor(.orange)
+        case .pendingFirstUpdate:
+            Image(systemName: "clock")
+                .foregroundColor(.gray)
         }
     }
 }

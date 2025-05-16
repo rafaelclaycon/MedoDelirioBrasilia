@@ -25,6 +25,8 @@ struct SyncInfoView: View {
                     AllOkView(lastUpdateAttempt: lastUpdateAttempt)
                 case .updateError:
                     UpdateErrorView(lastUpdateDate: lastUpdateDate)
+                case .pendingFirstUpdate:
+                    PendingFirstUpdateView()
                 }
             }
             .navigationTitle("")
@@ -37,6 +39,8 @@ struct SyncInfoView: View {
         }
     }
 }
+
+// MARK: - Subviews
 
 extension SyncInfoView {
 
@@ -175,6 +179,35 @@ extension SyncInfoView {
         }
     }
 
+    private struct PendingFirstUpdateView: View {
+
+        var body: some View {
+            VStack(spacing: 30) {
+                Image(systemName: "clock")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 70)
+                    .foregroundColor(.gray)
+
+                Text("Aguardando Primeira Atualização")
+                    .font(.title2)
+                    .bold()
+                    .multilineTextAlignment(.center)
+
+                Button {
+
+                } label: {
+                    Text("Atualizar Agora")
+                        .bold()
+                        .padding(.horizontal, .spacing(.medium))
+                }
+                .borderedButton(colored: .accentColor)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+        }
+    }
+
     private struct HistoryView: View {
 
         let updates: [SyncLog]
@@ -215,22 +248,28 @@ extension SyncInfoView {
     }
 }
 
-struct SyncInfoView_Previews: PreviewProvider {
+// MARK: - Previews
 
-    static let syncValuesUpdating: SyncValues = SyncValues()
-    static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
-    static let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
+#Preview("Updating") {
+    let syncValuesUpdating: SyncValues = SyncValues()
+    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
+        .environment(syncValuesUpdating)
+}
 
-    static var previews: some View {
-        Group {
-            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
-                .environment(syncValuesUpdating)
+#Preview("Done") {
+    let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
+    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+        .environment(syncValuesDone)
+}
 
-            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environment(syncValuesDone)
+#Preview("Update Error") {
+    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
+    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+        .environment(syncValuesUpdateError)
+}
 
-            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environment(syncValuesUpdateError)
-        }
-    }
+#Preview("First Update Not Allowed") {
+    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .pendingFirstUpdate)
+    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "")
+        .environment(syncValuesUpdateError)
 }

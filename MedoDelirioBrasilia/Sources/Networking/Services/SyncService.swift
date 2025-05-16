@@ -135,7 +135,7 @@ enum SyncError: Error {
 
 enum SyncUIStatus: CustomStringConvertible {
 
-    case updating, done, updateError
+    case updating, done, updateError, pendingFirstUpdate
 
     var description: String {
         switch self {
@@ -145,6 +145,8 @@ enum SyncUIStatus: CustomStringConvertible {
             return "Você tem as últimas novidades."
         case .updateError:
             return "Não foi possível obter as últimas novidades."
+        case .pendingFirstUpdate:
+            return "Primeira atualização ainda não autorizada."
         }
     }
 }
