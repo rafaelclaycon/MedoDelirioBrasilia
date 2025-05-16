@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// A view that displays the details of a specific sound, including its title, author, statistics, and additional information.
+/// A view that displays the details of a specific Content, including its title, author/music genre, statistics, and additional information.
 ///
 /// `ContentDetailView` provides options to play the sound, view author details, and display sound-related statistics.
 /// It also supports sending suggestions to update the author name via an email picker.
@@ -139,6 +139,68 @@ struct ContentDetailView: View {
 
 extension ContentDetailView {
 
+    struct HeaderView: View {
+
+        let content: AnyEquatableMedoContent
+        @Binding var isPlaying: Bool
+
+        private let regularGradient = LinearGradient(
+            gradient: Gradient(
+                colors: [.systemBackground, .systemBackground, .green, .brightYellow]
+            ),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+
+        var body: some View {
+            VStack {
+                Rectangle()
+                    .fill(regularGradient)
+                    .frame(height: 210)
+                    .overlay {
+                        Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60)
+                            .foregroundColor(.white)
+                    }
+                    .overlay(alignment: .bottom) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(content.title)
+                                    .font(.title)
+                                    .bold()
+
+                                Divider()
+
+                                Button {
+                                    //authorSelectedAction()
+                                } label: {
+                                    HStack(spacing: 8) {
+                                        Text("Jair Bolsonaro")
+                                        //if authorCanNavigate {
+                                            Image(systemName: "chevron.right")
+                                        //}
+                                    }
+                                    .foregroundColor(.gray)
+                                }
+                            }
+
+                            Spacer()
+                        }
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: .spacing(.small))
+                                .fill(Color.systemBackground)
+                                .shadow(radius: 2, x: 1, y: 1)
+                        }
+                        .padding(.horizontal)
+                        .offset(y: 34)
+                    }
+            }
+        }
+    }
+
     struct TitleAndAuthorSection: View {
 
         let type: MediaType
@@ -186,7 +248,18 @@ extension ContentDetailView {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("Header - Not Playing") {
+    ScrollView {
+        VStack {
+            ContentDetailView.HeaderView(
+                content: AnyEquatableMedoContent(Sound.sampleSounds.first!),
+                isPlaying: .constant(false)
+            )
+        }
+    }
+}
+
+#Preview("Complete") {
     ContentDetailView(
         content: AnyEquatableMedoContent(
             Sound(
