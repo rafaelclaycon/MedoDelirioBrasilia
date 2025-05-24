@@ -34,11 +34,20 @@ struct LongUpdateBanner: View {
         VStack {
             if isDownloading {
                 HStack(spacing: 15) {
-                    Image(systemName: "arrow.clockwise.icloud.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: .spacing(.huge))
-                        .foregroundColor(.green)
+                    if #available(iOS 18.0, *) {
+                        Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90.icloud.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: .spacing(.huge))
+                            .foregroundColor(.green)
+                            .symbolEffect(.rotate, options: .speed(2))
+                    } else {
+                        Image(systemName: "arrow.clockwise.icloud.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: .spacing(.huge))
+                            .foregroundColor(.green)
+                    }
 
                     VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
                         Text("Atualização Longa Em Andamento")
