@@ -116,13 +116,15 @@ extension LongUpdateBanner {
         let title: String
         let action: () -> Void
 
+        @Environment(\.colorScheme) var colorScheme
+
         var body: some View {
             Button {
                 action()
             } label: {
                 Text(title)
                     .bold()
-                    .foregroundStyle(Color.accentColor)
+                    .foregroundStyle(colorScheme == .dark ? Color.accentColor : Color.primary)
                     .padding(.vertical, .spacing(.xxxSmall))
                     .padding(.horizontal, .spacing(.xSmall))
             }
