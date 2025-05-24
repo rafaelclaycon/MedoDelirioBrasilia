@@ -376,7 +376,7 @@ struct MainView: View {
                 }
             }
         }
-        //.environment(syncValues)
+        .environment(syncValues)
         .onAppear {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()

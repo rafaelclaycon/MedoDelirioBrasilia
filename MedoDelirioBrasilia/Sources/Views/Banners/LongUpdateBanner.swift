@@ -11,7 +11,7 @@ struct LongUpdateBanner: View {
 
     let completedNumber: Int
     let totalUpdateCount: Int
-    let continueDownloadAction: () -> Void
+    let updateNowAction: () -> Void
     let dismissBannerAction: () -> Void
 
     @State private var isDownloading: Bool = false
@@ -59,24 +59,42 @@ struct LongUpdateBanner: View {
                     }
                 }
             } else {
-                VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
-                    Text("Primeira Atualização")
-                        .bold()
-                        .multilineTextAlignment(.leading)
+                HStack {
+                    VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                        Text("Atualizar Conteúdos")
+                            .bold()
+                            .multilineTextAlignment(.leading)
 
-                    Text("Parece que o app foi aberto pela primeira vez. Existem novos conteúdos .")
-                        .opacity(0.8)
-                        .font(.callout)
+                        Text("Para ver as últimas novidades é necessário atualizar os conteúdos do app. A primeira atualização é a mais longa, cerca de 20 MB, e deve levar 3 minutos para baixar.")
+                            .opacity(0.8)
+                            .font(.callout)
 
-                    HStack {
-                        Button("Continuar") {
-                            continueDownloadAction()
-                        }
+                        ViewThatFits(in: .horizontal) {
+                            HStack(spacing: .spacing(.small)) {
+                                AllowUpdateButton(title: "Atualizar agora") {
+                                    isDownloading = true
+                                    updateNowAction()
+                                }
 
-                        Button("Lembrar mais tarde") {
-                            dismissBannerAction()
+                                AllowUpdateButton(title: "Lembrar mais tarde") {
+                                    dismissBannerAction()
+                                }
+                            }
+
+                            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                                AllowUpdateButton(title: "Atualizar agora") {
+                                    isDownloading = true
+                                    updateNowAction()
+                                }
+
+                                AllowUpdateButton(title: "Lembrar mais tarde") {
+                                    dismissBannerAction()
+                                }
+                            }
                         }
                     }
+
+                    Spacer()
                 }
             }
         }
@@ -89,13 +107,37 @@ struct LongUpdateBanner: View {
     }
 }
 
+// MARK: - Subviews
+
+extension LongUpdateBanner {
+
+    struct AllowUpdateButton: View {
+
+        let title: String
+        let action: () -> Void
+
+        var body: some View {
+            Button {
+                action()
+            } label: {
+                Text(title)
+                    .bold()
+                    .foregroundStyle(Color.accentColor)
+                    .padding(.vertical, .spacing(.xxxSmall))
+                    .padding(.horizontal, .spacing(.xSmall))
+            }
+            .capsule(colored: .gray)
+        }
+    }
+}
+
 // MARK: - Preview
 
 #Preview("Partial") {
     LongUpdateBanner(
         completedNumber: 2,
         totalUpdateCount: 10,
-        continueDownloadAction: {},
+        updateNowAction: {},
         dismissBannerAction: {}
     )
     .padding()

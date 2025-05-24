@@ -110,7 +110,7 @@ struct MainContentView: View {
                                         LongUpdateBanner(
                                             completedNumber: viewModel.contentUpdateService.currentUpdate,
                                             totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
-                                            continueDownloadAction: {
+                                            updateNowAction: {
                                                 Task {
                                                     await viewModel.onAllowFirstContentUpdateSelected()
                                                 }

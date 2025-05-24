@@ -138,6 +138,8 @@ extension MainContentViewModel {
     }
 
     private func sync(lastAttempt: String) async -> Bool {
+        guard AppPersistentMemory().hasAllowedContentUpdate() else { return false }
+
         print("lastAttempt: \(lastAttempt)")
 
         // Logic for pulling down - keep here
@@ -166,6 +168,8 @@ extension MainContentViewModel {
 
     /// Warm open means the app was reopened before it left memory.
     private func warmOpenSync() async -> Bool {
+        guard AppPersistentMemory().hasAllowedContentUpdate() else { return false }
+
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
         print("lastUpdateAttempt: \(lastUpdateAttempt)")
         guard

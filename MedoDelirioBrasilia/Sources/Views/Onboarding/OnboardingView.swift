@@ -226,7 +226,7 @@ extension OnboardingView {
                         .padding(.vertical)
 
                     VStack(alignment: .center, spacing: .spacing(.xLarge)) {
-                        Text("Novos sons e músicas são baixados sempre que você estiver online. Como é a primeira vez que você abre o app, a primeira atualização é a mais longa:")
+                        Text("Novos sons e músicas são baixados sempre que você estiver online. A primeira atualização é a mais longa:")
                             .multilineTextAlignment(.center)
 
                         Text("Aproximadamente 3 minutos - 20 MB")
