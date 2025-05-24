@@ -108,8 +108,8 @@ struct MainContentView: View {
                                 VStack(spacing: .spacing(.xSmall)) {
                                     if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
-                                            completedNumber: viewModel.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.totalUpdateCount,
+                                            completedNumber: viewModel.syncManager.processedUpdateNumber,
+                                            totalUpdateCount: viewModel.syncManager.totalUpdateCount,
                                             continueDownloadAction: {
                                                 Task {
                                                     await viewModel.onContinueFirstContentDownloadSelected()

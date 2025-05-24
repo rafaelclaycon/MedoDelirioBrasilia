@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnboardingView: View {
 
+    let doFirstContentUpdateAction: () -> Void
+
     @State private var showAskShowSensitive: Bool = false
     @State private var showAskDoFirstUpdate: Bool = false
 
@@ -43,7 +45,7 @@ struct OnboardingView: View {
             .navigationDestination(isPresented: $showAskDoFirstUpdate) {
                 AskDoFirstContentUpdateView(
                     allowAction: {
-                        
+                        doFirstContentUpdateAction()
                     },
                     dontAllowAction: { dismiss() }
                 )

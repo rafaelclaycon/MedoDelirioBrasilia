@@ -40,10 +40,24 @@ struct MainView: View {
     @State private var soundIdToGoToFromTrends: String = ""
     @State private var trendsHelper = TrendsHelper()
 
-    // Sync
+    // Content Update
     @State private var syncValues = SyncValues()
+    @State private var syncManager = SyncManager(
+        service: SyncService(
+            apiClient: APIClient.shared,
+            localDatabase: LocalDatabase.shared
+        ),
+        database: LocalDatabase.shared,
+        logger: Logger.shared
+    )
 
     @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
+
+    // MARK: - Initializer
+
+//    init() {
+//        syncManager.delegate = 
+//    }
 
     // MARK: - View Body
 
@@ -380,8 +394,15 @@ struct MainView: View {
                     .environment(settingsHelper)
 
             case .onboarding:
-                OnboardingView()
-                    .interactiveDismissDisabled(UIDevice.isiPhone)
+                OnboardingView(
+                    doFirstContentUpdateAction: {
+                        Task {
+                            await syncManager.sync()
+                        }
+                        showingModalView = false
+                    }
+                )
+                .interactiveDismissDisabled(UIDevice.isiPhone)
 
             case .whatsNew:
                 Version9WhatsNewView(appMemory: AppPersistentMemory())

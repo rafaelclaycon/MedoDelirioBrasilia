@@ -17,10 +17,7 @@ class MainContentViewModel {
     var contentSortOption: Int
     var authorSortOption: Int
 
-    // Sync
-    var processedUpdateNumber: Int = 0
-    var totalUpdateCount: Int = 0
-    var firstRunSyncHappened: Bool = false
+    // Content Update
     var dismissedLongUpdateBanner: Bool = false
 
     // MARK: - Stored Properties
@@ -31,14 +28,10 @@ class MainContentViewModel {
     private let contentRepository: ContentRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
 
-    // Sync
-    private let syncManager: SyncManager
+    // Content Update
+    public let syncManager: SyncManager
     private let syncValues: SyncValues
-    private let isAllowedToSync: Bool
-
-    // MARK: - Computed Properties
-
-    var displayLongUpdateBanner: Bool = false
+    public var displayLongUpdateBanner: Bool = false
 
     // MARK: - Initializer
 
@@ -50,7 +43,6 @@ class MainContentViewModel {
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         syncValues: SyncValues,
-        isAllowedToSync: Bool = true,
         contentRepository: ContentRepositoryProtocol,
         analyticsService: AnalyticsServiceProtocol
     ) {
@@ -60,20 +52,9 @@ class MainContentViewModel {
         self.currentContentListMode = currentContentListMode
         self.toast = toast
         self.floatingOptions = floatingOptions
-
-        self.syncManager = SyncManager(
-            service: SyncService(
-                apiClient: APIClient.shared,
-                localDatabase: LocalDatabase.shared
-            ),
-            database: LocalDatabase.shared,
-            logger: Logger.shared
-        )
         self.syncValues = syncValues
         self.contentRepository = contentRepository
         self.analyticsService = analyticsService
-        self.isAllowedToSync = isAllowedToSync
-        self.syncManager.delegate = self
     }
 }
 
@@ -89,15 +70,7 @@ extension MainContentViewModel {
             return
         }
 
-        var hadAnyUpdates: Bool = false
-
-        if !firstRunSyncHappened {
-            print("WILL START SYNCING")
-            hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
-            print("DID FINISH SYNCING")
-        }
-
-        loadContent(clearCache: hadAnyUpdates)
+        loadContent()
     }
 
     public func onSelectedViewModeChanged() async {
@@ -196,8 +169,7 @@ extension MainContentViewModel: SyncManagerDelegate {
     private func sync(lastAttempt: String) async -> Bool {
         print("lastAttempt: \(lastAttempt)")
 
-        guard isAllowedToSync else { return false }
-
+        // Logic for pulling down - keep here
         guard
             CommandLine.arguments.contains("-IGNORE_SYNC_WAIT") ||
             lastAttempt == "" ||
@@ -225,8 +197,6 @@ extension MainContentViewModel: SyncManagerDelegate {
 
     /// Warm open means the app was reopened before it left memory.
     private func warmOpenSync() async -> Bool {
-        guard isAllowedToSync else { return false }
-
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
         print("lastUpdateAttempt: \(lastUpdateAttempt)")
         guard
@@ -237,18 +207,6 @@ extension MainContentViewModel: SyncManagerDelegate {
 
         print("WILL WARM OPEN SYNC")
         return await sync(lastAttempt: lastUpdateAttempt)
-    }
-
-    nonisolated func set(totalUpdateCount: Int) {
-        Task { @MainActor in
-            self.totalUpdateCount = totalUpdateCount
-        }
-    }
-
-    nonisolated func didProcessUpdate(number: Int) {
-        Task { @MainActor in
-            processedUpdateNumber = number
-        }
     }
 
     nonisolated func didFinishUpdating(

@@ -8,6 +8,7 @@
 import SwiftUI
 
 protocol SyncManagerDelegate: AnyObject {
+
     func set(totalUpdateCount: Int)
     func didProcessUpdate(number: Int)
     func didFinishUpdating(status: SyncUIStatus, updateSoundList: Bool)
@@ -19,6 +20,8 @@ class SyncManager {
 
     private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     private var serverUpdates: [UpdateEvent]? = nil
+
+    public var firstRunUpdateHappened: Bool = false
 
     private var service: SyncServiceProtocol
     private var database: LocalDatabaseProtocol
@@ -72,6 +75,8 @@ class SyncManager {
         AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
 
         await syncFolderResearchChangesUp()
+
+        firstRunUpdateHappened = true
 
         return hadUpdates
     }
