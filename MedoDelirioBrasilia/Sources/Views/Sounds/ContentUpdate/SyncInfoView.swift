@@ -250,26 +250,26 @@ extension SyncInfoView {
 
 // MARK: - Previews
 
-#Preview("Updating") {
-    let syncValuesUpdating: SyncValues = SyncValues()
-    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
-        .environment(syncValuesUpdating)
-}
-
-#Preview("Done") {
-    let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
-    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-        .environment(syncValuesDone)
-}
-
-#Preview("Update Error") {
-    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
-    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-        .environment(syncValuesUpdateError)
-}
-
-#Preview("First Update Not Allowed") {
-    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .pendingFirstUpdate)
-    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "")
-        .environment(syncValuesUpdateError)
-}
+//#Preview("Updating") {
+//    let syncValuesUpdating: SyncValues = SyncValues()
+//    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
+//        .environment(syncValuesUpdating)
+//}
+//
+//#Preview("Done") {
+//    let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
+//    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+//        .environment(syncValuesDone)
+//}
+//
+//#Preview("Update Error") {
+//    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
+//    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+//        .environment(syncValuesUpdateError)
+//}
+//
+//#Preview("First Update Not Allowed") {
+//    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .pendingFirstUpdate)
+//    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "")
+//        .environment(syncValuesUpdateError)
+//}

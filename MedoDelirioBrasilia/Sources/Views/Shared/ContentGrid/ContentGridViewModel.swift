@@ -273,7 +273,7 @@ extension ContentGridViewModel {
     private func redownloadServerContent(withId contentId: String) {
         Task {
             do {
-                try await SyncService.downloadFile(contentId)
+                try await ContentUpdateService.downloadFile(contentId)
                 toast.wrappedValue = Toast(
                     message: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
                     type: .success

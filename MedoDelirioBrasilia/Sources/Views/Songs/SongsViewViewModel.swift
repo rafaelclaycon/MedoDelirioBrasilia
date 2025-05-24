@@ -234,7 +234,7 @@ extension SongsViewViewModel {
             do {
                 guard let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(contentId).mp3") else { return }
                 isShowingProcessingView = true
-                try await SyncService.downloadFile(
+                try await ContentUpdateService.downloadFile(
                     at: fileUrl,
                     to: InternalFolderNames.downloadedSongs,
                     contentId: contentId

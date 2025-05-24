@@ -41,23 +41,14 @@ struct MainView: View {
     @State private var trendsHelper = TrendsHelper()
 
     // Content Update
-    @State private var syncValues = SyncValues()
-    @State private var syncManager = SyncManager(
-        service: SyncService(
-            apiClient: APIClient.shared,
-            localDatabase: LocalDatabase.shared
-        ),
+    @State private var contentUpdateService = ContentUpdateService(
+        apiClient: APIClient.shared,
         database: LocalDatabase.shared,
         logger: Logger.shared
     )
+    @State private var syncValues = SyncValues()
 
     @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
-
-    // MARK: - Initializer
-
-//    init() {
-//        syncManager.delegate = 
-//    }
 
     // MARK: - View Body
 
@@ -74,6 +65,7 @@ struct MainView: View {
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
+                                contentUpdateService: contentUpdateService,
                                 syncValues: syncValues,
                                 contentRepository: contentRepository,
                                 analyticsService: AnalyticsService()
@@ -172,6 +164,7 @@ struct MainView: View {
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
                                         floatingOptions: $floatingOptions,
+                                        contentUpdateService: contentUpdateService,
                                         syncValues: syncValues,
                                         contentRepository: contentRepository,
                                         analyticsService: AnalyticsService()
@@ -344,7 +337,8 @@ struct MainView: View {
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
                             floatingOptions: $floatingOptions,
-                            contentRepository: contentRepository
+                            contentRepository: contentRepository,
+                            contentUpdateService: contentUpdateService
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)
@@ -359,6 +353,7 @@ struct MainView: View {
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
+                                    contentUpdateService: contentUpdateService,
                                     syncValues: syncValues,
                                     contentRepository: contentRepository,
                                     analyticsService: AnalyticsService()
@@ -381,11 +376,19 @@ struct MainView: View {
                 }
             }
         }
-        .environment(syncValues)
+        //.environment(syncValues)
         .onAppear {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
+
+            Task {
+                if AppPersistentMemory().hasAllowedContentUpdate() {
+                    await updateContent()
+                } else {
+                    // TODO: Show banner asking to allow
+                }
+            }
         }
         .sheet(isPresented: $showingModalView) {
             switch subviewToOpen {
@@ -397,7 +400,8 @@ struct MainView: View {
                 OnboardingView(
                     doFirstContentUpdateAction: {
                         Task {
-                            await syncManager.sync()
+                            AppPersistentMemory().hasAllowedContentUpdate(true)
+                            await updateContent()
                         }
                         showingModalView = false
                     }
@@ -430,6 +434,11 @@ struct MainView: View {
     }
 
     // MARK: - Functions
+
+    private func updateContent() async {
+        let hadAnyUpdates = await contentUpdateService.update()
+        // TODO: Inform MainContentView of changes so it reloads the content grid if needed.
+    }
 
     private func sendUserPersonalTrendsToServerIfEnabled() {
         Task {

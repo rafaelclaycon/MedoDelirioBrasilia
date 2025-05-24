@@ -281,7 +281,7 @@ extension OnboardingView {
 // MARK: - Previews
 
 #Preview {
-    OnboardingView()
+    OnboardingView(doFirstContentUpdateAction: {})
 }
 
 #Preview("First Update") {

@@ -219,6 +219,10 @@ extension AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
+
+    func hasAllowedContentUpdate() -> Bool {
+        userDefaults.bool(forKey: "hasAllowedContentUpdate")
+    }
 }
 
 // MARK: - Setters
@@ -320,5 +324,9 @@ extension AppPersistentMemory {
 
     func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasSeenVersion9WhatsNewScreen")
+    }
+
+    func hasAllowedContentUpdate(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasAllowedContentUpdate")
     }
 }

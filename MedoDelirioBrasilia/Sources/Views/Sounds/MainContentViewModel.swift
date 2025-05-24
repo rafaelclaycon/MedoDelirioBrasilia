@@ -17,9 +17,6 @@ class MainContentViewModel {
     var contentSortOption: Int
     var authorSortOption: Int
 
-    // Content Update
-    var dismissedLongUpdateBanner: Bool = false
-
     // MARK: - Stored Properties
 
     public var currentContentListMode: Binding<ContentGridMode>
@@ -27,11 +24,12 @@ class MainContentViewModel {
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let contentRepository: ContentRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
+    public let contentUpdateService: ContentUpdateServiceProtocol
 
     // Content Update
-    public let syncManager: SyncManager
     private let syncValues: SyncValues
     public var displayLongUpdateBanner: Bool = false
+    public var dismissedLongUpdateBanner: Bool = false
 
     // MARK: - Initializer
 
@@ -42,6 +40,7 @@ class MainContentViewModel {
         currentContentListMode: Binding<ContentGridMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
+        contentUpdateService: ContentUpdateServiceProtocol,
         syncValues: SyncValues,
         contentRepository: ContentRepositoryProtocol,
         analyticsService: AnalyticsServiceProtocol
@@ -52,6 +51,7 @@ class MainContentViewModel {
         self.currentContentListMode = currentContentListMode
         self.toast = toast
         self.floatingOptions = floatingOptions
+        self.contentUpdateService = contentUpdateService
         self.syncValues = syncValues
         self.contentRepository = contentRepository
         self.analyticsService = analyticsService
@@ -64,12 +64,7 @@ extension MainContentViewModel {
 
     public func onViewDidAppear() async {
         print("MAIN CONTENT VIEW - ON APPEAR")
-
-        guard !AppPersistentMemory().getLastUpdateAttempt().isEmpty else {
-            updateDisplayLongUpdateBanner()
-            return
-        }
-
+        updateDisplayLongUpdateBanner()
         loadContent()
     }
 
@@ -103,19 +98,13 @@ extension MainContentViewModel {
         loadContent()
     }
 
-    public func onContinueFirstContentDownloadSelected() async {
-        var hadAnyUpdates: Bool = false
-        
-        if !firstRunSyncHappened {
-            print("WILL START SYNCING")
-            hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
-            print("DID FINISH SYNCING")
-        }
-
+    public func onAllowFirstContentUpdateSelected() async {
+        AppPersistentMemory().hasAllowedContentUpdate(true)
+        let hadAnyUpdates = await contentUpdateService.update()
         loadContent(clearCache: hadAnyUpdates)
     }
 
-    public func onDismissFirstContentDownloadSelected() {
+    public func onDismissFirstContentUpdateSelected() {
         dismissedLongUpdateBanner = true
         updateDisplayLongUpdateBanner()
     }
@@ -148,24 +137,6 @@ extension MainContentViewModel {
         }
     }
 
-    private func fireAnalytics() async {
-        let screen = "MainContentView"
-        if currentViewMode == .favorites {
-            await analyticsService.send(originatingScreen: screen, action: "didViewFavoritesTab")
-        } else if currentViewMode == .songs {
-            await analyticsService.send(originatingScreen: screen, action: "didViewSongsTab")
-        } else if currentViewMode == .folders {
-            await analyticsService.send(originatingScreen: screen, action: "didViewFoldersTab")
-        } else if currentViewMode == .authors {
-            await analyticsService.send(originatingScreen: screen, action: "didViewAuthorsTab")
-        }
-    }
-}
-
-// MARK: - Data Syncing
-
-extension MainContentViewModel: SyncManagerDelegate {
-
     private func sync(lastAttempt: String) async -> Bool {
         print("lastAttempt: \(lastAttempt)")
 
@@ -185,9 +156,7 @@ extension MainContentViewModel: SyncManagerDelegate {
             return false
         }
 
-        let hadAnyUpdates = await syncManager.sync()
-
-        firstRunSyncHappened = true
+        let hadAnyUpdates = await contentUpdateService.update()
 
         let message = syncValues.syncStatus.description
         toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
@@ -209,22 +178,24 @@ extension MainContentViewModel: SyncManagerDelegate {
         return await sync(lastAttempt: lastUpdateAttempt)
     }
 
-    nonisolated func didFinishUpdating(
-        status: SyncUIStatus,
-        updateSoundList: Bool
-    ) {
-        Task { @MainActor in
-            self.syncValues.syncStatus = status
-
-            if updateSoundList {
-                loadContent()
-            }
-        }
-        print(status)
+    private func updateDisplayLongUpdateBanner() {
+        guard !dismissedLongUpdateBanner else { return displayLongUpdateBanner = false }
+        guard AppPersistentMemory().hasAllowedContentUpdate() else { return displayLongUpdateBanner = true }
+        let moreThan10Updates = contentUpdateService.totalUpdateCount >= 10
+        let hasNotReached100Percent = contentUpdateService.currentUpdate != contentUpdateService.totalUpdateCount
+        displayLongUpdateBanner = moreThan10Updates && hasNotReached100Percent
     }
 
-    public func updateDisplayLongUpdateBanner() {
-        guard !dismissedLongUpdateBanner else { return displayLongUpdateBanner = false }
-        displayLongUpdateBanner = totalUpdateCount >= 10 && processedUpdateNumber != totalUpdateCount
+    private func fireAnalytics() async {
+        let screen = "MainContentView"
+        if currentViewMode == .favorites {
+            await analyticsService.send(originatingScreen: screen, action: "didViewFavoritesTab")
+        } else if currentViewMode == .songs {
+            await analyticsService.send(originatingScreen: screen, action: "didViewSongsTab")
+        } else if currentViewMode == .folders {
+            await analyticsService.send(originatingScreen: screen, action: "didViewFoldersTab")
+        } else if currentViewMode == .authors {
+            await analyticsService.send(originatingScreen: screen, action: "didViewAuthorsTab")
+        }
     }
 }

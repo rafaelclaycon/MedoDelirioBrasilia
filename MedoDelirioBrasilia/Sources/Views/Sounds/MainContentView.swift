@@ -108,15 +108,15 @@ struct MainContentView: View {
                                 VStack(spacing: .spacing(.xSmall)) {
                                     if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
-                                            completedNumber: viewModel.syncManager.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.syncManager.totalUpdateCount,
+                                            completedNumber: viewModel.contentUpdateService.currentUpdate,
+                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
                                             continueDownloadAction: {
                                                 Task {
-                                                    await viewModel.onContinueFirstContentDownloadSelected()
+                                                    await viewModel.onAllowFirstContentUpdateSelected()
                                                 }
                                             },
                                             dismissBannerAction: {
-                                                viewModel.onDismissFirstContentDownloadSelected()
+                                                viewModel.onDismissFirstContentUpdateSelected()
                                             }
                                         )
                                     }
@@ -237,11 +237,6 @@ struct MainContentView: View {
                     .onChange(of: viewModel.currentViewMode) {
                         Task {
                             await viewModel.onSelectedViewModeChanged()
-                        }
-                    }
-                    .onChange(of: viewModel.processedUpdateNumber) {
-                        withAnimation {
-                            viewModel.updateDisplayLongUpdateBanner()
                         }
                     }
                     .onChange(of: playRandomSoundHelper.soundIdToPlay) {
@@ -415,6 +410,7 @@ extension MainContentView {
             currentContentListMode: .constant(.regular),
             toast: .constant(nil),
             floatingOptions: .constant(nil),
+            contentUpdateService: FakeContentUpdateService(),
             syncValues: SyncValues(),
             contentRepository: FakeContentRepository(),
             analyticsService: AnalyticsService()

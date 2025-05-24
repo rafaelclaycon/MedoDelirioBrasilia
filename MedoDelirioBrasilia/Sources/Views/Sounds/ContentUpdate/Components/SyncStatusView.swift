@@ -29,22 +29,22 @@ struct SyncStatusView: View {
     }
 }
 
-struct SyncStatusView_Previews: PreviewProvider {
-
-    static let syncValuesUpdating: SyncValues = SyncValues()
-    static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
-    static let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
-
-    static var previews: some View {
-        Group {
-            SyncStatusView()
-                .environment(syncValuesUpdating)
-
-            SyncStatusView()
-                .environment(syncValuesDone)
-
-            SyncStatusView()
-                .environment(syncValuesUpdateError)
-        }
-    }
-}
+//struct SyncStatusView_Previews: PreviewProvider {
+//
+//    static let syncValuesUpdating: SyncValues = SyncValues()
+//    static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
+//    static let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
+//
+//    static var previews: some View {
+//        Group {
+//            SyncStatusView()
+//                .environment(syncValuesUpdating)
+//
+//            SyncStatusView()
+//                .environment(syncValuesDone)
+//
+//            SyncStatusView()
+//                .environment(syncValuesUpdateError)
+//        }
+//    }
+//}
