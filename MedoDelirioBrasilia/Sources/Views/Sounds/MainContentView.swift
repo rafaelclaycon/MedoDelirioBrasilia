@@ -31,9 +31,6 @@ struct MainContentView: View {
         sortOption: UserSettings().authorSortOption()
     )
 
-    // Sync
-    @State private var displayLongUpdateBanner: Bool = false
-
     @ScaledMetric private var explicitOffWarningTopPadding: CGFloat = .spacing(.medium)
     @ScaledMetric private var explicitOffWarningBottomPadding: CGFloat = .spacing(.large)
 
@@ -109,10 +106,18 @@ struct MainContentView: View {
                         case .all, .favorites, .songs:
                             VStack(spacing: .spacing(.xSmall)) {
                                 VStack(spacing: .spacing(.xSmall)) {
-                                    if displayLongUpdateBanner {
+                                    if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
-                                            completedNumber: viewModel.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.totalUpdateCount
+                                            completedNumber: viewModel.contentUpdateService.currentUpdate,
+                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
+                                            updateNowAction: {
+                                                Task {
+                                                    await viewModel.onAllowFirstContentUpdateSelected()
+                                                }
+                                            },
+                                            dismissBannerAction: {
+                                                viewModel.onDismissFirstContentUpdateSelected()
+                                            }
                                         )
                                     }
 
@@ -232,11 +237,6 @@ struct MainContentView: View {
                     .onChange(of: viewModel.currentViewMode) {
                         Task {
                             await viewModel.onSelectedViewModeChanged()
-                        }
-                    }
-                    .onChange(of: viewModel.processedUpdateNumber) {
-                        withAnimation {
-                            displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
                         }
                     }
                     .onChange(of: playRandomSoundHelper.soundIdToPlay) {
@@ -410,6 +410,7 @@ extension MainContentView {
             currentContentListMode: .constant(.regular),
             toast: .constant(nil),
             floatingOptions: .constant(nil),
+            contentUpdateService: FakeContentUpdateService(),
             syncValues: SyncValues(),
             contentRepository: FakeContentRepository(),
             analyticsService: AnalyticsService()
