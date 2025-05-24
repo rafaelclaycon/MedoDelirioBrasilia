@@ -22,12 +22,24 @@ struct HelpTheAppView: View {
 
                 VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
                     VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                        Text("App & comunidade, juntos desde 2022")
+                        Text("Desenvolvedor & comunidade, juntos desde 2022")
                             .font(.title2)
                             .bold()
 
-                        Text("Esse trabalho é voluntário, porém envolve custos mensais com servidor e anuais com a Apple. Bora manter o app sem propagandas? Toda contribuição é bem-vinda!")
+                        if let donors {
+                            VStack(alignment: .center, spacing: .spacing(.small)) {
+                                DonorsView(donors: donors)
+                                    .marquee()
+
+                                Text("ÚLTIMAS DOAÇÕES")
+                                    .font(.footnote)
+                                    .foregroundStyle(.gray)
+                            }
+                        }
+
+                        Text("Esse projeto é mantido através de doações dos usuários. Essas doações cobrem os custos de operação (mensalidades de servidor, anuidade da Apple) e me incentivam a seguir melhorando o app todos os anos. Gosto muito da nossa parceria, bora manter ela?")
                             .font(.callout)
+                            .padding(.top, .spacing(.xxxSmall))
                     }
 
                     if let moneyInfo {
@@ -36,17 +48,6 @@ struct HelpTheAppView: View {
                     }
 
                     DonateButtons(toast: $toast)
-
-                    if let donors {
-                        VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
-                            Text("UM OFERECIMENTO:")
-                                .font(.footnote)
-                                .bold()
-
-                            DonorsView(donors: donors)
-                                .marquee()
-                        }
-                    }
                 }
             }
             .padding(.bottom, .spacing(.xxSmall))
