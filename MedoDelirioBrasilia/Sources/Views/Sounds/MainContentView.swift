@@ -251,7 +251,7 @@ struct MainContentView: View {
                     }
                     .sheet(isPresented: $showingModalView) {
                         SyncInfoView(
-                            lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                            lastUpdateAttempt: AppPersistentMemory.shared.getLastUpdateAttempt(),
                             lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                         )
                     }

@@ -38,6 +38,7 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
 
     private let apiClient: APIClientProtocol
     private let localDatabase: LocalDatabaseProtocol
+    private let appMemory: AppPersistentMemoryProtocol
     private let logger: LoggerProtocol
 
     // MARK: - Initializer
@@ -45,10 +46,12 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
     init(
         apiClient: APIClientProtocol,
         database: LocalDatabaseProtocol,
+        appMemory: AppPersistentMemoryProtocol,
         logger: LoggerProtocol
     ) {
         self.apiClient = apiClient
         self.localDatabase = database
+        self.appMemory = appMemory
         self.logger = logger
     }
 }
@@ -59,12 +62,19 @@ extension ContentUpdateService {
 
     /// Performs the content update operation with the server.
     public func update() async {
+        guard appMemory.hasAllowedContentUpdate() else {
+            await MainActor.run {
+                delegate?.update(status: .pendingFirstUpdate, contentChanged: false)
+            }
+            return
+        }
+
         await MainActor.run {
             delegate?.update(status: .updating, contentChanged: false)
         }
 
         defer {
-            AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
+            appMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
         }
 
         do {

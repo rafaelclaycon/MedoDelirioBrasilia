@@ -51,7 +51,7 @@ extension JoinFolderResearchBannerView.ViewModel {
         do {
             let provider = FolderResearchProvider(
                 userSettings: UserSettings(),
-                appMemory: AppPersistentMemory(),
+                appMemory: AppPersistentMemory.shared,
                 localDatabase: LocalDatabase(),
                 repository: FolderResearchRepository()
             )

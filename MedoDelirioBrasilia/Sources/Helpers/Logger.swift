@@ -36,7 +36,7 @@ class Logger: LoggerProtocol {
         destinationBundleId: String
     ) {
         let shareLog = UserShareLog(
-            installId: AppPersistentMemory().customInstallId,
+            installId: AppPersistentMemory.shared.customInstallId,
             contentId: contentId,
             contentType: type.rawValue,
             dateTime: .now,

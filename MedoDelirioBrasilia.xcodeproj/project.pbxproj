@@ -173,7 +173,6 @@
 		D920BF622CD1E52200C6BD72 /* FolderResearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF612CD1E52200C6BD72 /* FolderResearchProvider.swift */; };
 		D920BF642CD1E5A800C6BD72 /* FolderResearchProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF632CD1E5A800C6BD72 /* FolderResearchProviderTests.swift */; };
 		D920BF662CD1F52500C6BD72 /* MockUserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */; };
-		D920BF682CD1F58000C6BD72 /* MockAppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
 		D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */; };
@@ -363,7 +362,7 @@
 		D94B040E2993383F00EB03CA /* Susto caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040A2993383F00EB03CA /* Susto caralho.mp3 */; };
 		D94B040F2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */; };
 		D94B04112993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */; };
-		D94B514D2CC625120005FABE /* SyncManagerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B514C2CC625120005FABE /* SyncManagerDelegateSpy.swift */; };
+		D94B514D2CC625120005FABE /* FakeContentUpdateServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B514C2CC625120005FABE /* FakeContentUpdateServiceDelegate.swift */; };
 		D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */; };
 		D94C393D29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C393A29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 */; };
 		D94C393E29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C393B29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 */; };
@@ -472,7 +471,7 @@
 		D95BFEF129E8866700E42A23 /* LargeCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */; };
 		D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF229E88C9800E42A23 /* DonorView.swift */; };
 		D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF429E8CD2600E42A23 /* DonorsView.swift */; };
-		D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E092A02AB1800172C17 /* SyncServiceTests.swift */; };
+		D95C3E0A2A02AB1800172C17 /* ContentUpdateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E092A02AB1800172C17 /* ContentUpdateServiceTests.swift */; };
 		D95C3E0F2A02D7C400172C17 /* APIClient+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E0E2A02D7C400172C17 /* APIClient+Sync.swift */; };
 		D95C3E122A02E6D300172C17 /* ContentUpdateEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E112A02E6D300172C17 /* ContentUpdateEnums.swift */; };
 		D95C3E142A02E70D00172C17 /* UpdateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E132A02E70D00172C17 /* UpdateEvent.swift */; };
@@ -1478,6 +1477,7 @@
 		D9F487EE29761F9500DCFE07 /* Pisero da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */; };
 		D9F487EF29761F9500DCFE07 /* Funk da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */; };
 		D9F50E322DE264F600C593A9 /* FakeContentUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F50E312DE264F600C593A9 /* FakeContentUpdateService.swift */; };
+		D9F50E442DE38A8400C593A9 /* FakeAppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F50E432DE38A8400C593A9 /* FakeAppPersistentMemory.swift */; };
 		D9F570882A62F27F00596C32 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F570872A62F27F00596C32 /* XCTestCase+Extensions.swift */; };
 		D9F6420528CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */; };
 		D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */; };
@@ -1727,7 +1727,6 @@
 		D920BF612CD1E52200C6BD72 /* FolderResearchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchProvider.swift; sourceTree = "<group>"; };
 		D920BF632CD1E5A800C6BD72 /* FolderResearchProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchProviderTests.swift; sourceTree = "<group>"; };
 		D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserSettings.swift; sourceTree = "<group>"; };
-		D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppPersistentMemory.swift; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
 		D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalista de alta performance - Oswaldo Eustaquio.mp3"; sourceTree = "<group>"; };
@@ -1917,7 +1916,7 @@
 		D94B040A2993383F00EB03CA /* Susto caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Susto caralho.mp3"; sourceTree = "<group>"; };
 		D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Medo e Delirio - Atencao la vem besteira.mp3"; sourceTree = "<group>"; };
 		D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Presuntinho - Cortina de fumaca trecho.mp3"; sourceTree = "<group>"; };
-		D94B514C2CC625120005FABE /* SyncManagerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManagerDelegateSpy.swift; sourceTree = "<group>"; };
+		D94B514C2CC625120005FABE /* FakeContentUpdateServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeContentUpdateServiceDelegate.swift; sourceTree = "<group>"; };
 		D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerView.swift; sourceTree = "<group>"; };
 		D94C393A29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Que (meme cuica).mp3"; sourceTree = "<group>"; };
 		D94C393B29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3"; sourceTree = "<group>"; };
@@ -2026,7 +2025,7 @@
 		D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCreatorView.swift; sourceTree = "<group>"; };
 		D95BFEF229E88C9800E42A23 /* DonorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorView.swift; sourceTree = "<group>"; };
 		D95BFEF429E8CD2600E42A23 /* DonorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorsView.swift; sourceTree = "<group>"; };
-		D95C3E092A02AB1800172C17 /* SyncServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceTests.swift; sourceTree = "<group>"; };
+		D95C3E092A02AB1800172C17 /* ContentUpdateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUpdateServiceTests.swift; sourceTree = "<group>"; };
 		D95C3E0E2A02D7C400172C17 /* APIClient+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Sync.swift"; sourceTree = "<group>"; };
 		D95C3E112A02E6D300172C17 /* ContentUpdateEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUpdateEnums.swift; sourceTree = "<group>"; };
 		D95C3E132A02E70D00172C17 /* UpdateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEvent.swift; sourceTree = "<group>"; };
@@ -3034,6 +3033,7 @@
 		D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pisero da Cidinha.mp3"; sourceTree = "<group>"; };
 		D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk da Cidinha.mp3"; sourceTree = "<group>"; };
 		D9F50E312DE264F600C593A9 /* FakeContentUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeContentUpdateService.swift; sourceTree = "<group>"; };
+		D9F50E432DE38A8400C593A9 /* FakeAppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9F570872A62F27F00596C32 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3"; sourceTree = "<group>"; };
 		D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Misericordia, jornalista, tenha do.mp3"; sourceTree = "<group>"; };
@@ -4464,7 +4464,7 @@
 		D94B514B2CC624F30005FABE /* Doubles */ = {
 			isa = PBXGroup;
 			children = (
-				D94B514C2CC625120005FABE /* SyncManagerDelegateSpy.swift */,
+				D94B514C2CC625120005FABE /* FakeContentUpdateServiceDelegate.swift */,
 			);
 			path = Doubles;
 			sourceTree = "<group>";
@@ -4574,7 +4574,7 @@
 		D95C3E082A02AAFC00172C17 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D95C3E092A02AB1800172C17 /* SyncServiceTests.swift */,
+				D95C3E092A02AB1800172C17 /* ContentUpdateServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -4888,6 +4888,7 @@
 				D9A06419298B6749006075D1 /* FakeLocalDatabase.swift */,
 				D92ABB552DBDAFBA002E4315 /* FakeAuthorService.swift */,
 				D9F50E312DE264F600C593A9 /* FakeContentUpdateService.swift */,
+				D9F50E432DE38A8400C593A9 /* FakeAppPersistentMemory.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -5340,7 +5341,6 @@
 			children = (
 				D9523740285BF98A00E6C838 /* FakeAPIClient.swift */,
 				D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */,
-				D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */,
 				D9E5F5152CD7114600C2FF64 /* FakeFolderResearchRepository.swift */,
 				D91255B32DB0346E006AC71C /* FakeUserFolderRepository.swift */,
 				D9CF3BDB2DB060AF002C6E6B /* FakeAnalyticsService.swift */,
@@ -6907,6 +6907,7 @@
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+.swift in Sources */,
 				D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */,
+				D9F50E442DE38A8400C593A9 /* FakeAppPersistentMemory.swift in Sources */,
 				D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */,
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
 				D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */,
@@ -7087,13 +7088,12 @@
 				D920BF642CD1E5A800C6BD72 /* FolderResearchProviderTests.swift in Sources */,
 				D9A3AB6F28F063FF0064CB7A /* DateExtensionTests.swift in Sources */,
 				D9FF3F9B2B14325A007AE773 /* UpdateIncentiveTests.swift in Sources */,
-				D920BF682CD1F58000C6BD72 /* MockAppPersistentMemory.swift in Sources */,
 				D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */,
 				D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */,
 				D9A06417298B59D5006075D1 /* AddToFolderViewModelTests.swift in Sources */,
 				D9F570882A62F27F00596C32 /* XCTestCase+Extensions.swift in Sources */,
 				D90E80C72CEA20820014A886 /* FakeReactionRepository.swift in Sources */,
-				D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */,
+				D95C3E0A2A02AB1800172C17 /* ContentUpdateServiceTests.swift in Sources */,
 				D9E5F5162CD7114600C2FF64 /* FakeFolderResearchRepository.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
 				D900B9C52A6DF6D300C1BC3A /* FakeLoggerService.swift in Sources */,
@@ -7101,7 +7101,7 @@
 				D96892DE2C9F7DC50084F646 /* VideoMakerTests.swift in Sources */,
 				D90E80C42CEA1F570014A886 /* ReactionsViewModelTests.swift in Sources */,
 				D9CF3BDC2DB060AF002C6E6B /* FakeAnalyticsService.swift in Sources */,
-				D94B514D2CC625120005FABE /* SyncManagerDelegateSpy.swift in Sources */,
+				D94B514D2CC625120005FABE /* FakeContentUpdateServiceDelegate.swift in Sources */,
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
 				D9D22D862A59FA1D00ABDCDC /* MainViewViewModelTests.swift in Sources */,

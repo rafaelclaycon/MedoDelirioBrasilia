@@ -44,6 +44,7 @@ struct MainView: View {
     @State private var contentUpdateService = ContentUpdateService(
         apiClient: APIClient.shared,
         database: LocalDatabase.shared,
+        appMemory: AppPersistentMemory.shared,
         logger: Logger.shared
     )
     @State private var syncValues = SyncValues()
@@ -370,7 +371,7 @@ struct MainView: View {
             displayOnboardingIfNeeded()
 
             Task {
-                if AppPersistentMemory().hasAllowedContentUpdate() {
+                if AppPersistentMemory.shared.hasAllowedContentUpdate() {
                     await contentUpdateService.update()
                 }
                 await sendFolderResearchChanges()
@@ -386,7 +387,7 @@ struct MainView: View {
                 OnboardingView(
                     doFirstContentUpdateAction: {
                         Task {
-                            AppPersistentMemory().hasAllowedContentUpdate(true)
+                            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
                             await contentUpdateService.update()
                         }
                         showingModalView = false
@@ -395,7 +396,7 @@ struct MainView: View {
                 .interactiveDismissDisabled(UIDevice.isiPhone)
 
             case .whatsNew:
-                Version9WhatsNewView(appMemory: AppPersistentMemory())
+                Version9WhatsNewView(appMemory: AppPersistentMemory.shared)
                     .interactiveDismissDisabled()
 
             case .retrospective:
@@ -430,14 +431,14 @@ struct MainView: View {
                 return
             }
 
-            if let lastDate = AppPersistentMemory().getLastSendDateOfUserPersonalTrendsToServer() {
+            if let lastDate = AppPersistentMemory.shared.getLastSendDateOfUserPersonalTrendsToServer() {
                 if lastDate.onlyDate! < Date.now.onlyDate! {
                     let result = await Podium.shared.sendShareCountStatsToServer()
 
                     guard result == .successful || result == .noStatsToSend else {
                         return
                     }
-                    AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                    AppPersistentMemory.shared.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
                 }
             } else {
                 let result = await Podium.shared.sendShareCountStatsToServer()
@@ -445,16 +446,16 @@ struct MainView: View {
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }
-                AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                AppPersistentMemory.shared.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
             }
         }
     }
 
     private func displayOnboardingIfNeeded() {
-        if !AppPersistentMemory().hasShownNotificationsOnboarding() {
+        if !AppPersistentMemory.shared.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
-        } else if !AppPersistentMemory().hasSeenVersion9WhatsNewScreen() {
+        } else if !AppPersistentMemory.shared.hasSeenVersion9WhatsNewScreen() {
             subviewToOpen = .whatsNew
             showingModalView = true
         }
@@ -464,7 +465,7 @@ struct MainView: View {
         do {
             let provider = FolderResearchProvider(
                 userSettings: UserSettings(),
-                appMemory: AppPersistentMemory(),
+                appMemory: AppPersistentMemory.shared,
                 localDatabase: LocalDatabase.shared,
                 repository: FolderResearchRepository()
             )

@@ -22,12 +22,12 @@ struct OnboardingView: View {
                 allowAction: {
                     Task {
                         await NotificationAide.registerForRemoteNotifications()
-                        AppPersistentMemory().hasShownNotificationsOnboarding(true)
+                        AppPersistentMemory.shared.hasShownNotificationsOnboarding(true)
                         showAskShowSensitive = true
                     }
                 },
                 dontAllowAction: {
-                    AppPersistentMemory().hasShownNotificationsOnboarding(true)
+                    AppPersistentMemory.shared.hasShownNotificationsOnboarding(true)
                     showAskShowSensitive = true
                 }
             )

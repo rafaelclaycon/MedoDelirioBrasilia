@@ -114,13 +114,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func sendDeviceModelNameToServer() async {
-        guard AppPersistentMemory().getHasSentDeviceModelToServer() == false else {
+        guard AppPersistentMemory.shared.getHasSentDeviceModelToServer() == false else {
             return
         }
-        let info = ClientDeviceInfo(installId: AppPersistentMemory().customInstallId, modelName: UIDevice.modelName)
+        let info = ClientDeviceInfo(installId: AppPersistentMemory.shared.customInstallId, modelName: UIDevice.modelName)
         do {
             try await APIClient.shared.post(clientDeviceInfo: info)
-            AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
+            AppPersistentMemory.shared.setHasSentDeviceModelToServer(to: true)
         } catch {
             print("Erro enviando device model para o servidor:")
             debugPrint(error)
@@ -136,7 +136,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
 
         let signal = StillAliveSignal(
-            installId: AppPersistentMemory().customInstallId,
+            installId: AppPersistentMemory.shared.customInstallId,
             modelName: UIDevice.modelName,
             systemName: UIDevice.current.systemName,
             systemVersion: UIDevice.current.systemVersion,
@@ -162,18 +162,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         Task {
-            if AppPersistentMemory().getShouldRetrySendingDevicePushToken() {
+            if AppPersistentMemory.shared.getShouldRetrySendingDevicePushToken() {
                 let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
                 let token = tokenParts.joined()
                 //print("Device Token: \(token)")
 
-                let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
+                let device = PushDevice(installId: AppPersistentMemory.shared.customInstallId, pushToken: token)
 
                 do {
                     let success = try await APIClient.shared.register(pushDevice: device)
-                    AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: !success)
+                    AppPersistentMemory.shared.setShouldRetrySendingDevicePushToken(to: !success)
                 } catch {
-                    AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
+                    AppPersistentMemory.shared.setShouldRetrySendingDevicePushToken(to: true)
                 }
             }
         }

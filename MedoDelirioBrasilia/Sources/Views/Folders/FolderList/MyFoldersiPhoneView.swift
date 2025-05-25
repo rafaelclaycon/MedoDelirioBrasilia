@@ -30,7 +30,7 @@ struct MyFoldersiPhoneView: View {
                     viewModel: FolderGridViewModel(
                         userFolderRepository: userFolderRepository,
                         userSettings: UserSettings(),
-                        appMemory: AppPersistentMemory()
+                        appMemory: AppPersistentMemory.shared
                     ),
                     updateFolderList: $updateFolderList,
                     folderForEditing: $folderForEditing,

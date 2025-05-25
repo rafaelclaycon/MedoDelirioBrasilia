@@ -9,6 +9,9 @@ import Foundation
 
 protocol AppPersistentMemoryProtocol {
 
+    func hasAllowedContentUpdate() -> Bool
+    func setLastUpdateAttempt(to newValue: String)
+
     func folderResearchHashes() -> [String: String]?
     func folderResearchHashes(_ foldersHashes: [String: String])
 
@@ -30,6 +33,8 @@ protocol AppPersistentMemoryProtocol {
 final class AppPersistentMemory: AppPersistentMemoryProtocol {
 
     private let userDefaults: UserDefaults
+
+    static let shared = AppPersistentMemory()
 
     init(
         userDefaults: UserDefaults = UserDefaults.standard

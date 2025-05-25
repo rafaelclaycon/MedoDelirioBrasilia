@@ -37,7 +37,7 @@ struct PinReactionsBanner: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory().setHasSeenPinReactionsBanner(to: true)
+                AppPersistentMemory.shared.setHasSeenPinReactionsBanner(to: true)
                 isBeingShown = false
             } label: {
                 Image(systemName: "xmark")

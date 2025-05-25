@@ -29,7 +29,7 @@ struct StandaloneFolderGridView: View {
                         viewModel: FolderGridViewModel(
                             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
                             userSettings: UserSettings(),
-                            appMemory: AppPersistentMemory()
+                            appMemory: AppPersistentMemory.shared
                         ),
                         updateFolderList: $updateFolderList,
                         folderForEditing: $folderForEditing,

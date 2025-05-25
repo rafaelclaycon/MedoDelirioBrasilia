@@ -31,7 +31,7 @@ final class AnalyticsService: AnalyticsServiceProtocol {
     ) async {
         do {
             let usageMetric = await UsageMetric(
-                customInstallId: AppPersistentMemory().customInstallId,
+                customInstallId: AppPersistentMemory.shared.customInstallId,
                 originatingScreen: originatingScreen,
                 destinationScreen: action,
                 systemName: UIDevice.current.systemName,
@@ -54,7 +54,7 @@ final class AnalyticsService: AnalyticsServiceProtocol {
     ) async {
         do {
             let usageMetric = UsageMetric(
-                customInstallId: AppPersistentMemory().customInstallId,
+                customInstallId: AppPersistentMemory.shared.customInstallId,
                 originatingScreen: "\(currentScreen)(\(folderName))",
                 destinationScreen: action,
                 systemName: await UIDevice.current.systemName,

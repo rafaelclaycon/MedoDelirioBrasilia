@@ -6,7 +6,7 @@ class FakeAPIClient: APIClientProtocol {
     var serverPath: String
 
     var serverShouldBeUnavailable = false
-    var fetchUpdateEventsResult: SyncResult = .nothingToUpdate
+    var fetchUpdateEventsResult: ContentUpdateResult = .nothingToUpdate
     var retroStartingVersion: String?
 
     init() {
@@ -54,5 +54,9 @@ class FakeAPIClient: APIClientProtocol {
 
     func getDonorNames() async -> [Donor]? {
         nil
+    }
+
+    func moneyInfo() async throws -> [MoneyInfo] {
+        []
     }
 }

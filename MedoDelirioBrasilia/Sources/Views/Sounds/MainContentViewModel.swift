@@ -86,7 +86,7 @@ extension MainContentViewModel {
     }
 
     public func onContentUpdateRequested() async {
-        await updateContent(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+        await updateContent(lastAttempt: AppPersistentMemory.shared.getLastUpdateAttempt())
     }
 
     public func onScenePhaseChanged(newPhase: ScenePhase) async {
@@ -100,7 +100,7 @@ extension MainContentViewModel {
     }
 
     public func onAllowFirstContentUpdateSelected() async {
-        AppPersistentMemory().hasAllowedContentUpdate(true)
+        AppPersistentMemory.shared.hasAllowedContentUpdate(true)
         await contentUpdateService.update()
     }
 
@@ -138,7 +138,7 @@ extension MainContentViewModel {
     }
 
     private func updateContent(lastAttempt: String) async {
-        guard AppPersistentMemory().hasAllowedContentUpdate() else { return }
+        guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
 
         print("lastAttempt: \(lastAttempt)")
 
@@ -166,9 +166,9 @@ extension MainContentViewModel {
 
     /// Warm open means the app was reopened before it left memory.
     private func warmOpenContentUpdate() async {
-        guard AppPersistentMemory().hasAllowedContentUpdate() else { return }
+        guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
 
-        let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
+        let lastUpdateAttempt = AppPersistentMemory.shared.getLastUpdateAttempt()
         print("lastUpdateAttempt: \(lastUpdateAttempt)")
         guard
             syncValues.syncStatus != .updating,
@@ -183,7 +183,7 @@ extension MainContentViewModel {
 
     private func updateDisplayLongUpdateBanner() {
         guard !dismissedLongUpdateBanner else { return displayLongUpdateBanner = false }
-        guard AppPersistentMemory().hasAllowedContentUpdate() else { return displayLongUpdateBanner = true }
+        guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return displayLongUpdateBanner = true }
         displayLongUpdateBanner = totalUpdateCount >= 10 && processedUpdateNumber != totalUpdateCount
     }
 
