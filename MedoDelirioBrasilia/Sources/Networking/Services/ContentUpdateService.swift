@@ -72,9 +72,9 @@ extension ContentUpdateService {
             let didHaveAnyRemoteUpdates = try await syncDataWithServer()
 
             if didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates {
-                logger.logSyncSuccess(description: "Atualização concluída com sucesso.")
+                logger.updateSuccess("Atualização concluída com sucesso.")
             } else {
-                logger.logSyncSuccess(description: "Atualização concluída com sucesso, porém não existem novidades.")
+                logger.updateSuccess("Atualização concluída com sucesso, porém não existem novidades.")
             }
 
             await MainActor.run {
@@ -85,13 +85,13 @@ extension ContentUpdateService {
             }
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
-            logger.logSyncError(description: errorMessage)
+            logger.updateError(errorMessage)
             delegate?.update(status: .updateError, contentChanged: false)
         } catch ContentUpdateError.errorInsertingUpdateEvent(let updateEventId) {
-            logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
+            logger.updateError("Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
             delegate?.update(status: .updateError, contentChanged: false)
         } catch {
-            logger.logSyncError(description: error.localizedDescription)
+            logger.updateError(error.localizedDescription)
             delegate?.update(status: .updateError, contentChanged: false)
         }
 
@@ -230,7 +230,10 @@ extension ContentUpdateService {
                 await updateAuthorMetadata(with: updateEvent)
 
             case .fileUpdated:
-                logger.logSyncError(description: "Evento do tipo 'arquivo atualizado' recebido para o Autor(a) \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Autores.", updateEventId: updateEvent.id.uuidString)
+                logger.updateError(
+                    "Evento do tipo 'arquivo atualizado' recebido para o Autor(a) \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Autores.",
+                    updateEventId: updateEvent.id.uuidString
+                )
 
             case .deleted:
                 await deleteAuthor(with: updateEvent)
@@ -260,8 +263,8 @@ extension ContentUpdateService {
                 await updateGenreMetadata(with: updateEvent)
 
             case .fileUpdated:
-                logger.logSyncError(
-                    description: "Evento do tipo 'arquivo atualizado' recebido para o Gênero Musical \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Gêneros Musicais.",
+                logger.updateError(
+                    "Evento do tipo 'arquivo atualizado' recebido para o Gênero Musical \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Gêneros Musicais.",
                     updateEventId: updateEvent.id.uuidString
                 )
 
@@ -285,10 +288,10 @@ extension ContentUpdateService {
             try await ContentUpdateService.downloadFile(updateEvent.contentId)
 
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Som \"\(sound.title)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Som \"\(sound.title)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -298,10 +301,10 @@ extension ContentUpdateService {
             let sound: Sound = try await apiClient.get(from: url)
             try localDatabase.update(sound: sound)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -310,10 +313,10 @@ extension ContentUpdateService {
             try await ContentUpdateService.downloadFile(updateEvent.contentId)
             try localDatabase.setIsFromServer(to: true, onSoundId: updateEvent.contentId)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Arquivo do Som \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Arquivo do Som \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -322,10 +325,10 @@ extension ContentUpdateService {
             try localDatabase.delete(soundId: updateEvent.contentId)
             try ContentUpdateService.removeSoundFileIfExists(named: updateEvent.contentId)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -367,9 +370,9 @@ extension ContentUpdateService {
             )
 
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Música \"\(song.title)\" criada com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Música \"\(song.title)\" criada com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
-            logger.logSyncError(description: "Erro ao tentar criar Música: \(error.localizedDescription)", updateEventId: updateEvent.id.uuidString)
+            logger.updateError("Erro ao tentar criar Música: \(error.localizedDescription)", updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -379,10 +382,10 @@ extension ContentUpdateService {
             let song: Song = try await apiClient.get(from: url)
             try localDatabase.update(song: song)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Metadados da Música \"\(song.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Metadados da Música \"\(song.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -396,10 +399,10 @@ extension ContentUpdateService {
             )
             try localDatabase.setIsFromServer(to: true, onSongId: updateEvent.contentId)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Arquivo da Música \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Arquivo da Música \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -411,10 +414,10 @@ extension ContentUpdateService {
                 atFolder: InternalFolderNames.downloadedSongs
             )
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -426,10 +429,10 @@ extension ContentUpdateService {
             try localDatabase.insert(author: author)
 
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Autor(a) \"\(author.name)\" criado(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Autor(a) \"\(author.name)\" criado(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -439,10 +442,10 @@ extension ContentUpdateService {
             let author: Author = try await apiClient.get(from: url)
             try localDatabase.update(author: author)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Metadados do(a) Autor(a) \"\(author.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Metadados do(a) Autor(a) \"\(author.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -450,10 +453,10 @@ extension ContentUpdateService {
         do {
             try localDatabase.delete(authorId: updateEvent.contentId)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Autor(a) \"\(updateEvent.contentId)\" removido(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Autor(a) \"\(updateEvent.contentId)\" removido(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -465,9 +468,9 @@ extension ContentUpdateService {
             try localDatabase.insert(genre: genre)
 
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Gênero Musical \"\(genre.name)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Gênero Musical \"\(genre.name)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -477,9 +480,9 @@ extension ContentUpdateService {
             let genre: MusicGenre = try await apiClient.get(from: url)
             try localDatabase.update(genre: genre)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Metadados do Gênero Musical \"\(genre.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Metadados do Gênero Musical \"\(genre.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -487,9 +490,9 @@ extension ContentUpdateService {
         do {
             try localDatabase.delete(genreId: updateEvent.contentId)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.logSyncSuccess(description: "Gênero Musical \"\(updateEvent.contentId)\" removido com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Gênero Musical \"\(updateEvent.contentId)\" removido com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
-            logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
 }
