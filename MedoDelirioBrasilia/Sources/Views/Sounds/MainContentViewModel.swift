@@ -24,12 +24,14 @@ class MainContentViewModel {
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let contentRepository: ContentRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
-    public let contentUpdateService: ContentUpdateServiceProtocol
+    private var contentUpdateService: ContentUpdateServiceProtocol
 
     // Content Update
     private let syncValues: SyncValues
-    public var displayLongUpdateBanner: Bool = false
-    public var dismissedLongUpdateBanner: Bool = false
+    var displayLongUpdateBanner: Bool = false
+    var dismissedLongUpdateBanner: Bool = false
+    var processedUpdateNumber: Int = 0
+    var totalUpdateCount: Int = 0
 
     // MARK: - Initializer
 
@@ -55,6 +57,8 @@ class MainContentViewModel {
         self.syncValues = syncValues
         self.contentRepository = contentRepository
         self.analyticsService = analyticsService
+
+        self.contentUpdateService.delegate = self
     }
 }
 
@@ -81,16 +85,13 @@ extension MainContentViewModel {
         loadContent()
     }
 
-    public func onSyncRequested() async {
-        let hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
-        loadContent(clearCache: hadAnyUpdates)
+    public func onContentUpdateRequested() async {
+        await updateContent(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
     }
 
     public func onScenePhaseChanged(newPhase: ScenePhase) async {
         if newPhase == .active {
-            let hadAnyUpdates = await warmOpenSync()
-            loadContent(clearCache: hadAnyUpdates)
-            print("DID FINISH WARM OPEN SYNC")
+            await warmOpenContentUpdate()
         }
     }
 
@@ -100,8 +101,7 @@ extension MainContentViewModel {
 
     public func onAllowFirstContentUpdateSelected() async {
         AppPersistentMemory().hasAllowedContentUpdate(true)
-        let hadAnyUpdates = await contentUpdateService.update()
-        loadContent(clearCache: hadAnyUpdates)
+        await contentUpdateService.update()
     }
 
     public func onDismissFirstContentUpdateSelected() {
@@ -137,14 +137,14 @@ extension MainContentViewModel {
         }
     }
 
-    private func sync(lastAttempt: String) async -> Bool {
-        guard AppPersistentMemory().hasAllowedContentUpdate() else { return false }
+    private func updateContent(lastAttempt: String) async {
+        guard AppPersistentMemory().hasAllowedContentUpdate() else { return }
 
         print("lastAttempt: \(lastAttempt)")
 
         // Logic for pulling down - keep here
         guard
-            CommandLine.arguments.contains("-IGNORE_SYNC_WAIT") ||
+            CommandLine.arguments.contains("-IGNORE_CONTENT_UPDATE_WAIT") ||
             lastAttempt == "" ||
             (lastAttempt.iso8601withFractionalSeconds?.minutesPassed(1) ?? false)
         else {
@@ -155,20 +155,18 @@ extension MainContentViewModel {
             let message = String(format: Shared.Sync.waitMessage, lastAttempt.timeUntil(addingMinutes: 1))
 
             toast.wrappedValue = Toast(message: message, type: .wait)
-            return false
+            return
         }
 
-        let hadAnyUpdates = await contentUpdateService.update()
+        await contentUpdateService.update()
 
         let message = syncValues.syncStatus.description
         toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
-
-        return hadAnyUpdates
     }
 
     /// Warm open means the app was reopened before it left memory.
-    private func warmOpenSync() async -> Bool {
-        guard AppPersistentMemory().hasAllowedContentUpdate() else { return false }
+    private func warmOpenContentUpdate() async {
+        guard AppPersistentMemory().hasAllowedContentUpdate() else { return }
 
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
         print("lastUpdateAttempt: \(lastUpdateAttempt)")
@@ -176,18 +174,17 @@ extension MainContentViewModel {
             syncValues.syncStatus != .updating,
             let date = lastUpdateAttempt.iso8601withFractionalSeconds,
             date.minutesPassed(60)
-        else { return false }
+        else { return }
 
-        print("WILL WARM OPEN SYNC")
-        return await sync(lastAttempt: lastUpdateAttempt)
+        print("WILL WARM OPEN CONTENT UPDATE")
+        await updateContent(lastAttempt: lastUpdateAttempt)
+        print("DID FINISH WARM OPEN CONTENT UPDATE")
     }
 
     private func updateDisplayLongUpdateBanner() {
         guard !dismissedLongUpdateBanner else { return displayLongUpdateBanner = false }
         guard AppPersistentMemory().hasAllowedContentUpdate() else { return displayLongUpdateBanner = true }
-        let moreThan10Updates = contentUpdateService.totalUpdateCount >= 10
-        let hasNotReached100Percent = contentUpdateService.currentUpdate != contentUpdateService.totalUpdateCount
-        displayLongUpdateBanner = moreThan10Updates && hasNotReached100Percent
+        displayLongUpdateBanner = totalUpdateCount >= 10 && processedUpdateNumber != totalUpdateCount
     }
 
     private func fireAnalytics() async {
@@ -200,6 +197,39 @@ extension MainContentViewModel {
             await analyticsService.send(originatingScreen: screen, action: "didViewFoldersTab")
         } else if currentViewMode == .authors {
             await analyticsService.send(originatingScreen: screen, action: "didViewAuthorsTab")
+        }
+    }
+}
+
+// MARK: - Content Update
+
+extension MainContentViewModel: ContentUpdateServiceDelegate {
+
+    nonisolated func set(totalUpdateCount: Int) {
+        Task { @MainActor in
+            self.totalUpdateCount = totalUpdateCount
+        }
+    }
+
+    nonisolated func didProcessUpdate(number: Int) {
+        Task { @MainActor in
+            processedUpdateNumber = number
+        }
+    }
+
+    nonisolated func didFinishUpdating(status: ContentUpdateStatus, updateContentGrid: Bool) {
+        Task { @MainActor in
+            self.syncValues.syncStatus = status
+
+            if updateContentGrid {
+                loadContent(clearCache: true)
+            }
+            print(status)
+            if status == .done {
+                displayLongUpdateBanner = false
+            } else {
+                updateDisplayLongUpdateBanner()
+            }
         }
     }
 }

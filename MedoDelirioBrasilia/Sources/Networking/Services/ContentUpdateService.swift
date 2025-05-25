@@ -10,20 +10,30 @@ import SwiftUI
 
 protocol ContentUpdateServiceProtocol {
 
-    var status: ContentUpdateStatus { get }
-    var currentUpdate: Int { get }
-    var totalUpdateCount: Int { get }
+//    var status: ContentUpdateStatus { get }
+//    var currentUpdate: Int { get }
+//    var totalUpdateCount: Int { get }
 
-    func update() async -> Bool
+    var delegate: ContentUpdateServiceDelegate? { get set }
+
+    func update() async
+}
+
+protocol ContentUpdateServiceDelegate: AnyObject {
+
+    func set(totalUpdateCount: Int)
+    func didProcessUpdate(number: Int)
+    func didFinishUpdating(status: ContentUpdateStatus, updateContentGrid: Bool)
 }
 
 /// A service that updates local content to stay in sync with their versions on the server.
-/// It also syncs up any UserFolder changes as part of Folder Research.
 class ContentUpdateService: ContentUpdateServiceProtocol {
 
-    public var status: ContentUpdateStatus = .pendingFirstUpdate
-    public var currentUpdate: Int = 0
-    public var totalUpdateCount: Int = 0
+//    public var status: ContentUpdateStatus = .pendingFirstUpdate
+//    public var currentUpdate: Int = 0
+//    public var totalUpdateCount: Int = 0
+
+    public weak var delegate: ContentUpdateServiceDelegate?
 
     // MARK: - Internal Properties
 
@@ -55,10 +65,11 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
 
 extension ContentUpdateService {
 
-    /// Performs the content update operation with the server and returns a Boolean indicating if anything actually changed.
-    public func update() async -> Bool {
-        status = .updating
-        var hadUpdates: Bool = false
+    /// Performs the content update operation with the server.
+    public func update() async {
+        await MainActor.run {
+            delegate?.didFinishUpdating(status: .updating, updateContentGrid: false)
+        }
 
         defer {
             AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
@@ -69,29 +80,30 @@ extension ContentUpdateService {
             let didHaveAnyRemoteUpdates = try await syncDataWithServer()
 
             if didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates {
-                hadUpdates = true
                 logger.logSyncSuccess(description: "Atualização concluída com sucesso.")
             } else {
                 logger.logSyncSuccess(description: "Atualização concluída com sucesso, porém não existem novidades.")
             }
 
-            status = .done
+            await MainActor.run {
+                delegate?.didFinishUpdating(
+                    status: .done,
+                    updateContentGrid: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
+                )
+            }
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage)
-            status = .updateError
+            delegate?.didFinishUpdating(status: .updateError, updateContentGrid: false)
         } catch ContentUpdateError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            status = .updateError
+            delegate?.didFinishUpdating(status: .updateError, updateContentGrid: false)
         } catch {
             logger.logSyncError(description: error.localizedDescription)
-            status = .updateError
+            delegate?.didFinishUpdating(status: .updateError, updateContentGrid: false)
         }
 
-        await syncFolderResearchChangesUp()
-
         firstRunUpdateHappened = true
-        return hadUpdates
     }
 
     static func removeContentFile(
@@ -177,13 +189,14 @@ extension ContentUpdateService {
             return print("NO UPDATES")
         }
 
-        currentUpdate = 0
-        totalUpdateCount = serverUpdates.count
+        var updateNumber: Int = 0
+        delegate?.set(totalUpdateCount: serverUpdates.count)
 
         for update in serverUpdates {
             await process(updateEvent: update)
 
-            currentUpdate += 1
+            updateNumber += 1
+            delegate?.didProcessUpdate(number: updateNumber)
         }
     }
 
@@ -255,7 +268,10 @@ extension ContentUpdateService {
                 await updateGenreMetadata(with: updateEvent)
 
             case .fileUpdated:
-                Logger.shared.logSyncError(description: "Evento do tipo 'arquivo atualizado' recebido para o Gênero Musical \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Gêneros Musicais.", updateEventId: updateEvent.id.uuidString)
+                Logger.shared.logSyncError(
+                    description: "Evento do tipo 'arquivo atualizado' recebido para o Gênero Musical \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Gêneros Musicais.",
+                    updateEventId: updateEvent.id.uuidString
+                )
 
             case .deleted:
                 await deleteMusicGenre(with: updateEvent)
@@ -483,25 +499,5 @@ extension ContentUpdateService {
         } catch {
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
-    }
-}
-
-// MARK: - Internal Functions - Folder Research
-
-private func syncFolderResearchChangesUp() async {
-
-    do {
-        let provider = FolderResearchProvider(
-            userSettings: UserSettings(),
-            appMemory: AppPersistentMemory(),
-            localDatabase: LocalDatabase(),
-            repository: FolderResearchRepository()
-        )
-        try await provider.sendChanges()
-    } catch {
-        await AnalyticsService().send(
-            originatingScreen: "SyncManager",
-            action: "issueSyncingFolderResearchChanges(\(error.localizedDescription))"
-        )
     }
 }

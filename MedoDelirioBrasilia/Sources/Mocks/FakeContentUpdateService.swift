@@ -9,12 +9,9 @@ import Foundation
 
 class FakeContentUpdateService: ContentUpdateServiceProtocol {
 
-    var status: ContentUpdateStatus = .done
-    var currentUpdate: Int = 0
-    var totalUpdateCount: Int = 0
+    var delegate: ContentUpdateServiceDelegate?
 
-
-    public func update() async -> Bool {
-        return false
+    public func update() async {
+        //
     }
 }

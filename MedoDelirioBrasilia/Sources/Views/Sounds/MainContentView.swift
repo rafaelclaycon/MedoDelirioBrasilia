@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Main view of the app on iPhone. This is reponsible for showing the main content view and start content sync.
+/// Main view of the app, reponsible for showing the content grid.
 struct MainContentView: View {
 
     @State private var viewModel: MainContentViewModel
@@ -108,8 +108,8 @@ struct MainContentView: View {
                                 VStack(spacing: .spacing(.xSmall)) {
                                     if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
-                                            completedNumber: viewModel.contentUpdateService.currentUpdate,
-                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
+                                            completedNumber: viewModel.processedUpdateNumber,
+                                            totalUpdateCount: viewModel.totalUpdateCount,
                                             updateNowAction: {
                                                 Task {
                                                     await viewModel.onAllowFirstContentUpdateSelected()
@@ -278,7 +278,7 @@ struct MainContentView: View {
             }
             .refreshable {
                 Task { // Keep this Task to avoid "cancelled" issue.
-                    await viewModel.onSyncRequested()
+                    await viewModel.onContentUpdateRequested()
                 }
             }
             .toast(viewModel.toast)
