@@ -154,26 +154,32 @@ extension LongUpdateBanner {
     .padding()
 }
 
-//#Preview("Complete") {
-//    LongUpdateBanner(
-//        completedNumber: 10,
-//        totalUpdateCount: 10
-//    )
-//    .padding()
-//}
-//
-//#Preview("Over") {
-//    LongUpdateBanner(
-//        completedNumber: 12,
-//        totalUpdateCount: 10
-//    )
-//    .padding()
-//}
-//
-//#Preview("Under") {
-//    LongUpdateBanner(
-//        completedNumber: -2,
-//        totalUpdateCount: 10
-//    )
-//    .padding()
-//}
+#Preview("Complete") {
+    LongUpdateBanner(
+        completedNumber: 10,
+        totalUpdateCount: 10,
+        updateNowAction: {},
+        dismissBannerAction: {}
+    )
+    .padding()
+}
+
+#Preview("Over") {
+    LongUpdateBanner(
+        completedNumber: 12,
+        totalUpdateCount: 10,
+        updateNowAction: {},
+        dismissBannerAction: {}
+    )
+    .padding()
+}
+
+#Preview("Under") {
+    LongUpdateBanner(
+        completedNumber: -2,
+        totalUpdateCount: 10,
+        updateNowAction: {},
+        dismissBannerAction: {}
+    )
+    .padding()
+}
