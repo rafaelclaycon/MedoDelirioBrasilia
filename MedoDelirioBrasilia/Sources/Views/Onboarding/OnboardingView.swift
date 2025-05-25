@@ -41,14 +41,14 @@ struct OnboardingView: View {
                         showAskDoFirstUpdate = true
                     }
                 )
-            }
-            .navigationDestination(isPresented: $showAskDoFirstUpdate) {
-                AskDoFirstContentUpdateView(
-                    allowAction: {
-                        doFirstContentUpdateAction()
-                    },
-                    dontAllowAction: { dismiss() }
-                )
+                .navigationDestination(isPresented: $showAskDoFirstUpdate) {
+                    AskDoFirstContentUpdateView(
+                        allowAction: {
+                            doFirstContentUpdateAction()
+                        },
+                        dontAllowAction: { dismiss() }
+                    )
+                }
             }
         }
     }
