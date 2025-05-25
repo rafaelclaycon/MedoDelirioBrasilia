@@ -73,7 +73,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-IGNORE_SYNC_WAIT"
+            argument = "-IGNORE_CONTENT_UPDATE_WAIT"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
