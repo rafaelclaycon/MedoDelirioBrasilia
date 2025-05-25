@@ -208,20 +208,24 @@ extension MainContentViewModel: ContentUpdateServiceDelegate {
     nonisolated func set(totalUpdateCount: Int) {
         Task { @MainActor in
             self.totalUpdateCount = totalUpdateCount
+            print("RAFA - totalUpdateCount: \(totalUpdateCount)")
         }
     }
 
     nonisolated func didProcessUpdate(number: Int) {
         Task { @MainActor in
-            processedUpdateNumber = number
+            self.processedUpdateNumber = number
+            print("RAFA - processedUpdateNumber: \(number)")
+            updateDisplayLongUpdateBanner()
         }
     }
 
-    nonisolated func didFinishUpdating(status: ContentUpdateStatus, updateContentGrid: Bool) {
+    nonisolated func update(status: ContentUpdateStatus, contentChanged: Bool) {
         Task { @MainActor in
             self.syncValues.syncStatus = status
+            print("RAFA - new status: \(status.description)")
 
-            if updateContentGrid {
+            if contentChanged {
                 loadContent(clearCache: true)
             }
             print(status)

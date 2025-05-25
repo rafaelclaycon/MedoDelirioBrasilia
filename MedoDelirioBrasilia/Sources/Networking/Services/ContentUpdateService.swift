@@ -10,10 +10,6 @@ import SwiftUI
 
 protocol ContentUpdateServiceProtocol {
 
-//    var status: ContentUpdateStatus { get }
-//    var currentUpdate: Int { get }
-//    var totalUpdateCount: Int { get }
-
     var delegate: ContentUpdateServiceDelegate? { get set }
 
     func update() async
@@ -23,15 +19,11 @@ protocol ContentUpdateServiceDelegate: AnyObject {
 
     func set(totalUpdateCount: Int)
     func didProcessUpdate(number: Int)
-    func didFinishUpdating(status: ContentUpdateStatus, updateContentGrid: Bool)
+    func update(status: ContentUpdateStatus, contentChanged: Bool)
 }
 
 /// A service that updates local content to stay in sync with their versions on the server.
 class ContentUpdateService: ContentUpdateServiceProtocol {
-
-//    public var status: ContentUpdateStatus = .pendingFirstUpdate
-//    public var currentUpdate: Int = 0
-//    public var totalUpdateCount: Int = 0
 
     public weak var delegate: ContentUpdateServiceDelegate?
 
@@ -68,7 +60,7 @@ extension ContentUpdateService {
     /// Performs the content update operation with the server.
     public func update() async {
         await MainActor.run {
-            delegate?.didFinishUpdating(status: .updating, updateContentGrid: false)
+            delegate?.update(status: .updating, contentChanged: false)
         }
 
         defer {
@@ -86,21 +78,21 @@ extension ContentUpdateService {
             }
 
             await MainActor.run {
-                delegate?.didFinishUpdating(
+                delegate?.update(
                     status: .done,
-                    updateContentGrid: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
+                    contentChanged: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
                 )
             }
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage)
-            delegate?.didFinishUpdating(status: .updateError, updateContentGrid: false)
+            delegate?.update(status: .updateError, contentChanged: false)
         } catch ContentUpdateError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            delegate?.didFinishUpdating(status: .updateError, updateContentGrid: false)
+            delegate?.update(status: .updateError, contentChanged: false)
         } catch {
             logger.logSyncError(description: error.localizedDescription)
-            delegate?.didFinishUpdating(status: .updateError, updateContentGrid: false)
+            delegate?.update(status: .updateError, contentChanged: false)
         }
 
         firstRunUpdateHappened = true
