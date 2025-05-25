@@ -104,16 +104,6 @@ struct MainView: View {
                     .tag(PhoneTab.reactions)
                     .environment(\.push, PushAction { reactionsPath.append($0) })
 
-//                    NavigationView {
-//                        SongsView()
-//                            .environmentObject(settingsHelper)
-//                            .environment(trendsHelper)
-//                    }
-//                    .tabItem {
-//                        Label("Músicas", systemImage: "music.quarternote.3")
-//                    }
-//                    .tag(PhoneTab.songs)
-                    
                     NavigationView {
                         TrendsView(
                             tabSelection: $tabSelection,
@@ -131,9 +121,6 @@ struct MainView: View {
                 })
 //                .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
 //                    tabSelection = .collections
-//                })
-//                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
-//                    tabSelection = .songs
 //                })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
                     tabSelection = .trends
@@ -384,7 +371,7 @@ struct MainView: View {
 
             Task {
                 if AppPersistentMemory().hasAllowedContentUpdate() {
-                    await updateContent()
+                    await contentUpdateService.update()
                 }
                 await sendFolderResearchChanges()
             }
@@ -400,7 +387,7 @@ struct MainView: View {
                     doFirstContentUpdateAction: {
                         Task {
                             AppPersistentMemory().hasAllowedContentUpdate(true)
-                            await updateContent()
+                            await contentUpdateService.update()
                         }
                         showingModalView = false
                     }
@@ -433,10 +420,6 @@ struct MainView: View {
     }
 
     // MARK: - Functions
-
-    private func updateContent() async {
-        let hadAnyUpdates = await contentUpdateService.update()
-    }
 
     private func sendUserPersonalTrendsToServerIfEnabled() {
         Task {
