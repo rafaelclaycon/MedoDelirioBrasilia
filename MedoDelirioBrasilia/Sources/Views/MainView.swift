@@ -385,9 +385,8 @@ struct MainView: View {
             Task {
                 if AppPersistentMemory().hasAllowedContentUpdate() {
                     await updateContent()
-                } else {
-                    // TODO: Show banner asking to allow
                 }
+                await sendFolderResearchChanges()
             }
         }
         .sheet(isPresented: $showingModalView) {
@@ -437,7 +436,6 @@ struct MainView: View {
 
     private func updateContent() async {
         let hadAnyUpdates = await contentUpdateService.update()
-        // TODO: Inform MainContentView of changes so it reloads the content grid if needed.
     }
 
     private func sendUserPersonalTrendsToServerIfEnabled() {
@@ -476,6 +474,23 @@ struct MainView: View {
         } else if !AppPersistentMemory().hasSeenVersion9WhatsNewScreen() {
             subviewToOpen = .whatsNew
             showingModalView = true
+        }
+    }
+
+    private func sendFolderResearchChanges() async {
+        do {
+            let provider = FolderResearchProvider(
+                userSettings: UserSettings(),
+                appMemory: AppPersistentMemory(),
+                localDatabase: LocalDatabase.shared,
+                repository: FolderResearchRepository()
+            )
+            try await provider.sendChanges()
+        } catch {
+            await AnalyticsService().send(
+                originatingScreen: "MainView",
+                action: "issueSendingFolderResearchChanges(\(error.localizedDescription))"
+            )
         }
     }
 }
