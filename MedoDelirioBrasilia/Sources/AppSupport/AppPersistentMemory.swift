@@ -10,6 +10,7 @@ import Foundation
 protocol AppPersistentMemoryProtocol {
 
     func hasAllowedContentUpdate() -> Bool
+    func hasAllowedContentUpdate(_ newValue: Bool)
     func setLastUpdateAttempt(to newValue: String)
 
     func folderResearchHashes() -> [String: String]?

@@ -9,6 +9,8 @@ class FakeAPIClient: APIClientProtocol {
     var fetchUpdateEventsResult: ContentUpdateResult = .nothingToUpdate
     var retroStartingVersion: String?
 
+    var updateEvents = [UpdateEvent]()
+
     init() {
         serverPath = ""
     }
@@ -32,7 +34,7 @@ class FakeAPIClient: APIClientProtocol {
     func fetchUpdateEvents(from lastDate: String) async throws -> [MedoDelirio.UpdateEvent] {
         switch fetchUpdateEventsResult {
         default:
-            return []
+            return updateEvents
         }
     }
 

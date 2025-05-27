@@ -50,6 +50,8 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
     var numberOfTimesInsertUpdateEventWasCalled = 0
     var preexistingUpdates: [UpdateEvent] = []
 
+    var sounds = [Sound]()
+
     var didCallDeletePinnedReaction = false
 
     // Content
@@ -80,6 +82,9 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func insert(sound newSound: MedoDelirio.Sound) throws {
         didCallInsertSound = true
+        if sounds.contains(where: { $0.id == newSound.id }) {
+            throw CustomSQLiteError.databaseError(message: "A operação não pôde ser concluída. (SQLite.Result erro 0.)")
+        }
     }
 
     func update(sound updatedSound: MedoDelirio.Sound) throws {

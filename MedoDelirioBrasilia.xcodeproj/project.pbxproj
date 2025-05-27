@@ -264,6 +264,7 @@
 		D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */; };
 		D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAB28406EA5009CF19A /* UserShareLog.swift */; };
 		D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */; };
+		D92C33142DE3BCF300CECADE /* ContentFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C33132DE3BCF300CECADE /* ContentFileManager.swift */; };
 		D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */; };
 		D92DAB1C2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB1B2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 */; };
 		D92DAB1E2937BBAB00E0CA82 /* Jair Bolsonaro - A temperatura subiu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB1D2937BBAB00E0CA82 /* Jair Bolsonaro - A temperatura subiu.mp3 */; };
@@ -1819,6 +1820,7 @@
 		D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesView.swift; sourceTree = "<group>"; };
 		D92C0CAB28406EA5009CF19A /* UserShareLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShareLog.swift; sourceTree = "<group>"; };
 		D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
+		D92C33132DE3BCF300CECADE /* ContentFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFileManager.swift; sourceTree = "<group>"; };
 		D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogCell.swift; sourceTree = "<group>"; };
 		D92DAB1B2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3"; sourceTree = "<group>"; };
 		D92DAB1D2937BBAB00E0CA82 /* Jair Bolsonaro - A temperatura subiu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A temperatura subiu.mp3"; sourceTree = "<group>"; };
@@ -5371,6 +5373,7 @@
 				D9943F2128641A82002C6B97 /* LocalDatabase */,
 				D9A8AB1E2853D80200B5A94B /* Migrations */,
 				D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */,
+				D92C33132DE3BCF300CECADE /* ContentFileManager.swift */,
 			);
 			path = DataHandlers;
 			sourceTree = "<group>";
@@ -6934,6 +6937,7 @@
 				D9BACC012B13BF5400BBD0BE /* AnalyticsService.swift in Sources */,
 				D98DBD35284919B1008544F8 /* APIClient.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewModel.swift in Sources */,
+				D92C33142DE3BCF300CECADE /* ContentFileManager.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
 				D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,

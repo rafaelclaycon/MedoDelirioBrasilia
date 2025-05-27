@@ -38,6 +38,7 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
 
     private let apiClient: APIClientProtocol
     private let localDatabase: LocalDatabaseProtocol
+    private let fileManager: ContentFileManagerProtocol
     private let appMemory: AppPersistentMemoryProtocol
     private let logger: LoggerProtocol
 
@@ -46,11 +47,13 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
     init(
         apiClient: APIClientProtocol,
         database: LocalDatabaseProtocol,
+        fileManager: ContentFileManagerProtocol,
         appMemory: AppPersistentMemoryProtocol,
         logger: LoggerProtocol
     ) {
         self.apiClient = apiClient
         self.localDatabase = database
+        self.fileManager = fileManager
         self.appMemory = appMemory
         self.logger = logger
     }
@@ -106,28 +109,6 @@ extension ContentUpdateService {
         }
 
         firstRunUpdateHappened = true
-    }
-
-    static func removeContentFile(
-        named filename: String,
-        atFolder contentFolderName: String
-    ) throws {
-        let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileManager = FileManager.default
-        let file = documentsFolder.appendingPathComponent("\(contentFolderName)\(filename).mp3")
-        if fileManager.fileExists(atPath: file.path) {
-            try fileManager.removeItem(at: file)
-        }
-    }
-
-    static func downloadFile(
-        at fileUrl: URL,
-        to localFolderName: String,
-        contentId: String
-    ) async throws {
-        try removeContentFile(named: contentId, atFolder: localFolderName)
-        let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: localFolderName)
-        print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 }
 
@@ -215,72 +196,25 @@ extension ContentUpdateService {
     }
 
     private func process(updateEvent: UpdateEvent) async {
-        switch updateEvent.mediaType {
-        case .sound:
-            switch updateEvent.eventType {
-            case .created:
-                await createSound(from: updateEvent)
+        switch updateEvent.eventType {
+        case .created:
+            await createResource(for: updateEvent)
 
-            case .metadataUpdated:
-                await updateSoundMetadata(with: updateEvent)
+        case .metadataUpdated:
+            await updateResource(for: updateEvent)
 
-            case .fileUpdated:
-                await updateSoundFile(updateEvent)
-
-            case .deleted:
-                deleteSound(updateEvent)
-            }
-
-        case .author:
-            switch updateEvent.eventType {
-            case .created:
-                await createAuthor(from: updateEvent)
-
-            case .metadataUpdated:
-                await updateAuthorMetadata(with: updateEvent)
-
-            case .fileUpdated:
+        case .fileUpdated:
+            if [MediaType.author, MediaType.musicGenre].contains(updateEvent.mediaType) {
                 logger.updateError(
-                    "Evento do tipo 'arquivo atualizado' recebido para o Autor(a) \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Autores.",
+                    "Evento do tipo 'arquivo atualizado' recebido para o \(updateEvent.mediaType.description) \(updateEvent.contentId), porém esse tipo de evento não é válido para esse tipo de mídia.",
                     updateEventId: updateEvent.id.uuidString
                 )
-
-            case .deleted:
-                await deleteAuthor(with: updateEvent)
+            } else {
+                await updateResourceFile(for: updateEvent)
             }
 
-        case .song:
-            switch updateEvent.eventType {
-            case .created:
-                await createSong(from: updateEvent)
-
-            case .metadataUpdated:
-                await updateSongMetadata(with: updateEvent)
-
-            case .fileUpdated:
-                await updateSongFile(updateEvent)
-
-            case .deleted:
-                deleteSong(updateEvent)
-            }
-
-        case .musicGenre:
-            switch updateEvent.eventType {
-            case .created:
-                await createMusicGenre(from: updateEvent)
-
-            case .metadataUpdated:
-                await updateGenreMetadata(with: updateEvent)
-
-            case .fileUpdated:
-                logger.updateError(
-                    "Evento do tipo 'arquivo atualizado' recebido para o Gênero Musical \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Gêneros Musicais.",
-                    updateEventId: updateEvent.id.uuidString
-                )
-
-            case .deleted:
-                await deleteMusicGenre(with: updateEvent)
-            }
+        case .deleted:
+            await deleteResource(for: updateEvent)
         }
     }
 }
@@ -289,20 +223,45 @@ extension ContentUpdateService {
 
 extension ContentUpdateService {
 
-    func createSound(from updateEvent: UpdateEvent) async {
-        let url = URL(string: apiClient.serverPath + "v3/sound/\(updateEvent.contentId)")!
+    private func createResource(for updateEvent: UpdateEvent) async {
         do {
-            let sound: Sound = try await apiClient.get(from: url)
-            try localDatabase.insert(sound: sound)
+            // TODO: Check if already exists
 
-            try await ContentUpdateService.downloadFile(updateEvent.contentId)
+            switch updateEvent.mediaType {
+            case .sound:
+                try localDatabase.insert(sound: try await apiClient.sound(updateEvent.contentId))
+                try await fileManager.downloadSound(updateEvent.contentId)
+            case .author:
+                try localDatabase.insert(author: try await apiClient.author(updateEvent.contentId))
+            case .song:
+                try localDatabase.insert(song: try await apiClient.song(updateEvent.contentId))
+                try await ContentUpdateService.downloadFile(updateEvent.contentId)
+            case .musicGenre:
+                try localDatabase.insert(genre: try await apiClient.musicGenre(updateEvent.contentId))
+            }
 
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.updateSuccess("Som \"\(sound.title)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess(
+                "\(updateEvent.mediaType.description) \(updateEvent.contentId) criado com sucesso.",
+                updateEventId: updateEvent.id.uuidString
+            )
         } catch {
-            print(error)
-            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            let message = "Erro ao tentar criar \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
+            print(message)
+            logger.updateError(message, updateEventId: updateEvent.id.uuidString)
         }
+    }
+
+    private func updateResource(for updateEvent: UpdateEvent) async {
+
+    }
+
+    private func updateResourceFile(for updateEvent: UpdateEvent) async {
+
+    }
+
+    private func deleteResource(for updateEvent: UpdateEvent) async {
+
     }
 
     func updateSoundMetadata(with updateEvent: UpdateEvent) async {
@@ -339,50 +298,6 @@ extension ContentUpdateService {
         } catch {
             print(error)
             logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-        }
-    }
-
-    // MARK: - Internal
-
-    static func removeSoundFileIfExists(named filename: String) throws {
-        let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileManager = FileManager.default
-        let file = documentsFolder.appendingPathComponent("\(InternalFolderNames.downloadedSounds)\(filename).mp3")
-
-        if fileManager.fileExists(atPath: file.path) {
-            try fileManager.removeItem(at: file)
-        }
-    }
-
-    static func downloadFile(_ contentId: String) async throws {
-        let fileUrl = URL(string: APIConfig.baseServerURL + "sounds/\(contentId).mp3")!
-
-        try removeSoundFileIfExists(named: contentId)
-
-        let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
-        print("File downloaded successfully at: \(downloadedFileUrl)")
-    }
-
-    func createSong(from updateEvent: UpdateEvent) async {
-        guard
-            let contentUrl = URL(string: apiClient.serverPath + "v3/song/\(updateEvent.contentId)"),
-            let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(updateEvent.contentId).mp3")
-        else { return }
-
-        do {
-            let song: Song = try await apiClient.get(from: contentUrl)
-            try localDatabase.insert(song: song)
-
-            try await ContentUpdateService.downloadFile(
-                at: fileUrl,
-                to: InternalFolderNames.downloadedSongs,
-                contentId: updateEvent.contentId
-            )
-
-            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.updateSuccess("Música \"\(song.title)\" criada com sucesso.", updateEventId: updateEvent.id.uuidString)
-        } catch {
-            logger.updateError("Erro ao tentar criar Música: \(error.localizedDescription)", updateEventId: updateEvent.id.uuidString)
         }
     }
 
@@ -431,21 +346,6 @@ extension ContentUpdateService {
         }
     }
 
-    func createAuthor(from updateEvent: UpdateEvent) async {
-        let url = URL(string: apiClient.serverPath + "v3/author/\(updateEvent.contentId)")!
-        do {
-            let author: Author = try await apiClient.get(from: url)
-
-            try localDatabase.insert(author: author)
-
-            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.updateSuccess("Autor(a) \"\(author.name)\" criado(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
-        } catch {
-            print(error)
-            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-        }
-    }
-
     func updateAuthorMetadata(with updateEvent: UpdateEvent) async {
         let url = URL(string: apiClient.serverPath + "v3/author/\(updateEvent.contentId)")!
         do {
@@ -466,20 +366,6 @@ extension ContentUpdateService {
             logger.updateSuccess("Autor(a) \"\(updateEvent.contentId)\" removido(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
-            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-        }
-    }
-
-    func createMusicGenre(from updateEvent: UpdateEvent) async {
-        let url = URL(string: apiClient.serverPath + "v3/music-genre/\(updateEvent.contentId)")!
-        do {
-            let genre: MusicGenre = try await apiClient.get(from: url)
-
-            try localDatabase.insert(genre: genre)
-
-            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.updateSuccess("Gênero Musical \"\(genre.name)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
-        } catch {
             logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }

@@ -22,7 +22,11 @@ final class FakeAppPersistentMemory: AppPersistentMemoryProtocol {
     func hasAllowedContentUpdate() -> Bool {
         allowedContentUpdate
     }
-    
+
+    func hasAllowedContentUpdate(_ newValue: Bool) {
+        allowedContentUpdate = newValue
+    }
+
     func setLastUpdateAttempt(to newValue: String) {
         lastUpdateAttempt = newValue
     }

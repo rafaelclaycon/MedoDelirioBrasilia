@@ -7,8 +7,22 @@
 
 import Foundation
 
-enum MediaType: Int, Codable {
+enum MediaType: Int, Codable, CustomStringConvertible {
+
     case sound, author, song, musicGenre
+
+    var description: String {
+        switch self {
+        case .sound:
+            "Som"
+        case .author:
+            "Autor"
+        case .song:
+            "Música"
+        case .musicGenre:
+            "Gênero Musical"
+        }
+    }
 }
 
 enum EventType: Int, Codable {

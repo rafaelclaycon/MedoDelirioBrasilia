@@ -91,28 +91,6 @@ struct StandaloneFolderGridView: View {
             }
         }
     }
-
-    // MARK: - Functions
-
-    private func verifyFile(at url: URL) -> Bool {
-        let fileManager = FileManager.default
-        if fileManager.fileExists(atPath: url.path) {
-            do {
-                let attributes = try fileManager.attributesOfItem(atPath: url.path)
-                if let fileSize = attributes[.size] as? NSNumber, fileSize.intValue > 0 {
-                    return true
-                }
-            } catch {
-                print("Error reading file attributes: \(error.localizedDescription)")
-            }
-        }
-        return false
-    }
-
-    private func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
 }
 
 // MARK: - Preview

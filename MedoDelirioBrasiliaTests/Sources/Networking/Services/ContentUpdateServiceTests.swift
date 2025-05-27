@@ -43,5 +43,21 @@ struct ContentUpdateServiceTests {
         #expect(delegate.statusUpdates.first?.0 == ContentUpdateStatus.pendingFirstUpdate)
     }
 
-    
+    @Test
+    func testUpdate_whenTryingToInsertContentThatAlreadyExists_shouldMarkThatSavedEventAsSucceeded() async throws {
+        appMemory.hasAllowedContentUpdate(true)
+
+        let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .created, didSucceed: false)
+        localDatabase.unsuccessfulUpdatesToReturn = [event]
+        apiClient.updateEvents.append(event)
+        localDatabase.sounds.append(Sound(id: "ABC", title: ""))
+
+        await service.update()
+
+        #expect(delegate.statusUpdates.count == 2)
+        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
+        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.done)
+
+        #expect(localDatabase.unsuccessfulUpdatesToReturn!.isEmpty)
+    }
 }
