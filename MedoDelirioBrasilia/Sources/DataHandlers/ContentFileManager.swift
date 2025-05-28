@@ -9,31 +9,8 @@ import Foundation
 
 protocol ContentFileManagerProtocol {
 
-    func downloadSound(_ id: String) async throws
-
-    /// Saves a sound file to the appropriate directory
-    func saveSoundFile(data: Data, id: String) throws -> URL
-
-    /// Saves a song file to the appropriate directory
-    func saveSongFile(data: Data, id: String) throws -> URL
-
-    /// Removes a sound file if it exists
-    func removeSoundFile(id: String) throws
-
-    /// Removes a song file if it exists
-    func removeSongFile(id: String) throws
-
-    /// Checks if a sound file exists
-    func soundFileExists(id: String) throws -> Bool
-
-    /// Checks if a song file exists
-    func songFileExists(id: String) throws -> Bool
-
-    /// Returns the URL for a sound file if it exists
-    func soundFileURL(id: String) -> URL?
-
-    /// Returns the URL for a song file if it exists
-    func songFileURL(id: String) -> URL?
+    func downloadSound(withId contentId: String) async throws
+    func downloadSong(withId contentId: String) async throws
 }
 
 final class ContentFileManager: ContentFileManagerProtocol {
@@ -79,12 +56,21 @@ final class ContentFileManager: ContentFileManagerProtocol {
         print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 
-    public func downloadSound(_ id: String) async throws {
-        let fileUrl = URL(string: APIConfig.baseServerURL + "sounds/\(id).mp3")!
+    public func downloadSound(withId contentId: String) async throws {
+        let fileUrl = URL(string: APIConfig.baseServerURL + "sounds/\(contentId).mp3")!
 
-        try removeContentFile(named: id, atFolder: InternalFolderNames.downloadedSounds)
+        try removeContentFile(named: contentId, atFolder: InternalFolderNames.downloadedSounds)
 
         let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
+        print("File downloaded successfully at: \(downloadedFileUrl)")
+    }
+
+    public func downloadSong(withId contentId: String) async throws {
+        let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(contentId).mp3")!
+
+        try removeContentFile(named: contentId, atFolder: InternalFolderNames.downloadedSounds)
+
+        let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSongs)
         print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 

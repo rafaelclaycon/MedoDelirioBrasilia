@@ -230,12 +230,12 @@ extension ContentUpdateService {
             switch updateEvent.mediaType {
             case .sound:
                 try localDatabase.insert(sound: try await apiClient.sound(updateEvent.contentId))
-                try await fileManager.downloadSound(updateEvent.contentId)
+                try await fileManager.downloadSound(withId: updateEvent.contentId)
             case .author:
                 try localDatabase.insert(author: try await apiClient.author(updateEvent.contentId))
             case .song:
                 try localDatabase.insert(song: try await apiClient.song(updateEvent.contentId))
-                try await ContentUpdateService.downloadFile(updateEvent.contentId)
+                try await fileManager.downloadSong(withId: updateEvent.contentId)
             case .musicGenre:
                 try localDatabase.insert(genre: try await apiClient.musicGenre(updateEvent.contentId))
             }
@@ -279,7 +279,7 @@ extension ContentUpdateService {
 
     func updateSoundFile(_ updateEvent: UpdateEvent) async {
         do {
-            try await ContentUpdateService.downloadFile(updateEvent.contentId)
+            try await fileManager.downloadSong(withId: updateEvent.contentId)
             try localDatabase.setIsFromServer(to: true, onSoundId: updateEvent.contentId)
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             logger.updateSuccess("Arquivo do Som \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)

@@ -232,13 +232,8 @@ extension SongsViewViewModel {
     func redownloadServerContent(withId contentId: String) {
         Task {
             do {
-                guard let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(contentId).mp3") else { return }
                 isShowingProcessingView = true
-                try await ContentUpdateService.downloadFile(
-                    at: fileUrl,
-                    to: InternalFolderNames.downloadedSongs,
-                    contentId: contentId
-                )
+                try await ContentFileManager().downloadSong(withId: contentId)
                 isShowingProcessingView = false
                 toast = Toast(message: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.", type: .success)
             } catch {
