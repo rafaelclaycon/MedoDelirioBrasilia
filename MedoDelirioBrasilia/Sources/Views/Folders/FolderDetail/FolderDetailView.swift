@@ -89,7 +89,7 @@ struct FolderDetailView: View {
                         viewModel: contentGridViewModel,
                         showNewTag: false,
                         containerSize: geometry.size,
-                        loadingView: BasicLoadingView(text: "Carregando conteúdos..."),
+                        loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
                         emptyStateView:
                             VStack {
                                 EmptyFolderView()

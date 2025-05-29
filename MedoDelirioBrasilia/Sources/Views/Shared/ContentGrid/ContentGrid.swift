@@ -384,7 +384,7 @@ struct ContentGrid<
             analyticsService: AnalyticsService()
         ),
         containerSize: CGSize(width: 390, height: 1200),
-        loadingView: BasicLoadingView(text: "Carregando conteúdos..."),
+        loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
         emptyStateView: Text("No Sounds to Display"),
         errorView: Text("Error")
     )

@@ -76,7 +76,7 @@ struct ReactionDetailView: View {
                         showNewTag: false,
                         reactionId: viewModel.reaction.id,
                         containerSize: geometry.size,
-                        loadingView: BasicLoadingView(text: "Carregando conteúdos..."),
+                        loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
                         emptyStateView: EmptyStateView(
                             reloadAction: {
                                 Task {

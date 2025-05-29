@@ -132,7 +132,7 @@ struct MainContentView: View {
                                     isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
                                     containerSize: geometry.size,
                                     scrollViewProxy: proxy,
-                                    loadingView: BasicLoadingView(text: "Carregando conteúdos..."),
+                                    loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
                                     emptyStateView:
                                         VStack {
                                             if viewModel.currentViewMode == .favorites {
