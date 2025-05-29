@@ -67,4 +67,46 @@ struct ContentUpdateServiceTests {
         #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
         #expect(!fileManager.didCallDownloadSound)
     }
+
+    @Test
+    func testUpdate_whenNewContent_shouldCreateDownloadAndMarkEventAsSucceeded() async throws {
+        appMemory.hasAllowedContentUpdate(true)
+
+        let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .created, didSucceed: false)
+        let sound = Sound(id: "ABC", title: "")
+
+        apiClient.updateEvents.append(event)
+        apiClient.sound = sound
+
+        await service.update()
+
+        #expect(delegate.statusUpdates.count == 2)
+        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
+        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
+
+        #expect(localDatabase.didCallInsertSound)
+        #expect(fileManager.didCallDownloadSound)
+        #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
+    }
+
+    @Test
+    func testUpdate_whenSoundFileUpdated_shouldRedownloadAndMarkEventAsSucceeded() async throws {
+        appMemory.hasAllowedContentUpdate(true)
+
+        let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .fileUpdated, didSucceed: false)
+        let sound = Sound(id: "ABC", title: "")
+
+        apiClient.updateEvents.append(event)
+        apiClient.sound = sound
+
+        await service.update()
+
+        #expect(delegate.statusUpdates.count == 2)
+        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
+        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
+
+        #expect(!localDatabase.didCallInsertSound)
+        #expect(fileManager.didCallDownloadSound)
+        #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
+    }
 }
