@@ -273,7 +273,22 @@ extension ContentUpdateService {
     }
 
     private func updateResourceFile(for updateEvent: UpdateEvent) async {
-
+        guard [MediaType.sound, MediaType.song].contains(updateEvent.mediaType) else { return }
+        do {
+            if updateEvent.mediaType == .sound {
+                try await fileManager.downloadSound(withId: updateEvent.contentId)
+                try localDatabase.setIsFromServer(to: true, onSoundId: updateEvent.contentId)
+            } else {
+                try await fileManager.downloadSong(withId: updateEvent.contentId)
+                try localDatabase.setIsFromServer(to: true, onSongId: updateEvent.contentId)
+            }
+            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            logger.updateSuccess("Arquivo do \(updateEvent.mediaType.description) \(updateEvent.contentId) atualizado.", updateEventId: updateEvent.id.uuidString)
+        } catch {
+            let message = "Erro ao tentar atualizar arquivo de \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
+            print(message)
+            logger.updateError(message, updateEventId: updateEvent.id.uuidString)
+        }
     }
 
     private func deleteResource(for updateEvent: UpdateEvent) async {
@@ -287,18 +302,6 @@ extension ContentUpdateService {
 //            try localDatabase.update(sound: sound)
 //            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
 //            logger.updateSuccess("Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            print(error)
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
-//    func updateSoundFile(_ updateEvent: UpdateEvent) async {
-//        do {
-//            try await fileManager.downloadSong(withId: updateEvent.contentId)
-//            try localDatabase.setIsFromServer(to: true, onSoundId: updateEvent.contentId)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Arquivo do Som \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
 //        } catch {
 //            print(error)
 //            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -324,23 +327,6 @@ extension ContentUpdateService {
 //            try localDatabase.update(song: song)
 //            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
 //            logger.updateSuccess("Metadados da Música \"\(song.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            print(error)
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
-//    func updateSongFile(_ updateEvent: UpdateEvent) async {
-//        guard let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(updateEvent.contentId).mp3") else { return }
-//        do {
-//            try await ContentUpdateService.downloadFile(
-//                at: fileUrl,
-//                to: InternalFolderNames.downloadedSongs,
-//                contentId: updateEvent.contentId
-//            )
-//            try localDatabase.setIsFromServer(to: true, onSongId: updateEvent.contentId)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Arquivo da Música \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
 //        } catch {
 //            print(error)
 //            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
