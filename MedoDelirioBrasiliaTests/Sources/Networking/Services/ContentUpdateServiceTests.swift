@@ -39,7 +39,7 @@ struct ContentUpdateServiceTests {
     }
 
     @Test
-    func testUpdate_whenNotAllowedYet_shouldReturnPendingStatus() async throws {
+    func update_whenNotAllowedYet_shouldReturnPendingStatus() async throws {
         await service.update()
 
         #expect(delegate.statusUpdates.count == 1)
@@ -47,7 +47,7 @@ struct ContentUpdateServiceTests {
     }
 
     @Test
-    func testUpdate_whenTryingToInsertContentThatAlreadyExists_shouldMarkThatSavedEventAsSucceeded() async throws {
+    func update_whenTryingToInsertContentThatAlreadyExists_shouldMarkThatSavedEventAsSucceeded() async throws {
         appMemory.hasAllowedContentUpdate(true)
 
         let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .created, didSucceed: false)
@@ -69,7 +69,7 @@ struct ContentUpdateServiceTests {
     }
 
     @Test
-    func testUpdate_whenNewContent_shouldCreateDownloadAndMarkEventAsSucceeded() async throws {
+    func update_whenNewContent_shouldCreateDownloadAndMarkEventAsSucceeded() async throws {
         appMemory.hasAllowedContentUpdate(true)
 
         let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .created, didSucceed: false)
@@ -90,7 +90,30 @@ struct ContentUpdateServiceTests {
     }
 
     @Test
-    func testUpdate_whenSoundFileUpdated_shouldRedownloadAndMarkEventAsSucceeded() async throws {
+    func update_whenSoundMetadataUpdated_shouldUpdateSoundAndMarkEventAsSucceeded() async throws {
+        appMemory.hasAllowedContentUpdate(true)
+
+        let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .metadataUpdated, didSucceed: false)
+        let sound = Sound(id: "ABC", title: "")
+
+        apiClient.updateEvents.append(event)
+        apiClient.sound = sound
+
+        await service.update()
+
+        #expect(delegate.statusUpdates.count == 2)
+        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
+        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
+
+        #expect(!localDatabase.didCallInsertSound)
+        #expect(localDatabase.didCallUpdateSound)
+        #expect(!localDatabase.didCallDeleteSound)
+        #expect(!fileManager.didCallDownloadSound)
+        #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
+    }
+
+    @Test
+    func update_whenSoundFileUpdated_shouldRedownloadAndMarkEventAsSucceeded() async throws {
         appMemory.hasAllowedContentUpdate(true)
 
         let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .fileUpdated, didSucceed: false)
@@ -107,6 +130,43 @@ struct ContentUpdateServiceTests {
 
         #expect(!localDatabase.didCallInsertSound)
         #expect(fileManager.didCallDownloadSound)
+        #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
+    }
+
+    @Test
+    func update_whenSoundRemoved_shouldDeleteSoundDeleteFileAndMarkEventAsSucceeded() async throws {
+        appMemory.hasAllowedContentUpdate(true)
+
+        let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .deleted, didSucceed: false)
+        apiClient.updateEvents.append(event)
+
+        await service.update()
+
+        #expect(delegate.statusUpdates.count == 2)
+        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
+        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
+
+        #expect(localDatabase.didCallDeleteSound)
+        #expect(fileManager.didCallRemoveSoundFile)
+        #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
+    }
+
+    @Test
+    func update_whenAuthorEventErroneouslySetAsFileUpdated_shouldNotProcessItAtAll() async throws {
+        appMemory.hasAllowedContentUpdate(true)
+
+        let event = UpdateEvent(contentId: "ABC", mediaType: .author, eventType: .fileUpdated, didSucceed: false)
+        apiClient.updateEvents.append(event)
+
+        await service.update()
+
+        #expect(delegate.statusUpdates.count == 2)
+        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
+        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
+
+        #expect(!localDatabase.didCallUpdateAuthor)
+        #expect(!fileManager.didCallDownloadSound)
+        #expect(!fileManager.didCallDownloadSong)
         #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
     }
 }

@@ -112,7 +112,7 @@ extension ContentUpdateService {
     }
 }
 
-// MARK: - Internal Functions - Higher Level
+// MARK: - Internal Functions - Manipulating Updates
 
 extension ContentUpdateService {
 
@@ -219,7 +219,7 @@ extension ContentUpdateService {
     }
 }
 
-// MARK: - Internal Functions - Lower Level
+// MARK: - Internal Functions - Processing Updates
 
 extension ContentUpdateService {
 
@@ -247,7 +247,7 @@ extension ContentUpdateService {
 
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             logger.updateSuccess(
-                "\(updateEvent.mediaType.description) \(updateEvent.contentId) criado com sucesso.",
+                "\(updateEvent.mediaType.description) \(updateEvent.contentId) criade com sucesso.",
                 updateEventId: updateEvent.id.uuidString
             )
         } catch {
@@ -269,7 +269,28 @@ extension ContentUpdateService {
     }
 
     private func updateResource(for updateEvent: UpdateEvent) async {
+        do {
+            switch updateEvent.mediaType {
+            case .sound:
+                try localDatabase.update(sound: try await apiClient.sound(updateEvent.contentId))
+            case .author:
+                try localDatabase.update(author: try await apiClient.author(updateEvent.contentId))
+            case .song:
+                try localDatabase.update(song: try await apiClient.song(updateEvent.contentId))
+            case .musicGenre:
+                try localDatabase.update(genre: try await apiClient.musicGenre(updateEvent.contentId))
+            }
 
+            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            logger.updateSuccess(
+                "Dados de \(updateEvent.mediaType.description) \(updateEvent.contentId) atualizados com sucesso.",
+                updateEventId: updateEvent.id.uuidString
+            )
+        } catch {
+            let message = "Erro ao tentar atualizar dados de \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
+            print(message)
+            logger.updateError(message, updateEventId: updateEvent.id.uuidString)
+        }
     }
 
     private func updateResourceFile(for updateEvent: UpdateEvent) async {
@@ -283,7 +304,7 @@ extension ContentUpdateService {
                 try localDatabase.setIsFromServer(to: true, onSongId: updateEvent.contentId)
             }
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            logger.updateSuccess("Arquivo do \(updateEvent.mediaType.description) \(updateEvent.contentId) atualizado.", updateEventId: updateEvent.id.uuidString)
+            logger.updateSuccess("Arquivo de \(updateEvent.mediaType.description) \(updateEvent.contentId) atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {
             let message = "Erro ao tentar atualizar arquivo de \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
             print(message)
@@ -308,7 +329,7 @@ extension ContentUpdateService {
 
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             logger.updateSuccess(
-                "\(updateEvent.mediaType.description) \(updateEvent.contentId) removido com sucesso.",
+                "\(updateEvent.mediaType.description) \(updateEvent.contentId) removide com sucesso.",
                 updateEventId: updateEvent.id.uuidString
             )
         } catch {
@@ -317,55 +338,4 @@ extension ContentUpdateService {
             logger.updateError(message, updateEventId: updateEvent.id.uuidString)
         }
     }
-
-//    func updateSoundMetadata(with updateEvent: UpdateEvent) async {
-//        let url = URL(string: apiClient.serverPath + "v3/sound/\(updateEvent.contentId)")!
-//        do {
-//            let sound: Sound = try await apiClient.get(from: url)
-//            try localDatabase.update(sound: sound)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            print(error)
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
-//    func updateSongMetadata(with updateEvent: UpdateEvent) async {
-//        let url = URL(string: apiClient.serverPath + "v3/song/\(updateEvent.contentId)")!
-//        do {
-//            let song: Song = try await apiClient.get(from: url)
-//            try localDatabase.update(song: song)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Metadados da Música \"\(song.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            print(error)
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
-//    func updateAuthorMetadata(with updateEvent: UpdateEvent) async {
-//        let url = URL(string: apiClient.serverPath + "v3/author/\(updateEvent.contentId)")!
-//        do {
-//            let author: Author = try await apiClient.get(from: url)
-//            try localDatabase.update(author: author)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Metadados do(a) Autor(a) \"\(author.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            print(error)
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
-//    func updateGenreMetadata(with updateEvent: UpdateEvent) async {
-//        let url = URL(string: apiClient.serverPath + "v3/music-genre/\(updateEvent.contentId)")!
-//        do {
-//            let genre: MusicGenre = try await apiClient.get(from: url)
-//            try localDatabase.update(genre: genre)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Metadados do Gênero Musical \"\(genre.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
 }
