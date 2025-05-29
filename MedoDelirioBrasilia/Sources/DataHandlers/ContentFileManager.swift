@@ -21,19 +21,12 @@ final class ContentFileManager: ContentFileManagerProtocol {
 
     init(
         fileManager: FileManager = .default
-    ) throws {
+    ) {
         self.fileManager = fileManager
-
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         self.soundsDirectory = documentsDirectory.appendingPathComponent(InternalFolderNames.downloadedSounds)
         self.songsDirectory = documentsDirectory.appendingPathComponent(InternalFolderNames.downloadedSongs)
-
-        // Ensure directories exist
-        try fileManager.createDirectory(at: soundsDirectory, withIntermediateDirectories: true)
-        try fileManager.createDirectory(at: songsDirectory, withIntermediateDirectories: true)
     }
-
-
 
 //    static func downloadFile(
 //        at fileUrl: URL,

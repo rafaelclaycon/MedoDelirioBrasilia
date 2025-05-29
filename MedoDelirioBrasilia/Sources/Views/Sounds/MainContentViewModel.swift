@@ -33,6 +33,10 @@ class MainContentViewModel {
     var processedUpdateNumber: Int = 0
     var totalUpdateCount: Int = 0
 
+    private var isRunningUnitTests: Bool {
+        ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+    }
+
     // MARK: - Initializer
 
     init(
@@ -167,6 +171,7 @@ extension MainContentViewModel {
     /// Warm open means the app was reopened before it left memory.
     private func warmOpenContentUpdate() async {
         guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
+        guard !isRunningUnitTests else { return }
 
         let lastUpdateAttempt = AppPersistentMemory.shared.getLastUpdateAttempt()
         print("lastUpdateAttempt: \(lastUpdateAttempt)")

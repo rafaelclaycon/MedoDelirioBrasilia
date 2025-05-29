@@ -11,6 +11,11 @@ class FakeAPIClient: APIClientProtocol {
 
     var updateEvents = [UpdateEvent]()
 
+    var sound: Sound?
+    var song: Song?
+    var author: Author?
+    var musicGenre: MusicGenre?
+
     init() {
         serverPath = ""
     }
@@ -60,5 +65,21 @@ class FakeAPIClient: APIClientProtocol {
 
     func moneyInfo() async throws -> [MoneyInfo] {
         []
+    }
+
+    func sound(_ id: String) async throws -> Sound {
+        sound!
+    }
+
+    func song(_ id: String) async throws -> Song {
+        song!
+    }
+
+    func author(_ id: String) async throws -> Author {
+        author!
+    }
+
+    func musicGenre(_ id: String) async throws -> MusicGenre {
+        musicGenre!
     }
 }

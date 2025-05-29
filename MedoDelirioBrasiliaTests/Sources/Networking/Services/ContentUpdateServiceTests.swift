@@ -15,6 +15,7 @@ struct ContentUpdateServiceTests {
 
     private var apiClient: FakeAPIClient!
     private var localDatabase: FakeLocalDatabase!
+    private var fileManager: FakeContentFileManager!
     private var appMemory: FakeAppPersistentMemory!
     private var logger: FakeLoggerService!
     private var delegate: FakeContentUpdateServiceDelegate!
@@ -22,6 +23,7 @@ struct ContentUpdateServiceTests {
     init() {
         self.apiClient = FakeAPIClient()
         self.localDatabase = FakeLocalDatabase()
+        self.fileManager = FakeContentFileManager()
         self.appMemory = FakeAppPersistentMemory()
         self.logger = FakeLoggerService()
         self.delegate = FakeContentUpdateServiceDelegate()
@@ -29,6 +31,7 @@ struct ContentUpdateServiceTests {
         self.service = ContentUpdateService(
             apiClient: apiClient,
             database: localDatabase,
+            fileManager: fileManager,
             appMemory: appMemory,
             logger: logger
         )
@@ -48,16 +51,20 @@ struct ContentUpdateServiceTests {
         appMemory.hasAllowedContentUpdate(true)
 
         let event = UpdateEvent(contentId: "ABC", mediaType: .sound, eventType: .created, didSucceed: false)
-        localDatabase.unsuccessfulUpdatesToReturn = [event]
+        let sound = Sound(id: "ABC", title: "")
+
+        localDatabase.localUpdates = [event]
         apiClient.updateEvents.append(event)
-        localDatabase.sounds.append(Sound(id: "ABC", title: ""))
+        apiClient.sound = sound
+        localDatabase.sounds.append(sound)
 
         await service.update()
 
         #expect(delegate.statusUpdates.count == 2)
         #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
-        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.done)
+        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
 
-        #expect(localDatabase.unsuccessfulUpdatesToReturn!.isEmpty)
+        #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
+        #expect(!fileManager.didCallDownloadSound)
     }
 }

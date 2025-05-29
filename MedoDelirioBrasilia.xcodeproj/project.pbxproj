@@ -166,6 +166,7 @@
 		D91BB0B22DC2A39B00B3DD02 /* BannerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BB0B12DC2A39B00B3DD02 /* BannerRepository.swift */; };
 		D91C4D15291AD1A3000E13E8 /* Barbara Saccomori - Vamo comunistada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91C4D13291AD1A3000E13E8 /* Barbara Saccomori - Vamo comunistada.mp3 */; };
 		D91C4D16291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91C4D14291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 */; };
+		D91C4D662DE7D264007E1B01 /* FakeContentFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C4D652DE7D264007E1B01 /* FakeContentFileManager.swift */; };
 		D91E37582C4C8EFA003A1107 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E37572C4C8EFA003A1107 /* Action.swift */; };
 		D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E37592C4C8F33003A1107 /* PushAction.swift */; };
 		D91E375C2C4C908F003A1107 /* GeneralRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E375B2C4C908F003A1107 /* GeneralRouter.swift */; };
@@ -1721,6 +1722,7 @@
 		D91BB0B12DC2A39B00B3DD02 /* BannerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerRepository.swift; sourceTree = "<group>"; };
 		D91C4D13291AD1A3000E13E8 /* Barbara Saccomori - Vamo comunistada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Barbara Saccomori - Vamo comunistada.mp3"; sourceTree = "<group>"; };
 		D91C4D14291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Nao existe segunda-feira no comunismo.mp3"; sourceTree = "<group>"; };
+		D91C4D652DE7D264007E1B01 /* FakeContentFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeContentFileManager.swift; sourceTree = "<group>"; };
 		D91E37572C4C8EFA003A1107 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		D91E37592C4C8F33003A1107 /* PushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAction.swift; sourceTree = "<group>"; };
 		D91E375B2C4C908F003A1107 /* GeneralRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRouter.swift; sourceTree = "<group>"; };
@@ -4891,6 +4893,7 @@
 				D92ABB552DBDAFBA002E4315 /* FakeAuthorService.swift */,
 				D9F50E312DE264F600C593A9 /* FakeContentUpdateService.swift */,
 				D9F50E432DE38A8400C593A9 /* FakeAppPersistentMemory.swift */,
+				D91C4D652DE7D264007E1B01 /* FakeContentFileManager.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -6894,6 +6897,7 @@
 				D90E80BF2CEA1A780014A886 /* AddPinnedReactionTable.swift in Sources */,
 				D9F82F6F2D98503600DE3AF2 /* ContentModeOption.swift in Sources */,
 				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
+				D91C4D662DE7D264007E1B01 /* FakeContentFileManager.swift in Sources */,
 				D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D965DCD42DAAD06F00BF6920 /* StandaloneAuthorsView.swift in Sources */,

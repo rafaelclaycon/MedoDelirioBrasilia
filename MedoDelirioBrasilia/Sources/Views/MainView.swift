@@ -44,6 +44,7 @@ struct MainView: View {
     @State private var contentUpdateService = ContentUpdateService(
         apiClient: APIClient.shared,
         database: LocalDatabase.shared,
+        fileManager: ContentFileManager(),
         appMemory: AppPersistentMemory.shared,
         logger: Logger.shared
     )
