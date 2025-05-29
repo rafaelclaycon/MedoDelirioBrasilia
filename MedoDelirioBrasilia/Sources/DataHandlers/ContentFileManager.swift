@@ -22,6 +22,8 @@ final class ContentFileManager: ContentFileManagerProtocol {
     private let soundsDirectory: URL
     private let songsDirectory: URL
 
+    // MARK: - Initializer
+
     init(
         fileManager: FileManager = .default
     ) {
@@ -30,6 +32,11 @@ final class ContentFileManager: ContentFileManagerProtocol {
         self.soundsDirectory = documentsDirectory.appendingPathComponent(InternalFolderNames.downloadedSounds)
         self.songsDirectory = documentsDirectory.appendingPathComponent(InternalFolderNames.downloadedSongs)
     }
+}
+
+// MARK: - Public Functions
+
+extension ContentFileManager {
 
     public func downloadSound(withId contentId: String) async throws {
         let fileUrl = URL(string: APIConfig.baseServerURL + "sounds/\(contentId).mp3")!
@@ -60,6 +67,11 @@ final class ContentFileManager: ContentFileManagerProtocol {
             try fileManager.removeItem(at: fileURL)
         }
     }
+}
+
+// MARK: - Private Functions
+
+extension ContentFileManager {
 
     private func soundFileURL(id: String) -> URL? {
         let fileURL = soundsDirectory.appendingPathComponent("\(id).mp3")
