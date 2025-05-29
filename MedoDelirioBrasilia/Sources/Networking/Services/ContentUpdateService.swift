@@ -292,7 +292,30 @@ extension ContentUpdateService {
     }
 
     private func deleteResource(for updateEvent: UpdateEvent) async {
+        do {
+            switch updateEvent.mediaType {
+            case .sound:
+                try localDatabase.delete(soundId: updateEvent.contentId)
+                try fileManager.removeSoundFile(id: updateEvent.contentId)
+            case .author:
+                try localDatabase.delete(authorId: updateEvent.contentId)
+            case .song:
+                try localDatabase.delete(songId: updateEvent.contentId)
+                try fileManager.removeSongFile(id: updateEvent.contentId)
+            case .musicGenre:
+                try localDatabase.delete(genreId: updateEvent.contentId)
+            }
 
+            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            logger.updateSuccess(
+                "\(updateEvent.mediaType.description) \(updateEvent.contentId) removido com sucesso.",
+                updateEventId: updateEvent.id.uuidString
+            )
+        } catch {
+            let message = "Erro ao tentar remover \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
+            print(message)
+            logger.updateError(message, updateEventId: updateEvent.id.uuidString)
+        }
     }
 
 //    func updateSoundMetadata(with updateEvent: UpdateEvent) async {
@@ -302,18 +325,6 @@ extension ContentUpdateService {
 //            try localDatabase.update(sound: sound)
 //            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
 //            logger.updateSuccess("Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            print(error)
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
-//    func deleteSound(_ updateEvent: UpdateEvent) {
-//        do {
-//            try localDatabase.delete(soundId: updateEvent.contentId)
-//            try ContentUpdateService.removeSoundFileIfExists(named: updateEvent.contentId)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
 //        } catch {
 //            print(error)
 //            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -333,21 +344,6 @@ extension ContentUpdateService {
 //        }
 //    }
 //
-//    func deleteSong(_ updateEvent: UpdateEvent) {
-//        do {
-//            try localDatabase.delete(songId: updateEvent.contentId)
-//            try ContentUpdateService.removeContentFile(
-//                named: updateEvent.contentId,
-//                atFolder: InternalFolderNames.downloadedSongs
-//            )
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            print(error)
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
 //    func updateAuthorMetadata(with updateEvent: UpdateEvent) async {
 //        let url = URL(string: apiClient.serverPath + "v3/author/\(updateEvent.contentId)")!
 //        do {
@@ -361,17 +357,6 @@ extension ContentUpdateService {
 //        }
 //    }
 //
-//    func deleteAuthor(with updateEvent: UpdateEvent) async {
-//        do {
-//            try localDatabase.delete(authorId: updateEvent.contentId)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Autor(a) \"\(updateEvent.contentId)\" removido(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            print(error)
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
 //    func updateGenreMetadata(with updateEvent: UpdateEvent) async {
 //        let url = URL(string: apiClient.serverPath + "v3/music-genre/\(updateEvent.contentId)")!
 //        do {
@@ -379,16 +364,6 @@ extension ContentUpdateService {
 //            try localDatabase.update(genre: genre)
 //            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
 //            logger.updateSuccess("Metadados do Gênero Musical \"\(genre.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
-//        } catch {
-//            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
-//        }
-//    }
-//
-//    func deleteMusicGenre(with updateEvent: UpdateEvent) async {
-//        do {
-//            try localDatabase.delete(genreId: updateEvent.contentId)
-//            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-//            logger.updateSuccess("Gênero Musical \"\(updateEvent.contentId)\" removido com sucesso.", updateEventId: updateEvent.id.uuidString)
 //        } catch {
 //            logger.updateError(error.localizedDescription, updateEventId: updateEvent.id.uuidString)
 //        }

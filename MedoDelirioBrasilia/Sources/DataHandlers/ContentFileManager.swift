@@ -11,6 +11,9 @@ protocol ContentFileManagerProtocol {
 
     func downloadSound(withId contentId: String) async throws
     func downloadSong(withId contentId: String) async throws
+
+    func removeSoundFile(id: String) throws
+    func removeSongFile(id: String) throws
 }
 
 final class ContentFileManager: ContentFileManagerProtocol {
@@ -31,7 +34,7 @@ final class ContentFileManager: ContentFileManagerProtocol {
     public func downloadSound(withId contentId: String) async throws {
         let fileUrl = URL(string: APIConfig.baseServerURL + "sounds/\(contentId).mp3")!
 
-        try removeContentFile(named: contentId, atFolder: InternalFolderNames.downloadedSounds)
+        try removeSoundFile(id: contentId)
 
         let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
         print("File downloaded successfully at: \(downloadedFileUrl)")
@@ -40,51 +43,30 @@ final class ContentFileManager: ContentFileManagerProtocol {
     public func downloadSong(withId contentId: String) async throws {
         let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(contentId).mp3")!
 
-        try removeContentFile(named: contentId, atFolder: InternalFolderNames.downloadedSounds)
+        try removeSoundFile(id: contentId)
 
         let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSongs)
         print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 
-    private func removeContentFile(
-        named filename: String,
-        atFolder contentFolderName: String
-    ) throws {
-        let documentsFolder = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let file = documentsFolder.appendingPathComponent("\(contentFolderName)\(filename).mp3")
-        if fileManager.fileExists(atPath: file.path) {
-            try fileManager.removeItem(at: file)
-        }
-    }
-
-    static func removeSoundFileIfExists(named filename: String) throws {
-        let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileManager = FileManager.default
-        let file = documentsFolder.appendingPathComponent("\(InternalFolderNames.downloadedSounds)\(filename).mp3")
-
-        if fileManager.fileExists(atPath: file.path) {
-            try fileManager.removeItem(at: file)
-        }
-    }
-
-    func removeSoundFile(id: String) throws {
+    public func removeSoundFile(id: String) throws {
         if let fileURL = soundFileURL(id: id) {
             try fileManager.removeItem(at: fileURL)
         }
     }
 
-    func removeSongFile(id: String) throws {
+    public func removeSongFile(id: String) throws {
         if let fileURL = songFileURL(id: id) {
             try fileManager.removeItem(at: fileURL)
         }
     }
 
-    func soundFileURL(id: String) -> URL? {
+    private func soundFileURL(id: String) -> URL? {
         let fileURL = soundsDirectory.appendingPathComponent("\(id).mp3")
         return fileManager.fileExists(atPath: fileURL.path) ? fileURL : nil
     }
 
-    func songFileURL(id: String) -> URL? {
+    private func songFileURL(id: String) -> URL? {
         let fileURL = songsDirectory.appendingPathComponent("\(id).mp3")
         return fileManager.fileExists(atPath: fileURL.path) ? fileURL : nil
     }
