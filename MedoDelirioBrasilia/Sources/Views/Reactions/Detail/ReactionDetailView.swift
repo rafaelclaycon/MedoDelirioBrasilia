@@ -76,7 +76,7 @@ struct ReactionDetailView: View {
                         showNewTag: false,
                         reactionId: viewModel.reaction.id,
                         containerSize: geometry.size,
-                        loadingView: LoadingView(),
+                        loadingView: BasicLoadingView(text: "Carregando conteúdos..."),
                         emptyStateView: EmptyStateView(
                             reloadAction: {
                                 Task {
@@ -192,25 +192,6 @@ extension ReactionDetailView {
                 } label: {
                     Image(systemName: "ellipsis.circle")
                 }
-            }
-        }
-    }
-
-    struct LoadingView: View {
-
-        var body: some View {
-            VStack(spacing: 40) {
-                Spacer()
-
-                HStack(spacing: 10) {
-                    ProgressView()
-
-                    Text("Carregando sons...")
-                        .foregroundColor(.gray)
-                }
-                .frame(maxWidth: .infinity)
-
-                Spacer()
             }
         }
     }

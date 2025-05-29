@@ -115,8 +115,6 @@ struct ContentGrid<
         switch state {
         case .loading:
             loadingView
-                .frame(width: containerSize.width)
-                .frame(minHeight: containerSize.height)
 
         case .loaded(let loadedContent):
             if loadedContent.isEmpty {
@@ -386,7 +384,7 @@ struct ContentGrid<
             analyticsService: AnalyticsService()
         ),
         containerSize: CGSize(width: 390, height: 1200),
-        loadingView: ProgressView(),
+        loadingView: BasicLoadingView(text: "Carregando conteúdos..."),
         emptyStateView: Text("No Sounds to Display"),
         errorView: Text("Error")
     )

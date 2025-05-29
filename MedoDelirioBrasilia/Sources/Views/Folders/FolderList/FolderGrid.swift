@@ -56,16 +56,7 @@ struct FolderGrid: View {
         VStack {
             switch viewModel.state {
             case .loading:
-                VStack {
-                    HStack(spacing: .spacing(.small)) {
-                        ProgressView()
-
-                        Text("Carregando Pastas...")
-                            .foregroundColor(.gray)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, .spacing(.huge))
-                }
+                BasicLoadingView(text: "Carregando Pastas...")
 
             case .loaded(let folders):
                 if !folders.isEmpty {

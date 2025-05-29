@@ -64,7 +64,7 @@ struct StandaloneFavoritesView: View {
                                 HStack(spacing: 10) {
                                     ProgressView()
 
-                                    Text("Carregando sons...")
+                                    Text("Carregando conteúdos...")
                                         .foregroundColor(.gray)
                                 }
                                 .frame(maxWidth: .infinity)

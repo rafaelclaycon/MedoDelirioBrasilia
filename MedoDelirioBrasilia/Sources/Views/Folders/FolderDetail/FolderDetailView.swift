@@ -89,17 +89,7 @@ struct FolderDetailView: View {
                         viewModel: contentGridViewModel,
                         showNewTag: false,
                         containerSize: geometry.size,
-                        loadingView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Carregando sons...")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        ,
+                        loadingView: BasicLoadingView(text: "Carregando conteúdos..."),
                         emptyStateView:
                             VStack {
                                 EmptyFolderView()
