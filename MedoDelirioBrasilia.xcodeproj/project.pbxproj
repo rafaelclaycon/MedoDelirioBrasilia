@@ -112,6 +112,7 @@
 		D906BA4F28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */; };
 		D906BA5128D912DB007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */; };
 		D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D907A39D2A8F9E6A006DE630 /* OpenUtility.swift */; };
+		D90BF91D2DE8800300C5480B /* BasicLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BF91C2DE8800300C5480B /* BasicLoadingView.swift */; };
 		D90C4B09291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90C4B08291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 */; };
 		D90CDF0628F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */; };
 		D90CDF0728F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */; };
@@ -1671,6 +1672,7 @@
 		D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jingle Bolsonaro 2022.mp3"; sourceTree = "<group>"; };
 		D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3"; sourceTree = "<group>"; };
 		D907A39D2A8F9E6A006DE630 /* OpenUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUtility.swift; sourceTree = "<group>"; };
+		D90BF91C2DE8800300C5480B /* BasicLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLoadingView.swift; sourceTree = "<group>"; };
 		D90C4B08291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Menino Pulando na Cama - Que bosta.mp3"; sourceTree = "<group>"; };
 		D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3"; sourceTree = "<group>"; };
 		D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3"; sourceTree = "<group>"; };
@@ -4825,6 +4827,7 @@
 				D9115BAE2DB294BB0089A0CF /* LeadingToolbarControls.swift */,
 				D9115BB02DB295C10089A0CF /* ContentToolbarOptionsView.swift */,
 				D92ABB512DBD69E5002E4315 /* AuthorToolbarOptionsView.swift */,
+				D90BF91C2DE8800300C5480B /* BasicLoadingView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -7075,6 +7078,7 @@
 				D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */,
+				D90BF91D2DE8800300C5480B /* BasicLoadingView.swift in Sources */,
 				D9B611472BE1C08C00FD65A6 /* ReactionDetailViewModel.swift in Sources */,
 				D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */,
 				D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */,
@@ -7291,8 +7295,8 @@
 		D9625E9F28238F9B00080852 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_BUILD = 2;
-				APP_VERSION = 9.0.2;
+				APP_BUILD = 1;
+				APP_VERSION = 9.0.3;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -7333,8 +7337,8 @@
 		D9625EA028238F9B00080852 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_BUILD = 2;
-				APP_VERSION = 9.0.2;
+				APP_BUILD = 1;
+				APP_VERSION = 9.0.3;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Prod";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
