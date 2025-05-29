@@ -28,27 +28,6 @@ final class ContentFileManager: ContentFileManagerProtocol {
         self.songsDirectory = documentsDirectory.appendingPathComponent(InternalFolderNames.downloadedSongs)
     }
 
-//    static func downloadFile(
-//        at fileUrl: URL,
-//        to localFolderName: String,
-//        contentId: String
-//    ) async throws {
-//        try removeContentFile(named: contentId, atFolder: localFolderName)
-//        let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: localFolderName)
-//        print("File downloaded successfully at: \(downloadedFileUrl)")
-//    }
-
-
-
-    static func downloadFile(_ contentId: String) async throws {
-        let fileUrl = URL(string: APIConfig.baseServerURL + "sounds/\(contentId).mp3")!
-
-        try removeSoundFileIfExists(named: contentId)
-
-        let downloadedFileUrl = try await APIClient.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
-        print("File downloaded successfully at: \(downloadedFileUrl)")
-    }
-
     public func downloadSound(withId contentId: String) async throws {
         let fileUrl = URL(string: APIConfig.baseServerURL + "sounds/\(contentId).mp3")!
 
@@ -88,19 +67,6 @@ final class ContentFileManager: ContentFileManagerProtocol {
         }
     }
 
-
-    func saveSoundFile(data: Data, id: String) throws -> URL {
-        let fileURL = soundsDirectory.appendingPathComponent("\(id).mp3")
-        try data.write(to: fileURL)
-        return fileURL
-    }
-
-    func saveSongFile(data: Data, id: String) throws -> URL {
-        let fileURL = songsDirectory.appendingPathComponent("\(id).mp3")
-        try data.write(to: fileURL)
-        return fileURL
-    }
-
     func removeSoundFile(id: String) throws {
         if let fileURL = soundFileURL(id: id) {
             try fileManager.removeItem(at: fileURL)
@@ -111,14 +77,6 @@ final class ContentFileManager: ContentFileManagerProtocol {
         if let fileURL = songFileURL(id: id) {
             try fileManager.removeItem(at: fileURL)
         }
-    }
-
-    func soundFileExists(id: String) throws -> Bool {
-        try soundFileURL(id: id)?.checkResourceIsReachable() ?? false
-    }
-
-    func songFileExists(id: String) throws -> Bool {
-        try songFileURL(id: id)?.checkResourceIsReachable() ?? false
     }
 
     func soundFileURL(id: String) -> URL? {
