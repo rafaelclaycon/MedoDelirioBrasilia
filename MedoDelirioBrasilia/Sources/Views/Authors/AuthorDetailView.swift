@@ -120,17 +120,7 @@ struct AuthorDetailView: View {
                         viewModel: contentGridViewModel,
                         authorId: viewModel.author.id,
                         containerSize: geometry.size,
-                        loadingView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Carregando sons...")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        ,
+                        loadingView: BasicLoadingView(text: "Carregando sons..."),
                         emptyStateView:
                             VStack {
                                 NoSoundsView()

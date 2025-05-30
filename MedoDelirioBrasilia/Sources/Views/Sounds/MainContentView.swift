@@ -137,17 +137,7 @@ struct MainContentView: View {
                                     isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
                                     containerSize: geometry.size,
                                     scrollViewProxy: proxy,
-                                    loadingView:
-                                        VStack {
-                                            HStack(spacing: .spacing(.small)) {
-                                                ProgressView()
-
-                                                Text("Carregando sons...")
-                                                    .foregroundColor(.gray)
-                                            }
-                                            .frame(maxWidth: .infinity)
-                                        }
-                                    ,
+                                    loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
                                     emptyStateView:
                                         VStack {
                                             if viewModel.currentViewMode == .favorites {
@@ -169,7 +159,11 @@ struct MainContentView: View {
                                     .padding(.top, explicitOffWarningTopPadding)
                                 }
 
-                                if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
+                                if
+                                    viewModel.currentViewMode == .all,
+                                    loadedContent.count > 0,
+                                    contentSearchTextIsEmpty ?? true
+                                {
                                     Text("\(loadedContent.count) ITENS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
