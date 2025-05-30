@@ -63,7 +63,7 @@ extension FolderResearchSettingsView.ViewModel {
         do {
             let provider = FolderResearchProvider(
                 userSettings: UserSettings(),
-                appMemory: AppPersistentMemory(),
+                appMemory: AppPersistentMemory.shared,
                 localDatabase: LocalDatabase(),
                 repository: FolderResearchRepository()
             )
@@ -81,7 +81,7 @@ extension FolderResearchSettingsView.ViewModel {
     }
 
     private func updateLastSyncDate() {
-        guard let date = AppPersistentMemory().lastFolderResearchSyncDateTime() else {
+        guard let date = AppPersistentMemory.shared.lastFolderResearchSyncDateTime() else {
             lastSendDate = "Indisponível"
             return
         }

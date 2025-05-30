@@ -19,6 +19,7 @@ struct SidebarView: View {
     @Binding var toast: Toast?
     @Binding var floatingOptions: FloatingContentOptions?
     let contentRepository: ContentRepositoryProtocol
+    let contentUpdateService: ContentUpdateServiceProtocol
 
     // MARK: - View State
 
@@ -47,6 +48,7 @@ struct SidebarView: View {
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
                             floatingOptions: $floatingOptions,
+                            contentUpdateService: contentUpdateService,
                             syncValues: syncValues,
                             contentRepository: contentRepository,
                             analyticsService: AnalyticsService()
@@ -192,6 +194,7 @@ struct SidebarView: View {
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
         floatingOptions: .constant(nil),
-        contentRepository: FakeContentRepository()
+        contentRepository: FakeContentRepository(),
+        contentUpdateService: FakeContentUpdateService()
     )
 }
