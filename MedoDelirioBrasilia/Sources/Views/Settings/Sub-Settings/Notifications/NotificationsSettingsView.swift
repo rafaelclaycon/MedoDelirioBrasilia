@@ -64,7 +64,7 @@ struct NotificationsSettingsView: View {
             if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
                 Section {
                     Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
-                        AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
+                        AppPersistentMemory.shared.setShouldRetrySendingDevicePushToken(to: true)
                     }
                 } header: {
                     Text("Apenas para testes")
