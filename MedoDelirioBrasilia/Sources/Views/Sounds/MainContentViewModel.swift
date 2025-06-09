@@ -8,30 +8,29 @@
 import SwiftUI
 
 @MainActor
-@Observable
-class MainContentViewModel {
+final class MainContentViewModel: ObservableObject {
 
-    var state: LoadingState<[AnyEquatableMedoContent]> = .loading
+    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
-    var currentViewMode: ContentModeOption
-    var contentSortOption: Int
-    var authorSortOption: Int
+    @Published var currentViewMode: ContentModeOption
+    @Published var contentSortOption: Int
+    @Published var authorSortOption: Int
 
     // MARK: - Stored Properties
 
-    public var currentContentListMode: Binding<ContentGridMode>
-    public var toast: Binding<Toast?>
-    public var floatingOptions: Binding<FloatingContentOptions?>
+    @Published public var currentContentListMode: Binding<ContentGridMode>
+    @Published public var toast: Binding<Toast?>
+    @Published public var floatingOptions: Binding<FloatingContentOptions?>
     private let contentRepository: ContentRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
     private var contentUpdateService: ContentUpdateServiceProtocol
 
     // Content Update
     private let syncValues: SyncValues
-    var displayLongUpdateBanner: Bool = false
-    var dismissedLongUpdateBanner: Bool = false
-    var processedUpdateNumber: Int = 0
-    var totalUpdateCount: Int = 0
+    @Published var displayLongUpdateBanner: Bool = false
+    @Published var dismissedLongUpdateBanner: Bool = false
+    @Published var processedUpdateNumber: Int = 0
+    @Published var totalUpdateCount: Int = 0
 
     private var isRunningUnitTests: Bool {
         ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
@@ -62,7 +61,7 @@ class MainContentViewModel {
         self.contentRepository = contentRepository
         self.analyticsService = analyticsService
 
-        self.contentUpdateService.delegate = self
+        self.setupObservers()
     }
 }
 
@@ -117,6 +116,48 @@ extension MainContentViewModel {
 // MARK: - Internal Functions
 
 extension MainContentViewModel {
+
+    private func setupObservers() {
+        print("RAFA - Setting up observers on instance: \(ObjectIdentifier(self))")
+
+        Task { @MainActor in
+            do {
+                for try await progressUpdate in contentUpdateService.progressUpdates {
+                    print("RAFA - Received progress update on instance: \(ObjectIdentifier(self))")
+                    self.processedUpdateNumber = progressUpdate.processed
+                    self.totalUpdateCount = progressUpdate.total
+                    print("RAFA - Progress Update - processed: \(progressUpdate.processed), total: \(progressUpdate.total)")
+                    self.updateDisplayLongUpdateBanner()
+                    print("RAFA - displayLongUpdateBanner AFTER update: \(self.displayLongUpdateBanner)")
+                }
+            } catch {
+                print("Error observing progress updates: \(error)")
+            }
+        }
+        
+        // Start observing status updates  
+        Task { @MainActor in
+            do {
+                for try await statusUpdate in contentUpdateService.statusUpdates {
+                    print("RAFA - Received status update on instance: \(ObjectIdentifier(self))")
+                    self.syncValues.syncStatus = statusUpdate.status
+                    print("RAFA - Status Update: \(statusUpdate.status.description)")
+                    
+                    if statusUpdate.contentChanged {
+                        self.loadContent(clearCache: true)
+                    }
+                    
+                    if statusUpdate.status == .done {
+                        self.displayLongUpdateBanner = false
+                    } else {
+                        self.updateDisplayLongUpdateBanner()
+                    }
+                }
+            } catch {
+                print("Error observing status updates: \(error)")
+            }
+        }
+    }
 
     private func loadContent(clearCache: Bool = false) {
         state = .loading
@@ -202,43 +243,6 @@ extension MainContentViewModel {
             await analyticsService.send(originatingScreen: screen, action: "didViewFoldersTab")
         } else if currentViewMode == .authors {
             await analyticsService.send(originatingScreen: screen, action: "didViewAuthorsTab")
-        }
-    }
-}
-
-// MARK: - Content Update
-
-extension MainContentViewModel: ContentUpdateServiceDelegate {
-
-    nonisolated func set(totalUpdateCount: Int) {
-        Task { @MainActor in
-            self.totalUpdateCount = totalUpdateCount
-            print("RAFA - totalUpdateCount: \(totalUpdateCount)")
-        }
-    }
-
-    nonisolated func didProcessUpdate(number: Int) {
-        Task { @MainActor in
-            self.processedUpdateNumber = number
-            print("RAFA - processedUpdateNumber: \(number)")
-            updateDisplayLongUpdateBanner()
-        }
-    }
-
-    nonisolated func update(status: ContentUpdateStatus, contentChanged: Bool) {
-        Task { @MainActor in
-            self.syncValues.syncStatus = status
-            print("RAFA - new status: \(status.description)")
-
-            if contentChanged {
-                loadContent(clearCache: true)
-            }
-            print(status)
-            if status == .done {
-                displayLongUpdateBanner = false
-            } else {
-                updateDisplayLongUpdateBanner()
-            }
         }
     }
 }

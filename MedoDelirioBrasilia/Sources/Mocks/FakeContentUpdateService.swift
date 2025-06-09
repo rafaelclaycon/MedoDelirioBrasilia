@@ -9,9 +9,19 @@ import Foundation
 
 class FakeContentUpdateService: ContentUpdateServiceProtocol {
 
-    var delegate: ContentUpdateServiceDelegate?
+    var progressUpdates: AsyncThrowingStream<ProgressUpdate, Error> {
+        AsyncThrowingStream { continuation in
+            // Empty stream for testing
+        }
+    }
+    
+    var statusUpdates: AsyncThrowingStream<StatusUpdate, Error> {
+        AsyncThrowingStream { continuation in
+            // Empty stream for testing
+        }
+    }
 
-    public func update() async {
-        //
+    func update() async {
+        // Empty implementation for testing
     }
 }

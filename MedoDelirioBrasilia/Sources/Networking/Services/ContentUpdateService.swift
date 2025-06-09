@@ -8,24 +8,34 @@
 import Foundation
 import SwiftUI
 
+// MARK: - Update Event Structures
+
+struct ProgressUpdate {
+    let processed: Int
+    let total: Int
+}
+
+struct StatusUpdate {
+    let status: ContentUpdateStatus
+    let contentChanged: Bool
+}
+
 protocol ContentUpdateServiceProtocol {
-
-    var delegate: ContentUpdateServiceDelegate? { get set }
-
+    var progressUpdates: AsyncThrowingStream<ProgressUpdate, Error> { get }
+    var statusUpdates: AsyncThrowingStream<StatusUpdate, Error> { get }
+    
     func update() async
 }
 
-protocol ContentUpdateServiceDelegate: AnyObject {
+extension Notification.Name {
 
-    func set(totalUpdateCount: Int)
-    func didProcessUpdate(number: Int)
-    func update(status: ContentUpdateStatus, contentChanged: Bool)
+    static let contentUpdateProgress = Notification.Name("contentUpdateProgress")
+    static let contentUpdateProgressTotal = Notification.Name("contentUpdateProgressTotal")
+    static let contentUpdateStatus = Notification.Name("contentUpdateStatus")
 }
 
 /// A service that updates local content to stay in sync with their versions on the server.
 class ContentUpdateService: ContentUpdateServiceProtocol {
-
-    public weak var delegate: ContentUpdateServiceDelegate?
 
     // MARK: - Internal Properties
 
@@ -33,6 +43,11 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
 
     private var localUnsuccessfulUpdates: [UpdateEvent]?
     private var serverUpdates: [UpdateEvent]?
+    
+    // MARK: - Stream Continuations
+    
+    private var progressContinuation: AsyncThrowingStream<ProgressUpdate, Error>.Continuation?
+    private var statusContinuation: AsyncThrowingStream<StatusUpdate, Error>.Continuation?
 
     // MARK: - Dependencies
 
@@ -57,6 +72,20 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
         self.appMemory = appMemory
         self.logger = logger
     }
+    
+    // MARK: - Async Streams
+    
+    var progressUpdates: AsyncThrowingStream<ProgressUpdate, Error> {
+        AsyncThrowingStream { continuation in
+            self.progressContinuation = continuation
+        }
+    }
+    
+    var statusUpdates: AsyncThrowingStream<StatusUpdate, Error> {
+        AsyncThrowingStream { continuation in
+            self.statusContinuation = continuation
+        }
+    }
 }
 
 // MARK: - Public Functions
@@ -66,15 +95,11 @@ extension ContentUpdateService {
     /// Performs the content update operation with the server.
     public func update() async {
         guard appMemory.hasAllowedContentUpdate() else {
-            await MainActor.run {
-                delegate?.update(status: .pendingFirstUpdate, contentChanged: false)
-            }
+            notifyUpdate(status: .pendingFirstUpdate, contentChanged: false)
             return
         }
 
-        await MainActor.run {
-            delegate?.update(status: .updating, contentChanged: false)
-        }
+        notifyUpdate(status: .updating, contentChanged: false)
 
         defer {
             appMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
@@ -90,22 +115,17 @@ extension ContentUpdateService {
                 logger.updateSuccess("Atualização concluída com sucesso, porém não existem novidades.")
             }
 
-            await MainActor.run {
-                delegate?.update(
-                    status: .done,
-                    contentChanged: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
-                )
-            }
+            notifyUpdate(status: .done, contentChanged: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates)
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.updateError(errorMessage)
-            delegate?.update(status: .updateError, contentChanged: false)
+            notifyUpdate(status: .updateError, contentChanged: false)
         } catch ContentUpdateError.errorInsertingUpdateEvent(let updateEventId) {
             logger.updateError("Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            delegate?.update(status: .updateError, contentChanged: false)
+            notifyUpdate(status: .updateError, contentChanged: false)
         } catch {
             logger.updateError(error.localizedDescription)
-            delegate?.update(status: .updateError, contentChanged: false)
+            notifyUpdate(status: .updateError, contentChanged: false)
         }
 
         firstRunUpdateHappened = true
@@ -172,14 +192,15 @@ extension ContentUpdateService {
             return print("NO UPDATES")
         }
 
+        let totalCount = serverUpdates.count
         var updateNumber: Int = 0
-        delegate?.set(totalUpdateCount: serverUpdates.count)
+        notifyProgress(number: 0, total: totalCount)
 
         for update in serverUpdates {
             await process(updateEvent: update)
 
             updateNumber += 1
-            delegate?.didProcessUpdate(number: updateNumber)
+            notifyProgress(number: updateNumber, total: totalCount)
         }
     }
 
@@ -216,6 +237,14 @@ extension ContentUpdateService {
         case .deleted:
             await deleteResource(for: updateEvent)
         }
+    }
+
+    private func notifyProgress(number: Int, total: Int) {
+        progressContinuation?.yield(ProgressUpdate(processed: number, total: total))
+    }
+
+    private func notifyUpdate(status: ContentUpdateStatus, contentChanged: Bool) {
+        statusContinuation?.yield(StatusUpdate(status: status, contentChanged: contentChanged))
     }
 }
 
