@@ -8,29 +8,30 @@
 import SwiftUI
 
 @MainActor
-final class MainContentViewModel: ObservableObject {
+@Observable
+final class MainContentViewModel {
 
-    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
+    var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
-    @Published var currentViewMode: ContentModeOption
-    @Published var contentSortOption: Int
-    @Published var authorSortOption: Int
+    var currentViewMode: ContentModeOption
+    var contentSortOption: Int
+    var authorSortOption: Int
 
     // MARK: - Stored Properties
 
-    @Published public var currentContentListMode: Binding<ContentGridMode>
-    @Published public var toast: Binding<Toast?>
-    @Published public var floatingOptions: Binding<FloatingContentOptions?>
+    public var currentContentListMode: Binding<ContentGridMode>
+    public var toast: Binding<Toast?>
+    public var floatingOptions: Binding<FloatingContentOptions?>
     private let contentRepository: ContentRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
     private var contentUpdateService: ContentUpdateServiceProtocol
 
     // Content Update
     private let syncValues: SyncValues
-    @Published var displayLongUpdateBanner: Bool = false
-    @Published var dismissedLongUpdateBanner: Bool = false
-    @Published var processedUpdateNumber: Int = 0
-    @Published var totalUpdateCount: Int = 0
+    var displayLongUpdateBanner: Bool = false
+    var dismissedLongUpdateBanner: Bool = false
+    var processedUpdateNumber: Int = 0
+    var totalUpdateCount: Int = 0
 
     private var isRunningUnitTests: Bool {
         ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil

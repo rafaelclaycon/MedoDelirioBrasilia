@@ -10,7 +10,7 @@ import SwiftUI
 /// Main view of the app, reponsible for showing the content grid.
 struct MainContentView: View {
 
-    @ObservedObject private var viewModel: MainContentViewModel
+    @State private var viewModel: MainContentViewModel
     @State private var contentGridViewModel: ContentGridViewModel
     private var currentContentListMode: Binding<ContentGridMode>
     private let openSettingsAction: () -> Void
@@ -69,7 +69,7 @@ struct MainContentView: View {
         contentRepository: ContentRepositoryProtocol,
         bannerRepository: BannerRepositoryProtocol
     ) {
-        self._viewModel = ObservedObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
