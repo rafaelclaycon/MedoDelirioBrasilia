@@ -15,6 +15,7 @@ struct Use26BetaBannerView: View {
     @Environment(\.colorScheme) var colorScheme
 
     private let bannerColor: Color = .blue
+    private let analyticsScreenName: String = "Use26BetaBannerView"
 
     var body: some View {
         VStack(alignment: .leading, spacing: .spacing(.medium)) {
@@ -34,7 +35,14 @@ struct Use26BetaBannerView: View {
 
             VStack(spacing: .spacing(.large)) {
                 Button {
-                    OpenUtility.open(link: "https://testflight.apple.com/join/rMQ3yVaX")
+                    Task {
+                        await AnalyticsService().send(
+                            originatingScreen: analyticsScreenName,
+                            action: "tappedJoinBeta"
+                        )
+
+                        OpenUtility.open(link: "https://testflight.apple.com/join/rMQ3yVaX")
+                    }
                 } label: {
                     Text("Participar do Beta")
                 }
@@ -44,7 +52,14 @@ struct Use26BetaBannerView: View {
                 .buttonBorderShape(.roundedRectangle)
 
                 Button {
-                    showFAQSheet.toggle()
+                    Task {
+                        await AnalyticsService().send(
+                            originatingScreen: analyticsScreenName,
+                            action: "tappedMoreInfo"
+                        )
+
+                        showFAQSheet.toggle()
+                    }
                 } label: {
                     Text("Mais Informações")
                 }
@@ -62,13 +77,28 @@ struct Use26BetaBannerView: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory().hasDismissediOS26BetaBanner(true)
-                isBeingShown = false
+                Task {
+                    await AnalyticsService().send(
+                        originatingScreen: analyticsScreenName,
+                        action: "didDismissBanner"
+                    )
+
+                    AppPersistentMemory().hasDismissediOS26BetaBanner(true)
+                    isBeingShown = false
+                }
             } label: {
                 Image(systemName: "xmark")
                     .foregroundColor(bannerColor)
             }
             .padding()
+        }
+        .onAppear {
+            Task {
+                await AnalyticsService().send(
+                    originatingScreen: analyticsScreenName,
+                    action: "didSeeBanner"
+                )
+            }
         }
     }
 }
@@ -138,6 +168,14 @@ extension Use26BetaBannerView {
                         Button("Fechar") {
                             dismiss()
                         }
+                    }
+                }
+                .onAppear {
+                    Task {
+                        await AnalyticsService().send(
+                            originatingScreen: "Use26BetaBannerView.FAQ",
+                            action: "didViewBetaFAQ"
+                        )
                     }
                 }
             }
