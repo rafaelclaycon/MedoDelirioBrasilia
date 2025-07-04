@@ -114,7 +114,11 @@ struct FolderDetailView: View {
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
-                .toolbar { trailingToolbarControls() }
+                .toolbar {
+                    ToolbarItem { playStopButton() }
+                    ToolbarSpacer(.fixed)
+                    ToolbarItem { multiselectAndSortMenu() }
+                }
                 .onAppear {
                     viewModel.onViewAppeared()
                 }
@@ -134,84 +138,77 @@ struct FolderDetailView: View {
             .edgesIgnoringSafeArea(.top)
             .toast(contentGridViewModel.toast)
             .floatingContentOptions(contentGridViewModel.floatingOptions)
+            .scrollEdgeEffectDisabled(true, for: .top)
         }
     }
 
     // MARK: - Subviews
 
-    @ViewBuilder func trailingToolbarControls() -> some View {
-        HStack(spacing: 16) {
-            if currentContentListMode.wrappedValue == .regular {
+    @ViewBuilder func playStopButton() -> some View {
+        Button {
+            contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent)
+        } label: {
+            Image(systemName: contentGridViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+        }
+        .disabled(viewModel.contentCount == 0)
+    }
+    
+    @ViewBuilder func multiselectAndSortMenu() -> some View {
+        Menu {
+            Section {
                 Button {
-                    contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent)
+                    contentGridViewModel.onEnterMultiSelectModeSelected(
+                        loadedContent: loadedContent,
+                        isFavoritesOnlyView: false
+                    )
                 } label: {
-                    Image(systemName: contentGridViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
-                        .foregroundStyle(.white)
-                        .shadow(radius: 5)
+                    Label(
+                        currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                        systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                    )
+                }
+            }
+
+            Section {
+                Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
+                    Text("Título")
+                        .tag(0)
+
+                    Text("Nome do(a) Autor(a)")
+                        .tag(1)
+
+                    if showSortByDateAddedOption {
+                        Text("Adição à Pasta (Mais Recentes no Topo)")
+                            .tag(2)
+                    }
+                }
+                .onChange(of: viewModel.contentSortOption) {
+                    contentGridViewModel.onContentSortingChanged()
+                    viewModel.onContentSortOptionChanged()
                 }
                 .disabled(viewModel.contentCount == 0)
-            } else {
-                selectionControls()
             }
 
-            Menu {
-                Section {
-                    Button {
-                        contentGridViewModel.onEnterMultiSelectModeSelected(
-                            loadedContent: loadedContent,
-                            isFavoritesOnlyView: false
-                        )
-                    } label: {
-                        Label(
-                            currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
-                        )
-                    }
-                }
-
-                Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
-                        Text("Título")
-                            .tag(0)
-
-                        Text("Nome do(a) Autor(a)")
-                            .tag(1)
-
-                        if showSortByDateAddedOption {
-                            Text("Adição à Pasta (Mais Recentes no Topo)")
-                                .tag(2)
-                        }
-                    }
-                    .onChange(of: viewModel.contentSortOption) {
-                        contentGridViewModel.onContentSortingChanged()
-                        viewModel.onContentSortOptionChanged()
-                    }
-                    .disabled(viewModel.contentCount == 0)
-                }
-
-                //                    Section {
-                //                        Button {
-                //                            showingFolderInfoEditingView = true
-                //                        } label: {
-                //                            Label("Editar Pasta", systemImage: "pencil")
-                //                        }
-                //
-                //                        Button(role: .destructive, action: {
-                //                            //viewModel.dummyCall()
-                //                        }, label: {
-                //                            HStack {
-                //                                Text("Apagar Pasta")
-                //                                Image(systemName: "trash")
-                //                            }
-                //                        })
-                //                    }
-            } label: {
-                Image(systemName: "ellipsis.circle.fill")
-                    .foregroundStyle(.white)
-                    .shadow(radius: 4)
-            }
-            .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
+            //                    Section {
+            //                        Button {
+            //                            showingFolderInfoEditingView = true
+            //                        } label: {
+            //                            Label("Editar Pasta", systemImage: "pencil")
+            //                        }
+            //
+            //                        Button(role: .destructive, action: {
+            //                            //viewModel.dummyCall()
+            //                        }, label: {
+            //                            HStack {
+            //                                Text("Apagar Pasta")
+            //                                Image(systemName: "trash")
+            //                            }
+            //                        })
+            //                    }
+        } label: {
+            Image(systemName: "ellipsis")
         }
+        .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
     }
     
     @ViewBuilder func selectionControls() -> some View {
