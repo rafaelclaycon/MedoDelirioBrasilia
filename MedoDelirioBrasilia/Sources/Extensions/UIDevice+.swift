@@ -27,7 +27,7 @@ extension UIDevice {
     }
 }
 
-// MARK: - Software support
+// MARK: - Software Characteristics
 
 extension UIDevice {
 
@@ -45,6 +45,21 @@ extension UIDevice {
             ].contains(modelName)
         }
         return true
+    }
+
+    static var isRunningSoftwareVersion26: Bool {
+        let version = UIDevice.current.systemVersion
+        return version.contains("19") || version.contains("26")
+    }
+
+    static var systemMarketingName: String {
+        if self.isMac {
+            return "macOS"
+        } else if UIDevice.isiPhone {
+            return "iOS"
+        } else {
+            return "iPadOS"
+        }
     }
 }
 
@@ -81,6 +96,7 @@ extension UIDevice {
 }
 
 // MARK: - Device Info
+
 public extension UIDevice {
 
     static let modelName: String = {
