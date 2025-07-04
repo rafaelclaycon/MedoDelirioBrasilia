@@ -349,17 +349,7 @@ extension MainContentView {
                     .padding(.bottom, .spacing(.xSmall))
                 }
 
-                if UIDevice.isRunningSoftwareVersion26 && showBetaBanner {
-                    Use26BetaBannerView(
-                        isBeingShown: $showBetaBanner,
-                        showFAQSheet: $showBetaFAQ
-                    )
-                    .padding(.top, .spacing(.xxxSmall))
-                    .padding(.bottom, .spacing(.xSmall))
-                    .sheet(isPresented: $showBetaFAQ) {
-                        Use26BetaBannerView.FrequentlyAskedQuestionsView()
-                    }
-                }
+                // Beta should not have Beta advertising.
             }
             .onAppear {
                 Task{
