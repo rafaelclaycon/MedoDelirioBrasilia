@@ -48,9 +48,7 @@ struct MyFoldersiPhoneView: View {
                 Button {
                     folderForEditing = UserFolder.newFolder()
                 } label: {
-                    HStack {
-                        Image(systemName: "plus")
-                    }
+                    Image(systemName: "plus")
                 }
             }
         }
