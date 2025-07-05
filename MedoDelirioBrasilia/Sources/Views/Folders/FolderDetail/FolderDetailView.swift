@@ -81,7 +81,13 @@ struct FolderDetailView: View {
                 ScrollView {
                     detailView(size: geometry.size)
                         .toolbar {
-                            ToolbarItem { playStopButton() }
+                            ToolbarItem {
+                                if currentContentListMode.wrappedValue == .regular {
+                                    playStopButton()
+                                } else {
+                                    selectionControls
+                                }
+                            }
                             ToolbarSpacer(.fixed)
                             ToolbarItem { multiselectAndSortMenu() }
                         }
@@ -100,7 +106,7 @@ struct FolderDetailView: View {
                                 if currentContentListMode.wrappedValue == .regular {
                                     playStopButton()
                                 } else {
-                                    selectionControls()
+                                    selectionControls
                                 }
 
                                 multiselectAndSortMenu()
@@ -238,21 +244,12 @@ struct FolderDetailView: View {
         .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
     }
     
-    @ViewBuilder func selectionControls() -> some View {
-        if currentContentListMode.wrappedValue == .regular {
-            EmptyView()
-        } else {
-            HStack(spacing: 16) {
-                Button {
-                    currentContentListMode.wrappedValue = .regular
-                    contentGridViewModel.selectionKeeper.removeAll()
-                } label: {
-                    Text("Cancelar")
-                        .bold()
-                        .foregroundStyle(.white)
-                        .shadow(radius: 5)
-                }
-            }
+    var selectionControls: some View {
+        Button {
+            currentContentListMode.wrappedValue = .regular
+            contentGridViewModel.selectionKeeper.removeAll()
+        } label: {
+            Text("Cancelar")
         }
     }
 }

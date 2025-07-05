@@ -110,7 +110,6 @@ struct FloatingSelectionOptionsView: ViewModifier {
                             
                             if options.shareIsProcessing {
                                 ProgressView()
-                                    .frame(width: 80)
                             } else {
                                 Button {
                                     options.shareAction()
