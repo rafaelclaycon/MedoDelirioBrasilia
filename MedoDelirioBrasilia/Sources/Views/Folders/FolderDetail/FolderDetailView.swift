@@ -115,9 +115,17 @@ struct FolderDetailView: View {
                         .frame(height: .spacing(.large))
                 }
                 .toolbar {
-                    ToolbarItem { playStopButton() }
-                    ToolbarSpacer(.fixed)
-                    ToolbarItem { multiselectAndSortMenu() }
+//                    if #available(iOS 26.0, *) {
+                            ToolbarItem { playStopButton() }
+                            ToolbarSpacer(.fixed)
+                            ToolbarItem { multiselectAndSortMenu() }
+//                    } else {
+//                        HStack(spacing: 16) {
+//                            ToolbarItem { playStopButton() }
+//                            ToolbarSpacer(.fixed)
+//                            ToolbarItem { multiselectAndSortMenu() }
+//                        }
+//                    }
                 }
                 .onAppear {
                     viewModel.onViewAppeared()
