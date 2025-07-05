@@ -43,133 +43,118 @@ struct AddToFolderView: View {
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .center, spacing: 20) {
-                HeaderView(text: selectedItemsText)
+            if #available(iOS 26.0, *) {
+                addView
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button {
+                                isBeingShown.toggle()
+                            } label: {
+                                Image(systemName: "xmark")
+                            }
+                        }
 
-//                FoldersAreTagsBannerView()
-//                    .padding(.horizontal)
-//                    .padding(.bottom, -10)
-                
-                ScrollView {
-                    VStack(spacing: 15) {
-                        HStack {
+                        ToolbarItem(placement: .topBarTrailing) {
                             Button {
                                 newFolder = UserFolder.newFolder()
                             } label: {
-                                CreateFolderCell()
-                            }
-                            .foregroundColor(.primary)
-                            .frame(width: createNewFolderCellWidth)
-
-                            Spacer()
-                        }
-
-                        HStack {
-                            Text("Minhas Pastas")
-                                .font(.title2)
-
-                            Spacer()
-                        }
-
-                        if viewModel.folders.count == 0 {
-                            Text("Nenhuma Pasta")
-                                .font(.title2)
-                                .foregroundColor(.gray)
-                                .padding(.vertical, 200)
-                        } else {
-                            LazyVGrid(columns: columns, spacing: 14) {
-                                ForEach(viewModel.folders) { folder in
-                                    Button {
-                                        guard let result = viewModel.onExistingFolderSelected(
-                                            folder: folder,
-                                            selectedContent: selectedContent
-                                        ) else { return }
-                                        details = result
-                                        isBeingShown.toggle()
-                                    } label: {
-                                        FolderView(folder: folder)
-                                    }
-                                    .foregroundColor(.primary)
-                                }
+                                Image(systemName: "plus")
                             }
                         }
                     }
-                }
-            }
-            .navigationTitle("Adicionar a Pasta")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading:
-                Button("Cancelar") {
-                    self.isBeingShown = false
-                }
-            )
-            .padding(.horizontal)
-            .onAppear {
-                Task {
-                    await viewModel.onViewAppeared()
-                }
-            }
-            .alert(isPresented: $viewModel.showAlert) {
-                switch viewModel.alertType {
-                case .addOnlyNonOverlapping:
-                    return Alert(
-                        title: Text(viewModel.alertTitle),
-                        message: Text(viewModel.alertMessage),
-                        primaryButton: .default(Text("Adicionar"), action: {
-                            guard let result = viewModel.onAddOnlyNonExistingSelected() else { return }
-                            details = result
-                            isBeingShown.toggle()
-                        }),
-                        secondaryButton: .cancel(Text("Cancelar"))
-                    )
+            } else {
+                addView
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button("Cancelar") {
+                                isBeingShown.toggle()
+                            }
+                        }
 
-                default:
-                    return Alert(
-                        title: Text(viewModel.alertTitle),
-                        message: Text(viewModel.alertMessage),
-                        dismissButton: .default(Text("OK"))
-                    )
-                }
-            }
-            .sheet(item: $newFolder) { folder in
-                FolderInfoEditingView(
-                    folder: folder,
-                    folderRepository: UserFolderRepository(database: LocalDatabase.shared),
-                    dismissSheet: {
-                        newFolder = nil
-                        Task {
-                            await viewModel.onNewFolderCreationSheetDismissed()
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button {
+                                newFolder = UserFolder.newFolder()
+                            } label: {
+                                Image(systemName: "plus")
+                            }
                         }
                     }
-                )
             }
         }
     }
-}
 
-// MARK: - Subviews
+    // MARK: - Subviews
 
-extension AddToFolderView {
-
-    struct HeaderView: View {
-
-        let text: String
-
-        var body: some View {
-            HStack(spacing: 16) {
-                Image(systemName: "speaker.wave.3.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 24)
-                    .padding(.leading, 7)
-
-                Text(text)
-                    .bold()
-                    .multilineTextAlignment(.leading)
-
-                Spacer()
+    var addView: some View {
+        VStack(alignment: .center, spacing: .spacing(.large)) {
+            ScrollView {
+                VStack {
+                    if viewModel.folders.count == 0 {
+                        Text("Nenhuma Pasta")
+                            .font(.title2)
+                            .foregroundColor(.gray)
+                            .padding(.vertical, 200)
+                    } else {
+                        LazyVGrid(columns: columns, spacing: 14) {
+                            ForEach(viewModel.folders) { folder in
+                                Button {
+                                    guard let result = viewModel.onExistingFolderSelected(
+                                        folder: folder,
+                                        selectedContent: selectedContent
+                                    ) else { return }
+                                    details = result
+                                    isBeingShown.toggle()
+                                } label: {
+                                    FolderView(folder: folder)
+                                }
+                                .foregroundColor(.primary)
+                            }
+                        }
+                    }
+                }
             }
-            .padding(.top, 5)
+        }
+        .navigationTitle("Adicionar a uma Pasta")
+        .navigationBarTitleDisplayMode(.inline)
+        .padding(.horizontal)
+        .onAppear {
+            Task {
+                await viewModel.onViewAppeared()
+            }
+        }
+        .alert(isPresented: $viewModel.showAlert) {
+            switch viewModel.alertType {
+            case .addOnlyNonOverlapping:
+                return Alert(
+                    title: Text(viewModel.alertTitle),
+                    message: Text(viewModel.alertMessage),
+                    primaryButton: .default(Text("Adicionar"), action: {
+                        guard let result = viewModel.onAddOnlyNonExistingSelected() else { return }
+                        details = result
+                        isBeingShown.toggle()
+                    }),
+                    secondaryButton: .cancel(Text("Cancelar"))
+                )
+
+            default:
+                return Alert(
+                    title: Text(viewModel.alertTitle),
+                    message: Text(viewModel.alertMessage),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+        }
+        .sheet(item: $newFolder) { folder in
+            FolderInfoEditingView(
+                folder: folder,
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                dismissSheet: {
+                    newFolder = nil
+                    Task {
+                        await viewModel.onNewFolderCreationSheetDismissed()
+                    }
+                }
+            )
         }
     }
 }
