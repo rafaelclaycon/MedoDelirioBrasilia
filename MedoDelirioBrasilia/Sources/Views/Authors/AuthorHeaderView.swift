@@ -145,6 +145,49 @@ extension AuthorHeaderView {
         let contentSortChangeAction: () -> Void
 
         var body: some View {
+            if #available(iOS 26.0, *) {
+                header
+                    .toolbar {
+                        ToolbarItem {
+                            multiselectButton
+                        }
+
+                        ToolbarSpacer(.fixed)
+
+                        ToolbarItem {
+                            MoreOptionsMenu(
+                                soundCount: soundCount,
+                                contentListMode: contentListMode,
+                                contentSortOption: $contentSortOption,
+                                multiSelectAction: multiSelectAction,
+                                askForSoundAction: askForSoundAction,
+                                reportIssueAction: reportIssueAction,
+                                contentSortChangeAction: contentSortChangeAction
+                            )
+                        }
+                    }
+                    .toolbarVisibility(.hidden, for: .tabBar)
+            } else {
+                header
+                    .toolbar {
+                        HStack(spacing: .spacing(.medium)) {
+                            multiselectButton
+
+                            MoreOptionsMenu(
+                                soundCount: soundCount,
+                                contentListMode: contentListMode,
+                                contentSortOption: $contentSortOption,
+                                multiSelectAction: multiSelectAction,
+                                askForSoundAction: askForSoundAction,
+                                reportIssueAction: reportIssueAction,
+                                contentSortChangeAction: contentSortChangeAction
+                            )
+                        }
+                    }
+            }
+        }
+
+        var header: some View {
             VStack {
                 if let photo = author.photo, let photoUrl = URL(string: photo) {
                     StickyPhotoView(photoUrl: photoUrl, height: 250)
@@ -157,16 +200,6 @@ extension AuthorHeaderView {
                             .bold()
 
                         Spacer()
-
-                        MoreOptionsMenu(
-                            soundCount: soundCount,
-                            contentListMode: contentListMode,
-                            contentSortOption: $contentSortOption,
-                            multiSelectAction: multiSelectAction,
-                            askForSoundAction: askForSoundAction,
-                            reportIssueAction: reportIssueAction,
-                            contentSortChangeAction: contentSortChangeAction
-                        )
                     }
 
                     if let description = author.description {
@@ -197,6 +230,18 @@ extension AuthorHeaderView {
                 .padding(.horizontal, .spacing(.large))
                 .padding(.top, .spacing(.small))
                 .padding(.bottom, .spacing(.xxSmall))
+            }
+        }
+
+        var multiselectButton: some View {
+            Button {
+                multiSelectAction()
+            } label: {
+                if contentListMode == .regular {
+                    Image(systemName: "checklist")
+                } else {
+                    Text("Cancelar")
+                }
             }
         }
     }
@@ -367,18 +412,18 @@ extension AuthorHeaderView {
 
         var body: some View {
             Menu {
-                if soundCount > 1 {
-                    Section {
-                        Button {
-                            multiSelectAction()
-                        } label: {
-                            Label(
-                                contentListMode == .selection ? "Cancelar Seleção" : "Selecionar",
-                                systemImage: contentListMode == .selection ? "xmark.circle" : "checkmark.circle"
-                            )
-                        }
-                    }
-                }
+//                if soundCount > 1 {
+//                    Section {
+//                        Button {
+//                            multiSelectAction()
+//                        } label: {
+//                            Label(
+//                                contentListMode == .selection ? "Cancelar Seleção" : "Selecionar",
+//                                systemImage: contentListMode == .selection ? "xmark.circle" : "checkmark.circle"
+//                            )
+//                        }
+//                    }
+//                }
 
                 Section {
     //                Button {
@@ -417,10 +462,7 @@ extension AuthorHeaderView {
                     }
                 }
             } label: {
-                Image(systemName: "ellipsis.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: menuButtonHeight)
+                Image(systemName: "ellipsis")
             }
             .disabled(soundCount == 0)
         }
