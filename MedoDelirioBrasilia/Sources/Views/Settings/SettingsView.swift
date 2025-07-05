@@ -40,6 +40,41 @@ struct SettingsView: View {
     // MARK: - View Body
 
     var body: some View {
+        if #available(iOS 26.0, *) {
+            form
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink(
+                            destination: DiagnosticsView(
+                                database: LocalDatabase.shared,
+                                analyticsService: AnalyticsService()
+                            )
+                        ) {
+                            Image(systemName: "stethoscope")
+                        }
+                    }
+
+                    ToolbarSpacer(.fixed, placement: .topBarTrailing)
+
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink(destination: HelpView()) {
+                            Image(systemName: "questionmark")
+                        }
+                    }
+                }
+        } else {
+            form
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink(destination: HelpView()) {
+                            Image(systemName: "questionmark.circle")
+                        }
+                    }
+                }
+        }
+    }
+
+    var form: some View {
         Form {
             Section {
                 Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
@@ -155,31 +190,8 @@ struct SettingsView: View {
                     Label("Ver código fonte no GitHub", systemImage: "curlybraces")
                 }
             }
-
-            Section {
-                NavigationLink(
-                    destination: DiagnosticsView(
-                        database: LocalDatabase.shared,
-                        analyticsService: AnalyticsService()
-                    )
-                ) {
-                    Label {
-                        Text("Diagnóstico")
-                    } icon: {
-                        Image(systemName: "stethoscope")
-                            .foregroundColor(.gray)
-                    }
-                }
-            }
         }
         .navigationTitle("Configurações")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: HelpView()) {
-                    Image(systemName: "questionmark.circle")
-                }
-            }
-        }
         .onAppear {
             Task {
                 await onViewAppeared()
