@@ -89,9 +89,14 @@ struct FolderDetailView: View {
                                 }
                             }
                             ToolbarSpacer(.fixed)
+                            if currentContentListMode.wrappedValue == .regular {
+                                ToolbarItem {
+                                    multiselectButton
+                                }
+                            }
+                            ToolbarSpacer(.fixed)
                             ToolbarItem { multiselectAndSortMenu() }
                         }
-
                 }
                 .edgesIgnoringSafeArea(.top)
                 .toast(contentGridViewModel.toast)
@@ -188,21 +193,21 @@ struct FolderDetailView: View {
     
     @ViewBuilder func multiselectAndSortMenu() -> some View {
         Menu {
-            Section {
-                Button {
-                    contentGridViewModel.onEnterMultiSelectModeSelected(
-                        loadedContent: loadedContent,
-                        isFavoritesOnlyView: false
-                    )
-                } label: {
-                    Label(
-                        currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                        systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
-                    )
-                }
-            }
+//            Section {
+//                Button {
+//                    contentGridViewModel.onEnterMultiSelectModeSelected(
+//                        loadedContent: loadedContent,
+//                        isFavoritesOnlyView: false
+//                    )
+//                } label: {
+//                    Label(
+//                        currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+//                        systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+//                    )
+//                }
+//            }
 
-            Section {
+            //Section {
                 Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
                     Text("Título")
                         .tag(0)
@@ -220,7 +225,7 @@ struct FolderDetailView: View {
                     viewModel.onContentSortOptionChanged()
                 }
                 .disabled(viewModel.contentCount == 0)
-            }
+            //}
 
             //                    Section {
             //                        Button {
@@ -239,7 +244,7 @@ struct FolderDetailView: View {
             //                        })
             //                    }
         } label: {
-            Image(systemName: "ellipsis")
+            Image(systemName: "arrow.up.arrow.down")
         }
         .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
     }
@@ -250,6 +255,17 @@ struct FolderDetailView: View {
             contentGridViewModel.selectionKeeper.removeAll()
         } label: {
             Text("Cancelar")
+        }
+    }
+
+    var multiselectButton: some View {
+        Button {
+            contentGridViewModel.onEnterMultiSelectModeSelected(
+                loadedContent: loadedContent,
+                isFavoritesOnlyView: false
+            )
+        } label: {
+            Text("Selecionar")
         }
     }
 }

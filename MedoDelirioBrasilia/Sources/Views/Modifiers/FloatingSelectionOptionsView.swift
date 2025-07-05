@@ -84,7 +84,7 @@ struct FloatingSelectionOptionsView: ViewModifier {
             content
                 .toolbar {
                     if let options {
-                        ToolbarItemGroup(placement: .bottomBar) {
+                        ToolbarItem(placement: .bottomBar) {
                             Button {
                                 options.favoriteAction()
                             } label: {
@@ -95,7 +95,9 @@ struct FloatingSelectionOptionsView: ViewModifier {
                                 }
                             }
                             .disabled(!options.areButtonsEnabled)
-                            
+                        }
+
+                        ToolbarItem(placement: .bottomBar) {
                             Button {
                                 options.folderAction()
                             } label: {
@@ -107,7 +109,11 @@ struct FloatingSelectionOptionsView: ViewModifier {
                                 }
                             }
                             .disabled(!options.areButtonsEnabled)
-                            
+                        }
+
+                        ToolbarSpacer(.flexible, placement: .bottomBar)
+
+                        ToolbarItem(placement: .bottomBar) {
                             if options.shareIsProcessing {
                                 ProgressView()
                             } else {
