@@ -17,8 +17,8 @@ struct SyncStatusView: View {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
         case .done:
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundColor(.accentColor)
+            Image(systemName: "info.circle")
+                //.foregroundColor(.accentColor)
         case .updateError:
             Image(systemName: "exclamationmark.triangle.fill") // "xmark.octagon"
                 .foregroundColor(.orange)
