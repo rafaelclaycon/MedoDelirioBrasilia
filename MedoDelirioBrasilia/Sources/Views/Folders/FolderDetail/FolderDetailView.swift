@@ -290,17 +290,27 @@ extension FolderDetailView {
         // MARK: - View Body
 
         var body: some View {
-            GeometryReader { geometry in
-                Rectangle()
-                    .fill(color)
-                    .overlay { FolderView.SpeckleOverlay() }
-                    .frame(
-                        width: geometry.size.width,
-                        height: getHeightForHeaderImage(geometry)
-                    )
-                    .offset(x: 0, y: getOffsetForHeaderImage(geometry))
+            GeometryReader { proxy in
+                if #available(iOS 26.0, *) {
+                    colorfulRectangle(proxy: proxy)
+                        .backgroundExtensionEffect()
+                } else {
+                    colorfulRectangle(proxy: proxy)
+                }
             }
             .frame(height: height)
+        }
+
+        @ViewBuilder
+        func colorfulRectangle(proxy: GeometryProxy) -> some View {
+            Rectangle()
+                .fill(color)
+                .overlay { FolderView.SpeckleOverlay() }
+                .frame(
+                    width: proxy.size.width,
+                    height: getHeightForHeaderImage(proxy)
+                )
+                .offset(x: 0, y: getOffsetForHeaderImage(proxy))
         }
     }
 

@@ -95,28 +95,38 @@ extension AuthorHeaderView {
 
         var body: some View {
             GeometryReader { headerPhotoGeometry in
-                KFImage(photoUrl)
-                    .placeholder {
-                        Image(systemName: "photo.on.rectangle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 100)
-                            .foregroundColor(.gray)
-                            .opacity(0.3)
-                    }
-                    .resizable()
-                    .scaledToFill()
-                    .overlay(blurAndDarken ? Color.black.opacity(0.3) : Color.clear)
-                    .blur(radius: blurAndDarken ? 5 : 0)
-                    .scaleEffect(blurAndDarken ? 1.05 : 1)
-                    .frame(
-                        width: headerPhotoGeometry.size.width,
-                        height: self.getHeightForHeaderImage(headerPhotoGeometry)
-                    )
-                    .clipped()
-                    .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
+                if #available(iOS 26.0, *) {
+                    image(proxy: headerPhotoGeometry)
+                        .backgroundExtensionEffect()
+                } else {
+                    image(proxy: headerPhotoGeometry)
+                }
             }
             .frame(height: height)
+        }
+
+        @ViewBuilder
+        func image(proxy: GeometryProxy) -> some View {
+            KFImage(photoUrl)
+                .placeholder {
+                    Image(systemName: "photo.on.rectangle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 100)
+                        .foregroundColor(.gray)
+                        .opacity(0.3)
+                }
+                .resizable()
+                .scaledToFill()
+                .overlay(blurAndDarken ? Color.black.opacity(0.3) : Color.clear)
+                .blur(radius: blurAndDarken ? 5 : 0)
+                .scaleEffect(blurAndDarken ? 1.05 : 1)
+                .frame(
+                    width: proxy.size.width,
+                    height: self.getHeightForHeaderImage(proxy)
+                )
+                .clipped()
+                .offset(x: 0, y: self.getOffsetForHeaderImage(proxy))
         }
     }
 
