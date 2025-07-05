@@ -189,40 +189,93 @@ struct MainContentView: View {
                         }
                     }
                     .navigationTitle(Text(title))
-                    .navigationBarItems(
-                        leading: LeadingToolbarControls(
-                            isSelecting: currentContentListMode.wrappedValue == .selection,
-                            cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
-                            openSettingsAction: openSettingsAction
-                        ),
-                        trailing: TrailingToolbarControls(
-                            currentViewMode: viewModel.currentViewMode,
-                            contentListMode: currentContentListMode.wrappedValue,
-                            contentSortOption: $viewModel.contentSortOption,
-                            authorSortOption: $viewModel.authorSortOption,
-                            openContentUpdateSheet: {
+                    .toolbar {
+                        ToolbarItemGroup(placement: .topBarLeading) {
+                            LeadingToolbarControls(
+                                isSelecting: currentContentListMode.wrappedValue == .selection,
+                                cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
+                                openSettingsAction: openSettingsAction
+                            )
+                        }
+                    }
+                    .toolbar {
+                        //ToolbarSpacer(.flexible)
+
+                        ToolbarItem {
+                            Button {
                                 subviewToOpen = .syncInfo
                                 showingModalView = true
-                            },
-                            multiSelectAction: {
-                                contentGridViewModel.onEnterMultiSelectModeSelected(
-                                    loadedContent: loadedContent,
-                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites
-                                )
-                            },
-                            playRandomSoundAction: {
-                                Task {
-                                    await playRandomSound()
-                                }
-                            },
-                            contentSortChangeAction: {
-                                viewModel.onContentSortOptionChanged()
-                            },
-                            authorSortChangeAction: {
-                                authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
+                            } label: {
+                                SyncStatusView()
                             }
-                        )
-                    )
+                        }
+
+                        //ToolbarSpacer(placement: .fixed)
+
+                        ToolbarItem {
+                            ContentToolbarOptionsView(
+                                contentSortOption: $viewModel.contentSortOption,
+                                contentListMode: currentContentListMode.wrappedValue,
+                                multiSelectAction: {
+                                    contentGridViewModel.onEnterMultiSelectModeSelected(
+                                        loadedContent: loadedContent,
+                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+                                    )
+                                },
+                                playRandomSoundAction: {
+                                    Task {
+                                        await playRandomSound()
+                                    }
+                                },
+                                contentSortChangeAction: { viewModel.onContentSortOptionChanged() }
+                            )
+                        }
+   
+//                            ContentToolbarOptionsView(
+//                                contentSortOption: $viewModel.contentSortOption,
+//                                contentListMode: currentContentListMode.wrappedValue,
+//                                multiSelectAction: {
+//                                    contentGridViewModel.onEnterMultiSelectModeSelected(
+//                                        loadedContent: loadedContent,
+//                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+//                                    )
+//                                },
+//                                playRandomSoundAction: {
+//                                    Task {
+//                                        await playRandomSound()
+//                                    }
+//                                },
+//                                contentSortChangeAction: viewModel.onContentSortOptionChanged()
+//                            )
+                            
+//                            TrailingToolbarControls(
+//                                currentViewMode: viewModel.currentViewMode,
+//                                contentListMode: currentContentListMode.wrappedValue,
+//                                contentSortOption: $viewModel.contentSortOption,
+//                                authorSortOption: $viewModel.authorSortOption,
+//                                openContentUpdateSheet: {
+//                                    subviewToOpen = .syncInfo
+//                                    showingModalView = true
+//                                },
+//                                multiSelectAction: {
+//                                    contentGridViewModel.onEnterMultiSelectModeSelected(
+//                                        loadedContent: loadedContent,
+//                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+//                                    )
+//                                },
+//                                playRandomSoundAction: {
+//                                    Task {
+//                                        await playRandomSound()
+//                                    }
+//                                },
+//                                contentSortChangeAction: {
+//                                    viewModel.onContentSortOptionChanged()
+//                                },
+//                                authorSortChangeAction: {
+//                                    authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
+//                                }
+//                            )
+                    }
                     .onChange(of: viewModel.currentViewMode) {
                         Task {
                             await viewModel.onSelectedViewModeChanged()
