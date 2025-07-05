@@ -117,6 +117,7 @@ struct MainView: View {
                         }
                     }
                 }
+                .searchable(text: $searchText)
                 .tabBarMinimizeBehavior(.onScrollDown)
             } else {
                 if #available(iOS 18, *) {
