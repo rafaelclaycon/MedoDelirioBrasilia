@@ -49,7 +49,7 @@ struct MainContentView: View {
         guard currentContentListMode.wrappedValue == .regular else {
             return selectionNavBarTitle(for: contentGridViewModel)
         }
-        return "Sons"
+        return "Vírgulas"
     }
 
     private var loadedContent: [AnyEquatableMedoContent] {

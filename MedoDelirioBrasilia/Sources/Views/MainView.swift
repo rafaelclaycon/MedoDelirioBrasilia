@@ -54,7 +54,7 @@ struct MainView: View {
             if UIDevice.isiPhone {
                 if #available(iOS 26.0, *) {
                     TabView {
-                        Tab("Conteúdo", systemImage: "headphones") {
+                        Tab("Vírgulas", systemImage: "headphones") {
                             NavigationStack(path: $soundsPath) {
                                 MainContentView(
                                     viewModel: MainContentViewModel(
