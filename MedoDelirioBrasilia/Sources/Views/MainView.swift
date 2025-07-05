@@ -52,8 +52,76 @@ struct MainView: View {
     var body: some View {
         ZStack {
             if UIDevice.isiPhone {
-                TabView {
-                    Tab("Conteúdo", systemImage: "headphones") {
+                if #available(iOS 26.0, *) {
+                    TabView {
+                        Tab("Conteúdo", systemImage: "headphones") {
+                            NavigationStack(path: $soundsPath) {
+                                MainContentView(
+                                    viewModel: MainContentViewModel(
+                                        currentViewMode: .all,
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        authorSortOption: UserSettings().authorSortOption(),
+                                        currentContentListMode: $currentContentListMode,
+                                        toast: $toast,
+                                        floatingOptions: $floatingOptions,
+                                        syncValues: syncValues,
+                                        contentRepository: contentRepository,
+                                        analyticsService: AnalyticsService()
+                                    ),
+                                    currentContentListMode: $currentContentListMode,
+                                    toast: $toast,
+                                    floatingOptions: $floatingOptions,
+                                    openSettingsAction: {
+                                        isShowingSettingsSheet.toggle()
+                                    },
+                                    contentRepository: contentRepository,
+                                    bannerRepository: BannerRepository()
+                                )
+                                .environment(trendsHelper)
+                                .environment(settingsHelper)
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
+                                }
+                            }
+                            .tag(PhoneTab.sounds)
+                            .environment(\.push, PushAction { soundsPath.append($0) })
+                        }
+
+                        Tab("Reações", systemImage: "rectangle.grid.2x2") {
+                            NavigationStack(path: $reactionsPath) {
+                                ReactionsView()
+                                    .environment(trendsHelper)
+                                    .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
+                                    }
+                            }
+                            .tag(PhoneTab.reactions)
+                            .environment(\.push, PushAction { reactionsPath.append($0) })
+                        }
+
+                        Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
+                            NavigationView {
+                                TrendsView(
+                                    tabSelection: $tabSelection,
+                                    activePadScreen: .constant(.trends)
+                                )
+                                .environment(trendsHelper)
+                            }
+                            .tag(PhoneTab.trends)
+                        }
+
+                        Tab(role: .search) {
+                            NavigationStack {
+                                VStack {
+                                    Text("Tela de Pesquisa Universal")
+                                }
+                            }
+                        }
+                    }
+                    .searchable(text: $searchText)
+                    .tabBarMinimizeBehavior(.onScrollDown)
+                } else {
+                    TabView(selection: $tabSelection) {
                         NavigationStack(path: $soundsPath) {
                             MainContentView(
                                 viewModel: MainContentViewModel(
@@ -82,11 +150,12 @@ struct MainView: View {
                                 GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
                         }
+                        .tabItem {
+                            Label("Sons", systemImage: "speaker.wave.3.fill")
+                        }
                         .tag(PhoneTab.sounds)
                         .environment(\.push, PushAction { soundsPath.append($0) })
-                    }
-                    
-                    Tab("Reações", systemImage: "rectangle.grid.2x2") {
+
                         NavigationStack(path: $reactionsPath) {
                             ReactionsView()
                                 .environment(trendsHelper)
@@ -94,11 +163,12 @@ struct MainView: View {
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
                         }
+                        .tabItem {
+                            Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                        }
                         .tag(PhoneTab.reactions)
                         .environment(\.push, PushAction { reactionsPath.append($0) })
-                    }
-                    
-                    Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
+
                         NavigationView {
                             TrendsView(
                                 tabSelection: $tabSelection,
@@ -106,19 +176,37 @@ struct MainView: View {
                             )
                             .environment(trendsHelper)
                         }
+                        .tabItem {
+                            Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                        }
                         .tag(PhoneTab.trends)
                     }
-                    
-                    Tab(role: .search) {
-                        NavigationStack {
-                            VStack {
-                                Text("Tela de Pesquisa Universal")
-                            }
-                        }
-                    }
+                    .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
+                        tabSelection = .sounds
+                    })
+                    //                .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
+                    //                    tabSelection = .collections
+                    //                })
+                    //                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
+                    //                    tabSelection = .songs
+                    //                })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .last24Hours
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .lastWeek
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .lastMonth
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .allTime
+                    })
                 }
-                .searchable(text: $searchText)
-                .tabBarMinimizeBehavior(.onScrollDown)
             } else {
                 if #available(iOS 18, *) {
                     TabView {
