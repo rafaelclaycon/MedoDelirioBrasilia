@@ -77,80 +77,99 @@ struct FolderDetailView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            ScrollView {
-                VStack(spacing: .spacing(.medium)) {
-                    HeaderView(
-                        folder: folder,
-                        itemCountText: viewModel.contentCountText
-                    )
-
-                    ContentGrid(
-                        state: viewModel.state,
-                        viewModel: contentGridViewModel,
-                        showNewTag: false,
-                        containerSize: geometry.size,
-                        loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
-                        emptyStateView:
-                            VStack {
-                                EmptyFolderView()
-                                    .padding(.horizontal, .spacing(.xxLarge))
-                                    .padding(.vertical, .spacing(.huge))
-                            }
-                        ,
-                        errorView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Erro ao carregar sons.")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                    )
-                    .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.medium))
-
-                    Spacer()
-                        .frame(height: .spacing(.large))
-                }
-                .toolbar {
-//                    if #available(iOS 26.0, *) {
+            if #available(iOS 26.0, *) {
+                ScrollView {
+                    detailView(size: geometry.size)
+                        .toolbar {
                             ToolbarItem { playStopButton() }
                             ToolbarSpacer(.fixed)
                             ToolbarItem { multiselectAndSortMenu() }
-//                    } else {
-//                        HStack(spacing: 16) {
-//                            ToolbarItem { playStopButton() }
-//                            ToolbarSpacer(.fixed)
-//                            ToolbarItem { multiselectAndSortMenu() }
-//                        }
-//                    }
-                }
-                .onAppear {
-                    viewModel.onViewAppeared()
-                }
-                .onDisappear {
-                    contentGridViewModel.onViewDisappeared()
-                }
-                .sheet(isPresented: $showingFolderInfoEditingView) {
-                    FolderInfoEditingView(
-                        folder: folder,
-                        folderRepository: UserFolderRepository(database: LocalDatabase.shared),
-                        dismissSheet: {
-                            showingFolderInfoEditingView = false
                         }
-                    )
+
                 }
+                .edgesIgnoringSafeArea(.top)
+                .toast(contentGridViewModel.toast)
+                .floatingContentOptions(contentGridViewModel.floatingOptions)
+                .scrollEdgeEffectDisabled(true, for: .top)
+                .toolbarVisibility(.hidden, for: .tabBar)
+            } else {
+                ScrollView {
+                    detailView(size: geometry.size)
+                        .toolbar {
+                            HStack(spacing: 16) {
+                                if currentContentListMode.wrappedValue == .regular {
+                                    playStopButton()
+                                } else {
+                                    selectionControls()
+                                }
+
+                                multiselectAndSortMenu()
+                            }
+                        }
+                }
+                .edgesIgnoringSafeArea(.top)
+                .toast(contentGridViewModel.toast)
+                .floatingContentOptions(contentGridViewModel.floatingOptions)
             }
-            .edgesIgnoringSafeArea(.top)
-            .toast(contentGridViewModel.toast)
-            .floatingContentOptions(contentGridViewModel.floatingOptions)
-            .scrollEdgeEffectDisabled(true, for: .top)
         }
     }
 
     // MARK: - Subviews
+
+    @ViewBuilder
+    func detailView(size: CGSize) -> some View {
+        VStack(spacing: .spacing(.medium)) {
+            HeaderView(
+                folder: folder,
+                itemCountText: viewModel.contentCountText
+            )
+
+            ContentGrid(
+                state: viewModel.state,
+                viewModel: contentGridViewModel,
+                showNewTag: false,
+                containerSize: size,
+                loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
+                emptyStateView:
+                    VStack {
+                        EmptyFolderView()
+                            .padding(.horizontal, .spacing(.xxLarge))
+                            .padding(.vertical, .spacing(.huge))
+                    }
+                ,
+                errorView:
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Erro ao carregar sons.")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+            )
+            .environment(TrendsHelper())
+            .padding(.horizontal, .spacing(.medium))
+
+            Spacer()
+                .frame(height: .spacing(.large))
+        }
+        .onAppear {
+            viewModel.onViewAppeared()
+        }
+        .onDisappear {
+            contentGridViewModel.onViewDisappeared()
+        }
+        .sheet(isPresented: $showingFolderInfoEditingView) {
+            FolderInfoEditingView(
+                folder: folder,
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                dismissSheet: {
+                    showingFolderInfoEditingView = false
+                }
+            )
+        }
+    }
 
     @ViewBuilder func playStopButton() -> some View {
         Button {
