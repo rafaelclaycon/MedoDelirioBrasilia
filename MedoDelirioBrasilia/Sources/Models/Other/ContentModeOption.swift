@@ -18,9 +18,9 @@ enum ContentModeOption: CaseIterable, Identifiable {
     var displayName: String {
         switch self {
         case .all:
-            "Tudo"
+            "Todas"
         case .favorites:
-            "Favoritos"
+            "Favoritas"
         case .songs:
             "Músicas"
         case .folders:

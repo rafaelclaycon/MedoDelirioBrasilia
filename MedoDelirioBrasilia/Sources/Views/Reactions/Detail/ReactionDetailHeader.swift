@@ -63,25 +63,34 @@ struct ReactionDetailHeader: View {
             .padding(.bottom, attributionText != nil ? 12 : 22)
         }
         .background {
-            KFImage(URL(string: imageUrl))
-                .placeholder {
-                    Image(systemName: "photo.on.rectangle")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 100)
-                        .foregroundColor(.gray)
-                        .opacity(0.3)
-                }
-                .resizable()
-                .scaledToFill()
-                .overlay(Color.black.opacity(0.3))
-                .blur(radius: 1)
-                .scaleEffect(1.05)
-                .frame(height: 260)
-                //.frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
-                .clipped()
+            if #available(iOS 26.0, *) {
+                image
+                    .backgroundExtensionEffect()
+            } else {
+                image
+            }
         }
         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+    }
+
+    var image: some View {
+        KFImage(URL(string: imageUrl))
+            .placeholder {
+                Image(systemName: "photo.on.rectangle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 100)
+                    .foregroundColor(.gray)
+                    .opacity(0.3)
+            }
+            .resizable()
+            .scaledToFill()
+            .overlay(Color.black.opacity(0.3))
+            .blur(radius: 1)
+            .scaleEffect(1.05)
+            .frame(height: 260)
+            //.frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
+            .clipped()
     }
 }
 

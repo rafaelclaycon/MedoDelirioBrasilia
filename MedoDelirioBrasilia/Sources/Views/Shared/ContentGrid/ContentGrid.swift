@@ -232,6 +232,7 @@ struct ContentGrid<
                             details: $addToFolderHelper,
                             selectedContent: viewModel.selectedContentMultiple ?? []
                         )
+                        .presentationDetents([.medium, .large])
 
                     case .contentDetail:
                         ContentDetailView(
