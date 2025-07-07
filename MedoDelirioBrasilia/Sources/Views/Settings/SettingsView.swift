@@ -19,10 +19,6 @@ struct SettingsView: View {
 
     @State private var showEmailSheet: Bool = false
 
-    private let authorSocials: [SocialMediaLink] = [
-        .init(name: "Bluesky", imageName: "bluesky", link: "https://bsky.app/profile/rafaelschmitt.bsky.social"),
-        .init(name: "Mastodon", imageName: "mastodon", link: "https://burnthis.town/@rafael")
-    ]
     private let apiClient: APIClientProtocol
 
     // MARK: - Environment
@@ -131,55 +127,6 @@ struct SettingsView: View {
                 HelpTheAppView(donors: donors, toast: $toast, apiClient: APIClient.shared)
             }
 
-            Section("Sobre") {
-                Menu {
-                    Section("Blogue") {
-                        Button {
-                            Task {
-                                OpenUtility.open(link: "https://from-rafael-with-code.ghost.io/")
-                                await SettingsView.sendAnalytics(for: "didTapBlogLink")
-                            }
-                        } label: {
-                            Label("From Rafael with Code", systemImage: "book")
-                        }
-                    }
-
-                    Section("Seguir no") {
-                        ForEach(authorSocials) { social in
-                            Button {
-                                Task {
-                                    OpenUtility.open(link: social.link)
-                                    await SettingsView.sendAnalytics(for: "didTapSocialLink(\(social.name))")
-                                }
-                            } label: {
-                                Label(title: {
-                                    Text(social.name)
-                                }, icon: {
-                                    Image(social.imageName)
-                                        .renderingMode(.template)
-                                        .foregroundColor(.primary)
-                                })
-                            }
-                        }
-                    }
-
-                    Section {
-                        Button {
-                            Task {
-                                OpenUtility.open(link: "https://jovemnerd.com.br/noticias/ciencia-e-tecnologia/mastodon-como-criar-conta")
-                                await SettingsView.sendAnalytics(for: "didTapHowToCreateMastodonAccountOption")
-                            }
-                        } label: {
-                            Label("O que é e como criar uma conta no Mastodon", systemImage: "arrow.up.right.square")
-                        }
-                    }
-                } label: {
-                    Text("Criado por Rafael Schmitt")
-                }
-
-                Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
-            }
-
             Section("Contribua ou entenda como funciona") {
                 Button {
                     Task {
@@ -188,7 +135,16 @@ struct SettingsView: View {
                     }
                 } label: {
                     Label("Ver código fonte no GitHub", systemImage: "curlybraces")
+                        .foregroundStyle(.purple)
                 }
+            }
+
+            Section("Sobre") {
+                Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
+            }
+
+            Section {
+                AuthorCreditsView()
             }
         }
         .navigationTitle("Configurações")

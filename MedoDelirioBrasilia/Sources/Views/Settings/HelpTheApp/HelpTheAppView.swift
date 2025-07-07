@@ -47,7 +47,9 @@ struct HelpTheAppView: View {
                             .padding(.top, -4)
                     }
 
-                    DonateButtons(toast: $toast)
+                    if #available(iOS 26.0, *) {
+                        DonateButtons(toast: $toast)
+                    }
                 }
             }
             .padding(.bottom, .spacing(.xxSmall))
@@ -114,6 +116,7 @@ extension HelpTheAppView {
         }
     }
 
+    @available(iOS 26.0, *)
     struct DonateButtons: View {
 
         @Binding var toast: Toast?
@@ -121,7 +124,24 @@ extension HelpTheAppView {
         private let pixKey: String = "medodeliriosuporte@gmail.com"
 
         var body: some View {
-            VStack(alignment: .leading, spacing: .spacing(.large)) {
+            VStack(alignment: .center, spacing: .spacing(.large)) {
+                Button {
+                    Task {
+                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
+                        await HelpTheAppView.DonateButtons.sendAnalytics(for: "didTapApoiaseButton")
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Apoiar mensalmente")
+                            .bold()
+                        Spacer()
+                    }
+                    .padding(.vertical, .spacing(.xxSmall))
+                }
+                .buttonStyle(.glassProminent)
+                .tint(.red)
+
                 Button {
                     Task {
                         UIPasteboard.general.string = pixKey
@@ -135,23 +155,10 @@ extension HelpTheAppView {
                             .bold()
                         Spacer()
                     }
+                    .padding(.vertical, .spacing(.xxSmall))
                 }
-                .borderedButton(colored: .green)
-
-                Button {
-                    Task {
-                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-                        await HelpTheAppView.DonateButtons.sendAnalytics(for: "didTapApoiaseButton")
-                    }
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("Apoiar mensalmente (a partir de R$ 5)")
-                            .bold()
-                        Spacer()
-                    }
-                }
-                .borderedButton(colored: .red)
+                //.borderedButton(colored: .green)
+                .buttonStyle(.glass)
             }
         }
 
@@ -197,5 +204,9 @@ extension HelpTheAppView {
 }
 
 #Preview("Donate Buttons") {
-    HelpTheAppView.DonateButtons(toast: .constant(nil))
+    if #available(iOS 26.0, *) {
+        HelpTheAppView.DonateButtons(toast: .constant(nil))
+    } else {
+        // Fallback on earlier versions
+    }
 }
