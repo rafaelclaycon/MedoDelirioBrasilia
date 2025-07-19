@@ -195,14 +195,38 @@ extension HelpTheAppView {
 
     struct DonorTypeInfoView: View {
 
+        @ViewBuilder
+        private func row(donor: Donor, text: String) -> some View {
+            HStack(spacing: .spacing(.medium)) {
+                DonorView(donor: donor)
+
+                Text(text)
+            }
+        }
+
+        @Environment(\.dismiss) var dismiss
+
         var body: some View {
             NavigationStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                        Text("Teste")
+                        row(donor: Donor(name: "Cristiano B."), text: "Usuário fez uma doação única via Pix.")
+
+                        row(donor: Donor(name: "Pedro D."), text: "Usuário repetiu uma doação única via Pix.")
+
+                        row(donor: Donor(name: "Jair B."), text: "Usuário doa menos de R$ 30 todos os meses pelo Apoia.se.")
+
+                        row(donor: Donor(name: "Alexandre M."), text: "Usuário doa R$ 30 ou mais todos os meses pelo Apoia.se.")
                     }
                 }
             }
+            .navigationTitle("Tipos de Doação")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading:
+                Button("Fechar") {
+                    dismiss()
+                }
+            )
         }
     }
 }
