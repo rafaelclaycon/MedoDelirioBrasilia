@@ -60,6 +60,7 @@ struct MainContentView: View {
     // MARK: - Shared Environment
 
     @Environment(\.scenePhase) var scenePhase
+    @Namespace private var namespace
 
     // MARK: - Initializer
 
@@ -199,18 +200,30 @@ struct MainContentView: View {
                         }
                     }
                     .toolbar {
-                        //ToolbarSpacer(.flexible)
-
-                        ToolbarItem {
-                            Button {
-                                subviewToOpen = .syncInfo
-                                showingModalView = true
-                            } label: {
-                                SyncStatusView()
+                        if #available(iOS 26.0, *) {
+                            ToolbarItem {
+                                Button {
+                                    subviewToOpen = .syncInfo
+                                    showingModalView = true
+                                } label: {
+                                    SyncStatusView()
+                                }
+                            }
+                            .matchedTransitionSource(id: "sync-status-view", in: namespace)
+                        } else {
+                            ToolbarItem {
+                                Button {
+                                    subviewToOpen = .syncInfo
+                                    showingModalView = true
+                                } label: {
+                                    SyncStatusView()
+                                }
                             }
                         }
 
-                        //ToolbarSpacer(placement: .fixed)
+                        if #available(iOS 26.0, *) {
+                            ToolbarSpacer(.fixed, placement: .topBarTrailing)
+                        }
 
                         ToolbarItem {
                             ContentToolbarOptionsView(
@@ -297,10 +310,21 @@ struct MainContentView: View {
                         }
                     }
                     .sheet(isPresented: $showingModalView) {
-                        SyncInfoView(
-                            lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
-                            lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
-                        )
+                        if #available(iOS 26.0, *) {
+                            SyncInfoView(
+                                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                            )
+                            .presentationDetents([.medium, .large])
+                            .navigationTransition(
+                                .zoom(sourceID: "sync-status-view", in: namespace)
+                            )
+                        } else {
+                            SyncInfoView(
+                                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                            )
+                        }
                     }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
