@@ -65,7 +65,7 @@ struct ContentToolbarOptionsView: View {
                 }
             }
         } label: {
-            Image(systemName: "ellipsis.circle")
+            Image(systemName: "ellipsis")
         }
         .onChange(of: contentSortOption) {
             contentSortChangeAction()
