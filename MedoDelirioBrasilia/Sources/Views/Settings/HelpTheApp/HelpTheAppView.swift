@@ -37,9 +37,7 @@ struct HelpTheAppView: View {
                                         .font(.footnote)
                                         .foregroundStyle(.gray)
 
-                                    Button {
-                                        showDonorInfoView.toggle()
-                                    } label: {
+                                    NavigationLink(destination: DonorTypeInfoView()) {
                                         Image(systemName: "info.circle")
                                             .foregroundStyle(.gray)
                                     }
@@ -64,10 +62,6 @@ struct HelpTheAppView: View {
         }
         .task {
             await loadMoneyInfo()
-        }
-        .sheet(isPresented: $showDonorInfoView) {
-            DonorTypeInfoView()
-                .presentationDetents([.medium])
         }
     }
 
@@ -197,36 +191,50 @@ extension HelpTheAppView {
 
         @ViewBuilder
         private func row(donor: Donor, text: String) -> some View {
-            HStack(spacing: .spacing(.medium)) {
+            VStack(alignment: .center, spacing: .spacing(.medium)) {
                 DonorView(donor: donor)
 
                 Text(text)
+                    .multilineTextAlignment(.center)
             }
         }
 
         @Environment(\.dismiss) var dismiss
 
         var body: some View {
-            NavigationStack {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                        row(donor: Donor(name: "Cristiano B."), text: "Usuário fez uma doação única via Pix.")
+            ScrollView {
+                VStack(alignment: .center, spacing: .spacing(.large)) {
+                    row(
+                        donor: Donor(name: "Cristiano B."),
+                        text: "Usuário fez uma doação única via Pix."
+                    )
 
-                        row(donor: Donor(name: "Pedro D."), text: "Usuário repetiu uma doação única via Pix.")
+                    Divider()
 
-                        row(donor: Donor(name: "Jair B."), text: "Usuário doa menos de R$ 30 todos os meses pelo Apoia.se.")
+                    row(
+                        donor: Donor(name: "Pedro D.", hasDonatedBefore: true),
+                        text: "Usuário repetiu uma doação única via Pix."
+                    )
 
-                        row(donor: Donor(name: "Alexandre M."), text: "Usuário doa R$ 30 ou mais todos os meses pelo Apoia.se.")
-                    }
+                    Divider()
+
+                    row(
+                        donor: Donor(name: "Jair B.", isRecurringDonorBelow30: true),
+                        text: "Usuário doa até R$ 29 todos os meses pelo Apoia.se."
+                    )
+
+                    Divider()
+
+                    row(
+                        donor: Donor(name: "Alexandre M.", isRecurringDonor30OrOver: true),
+                        text: "Usuário doa R$ 30 ou mais todos os meses pelo Apoia.se."
+                    )
                 }
+                .padding(.horizontal, .spacing(.large))
+                .padding(.vertical, .spacing(.small))
             }
             .navigationTitle("Tipos de Doação")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading:
-                Button("Fechar") {
-                    dismiss()
-                }
-            )
         }
     }
 }
