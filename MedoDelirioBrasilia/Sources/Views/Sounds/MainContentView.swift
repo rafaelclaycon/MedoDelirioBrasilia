@@ -49,7 +49,7 @@ struct MainContentView: View {
         guard currentContentListMode.wrappedValue == .regular else {
             return selectionNavBarTitle(for: contentGridViewModel)
         }
-        return "Sons"
+        return "Vírgulas"
     }
 
     private var loadedContent: [AnyEquatableMedoContent] {
@@ -60,6 +60,7 @@ struct MainContentView: View {
     // MARK: - Shared Environment
 
     @Environment(\.scenePhase) var scenePhase
+    @Namespace private var namespace
 
     // MARK: - Initializer
 
@@ -189,40 +190,105 @@ struct MainContentView: View {
                         }
                     }
                     .navigationTitle(Text(title))
-                    .navigationBarItems(
-                        leading: LeadingToolbarControls(
-                            isSelecting: currentContentListMode.wrappedValue == .selection,
-                            cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
-                            openSettingsAction: openSettingsAction
-                        ),
-                        trailing: TrailingToolbarControls(
-                            currentViewMode: viewModel.currentViewMode,
-                            contentListMode: currentContentListMode.wrappedValue,
-                            contentSortOption: $viewModel.contentSortOption,
-                            authorSortOption: $viewModel.authorSortOption,
-                            openContentUpdateSheet: {
-                                subviewToOpen = .syncInfo
-                                showingModalView = true
-                            },
-                            multiSelectAction: {
-                                contentGridViewModel.onEnterMultiSelectModeSelected(
-                                    loadedContent: loadedContent,
-                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites
-                                )
-                            },
-                            playRandomSoundAction: {
-                                Task {
-                                    await playRandomSound()
+                    .toolbar {
+                        ToolbarItemGroup(placement: .topBarLeading) {
+                            LeadingToolbarControls(
+                                isSelecting: currentContentListMode.wrappedValue == .selection,
+                                cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
+                                openSettingsAction: openSettingsAction
+                            )
+                        }
+                    }
+                    .toolbar {
+                        if #available(iOS 26.0, *) {
+                            ToolbarItem {
+                                Button {
+                                    subviewToOpen = .syncInfo
+                                    showingModalView = true
+                                } label: {
+                                    SyncStatusView()
                                 }
-                            },
-                            contentSortChangeAction: {
-                                viewModel.onContentSortOptionChanged()
-                            },
-                            authorSortChangeAction: {
-                                authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
                             }
-                        )
-                    )
+                            .matchedTransitionSource(id: "sync-status-view", in: namespace)
+                        } else {
+                            ToolbarItem {
+                                Button {
+                                    subviewToOpen = .syncInfo
+                                    showingModalView = true
+                                } label: {
+                                    SyncStatusView()
+                                }
+                            }
+                        }
+
+                        if #available(iOS 26.0, *) {
+                            ToolbarSpacer(.fixed, placement: .topBarTrailing)
+                        }
+
+                        ToolbarItem {
+                            ContentToolbarOptionsView(
+                                contentSortOption: $viewModel.contentSortOption,
+                                contentListMode: currentContentListMode.wrappedValue,
+                                multiSelectAction: {
+                                    contentGridViewModel.onEnterMultiSelectModeSelected(
+                                        loadedContent: loadedContent,
+                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+                                    )
+                                },
+                                playRandomSoundAction: {
+                                    Task {
+                                        await playRandomSound()
+                                    }
+                                },
+                                contentSortChangeAction: { viewModel.onContentSortOptionChanged() }
+                            )
+                        }
+   
+//                            ContentToolbarOptionsView(
+//                                contentSortOption: $viewModel.contentSortOption,
+//                                contentListMode: currentContentListMode.wrappedValue,
+//                                multiSelectAction: {
+//                                    contentGridViewModel.onEnterMultiSelectModeSelected(
+//                                        loadedContent: loadedContent,
+//                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+//                                    )
+//                                },
+//                                playRandomSoundAction: {
+//                                    Task {
+//                                        await playRandomSound()
+//                                    }
+//                                },
+//                                contentSortChangeAction: viewModel.onContentSortOptionChanged()
+//                            )
+                            
+//                            TrailingToolbarControls(
+//                                currentViewMode: viewModel.currentViewMode,
+//                                contentListMode: currentContentListMode.wrappedValue,
+//                                contentSortOption: $viewModel.contentSortOption,
+//                                authorSortOption: $viewModel.authorSortOption,
+//                                openContentUpdateSheet: {
+//                                    subviewToOpen = .syncInfo
+//                                    showingModalView = true
+//                                },
+//                                multiSelectAction: {
+//                                    contentGridViewModel.onEnterMultiSelectModeSelected(
+//                                        loadedContent: loadedContent,
+//                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+//                                    )
+//                                },
+//                                playRandomSoundAction: {
+//                                    Task {
+//                                        await playRandomSound()
+//                                    }
+//                                },
+//                                contentSortChangeAction: {
+//                                    viewModel.onContentSortOptionChanged()
+//                                },
+//                                authorSortChangeAction: {
+//                                    authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
+//                                }
+//                            )
+                    }
                     .onChange(of: viewModel.currentViewMode) {
                         Task {
                             await viewModel.onSelectedViewModeChanged()
@@ -244,10 +310,21 @@ struct MainContentView: View {
                         }
                     }
                     .sheet(isPresented: $showingModalView) {
-                        SyncInfoView(
-                            lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
-                            lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
-                        )
+                        if #available(iOS 26.0, *) {
+                            SyncInfoView(
+                                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                            )
+                            .presentationDetents([.medium, .large])
+                            .navigationTransition(
+                                .zoom(sourceID: "sync-status-view", in: namespace)
+                            )
+                        } else {
+                            SyncInfoView(
+                                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                            )
+                        }
                     }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
@@ -349,17 +426,7 @@ extension MainContentView {
                     .padding(.bottom, .spacing(.xSmall))
                 }
 
-                if UIDevice.isRunningSoftwareVersion26 && showBetaBanner {
-                    Use26BetaBannerView(
-                        isBeingShown: $showBetaBanner,
-                        showFAQSheet: $showBetaFAQ
-                    )
-                    .padding(.top, .spacing(.xxxSmall))
-                    .padding(.bottom, .spacing(.xSmall))
-                    .sheet(isPresented: $showBetaFAQ) {
-                        Use26BetaBannerView.FrequentlyAskedQuestionsView()
-                    }
-                }
+                // Beta should not have Beta advertising.
             }
             .onAppear {
                 Task{
