@@ -101,7 +101,7 @@ struct FolderDetailView: View {
                 .edgesIgnoringSafeArea(.top)
                 .toast(contentGridViewModel.toast)
                 .floatingContentOptions(contentGridViewModel.floatingOptions)
-                .scrollEdgeEffectDisabled(true, for: .top)
+                .scrollEdgeEffectHidden(true, for: .top)
                 .toolbarVisibility(.hidden, for: .tabBar)
             } else {
                 ScrollView {
