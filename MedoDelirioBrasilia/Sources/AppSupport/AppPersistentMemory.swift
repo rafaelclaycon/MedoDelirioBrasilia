@@ -226,6 +226,13 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    func hasDismissediOS26BetaBanner() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasDismissediOS26BetaBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     func hasAllowedContentUpdate() -> Bool {
         userDefaults.bool(forKey: "hasAllowedContentUpdate")
     }
@@ -330,6 +337,10 @@ extension AppPersistentMemory {
 
     func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasSeenVersion9WhatsNewScreen")
+    }
+
+    func hasDismissediOS26BetaBanner(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasDismissediOS26BetaBanner")
     }
 
     func hasAllowedContentUpdate(_ newValue: Bool) {

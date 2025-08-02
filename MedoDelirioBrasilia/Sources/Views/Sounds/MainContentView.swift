@@ -333,6 +333,9 @@ extension MainContentView {
 
         @State private var data: DynamicBannerData?
 
+        @State private var showBetaBanner: Bool = true
+        @State private var showBetaFAQ: Bool = false
+
         var body: some View {
             VStack {
                 if let data {
@@ -345,11 +348,24 @@ extension MainContentView {
                     .padding(.top, .spacing(.xxxSmall))
                     .padding(.bottom, .spacing(.xSmall))
                 }
+
+                if UIDevice.isRunningSoftwareVersion26 && showBetaBanner {
+                    Use26BetaBannerView(
+                        isBeingShown: $showBetaBanner,
+                        showFAQSheet: $showBetaFAQ
+                    )
+                    .padding(.top, .spacing(.xxxSmall))
+                    .padding(.bottom, .spacing(.xSmall))
+                    .sheet(isPresented: $showBetaFAQ) {
+                        Use26BetaBannerView.FrequentlyAskedQuestionsView()
+                    }
+                }
             }
             .onAppear {
                 Task{
                     data = await bannerRepository.dynamicBanner()
                 }
+                showBetaBanner = !AppPersistentMemory().hasDismissediOS26BetaBanner()
             }
         }
     }

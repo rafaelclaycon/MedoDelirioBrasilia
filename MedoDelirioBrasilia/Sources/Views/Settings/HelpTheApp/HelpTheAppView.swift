@@ -14,6 +14,7 @@ struct HelpTheAppView: View {
     let apiClient: APIClientProtocol
 
     @State private var moneyInfo: [MoneyInfo]?
+    @State private var showDonorInfoView: Bool = false
 
     var body: some View {
         Section("Ajude o app") {
@@ -27,13 +28,22 @@ struct HelpTheAppView: View {
                             .bold()
 
                         if let donors {
-                            VStack(alignment: .center, spacing: .spacing(.small)) {
+                            VStack(alignment: .center, spacing: .spacing(.large)) {
                                 DonorsView(donors: donors)
                                     .marquee()
 
-                                Text("ÚLTIMAS DOAÇÕES")
-                                    .font(.footnote)
-                                    .foregroundStyle(.gray)
+                                HStack(spacing: .spacing(.small)) {
+                                    Text("ÚLTIMAS DOAÇÕES")
+                                        .font(.footnote)
+                                        .foregroundStyle(.gray)
+
+                                    Button {
+                                        showDonorInfoView.toggle()
+                                    } label: {
+                                        Image(systemName: "info.circle")
+                                            .foregroundStyle(.gray)
+                                    }
+                                }
                             }
                         }
 
@@ -54,6 +64,10 @@ struct HelpTheAppView: View {
         }
         .task {
             await loadMoneyInfo()
+        }
+        .sheet(isPresented: $showDonorInfoView) {
+            DonorTypeInfoView()
+                .presentationDetents([.medium])
         }
     }
 
@@ -176,6 +190,19 @@ extension HelpTheAppView {
                 originatingScreen: "SettingsView",
                 action: action
             )
+        }
+    }
+
+    struct DonorTypeInfoView: View {
+
+        var body: some View {
+            NavigationStack {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                        Text("Teste")
+                    }
+                }
+            }
         }
     }
 }

@@ -506,6 +506,7 @@
 		D969DCF82A4B0F69003F4EB2 /* Monark - ACORDA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF62A4B0F69003F4EB2 /* Monark - ACORDA.mp3 */; };
 		D969DCF92A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF72A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 */; };
 		D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */; };
+		D96DD68D2E12078E007299A1 /* Use26BetaBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DD68C2E12078E007299A1 /* Use26BetaBannerView.swift */; };
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D9715F032CF2D61800DD24BB /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9715F022CF2D61800DD24BB /* ToastView.swift */; };
 		D972E9C22927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D972E9C12927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 */; };
@@ -2066,6 +2067,7 @@
 		D969DCF62A4B0F69003F4EB2 /* Monark - ACORDA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monark - ACORDA.mp3"; sourceTree = "<group>"; };
 		D969DCF72A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monark - Acorda, cara.mp3"; sourceTree = "<group>"; };
 		D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
+		D96DD68C2E12078E007299A1 /* Use26BetaBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Use26BetaBannerView.swift; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D9715F022CF2D61800DD24BB /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D972E9C12927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MIDCast - Um pequeno passo para o homem.mp3"; sourceTree = "<group>"; };
@@ -4488,6 +4490,7 @@
 				D986C2452B25848B00EF575A /* LongUpdateBanner.swift */,
 				D9F45DD62BED30C400D49340 /* DynamicBanner.swift */,
 				D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */,
+				D96DD68C2E12078E007299A1 /* Use26BetaBannerView.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -6956,6 +6959,7 @@
 				D9D627122B266389000EB791 /* AuthorCell.swift in Sources */,
 				D95315A92A9AA783003DA40E /* MusicGenre.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
+				D96DD68D2E12078E007299A1 /* Use26BetaBannerView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D93F643029A6A692003E7550 /* ShareAsVideoViewModel.swift in Sources */,
@@ -7284,7 +7288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APP_BUILD = 1;
-				APP_VERSION = 9.0.3;
+				APP_VERSION = 9.0.4;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -7326,7 +7330,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APP_BUILD = 1;
-				APP_VERSION = 9.0.3;
+				APP_VERSION = 9.0.4;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Prod";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
