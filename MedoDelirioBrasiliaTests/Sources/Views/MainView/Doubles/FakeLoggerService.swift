@@ -20,19 +20,19 @@ class FakeLoggerService: LoggerProtocol {
         destinationBundleId: String
     ) {}
 
-    func logSyncError(description: String, updateEventId: String) {
+    func updateError(_ description: String, updateEventId: String) {
         errorHistory[description] = updateEventId
     }
 
-    func logSyncError(description: String) {
+    func updateError(_ description: String) {
         errorHistory[description] = ""
     }
 
-    func logSyncSuccess(description: String, updateEventId: String) {
+    func updateSuccess(_ description: String, updateEventId: String) {
         successHistory[description] = updateEventId
     }
 
-    func logSyncSuccess(description: String) {
+    func updateSuccess(_ description: String) {
         successHistory[description] = ""
     }
 }
