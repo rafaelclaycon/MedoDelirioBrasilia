@@ -24,9 +24,9 @@ struct SyncInfoCard: View {
                 .padding(.leading, 8)
 
             Spacer()
-                .frame(width: 14)
+                .frame(width: .spacing(.medium))
 
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
                 Text(title)
                     .font(.callout)
                     .multilineTextAlignment(.leading)
@@ -39,23 +39,15 @@ struct SyncInfoCard: View {
             Spacer(minLength: 0)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 10)
-        .padding(.horizontal, 5)
-        .background(.background)
-        .cornerRadius(13)
-        .shadow(radius: 4, y: 3)
     }
 }
 
-struct SyncInfoCard_Previews: PreviewProvider {
-
-    static var previews: some View {
-        SyncInfoCard(
-            imageName: "exclamationmark.triangle",
-            imageColor: .orange,
-            title: "Não foi possível conectar ao servidor.",
-            timestamp: "21/08/2023 18:52"
-        )
-        .padding()
-    }
+#Preview {
+    SyncInfoCard(
+        imageName: "exclamationmark.triangle",
+        imageColor: .orange,
+        title: "Não foi possível conectar ao servidor.",
+        timestamp: "21/08/2023 18:52"
+    )
+    .padding()
 }
