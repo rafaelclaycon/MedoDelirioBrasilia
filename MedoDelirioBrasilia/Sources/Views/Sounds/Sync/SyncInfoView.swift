@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A View
 struct SyncInfoView: View {
 
     let lastUpdateAttempt: String
@@ -17,26 +18,47 @@ struct SyncInfoView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                switch syncValues.syncStatus {
-                case .updating:
-                    UpdatingView()
-                case .done:
-                    AllOkView(lastUpdateAttempt: lastUpdateAttempt)
-                case .updateError:
-                    UpdateErrorView(lastUpdateDate: lastUpdateDate)
-                }
+            if #available(iOS 26.0, *) {
+                scrollView
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "xmark")
+                            }
+                        }
+                    }
+            } else {
+                scrollView
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button("Fechar") {
+                                dismiss()
+                            }
+                        }
+                    }
             }
-            .navigationTitle("")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading:
-                Button("Fechar") {
-                    dismiss()
-                }
-            )
         }
     }
+
+    private var scrollView: some View {
+        ScrollView {
+            switch syncValues.syncStatus {
+            case .updating:
+                UpdatingView()
+            case .done:
+                AllOkView(lastUpdateAttempt: lastUpdateAttempt)
+            case .updateError:
+                UpdateErrorView(lastUpdateDate: lastUpdateDate)
+            }
+        }
+        .navigationTitle("Atualização de Conteúdos")
+        .navigationBarTitleDisplayMode(.inline)
+    }
 }
+
+// MARK: - Subviews
 
 extension SyncInfoView {
 
@@ -87,29 +109,20 @@ extension SyncInfoView {
         }
 
         var body: some View {
-            VStack(spacing: 30) {
-                Image(systemName: "clock.arrow.2.circlepath")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 90)
-                    .foregroundColor(.green)
+            VStack(spacing: .spacing(.xxLarge)) {
+                InfoHeader(
+                    symbol: "checkmark",
+                    color: .green,
+                    title: "Conteúdos atualizados",
+                    subtitle: lastUpdateText
+                )
+                .padding(.horizontal, .spacing(.xSmall))
 
-                VStack(spacing: 15) {
-                    Text("Atualização Automática de Conteúdos Habilitada")
-                        .font(.title2)
-                        .bold()
-                        .multilineTextAlignment(.center)
-
-                    NavigationLink {
-                        SyncInfoView.KnowMoreView()
-                    } label: {
-                        Label("Saiba mais", systemImage: "info.circle")
-                    }
-                }
-
-                Text(lastUpdateText)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
+//                NavigationLink {
+//                    SyncInfoView.KnowMoreView()
+//                } label: {
+//                    Label("Saiba mais", systemImage: "info.circle")
+//                }
 
                 HistoryView(
                     updates: updates,
@@ -136,30 +149,33 @@ extension SyncInfoView {
         @State private var updates: [SyncLog] = []
         @State private var hiddenUpdates: Int = 0
 
-        private var lastUpdateText: String {
+        private let checkConnection = "Verifique a sua conexão à Internet."
+
+        private var title: String {
             if lastUpdateDate == "all" {
-                return "A última tentativa de atualização não retornou resultados."
+                return "Nunca atualizado"
             } else {
-                return "Última atualização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "").\n\nGaranta que o seu dispositivo está conectado à Internet. Caso o problema persista, entre em contato com o desenvolvedor."
+                return "Última atualização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "")"
+            }
+        }
+
+        private var subtitle: String {
+            if lastUpdateDate == "all" {
+                return "A última tentativa de atualização não obteve resultados. " + checkConnection
+            } else {
+                return "Houve um problema na última tentativa de atualização. " + checkConnection
             }
         }
 
         var body: some View {
-            VStack(spacing: 30) {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 70)
-                    .foregroundColor(.orange)
-
-                Text("Houve um problema na última tentativa de atualização.")
-                    .font(.title2)
-                    .bold()
-                    .multilineTextAlignment(.center)
-
-                Text(lastUpdateText)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
+            VStack(spacing: .spacing(.xxLarge)) {
+                InfoHeader(
+                    symbol: "exclamationmark.triangle.fill",
+                    color: .orange,
+                    title: title,
+                    subtitle: subtitle
+                )
+                .padding(.horizontal, .spacing(.xSmall))
 
                 HistoryView(
                     updates: updates,
@@ -171,6 +187,39 @@ extension SyncInfoView {
             .onAppear {
                 updates = LocalDatabase.shared.lastFewSyncLogs()
                 hiddenUpdates = LocalDatabase.shared.totalSyncLogCount()
+            }
+        }
+    }
+
+    private struct InfoHeader: View {
+
+        let symbol: String
+        let color: Color
+        let title: String
+        let subtitle: String
+
+        @ScaledMetric private var iconWidth: CGFloat = 40
+
+        var body: some View {
+            HStack(spacing: .spacing(.large)) {
+                Image(systemName: symbol)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: iconWidth)
+                    .foregroundStyle(color)
+
+                VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
+                    Text(title)
+                        .font(.headline)
+                        .multilineTextAlignment(.leading)
+
+                    Text(subtitle)
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.leading)
+                }
+
+                Spacer()
             }
         }
     }
@@ -193,7 +242,7 @@ extension SyncInfoView {
                 LazyVStack(spacing: 15) {
                     ForEach(updates) { update in
                         SyncInfoCard(
-                            imageName: update.logType == .error ? "exclamationmark.triangle" : "checkmark.circle",
+                            imageName: update.logType == .error ? "exclamationmark.triangle" : "checkmark",
                             imageColor: update.logType == .error ? .orange : .green,
                             title: update.description,
                             timestamp: update.dateTime.asRelativeDateTime ?? ""
@@ -215,22 +264,24 @@ extension SyncInfoView {
     }
 }
 
-struct SyncInfoView_Previews: PreviewProvider {
+// MARK: - Previews
 
-    static let syncValuesUpdating: SyncValues = SyncValues()
-    static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
-    static let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
+#Preview("Updating") {
+    SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
+        .environment(SyncValues())
+}
 
-    static var previews: some View {
-        Group {
-            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
-                .environment(syncValuesUpdating)
+#Preview("Update OK") {
+    SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+        .environment(SyncValues(syncStatus: .done))
+}
 
-            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environment(syncValuesDone)
+#Preview("Update Error - Never Updated") {
+    SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
+        .environment(SyncValues(syncStatus: .updateError))
+}
 
-            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environment(syncValuesUpdateError)
-        }
-    }
+#Preview("Update Error") {
+    SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2025-07-11T20:29:46.562Z")
+        .environment(SyncValues(syncStatus: .updateError))
 }
