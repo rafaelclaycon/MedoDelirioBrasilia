@@ -32,21 +32,21 @@ struct HelpTheAppView: View {
                                 DonorsView(donors: donors)
                                     .marquee()
 
-                                HStack(spacing: .spacing(.small)) {
-                                    Text("ÚLTIMAS DOAÇÕES")
-                                        .font(.footnote)
-                                        .foregroundStyle(.gray)
+                                Button {
+                                    showDonorInfoView.toggle()
+                                } label: {
+                                    HStack(spacing: .spacing(.small)) {
+                                        Text("ÚLTIMAS DOAÇÕES")
+                                            .font(.footnote)
 
-                                    NavigationLink(destination: DonorTypeInfoView()) {
                                         Image(systemName: "info.circle")
-                                            .foregroundStyle(.gray)
                                     }
+                                    .foregroundStyle(.gray)
                                 }
                             }
                         }
 
                         Text("Esse projeto é mantido através de doações dos usuários. Essas doações cobrem os custos de operação (mensalidades de servidor, anuidade da Apple) e me incentivam a seguir melhorando o app todos os anos. Gosto muito da nossa parceria, bora manter ela?")
-                            .font(.callout)
                             .padding(.top, .spacing(.xxxSmall))
                     }
 
@@ -62,6 +62,20 @@ struct HelpTheAppView: View {
         }
         .task {
             await loadMoneyInfo()
+        }
+        .sheet(isPresented: $showDonorInfoView) {
+            NavigationStack {
+                DonorTypeInfoView()
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Fechar") {
+                                showDonorInfoView.toggle()
+                            }
+                        }
+                    }
+            }
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
         }
     }
 
@@ -213,7 +227,7 @@ extension HelpTheAppView {
 
                     row(
                         donor: Donor(name: "Pedro D.", hasDonatedBefore: true),
-                        text: "Usuário repetiu uma doação única via Pix."
+                        text: "O mesmo usuário fez uma nova doação única via Pix, independente do valor."
                     )
 
                     Divider()
