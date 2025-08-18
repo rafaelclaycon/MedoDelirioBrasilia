@@ -32,23 +32,21 @@ struct HelpTheAppView: View {
                                 DonorsView(donors: donors)
                                     .marquee()
 
-                                HStack(spacing: .spacing(.small)) {
-                                    Text("ÚLTIMAS DOAÇÕES")
-                                        .font(.footnote)
-                                        .foregroundStyle(.gray)
+                                Button {
+                                    showDonorInfoView.toggle()
+                                } label: {
+                                    HStack(spacing: .spacing(.small)) {
+                                        Text("ÚLTIMAS DOAÇÕES")
+                                            .font(.footnote)
 
-                                    Button {
-                                        showDonorInfoView.toggle()
-                                    } label: {
                                         Image(systemName: "info.circle")
-                                            .foregroundStyle(.gray)
                                     }
+                                    .foregroundStyle(.gray)
                                 }
                             }
                         }
 
                         Text("Esse projeto é mantido através de doações dos usuários. Essas doações cobrem os custos de operação (mensalidades de servidor, anuidade da Apple) e me incentivam a seguir melhorando o app todos os anos. Gosto muito da nossa parceria, bora manter ela?")
-                            .font(.callout)
                             .padding(.top, .spacing(.xxxSmall))
                     }
 
@@ -66,8 +64,18 @@ struct HelpTheAppView: View {
             await loadMoneyInfo()
         }
         .sheet(isPresented: $showDonorInfoView) {
-            DonorTypeInfoView()
-                .presentationDetents([.medium])
+            NavigationStack {
+                DonorTypeInfoView()
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Fechar") {
+                                showDonorInfoView.toggle()
+                            }
+                        }
+                    }
+            }
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
         }
     }
 
@@ -195,14 +203,52 @@ extension HelpTheAppView {
 
     struct DonorTypeInfoView: View {
 
-        var body: some View {
-            NavigationStack {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                        Text("Teste")
-                    }
-                }
+        @ViewBuilder
+        private func row(donor: Donor, text: String) -> some View {
+            VStack(alignment: .center, spacing: .spacing(.medium)) {
+                DonorView(donor: donor)
+
+                Text(text)
+                    .multilineTextAlignment(.center)
             }
+        }
+
+        @Environment(\.dismiss) var dismiss
+
+        var body: some View {
+            ScrollView {
+                VStack(alignment: .center, spacing: .spacing(.large)) {
+                    row(
+                        donor: Donor(name: "Cristiano B."),
+                        text: "Usuário fez uma doação única via Pix."
+                    )
+
+                    Divider()
+
+                    row(
+                        donor: Donor(name: "Pedro D.", hasDonatedBefore: true),
+                        text: "O mesmo usuário fez uma nova doação única via Pix, independente do valor."
+                    )
+
+                    Divider()
+
+                    row(
+                        donor: Donor(name: "Jair B.", isRecurringDonorBelow30: true),
+                        text: "Usuário doa até R$ 29 todos os meses pelo Apoia.se."
+                    )
+
+                    Divider()
+
+                    row(
+                        donor: Donor(name: "Alexandre M.", isRecurringDonor30OrOver: true),
+                        text: "Usuário doa R$ 30 ou mais todos os meses pelo Apoia.se."
+                    )
+                }
+                .padding(.horizontal, .spacing(.large))
+                .padding(.vertical, .spacing(.small))
+            }
+            .navigationTitle("Tipos de Doação")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
