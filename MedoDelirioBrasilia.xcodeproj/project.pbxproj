@@ -356,7 +356,6 @@
 		D948E9952921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E98E2921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 */; };
 		D948E9962921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */; };
 		D948E9982921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */; };
-		D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */; };
 		D949181228860ABC0079F545 /* StandaloneFolderGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949181128860ABC0079F545 /* StandaloneFolderGridView.swift */; };
 		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
 		D94B03F72993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */; };
@@ -1918,7 +1917,6 @@
 		D948E98E2921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornal da Record - O dia foi de caos.mp3"; sourceTree = "<group>"; };
 		D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3"; sourceTree = "<group>"; };
 		D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3"; sourceTree = "<group>"; };
-		D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCasingWithCloseView.swift; sourceTree = "<group>"; };
 		D949181128860ABC0079F545 /* StandaloneFolderGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneFolderGridView.swift; sourceTree = "<group>"; };
 		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
 		D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dudu Marfetan - Ate o final (completo).mp3"; sourceTree = "<group>"; };
@@ -4570,7 +4568,6 @@
 				D95BFEEF29E884E500E42A23 /* HelpTheApp */,
 				D970162D28CE797B0003AA00 /* Sub-Settings */,
 				D970162E28CE79C30003AA00 /* Diagnostics */,
-				D970163028CE7A540003AA00 /* iPad */,
 				D96993722E1C547E0006169F /* AuthorCreditsView.swift */,
 			);
 			path = Settings;
@@ -4798,14 +4795,6 @@
 				D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */,
 			);
 			path = Diagnostics;
-			sourceTree = "<group>";
-		};
-		D970163028CE7A540003AA00 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */,
-			);
-			path = iPad;
 			sourceTree = "<group>";
 		};
 		D970163128CE7A6E0003AA00 /* Notifications */ = {
@@ -7026,7 +7015,6 @@
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */,
 				D96370052B085845002E8838 /* ExplicitDisabledWarning.swift in Sources */,
-				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,
 				D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */,
 				D9E39DB92A1E891D0053A527 /* LocalDatabase+UpdateEvent.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsGrid+ViewModel.swift in Sources */,

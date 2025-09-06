@@ -439,7 +439,7 @@ struct MainView: View {
         .sheet(isPresented: $showingModalView) {
             switch subviewToOpen {
             case .settings:
-                SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+                SettingsView(apiClient: APIClient.shared)
                     .environment(settingsHelper)
 
             case .onboarding:
@@ -466,7 +466,7 @@ struct MainView: View {
         }
         // Could be removed in the future, but for now using `showingModalView` bugs out on iPad. Shows Onboarding most of the time.
         .sheet(isPresented: $isShowingSettingsSheet) {
-            SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+            SettingsView(apiClient: APIClient.shared)
                 .environment(settingsHelper)
         }
     }
