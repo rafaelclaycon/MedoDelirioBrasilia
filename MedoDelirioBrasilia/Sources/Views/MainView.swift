@@ -110,13 +110,14 @@ struct MainView: View {
                             .tag(PhoneTab.trends)
                         }
 
-                        Tab(role: .search) {
+                        // Coming after Ask for Permission and Universal Search are ready.
+                        /*Tab(role: .search) {
                             NavigationStack {
                                 VStack {
                                     Text("Tela de Pesquisa Universal")
                                 }
                             }
-                        }
+                        }*/
                     }
                     .searchable(text: $searchText)
                     .tabBarMinimizeBehavior(.onScrollDown)
