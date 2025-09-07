@@ -51,8 +51,8 @@ struct MainView: View {
         ZStack {
             if UIDevice.isiPhone {
                 if #available(iOS 26.0, *) {
-                    TabView {
-                        Tab("Vírgulas", systemImage: "headphones") {
+                    TabView(selection: $tabSelection) {
+                        Tab("Vírgulas", systemImage: "headphones", value: .sounds) {
                             NavigationStack(path: $soundsPath) {
                                 MainContentView(
                                     viewModel: MainContentViewModel(
@@ -85,7 +85,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { soundsPath.append($0) })
                         }
 
-                        Tab("Reações", systemImage: "rectangle.grid.2x2") {
+                        Tab("Reações", systemImage: "rectangle.grid.2x2", value: .reactions) {
                             NavigationStack(path: $reactionsPath) {
                                 ReactionsView()
                                     .environment(trendsHelper)
@@ -97,7 +97,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { reactionsPath.append($0) })
                         }
 
-                        Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
+                        Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis", value: .trends) {
                             NavigationView {
                                 TrendsView(
                                     tabSelection: $tabSelection,
