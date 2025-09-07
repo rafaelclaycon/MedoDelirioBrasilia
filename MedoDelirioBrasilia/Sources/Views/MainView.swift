@@ -28,8 +28,6 @@ struct MainView: View {
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
-    
-    @State private var searchText: String = ""
 
     // iPad
     @State private var sidebarViewModel = SidebarViewModel(
@@ -119,7 +117,6 @@ struct MainView: View {
                             }
                         }*/
                     }
-                    .searchable(text: $searchText)
                     .tabBarMinimizeBehavior(.onScrollDown)
                 } else {
                     TabView(selection: $tabSelection) {
