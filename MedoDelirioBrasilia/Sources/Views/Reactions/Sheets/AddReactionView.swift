@@ -28,7 +28,7 @@ struct AddReactionView: View {
                             .multilineTextAlignment(.center)
                     }
 
-                    Text("Reações é um recurso colaborativo e online. As categorias são as mesmas para todos os usuários.\n\nPensou numa categoria nova diferente? Acha que um som não está na categoria certa ou que faltam sons? Envie-me um e-mail.")
+                    Text("Reações é um recurso colaborativo e online. As categorias são as mesmas para todos os usuários.\n\nPensou numa categoria nova diferente? Acha que uma vírgula não está na categoria certa ou que faltam vírgulas? Envie-me um e-mail.")
                         .multilineTextAlignment(.center)
 
                     Button {
