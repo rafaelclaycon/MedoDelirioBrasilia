@@ -128,7 +128,7 @@ struct ShareAsVideoView: View {
                     .padding(.horizontal, 25)
                     .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
-                        Button("Cancelar") {
+                        CloseButton {
                             dismiss()
                         }
                     )

@@ -70,7 +70,7 @@ struct HelpTheAppView: View {
                 DonorTypeInfoView()
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Fechar") {
+                            CloseButton {
                                 showDonorInfoView.toggle()
                             }
                         }

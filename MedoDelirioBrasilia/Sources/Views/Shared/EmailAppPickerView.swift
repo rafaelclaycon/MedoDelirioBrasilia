@@ -97,7 +97,7 @@ struct EmailAppPickerView: View {
             .navigationTitle("Escolha uma opção")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
-                Button("Cancelar") {
+                CloseButton {
                     self.isBeingShown = false
                 }
             )

@@ -100,7 +100,7 @@ struct ContentDetailView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Button("Fechar") {
+                        CloseButton {
                             dismiss()
                         }
                     }

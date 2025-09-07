@@ -47,7 +47,7 @@ struct AddReactionView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancelar") {
+                    CloseButton {
                         dismiss()
                     }
                 }

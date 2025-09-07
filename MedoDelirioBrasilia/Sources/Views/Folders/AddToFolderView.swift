@@ -66,7 +66,7 @@ struct AddToFolderView: View {
                 addView
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
-                            Button("Cancelar") {
+                            CloseButton {
                                 isBeingShown.toggle()
                             }
                         }

@@ -90,7 +90,7 @@ struct ClassicRetroView: View {
                 .navigationTitle("Retrospectiva")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading:
-                    Button("Fechar") {
+                    CloseButton {
                         dismiss()
                     }
                 )

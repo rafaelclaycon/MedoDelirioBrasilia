@@ -139,14 +139,8 @@ struct SettingsView: View {
             .toast($toast)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
+                    CloseButton {
                         dismiss()
-                    } label: {
-                        if #available(iOS 26.0, *) {
-                            Image(systemName: "xmark")
-                        } else {
-                            Text("Fechar")
-                        }
                     }
                 }
 

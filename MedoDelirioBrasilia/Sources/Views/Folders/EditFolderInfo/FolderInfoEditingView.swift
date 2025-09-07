@@ -69,7 +69,7 @@ struct FolderInfoEditingView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(
                     leading:
-                        Button("Cancelar") {
+                        CloseButton {
                             dismissSheet()
                         }
                     ,
