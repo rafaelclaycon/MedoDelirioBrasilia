@@ -52,28 +52,28 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    NavigationLink(destination: NotificationsSettingsView()) {
-                        Label(title: {
+                    NavigationLink(value: SettingsDestination.notificationSettings) {
+                        Label {
                             Text("Notificações")
-                        }, icon: {
+                                .foregroundStyle(.primary)
+                        } icon: {
                             Image(systemName: "bell.badge")
                                 .foregroundColor(.red)
-                        })
+                        }
                     }
 
                     if showChangeAppIcon {
-                        NavigationLink(destination: ChangeAppIconView()) {
+                        NavigationLink(value: SettingsDestination.changeAppIcon) {
                             Label {
                                 Text("Ícone do app")
                             } icon: {
                                 Image(systemName: "app")
                                     .foregroundColor(.orange)
                             }
-
                         }
                     }
 
-                    NavigationLink(destination: PrivacySettingsView()) {
+                    NavigationLink(value: SettingsDestination.privacySettings) {
                         Label {
                             Text("Privacidade")
                         } icon: {
@@ -96,25 +96,24 @@ struct SettingsView: View {
                     HelpTheAppView(donors: donors, toast: $toast, apiClient: APIClient.shared)
                 }
 
-                Section("Contribua ou entenda como funciona") {
-                    Button {
-                        Task {
-                            OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
-                            await SettingsView.sendAnalytics(for: "didTapGitHubButton")
-                        }
-                    } label: {
-                        Label("Ver código fonte no GitHub", systemImage: "curlybraces")
-                            .foregroundStyle(.purple)
-                    }
-                }
-
                 Section("Sobre") {
                     Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
 
-                    HStack {
+                    HStack(spacing: .spacing(.small)) {
+                        Button("Ver código fonte") {
+                            Task {
+                                OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
+                                await SettingsView.sendAnalytics(for: "didTapGitHubButton")
+                            }
+                        }
+                        .tint(.purple)
+                        .buttonStyle(.bordered)
+
                         Button("Diagnóstico") {
                             path.append(SettingsDestination.diagnostics)
                         }
+                        .tint(.orange)
+                        .buttonStyle(.bordered)
                     }
                 }
 
@@ -152,18 +151,32 @@ struct SettingsView: View {
                 }
 
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink(destination: HelpView()) {
+                    Button {
+                        path.append(SettingsDestination.help)
+                    } label: {
                         Image(systemName: "questionmark.circle")
                     }
                 }
             }
             .navigationDestination(for: SettingsDestination.self) { destination in
                 switch destination {
+                case .changeAppIcon:
+                    ChangeAppIconView()
+
                 case .diagnostics:
                     DiagnosticsView(
                         database: LocalDatabase.shared,
                         analyticsService: AnalyticsService()
                     )
+
+                case .help:
+                    HelpView()
+
+                case .notificationSettings:
+                    NotificationsSettingsView()
+                    
+                case .privacySettings:
+                    PrivacySettingsView()
                 }
             }
         }
@@ -187,7 +200,11 @@ struct SettingsView: View {
 
 enum SettingsDestination: Hashable {
 
+    case changeAppIcon
     case diagnostics
+    case help
+    case notificationSettings
+    case privacySettings
 }
 
 // MARK: - Preview
