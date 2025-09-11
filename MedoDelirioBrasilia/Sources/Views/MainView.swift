@@ -52,7 +52,7 @@ struct MainView: View {
             if UIDevice.isiPhone {
                 if #available(iOS 26.0, *) {
                     TabView(selection: $tabSelection) {
-                        Tab("Vírgulas", systemImage: "headphones", value: .sounds) {
+                        Tab(Shared.TabInfo.name(.sounds), systemImage: Shared.TabInfo.symbol(.sounds), value: .sounds) {
                             NavigationStack(path: $soundsPath) {
                                 MainContentView(
                                     viewModel: MainContentViewModel(
@@ -85,7 +85,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { soundsPath.append($0) })
                         }
 
-                        Tab("Reações", systemImage: "rectangle.grid.2x2", value: .reactions) {
+                        Tab(Shared.TabInfo.name(PhoneTab.reactions), systemImage: Shared.TabInfo.symbol(PhoneTab.reactions), value: .reactions) {
                             NavigationStack(path: $reactionsPath) {
                                 ReactionsView()
                                     .environment(trendsHelper)
@@ -97,7 +97,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { reactionsPath.append($0) })
                         }
 
-                        Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis", value: .trends) {
+                        Tab(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends), value: .trends) {
                             NavigationView {
                                 TrendsView(
                                     tabSelection: $tabSelection,
@@ -149,7 +149,7 @@ struct MainView: View {
                             }
                         }
                         .tabItem {
-                            Label("Sons", systemImage: "speaker.wave.3.fill")
+                            Label(Shared.TabInfo.name(.sounds), systemImage: Shared.TabInfo.symbol(.sounds))
                         }
                         .tag(PhoneTab.sounds)
                         .environment(\.push, PushAction { soundsPath.append($0) })
@@ -162,7 +162,7 @@ struct MainView: View {
                                 }
                         }
                         .tabItem {
-                            Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                            Label(Shared.TabInfo.name(PhoneTab.reactions), systemImage: Shared.TabInfo.symbol(PhoneTab.reactions))
                         }
                         .tag(PhoneTab.reactions)
                         .environment(\.push, PushAction { reactionsPath.append($0) })
@@ -175,7 +175,7 @@ struct MainView: View {
                             .environment(trendsHelper)
                         }
                         .tabItem {
-                            Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                            Label(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends))
                         }
                         .tag(PhoneTab.trends)
                     }
@@ -208,7 +208,7 @@ struct MainView: View {
             } else {
                 if #available(iOS 18, *) {
                     TabView {
-                        Tab("Sons", systemImage: "speaker.wave.2") {
+                        Tab(Shared.TabInfo.name(.allSounds), systemImage: Shared.TabInfo.symbol(.allSounds)) {
                             NavigationStack(path: $soundsPath) {
                                 MainContentView(
                                     viewModel: MainContentViewModel(
@@ -238,7 +238,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { soundsPath.append($0) })
                         }
 
-                        Tab("Favoritos", systemImage: "star") {
+                        Tab(Shared.TabInfo.name(.favorites), systemImage: Shared.TabInfo.symbol(.favorites)) {
                             NavigationStack(path: $favoritesPath) {
                                 StandaloneFavoritesView(
                                     viewModel: StandaloneFavoritesViewModel(
@@ -260,7 +260,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { favoritesPath.append($0) })
                         }
 
-                        Tab("Reações", systemImage: "rectangle.grid.2x2") {
+                        Tab(Shared.TabInfo.name(PadScreen.reactions), systemImage: Shared.TabInfo.symbol(PadScreen.reactions)) {
                             NavigationStack(path: $reactionsPath) {
                                 ReactionsView()
                                     .environment(trendsHelper)
@@ -271,7 +271,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { reactionsPath.append($0) })
                         }
 
-                        Tab("Autores", systemImage: "person") {
+                        Tab(Shared.TabInfo.name(.groupedByAuthor), systemImage: Shared.TabInfo.symbol(.groupedByAuthor)) {
                             NavigationStack(path: $authorsPath) {
                                 StandaloneAuthorsView()
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
@@ -281,7 +281,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { authorsPath.append($0) })
                         }
 
-                        Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
+                        Tab(Shared.TabInfo.name(PadScreen.trends), systemImage: Shared.TabInfo.symbol(PadScreen.trends)) {
                             NavigationStack {
                                 TrendsView(
                                     tabSelection: $tabSelection,
@@ -292,7 +292,7 @@ struct MainView: View {
                         }
 
                         TabSection("Minhas Pastas") {
-                            Tab("Todas as Pastas", systemImage: "folder") {
+                            Tab(Shared.TabInfo.name(.allFolders), systemImage: Shared.TabInfo.symbol(.allFolders)) {
                                 NavigationStack(path: $foldersPath) {
                                     StandaloneFolderGridView(
                                         folderForEditing: $folderForEditing,
@@ -401,7 +401,7 @@ struct MainView: View {
                                 viewModel: MainContentViewModel(
                                     currentViewMode: .all,
                                     contentSortOption: UserSettings().mainSoundListSoundSortOption(),
-                                    authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                    authorSortOption: UserSettings().authorSortOption(),
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
