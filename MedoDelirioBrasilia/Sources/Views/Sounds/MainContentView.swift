@@ -191,103 +191,40 @@ struct MainContentView: View {
                     }
                     .navigationTitle(Text(title))
                     .toolbar {
-                        ToolbarItemGroup(placement: .topBarLeading) {
-                            LeadingToolbarControls(
-                                isSelecting: currentContentListMode.wrappedValue == .selection,
-                                cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
-                                openSettingsAction: openSettingsAction
-                            )
-                        }
-                    }
-                    .toolbar {
-                        if #available(iOS 26.0, *) {
-                            ToolbarItem {
-                                Button {
-                                    subviewToOpen = .syncInfo
-                                    showingModalView = true
-                                } label: {
-                                    SyncStatusView()
-                                }
-                            }
-                            .matchedTransitionSource(id: "sync-status-view", in: namespace)
-                        } else {
-                            ToolbarItem {
-                                Button {
-                                    subviewToOpen = .syncInfo
-                                    showingModalView = true
-                                } label: {
-                                    SyncStatusView()
-                                }
-                            }
-                        }
+                        LeadingToolbarControls(
+                            isSelecting: currentContentListMode.wrappedValue == .selection,
+                            cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
+                            openSettingsAction: openSettingsAction
+                        )
 
-                        if #available(iOS 26.0, *) {
-                            ToolbarSpacer(.fixed, placement: .topBarTrailing)
-                        }
-
-                        ToolbarItem {
-                            ContentToolbarOptionsView(
-                                contentSortOption: $viewModel.contentSortOption,
-                                contentListMode: currentContentListMode.wrappedValue,
-                                multiSelectAction: {
-                                    contentGridViewModel.onEnterMultiSelectModeSelected(
-                                        loadedContent: loadedContent,
-                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
-                                    )
-                                },
-                                playRandomSoundAction: {
-                                    Task {
-                                        await playRandomSound()
-                                    }
-                                },
-                                contentSortChangeAction: { viewModel.onContentSortOptionChanged() }
-                            )
-                        }
-   
-//                            ContentToolbarOptionsView(
-//                                contentSortOption: $viewModel.contentSortOption,
-//                                contentListMode: currentContentListMode.wrappedValue,
-//                                multiSelectAction: {
-//                                    contentGridViewModel.onEnterMultiSelectModeSelected(
-//                                        loadedContent: loadedContent,
-//                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
-//                                    )
-//                                },
-//                                playRandomSoundAction: {
-//                                    Task {
-//                                        await playRandomSound()
-//                                    }
-//                                },
-//                                contentSortChangeAction: viewModel.onContentSortOptionChanged()
-//                            )
-                            
-//                            TrailingToolbarControls(
-//                                currentViewMode: viewModel.currentViewMode,
-//                                contentListMode: currentContentListMode.wrappedValue,
-//                                contentSortOption: $viewModel.contentSortOption,
-//                                authorSortOption: $viewModel.authorSortOption,
-//                                openContentUpdateSheet: {
-//                                    subviewToOpen = .syncInfo
-//                                    showingModalView = true
-//                                },
-//                                multiSelectAction: {
-//                                    contentGridViewModel.onEnterMultiSelectModeSelected(
-//                                        loadedContent: loadedContent,
-//                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites
-//                                    )
-//                                },
-//                                playRandomSoundAction: {
-//                                    Task {
-//                                        await playRandomSound()
-//                                    }
-//                                },
-//                                contentSortChangeAction: {
-//                                    viewModel.onContentSortOptionChanged()
-//                                },
-//                                authorSortChangeAction: {
-//                                    authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
-//                                }
-//                            )
+                        TrailingToolbarControls(
+                            currentViewMode: viewModel.currentViewMode,
+                            contentListMode: currentContentListMode.wrappedValue,
+                            contentSortOption: $viewModel.contentSortOption,
+                            authorSortOption: $viewModel.authorSortOption,
+                            openContentUpdateSheet: {
+                                subviewToOpen = .syncInfo
+                                showingModalView = true
+                            },
+                            multiSelectAction: {
+                                contentGridViewModel.onEnterMultiSelectModeSelected(
+                                    loadedContent: loadedContent,
+                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites
+                                )
+                            },
+                            playRandomSoundAction: {
+                                Task {
+                                    await playRandomSound()
+                                }
+                            },
+                            contentSortChangeAction: {
+                                viewModel.onContentSortOptionChanged()
+                            },
+                            authorSortChangeAction: {
+                                authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
+                            },
+                            matchedTransitionNamespace: namespace
+                        )
                     }
                     .onChange(of: viewModel.currentViewMode) {
                         Task {
@@ -362,7 +299,7 @@ struct MainContentView: View {
 
 extension MainContentView {
 
-    struct TrailingToolbarControls: View {
+    struct TrailingToolbarControls: ToolbarContent {
 
         let currentViewMode: ContentModeOption
         let contentListMode: ContentGridMode
@@ -373,31 +310,44 @@ extension MainContentView {
         let playRandomSoundAction: () -> Void
         let contentSortChangeAction: () -> Void
         let authorSortChangeAction: () -> Void
+        let matchedTransitionNamespace: Namespace.ID
 
-        var body: some View {
+        var body: some ToolbarContent {
             if currentViewMode != .folders { // MyFoldersiPhoneView takes care of its own toolbar.
-                HStack(spacing: .spacing(.medium)) {
-                    if currentViewMode == .authors {
-                        AuthorToolbarOptionsView(
-                            authorSortOption: $authorSortOption,
-                            onSortingChangedAction: authorSortChangeAction
-                        )
-                    } else {
-                        if contentListMode == .regular {
-                            SyncStatusView()
-                                .onTapGesture {
+                if currentViewMode == .authors {
+                    AuthorToolbarOptionsView(
+                        authorSortOption: $authorSortOption,
+                        onSortingChangedAction: authorSortChangeAction
+                    )
+                } else {
+                    if contentListMode == .regular {
+                        if #available(iOS 26.0, *) {
+                            ToolbarItem {
+                                Button {
                                     openContentUpdateSheet()
+                                } label: {
+                                    SyncStatusView()
                                 }
+                            }
+                            .matchedTransitionSource(id: "sync-status-view", in: matchedTransitionNamespace)
+                        } else {
+                            ToolbarItem {
+                                Button {
+                                    openContentUpdateSheet()
+                                } label: {
+                                    SyncStatusView()
+                                }
+                            }
                         }
-
-                        ContentToolbarOptionsView(
-                            contentSortOption: $contentSortOption,
-                            contentListMode: contentListMode,
-                            multiSelectAction: multiSelectAction,
-                            playRandomSoundAction: playRandomSoundAction,
-                            contentSortChangeAction: contentSortChangeAction
-                        )
                     }
+
+                    ContentToolbarOptionsView(
+                        contentSortOption: $contentSortOption,
+                        contentListMode: contentListMode,
+                        multiSelectAction: multiSelectAction,
+                        playRandomSoundAction: playRandomSoundAction,
+                        contentSortChangeAction: contentSortChangeAction
+                    )
                 }
             }
         }

@@ -7,38 +7,41 @@
 
 import SwiftUI
 
-struct LeadingToolbarControls: View {
+struct LeadingToolbarControls: ToolbarContent {
 
     let isSelecting: Bool
     let cancelAction: () -> Void
     let openSettingsAction: () -> Void
 
-    var body: some View {
-        if isSelecting {
-            Button {
-                cancelAction()
-            } label: {
-                Text("Cancelar")
-                    .bold()
-            }
-        } else {
-            if UIDevice.isiPhone {
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            if isSelecting {
+                Button {
+                    cancelAction()
+                } label: {
+                    Text("Cancelar")
+                        .bold()
+                }
+            } else if UIDevice.isiPhone {
                 Button {
                     openSettingsAction()
                 } label: {
                     Image(systemName: "gearshape")
                 }
-            } else {
-                EmptyView()
             }
         }
     }
 }
 
 #Preview {
-    LeadingToolbarControls(
-        isSelecting: false,
-        cancelAction: {},
-        openSettingsAction: {}
-    )
+    VStack {
+        Text("View")
+    }
+    .toolbar {
+        LeadingToolbarControls(
+            isSelecting: false,
+            cancelAction: {},
+            openSettingsAction: {}
+        )
+    }
 }
