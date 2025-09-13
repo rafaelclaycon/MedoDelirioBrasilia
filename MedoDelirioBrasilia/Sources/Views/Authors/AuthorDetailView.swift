@@ -103,11 +103,13 @@ struct AuthorDetailView: View {
                         },
                         askForSoundAction: {
                             contentGridViewModel.onExitMultiSelectModeSelected()
-                            viewModel.showAskForNewSoundAlert()
+                            viewModel.onAskForNewSoundSelected()
                         },
                         reportIssueAction: {
                             contentGridViewModel.onExitMultiSelectModeSelected()
-                            viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+                            Task {
+                                await viewModel.onReportAuthorDetailIssueSelected()
+                            }
                         },
                         contentSortChangeAction: {
                             contentGridViewModel.onContentSortingChanged()
@@ -166,41 +168,19 @@ struct AuthorDetailView: View {
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
-                            primaryButton: .default(Text("Relatar Problema por E-mail"), action: { viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true }),
+                            primaryButton: .default(
+                                Text("Relatar Problema por E-mail"), action: { Task { await viewModel.onReportAuthorDetailIssueSelected() } }
+                            ),
                             secondaryButton: .cancel(Text("Fechar"))
                         )
                     case .askForNewSound:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
-                            primaryButton: .default(Text("Li e Entendi"), action: { viewModel.showEmailAppPicker_askForNewSound = true }),
+                            primaryButton: .default(Text("Li e Entendi"), action: { Task { await viewModel.onAskForNewSoundConfirmation() } }),
                             secondaryButton: .cancel(Text("Cancelar"))
                         )
                     }
-                }
-                .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-                    EmailAppPickerView(
-                        isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-                        toast: contentGridViewModel.toast,
-                        subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? "")
-                    )
-                }
-                .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
-                    EmailAppPickerView(
-                        isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
-                        toast: contentGridViewModel.toast,
-                        subject: String(format: Shared.Email.AskForNewSound.subject, self.viewModel.author.name),
-                        emailBody: Shared.Email.AskForNewSound.body
-                    )
-                }
-                .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
-                    EmailAppPickerView(
-                        isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
-                        toast: contentGridViewModel.toast,
-                        subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.viewModel.author.name),
-                        emailBody: Shared.Email.AuthorDetailIssue.body
-                    )
                 }
                 .onChange(of: contentGridViewModel.selectionKeeper.count) {
                     if navBarTitle.isEmpty == false {
@@ -213,6 +193,12 @@ struct AuthorDetailView: View {
             .edgesIgnoringSafeArea(edgesToIgnore)
             .toast(viewModel.toast)
             .floatingContentOptions(viewModel.floatingOptions)
+            .overlay {
+                if viewModel.isLoadingEmail {
+                    ProcessingView(message: "Criando e-mail...")
+                        .padding(.bottom)
+                }
+            }
         }
     }
 }

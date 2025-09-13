@@ -9,9 +9,6 @@ import SwiftUI
 
 struct AddReactionView: View {
 
-    @State private var showEmailAppPicker: Bool = false
-    @State private var toast: Toast?
-
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -32,7 +29,12 @@ struct AddReactionView: View {
                         .multilineTextAlignment(.center)
 
                     Button {
-                        showEmailAppPicker.toggle()
+                        Task {
+                            await Mailman.openDefaultEmailApp(
+                                subject: Shared.Email.Reactions.suggestChangesSubject,
+                                body: Shared.Email.Reactions.suggestChangesBody
+                            )
+                        }
                     } label: {
                         HStack {
                             Spacer()
@@ -51,15 +53,6 @@ struct AddReactionView: View {
                         dismiss()
                     }
                 }
-            }
-            .toast($toast)
-            .sheet(isPresented: $showEmailAppPicker) {
-                EmailAppPickerView(
-                    isBeingShown: $showEmailAppPicker,
-                    toast: $toast,
-                    subject: Shared.Email.Reactions.suggestChangesSubject,
-                    emailBody: Shared.Email.Reactions.suggestChangesBody
-                )
             }
         }
     }

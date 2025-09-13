@@ -66,7 +66,11 @@ struct ContentDetailView: View {
                         authorName: viewModel.content.subtitle,
                         authorCanNavigate: (viewModel.content.authorId != viewModel.authorId) && (viewModel.content.type == .sound),
                         authorSelectedAction: { viewModel.onAuthorSelected() },
-                        editAuthorSelectedAction: { viewModel.onEditAuthorSelected() }
+                        editAuthorSelectedAction: {
+                            Task {
+                                await viewModel.onEditAuthorSelected()
+                            }
+                        }
                     )
                     .padding(.horizontal, .spacing(.medium))
 
@@ -80,7 +84,11 @@ struct ContentDetailView: View {
                         ReactionsSection(
                             state: viewModel.reactionsState,
                             openReactionAction: { viewModel.onReactionSelected(reaction: $0) },
-                            suggestAction: { viewModel.onSuggestAddToReactionSelected() },
+                            suggestAction: {
+                                Task {
+                                    await viewModel.onSuggestAddToReactionSelected()
+                                }
+                            },
                             reloadAction: {
                                 Task { await viewModel.onRetryLoadReactionsSelected() }
                             }
@@ -109,22 +117,6 @@ struct ContentDetailView: View {
                     // No buttons
                 } message: {
                     Text(viewModel.alertMessage)
-                }
-                .sheet(isPresented: $viewModel.showAuthorSuggestionEmailAppPicker) {
-                    EmailAppPickerView(
-                        isBeingShown: $viewModel.showAuthorSuggestionEmailAppPicker,
-                        toast: $viewModel.toast,
-                        subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.content.title),
-                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.content.subtitle, viewModel.content.id)
-                    )
-                }
-                .sheet(isPresented: $viewModel.showReactionSuggestionEmailAppPicker) {
-                    EmailAppPickerView(
-                        isBeingShown: $viewModel.showReactionSuggestionEmailAppPicker,
-                        toast: $viewModel.toast,
-                        subject: String(format: "Sugestão Para Adicionar '%@' a Uma Reação", viewModel.content.title),
-                        emailBody: String(format: "As Reações expressam emoções, acontecimentos ou personalidades. Qual o nome da Reação nova ou existente na qual você acha que esse som se encaixa?")
-                    )
                 }
             }
             .toast($viewModel.toast)

@@ -1094,7 +1094,6 @@
 		D97B2DE628E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */; };
 		D97B2DE728E60B8600C3B50B /* Michael The Office - No god please no.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */; };
 		D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */; };
-		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
 		D97FFA662CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FFA652CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
@@ -2659,7 +2658,6 @@
 		D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes - Reaja a assaltos.mp3"; sourceTree = "<group>"; };
 		D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michael The Office - No god please no.mp3"; sourceTree = "<group>"; };
 		D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFolderIcon.swift; sourceTree = "<group>"; };
-		D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAppPickerView.swift; sourceTree = "<group>"; };
 		D97FFA652CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingiOS18ControlAndSiriIntentView.swift; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -4815,7 +4813,6 @@
 				D9DBEA9F2BCC10F200220679 /* ContentGrid */,
 				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
 				D933251D28835E41004EFACB /* ActivityViewController.swift */,
-				D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */,
 				D957047C28AEF733008DEF8C /* ProcessingView.swift */,
 				D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */,
 				D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */,
@@ -6874,7 +6871,6 @@
 				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchRepository.swift in Sources */,
 				D92ABB542DBDAC60002E4315 /* AuthorService.swift in Sources */,
-				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
 				D986D1FE2BCE23FD00214DAB /* ContentGridDisplaying.swift in Sources */,
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,

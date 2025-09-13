@@ -19,8 +19,6 @@ struct SettingsView: View {
     @State private var toast: Toast?
     @State private var donors: [Donor]? = nil
 
-    @State private var showEmailSheet: Bool = false
-
     private let apiClient: APIClientProtocol
 
     // MARK: - Environment
@@ -85,7 +83,12 @@ struct SettingsView: View {
 
                 Section("Problemas, sugestões e pedidos") {
                     Button {
-                        showEmailSheet = true
+                        Task {
+                            await Mailman.openDefaultEmailApp(
+                                subject: Shared.issueSuggestionEmailSubject,
+                                body: Shared.issueSuggestionEmailBody
+                            )
+                        }
                     } label: {
                         Label("Entrar em contato por e-mail", systemImage: "envelope")
                     }
@@ -127,14 +130,6 @@ struct SettingsView: View {
                 Task {
                     await onViewAppeared()
                 }
-            }
-            .sheet(isPresented: $showEmailSheet) {
-                EmailAppPickerView(
-                    isBeingShown: $showEmailSheet,
-                    toast: $toast,
-                    subject: Shared.issueSuggestionEmailSubject,
-                    emailBody: Shared.issueSuggestionEmailBody
-                )
             }
             .toast($toast)
             .toolbar {

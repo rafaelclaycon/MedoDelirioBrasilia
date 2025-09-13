@@ -142,7 +142,9 @@ extension ContextMenuOption {
             title: { _ in "Sugerir Outro Nome de Autor"},
             appliesTo: [.sound]
         ) { delegate, data in
-            delegate.suggestOtherAuthorName(for: data.selectedContent)
+            Task {
+                await delegate.suggestOtherAuthorName(for: data.selectedContent)
+            }
         }
     }
 }

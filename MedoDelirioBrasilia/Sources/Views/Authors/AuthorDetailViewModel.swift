@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class AuthorDetailViewModel {
+public class AuthorDetailViewModel {
 
     var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
@@ -18,14 +18,10 @@ class AuthorDetailViewModel {
     var selectedSound: Sound? = nil
     var selectedSounds: [Sound]? = nil
 
-    var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
-    var showEmailAppPicker_soundUnavailableConfirmationDialog = false
-    var showEmailAppPicker_askForNewSound = false
-    var showEmailAppPicker_reportAuthorDetailIssue = false
-
     public var currentContentListMode: Binding<ContentGridMode>
     public var toast: Binding<Toast?>
     public var floatingOptions: Binding<FloatingContentOptions?>
+    public var isLoadingEmail: Bool = false
 
     private let contentRepository: ContentRepositoryProtocol
 
@@ -66,22 +62,44 @@ class AuthorDetailViewModel {
 
 // MARK: - User Actions
 
-extension AuthorDetailViewModel {
+public extension AuthorDetailViewModel {
 
-    public func onViewLoaded() {
+    func onViewLoaded() {
         loadContent()
     }
 
-    public func onSortOptionChanged() {
+    func onSortOptionChanged() {
         loadContent()
+    }
+
+    func onAskForNewSoundSelected() {
+        showAskForNewSoundAlert()
+    }
+
+    func onAskForNewSoundConfirmation() async {
+        isLoadingEmail = true
+        await Mailman.openDefaultEmailApp(
+            subject: String(format: Shared.Email.AskForNewSound.subject, author.name),
+            body: Shared.Email.AskForNewSound.body
+        )
+        isLoadingEmail = false
+    }
+
+    func onReportAuthorDetailIssueSelected() async {
+        isLoadingEmail = true
+        await Mailman.openDefaultEmailApp(
+            subject: String(format: Shared.Email.AuthorDetailIssue.subject, author.name),
+            body: Shared.Email.AuthorDetailIssue.body
+        )
+        isLoadingEmail = false
     }
 }
 
 // MARK: - Internal Functions
 
-extension AuthorDetailViewModel {
+private extension AuthorDetailViewModel {
 
-    private func loadContent() {
+    func loadContent() {
         state = .loading
         do {
             let allowSensitive = UserSettings().getShowExplicitContent()
@@ -93,7 +111,7 @@ extension AuthorDetailViewModel {
         }
     }
 
-    public func showAskForNewSoundAlert() {
+    func showAskForNewSoundAlert() {
         HapticFeedback.warning()
         alertType = .askForNewSound
         alertTitle = Shared.AuthorDetail.AskForNewSoundAlert.title

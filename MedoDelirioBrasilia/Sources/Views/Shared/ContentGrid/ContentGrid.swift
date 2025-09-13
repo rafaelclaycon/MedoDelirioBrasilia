@@ -178,7 +178,7 @@ struct ContentGrid<
                             message: Text(viewModel.alertMessage),
                             primaryButton: .default(
                                 Text("Relatar Problema por E-mail"),
-                                action: { viewModel.onReportContentIssueSelected() }
+                                action: { Task { await viewModel.onReportContentIssueSelected() } }
                             ),
                             secondaryButton: .cancel(Text("Fechar"))
                         )
@@ -249,22 +249,6 @@ struct ContentGrid<
                             },
                             reactionId: reactionId,
                             dismissAction: { viewModel.showingModalView = false }
-                        )
-
-                    case .soundIssueEmailPicker:
-                        EmailAppPickerView(
-                            isBeingShown: $viewModel.showingModalView,
-                            toast: viewModel.toast,
-                            subject: Shared.issueSuggestionEmailSubject,
-                            emailBody: Shared.issueSuggestionEmailBody
-                        )
-
-                    case .authorIssueEmailPicker(let content):
-                        EmailAppPickerView(
-                            isBeingShown: $viewModel.showingModalView,
-                            toast: viewModel.toast,
-                            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
-                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id)
                         )
                     }
                 }
