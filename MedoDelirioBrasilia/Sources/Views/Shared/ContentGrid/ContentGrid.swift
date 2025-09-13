@@ -52,6 +52,8 @@ struct ContentGrid<
     // Add to Folder details
     @State private var addToFolderHelper = AddToFolderDetails()
 
+    @State private var showShareUnavailableOnMacOS26Alert = false
+
     // MARK: - Computed Properties
 
     private var searchResults: [AnyEquatableMedoContent] {
@@ -301,6 +303,17 @@ struct ContentGrid<
                     viewModel.onViewAppeared()
                     updateGridLayout()
                 }
+                .alert(
+                    Text("Compartilhar Indisponível - Abra Feedback pra Apple"),
+                    isPresented: $showShareUnavailableOnMacOS26Alert
+                ) {
+                    Button("OK") {
+                        showShareUnavailableOnMacOS26Alert.toggle()
+                    }
+                } message: {
+                    Text("Até que a Apple corrija um erro que faz com que a folha de compartilhamento crashe o app e o sistema inteiro no macOS 26, a opção Compartilhar do Medo e Delírio estará indisponível em Macs com esse macOS.\n\nA função Compartilhar segue disponível no iPhone e iPad, independente da versão do sistema.")
+                }
+
             }
 
         case .error(_):
@@ -321,23 +334,56 @@ struct ContentGrid<
             Section {
                 ForEach(section.options(content)) { option in
                     if option.appliesTo.contains(content.type) {
-                        Button {
-                            option.action(
-                                viewModel,
-                                ContextMenuPassthroughData(
-                                    selectedContent: content,
-                                    loadedContent: loadedContent,
-                                    isFavoritesOnlyView: isFavoritesOnlyView
-                                )
-                            )
-                        } label: {
-                            Label(
-                                option.title(favorites.contains(content.id)),
-                                systemImage: option.symbol(favorites.contains(content.id))
-                            )
-                        }
+                        optionRow(
+                            option: option,
+                            isFavorite: favorites.contains(content.id),
+                            content: content,
+                            loadedContent: loadedContent
+                        )
                     }
                 }
+            }
+        }
+    }
+
+    @MainActor
+    @ViewBuilder
+    private func optionRow(
+        option: ContextMenuOption,
+        isFavorite: Bool,
+        content: AnyEquatableMedoContent,
+        loadedContent: [AnyEquatableMedoContent]
+    ) -> some View {
+        let optionTitle = option.title(isFavorite)
+
+        // TODO: Migrate all share sheet use to ShareLink but keep the toast feedback and other things done in the current implementation.
+//        if optionTitle == Shared.shareSoundButtonText,
+//           let url = try? content.fileURL()
+//        {
+//            ShareLink(item: url) {
+//                Label(optionTitle + " DEV", systemImage: option.symbol(isFavorite))
+//            }
+        if #available(macOS 26, *),
+           UIDevice.isMac,
+            optionTitle == Shared.shareSoundButtonText
+        {
+            Button {
+                showShareUnavailableOnMacOS26Alert.toggle()
+            } label: {
+                Label(optionTitle + " (temporariamente indisponível)", systemImage: option.symbol(isFavorite))
+            }
+        } else {
+            Button {
+                option.action(
+                    viewModel,
+                    ContextMenuPassthroughData(
+                        selectedContent: content,
+                        loadedContent: loadedContent,
+                        isFavoritesOnlyView: isFavoritesOnlyView
+                    )
+                )
+            } label: {
+                Label(optionTitle, systemImage: option.symbol(isFavorite))
             }
         }
     }

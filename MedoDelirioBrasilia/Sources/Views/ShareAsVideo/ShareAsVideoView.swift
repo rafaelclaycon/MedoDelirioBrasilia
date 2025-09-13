@@ -40,6 +40,14 @@ struct ShareAsVideoView: View {
         !isSquare
     }
 
+    private var isShareAvailable: Bool {
+        if #available(macOS 26, *) {
+            return false
+        } else {
+            return true
+        }
+    }
+
     // MARK: - View Body
 
     var body: some View {
@@ -115,9 +123,11 @@ struct ShareAsVideoView: View {
                             HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == 0 {
                                     shareButton(view: squareImage)
+                                        .disabled(!isShareAvailable)
                                     saveVideoButton(view: squareImage)
                                 } else {
                                     shareButton(view: nineBySixteenImage)
+                                        .disabled(!isShareAvailable)
                                     saveVideoButton(view: nineBySixteenImage)
                                 }
                             }
