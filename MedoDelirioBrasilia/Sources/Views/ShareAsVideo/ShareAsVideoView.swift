@@ -41,7 +41,7 @@ struct ShareAsVideoView: View {
     }
 
     private var isShareAvailable: Bool {
-        if #available(macOS 26, *) {
+        if #available(macOS 26, *), UIDevice.isMac {
             return false
         } else {
             return true
