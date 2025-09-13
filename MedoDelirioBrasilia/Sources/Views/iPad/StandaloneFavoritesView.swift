@@ -85,31 +85,27 @@ struct StandaloneFavoritesView: View {
                 }
                 .padding(.horizontal, .spacing(.medium))
                 .navigationTitle(Text("Favoritos"))
-//                .toolbar {
-//                    ToolbarItemGroup(placement: .topBarLeading) {
-//                        LeadingToolbarControls(
-//                            isSelecting: currentContentListMode.wrappedValue == .selection,
-//                            cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
-//                            openSettingsAction: openSettingsAction
-//                        )
-//                    }
-//
-//                    ToolbarItemGroup(placement: .topBarTrailing) {
-//                        ContentToolbarOptionsView(
-//                            contentSortOption: $viewModel.contentSortOption,
-//                            contentListMode: currentContentListMode.wrappedValue,
-//                            multiSelectAction: {
-//                                contentGridViewModel.onEnterMultiSelectModeSelected(
-//                                    loadedContent: loadedContent,
-//                                    isFavoritesOnlyView: true
-//                                )
-//                            },
-//                            contentSortChangeAction: {
-//                                viewModel.onContentSortOptionChanged()
-//                            }
-//                        )
-//                    }
-//                }
+                .toolbar {
+                    LeadingToolbarControls(
+                        isSelecting: currentContentListMode.wrappedValue == .selection,
+                        cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
+                        openSettingsAction: openSettingsAction
+                    )
+
+                    ContentToolbarOptionsView(
+                        contentSortOption: $viewModel.contentSortOption,
+                        contentListMode: currentContentListMode.wrappedValue,
+                        multiSelectAction: {
+                            contentGridViewModel.onEnterMultiSelectModeSelected(
+                                loadedContent: loadedContent,
+                                isFavoritesOnlyView: true
+                            )
+                        },
+                        contentSortChangeAction: {
+                            viewModel.onContentSortOptionChanged()
+                        }
+                    )
+                }
                 .onAppear {
                     viewModel.onViewDidAppear()
                     contentGridViewModel.onViewAppeared()
