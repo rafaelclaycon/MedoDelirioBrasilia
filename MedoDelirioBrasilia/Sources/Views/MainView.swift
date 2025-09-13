@@ -117,7 +117,7 @@ struct MainView: View {
                             }
                         }*/
                     }
-                    .tabBarMinimizeBehavior(.onScrollDown)
+                    //.tabBarMinimizeBehavior(.onScrollDown)
                 } else {
                     TabView(selection: $tabSelection) {
                         NavigationStack(path: $soundsPath) {
