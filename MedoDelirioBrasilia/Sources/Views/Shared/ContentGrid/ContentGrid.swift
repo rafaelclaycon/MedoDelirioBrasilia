@@ -363,7 +363,7 @@ struct ContentGrid<
 //            ShareLink(item: url) {
 //                Label(optionTitle + " DEV", systemImage: option.symbol(isFavorite))
 //            }
-        if #available(macOS 26, *),
+        if #available(iOS 26, *),
            UIDevice.isMac,
             optionTitle == Shared.shareSoundButtonText
         {
