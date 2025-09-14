@@ -67,21 +67,33 @@ struct FolderInfoEditingView: View {
                 .padding(.horizontal, .spacing(.medium))
                 .navigationTitle(viewModel.isEditing ? "Editar Pasta" : "Nova Pasta")
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationBarItems(
-                    leading:
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
                         CloseButton {
                             dismissSheet()
                         }
-                    ,
-                    trailing:
-                        Button {
-                            viewModel.onSaveSelected()
-                        } label: {
-                            Text(viewModel.isEditing ? "Salvar" : "Criar")
-                                .bold()
+                    }
+
+                    ToolbarItem(placement: .topBarTrailing) {
+                        if #available(iOS 26, *) {
+                            Button {
+                                viewModel.onSaveSelected()
+                            } label: {
+                                Image(systemName: "checkmark")
+                            }
+                            .tint(.accentColor)
+                            .disabled(viewModel.saveCreateButtonIsDisabled)
+                        } else {
+                            Button {
+                                viewModel.onSaveSelected()
+                            } label: {
+                                Text(viewModel.isEditing ? "Salvar" : "Criar")
+                                    .bold()
+                            }
+                            .disabled(viewModel.saveCreateButtonIsDisabled)
                         }
-                        .disabled(viewModel.saveCreateButtonIsDisabled)
-                )
+                    }
+                }
             }
             .safeAreaInset(edge: .bottom) {
                 VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
