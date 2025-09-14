@@ -443,11 +443,7 @@ struct MainView: View {
                 FirstOnboardingView(isBeingShown: $showingModalView)
                     .interactiveDismissDisabled(UIDevice.isiPhone)
 
-            case .whatsNew:
-                Version9WhatsNewView(appMemory: AppPersistentMemory())
-                    .interactiveDismissDisabled()
-
-            case .retrospective:
+            case .retrospective, .whatsNew:
                 EmptyView()
             }
         }
@@ -502,9 +498,6 @@ struct MainView: View {
     private func displayOnboardingIfNeeded() {
         if !AppPersistentMemory().hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
-            showingModalView = true
-        } else if !AppPersistentMemory().hasSeenVersion9WhatsNewScreen() {
-            subviewToOpen = .whatsNew
             showingModalView = true
         }
     }
