@@ -326,7 +326,7 @@ extension MainContentView {
                                 Button {
                                     openContentUpdateSheet()
                                 } label: {
-                                    SyncStatusView()
+                                    ContentUpdateStatusSymbol()
                                 }
                             }
                             .matchedTransitionSource(id: "sync-status-view", in: matchedTransitionNamespace)
@@ -335,7 +335,7 @@ extension MainContentView {
                                 Button {
                                     openContentUpdateSheet()
                                 } label: {
-                                    SyncStatusView()
+                                    ContentUpdateStatusSymbol()
                                 }
                             }
                         }
