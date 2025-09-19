@@ -144,16 +144,21 @@ extension HelpTheAppView {
 
         var body: some View {
             VStack(alignment: .center, spacing: .spacing(.large)) {
-                if #available(iOS 26, *) {
-                    apoiaseButton
-                        .buttonStyle(.glassProminent)
-                        .tint(.red)
-                } else {
-                    apoiaseButton
-                        .borderedButton(colored: Color.red)
+                let apoiaseButton = Button {
+                    Task {
+                        await apoiaseAction()
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Apoiar mensalmente")
+                            .bold()
+                        Spacer()
+                    }
+                    .padding(.vertical, .spacing(.xxSmall))
                 }
 
-                Button {
+                let pixButton = Button {
                     Task {
                         await copyPixKeyAction()
                     }
@@ -166,24 +171,23 @@ extension HelpTheAppView {
                     }
                     .padding(.vertical, .spacing(.xxSmall))
                 }
-                //.borderedButton(colored: .green)
-                .buttonStyle(.glass)
-            }
-        }
 
-        private var apoiaseButton: some View {
-            Button {
-                Task {
-                    await apoiaseAction()
+                if #available(iOS 26, *) {
+                    apoiaseButton
+                        .buttonStyle(.glassProminent)
+                        .tint(.red)
+                } else {
+                    apoiaseButton
+                        .borderedButton(colored: Color.red)
                 }
-            } label: {
-                HStack {
-                    Spacer()
-                    Text("Apoiar mensalmente")
-                        .bold()
-                    Spacer()
+
+                if #available(iOS 26, *) {
+                    pixButton
+                        .buttonStyle(.glass)
+                } else {
+                    pixButton
+                        .borderedButton(colored: .green)
                 }
-                .padding(.vertical, .spacing(.xxSmall))
             }
         }
 
