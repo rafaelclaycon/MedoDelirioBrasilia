@@ -248,7 +248,7 @@ struct MainContentView: View {
                     }
                     .sheet(isPresented: $showingModalView) {
                         if #available(iOS 26.0, *) {
-                            SyncInfoView(
+                            ContentUpdateStatusView(
                                 lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
                                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                             )
@@ -257,7 +257,7 @@ struct MainContentView: View {
                                 .zoom(sourceID: "sync-status-view", in: namespace)
                             )
                         } else {
-                            SyncInfoView(
+                            ContentUpdateStatusView(
                                 lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
                                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                             )

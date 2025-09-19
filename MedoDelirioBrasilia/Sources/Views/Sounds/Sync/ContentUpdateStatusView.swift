@@ -1,5 +1,5 @@
 //
-//  SyncInfoView.swift
+//  ContentUpdateStatusView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 18/08/23.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-/// A View
-struct SyncInfoView: View {
+/// Displays a sheet with Content Update status and history.
+struct ContentUpdateStatusView: View {
 
     let lastUpdateAttempt: String
     let lastUpdateDate: String
@@ -18,49 +18,40 @@ struct SyncInfoView: View {
 
     var body: some View {
         NavigationView {
-            if #available(iOS 26.0, *) {
-                scrollView
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "xmark")
-                            }
-                        }
-                    }
-            } else {
-                scrollView
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button("Fechar") {
-                                dismiss()
-                            }
-                        }
-                    }
+            ScrollView {
+                switch syncValues.syncStatus {
+                case .updating:
+                    UpdatingView()
+                case .done:
+                    AllOkView(lastUpdateAttempt: lastUpdateAttempt)
+                case .updateError:
+                    UpdateErrorView(lastUpdateDate: lastUpdateDate)
+                }
             }
-        }
-    }
+            .navigationTitle("Atualização de Conteúdos")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    CloseButton {
+                        dismiss()
+                    }
+                }
 
-    private var scrollView: some View {
-        ScrollView {
-            switch syncValues.syncStatus {
-            case .updating:
-                UpdatingView()
-            case .done:
-                AllOkView(lastUpdateAttempt: lastUpdateAttempt)
-            case .updateError:
-                UpdateErrorView(lastUpdateDate: lastUpdateDate)
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        ContentUpdateStatusView.KnowMoreView()
+                    } label: {
+                        Image(systemName: "info.circle")
+                    }
+                }
             }
         }
-        .navigationTitle("Atualização de Conteúdos")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 // MARK: - Subviews
 
-extension SyncInfoView {
+extension ContentUpdateStatusView {
 
     private struct UpdatingView: View {
 
@@ -117,12 +108,6 @@ extension SyncInfoView {
                     subtitle: lastUpdateText
                 )
                 .padding(.horizontal, .spacing(.xSmall))
-
-//                NavigationLink {
-//                    SyncInfoView.KnowMoreView()
-//                } label: {
-//                    Label("Saiba mais", systemImage: "info.circle")
-//                }
 
                 HistoryView(
                     updates: updates,
@@ -267,21 +252,21 @@ extension SyncInfoView {
 // MARK: - Previews
 
 #Preview("Updating") {
-    SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
+    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "all")
         .environment(SyncValues())
 }
 
 #Preview("Update OK") {
-    SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
         .environment(SyncValues(syncStatus: .done))
 }
 
 #Preview("Update Error - Never Updated") {
-    SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
+    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "all")
         .environment(SyncValues(syncStatus: .updateError))
 }
 
 #Preview("Update Error") {
-    SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2025-07-11T20:29:46.562Z")
+    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2025-07-11T20:29:46.562Z")
         .environment(SyncValues(syncStatus: .updateError))
 }

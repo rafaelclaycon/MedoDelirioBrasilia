@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension SyncInfoView {
+extension ContentUpdateStatusView {
 
     struct KnowMoreView: View {
 
@@ -79,5 +79,5 @@ extension SyncInfoView {
 // MARK: - Preview
 
 #Preview {
-    SyncInfoView.KnowMoreView()
+    ContentUpdateStatusView.KnowMoreView()
 }
