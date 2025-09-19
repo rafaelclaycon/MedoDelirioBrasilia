@@ -13,7 +13,6 @@ struct AddToFolderView: View {
         userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
     )
 
-    @Binding var isBeingShown: Bool
     @Binding var details: AddToFolderDetails
 
     @State var selectedContent: [AnyEquatableMedoContent]
@@ -21,56 +20,15 @@ struct AddToFolderView: View {
 
     private let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
-    // MARK: - Computed Properties
-
-    private var createNewFolderCellWidth: CGFloat {
-        if UIDevice.isiPhone {
-            return (UIScreen.main.bounds.size.width / 2) - 20
-        } else {
-            return 250
-        }
-    }
-
-    private var selectedItemsText: String {
-        if selectedContent.count == 1 {
-            return "Som:  \(selectedContent.first!.title)"
-        } else {
-            return "\(selectedContent.count) itens selecionados"
-        }
-    }
+    @Environment(\.dismiss) private var dismiss
 
     // MARK: - View Body
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .center, spacing: 20) {
-                HeaderView(text: selectedItemsText)
-
-//                FoldersAreTagsBannerView()
-//                    .padding(.horizontal)
-//                    .padding(.bottom, -10)
-                
+            VStack(alignment: .center, spacing: .spacing(.large)) {
                 ScrollView {
-                    VStack(spacing: 15) {
-                        HStack {
-                            Button {
-                                newFolder = UserFolder.newFolder()
-                            } label: {
-                                CreateFolderCell()
-                            }
-                            .foregroundColor(.primary)
-                            .frame(width: createNewFolderCellWidth)
-
-                            Spacer()
-                        }
-
-                        HStack {
-                            Text("Minhas Pastas")
-                                .font(.title2)
-
-                            Spacer()
-                        }
-
+                    VStack {
                         if viewModel.folders.count == 0 {
                             Text("Nenhuma Pasta")
                                 .font(.title2)
@@ -85,7 +43,7 @@ struct AddToFolderView: View {
                                             selectedContent: selectedContent
                                         ) else { return }
                                         details = result
-                                        isBeingShown.toggle()
+                                        dismiss()
                                     } label: {
                                         FolderView(folder: folder)
                                     }
@@ -96,17 +54,27 @@ struct AddToFolderView: View {
                     }
                 }
             }
-            .navigationTitle("Adicionar a Pasta")
+            .navigationTitle("Adicionar a uma Pasta")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading:
-                Button("Cancelar") {
-                    self.isBeingShown = false
-                }
-            )
             .padding(.horizontal)
             .onAppear {
                 Task {
                     await viewModel.onViewAppeared()
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    CloseButton {
+                        dismiss()
+                    }
+                }
+
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        newFolder = UserFolder.newFolder()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
             .alert(isPresented: $viewModel.showAlert) {
@@ -118,7 +86,7 @@ struct AddToFolderView: View {
                         primaryButton: .default(Text("Adicionar"), action: {
                             guard let result = viewModel.onAddOnlyNonExistingSelected() else { return }
                             details = result
-                            isBeingShown.toggle()
+                            dismiss()
                         }),
                         secondaryButton: .cancel(Text("Cancelar"))
                     )
@@ -147,38 +115,10 @@ struct AddToFolderView: View {
     }
 }
 
-// MARK: - Subviews
-
-extension AddToFolderView {
-
-    struct HeaderView: View {
-
-        let text: String
-
-        var body: some View {
-            HStack(spacing: 16) {
-                Image(systemName: "speaker.wave.3.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 24)
-                    .padding(.leading, 7)
-
-                Text(text)
-                    .bold()
-                    .multilineTextAlignment(.leading)
-
-                Spacer()
-            }
-            .padding(.top, 5)
-        }
-    }
-}
-
 // MARK: - Preview
 
 #Preview {
     AddToFolderView(
-        isBeingShown: .constant(true),
         details: .constant(AddToFolderDetails()),
         selectedContent: [
             AnyEquatableMedoContent(Sound(title: "ABCD", description: ""))

@@ -68,7 +68,7 @@ struct HelpTheAppView: View {
                 DonorTypeInfoView()
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Fechar") {
+                            CloseButton {
                                 showDonorInfoView.toggle()
                             }
                         }
@@ -143,12 +143,24 @@ extension HelpTheAppView {
         private let pixKey: String = "medodeliriosuporte@gmail.com"
 
         var body: some View {
-            VStack(alignment: .leading, spacing: .spacing(.large)) {
-                Button {
+            VStack(alignment: .center, spacing: .spacing(.large)) {
+                let apoiaseButton = Button {
                     Task {
-                        UIPasteboard.general.string = pixKey
-                        toast = Toast(message: randomThankYouString(), type: .thankYou)
-                        await HelpTheAppView.DonateButtons.sendAnalytics(for: "didCopyPixKey")
+                        await apoiaseAction()
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Apoiar mensalmente")
+                            .bold()
+                        Spacer()
+                    }
+                    .padding(.vertical, .spacing(.xxSmall))
+                }
+
+                let pixButton = Button {
+                    Task {
+                        await copyPixKeyAction()
                     }
                 } label: {
                     HStack {
@@ -157,24 +169,37 @@ extension HelpTheAppView {
                             .bold()
                         Spacer()
                     }
+                    .padding(.vertical, .spacing(.xxSmall))
                 }
-                .borderedButton(colored: .green)
 
-                Button {
-                    Task {
-                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-                        await HelpTheAppView.DonateButtons.sendAnalytics(for: "didTapApoiaseButton")
-                    }
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("Apoiar mensalmente (a partir de R$ 5)")
-                            .bold()
-                        Spacer()
-                    }
+                if #available(iOS 26, *) {
+                    apoiaseButton
+                        .buttonStyle(.glassProminent)
+                        .tint(.red)
+                } else {
+                    apoiaseButton
+                        .borderedButton(colored: Color.red)
                 }
-                .borderedButton(colored: .red)
+
+                if #available(iOS 26, *) {
+                    pixButton
+                        .buttonStyle(.glass)
+                } else {
+                    pixButton
+                        .borderedButton(colored: .green)
+                }
             }
+        }
+
+        private func apoiaseAction() async {
+            OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
+            await HelpTheAppView.DonateButtons.sendAnalytics(for: "didTapApoiaseButton")
+        }
+
+        private func copyPixKeyAction() async {
+            UIPasteboard.general.string = pixKey
+            toast = Toast(message: randomThankYouString(), type: .thankYou)
+            await HelpTheAppView.DonateButtons.sendAnalytics(for: "didCopyPixKey")
         }
 
         private func randomThankYouString() -> String {
@@ -270,5 +295,9 @@ extension HelpTheAppView {
 }
 
 #Preview("Donate Buttons") {
-    HelpTheAppView.DonateButtons(toast: .constant(nil))
+    if #available(iOS 26.0, *) {
+        HelpTheAppView.DonateButtons(toast: .constant(nil))
+    } else {
+        // Fallback on earlier versions
+    }
 }

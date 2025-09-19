@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    @State private var path = NavigationPath()
+
     @State private var showExplicitSounds: Bool = UserSettings().getShowExplicitContent()
 
     @State private var showChangeAppIcon: Bool = !UIDevice.isMac
@@ -17,17 +19,12 @@ struct SettingsView: View {
     @State private var toast: Toast?
     @State private var donors: [Donor]? = nil
 
-    @State private var showEmailSheet: Bool = false
-
-    private let authorSocials: [SocialMediaLink] = [
-        .init(name: "Bluesky", imageName: "bluesky", link: "https://bsky.app/profile/rafaelschmitt.bsky.social"),
-        .init(name: "Mastodon", imageName: "mastodon", link: "https://burnthis.town/@rafael")
-    ]
     private let apiClient: APIClientProtocol
 
     // MARK: - Environment
 
     @Environment(SettingsHelper.self) private var helper
+    @Environment(\.dismiss) var dismiss
 
     // MARK: - Initializer
 
@@ -40,160 +37,138 @@ struct SettingsView: View {
     // MARK: - View Body
 
     var body: some View {
-        Form {
-            Section {
-                Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
-                    .onChange(of: showExplicitSounds) {
-                        UserSettings().setShowExplicitContent(to: showExplicitSounds)
-                        helper.updateSoundsList = true
-                    }
-            } footer: {
-                Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
-            }
-
-            Section {
-                NavigationLink(destination: NotificationsSettingsView()) {
-                    Label(title: {
-                        Text("Notificações")
-                    }, icon: {
-                        Image(systemName: "bell.badge")
-                            .foregroundColor(.red)
-                    })
+        NavigationStack(path: $path) {
+            Form {
+                Section {
+                    Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
+                        .onChange(of: showExplicitSounds) {
+                            UserSettings().setShowExplicitContent(to: showExplicitSounds)
+                            helper.updateSoundsList = true
+                        }
+                } footer: {
+                    Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
                 }
 
-                if showChangeAppIcon {
-                    NavigationLink(destination: ChangeAppIconView()) {
+                Section {
+                    NavigationLink(value: SettingsDestination.notificationSettings) {
                         Label {
-                            Text("Ícone do app")
+                            Text("Notificações")
+                                .foregroundStyle(.primary)
                         } icon: {
-                            Image(systemName: "app")
-                                .foregroundColor(.orange)
+                            Image(systemName: "bell.badge")
+                                .foregroundColor(.red)
                         }
+                    }
 
+                    if showChangeAppIcon {
+                        NavigationLink(value: SettingsDestination.changeAppIcon) {
+                            Label {
+                                Text("Ícone do app")
+                            } icon: {
+                                Image(systemName: "app")
+                                    .foregroundColor(.orange)
+                            }
+                        }
+                    }
+
+                    NavigationLink(value: SettingsDestination.privacySettings) {
+                        Label {
+                            Text("Privacidade")
+                        } icon: {
+                            Image(systemName: "hand.raised")
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
 
-                NavigationLink(destination: PrivacySettingsView()) {
-                    Label {
-                        Text("Privacidade")
-                    } icon: {
-                        Image(systemName: "hand.raised")
-                            .foregroundColor(.blue)
+                Section("Problemas, sugestões e pedidos") {
+                    Button {
+                        Task {
+                            await Mailman.openDefaultEmailApp(
+                                subject: Shared.issueSuggestionEmailSubject,
+                                body: Shared.issueSuggestionEmailBody
+                            )
+                        }
+                    } label: {
+                        Label("Entrar em contato por e-mail", systemImage: "envelope")
                     }
+                    .foregroundStyle(Color.blue)
                 }
-            }
 
-            Section("Problemas, sugestões e pedidos") {
-                Button {
-                    showEmailSheet = true
-                } label: {
-                    Label("Entrar em contato por e-mail", systemImage: "envelope")
+                if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
+                    HelpTheAppView(donors: donors, toast: $toast, apiClient: APIClient.shared)
                 }
-                .foregroundStyle(Color.blue)
-            }
 
-            if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
-                HelpTheAppView(donors: donors, toast: $toast, apiClient: APIClient.shared)
-            }
+                Section("Sobre") {
+                    Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
 
-            Section("Sobre") {
-                Menu {
-                    Section("Blogue") {
-                        Button {
+                    HStack(spacing: .spacing(.small)) {
+                        Button("Ver código fonte") {
                             Task {
-                                OpenUtility.open(link: "https://from-rafael-with-code.ghost.io/")
-                                await SettingsView.sendAnalytics(for: "didTapBlogLink")
+                                OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
+                                await SettingsView.sendAnalytics(for: "didTapGitHubButton")
                             }
-                        } label: {
-                            Label("From Rafael with Code", systemImage: "book")
                         }
-                    }
+                        .tint(.purple)
+                        .buttonStyle(.bordered)
 
-                    Section("Seguir no") {
-                        ForEach(authorSocials) { social in
-                            Button {
-                                Task {
-                                    OpenUtility.open(link: social.link)
-                                    await SettingsView.sendAnalytics(for: "didTapSocialLink(\(social.name))")
-                                }
-                            } label: {
-                                Label(title: {
-                                    Text(social.name)
-                                }, icon: {
-                                    Image(social.imageName)
-                                        .renderingMode(.template)
-                                        .foregroundColor(.primary)
-                                })
-                            }
+                        Button("Diagnóstico") {
+                            path.append(SettingsDestination.diagnostics)
                         }
+                        .tint(.orange)
+                        .buttonStyle(.bordered)
                     }
-
-                    Section {
-                        Button {
-                            Task {
-                                OpenUtility.open(link: "https://jovemnerd.com.br/noticias/ciencia-e-tecnologia/mastodon-como-criar-conta")
-                                await SettingsView.sendAnalytics(for: "didTapHowToCreateMastodonAccountOption")
-                            }
-                        } label: {
-                            Label("O que é e como criar uma conta no Mastodon", systemImage: "arrow.up.right.square")
-                        }
-                    }
-                } label: {
-                    Text("Criado por Rafael Schmitt")
                 }
 
-                Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
-            }
-
-            Section("Contribua ou entenda como funciona") {
-                Button {
-                    Task {
-                        OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
-                        await SettingsView.sendAnalytics(for: "didTapGitHubButton")
-                    }
-                } label: {
-                    Label("Ver código fonte no GitHub", systemImage: "curlybraces")
+                Section {
+                    AuthorCreditsView()
                 }
             }
+            .navigationTitle("Configurações")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                Task {
+                    await onViewAppeared()
+                }
+            }
+            .toast($toast)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    CloseButton {
+                        dismiss()
+                    }
+                }
 
-            Section {
-                NavigationLink(
-                    destination: DiagnosticsView(
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        path.append(SettingsDestination.help)
+                    } label: {
+                        Image(systemName: "questionmark.circle")
+                    }
+                }
+            }
+            .navigationDestination(for: SettingsDestination.self) { destination in
+                switch destination {
+                case .changeAppIcon:
+                    ChangeAppIconView()
+
+                case .diagnostics:
+                    DiagnosticsView(
                         database: LocalDatabase.shared,
                         analyticsService: AnalyticsService()
                     )
-                ) {
-                    Label {
-                        Text("Diagnóstico")
-                    } icon: {
-                        Image(systemName: "stethoscope")
-                            .foregroundColor(.gray)
-                    }
+
+                case .help:
+                    HelpView()
+
+                case .notificationSettings:
+                    NotificationsSettingsView()
+                    
+                case .privacySettings:
+                    PrivacySettingsView()
                 }
             }
         }
-        .navigationTitle("Configurações")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: HelpView()) {
-                    Image(systemName: "questionmark.circle")
-                }
-            }
-        }
-        .onAppear {
-            Task {
-                await onViewAppeared()
-            }
-        }
-        .sheet(isPresented: $showEmailSheet) {
-            EmailAppPickerView(
-                isBeingShown: $showEmailSheet,
-                toast: $toast,
-                subject: Shared.issueSuggestionEmailSubject,
-                emailBody: Shared.issueSuggestionEmailBody
-            )
-        }
-        .toast($toast)
     }
 
     // MARK: - Functions
@@ -210,6 +185,15 @@ struct SettingsView: View {
             action: action
         )
     }
+}
+
+enum SettingsDestination: Hashable {
+
+    case changeAppIcon
+    case diagnostics
+    case help
+    case notificationSettings
+    case privacySettings
 }
 
 // MARK: - Preview

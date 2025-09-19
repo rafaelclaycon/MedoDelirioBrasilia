@@ -165,7 +165,7 @@ extension Use26BetaBannerView {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button("Fechar") {
+                        CloseButton {
                             dismiss()
                         }
                     }

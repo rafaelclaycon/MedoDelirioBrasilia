@@ -1,5 +1,5 @@
 //
-//  SyncStatusView.swift
+//  ContentUpdateStatusSymbol.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 16/08/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SyncStatusView: View {
+struct ContentUpdateStatusSymbol: View {
 
     @Environment(SyncValues.self) private var syncValues
 
@@ -17,8 +17,7 @@ struct SyncStatusView: View {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
         case .done:
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundColor(.accentColor)
+            Image(systemName: "info")
         case .updateError:
             Image(systemName: "exclamationmark.triangle.fill") // "xmark.octagon"
                 .foregroundColor(.orange)
@@ -26,7 +25,7 @@ struct SyncStatusView: View {
     }
 }
 
-struct SyncStatusView_Previews: PreviewProvider {
+struct ContentUpdateStatusSymbol_Previews: PreviewProvider {
 
     static let syncValuesUpdating: SyncValues = SyncValues()
     static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
@@ -34,13 +33,13 @@ struct SyncStatusView_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            SyncStatusView()
+            ContentUpdateStatusSymbol()
                 .environment(syncValuesUpdating)
 
-            SyncStatusView()
+            ContentUpdateStatusSymbol()
                 .environment(syncValuesDone)
 
-            SyncStatusView()
+            ContentUpdateStatusSymbol()
                 .environment(syncValuesUpdateError)
         }
     }

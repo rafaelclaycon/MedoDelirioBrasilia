@@ -85,13 +85,14 @@ struct StandaloneFavoritesView: View {
                 }
                 .padding(.horizontal, .spacing(.medium))
                 .navigationTitle(Text("Favoritos"))
-                .navigationBarItems(
-                    leading: LeadingToolbarControls(
+                .toolbar {
+                    LeadingToolbarControls(
                         isSelecting: currentContentListMode.wrappedValue == .selection,
                         cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
                         openSettingsAction: openSettingsAction
-                    ),
-                    trailing: ContentToolbarOptionsView(
+                    )
+
+                    ContentToolbarOptionsView(
                         contentSortOption: $viewModel.contentSortOption,
                         contentListMode: currentContentListMode.wrappedValue,
                         multiSelectAction: {
@@ -104,7 +105,7 @@ struct StandaloneFavoritesView: View {
                             viewModel.onContentSortOptionChanged()
                         }
                     )
-                )
+                }
                 .onAppear {
                     viewModel.onViewDidAppear()
                     contentGridViewModel.onViewAppeared()
