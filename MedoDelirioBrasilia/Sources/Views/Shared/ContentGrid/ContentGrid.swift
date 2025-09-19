@@ -230,7 +230,6 @@ struct ContentGrid<
 
                     case .addToFolder:
                         AddToFolderView(
-                            isBeingShown: $viewModel.showingModalView,
                             details: $addToFolderHelper,
                             selectedContent: viewModel.selectedContentMultiple ?? []
                         )
