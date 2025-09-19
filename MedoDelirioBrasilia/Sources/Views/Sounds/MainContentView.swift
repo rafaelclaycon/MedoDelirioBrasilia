@@ -375,8 +375,6 @@ extension MainContentView {
                     .padding(.top, .spacing(.xxxSmall))
                     .padding(.bottom, .spacing(.xSmall))
                 }
-
-                // Beta should not have Beta advertising.
             }
             .onAppear {
                 Task{
