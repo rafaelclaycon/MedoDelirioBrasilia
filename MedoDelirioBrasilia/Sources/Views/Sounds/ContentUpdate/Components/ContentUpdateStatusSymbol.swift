@@ -21,26 +21,29 @@ struct ContentUpdateStatusSymbol: View {
         case .updateError:
             Image(systemName: "exclamationmark.triangle.fill") // "xmark.octagon"
                 .foregroundColor(.orange)
+        case .pendingFirstUpdate:
+            Image(systemName: "clock")
+                .foregroundColor(.gray)
         }
     }
 }
 
-struct ContentUpdateStatusSymbol_Previews: PreviewProvider {
-
-    static let syncValuesUpdating: SyncValues = SyncValues()
-    static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
-    static let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
-
-    static var previews: some View {
-        Group {
-            ContentUpdateStatusSymbol()
-                .environment(syncValuesUpdating)
-
-            ContentUpdateStatusSymbol()
-                .environment(syncValuesDone)
-
-            ContentUpdateStatusSymbol()
-                .environment(syncValuesUpdateError)
-        }
-    }
-}
+//struct ContentUpdateStatusSymbol_Previews: PreviewProvider {
+//
+//    static let syncValuesUpdating: SyncValues = SyncValues()
+//    static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
+//    static let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
+//
+//    static var previews: some View {
+//        Group {
+//            ContentUpdateStatusSymbol()
+//                .environment(syncValuesUpdating)
+//
+//            ContentUpdateStatusSymbol()
+//                .environment(syncValuesDone)
+//
+//            ContentUpdateStatusSymbol()
+//                .environment(syncValuesUpdateError)
+//        }
+//    }
+//}

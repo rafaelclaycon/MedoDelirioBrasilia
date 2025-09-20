@@ -69,6 +69,7 @@ struct MainView: View {
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
                                         floatingOptions: $floatingOptions,
+                                        contentUpdateService: contentUpdateService,
                                         syncValues: syncValues,
                                         contentRepository: contentRepository,
                                         analyticsService: AnalyticsService()
@@ -136,6 +137,7 @@ struct MainView: View {
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
+                                    contentUpdateService: contentUpdateService,
                                     syncValues: syncValues,
                                     contentRepository: contentRepository,
                                     analyticsService: AnalyticsService()
@@ -143,8 +145,6 @@ struct MainView: View {
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
-                                contentUpdateService: contentUpdateService,
-                                syncValues: syncValues,
                                 openSettingsAction: {
                                     isShowingSettingsSheet.toggle()
                                 },

@@ -53,11 +53,7 @@ struct ContentUpdateStatusView: View {
 
 // MARK: - Subviews
 
-<<<<<<<< HEAD:MedoDelirioBrasilia/Sources/Views/Sounds/ContentUpdate/SyncInfoView.swift
-extension SyncInfoView {
-========
 extension ContentUpdateStatusView {
->>>>>>>> main:MedoDelirioBrasilia/Sources/Views/Sounds/ContentUpdate/ContentUpdateStatusView.swift
 
     private struct UpdatingView: View {
 
@@ -182,7 +178,6 @@ extension ContentUpdateStatusView {
         }
     }
 
-<<<<<<<< HEAD:MedoDelirioBrasilia/Sources/Views/Sounds/ContentUpdate/SyncInfoView.swift
     private struct PendingFirstUpdateView: View {
 
         var body: some View {
@@ -209,7 +204,9 @@ extension ContentUpdateStatusView {
             }
             .padding(.horizontal)
             .padding(.bottom)
-========
+        }
+    }
+
     private struct InfoHeader: View {
 
         let symbol: String
@@ -240,7 +237,6 @@ extension ContentUpdateStatusView {
 
                 Spacer()
             }
->>>>>>>> main:MedoDelirioBrasilia/Sources/Views/Sounds/ContentUpdate/ContentUpdateStatusView.swift
         }
     }
 
@@ -286,48 +282,26 @@ extension ContentUpdateStatusView {
 
 // MARK: - Previews
 
-<<<<<<<< HEAD:MedoDelirioBrasilia/Sources/Views/Sounds/ContentUpdate/SyncInfoView.swift
 //#Preview("Updating") {
 //    let syncValuesUpdating: SyncValues = SyncValues()
-//    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
+//    return ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "all")
 //        .environment(syncValuesUpdating)
 //}
 //
 //#Preview("Done") {
 //    let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
-//    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+//    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
 //        .environment(syncValuesDone)
 //}
 //
 //#Preview("Update Error") {
 //    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
-//    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+//    return ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
 //        .environment(syncValuesUpdateError)
 //}
 //
 //#Preview("First Update Not Allowed") {
 //    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .pendingFirstUpdate)
-//    return SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "")
+//    return ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "")
 //        .environment(syncValuesUpdateError)
 //}
-========
-#Preview("Updating") {
-    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "all")
-        .environment(SyncValues())
-}
-
-#Preview("Update OK") {
-    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-        .environment(SyncValues(syncStatus: .done))
-}
-
-#Preview("Update Error - Never Updated") {
-    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "all")
-        .environment(SyncValues(syncStatus: .updateError))
-}
-
-#Preview("Update Error") {
-    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2025-07-11T20:29:46.562Z")
-        .environment(SyncValues(syncStatus: .updateError))
-}
->>>>>>>> main:MedoDelirioBrasilia/Sources/Views/Sounds/ContentUpdate/ContentUpdateStatusView.swift
