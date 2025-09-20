@@ -50,10 +50,7 @@ struct StandaloneFolderGridView: View {
                         Button {
                             folderForEditing = UserFolder.newFolder()
                         } label: {
-                            HStack {
-                                Image(systemName: "plus")
-                                Text("Nova Pasta")
-                            }
+                            Image(systemName: "plus")
                         }
                     }
                 }

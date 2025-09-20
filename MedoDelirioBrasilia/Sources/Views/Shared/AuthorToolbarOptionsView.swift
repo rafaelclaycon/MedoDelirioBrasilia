@@ -7,37 +7,44 @@
 
 import SwiftUI
 
-struct AuthorToolbarOptionsView: View {
+struct AuthorToolbarOptionsView: ToolbarContent {
 
     @Binding var authorSortOption: Int
     let onSortingChangedAction: () -> Void
 
-    var body: some View {
-        Menu {
-            Section {
-                Picker("Ordenação de Autores", selection: $authorSortOption) {
-                    Text("Nome")
-                        .tag(0)
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Menu {
+                Section {
+                    Picker("Ordenação de Autores", selection: $authorSortOption) {
+                        Text("Nome")
+                            .tag(0)
 
-                    Text("Autores com Mais Sons no Topo")
-                        .tag(1)
+                        Text("Autores com Mais Sons no Topo")
+                            .tag(1)
 
-                    Text("Autores com Menos Sons no Topo")
-                        .tag(2)
+                        Text("Autores com Menos Sons no Topo")
+                            .tag(2)
+                    }
                 }
+            } label: {
+                Image(systemName: "arrow.up.arrow.down")
             }
-        } label: {
-            Image(systemName: "arrow.up.arrow.down")
-        }
-        .onChange(of: authorSortOption) {
-            onSortingChangedAction()
+            .onChange(of: authorSortOption) {
+                onSortingChangedAction()
+            }
         }
     }
 }
 
 #Preview {
-    AuthorToolbarOptionsView(
-        authorSortOption: .constant(0),
-        onSortingChangedAction: {}
-    )
+    VStack {
+        Text("View")
+    }
+    .toolbar {
+        AuthorToolbarOptionsView(
+            authorSortOption: .constant(0),
+            onSortingChangedAction: {}
+        )
+    }
 }

@@ -27,14 +27,12 @@ struct StandaloneAuthorsView: View {
             }
             .navigationTitle(Text("Autores"))
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    AuthorToolbarOptionsView(
-                        authorSortOption: $authorSortOption,
-                        onSortingChangedAction: {
-                            authorGridViewModel.onAuthorSortingChangedExternally(authorSortOption)
-                        }
-                    )
-                }
+                AuthorToolbarOptionsView(
+                    authorSortOption: $authorSortOption,
+                    onSortingChangedAction: {
+                        authorGridViewModel.onAuthorSortingChangedExternally(authorSortOption)
+                    }
+                )
             }
         }
     }

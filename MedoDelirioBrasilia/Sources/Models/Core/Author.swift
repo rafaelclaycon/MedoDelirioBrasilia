@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Author: Hashable, Codable, Identifiable {
+public struct Author: Hashable, Codable, Identifiable {
 
-    let id: String
+    public let id: String
     let name: String
     let photo: String?
     let description: String?

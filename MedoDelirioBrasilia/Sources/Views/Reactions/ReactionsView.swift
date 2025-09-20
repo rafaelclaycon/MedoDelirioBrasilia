@@ -147,19 +147,21 @@ struct ReactionsView: View {
 
 extension ReactionsView {
 
-    struct ToolbarControls: View {
+    struct ToolbarControls: ToolbarContent {
 
         let showHowReactionsWorkAction: () -> Void
         let showAddStuffSheetAction: () -> Void
 
-        var body: some View {
-            HStack(spacing: 15) {
+        var body: some ToolbarContent {
+            ToolbarItem {
                 Button {
                     showHowReactionsWorkAction()
                 } label: {
                     Image(systemName: "questionmark")
                 }
+            }
 
+            ToolbarItem {
                 Button {
                     showAddStuffSheetAction()
                 } label: {

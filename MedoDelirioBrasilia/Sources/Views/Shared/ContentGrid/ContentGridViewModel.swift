@@ -211,9 +211,11 @@ extension ContentGridViewModel {
         redownloadServerContent(withId: content.id, ofType: content.type)
     }
 
-    public func onReportContentIssueSelected() {
-        subviewToOpen = .soundIssueEmailPicker
-        showingModalView = true
+    public func onReportContentIssueSelected() async {
+        await Mailman.openDefaultEmailApp(
+            subject: Shared.issueSuggestionEmailSubject,
+            body: Shared.issueSuggestionEmailBody
+        )
     }
 
     public func onRemoveSingleContentSelected() {
@@ -563,9 +565,11 @@ extension ContentGridViewModel: ContentGridDisplaying {
         authorToOpen = author
     }
 
-    func suggestOtherAuthorName(for content: AnyEquatableMedoContent) {
-        subviewToOpen = .authorIssueEmailPicker(content)
-        showingModalView = true
+    func suggestOtherAuthorName(for content: AnyEquatableMedoContent) async {
+        await Mailman.openDefaultEmailApp(
+            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
+            body: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id)
+        )
     }
 }
 

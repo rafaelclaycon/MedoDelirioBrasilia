@@ -194,14 +194,14 @@ struct SongsView: View {
         .sheet(isPresented: $viewModel.isShowingShareSheet) {
             viewModel.iPadShareSheet
         }
-        .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
-            EmailAppPickerView(
-                isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
-                toast: $toast,
-                subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
-                emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? "")
-            )
-        }
+//        .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
+//            EmailAppPickerView(
+//                isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
+//                toast: $toast,
+//                subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
+//                emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? "")
+//            )
+//        }
         .sheet(item: $viewModel.songToShareAsVideo) { song in
             ShareAsVideoView(
                 viewModel: ShareAsVideoViewModel(
@@ -215,14 +215,14 @@ struct SongsView: View {
         .sheet(isPresented: $showGenrePicker) {
             GenrePickerView(selectedId: $currentGenre)
         }
-        .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
-            EmailAppPickerView(
-                isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog,
-                toast: $toast,
-                subject: Shared.issueSuggestionEmailSubject,
-                emailBody: Shared.issueSuggestionEmailBody
-            )
-        }
+//        .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
+//            EmailAppPickerView(
+//                isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog,
+//                toast: $toast,
+//                subject: Shared.issueSuggestionEmailSubject,
+//                emailBody: Shared.issueSuggestionEmailBody
+//            )
+//        }
         .alert(isPresented: $viewModel.showAlert) {
             switch viewModel.alertType {
             case .ok:

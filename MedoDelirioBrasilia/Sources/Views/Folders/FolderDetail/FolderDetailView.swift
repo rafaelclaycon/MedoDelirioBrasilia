@@ -77,158 +77,195 @@ struct FolderDetailView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            ScrollView {
-                VStack(spacing: .spacing(.medium)) {
-                    HeaderView(
-                        folder: folder,
-                        itemCountText: viewModel.contentCountText
-                    )
-
-                    ContentGrid(
-                        state: viewModel.state,
-                        viewModel: contentGridViewModel,
-                        showNewTag: false,
-                        containerSize: geometry.size,
-                        loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
-                        emptyStateView:
-                            VStack {
-                                EmptyFolderView()
-                                    .padding(.horizontal, .spacing(.xxLarge))
-                                    .padding(.vertical, .spacing(.huge))
-                            }
-                        ,
-                        errorView:
-                            VStack {
-                                HStack(spacing: 10) {
-                                    ProgressView()
-
-                                    Text("Erro ao carregar sons.")
-                                        .foregroundColor(.gray)
+            if #available(iOS 26.0, *) {
+                ScrollView {
+                    detailView(size: geometry.size)
+                        .toolbar {
+                            ToolbarItem {
+                                if currentContentListMode.wrappedValue == .regular {
+                                    playStopButton()
+                                } else {
+                                    selectionControls
                                 }
-                                .frame(maxWidth: .infinity)
                             }
-                    )
-                    .environment(TrendsHelper())
-                    .padding(.horizontal, .spacing(.medium))
-
-                    Spacer()
-                        .frame(height: .spacing(.large))
-                }
-                .toolbar { trailingToolbarControls() }
-                .onAppear {
-                    viewModel.onViewAppeared()
-                }
-                .onDisappear {
-                    contentGridViewModel.onViewDisappeared()
-                }
-                .sheet(isPresented: $showingFolderInfoEditingView) {
-                    FolderInfoEditingView(
-                        folder: folder,
-                        folderRepository: UserFolderRepository(database: LocalDatabase.shared),
-                        dismissSheet: {
-                            showingFolderInfoEditingView = false
+                            ToolbarSpacer(.fixed)
+                            if currentContentListMode.wrappedValue == .regular {
+                                ToolbarItem {
+                                    multiselectButton
+                                }
+                            }
+                            ToolbarSpacer(.fixed)
+                            ToolbarItem { multiselectAndSortMenu() }
                         }
-                    )
                 }
+                .edgesIgnoringSafeArea(.top)
+                .toast(contentGridViewModel.toast)
+                .floatingContentOptions(contentGridViewModel.floatingOptions)
+                .scrollEdgeEffectHidden(true, for: .top)
+                .toolbarVisibility(.hidden, for: .tabBar)
+            } else {
+                ScrollView {
+                    detailView(size: geometry.size)
+                        .toolbar {
+                            HStack(spacing: 16) {
+                                if currentContentListMode.wrappedValue == .regular {
+                                    playStopButton()
+                                } else {
+                                    selectionControls
+                                }
+
+                                multiselectAndSortMenu()
+                            }
+                        }
+                }
+                .edgesIgnoringSafeArea(.top)
+                .toast(contentGridViewModel.toast)
+                .floatingContentOptions(contentGridViewModel.floatingOptions)
             }
-            .edgesIgnoringSafeArea(.top)
-            .toast(contentGridViewModel.toast)
-            .floatingContentOptions(contentGridViewModel.floatingOptions)
         }
     }
 
     // MARK: - Subviews
 
-    @ViewBuilder func trailingToolbarControls() -> some View {
-        HStack(spacing: 16) {
-            if currentContentListMode.wrappedValue == .regular {
-                Button {
-                    contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent)
-                } label: {
-                    Image(systemName: contentGridViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
-                        .foregroundStyle(.white)
-                        .shadow(radius: 5)
-                }
-                .disabled(viewModel.contentCount == 0)
-            } else {
-                selectionControls()
-            }
+    @ViewBuilder
+    func detailView(size: CGSize) -> some View {
+        VStack(spacing: .spacing(.medium)) {
+            HeaderView(
+                folder: folder,
+                itemCountText: viewModel.contentCountText
+            )
 
-            Menu {
-                Section {
-                    Button {
-                        contentGridViewModel.onEnterMultiSelectModeSelected(
-                            loadedContent: loadedContent,
-                            isFavoritesOnlyView: false
-                        )
-                    } label: {
-                        Label(
-                            currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
-                        )
+            ContentGrid(
+                state: viewModel.state,
+                viewModel: contentGridViewModel,
+                showNewTag: false,
+                containerSize: size,
+                loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
+                emptyStateView:
+                    VStack {
+                        EmptyFolderView()
+                            .padding(.horizontal, .spacing(.xxLarge))
+                            .padding(.vertical, .spacing(.huge))
                     }
-                }
+                ,
+                errorView:
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
 
-                Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
-                        Text("Título")
-                            .tag(0)
-
-                        Text("Nome do(a) Autor(a)")
-                            .tag(1)
-
-                        if showSortByDateAddedOption {
-                            Text("Adição à Pasta (Mais Recentes no Topo)")
-                                .tag(2)
+                            Text("Erro ao carregar sons.")
+                                .foregroundColor(.gray)
                         }
+                        .frame(maxWidth: .infinity)
                     }
-                    .onChange(of: viewModel.contentSortOption) {
-                        contentGridViewModel.onContentSortingChanged()
-                        viewModel.onContentSortOptionChanged()
-                    }
-                    .disabled(viewModel.contentCount == 0)
-                }
+            )
+            .environment(TrendsHelper())
+            .padding(.horizontal, .spacing(.medium))
 
-                //                    Section {
-                //                        Button {
-                //                            showingFolderInfoEditingView = true
-                //                        } label: {
-                //                            Label("Editar Pasta", systemImage: "pencil")
-                //                        }
-                //
-                //                        Button(role: .destructive, action: {
-                //                            //viewModel.dummyCall()
-                //                        }, label: {
-                //                            HStack {
-                //                                Text("Apagar Pasta")
-                //                                Image(systemName: "trash")
-                //                            }
-                //                        })
-                //                    }
-            } label: {
-                Image(systemName: "ellipsis.circle.fill")
-                    .foregroundStyle(.white)
-                    .shadow(radius: 4)
-            }
-            .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
+            Spacer()
+                .frame(height: .spacing(.large))
+        }
+        .onAppear {
+            viewModel.onViewAppeared()
+        }
+        .onDisappear {
+            contentGridViewModel.onViewDisappeared()
+        }
+        .sheet(isPresented: $showingFolderInfoEditingView) {
+            FolderInfoEditingView(
+                folder: folder,
+                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                dismissSheet: {
+                    showingFolderInfoEditingView = false
+                }
+            )
         }
     }
+
+    @ViewBuilder func playStopButton() -> some View {
+        Button {
+            contentGridViewModel.onPlayStopPlaylistSelected(loadedContent: loadedContent)
+        } label: {
+            Image(systemName: contentGridViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+        }
+        .disabled(viewModel.contentCount == 0)
+    }
     
-    @ViewBuilder func selectionControls() -> some View {
-        if currentContentListMode.wrappedValue == .regular {
-            EmptyView()
-        } else {
-            HStack(spacing: 16) {
-                Button {
-                    currentContentListMode.wrappedValue = .regular
-                    contentGridViewModel.selectionKeeper.removeAll()
-                } label: {
-                    Text("Cancelar")
-                        .bold()
-                        .foregroundStyle(.white)
-                        .shadow(radius: 5)
+    @ViewBuilder func multiselectAndSortMenu() -> some View {
+        Menu {
+//            Section {
+//                Button {
+//                    contentGridViewModel.onEnterMultiSelectModeSelected(
+//                        loadedContent: loadedContent,
+//                        isFavoritesOnlyView: false
+//                    )
+//                } label: {
+//                    Label(
+//                        currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+//                        systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+//                    )
+//                }
+//            }
+
+            //Section {
+                Picker("Ordenação de Sons", selection: $viewModel.contentSortOption) {
+                    Text("Título")
+                        .tag(0)
+
+                    Text("Nome do(a) Autor(a)")
+                        .tag(1)
+
+                    if showSortByDateAddedOption {
+                        Text("Adição à Pasta (Mais Recentes no Topo)")
+                            .tag(2)
+                    }
                 }
-            }
+                .onChange(of: viewModel.contentSortOption) {
+                    contentGridViewModel.onContentSortingChanged()
+                    viewModel.onContentSortOptionChanged()
+                }
+                .disabled(viewModel.contentCount == 0)
+            //}
+
+            //                    Section {
+            //                        Button {
+            //                            showingFolderInfoEditingView = true
+            //                        } label: {
+            //                            Label("Editar Pasta", systemImage: "pencil")
+            //                        }
+            //
+            //                        Button(role: .destructive, action: {
+            //                            //viewModel.dummyCall()
+            //                        }, label: {
+            //                            HStack {
+            //                                Text("Apagar Pasta")
+            //                                Image(systemName: "trash")
+            //                            }
+            //                        })
+            //                    }
+        } label: {
+            Image(systemName: "arrow.up.arrow.down")
+        }
+        .disabled(contentGridViewModel.isPlayingPlaylist || (viewModel.contentCount == 0))
+    }
+    
+    var selectionControls: some View {
+        Button {
+            currentContentListMode.wrappedValue = .regular
+            contentGridViewModel.selectionKeeper.removeAll()
+        } label: {
+            Text("Cancelar")
+        }
+    }
+
+    var multiselectButton: some View {
+        Button {
+            contentGridViewModel.onEnterMultiSelectModeSelected(
+                loadedContent: loadedContent,
+                isFavoritesOnlyView: false
+            )
+        } label: {
+            Text("Selecionar")
         }
     }
 }
@@ -269,17 +306,27 @@ extension FolderDetailView {
         // MARK: - View Body
 
         var body: some View {
-            GeometryReader { geometry in
-                Rectangle()
-                    .fill(color)
-                    .overlay { FolderView.SpeckleOverlay() }
-                    .frame(
-                        width: geometry.size.width,
-                        height: getHeightForHeaderImage(geometry)
-                    )
-                    .offset(x: 0, y: getOffsetForHeaderImage(geometry))
+            GeometryReader { proxy in
+                if #available(iOS 26.0, *) {
+                    colorfulRectangle(proxy: proxy)
+                        .backgroundExtensionEffect()
+                } else {
+                    colorfulRectangle(proxy: proxy)
+                }
             }
             .frame(height: height)
+        }
+
+        @ViewBuilder
+        func colorfulRectangle(proxy: GeometryProxy) -> some View {
+            Rectangle()
+                .fill(color)
+                .overlay { FolderView.SpeckleOverlay() }
+                .frame(
+                    width: proxy.size.width,
+                    height: getHeightForHeaderImage(proxy)
+                )
+                .offset(x: 0, y: getOffsetForHeaderImage(proxy))
         }
     }
 

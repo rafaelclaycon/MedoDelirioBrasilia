@@ -46,7 +46,7 @@ struct MainContentView: View {
         guard currentContentListMode.wrappedValue == .regular else {
             return selectionNavBarTitle(for: contentGridViewModel)
         }
-        return "Sons"
+        return "Vírgulas"
     }
 
     private var loadedContent: [AnyEquatableMedoContent] {
@@ -57,6 +57,7 @@ struct MainContentView: View {
     // MARK: - Shared Environment
 
     @Environment(\.scenePhase) var scenePhase
+    @Namespace private var namespace
 
     // MARK: - Initializer
 
@@ -194,13 +195,14 @@ struct MainContentView: View {
                         }
                     }
                     .navigationTitle(Text(title))
-                    .navigationBarItems(
-                        leading: LeadingToolbarControls(
+                    .toolbar {
+                        LeadingToolbarControls(
                             isSelecting: currentContentListMode.wrappedValue == .selection,
                             cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
                             openSettingsAction: openSettingsAction
-                        ),
-                        trailing: TrailingToolbarControls(
+                        )
+
+                        TrailingToolbarControls(
                             currentViewMode: viewModel.currentViewMode,
                             contentListMode: currentContentListMode.wrappedValue,
                             contentSortOption: $viewModel.contentSortOption,
@@ -225,9 +227,10 @@ struct MainContentView: View {
                             },
                             authorSortChangeAction: {
                                 authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
-                            }
+                            },
+                            matchedTransitionNamespace: namespace
                         )
-                    )
+                    }
                     .onChange(of: viewModel.currentViewMode) {
                         Task {
                             await viewModel.onSelectedViewModeChanged()
@@ -244,10 +247,21 @@ struct MainContentView: View {
                         }
                     }
                     .sheet(isPresented: $showingModalView) {
-                        SyncInfoView(
-                            lastUpdateAttempt: AppPersistentMemory.shared.getLastUpdateAttempt(),
-                            lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
-                        )
+                        if #available(iOS 26.0, *) {
+                            ContentUpdateStatusView(
+                                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                            )
+                            .presentationDetents([.medium, .large])
+                            .navigationTransition(
+                                .zoom(sourceID: "sync-status-view", in: namespace)
+                            )
+                        } else {
+                            ContentUpdateStatusView(
+                                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                            )
+                        }
                     }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
@@ -285,7 +299,7 @@ struct MainContentView: View {
 
 extension MainContentView {
 
-    struct TrailingToolbarControls: View {
+    struct TrailingToolbarControls: ToolbarContent {
 
         let currentViewMode: ContentModeOption
         let contentListMode: ContentGridMode
@@ -296,31 +310,44 @@ extension MainContentView {
         let playRandomSoundAction: () -> Void
         let contentSortChangeAction: () -> Void
         let authorSortChangeAction: () -> Void
+        let matchedTransitionNamespace: Namespace.ID
 
-        var body: some View {
+        var body: some ToolbarContent {
             if currentViewMode != .folders { // MyFoldersiPhoneView takes care of its own toolbar.
-                HStack(spacing: .spacing(.medium)) {
-                    if currentViewMode == .authors {
-                        AuthorToolbarOptionsView(
-                            authorSortOption: $authorSortOption,
-                            onSortingChangedAction: authorSortChangeAction
-                        )
-                    } else {
-                        if contentListMode == .regular {
-                            SyncStatusView()
-                                .onTapGesture {
+                if currentViewMode == .authors {
+                    AuthorToolbarOptionsView(
+                        authorSortOption: $authorSortOption,
+                        onSortingChangedAction: authorSortChangeAction
+                    )
+                } else {
+                    if contentListMode == .regular {
+                        if #available(iOS 26.0, *) {
+                            ToolbarItem {
+                                Button {
                                     openContentUpdateSheet()
+                                } label: {
+                                    ContentUpdateStatusSymbol()
                                 }
+                            }
+                            .matchedTransitionSource(id: "sync-status-view", in: matchedTransitionNamespace)
+                        } else {
+                            ToolbarItem {
+                                Button {
+                                    openContentUpdateSheet()
+                                } label: {
+                                    ContentUpdateStatusSymbol()
+                                }
+                            }
                         }
-
-                        ContentToolbarOptionsView(
-                            contentSortOption: $contentSortOption,
-                            contentListMode: contentListMode,
-                            multiSelectAction: multiSelectAction,
-                            playRandomSoundAction: playRandomSoundAction,
-                            contentSortChangeAction: contentSortChangeAction
-                        )
                     }
+
+                    ContentToolbarOptionsView(
+                        contentSortOption: $contentSortOption,
+                        contentListMode: contentListMode,
+                        multiSelectAction: multiSelectAction,
+                        playRandomSoundAction: playRandomSoundAction,
+                        contentSortChangeAction: contentSortChangeAction
+                    )
                 }
             }
         }
@@ -347,18 +374,6 @@ extension MainContentView {
                     )
                     .padding(.top, .spacing(.xxxSmall))
                     .padding(.bottom, .spacing(.xSmall))
-                }
-
-                if UIDevice.isRunningSoftwareVersion26 && showBetaBanner {
-                    Use26BetaBannerView(
-                        isBeingShown: $showBetaBanner,
-                        showFAQSheet: $showBetaFAQ
-                    )
-                    .padding(.top, .spacing(.xxxSmall))
-                    .padding(.bottom, .spacing(.xSmall))
-                    .sheet(isPresented: $showBetaFAQ) {
-                        Use26BetaBannerView.FrequentlyAskedQuestionsView()
-                    }
                 }
             }
             .onAppear {
