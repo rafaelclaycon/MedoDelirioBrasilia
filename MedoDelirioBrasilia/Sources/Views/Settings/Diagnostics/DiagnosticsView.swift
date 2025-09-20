@@ -72,7 +72,7 @@ extension DiagnosticsView {
 
     struct InstallIdView: View {
 
-        @State private var installId = AppPersistentMemory().customInstallId
+        @State private var installId = AppPersistentMemory.shared.customInstallId
         @State private var showInstallIdCopiedAlert = false
 
         var body: some View {

@@ -40,7 +40,14 @@ struct MainView: View {
     @State private var soundIdToGoToFromTrends: String = ""
     @State private var trendsHelper = TrendsHelper()
 
-    // Sync
+    // Content Update
+    @State private var contentUpdateService = ContentUpdateService(
+        apiClient: APIClient.shared,
+        database: LocalDatabase.shared,
+        fileManager: ContentFileManager(),
+        appMemory: AppPersistentMemory.shared,
+        logger: Logger.shared
+    )
     @State private var syncValues = SyncValues()
 
     @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
@@ -62,6 +69,7 @@ struct MainView: View {
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
                                         floatingOptions: $floatingOptions,
+                                        contentUpdateService: contentUpdateService,
                                         syncValues: syncValues,
                                         contentRepository: contentRepository,
                                         analyticsService: AnalyticsService()
@@ -129,6 +137,7 @@ struct MainView: View {
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
+                                    contentUpdateService: contentUpdateService,
                                     syncValues: syncValues,
                                     contentRepository: contentRepository,
                                     analyticsService: AnalyticsService()
@@ -218,6 +227,7 @@ struct MainView: View {
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
                                         floatingOptions: $floatingOptions,
+                                        contentUpdateService: contentUpdateService,
                                         syncValues: syncValues,
                                         contentRepository: contentRepository,
                                         analyticsService: AnalyticsService()
@@ -390,7 +400,8 @@ struct MainView: View {
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
                             floatingOptions: $floatingOptions,
-                            contentRepository: contentRepository
+                            contentRepository: contentRepository,
+                            contentUpdateService: contentUpdateService
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)
@@ -405,6 +416,7 @@ struct MainView: View {
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
+                                    contentUpdateService: contentUpdateService,
                                     syncValues: syncValues,
                                     contentRepository: contentRepository,
                                     analyticsService: AnalyticsService()
@@ -432,6 +444,13 @@ struct MainView: View {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
+
+            Task {
+                if AppPersistentMemory.shared.hasAllowedContentUpdate() {
+                    await contentUpdateService.update()
+                }
+                await sendFolderResearchChanges()
+            }
         }
         .sheet(isPresented: $showingModalView) {
             switch subviewToOpen {
@@ -440,8 +459,16 @@ struct MainView: View {
                     .environment(settingsHelper)
 
             case .onboarding:
-                FirstOnboardingView(isBeingShown: $showingModalView)
-                    .interactiveDismissDisabled(UIDevice.isiPhone)
+                OnboardingView(
+                    doFirstContentUpdateAction: {
+                        Task {
+                            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
+                            await contentUpdateService.update()
+                        }
+                        showingModalView = false
+                    }
+                )
+                .interactiveDismissDisabled(UIDevice.isiPhone)
 
             case .retrospective, .whatsNew:
                 EmptyView()
@@ -475,14 +502,14 @@ struct MainView: View {
                 return
             }
 
-            if let lastDate = AppPersistentMemory().getLastSendDateOfUserPersonalTrendsToServer() {
+            if let lastDate = AppPersistentMemory.shared.getLastSendDateOfUserPersonalTrendsToServer() {
                 if lastDate.onlyDate! < Date.now.onlyDate! {
                     let result = await Podium.shared.sendShareCountStatsToServer()
 
                     guard result == .successful || result == .noStatsToSend else {
                         return
                     }
-                    AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                    AppPersistentMemory.shared.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
                 }
             } else {
                 let result = await Podium.shared.sendShareCountStatsToServer()
@@ -490,15 +517,32 @@ struct MainView: View {
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }
-                AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                AppPersistentMemory.shared.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
             }
         }
     }
 
     private func displayOnboardingIfNeeded() {
-        if !AppPersistentMemory().hasShownNotificationsOnboarding() {
+        if !AppPersistentMemory.shared.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
+        }
+    }
+
+    private func sendFolderResearchChanges() async {
+        do {
+            let provider = FolderResearchProvider(
+                userSettings: UserSettings(),
+                appMemory: AppPersistentMemory.shared,
+                localDatabase: LocalDatabase.shared,
+                repository: FolderResearchRepository()
+            )
+            try await provider.sendChanges()
+        } catch {
+            await AnalyticsService().send(
+                originatingScreen: "MainView",
+                action: "issueSendingFolderResearchChanges(\(error.localizedDescription))"
+            )
         }
     }
 }

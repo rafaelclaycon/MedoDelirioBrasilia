@@ -16,11 +16,11 @@ internal protocol LoggerProtocol {
         destinationBundleId: String
     )
 
-    func logSyncError(description: String, updateEventId: String)
-    func logSyncError(description: String)
+    func updateError(_ description: String, updateEventId: String)
+    func updateError(_ description: String)
 
-    func logSyncSuccess(description: String, updateEventId: String)
-    func logSyncSuccess(description: String)
+    func updateSuccess(_ description: String, updateEventId: String)
+    func updateSuccess(_ description: String)
 }
 
 class Logger: LoggerProtocol {
@@ -36,7 +36,7 @@ class Logger: LoggerProtocol {
         destinationBundleId: String
     ) {
         let shareLog = UserShareLog(
-            installId: AppPersistentMemory().customInstallId,
+            installId: AppPersistentMemory.shared.customInstallId,
             contentId: contentId,
             contentType: type.rawValue,
             dateTime: .now,
@@ -80,8 +80,8 @@ class Logger: LoggerProtocol {
         try? LocalDatabase.shared.insert(networkCallLog: log)
     }
 
-    func logSyncError(
-        description: String,
+    func updateError(
+        _ description: String,
         updateEventId: String
     ) {
         let syncLog = SyncLog(
@@ -92,8 +92,8 @@ class Logger: LoggerProtocol {
         LocalDatabase.shared.insert(syncLog: syncLog)
     }
 
-    func logSyncError(
-        description: String
+    func updateError(
+        _ description: String
     ) {
         let syncLog = SyncLog(
             logType: .error,
@@ -103,8 +103,8 @@ class Logger: LoggerProtocol {
         LocalDatabase.shared.insert(syncLog: syncLog)
     }
 
-    func logSyncSuccess(
-        description: String,
+    func updateSuccess(
+        _ description: String,
         updateEventId: String
     ) {
         let syncLog = SyncLog(
@@ -115,8 +115,8 @@ class Logger: LoggerProtocol {
         LocalDatabase.shared.insert(syncLog: syncLog)
     }
 
-    func logSyncSuccess(
-        description: String
+    func updateSuccess(
+        _ description: String
     ) {
         let syncLog = SyncLog(
             logType: .success,

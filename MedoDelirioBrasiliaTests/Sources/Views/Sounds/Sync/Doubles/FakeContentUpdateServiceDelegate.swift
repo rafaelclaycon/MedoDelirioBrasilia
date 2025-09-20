@@ -1,5 +1,5 @@
 //
-//  SyncManagerDelegateSpy.swift
+//  FakeContentUpdateServiceDelegate.swift
 //  MedoDelirioBrasiliaTests
 //
 //  Created by Rafael Schmitt on 21/10/24.
@@ -8,11 +8,11 @@
 import Foundation
 @testable import MedoDelirio
 
-class SyncManagerDelegateSpy: SyncManagerDelegate {
+class FakeContentUpdateServiceDelegate: ContentUpdateServiceDelegate {
 
     var totalUpdateCountUpdates: [Int] = []
     var didProcessUpdateUpdates: [Int] = []
-    var didFinishUpdatingUpdates: [(SyncUIStatus, Bool)] = []
+    var statusUpdates: [(ContentUpdateStatus, Bool)] = []
 
     func set(totalUpdateCount: Int) {
         totalUpdateCountUpdates.append(totalUpdateCount)
@@ -22,7 +22,7 @@ class SyncManagerDelegateSpy: SyncManagerDelegate {
         didProcessUpdateUpdates.append(number)
     }
 
-    func didFinishUpdating(status: SyncUIStatus, updateSoundList: Bool) {
-        didFinishUpdatingUpdates.append((status, updateSoundList))
+    func update(status: ContentUpdateStatus, contentChanged: Bool) {
+        statusUpdates.append((status, contentChanged))
     }
 }

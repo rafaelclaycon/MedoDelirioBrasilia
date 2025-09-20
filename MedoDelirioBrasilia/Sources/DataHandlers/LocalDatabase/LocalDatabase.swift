@@ -6,6 +6,7 @@ internal protocol LocalDatabaseProtocol {
 
     // Content
     func content(withIds contentIds: [String]) throws -> [AnyEquatableMedoContent]
+    func contentExists(withId contentId: String) throws -> Bool
 
     // Favorite
     func isFavorite(contentId: String) throws -> Bool
@@ -18,7 +19,6 @@ internal protocol LocalDatabaseProtocol {
     func update(sound updatedSound: Sound) throws
     func delete(soundId: String) throws
     func setIsFromServer(to value: Bool, onSoundId soundId: String) throws
-    func contentExists(withId contentId: String) throws -> Bool
     func sounds(withIds soundIds: [String]) throws -> [Sound]
     func sounds(allowSensitive: Bool) throws -> [Sound]
 
@@ -55,6 +55,7 @@ internal protocol LocalDatabaseProtocol {
     func insert(genre newGenre: MusicGenre) throws
     func update(genre updatedGenre: MusicGenre) throws
     func delete(genreId: String) throws
+    func musicGenre(withId genreId: String) throws -> MusicGenre?
 
     // UpdateEvent
     func insert(updateEvent newUpdateEvent: UpdateEvent) throws
