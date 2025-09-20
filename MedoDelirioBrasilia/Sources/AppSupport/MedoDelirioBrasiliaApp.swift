@@ -93,6 +93,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         createFoldersForDownloadedContent()
         updateExternalLinks()
         updateFolderChangeHashes()
+        updateHasAllowedContentUpdateIfNeeded()
 
         return true
     }
@@ -232,6 +233,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if hasSkipGetLinkInstructionsSet() {
             UserSettings().setShowExplicitContent(to: true)
             UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
+        }
+    }
+
+    /// For anyone that already had the app before the Ask For Content Update changes (PR #251),
+    /// we need to skip asking them since asking should only happen before the 1st ever content update.
+    private func updateHasAllowedContentUpdateIfNeeded() {
+        if AppPersistentMemory.shared.getLastUpdateAttempt() != "" {
+            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
         }
     }
 }
