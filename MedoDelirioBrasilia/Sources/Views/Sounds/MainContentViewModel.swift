@@ -24,18 +24,27 @@ final class MainContentViewModel {
     public var floatingOptions: Binding<FloatingContentOptions?>
     private let contentRepository: ContentRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
-    private var contentUpdateService: ContentUpdateServiceProtocol
 
-    // Content Update
-    private let syncValues: SyncValues
-    var displayLongUpdateBanner: Bool = false
-    var dismissedLongUpdateBanner: Bool = false
-    var processedUpdateNumber: Int = 0
-    var totalUpdateCount: Int = 0
+    // MARK: - Computed Properties
 
     private var isRunningUnitTests: Bool {
         ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
     }
+
+    // MARK: - Content Update
+
+    var contentUpdateService = ContentUpdateService(
+        apiClient: APIClient.shared,
+        database: LocalDatabase.shared,
+        fileManager: ContentFileManager(),
+        appMemory: AppPersistentMemory.shared,
+        logger: Logger.shared
+    )
+    private let syncValues: SyncValues
+    var displayLongUpdateBanner: Bool = false
+    var dismissedLongUpdateBanner: Bool = false
+    //var processedUpdateNumber: Int = 0
+    //var totalUpdateCount: Int = 0
 
     // MARK: - Initializer
 
@@ -46,7 +55,6 @@ final class MainContentViewModel {
         currentContentListMode: Binding<ContentGridMode>,
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
-        contentUpdateService: ContentUpdateServiceProtocol,
         syncValues: SyncValues,
         contentRepository: ContentRepositoryProtocol,
         analyticsService: AnalyticsServiceProtocol
@@ -57,12 +65,9 @@ final class MainContentViewModel {
         self.currentContentListMode = currentContentListMode
         self.toast = toast
         self.floatingOptions = floatingOptions
-        self.contentUpdateService = contentUpdateService
         self.syncValues = syncValues
         self.contentRepository = contentRepository
         self.analyticsService = analyticsService
-
-        self.setupObservers()
     }
 }
 
@@ -72,6 +77,7 @@ extension MainContentViewModel {
 
     public func onViewDidAppear() async {
         print("MAIN CONTENT VIEW - ON APPEAR")
+        await contentUpdateService.update()
         updateDisplayLongUpdateBanner()
         loadContent()
     }
@@ -104,7 +110,7 @@ extension MainContentViewModel {
     }
 
     public func onAllowFirstContentUpdateSelected() async {
-        AppPersistentMemory.shared.hasAllowedContentUpdate(true)
+        //AppPersistentMemory.shared.hasAllowedContentUpdate(true)
         await contentUpdateService.update()
     }
 
@@ -117,48 +123,6 @@ extension MainContentViewModel {
 // MARK: - Internal Functions
 
 extension MainContentViewModel {
-
-    private func setupObservers() {
-        print("RAFA - Setting up observers on instance: \(ObjectIdentifier(self))")
-
-        Task { @MainActor in
-            do {
-                for try await progressUpdate in contentUpdateService.progressUpdates {
-                    print("RAFA - Received progress update on instance: \(ObjectIdentifier(self))")
-                    self.processedUpdateNumber = progressUpdate.processed
-                    self.totalUpdateCount = progressUpdate.total
-                    print("RAFA - Progress Update - processed: \(progressUpdate.processed), total: \(progressUpdate.total)")
-                    self.updateDisplayLongUpdateBanner()
-                    print("RAFA - displayLongUpdateBanner AFTER update: \(self.displayLongUpdateBanner)")
-                }
-            } catch {
-                print("Error observing progress updates: \(error)")
-            }
-        }
-        
-        // Start observing status updates  
-        Task { @MainActor in
-            do {
-                for try await statusUpdate in contentUpdateService.statusUpdates {
-                    print("RAFA - Received status update on instance: \(ObjectIdentifier(self))")
-                    self.syncValues.syncStatus = statusUpdate.status
-                    print("RAFA - Status Update: \(statusUpdate.status.description)")
-                    
-                    if statusUpdate.contentChanged {
-                        self.loadContent(clearCache: true)
-                    }
-                    
-                    if statusUpdate.status == .done {
-                        self.displayLongUpdateBanner = false
-                    } else {
-                        self.updateDisplayLongUpdateBanner()
-                    }
-                }
-            } catch {
-                print("Error observing status updates: \(error)")
-            }
-        }
-    }
 
     private func loadContent(clearCache: Bool = false) {
         state = .loading
@@ -184,7 +148,7 @@ extension MainContentViewModel {
     }
 
     private func updateContent(lastAttempt: String) async {
-        guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
+        //guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
 
         print("lastAttempt: \(lastAttempt)")
 
@@ -212,7 +176,7 @@ extension MainContentViewModel {
 
     /// Warm open means the app was reopened before it left memory.
     private func warmOpenContentUpdate() async {
-        guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
+        //guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
         guard !isRunningUnitTests else { return }
 
         let lastUpdateAttempt = AppPersistentMemory.shared.getLastUpdateAttempt()
@@ -230,8 +194,8 @@ extension MainContentViewModel {
 
     private func updateDisplayLongUpdateBanner() {
         guard !dismissedLongUpdateBanner else { return displayLongUpdateBanner = false }
-        guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return displayLongUpdateBanner = true }
-        displayLongUpdateBanner = totalUpdateCount >= 10 && processedUpdateNumber != totalUpdateCount
+        //guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return displayLongUpdateBanner = true }
+        displayLongUpdateBanner = contentUpdateService.totalUpdateCount >= 10 && contentUpdateService.processedUpdateNumber != contentUpdateService.totalUpdateCount
     }
 
     private func fireAnalytics() async {

@@ -41,13 +41,6 @@ struct MainView: View {
     @State private var trendsHelper = TrendsHelper()
 
     // Content Update
-    @State private var contentUpdateService = ContentUpdateService(
-        apiClient: APIClient.shared,
-        database: LocalDatabase.shared,
-        fileManager: ContentFileManager(),
-        appMemory: AppPersistentMemory.shared,
-        logger: Logger.shared
-    )
     @State private var syncValues = SyncValues()
 
     @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
@@ -69,7 +62,6 @@ struct MainView: View {
                                         currentContentListMode: $currentContentListMode,
                                         toast: $toast,
                                         floatingOptions: $floatingOptions,
-                                        contentUpdateService: contentUpdateService,
                                         syncValues: syncValues,
                                         contentRepository: contentRepository,
                                         analyticsService: AnalyticsService()
@@ -137,7 +129,6 @@ struct MainView: View {
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
-                                    contentUpdateService: contentUpdateService,
                                     syncValues: syncValues,
                                     contentRepository: contentRepository,
                                     analyticsService: AnalyticsService()
@@ -226,7 +217,6 @@ struct MainView: View {
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
-                                    contentUpdateService: contentUpdateService,
                                     syncValues: syncValues,
                                     contentRepository: contentRepository,
                                     analyticsService: AnalyticsService()
@@ -398,9 +388,9 @@ struct MainView: View {
             displayOnboardingIfNeeded()
 
             Task {
-                if AppPersistentMemory.shared.hasAllowedContentUpdate() {
-                    await contentUpdateService.update()
-                }
+//                if AppPersistentMemory.shared.hasAllowedContentUpdate() {
+//                    await contentUpdateService.update()
+//                }
                 await sendFolderResearchChanges()
             }
         }
@@ -413,10 +403,10 @@ struct MainView: View {
             case .onboarding:
                 OnboardingView(
                     doFirstContentUpdateAction: {
-                        Task {
-                            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
-                            await contentUpdateService.update()
-                        }
+//                        Task {
+//                            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
+//                            await contentUpdateService.update()
+//                        }
                         showingModalView = false
                     }
                 )

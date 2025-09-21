@@ -93,7 +93,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         createFoldersForDownloadedContent()
         updateExternalLinks()
         updateFolderChangeHashes()
-        updateHasAllowedContentUpdateIfNeeded()
+        //updateHasAllowedContentUpdateIfNeeded()
 
         return true
     }

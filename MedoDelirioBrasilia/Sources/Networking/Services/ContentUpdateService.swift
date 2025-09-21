@@ -21,9 +21,7 @@ struct StatusUpdate {
 }
 
 protocol ContentUpdateServiceProtocol {
-    var progressUpdates: AsyncThrowingStream<ProgressUpdate, Error> { get }
-    var statusUpdates: AsyncThrowingStream<StatusUpdate, Error> { get }
-    
+
     func update() async
 }
 
@@ -37,17 +35,18 @@ extension Notification.Name {
 /// A service that updates local content to stay in sync with their versions on the server.
 class ContentUpdateService: ContentUpdateServiceProtocol {
 
+    // MARK: - Public Properties
+
+    public var processedUpdateNumber: Int = 0
+    public var totalUpdateCount: Int = 0
+    public var isUpdating: Bool = false
+
     // MARK: - Internal Properties
 
     private var firstRunUpdateHappened: Bool = false
 
     private var localUnsuccessfulUpdates: [UpdateEvent]?
     private var serverUpdates: [UpdateEvent]?
-    
-    // MARK: - Stream Continuations
-    
-    private var progressContinuation: AsyncThrowingStream<ProgressUpdate, Error>.Continuation?
-    private var statusContinuation: AsyncThrowingStream<StatusUpdate, Error>.Continuation?
 
     // MARK: - Dependencies
 
@@ -72,20 +71,6 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
         self.appMemory = appMemory
         self.logger = logger
     }
-    
-    // MARK: - Async Streams
-    
-    var progressUpdates: AsyncThrowingStream<ProgressUpdate, Error> {
-        AsyncThrowingStream { continuation in
-            self.progressContinuation = continuation
-        }
-    }
-    
-    var statusUpdates: AsyncThrowingStream<StatusUpdate, Error> {
-        AsyncThrowingStream { continuation in
-            self.statusContinuation = continuation
-        }
-    }
 }
 
 // MARK: - Public Functions
@@ -94,12 +79,12 @@ extension ContentUpdateService {
 
     /// Performs the content update operation with the server.
     public func update() async {
-        guard appMemory.hasAllowedContentUpdate() else {
+        /*guard appMemory.hasAllowedContentUpdate() else {
             notifyUpdate(status: .pendingFirstUpdate, contentChanged: false)
             return
-        }
+        }*/
 
-        notifyUpdate(status: .updating, contentChanged: false)
+        isUpdating = true
 
         defer {
             appMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
@@ -115,17 +100,21 @@ extension ContentUpdateService {
                 logger.updateSuccess("Atualização concluída com sucesso, porém não existem novidades.")
             }
 
-            notifyUpdate(status: .done, contentChanged: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates)
+            // notifyUpdate(status: .done, contentChanged: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates)
+            isUpdating = false
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.updateError(errorMessage)
-            notifyUpdate(status: .updateError, contentChanged: false)
+            // notifyUpdate(status: .updateError, contentChanged: false)
+            isUpdating = false
         } catch ContentUpdateError.errorInsertingUpdateEvent(let updateEventId) {
             logger.updateError("Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            notifyUpdate(status: .updateError, contentChanged: false)
+            // notifyUpdate(status: .updateError, contentChanged: false)
+            isUpdating = false
         } catch {
             logger.updateError(error.localizedDescription)
-            notifyUpdate(status: .updateError, contentChanged: false)
+            // notifyUpdate(status: .updateError, contentChanged: false)
+            isUpdating = false
         }
 
         firstRunUpdateHappened = true
@@ -194,13 +183,14 @@ extension ContentUpdateService {
 
         let totalCount = serverUpdates.count
         var updateNumber: Int = 0
-        notifyProgress(number: 0, total: totalCount)
+        processedUpdateNumber = 0
+        totalUpdateCount = totalCount
 
         for update in serverUpdates {
             await process(updateEvent: update)
 
             updateNumber += 1
-            notifyProgress(number: updateNumber, total: totalCount)
+            processedUpdateNumber = updateNumber
         }
     }
 
@@ -237,14 +227,6 @@ extension ContentUpdateService {
         case .deleted:
             await deleteResource(for: updateEvent)
         }
-    }
-
-    private func notifyProgress(number: Int, total: Int) {
-        progressContinuation?.yield(ProgressUpdate(processed: number, total: total))
-    }
-
-    private func notifyUpdate(status: ContentUpdateStatus, contentChanged: Bool) {
-        statusContinuation?.yield(StatusUpdate(status: status, contentChanged: contentChanged))
     }
 }
 

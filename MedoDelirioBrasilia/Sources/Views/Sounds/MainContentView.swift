@@ -109,8 +109,8 @@ struct MainContentView: View {
                                 VStack(spacing: .spacing(.xSmall)) {
                                     if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
-                                            completedNumber: viewModel.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.totalUpdateCount,
+                                            completedNumber: viewModel.contentUpdateService.processedUpdateNumber,
+                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
                                             updateNowAction: {
                                                 Task {
                                                     await viewModel.onAllowFirstContentUpdateSelected()
@@ -435,7 +435,6 @@ extension MainContentView {
             currentContentListMode: .constant(.regular),
             toast: .constant(nil),
             floatingOptions: .constant(nil),
-            contentUpdateService: FakeContentUpdateService(),
             syncValues: SyncValues(),
             contentRepository: FakeContentRepository(),
             analyticsService: AnalyticsService()
