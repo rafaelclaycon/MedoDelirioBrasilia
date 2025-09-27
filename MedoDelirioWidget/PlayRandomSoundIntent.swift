@@ -18,13 +18,15 @@ struct PlayRandomSoundIntent: AppIntent {
 
     static let title: LocalizedStringResource = "Tocar som aleatório"
 
-    static var openAppWhenRun: Bool = true
+    static let openAppWhenRun: Bool = true
 
     func perform() async throws -> some IntentResult & OpensIntent {
         guard let url = URL(string: "medodelirio://playrandomsound") else {
             throw URLCreationError.invalidURL
         }
-        await EnvironmentValues().openURL(url)
+        await MainActor.run {
+            EnvironmentValues().openURL(url)
+        }
         return .result(opensIntent: OpenURLIntent(url))
     }
 }
