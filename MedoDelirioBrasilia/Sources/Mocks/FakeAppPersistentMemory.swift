@@ -1,27 +1,41 @@
 //
-//  MockAppPersistentMemory.swift
-//  MedoDelirioBrasiliaTests
+//  FakeAppPersistentMemory.swift
+//  MedoDelirioBrasilia
 //
-//  Created by Rafael Schmitt on 30/10/24.
+//  Created by Rafael Schmitt on 25/05/25.
 //
 
 import Foundation
-@testable import MedoDelirio
 
-final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
+final class FakeAppPersistentMemory: AppPersistentMemoryProtocol {
+
+    var customInstallId: String = ""
+
+    var lastUpdateAttempt: String?
+    var allowedContentUpdate: Bool = false
 
     var folderResearchHashValue: [String: String]? = nil
     var hasSentFolderResearchInfo = false
     var lastFolderResearchSyncDateTimeValue: Date? = nil
     var hasDismissedJoinFolderResearchBanner = false
 
-    var customInstallId: String = ""
+    func hasAllowedContentUpdate() -> Bool {
+        allowedContentUpdate
+    }
 
-    func folderResearchHashes() -> [String: String]? {
+    func hasAllowedContentUpdate(_ newValue: Bool) {
+        allowedContentUpdate = newValue
+    }
+
+    func setLastUpdateAttempt(to newValue: String) {
+        lastUpdateAttempt = newValue
+    }
+    
+    func folderResearchHashes() -> [String : String]? {
         return folderResearchHashValue
     }
     
-    func folderResearchHashes(_ hashes: [String: String]) {
+    func folderResearchHashes(_ hashes: [String : String]) {
         folderResearchHashValue = hashes
     }
     
@@ -32,23 +46,23 @@ final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
     func setHasSentFolderResearchInfo(to newValue: Bool) {
         hasSentFolderResearchInfo = newValue
     }
-
-    func lastFolderResearchSyncDateTime() -> Date? {
-        lastFolderResearchSyncDateTimeValue
-    }
-
-    func lastFolderResearchSyncDateTime(_ dateTime: Date) {
-        lastFolderResearchSyncDateTimeValue = dateTime
-    }
-
+    
     func getHasDismissedJoinFolderResearchBanner() -> Bool? {
         hasDismissedJoinFolderResearchBanner
     }
-
-    func hasSeenVersion9WhatsNewScreen() -> Bool {
-        false
+    
+    func lastFolderResearchSyncDateTime() -> Date? {
+        lastFolderResearchSyncDateTimeValue
     }
-
+    
+    func lastFolderResearchSyncDateTime(_ dateTime: Date) {
+        lastFolderResearchSyncDateTimeValue = dateTime
+    }
+    
+    func hasSeenVersion9WhatsNewScreen() -> Bool {
+        return false
+    }
+    
     func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
         //
     }

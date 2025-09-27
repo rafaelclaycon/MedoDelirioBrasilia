@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Main view of the app on iPhone. This is reponsible for showing the main content view and start content sync.
+/// Main view of the app, reponsible for showing the content grid.
 struct MainContentView: View {
 
     @State private var viewModel: MainContentViewModel
@@ -30,9 +30,6 @@ struct MainContentView: View {
         userSettings: UserSettings(),
         sortOption: UserSettings().authorSortOption()
     )
-
-    // Sync
-    @State private var displayLongUpdateBanner: Bool = false
 
     @ScaledMetric private var explicitOffWarningTopPadding: CGFloat = .spacing(.medium)
     @ScaledMetric private var explicitOffWarningBottomPadding: CGFloat = .spacing(.large)
@@ -110,10 +107,18 @@ struct MainContentView: View {
                         case .all, .favorites, .songs:
                             VStack(spacing: .spacing(.xSmall)) {
                                 VStack(spacing: .spacing(.xSmall)) {
-                                    if displayLongUpdateBanner {
+                                    if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
-                                            completedNumber: viewModel.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.totalUpdateCount
+                                            completedNumber: viewModel.contentUpdateService.processedUpdateNumber,
+                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
+                                            updateNowAction: {
+                                                Task {
+                                                    await viewModel.onAllowFirstContentUpdateSelected()
+                                                }
+                                            },
+                                            dismissBannerAction: {
+                                                viewModel.onDismissFirstContentUpdateSelected()
+                                            }
                                         )
                                     }
 
@@ -231,11 +236,6 @@ struct MainContentView: View {
                             await viewModel.onSelectedViewModeChanged()
                         }
                     }
-                    .onChange(of: viewModel.processedUpdateNumber) {
-                        withAnimation {
-                            displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
-                        }
-                    }
                     .onChange(of: playRandomSoundHelper.soundIdToPlay) {
                         if !playRandomSoundHelper.soundIdToPlay.isEmpty {
                             viewModel.currentViewMode = .all
@@ -286,7 +286,7 @@ struct MainContentView: View {
             }
             .refreshable {
                 Task { // Keep this Task to avoid "cancelled" issue.
-                    await viewModel.onSyncRequested()
+                    await viewModel.onContentUpdateRequested()
                 }
             }
             .toast(viewModel.toast)

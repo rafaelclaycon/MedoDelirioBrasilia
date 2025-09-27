@@ -29,7 +29,7 @@ struct StandaloneFolderGridView: View {
                         viewModel: FolderGridViewModel(
                             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
                             userSettings: UserSettings(),
-                            appMemory: AppPersistentMemory()
+                            appMemory: AppPersistentMemory.shared
                         ),
                         updateFolderList: $updateFolderList,
                         folderForEditing: $folderForEditing,
@@ -87,28 +87,6 @@ struct StandaloneFolderGridView: View {
                 Text("Tente novamente mais tarde. Se o erro persisir, por favor, envie um e-mail para o desenvolvedor.")
             }
         }
-    }
-
-    // MARK: - Functions
-
-    private func verifyFile(at url: URL) -> Bool {
-        let fileManager = FileManager.default
-        if fileManager.fileExists(atPath: url.path) {
-            do {
-                let attributes = try fileManager.attributesOfItem(atPath: url.path)
-                if let fileSize = attributes[.size] as? NSNumber, fileSize.intValue > 0 {
-                    return true
-                }
-            } catch {
-                print("Error reading file attributes: \(error.localizedDescription)")
-            }
-        }
-        return false
-    }
-
-    private func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
 }
 
