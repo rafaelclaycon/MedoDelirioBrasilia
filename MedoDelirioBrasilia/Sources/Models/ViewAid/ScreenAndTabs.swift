@@ -8,9 +8,11 @@
 import Foundation
 
 enum PadScreen: Int {
+
     case allSounds, favorites, groupedByAuthor, reactions, songs, trends, settings, allFolders, specificFolder
 }
 
 enum PhoneTab: Int {
-    case sounds, reactions, songs, trends, settings
+
+    case sounds, reactions, trends, settings
 }

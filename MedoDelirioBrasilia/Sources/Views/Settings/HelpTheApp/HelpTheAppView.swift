@@ -14,6 +14,7 @@ struct HelpTheAppView: View {
     let apiClient: APIClientProtocol
 
     @State private var moneyInfo: [MoneyInfo]?
+    @State private var showDonorInfoView: Bool = false
 
     var body: some View {
         Section("Ajude o app") {
@@ -22,12 +23,31 @@ struct HelpTheAppView: View {
 
                 VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
                     VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                        Text("App & comunidade, juntos desde 2022")
+                        Text("Desenvolvedor & comunidade, juntos desde 2022")
                             .font(.title2)
                             .bold()
 
-                        Text("Esse trabalho é voluntário, porém envolve custos mensais com servidor e anuais com a Apple. Bora manter o app sem propagandas? Toda contribuição é bem-vinda!")
-                            .font(.callout)
+                        if let donors {
+                            VStack(alignment: .center, spacing: .spacing(.large)) {
+                                DonorsView(donors: donors)
+                                    .marquee()
+
+                                Button {
+                                    showDonorInfoView.toggle()
+                                } label: {
+                                    HStack(spacing: .spacing(.small)) {
+                                        Text("ÚLTIMAS DOAÇÕES")
+                                            .font(.footnote)
+
+                                        Image(systemName: "info.circle")
+                                    }
+                                    .foregroundStyle(.gray)
+                                }
+                            }
+                        }
+
+                        Text("Esse projeto é mantido através de doações dos usuários. Essas doações cobrem os custos de operação (mensalidades de servidor, anuidade da Apple) e me incentivam a seguir melhorando o app todos os anos. Gosto muito da nossa parceria, bora manter ela?")
+                            .padding(.top, .spacing(.xxxSmall))
                     }
 
                     if let moneyInfo {
@@ -36,23 +56,26 @@ struct HelpTheAppView: View {
                     }
 
                     DonateButtons(toast: $toast)
-
-                    if let donors {
-                        VStack(alignment: .leading, spacing: .spacing(.xSmall)) {
-                            Text("UM OFERECIMENTO:")
-                                .font(.footnote)
-                                .bold()
-
-                            DonorsView(donors: donors)
-                                .marquee()
-                        }
-                    }
                 }
             }
             .padding(.bottom, .spacing(.xxSmall))
         }
         .task {
             await loadMoneyInfo()
+        }
+        .sheet(isPresented: $showDonorInfoView) {
+            NavigationStack {
+                DonorTypeInfoView()
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            CloseButton {
+                                showDonorInfoView.toggle()
+                            }
+                        }
+                    }
+            }
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
         }
     }
 
@@ -120,12 +143,24 @@ extension HelpTheAppView {
         private let pixKey: String = "medodeliriosuporte@gmail.com"
 
         var body: some View {
-            VStack(alignment: .leading, spacing: .spacing(.large)) {
-                Button {
+            VStack(alignment: .center, spacing: .spacing(.large)) {
+                let apoiaseButton = Button {
                     Task {
-                        UIPasteboard.general.string = pixKey
-                        toast = Toast(message: randomThankYouString(), type: .thankYou)
-                        await HelpTheAppView.DonateButtons.sendAnalytics(for: "didCopyPixKey")
+                        await apoiaseAction()
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Apoiar mensalmente")
+                            .bold()
+                        Spacer()
+                    }
+                    .padding(.vertical, .spacing(.xxSmall))
+                }
+
+                let pixButton = Button {
+                    Task {
+                        await copyPixKeyAction()
                     }
                 } label: {
                     HStack {
@@ -134,24 +169,37 @@ extension HelpTheAppView {
                             .bold()
                         Spacer()
                     }
+                    .padding(.vertical, .spacing(.xxSmall))
                 }
-                .borderedButton(colored: .green)
 
-                Button {
-                    Task {
-                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-                        await HelpTheAppView.DonateButtons.sendAnalytics(for: "didTapApoiaseButton")
-                    }
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("Apoiar mensalmente (a partir de R$ 5)")
-                            .bold()
-                        Spacer()
-                    }
+                if #available(iOS 26, *) {
+                    apoiaseButton
+                        .buttonStyle(.glassProminent)
+                        .tint(.red)
+                } else {
+                    apoiaseButton
+                        .borderedButton(colored: Color.red)
                 }
-                .borderedButton(colored: .red)
+
+                if #available(iOS 26, *) {
+                    pixButton
+                        .buttonStyle(.glass)
+                } else {
+                    pixButton
+                        .borderedButton(colored: .green)
+                }
             }
+        }
+
+        private func apoiaseAction() async {
+            OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
+            await HelpTheAppView.DonateButtons.sendAnalytics(for: "didTapApoiaseButton")
+        }
+
+        private func copyPixKeyAction() async {
+            UIPasteboard.general.string = pixKey
+            toast = Toast(message: randomThankYouString(), type: .thankYou)
+            await HelpTheAppView.DonateButtons.sendAnalytics(for: "didCopyPixKey")
         }
 
         private func randomThankYouString() -> String {
@@ -177,6 +225,57 @@ extension HelpTheAppView {
             )
         }
     }
+
+    struct DonorTypeInfoView: View {
+
+        @ViewBuilder
+        private func row(donor: Donor, text: String) -> some View {
+            VStack(alignment: .center, spacing: .spacing(.medium)) {
+                DonorView(donor: donor)
+
+                Text(text)
+                    .multilineTextAlignment(.center)
+            }
+        }
+
+        @Environment(\.dismiss) var dismiss
+
+        var body: some View {
+            ScrollView {
+                VStack(alignment: .center, spacing: .spacing(.large)) {
+                    row(
+                        donor: Donor(name: "Cristiano B."),
+                        text: "Usuário fez uma doação única via Pix."
+                    )
+
+                    Divider()
+
+                    row(
+                        donor: Donor(name: "Pedro D.", hasDonatedBefore: true),
+                        text: "O mesmo usuário fez uma nova doação única via Pix, independente do valor."
+                    )
+
+                    Divider()
+
+                    row(
+                        donor: Donor(name: "Jair B.", isRecurringDonorBelow30: true),
+                        text: "Usuário doa até R$ 29 todos os meses pelo Apoia.se."
+                    )
+
+                    Divider()
+
+                    row(
+                        donor: Donor(name: "Alexandre M.", isRecurringDonor30OrOver: true),
+                        text: "Usuário doa R$ 30 ou mais todos os meses pelo Apoia.se."
+                    )
+                }
+                .padding(.horizontal, .spacing(.large))
+                .padding(.vertical, .spacing(.small))
+            }
+            .navigationTitle("Tipos de Doação")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
 }
 
 // MARK: - Preview
@@ -196,5 +295,9 @@ extension HelpTheAppView {
 }
 
 #Preview("Donate Buttons") {
-    HelpTheAppView.DonateButtons(toast: .constant(nil))
+    if #available(iOS 26.0, *) {
+        HelpTheAppView.DonateButtons(toast: .constant(nil))
+    } else {
+        // Fallback on earlier versions
+    }
 }

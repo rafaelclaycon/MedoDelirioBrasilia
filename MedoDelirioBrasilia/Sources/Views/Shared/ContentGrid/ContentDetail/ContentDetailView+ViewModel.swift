@@ -23,9 +23,6 @@ extension ContentDetailView {
         var isPlaying: Bool = false
         var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
         var reactionsState: LoadingState<[Reaction]> = .loading
-        var showAuthorSuggestionEmailAppPicker: Bool = false
-        var showReactionSuggestionEmailAppPicker: Bool = false
-        var didCopySupportAddressOnEmailPicker: Bool = false
 
         var toast: Toast?
 
@@ -75,8 +72,11 @@ extension ContentDetailView.ViewModel {
         openAuthorDetailsAction(author)
     }
 
-    func onEditAuthorSelected() {
-        showAuthorSuggestionEmailAppPicker = true
+    func onEditAuthorSelected() async {
+        await Mailman.openDefaultEmailApp(
+            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
+            body: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id)
+        )
     }
 
     func onRetryLoadStatisticsSelected() async {
@@ -91,8 +91,11 @@ extension ContentDetailView.ViewModel {
         }
     }
 
-    func onSuggestAddToReactionSelected() {
-        showReactionSuggestionEmailAppPicker = true
+    func onSuggestAddToReactionSelected() async {
+        await Mailman.openDefaultEmailApp(
+            subject: String(format: "Sugestão Para Adicionar '%@' a Uma Reação", content.title),
+            body: String(format: "As Reações expressam emoções, acontecimentos ou personalidades. Qual o nome da Reação nova ou existente na qual você acha que esse som se encaixa?")
+        )
     }
 
     func onRetryLoadReactionsSelected() async {

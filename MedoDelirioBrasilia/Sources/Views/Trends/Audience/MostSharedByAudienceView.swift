@@ -226,20 +226,22 @@ extension MostSharedByAudienceView {
         // MARK: - Subviews
 
         @ViewBuilder func timeIntervalSelector() -> some View {
-            Menu {
-                Picker("Período", selection: $timeIntervalOption) {
-                    Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
-                    Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
-                    Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
-                    Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
-                    Text(Shared.Trends.year2025).tag(TrendsTimeInterval.year2025)
-                    Text(Shared.Trends.year2024).tag(TrendsTimeInterval.year2024)
-                    Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
-                    Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
-                    Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
-                }
+            Picker(selection: $timeIntervalOption) {
+                Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
+                Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
+                Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
+                Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                Text(Shared.Trends.year2025).tag(TrendsTimeInterval.year2025)
+                Text(Shared.Trends.year2024).tag(TrendsTimeInterval.year2024)
+                Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
+                Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
+                Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
             } label: {
-                Label(dropDownText, systemImage: "chevron.up.chevron.down")
+                HStack(spacing: .spacing(.xxSmall)) {
+                    Text(dropDownText)
+
+                    Image(systemName: "chevron.up.chevron.down")
+                }
             }
 //            .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
 //                if let option = timeIntervalToGoTo {

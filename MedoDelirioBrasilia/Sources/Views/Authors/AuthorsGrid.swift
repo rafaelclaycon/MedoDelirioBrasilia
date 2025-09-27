@@ -37,16 +37,7 @@ struct AuthorsGrid: View {
         VStack {
             switch viewModel.state {
             case .loading:
-                VStack {
-                    HStack(spacing: .spacing(.small)) {
-                        ProgressView()
-
-                        Text("Carregando Autores...")
-                            .foregroundColor(.gray)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, .spacing(.huge))
-                }
+                BasicLoadingView(text: "Carregando Autores...")
 
             case .loaded(let authors):
                 VStack {

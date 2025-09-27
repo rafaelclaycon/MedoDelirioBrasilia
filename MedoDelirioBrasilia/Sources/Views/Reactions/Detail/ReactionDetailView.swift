@@ -44,12 +44,6 @@ struct ReactionDetailView: View {
         self.contentGridMode = currentListMode
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
-            searchService: SearchService(
-                contentRepository: contentRepository,
-                authorService: AuthorService(database: LocalDatabase.shared),
-                appMemory: AppPersistentMemory(),
-                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
-            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .reactionDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
@@ -76,32 +70,32 @@ struct ReactionDetailView: View {
                     .frame(height: 260)
                     .padding(.bottom, 6)
 
-//                    ContentGrid(
-//                        state: viewModel.state,
-//                        viewModel: contentGridViewModel,
-//                        showNewTag: false,
-//                        reactionId: viewModel.reaction.id,
-//                        containerSize: geometry.size,
-//                        loadingView: LoadingView(),
-//                        emptyStateView: EmptyStateView(
-//                            reloadAction: {
-//                                Task {
-//                                    await viewModel.onRetrySelected()
-//                                }
-//                            }
-//                        ),
-//                        errorView: ErrorView(
-//                            reactionNoLongerExists: viewModel.reactionNoLongerExists,
-//                            errorMessage: viewModel.errorMessage,
-//                            tryAgainAction: {
-//                                Task {
-//                                    await viewModel.onRetrySelected()
-//                                }
-//                            }
-//                        )
-//                    )
-//                    .environment(TrendsHelper())
-//                    .padding(.horizontal, .spacing(.medium))
+                    ContentGrid(
+                        state: viewModel.state,
+                        viewModel: contentGridViewModel,
+                        showNewTag: false,
+                        reactionId: viewModel.reaction.id,
+                        containerSize: geometry.size,
+                        loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
+                        emptyStateView: EmptyStateView(
+                            reloadAction: {
+                                Task {
+                                    await viewModel.onRetrySelected()
+                                }
+                            }
+                        ),
+                        errorView: ErrorView(
+                            reactionNoLongerExists: viewModel.reactionNoLongerExists,
+                            errorMessage: viewModel.errorMessage,
+                            tryAgainAction: {
+                                Task {
+                                    await viewModel.onRetrySelected()
+                                }
+                            }
+                        )
+                    )
+                    .environment(TrendsHelper())
+                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                         .frame(height: .spacing(.large))
@@ -120,15 +114,6 @@ struct ReactionDetailView: View {
                         soundArrayIsEmpty: soundArrayIsEmpty,
                         isSelecting: contentGridMode.wrappedValue == .selection
                     )
-                    .foregroundStyle(.white)
-                    .opacity(toolbarControlsOpacity)
-                    .disabled(soundArrayIsEmpty)
-                    .onChange(of: viewModel.contentSortOption) {
-                        contentGridViewModel.onContentSortingChanged()
-                        Task {
-                            await viewModel.onContentSortingChanged()
-                        }
-                    }
                 }
                 .oneTimeTask {
                     await viewModel.onViewLoaded()
@@ -139,6 +124,12 @@ struct ReactionDetailView: View {
                             originatingScreen: "ReactionDetailView",
                             action: "didViewReaction(\(viewModel.reaction.title))"
                         )
+                    }
+                }
+                .onChange(of: viewModel.contentSortOption) {
+                    contentGridViewModel.onContentSortingChanged()
+                    Task {
+                        await viewModel.onContentSortingChanged()
                     }
                 }
             }
@@ -153,7 +144,7 @@ struct ReactionDetailView: View {
 
 extension ReactionDetailView {
 
-    struct ToolbarControls: View {
+    struct ToolbarControls: ToolbarContent {
 
         @Binding var contentSortOption: Int
         let playStopAction: () -> Void
@@ -166,57 +157,78 @@ extension ReactionDetailView {
             soundArrayIsEmpty || isSelecting
         }
 
-        var body: some View {
-            HStack(spacing: 15) {
-                Button {
-                    playStopAction()
-                } label: {
-                    Image(systemName: isPlayingPlaylist ? "stop.fill" : "play.fill")
-                        .opacity(playStopIsDisabled ? 0.5 : 1.0)
-                }
-                .disabled(playStopIsDisabled)
-
-                Menu {
-                    Section {
-                        Button {
-                            startSelectingAction()
-                        } label: {
-                            Label(
-                                isSelecting ? "Cancelar Seleção" : "Selecionar",
-                                systemImage: isSelecting ? "xmark.circle" : "checkmark.circle"
-                            )
-                        }
+        var body: some ToolbarContent {
+            if #available(iOS 26.0, *) {
+                ToolbarItem {
+                    Button {
+                        playStopAction()
+                    } label: {
+                        Image(systemName: isPlayingPlaylist ? "stop.fill" : "play.fill")
                     }
+                    .disabled(playStopIsDisabled)
+                }
 
-                    Section {
-                        Picker("Ordenação de Sons", selection: $contentSortOption) {
-                            ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
-                                Text(option.description).tag(option.rawValue)
+                ToolbarSpacer(.fixed)
+
+                ToolbarItem {
+                    Menu {
+                        Section {
+                            Button {
+                                startSelectingAction()
+                            } label: {
+                                Label(
+                                    isSelecting ? "Cancelar Seleção" : "Selecionar",
+                                    systemImage: isSelecting ? "xmark.circle" : "checkmark.circle"
+                                )
                             }
                         }
+
+                        Section {
+                            Picker("Ordenação de Sons", selection: $contentSortOption) {
+                                ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
+                                    Text(option.description).tag(option.rawValue)
+                                }
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
                     }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
                 }
-            }
-        }
-    }
-
-    struct LoadingView: View {
-
-        var body: some View {
-            VStack(spacing: 40) {
-                Spacer()
-
-                HStack(spacing: 10) {
-                    ProgressView()
-
-                    Text("Carregando sons...")
-                        .foregroundColor(.gray)
+            } else {
+                ToolbarItem {
+                    Button {
+                        playStopAction()
+                    } label: {
+                        Image(systemName: isPlayingPlaylist ? "stop.fill" : "play.fill")
+                            .opacity(playStopIsDisabled ? 0.5 : 1.0)
+                    }
+                    .disabled(playStopIsDisabled)
                 }
-                .frame(maxWidth: .infinity)
 
-                Spacer()
+                ToolbarItem {
+                    Menu {
+                        Section {
+                            Button {
+                                startSelectingAction()
+                            } label: {
+                                Label(
+                                    isSelecting ? "Cancelar Seleção" : "Selecionar",
+                                    systemImage: isSelecting ? "xmark.circle" : "checkmark.circle"
+                                )
+                            }
+                        }
+
+                        Section {
+                            Picker("Ordenação de Sons", selection: $contentSortOption) {
+                                ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
+                                    Text(option.description).tag(option.rawValue)
+                                }
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
+                }
             }
         }
     }

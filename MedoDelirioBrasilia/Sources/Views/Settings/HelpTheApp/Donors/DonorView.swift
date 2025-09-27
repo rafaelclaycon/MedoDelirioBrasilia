@@ -14,8 +14,6 @@ struct DonorView: View {
     private var text: String {
         if donor.hasDonatedBefore {
             return "\(donor.name)  ⭐️"
-        } else if donor.isRecurringDonor30OrOver ?? false {
-            return "✨  \(donor.name)  ✨"
         } else {
             return donor.name
         }
@@ -46,18 +44,42 @@ struct DonorView: View {
         }
     }
 
+    private var backgroundFill: Color {
+        if donor.isRecurringDonor30OrOver ?? false {
+            return .red
+        } else {
+            return .gray
+        }
+    }
+
+    private var backgroundOpacity: CGFloat {
+        if donor.isRecurringDonor30OrOver ?? false {
+            return 0.9
+        } else {
+            return colorScheme == .dark ? 0.5 : 0.05
+        }
+    }
+
+    private var textColor: Color {
+        if donor.isRecurringDonor30OrOver ?? false && colorScheme == .light {
+            return .white
+        } else {
+            return .primary
+        }
+    }
+
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         Text(text)
-            .foregroundColor(.primary)
+            .foregroundColor(textColor)
             .bold()
             .padding(.horizontal, .spacing(.medium))
             .padding(.vertical, .spacing(.xSmall))
             .background {
                 RoundedRectangle(cornerRadius: 99)
-                    .fill(.gray)
-                    .opacity(colorScheme == .dark ? 0.5 : 0.05)
+                    .fill(backgroundFill)
+                    .opacity(backgroundOpacity)
                     .overlay(
                         RoundedRectangle(cornerRadius: 99)
                             .stroke(border, lineWidth: borderWidth)

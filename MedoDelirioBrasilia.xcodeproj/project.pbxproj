@@ -116,6 +116,7 @@
 		D906BA4F28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */; };
 		D906BA5128D912DB007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */; };
 		D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D907A39D2A8F9E6A006DE630 /* OpenUtility.swift */; };
+		D90BF91D2DE8800300C5480B /* BasicLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BF91C2DE8800300C5480B /* BasicLoadingView.swift */; };
 		D90C4B09291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90C4B08291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 */; };
 		D90CDF0628F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */; };
 		D90CDF0728F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */; };
@@ -210,7 +211,7 @@
 		D92230AC2942390500C59227 /* Jair Bolsonaro - Gases.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AA2942390500C59227 /* Jair Bolsonaro - Gases.mp3 */; };
 		D92230AD2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AB2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 */; };
 		D92230AF2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */; };
-		D92249772A8DB08C002B2C43 /* SyncStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92249762A8DB08C002B2C43 /* SyncStatusView.swift */; };
+		D92249772A8DB08C002B2C43 /* ContentUpdateStatusSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92249762A8DB08C002B2C43 /* ContentUpdateStatusSymbol.swift */; };
 		D923125E28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923125D28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 */; };
 		D923126028AAD5CD00436336 /* Assovio do passarinho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923125F28AAD5CD00436336 /* Assovio do passarinho.mp3 */; };
 		D923126228AAF30D00436336 /* Ludmilla e Bolsonaro - Saaai da Minha Frente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923126128AAF30D00436336 /* Ludmilla e Bolsonaro - Saaai da Minha Frente.mp3 */; };
@@ -360,7 +361,6 @@
 		D948E9952921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E98E2921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 */; };
 		D948E9962921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */; };
 		D948E9982921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */; };
-		D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */; };
 		D949181228860ABC0079F545 /* StandaloneFolderGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949181128860ABC0079F545 /* StandaloneFolderGridView.swift */; };
 		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
 		D94B03F72993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */; };
@@ -509,6 +509,7 @@
 		D96892DC2C9F13C00084F646 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96892DB2C9F13BB0084F646 /* APIConfig.swift */; };
 		D96892DE2C9F7DC50084F646 /* VideoMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96892DD2C9F7DC40084F646 /* VideoMakerTests.swift */; };
 		D96892E12C9F83E00084F646 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D96892E02C9F83E00084F646 /* Images.xcassets */; };
+		D96993732E1C547E0006169F /* AuthorCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96993722E1C547E0006169F /* AuthorCreditsView.swift */; };
 		D969DCF52A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */; };
 		D969DCF82A4B0F69003F4EB2 /* Monark - ACORDA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF62A4B0F69003F4EB2 /* Monark - ACORDA.mp3 */; };
 		D969DCF92A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF72A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 */; };
@@ -516,6 +517,7 @@
 		D96C97262DCAE8080074B80E /* FakeSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96C97252DCAE8080074B80E /* FakeSearchService.swift */; };
 		D96C97282DCAE96B0074B80E /* SearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96C97272DCAE96B0074B80E /* SearchServiceTests.swift */; };
 		D96C97292DCAEEA70074B80E /* FakeAppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF672CD1F58000C6BD72 /* FakeAppPersistentMemory.swift */; };
+		D96DD68D2E12078E007299A1 /* Use26BetaBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96DD68C2E12078E007299A1 /* Use26BetaBannerView.swift */; };
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D9715F032CF2D61800DD24BB /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9715F022CF2D61800DD24BB /* ToastView.swift */; };
 		D972E9C22927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D972E9C12927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 */; };
@@ -1101,7 +1103,6 @@
 		D97B2DE728E60B8600C3B50B /* Michael The Office - No god please no.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */; };
 		D97BD4FE2DCEB6F70023CA47 /* PlayableContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97BD4FD2DCEB6F70023CA47 /* PlayableContentViewModel.swift */; };
 		D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */; };
-		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
 		D97FFA662CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FFA652CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
@@ -1138,7 +1139,7 @@
 		D98B9AD728CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */; };
 		D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */; };
 		D98BB69A2AC68769001DE23D /* FloatingSelectionOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */; };
-		D98CFB5A2C95C9760038C26C /* SocialMediaLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CFB592C95C9710038C26C /* SocialMediaLink.swift */; };
+		D98CFB5A2C95C9760038C26C /* AuthorSectionLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CFB592C95C9710038C26C /* AuthorSectionLink.swift */; };
 		D98D13802CD5B880001CF5BB /* UserFolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */; };
 		D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13812CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift */; };
 		D98D13852CD5CD19001CF5BB /* UserFolder+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */; };
@@ -1148,7 +1149,7 @@
 		D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */; };
 		D98EC5DE282596C300340BE5 /* PlayableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* PlayableContentView.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
-		D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070542A905DA300A26F65 /* SyncInfoView.swift */; };
+		D99070552A905DA300A26F65 /* ContentUpdateStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070542A905DA300A26F65 /* ContentUpdateStatusView.swift */; };
 		D99070592A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */; };
 		D990705D2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D990705C2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift */; };
 		D99070612A92CE7C00A26F65 /* SyncValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070602A92CE7C00A26F65 /* SyncValues.swift */; };
@@ -1230,6 +1231,7 @@
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewModel.swift */; };
 		D9A039182BD69EF100AB74F7 /* ModalViewToOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */; };
 		D9A06417298B59D5006075D1 /* AddToFolderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06416298B59D5006075D1 /* AddToFolderViewModelTests.swift */; };
+		D9A06C8D2E6E37FB00DFE5BE /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06C8C2E6E37FB00DFE5BE /* CloseButton.swift */; };
 		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
 		D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */; };
@@ -1682,6 +1684,7 @@
 		D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jingle Bolsonaro 2022.mp3"; sourceTree = "<group>"; };
 		D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3"; sourceTree = "<group>"; };
 		D907A39D2A8F9E6A006DE630 /* OpenUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUtility.swift; sourceTree = "<group>"; };
+		D90BF91C2DE8800300C5480B /* BasicLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLoadingView.swift; sourceTree = "<group>"; };
 		D90C4B08291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Menino Pulando na Cama - Que bosta.mp3"; sourceTree = "<group>"; };
 		D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3"; sourceTree = "<group>"; };
 		D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3"; sourceTree = "<group>"; };
@@ -1779,7 +1782,7 @@
 		D92230AA2942390500C59227 /* Jair Bolsonaro - Gases.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Gases.mp3"; sourceTree = "<group>"; };
 		D92230AB2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3"; sourceTree = "<group>"; };
 		D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk do Desespero Pos-Primeiro Turno de 2022.mp3"; sourceTree = "<group>"; };
-		D92249762A8DB08C002B2C43 /* SyncStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatusView.swift; sourceTree = "<group>"; };
+		D92249762A8DB08C002B2C43 /* ContentUpdateStatusSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUpdateStatusSymbol.swift; sourceTree = "<group>"; };
 		D923125D28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai dar merda, vai dar meeerda.mp3"; sourceTree = "<group>"; };
 		D923125F28AAD5CD00436336 /* Assovio do passarinho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Assovio do passarinho.mp3"; sourceTree = "<group>"; };
 		D923126128AAF30D00436336 /* Ludmilla e Bolsonaro - Saaai da Minha Frente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ludmilla e Bolsonaro - Saaai da Minha Frente.mp3"; sourceTree = "<group>"; };
@@ -1929,7 +1932,6 @@
 		D948E98E2921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornal da Record - O dia foi de caos.mp3"; sourceTree = "<group>"; };
 		D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3"; sourceTree = "<group>"; };
 		D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3"; sourceTree = "<group>"; };
-		D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCasingWithCloseView.swift; sourceTree = "<group>"; };
 		D949181128860ABC0079F545 /* StandaloneFolderGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneFolderGridView.swift; sourceTree = "<group>"; };
 		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
 		D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dudu Marfetan - Ate o final (completo).mp3"; sourceTree = "<group>"; };
@@ -2083,12 +2085,14 @@
 		D96892DB2C9F13BB0084F646 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		D96892DD2C9F7DC40084F646 /* VideoMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMakerTests.swift; sourceTree = "<group>"; };
 		D96892E02C9F83E00084F646 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D96993722E1C547E0006169F /* AuthorCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCreditsView.swift; sourceTree = "<group>"; };
 		D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - O o passarinho cantando.mp3"; sourceTree = "<group>"; };
 		D969DCF62A4B0F69003F4EB2 /* Monark - ACORDA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monark - ACORDA.mp3"; sourceTree = "<group>"; };
 		D969DCF72A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monark - Acorda, cara.mp3"; sourceTree = "<group>"; };
 		D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
 		D96C97252DCAE8080074B80E /* FakeSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSearchService.swift; sourceTree = "<group>"; };
 		D96C97272DCAE96B0074B80E /* SearchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTests.swift; sourceTree = "<group>"; };
+		D96DD68C2E12078E007299A1 /* Use26BetaBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Use26BetaBannerView.swift; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D9715F022CF2D61800DD24BB /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D972E9C12927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MIDCast - Um pequeno passo para o homem.mp3"; sourceTree = "<group>"; };
@@ -2674,7 +2678,6 @@
 		D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michael The Office - No god please no.mp3"; sourceTree = "<group>"; };
 		D97BD4FD2DCEB6F70023CA47 /* PlayableContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentViewModel.swift; sourceTree = "<group>"; };
 		D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFolderIcon.swift; sourceTree = "<group>"; };
-		D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAppPickerView.swift; sourceTree = "<group>"; };
 		D97FFA652CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingiOS18ControlAndSiriIntentView.swift; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -2711,7 +2714,7 @@
 		D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Ele e meio sem nocao.mp3"; sourceTree = "<group>"; };
 		D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tropa de Elite - Que satisfacao, aspira.mp3"; sourceTree = "<group>"; };
 		D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingSelectionOptionsView.swift; sourceTree = "<group>"; };
-		D98CFB592C95C9710038C26C /* SocialMediaLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaLink.swift; sourceTree = "<group>"; };
+		D98CFB592C95C9710038C26C /* AuthorSectionLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorSectionLink.swift; sourceTree = "<group>"; };
 		D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderRepository.swift; sourceTree = "<group>"; };
 		D98D13812CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChangeHashFieldToUserFolderTable.swift; sourceTree = "<group>"; };
 		D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFolder+Mocks.swift"; sourceTree = "<group>"; };
@@ -2722,7 +2725,7 @@
 		D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDetailHeader.swift; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* PlayableContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentView.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
-		D99070542A905DA300A26F65 /* SyncInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncInfoView.swift; sourceTree = "<group>"; };
+		D99070542A905DA300A26F65 /* ContentUpdateStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUpdateStatusView.swift; sourceTree = "<group>"; };
 		D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncInfoView+KnowMoreView.swift"; sourceTree = "<group>"; };
 		D990705C2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeRoundedRectangleBorderedButtonStyle.swift; sourceTree = "<group>"; };
 		D99070602A92CE7C00A26F65 /* SyncValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncValues.swift; sourceTree = "<group>"; };
@@ -2804,6 +2807,7 @@
 		D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewToOpen.swift; sourceTree = "<group>"; };
 		D9A06416298B59D5006075D1 /* AddToFolderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewModelTests.swift; sourceTree = "<group>"; };
 		D9A06419298B6749006075D1 /* FakeLocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLocalDatabase.swift; sourceTree = "<group>"; };
+		D9A06C8C2E6E37FB00DFE5BE /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
 		D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankingTypeToAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
@@ -4540,6 +4544,7 @@
 				D986C2452B25848B00EF575A /* LongUpdateBanner.swift */,
 				D9F45DD62BED30C400D49340 /* DynamicBanner.swift */,
 				D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */,
+				D96DD68C2E12078E007299A1 /* Use26BetaBannerView.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -4548,7 +4553,7 @@
 			isa = PBXGroup;
 			children = (
 				D9B681E12A942C1000AB7417 /* Components */,
-				D99070542A905DA300A26F65 /* SyncInfoView.swift */,
+				D99070542A905DA300A26F65 /* ContentUpdateStatusView.swift */,
 				D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */,
 				D9AF8B762ABDA85E0051D028 /* SyncManager.swift */,
 			);
@@ -4606,7 +4611,7 @@
 				D95BFEEF29E884E500E42A23 /* HelpTheApp */,
 				D970162D28CE797B0003AA00 /* Sub-Settings */,
 				D970162E28CE79C30003AA00 /* Diagnostics */,
-				D970163028CE7A540003AA00 /* iPad */,
+				D96993722E1C547E0006169F /* AuthorCreditsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -4837,14 +4842,6 @@
 			path = Diagnostics;
 			sourceTree = "<group>";
 		};
-		D970163028CE7A540003AA00 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */,
-			);
-			path = iPad;
-			sourceTree = "<group>";
-		};
 		D970163128CE7A6E0003AA00 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -4862,7 +4859,6 @@
 				D9DBEA9F2BCC10F200220679 /* ContentGrid */,
 				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
 				D933251D28835E41004EFACB /* ActivityViewController.swift */,
-				D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */,
 				D957047C28AEF733008DEF8C /* ProcessingView.swift */,
 				D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */,
 				D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */,
@@ -4871,6 +4867,8 @@
 				D9115BAE2DB294BB0089A0CF /* LeadingToolbarControls.swift */,
 				D9115BB02DB295C10089A0CF /* ContentToolbarOptionsView.swift */,
 				D92ABB512DBD69E5002E4315 /* AuthorToolbarOptionsView.swift */,
+				D90BF91C2DE8800300C5480B /* BasicLoadingView.swift */,
+				D9A06C8C2E6E37FB00DFE5BE /* CloseButton.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -5160,7 +5158,7 @@
 			children = (
 				D90277812AAA242D0061A960 /* AlbumCoverPlayView.swift */,
 				D9FD9E8C2A89690C0071F4A9 /* YoureOfflineView.swift */,
-				D92249762A8DB08C002B2C43 /* SyncStatusView.swift */,
+				D92249762A8DB08C002B2C43 /* ContentUpdateStatusSymbol.swift */,
 				D9B681E22A942C2E00AB7417 /* SyncInfoCard.swift */,
 			);
 			path = Components;
@@ -5370,7 +5368,7 @@
 		D9DBEA9E2BCC0CF400220679 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				D98CFB592C95C9710038C26C /* SocialMediaLink.swift */,
+				D98CFB592C95C9710038C26C /* AuthorSectionLink.swift */,
 				D91255B12DAFF335006AC71C /* ContentGridScreen.swift */,
 				D9E7BE7F2C9E1D9D0094AD28 /* AlertType.swift */,
 				D9E7BE802C9E1D9D0094AD28 /* AppIcon.swift */,
@@ -6919,7 +6917,6 @@
 				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchRepository.swift in Sources */,
 				D92ABB542DBDAC60002E4315 /* AuthorService.swift in Sources */,
-				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
 				D986D1FE2BCE23FD00214DAB /* ContentGridDisplaying.swift in Sources */,
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,
@@ -7004,6 +7001,7 @@
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
 				D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
+				D96993732E1C547E0006169F /* AuthorCreditsView.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* HelpTheAppView.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* HapticFeedback.swift in Sources */,
 				D95C3E142A02E70D00172C17 /* UpdateEvent.swift in Sources */,
@@ -7012,10 +7010,12 @@
 				D9D627122B266389000EB791 /* HorizontalAuthorView.swift in Sources */,
 				D95315A92A9AA783003DA40E /* MusicGenre.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
+				D96DD68D2E12078E007299A1 /* Use26BetaBannerView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D93F643029A6A692003E7550 /* ShareAsVideoViewModel.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
+				D9A06C8D2E6E37FB00DFE5BE /* CloseButton.swift in Sources */,
 				D9B681E32A942C2E00AB7417 /* SyncInfoCard.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
 				D91E37582C4C8EFA003A1107 /* Action.swift in Sources */,
@@ -7038,7 +7038,7 @@
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
 				D92E7075283C5F620035826C /* SongView.swift in Sources */,
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,
-				D98CFB5A2C95C9760038C26C /* SocialMediaLink.swift in Sources */,
+				D98CFB5A2C95C9760038C26C /* AuthorSectionLink.swift in Sources */,
 				D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */,
 				D90277822AAA242D0061A960 /* AlbumCoverPlayView.swift in Sources */,
 				D9A039182BD69EF100AB74F7 /* ModalViewToOpen.swift in Sources */,
@@ -7047,7 +7047,7 @@
 				D9035FF12DCB494700DA0A15 /* FakeUserFolderRepository.swift in Sources */,
 				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
-				D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */,
+				D99070552A905DA300A26F65 /* ContentUpdateStatusView.swift in Sources */,
 				D984D5632CF21D6700680C7D /* ContentDetailView+StatsSection.swift in Sources */,
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* PlayableContentView.swift in Sources */,
@@ -7067,7 +7067,6 @@
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */,
 				D96370052B085845002E8838 /* ExplicitDisabledWarning.swift in Sources */,
-				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,
 				D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */,
 				D9FE84CA2DC43F73009A1FFE /* VerticalAuthorView.swift in Sources */,
 				D9E39DB92A1E891D0053A527 /* LocalDatabase+UpdateEvent.swift in Sources */,
@@ -7133,6 +7132,7 @@
 				D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */,
+				D90BF91D2DE8800300C5480B /* BasicLoadingView.swift in Sources */,
 				D9B611472BE1C08C00FD65A6 /* ReactionDetailViewModel.swift in Sources */,
 				D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */,
 				D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */,
@@ -7149,7 +7149,7 @@
 				D9A096D8287CE72300773869 /* Mailman.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
 				D912A33828B3F2C000F7293D /* TipView.swift in Sources */,
-				D92249772A8DB08C002B2C43 /* SyncStatusView.swift in Sources */,
+				D92249772A8DB08C002B2C43 /* ContentUpdateStatusSymbol.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
 				D992EF582BCB24310080C892 /* MainContentView.swift in Sources */,
 				D91A177F2DC68032006647E6 /* StandaloneSearchView.swift in Sources */,
@@ -7275,13 +7275,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Dev;
 		};
@@ -7332,12 +7333,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Prod;
@@ -7345,7 +7347,8 @@
 		D9625E9F28238F9B00080852 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_VERSION = 9.0.2;
+				APP_BUILD = 1;
+				APP_VERSION = 10.0;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -7366,7 +7369,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7386,7 +7389,8 @@
 		D9625EA028238F9B00080852 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_VERSION = 9.0.2;
+				APP_BUILD = 1;
+				APP_VERSION = 10.0;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Prod";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -7407,7 +7411,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7432,7 +7436,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7454,7 +7458,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7590,7 +7594,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.3.2;
+				minimumVersion = 8.5.0;
 			};
 		};
 		D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */ = {

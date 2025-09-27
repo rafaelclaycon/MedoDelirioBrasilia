@@ -25,6 +25,4 @@ enum ContentGridModalToOpen {
     case shareAsVideo
     case addToFolder
     case contentDetail
-    case soundIssueEmailPicker
-    case authorIssueEmailPicker(AnyEquatableMedoContent)
 }

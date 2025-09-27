@@ -9,14 +9,13 @@ import SwiftUI
 
 struct MainView: View {
 
-    private var tabSelection: Binding<PhoneTab>
-    private var padSelection: Binding<PadScreen?>
+    @Binding var tabSelection: PhoneTab
+    @Binding var padSelection: PadScreen?
 
     @State private var soundsPath = NavigationPath()
     @State private var favoritesPath = NavigationPath()
     @State private var reactionsPath = NavigationPath()
     @State private var authorsPath = NavigationPath()
-    @State private var searchTabPath = NavigationPath()
     @State private var foldersPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
@@ -44,133 +43,172 @@ struct MainView: View {
     // Sync
     @State private var syncValues = SyncValues()
 
-    @State private var contentRepository: ContentRepository
-    @State private var trendsService: TrendsService
-    @State private var reactionRepository = ReactionRepository()
-
-    init(
-        tabSelection: Binding<PhoneTab>,
-        padSelection: Binding<PadScreen?>,
-        contentRepository: ContentRepository = ContentRepository(database: LocalDatabase.shared)
-    ) {
-        self.tabSelection = tabSelection
-        self.padSelection = padSelection
-        self.contentRepository = contentRepository
-        self.trendsService = TrendsService(
-            database: LocalDatabase.shared,
-            apiClient: APIClient.shared,
-            contentRepository: contentRepository
-        )
-    }
+    @State private var contentRepository = ContentRepository(database: LocalDatabase.shared)
 
     // MARK: - View Body
 
     var body: some View {
         ZStack {
             if UIDevice.isiPhone {
-                TabView(selection: tabSelection) {
-                    NavigationStack(path: $soundsPath) {
-                        MainContentView(
-                            viewModel: MainContentViewModel(
-                                currentViewMode: .all,
-                                contentSortOption: UserSettings().mainSoundListSoundSortOption(),
-                                authorSortOption: UserSettings().authorSortOption(),
+                if #available(iOS 26.0, *) {
+                    TabView(selection: $tabSelection) {
+                        Tab(Shared.TabInfo.name(.sounds), systemImage: Shared.TabInfo.symbol(.sounds), value: .sounds) {
+                            NavigationStack(path: $soundsPath) {
+                                MainContentView(
+                                    viewModel: MainContentViewModel(
+                                        currentViewMode: .all,
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        authorSortOption: UserSettings().authorSortOption(),
+                                        currentContentListMode: $currentContentListMode,
+                                        toast: $toast,
+                                        floatingOptions: $floatingOptions,
+                                        syncValues: syncValues,
+                                        contentRepository: contentRepository,
+                                        analyticsService: AnalyticsService()
+                                    ),
+                                    currentContentListMode: $currentContentListMode,
+                                    toast: $toast,
+                                    floatingOptions: $floatingOptions,
+                                    openSettingsAction: {
+                                        isShowingSettingsSheet.toggle()
+                                    },
+                                    contentRepository: contentRepository,
+                                    bannerRepository: BannerRepository()
+                                )
+                                .environment(trendsHelper)
+                                .environment(settingsHelper)
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
+                                }
+                            }
+                            .tag(PhoneTab.sounds)
+                            .environment(\.push, PushAction { soundsPath.append($0) })
+                        }
+
+                        Tab(Shared.TabInfo.name(PhoneTab.reactions), systemImage: Shared.TabInfo.symbol(PhoneTab.reactions), value: .reactions) {
+                            NavigationStack(path: $reactionsPath) {
+                                ReactionsView()
+                                    .environment(trendsHelper)
+                                    .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
+                                    }
+                            }
+                            .tag(PhoneTab.reactions)
+                            .environment(\.push, PushAction { reactionsPath.append($0) })
+                        }
+
+                        Tab(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends), value: .trends) {
+                            NavigationView {
+                                TrendsView(
+                                    tabSelection: $tabSelection,
+                                    activePadScreen: .constant(.trends)
+                                )
+                                .environment(trendsHelper)
+                            }
+                            .tag(PhoneTab.trends)
+                        }
+
+                        // Coming after Ask for Permission and Universal Search are ready.
+                        /*Tab(role: .search) {
+                            NavigationStack {
+                                VStack {
+                                    Text("Tela de Pesquisa Universal")
+                                }
+                            }
+                        }*/
+                    }
+                    //.tabBarMinimizeBehavior(.onScrollDown)
+                } else {
+                    TabView(selection: $tabSelection) {
+                        NavigationStack(path: $soundsPath) {
+                            MainContentView(
+                                viewModel: MainContentViewModel(
+                                    currentViewMode: .all,
+                                    contentSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                    authorSortOption: UserSettings().authorSortOption(),
+                                    currentContentListMode: $currentContentListMode,
+                                    toast: $toast,
+                                    floatingOptions: $floatingOptions,
+                                    syncValues: syncValues,
+                                    contentRepository: contentRepository,
+                                    analyticsService: AnalyticsService()
+                                ),
                                 currentContentListMode: $currentContentListMode,
                                 toast: $toast,
                                 floatingOptions: $floatingOptions,
-                                syncValues: syncValues,
+                                openSettingsAction: {
+                                    isShowingSettingsSheet.toggle()
+                                },
                                 contentRepository: contentRepository,
-                                analyticsService: AnalyticsService()
-                            ),
-                            currentContentListMode: $currentContentListMode,
-                            toast: $toast,
-                            floatingOptions: $floatingOptions,
-                            openSettingsAction: {
-                                isShowingSettingsSheet.toggle()
-                            },
-                            contentRepository: contentRepository,
-                            bannerRepository: BannerRepository(),
-                            trendsService: trendsService,
-                            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
-                            analyticsService: AnalyticsService()
-                        )
-                        .environment(trendsHelper)
-                        .environment(settingsHelper)
-                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                            GeneralRouter(destination: screen, contentRepository: contentRepository)
-                        }
-                    }
-                    .tabItem {
-                        Label("Sons", systemImage: "speaker.wave.3.fill")
-                    }
-                    .tag(PhoneTab.sounds)
-                    .environment(\.push, PushAction { soundsPath.append($0) })
-
-                    NavigationStack(path: $reactionsPath) {
-                        ReactionsView()
+                                bannerRepository: BannerRepository()
+                            )
                             .environment(trendsHelper)
+                            .environment(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen, contentRepository: contentRepository)
                             }
-                    }
-                    .tabItem {
-                        Label("Reações", systemImage: "rectangle.grid.2x2.fill")
-                    }
-                    .tag(PhoneTab.reactions)
-                    .environment(\.push, PushAction { reactionsPath.append($0) })
+                        }
+                        .tabItem {
+                            Label(Shared.TabInfo.name(.sounds), systemImage: Shared.TabInfo.symbol(.sounds))
+                        }
+                        .tag(PhoneTab.sounds)
+                        .environment(\.push, PushAction { soundsPath.append($0) })
 
-//                    NavigationView {
-//                        SongsView()
-//                            .environmentObject(settingsHelper)
-//                            .environment(trendsHelper)
-//                    }
-//                    .tabItem {
-//                        Label("Músicas", systemImage: "music.quarternote.3")
-//                    }
-//                    .tag(PhoneTab.songs)
-                    
-                    NavigationView {
-                        TrendsView(
-                            audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                            tabSelection: tabSelection,
-                            activePadScreen: .constant(.trends)
-                        )
-                        .environment(trendsHelper)
+                        NavigationStack(path: $reactionsPath) {
+                            ReactionsView()
+                                .environment(trendsHelper)
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
+                                }
+                        }
+                        .tabItem {
+                            Label(Shared.TabInfo.name(PhoneTab.reactions), systemImage: Shared.TabInfo.symbol(PhoneTab.reactions))
+                        }
+                        .tag(PhoneTab.reactions)
+                        .environment(\.push, PushAction { reactionsPath.append($0) })
+
+                        NavigationView {
+                            TrendsView(
+                                tabSelection: $tabSelection,
+                                activePadScreen: .constant(.trends)
+                            )
+                            .environment(trendsHelper)
+                        }
+                        .tabItem {
+                            Label(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends))
+                        }
+                        .tag(PhoneTab.trends)
                     }
-                    .tabItem {
-                        Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                    }
-                    .tag(PhoneTab.trends)
+                    .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
+                        tabSelection = .sounds
+                    })
+                    //                .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
+                    //                    tabSelection = .collections
+                    //                })
+                    //                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
+                    //                    tabSelection = .songs
+                    //                })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .last24Hours
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .lastWeek
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .lastMonth
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .allTime
+                    })
                 }
-                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
-                    tabSelection.wrappedValue = .sounds
-                })
-//                .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
-//                    tabSelection = .collections
-//                })
-//                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
-//                    tabSelection = .songs
-//                })
-                .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
-                    tabSelection.wrappedValue = .trends
-                    trendsHelper.timeIntervalToGoTo = .last24Hours
-                })
-                .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
-                    tabSelection.wrappedValue = .trends
-                    trendsHelper.timeIntervalToGoTo = .lastWeek
-                })
-                .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
-                    tabSelection.wrappedValue = .trends
-                    trendsHelper.timeIntervalToGoTo = .lastMonth
-                })
-                .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
-                    tabSelection.wrappedValue = .trends
-                    trendsHelper.timeIntervalToGoTo = .allTime
-                })
             } else {
                 if #available(iOS 18, *) {
                     TabView {
-                        Tab("Sons", systemImage: "speaker.wave.2") {
+                        Tab(Shared.TabInfo.name(.allSounds), systemImage: Shared.TabInfo.symbol(.allSounds)) {
                             NavigationStack(path: $soundsPath) {
                                 MainContentView(
                                     viewModel: MainContentViewModel(
@@ -189,10 +227,7 @@ struct MainView: View {
                                     floatingOptions: $floatingOptions,
                                     openSettingsAction: {},
                                     contentRepository: contentRepository,
-                                    bannerRepository: BannerRepository(),
-                                    trendsService: trendsService,
-                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
-                                    analyticsService: AnalyticsService()
+                                    bannerRepository: BannerRepository()
                                 )
                                 .environment(trendsHelper)
                                 .environment(settingsHelper)
@@ -203,7 +238,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { soundsPath.append($0) })
                         }
 
-                        Tab("Favoritos", systemImage: "star") {
+                        Tab(Shared.TabInfo.name(.favorites), systemImage: Shared.TabInfo.symbol(.favorites)) {
                             NavigationStack(path: $favoritesPath) {
                                 StandaloneFavoritesView(
                                     viewModel: StandaloneFavoritesViewModel(
@@ -225,7 +260,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { favoritesPath.append($0) })
                         }
 
-                        Tab("Reações", systemImage: "rectangle.grid.2x2") {
+                        Tab(Shared.TabInfo.name(PadScreen.reactions), systemImage: Shared.TabInfo.symbol(PadScreen.reactions)) {
                             NavigationStack(path: $reactionsPath) {
                                 ReactionsView()
                                     .environment(trendsHelper)
@@ -236,7 +271,7 @@ struct MainView: View {
                             .environment(\.push, PushAction { reactionsPath.append($0) })
                         }
 
-                        Tab("Autores", systemImage: "person") {
+                        Tab(Shared.TabInfo.name(.groupedByAuthor), systemImage: Shared.TabInfo.symbol(.groupedByAuthor)) {
                             NavigationStack(path: $authorsPath) {
                                 StandaloneAuthorsView()
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
@@ -246,40 +281,18 @@ struct MainView: View {
                             .environment(\.push, PushAction { authorsPath.append($0) })
                         }
 
-                        Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
+                        Tab(Shared.TabInfo.name(PadScreen.trends), systemImage: Shared.TabInfo.symbol(PadScreen.trends)) {
                             NavigationStack {
                                 TrendsView(
-                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                    tabSelection: tabSelection,
+                                    tabSelection: $tabSelection,
                                     activePadScreen: .constant(.trends)
                                 )
                                 .environment(trendsHelper)
                             }
                         }
 
-                        Tab(role: .search) {
-                            NavigationStack(path: $searchTabPath) {
-                                StandaloneSearchView(
-                                    searchService: SearchService(
-                                        contentRepository: contentRepository,
-                                        authorService: AuthorService(database: LocalDatabase.shared),
-                                        appMemory: AppPersistentMemory(),
-                                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
-                                    ),
-                                    trendsService: trendsService,
-                                    contentRepository: contentRepository,
-                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
-                                    analyticsService: AnalyticsService()
-                                )
-                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
-                                }
-                            }
-                            .environment(\.push, PushAction { searchTabPath.append($0) })
-                        }
-
                         TabSection("Minhas Pastas") {
-                            Tab("Todas as Pastas", systemImage: "folder") {
+                            Tab(Shared.TabInfo.name(.allFolders), systemImage: Shared.TabInfo.symbol(.allFolders)) {
                                 NavigationStack(path: $foldersPath) {
                                     StandaloneFolderGridView(
                                         folderForEditing: $folderForEditing,
@@ -370,15 +383,14 @@ struct MainView: View {
                 } else {
                     NavigationSplitView {
                         SidebarView(
-                            state: padSelection,
+                            state: $padSelection,
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             folderForEditing: $folderForEditing,
                             updateFolderList: $updateFolderList,
                             currentContentListMode: $currentContentListMode,
                             toast: $toast,
                             floatingOptions: $floatingOptions,
-                            contentRepository: contentRepository,
-                            trendsService: trendsService
+                            contentRepository: contentRepository
                         )
                         .environment(trendsHelper)
                         .environment(settingsHelper)
@@ -389,7 +401,7 @@ struct MainView: View {
                                 viewModel: MainContentViewModel(
                                     currentViewMode: .all,
                                     contentSortOption: UserSettings().mainSoundListSoundSortOption(),
-                                    authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                    authorSortOption: UserSettings().authorSortOption(),
                                     currentContentListMode: $currentContentListMode,
                                     toast: $toast,
                                     floatingOptions: $floatingOptions,
@@ -402,10 +414,7 @@ struct MainView: View {
                                 floatingOptions: $floatingOptions,
                                 openSettingsAction: {},
                                 contentRepository: contentRepository,
-                                bannerRepository: BannerRepository(),
-                                trendsService: trendsService,
-                                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
-                                analyticsService: AnalyticsService()
+                                bannerRepository: BannerRepository()
                             )
                             .environment(trendsHelper)
                             .environment(settingsHelper)
@@ -427,18 +436,14 @@ struct MainView: View {
         .sheet(isPresented: $showingModalView) {
             switch subviewToOpen {
             case .settings:
-                SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+                SettingsView(apiClient: APIClient.shared)
                     .environment(settingsHelper)
 
             case .onboarding:
                 FirstOnboardingView(isBeingShown: $showingModalView)
                     .interactiveDismissDisabled(UIDevice.isiPhone)
 
-            case .whatsNew:
-                Version9WhatsNewView(appMemory: AppPersistentMemory())
-                    .interactiveDismissDisabled()
-
-            case .retrospective:
+            case .retrospective, .whatsNew:
                 EmptyView()
             }
         }
@@ -454,7 +459,7 @@ struct MainView: View {
         }
         // Could be removed in the future, but for now using `showingModalView` bugs out on iPad. Shows Onboarding most of the time.
         .sheet(isPresented: $isShowingSettingsSheet) {
-            SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+            SettingsView(apiClient: APIClient.shared)
                 .environment(settingsHelper)
         }
     }
@@ -493,9 +498,6 @@ struct MainView: View {
     private func displayOnboardingIfNeeded() {
         if !AppPersistentMemory().hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
-            showingModalView = true
-        } else if !AppPersistentMemory().hasSeenVersion9WhatsNewScreen() {
-            subviewToOpen = .whatsNew
             showingModalView = true
         }
     }

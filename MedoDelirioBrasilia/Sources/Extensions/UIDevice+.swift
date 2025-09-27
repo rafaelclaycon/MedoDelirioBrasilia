@@ -27,7 +27,7 @@ extension UIDevice {
     }
 }
 
-// MARK: - Software support
+// MARK: - Software Characteristics
 
 extension UIDevice {
 
@@ -45,6 +45,21 @@ extension UIDevice {
             ].contains(modelName)
         }
         return true
+    }
+
+    static var isRunningSoftwareVersion26: Bool {
+        let version = UIDevice.current.systemVersion
+        return version.contains("19") || version.contains("26")
+    }
+
+    static var systemMarketingName: String {
+        if self.isMac {
+            return "macOS"
+        } else if UIDevice.isiPhone {
+            return "iOS"
+        } else {
+            return "iPadOS"
+        }
     }
 }
 
@@ -81,6 +96,7 @@ extension UIDevice {
 }
 
 // MARK: - Device Info
+
 public extension UIDevice {
 
     static let modelName: String = {
@@ -128,6 +144,10 @@ public extension UIDevice {
             case "iPhone17,1":                                     return "iPhone 16 Pro" // 2024 - A18 Pro - 8 GB
             case "iPhone17,2":                                     return "iPhone 16 Pro Max" // 2024 - A18 Pro - 8 GB
             case "iPhone17,5":                                     return "iPhone 16e" // 2025 - A18 (4E,2P) - 8 GB
+            case "iPhone18,1":                                     return "iPhone 17 Pro" // 2025 - A19 Pro (4E,2P) - 12 GB
+            case "iPhone18,2":                                     return "iPhone 17 Pro Max" // 2025 - A19 Pro (4E,2P) - 12 GB
+            case "iPhone18,3":                                     return "iPhone 17" // 2025 - A19 (4E,2P) - 8 GB
+            case "iPhone18,4":                                     return "iPhone Air" // 2025 - A19 Pro (4E,2P) - 12 GB
 
             case "iPad7,5", "iPad7,6":                             return "iPad (6th generation)" // 2018 - A10 (2E,2P) - 2 GB
             case "iPad7,11", "iPad7,12":                           return "iPad (7th generation)" // 2019 - A10 - 3 GB
@@ -146,7 +166,7 @@ public extension UIDevice {
 
             case "iPad11,1", "iPad11,2":                           return "iPad mini (5th generation)" // 2019 - A12 - 3 GB
             case "iPad14,1", "iPad14,2":                           return "iPad mini (6th generation)" // 2021 - A15 - 4 GB
-            case "iPad16,2":                                       return "iPad mini (A17 Pro)" // 2024 - A17 Pro - 8 GB
+            case "iPad16,1", "iPad16,2":                           return "iPad mini (A17 Pro)" // 2024 - A17 Pro - 8 GB
 
             case "iPad7,3", "iPad7,4":                             return "iPad Pro (10.5-inch)" // 2017 - A10X (3E,3P) - 4 GB
             case "iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4":       return "iPad Pro (11-inch) (1st generation)" // 2018 - A12X - 4 or 6 GB

@@ -9,9 +9,6 @@ import SwiftUI
 
 struct AddReactionView: View {
 
-    @State private var showEmailAppPicker: Bool = false
-    @State private var toast: Toast?
-
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -28,11 +25,16 @@ struct AddReactionView: View {
                             .multilineTextAlignment(.center)
                     }
 
-                    Text("Reações é um recurso colaborativo e online. As categorias são as mesmas para todos os usuários.\n\nPensou numa categoria nova diferente? Acha que um som não está na categoria certa ou que faltam sons? Envie-me um e-mail.")
+                    Text("Reações é um recurso colaborativo e online. As categorias são as mesmas para todos os usuários.\n\nPensou numa categoria nova diferente? Acha que uma vírgula não está na categoria certa ou que faltam vírgulas? Envie-me um e-mail.")
                         .multilineTextAlignment(.center)
 
                     Button {
-                        showEmailAppPicker.toggle()
+                        Task {
+                            await Mailman.openDefaultEmailApp(
+                                subject: Shared.Email.Reactions.suggestChangesSubject,
+                                body: Shared.Email.Reactions.suggestChangesBody
+                            )
+                        }
                     } label: {
                         HStack {
                             Spacer()
@@ -47,19 +49,10 @@ struct AddReactionView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancelar") {
+                    CloseButton {
                         dismiss()
                     }
                 }
-            }
-            .toast($toast)
-            .sheet(isPresented: $showEmailAppPicker) {
-                EmailAppPickerView(
-                    isBeingShown: $showEmailAppPicker,
-                    toast: $toast,
-                    subject: Shared.Email.Reactions.suggestChangesSubject,
-                    emailBody: Shared.Email.Reactions.suggestChangesBody
-                )
             }
         }
     }

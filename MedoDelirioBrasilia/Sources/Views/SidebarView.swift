@@ -65,7 +65,7 @@ struct SidebarView: View {
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
-                        Label("Sons", systemImage: "speaker.wave.2")
+                        Label(Shared.TabInfo.name(.allSounds), systemImage: Shared.TabInfo.symbol(.allSounds))
                     }
                 )
 
@@ -84,7 +84,7 @@ struct SidebarView: View {
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
-                        Label("Favoritos", systemImage: "star")
+                        Label(Shared.TabInfo.name(.favorites), systemImage: Shared.TabInfo.symbol(.favorites))
                     }
                 )
 
@@ -97,7 +97,7 @@ struct SidebarView: View {
                     tag: PadScreen.trends,
                     selection: $state,
                     label: {
-                        Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                        Label(Shared.TabInfo.name(PadScreen.trends), systemImage: Shared.TabInfo.symbol(PadScreen.trends))
                     }
                 )
             }
@@ -112,7 +112,7 @@ struct SidebarView: View {
                     tag: PadScreen.allFolders,
                     selection: $state,
                     label: {
-                        Label("Todas as Pastas", systemImage: "folder")
+                        Label(Shared.TabInfo.name(.allFolders), systemImage: Shared.TabInfo.symbol(.allFolders))
                     }
                 )
 

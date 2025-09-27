@@ -58,44 +58,47 @@ struct StandaloneFavoritesView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
-//                    ContentGrid(
-//                        state: viewModel.state,
-//                        viewModel: contentGridViewModel,
-//                        isFavoritesOnlyView: true,
-//                        containerSize: geometry.size,
-//                        loadingView:
-//                            VStack {
-//                                HStack(spacing: 10) {
-//                                    ProgressView()
-//
-//                                    Text("Carregando sons...")
-//                                        .foregroundColor(.gray)
-//                                }
-//                                .frame(maxWidth: .infinity)
-//                            }
-//                        ,
-//                        emptyStateView:
-//                            VStack {
-//                                NoFavoritesView()
-//                                    .padding(.horizontal, .spacing(.xLarge))
-//                                    .padding(.vertical, .spacing(.huge))
-//                            }
-//                        ,
-//                        errorView: VStack { ContentLoadErrorView() }
-//                    )
+                    ContentGrid(
+                        state: viewModel.state,
+                        viewModel: contentGridViewModel,
+                        searchTextIsEmpty: $soundSearchTextIsEmpty,
+                        allowSearch: true,
+                        isFavoritesOnlyView: true,
+                        containerSize: geometry.size,
+                        loadingView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
+
+                                    Text("Carregando Conteúdos...")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                        ,
+                        emptyStateView:
+                            VStack {
+                                NoFavoritesView()
+                                    .padding(.horizontal, .spacing(.xLarge))
+                                    .padding(.vertical, .spacing(.huge))
+                            }
+                        ,
+                        errorView: VStack { ContentLoadErrorView() }
+                    )
 
                     Spacer()
                         .frame(height: .spacing(.large))
                 }
                 .padding(.horizontal, .spacing(.medium))
                 .navigationTitle(Text("Favoritos"))
-                .navigationBarItems(
-                    leading: LeadingToolbarControls(
+                .toolbar {
+                    LeadingToolbarControls(
                         isSelecting: currentContentListMode.wrappedValue == .selection,
                         cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
                         openSettingsAction: openSettingsAction
-                    ),
-                    trailing: ContentToolbarOptionsView(
+                    )
+
+                    ContentToolbarOptionsView(
                         contentSortOption: $viewModel.contentSortOption,
                         contentListMode: currentContentListMode.wrappedValue,
                         multiSelectAction: {
@@ -108,7 +111,7 @@ struct StandaloneFavoritesView: View {
                             viewModel.onContentSortOptionChanged()
                         }
                     )
-                )
+                }
                 .onAppear {
                     viewModel.onViewDidAppear()
                 }

@@ -16,13 +16,10 @@ struct MainContentView: View {
     private let openSettingsAction: () -> Void
     private let contentRepository: ContentRepositoryProtocol
     private let bannerRepository: BannerRepositoryProtocol
-    private let trendsService: TrendsServiceProtocol
-    private let userFolderRepository: UserFolderRepositoryProtocol
-    private let analyticsService: AnalyticsServiceProtocol
-    @State private var contentGridIsSearching = false
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
+    @State private var contentSearchTextIsEmpty: Bool? = true
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -45,7 +42,6 @@ struct MainContentView: View {
     @Environment(TrendsHelper.self) private var trendsHelper
     @Environment(SettingsHelper.self) private var settingsHelper 
     @Environment(PlayRandomSoundHelper.self) private var playRandomSoundHelper
-    @Environment(\.push) private var push
 
     // MARK: - Computed Properties
 
@@ -53,7 +49,7 @@ struct MainContentView: View {
         guard currentContentListMode.wrappedValue == .regular else {
             return selectionNavBarTitle(for: contentGridViewModel)
         }
-        return "Sons"
+        return "Vírgulas"
     }
 
     private var loadedContent: [AnyEquatableMedoContent] {
@@ -64,6 +60,7 @@ struct MainContentView: View {
     // MARK: - Shared Environment
 
     @Environment(\.scenePhase) var scenePhase
+    @Namespace private var namespace
 
     // MARK: - Initializer
 
@@ -74,20 +71,11 @@ struct MainContentView: View {
         floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void,
         contentRepository: ContentRepositoryProtocol,
-        bannerRepository: BannerRepositoryProtocol,
-        trendsService: TrendsServiceProtocol,
-        userFolderRepository: UserFolderRepositoryProtocol,
-        analyticsService: AnalyticsServiceProtocol
+        bannerRepository: BannerRepositoryProtocol
     ) {
         self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
-            searchService: SearchService(
-                contentRepository: contentRepository,
-                authorService: AuthorService(database: LocalDatabase.shared),
-                appMemory: AppPersistentMemory(),
-                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
-            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
             screen: .mainContentView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
@@ -101,9 +89,6 @@ struct MainContentView: View {
         self.openSettingsAction = openSettingsAction
         self.contentRepository = contentRepository
         self.bannerRepository = bannerRepository
-        self.trendsService = trendsService
-        self.userFolderRepository = userFolderRepository
-        self.analyticsService = analyticsService
     }
 
     // MARK: - View Body
@@ -113,7 +98,7 @@ struct MainContentView: View {
             ScrollView {
                 ScrollViewReader { proxy in
                     VStack(spacing: .spacing(.xSmall)) {
-                        if !contentGridIsSearching && currentContentListMode.wrappedValue == .regular {
+                        if contentSearchTextIsEmpty ?? true, currentContentListMode.wrappedValue == .regular {
                             ContentModePicker(
                                 options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
                                 selected: $viewModel.currentViewMode,
@@ -132,7 +117,7 @@ struct MainContentView: View {
                                         )
                                     }
 
-                                    if viewModel.currentViewMode == .all && !contentGridIsSearching {
+                                    if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
                                         BannersView(
                                             bannerRepository: bannerRepository,
                                             toast: viewModel.toast
@@ -140,53 +125,28 @@ struct MainContentView: View {
                                     }
                                 }
 
-//                                ContentGrid(
-//                                    viewModel: contentGridViewModel,
-//                                    playableContentViewModel: PlayableContentViewModel(
-//                                        contentRepository: contentRepository,
-//                                        userFolderRepository: userFolderRepository,
-//                                        screen: .mainContentView,
-//                                        menuOptions: [],
-//                                        toast: viewModel.toast,
-//                                        floatingOptions: viewModel.floatingOptions,
-//                                        analyticsService: analyticsService
-//                                    ),
-//                                    state: viewModel.state,
-//                                    searchText: viewModel.searchText,
-//                                    trendsService: trendsService,
-//                                    contentGridIsSearching: $contentGridIsSearching,
-//                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
-//                                    containerSize: geometry.size,
-//                                    scrollViewProxy: proxy,
-//                                    contentRepository: contentRepository,
-//                                    userFolderRepository: userFolderRepository,
-//                                    analyticsService: analyticsService,
-//                                    loadingView:
-//                                        VStack {
-//                                            HStack(spacing: .spacing(.small)) {
-//                                                ProgressView()
-//
-//                                                Text("Carregando sons...")
-//                                                    .foregroundColor(.gray)
-//                                            }
-//                                            .frame(maxWidth: .infinity)
-//                                        }
-//                                    ,
-//                                    emptyStateView:
-//                                        VStack {
-//                                            if viewModel.currentViewMode == .favorites {
-//                                                NoFavoritesView()
-//                                                    .padding(.vertical, .spacing(.huge))
-//                                            } else {
-//                                                Text("Nenhum som a ser exibido. Isso é esquisito.")
-//                                                    .foregroundColor(.gray)
-//                                            }
-//                                        }
-//                                    ,
-//                                    errorView: VStack { ContentLoadErrorView() }
-//                                )
-//                                .searchable(text: $viewModel.searchText, prompt: Shared.Search.searchPrompt)
-//                                .autocorrectionDisabled()
+                                ContentGrid(
+                                    state: viewModel.state,
+                                    viewModel: contentGridViewModel,
+                                    searchTextIsEmpty: $contentSearchTextIsEmpty,
+                                    allowSearch: true,
+                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
+                                    containerSize: geometry.size,
+                                    scrollViewProxy: proxy,
+                                    loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
+                                    emptyStateView:
+                                        VStack {
+                                            if viewModel.currentViewMode == .favorites {
+                                                NoFavoritesView()
+                                                    .padding(.vertical, .spacing(.huge))
+                                            } else {
+                                                Text("Nenhum som a ser exibido. Isso é esquisito.")
+                                                    .foregroundColor(.gray)
+                                            }
+                                        }
+                                    ,
+                                    errorView: VStack { ContentLoadErrorView() }
+                                )
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
                                     ExplicitDisabledWarning(
@@ -195,7 +155,11 @@ struct MainContentView: View {
                                     .padding(.top, explicitOffWarningTopPadding)
                                 }
 
-                                if viewModel.currentViewMode == .all && !contentGridIsSearching {
+                                if
+                                    viewModel.currentViewMode == .all,
+                                    loadedContent.count > 0,
+                                    contentSearchTextIsEmpty ?? true
+                                {
                                     Text("\(loadedContent.count) ITENS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
@@ -226,13 +190,14 @@ struct MainContentView: View {
                         }
                     }
                     .navigationTitle(Text(title))
-                    .navigationBarItems(
-                        leading: LeadingToolbarControls(
+                    .toolbar {
+                        LeadingToolbarControls(
                             isSelecting: currentContentListMode.wrappedValue == .selection,
                             cancelAction: { contentGridViewModel.onExitMultiSelectModeSelected() },
                             openSettingsAction: openSettingsAction
-                        ),
-                        trailing: TrailingToolbarControls(
+                        )
+
+                        TrailingToolbarControls(
                             currentViewMode: viewModel.currentViewMode,
                             contentListMode: currentContentListMode.wrappedValue,
                             contentSortOption: $viewModel.contentSortOption,
@@ -257,9 +222,10 @@ struct MainContentView: View {
                             },
                             authorSortChangeAction: {
                                 authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
-                            }
+                            },
+                            matchedTransitionNamespace: namespace
                         )
-                    )
+                    }
                     .onChange(of: viewModel.currentViewMode) {
                         Task {
                             await viewModel.onSelectedViewModeChanged()
@@ -271,20 +237,31 @@ struct MainContentView: View {
                         }
                     }
                     .onChange(of: playRandomSoundHelper.soundIdToPlay) {
-//                        if !playRandomSoundHelper.soundIdToPlay.isEmpty {
-//                            viewModel.currentViewMode = .all
-//                            contentGridViewModel.scrollAndPlay(
-//                                contentId: playRandomSoundHelper.soundIdToPlay,
-//                                loadedContent: loadedContent
-//                            )
-//                            playRandomSoundHelper.soundIdToPlay = ""
-//                        }
+                        if !playRandomSoundHelper.soundIdToPlay.isEmpty {
+                            viewModel.currentViewMode = .all
+                            contentGridViewModel.scrollAndPlay(
+                                contentId: playRandomSoundHelper.soundIdToPlay,
+                                loadedContent: loadedContent
+                            )
+                            playRandomSoundHelper.soundIdToPlay = ""
+                        }
                     }
                     .sheet(isPresented: $showingModalView) {
-                        SyncInfoView(
-                            lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
-                            lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
-                        )
+                        if #available(iOS 26.0, *) {
+                            ContentUpdateStatusView(
+                                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                            )
+                            .presentationDetents([.medium, .large])
+                            .navigationTransition(
+                                .zoom(sourceID: "sync-status-view", in: namespace)
+                            )
+                        } else {
+                            ContentUpdateStatusView(
+                                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                            )
+                        }
                     }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
@@ -322,7 +299,7 @@ struct MainContentView: View {
 
 extension MainContentView {
 
-    struct TrailingToolbarControls: View {
+    struct TrailingToolbarControls: ToolbarContent {
 
         let currentViewMode: ContentModeOption
         let contentListMode: ContentGridMode
@@ -333,31 +310,44 @@ extension MainContentView {
         let playRandomSoundAction: () -> Void
         let contentSortChangeAction: () -> Void
         let authorSortChangeAction: () -> Void
+        let matchedTransitionNamespace: Namespace.ID
 
-        var body: some View {
+        var body: some ToolbarContent {
             if currentViewMode != .folders { // MyFoldersiPhoneView takes care of its own toolbar.
-                HStack(spacing: .spacing(.medium)) {
-                    if currentViewMode == .authors {
-                        AuthorToolbarOptionsView(
-                            authorSortOption: $authorSortOption,
-                            onSortingChangedAction: authorSortChangeAction
-                        )
-                    } else {
-                        if contentListMode == .regular {
-                            SyncStatusView()
-                                .onTapGesture {
+                if currentViewMode == .authors {
+                    AuthorToolbarOptionsView(
+                        authorSortOption: $authorSortOption,
+                        onSortingChangedAction: authorSortChangeAction
+                    )
+                } else {
+                    if contentListMode == .regular {
+                        if #available(iOS 26.0, *) {
+                            ToolbarItem {
+                                Button {
                                     openContentUpdateSheet()
+                                } label: {
+                                    ContentUpdateStatusSymbol()
                                 }
+                            }
+                            .matchedTransitionSource(id: "sync-status-view", in: matchedTransitionNamespace)
+                        } else {
+                            ToolbarItem {
+                                Button {
+                                    openContentUpdateSheet()
+                                } label: {
+                                    ContentUpdateStatusSymbol()
+                                }
+                            }
                         }
-
-                        ContentToolbarOptionsView(
-                            contentSortOption: $contentSortOption,
-                            contentListMode: contentListMode,
-                            multiSelectAction: multiSelectAction,
-                            playRandomSoundAction: playRandomSoundAction,
-                            contentSortChangeAction: contentSortChangeAction
-                        )
                     }
+
+                    ContentToolbarOptionsView(
+                        contentSortOption: $contentSortOption,
+                        contentListMode: contentListMode,
+                        multiSelectAction: multiSelectAction,
+                        playRandomSoundAction: playRandomSoundAction,
+                        contentSortChangeAction: contentSortChangeAction
+                    )
                 }
             }
         }
@@ -369,6 +359,9 @@ extension MainContentView {
         @Binding var toast: Toast?
 
         @State private var data: DynamicBannerData?
+
+        @State private var showBetaBanner: Bool = true
+        @State private var showBetaFAQ: Bool = false
 
         var body: some View {
             VStack {
@@ -387,6 +380,7 @@ extension MainContentView {
                 Task{
                     data = await bannerRepository.dynamicBanner()
                 }
+                showBetaBanner = !AppPersistentMemory().hasDismissediOS26BetaBanner()
             }
         }
     }
@@ -450,13 +444,6 @@ extension MainContentView {
         floatingOptions: .constant(nil),
         openSettingsAction: {},
         contentRepository: FakeContentRepository(),
-        bannerRepository: BannerRepository(),
-        trendsService: TrendsService(
-            database: FakeLocalDatabase(),
-            apiClient: FakeAPIClient(),
-            contentRepository: FakeContentRepository()
-        ),
-        userFolderRepository: FakeUserFolderRepository(),
-        analyticsService: FakeAnalyticsService()
+        bannerRepository: BannerRepository()
     )
 }

@@ -26,5 +26,5 @@ protocol ContentGridDisplaying {
 
     func showAuthor(withId authorId: String)
 
-    func suggestOtherAuthorName(for content: AnyEquatableMedoContent)
+    func suggestOtherAuthorName(for content: AnyEquatableMedoContent) async
 }

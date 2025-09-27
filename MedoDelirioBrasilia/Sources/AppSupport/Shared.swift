@@ -2,6 +2,73 @@ import UIKit
 
 struct Shared {
 
+    struct TabInfo {
+
+        static func name(_ type: PhoneTab) -> String {
+            switch type {
+            case .sounds:
+                "Vírgulas"
+            case .reactions:
+                "Reações"
+            case .trends:
+                "Tendências"
+            case .settings:
+                "Configurações"
+            }
+        }
+
+        static func symbol(_ type: PhoneTab) -> String {
+            switch type {
+            case .sounds:
+                "headphones"
+            case .reactions:
+                "rectangle.grid.2x2"
+            case .trends:
+                "chart.line.uptrend.xyaxis"
+            case .settings:
+                ""
+            }
+        }
+
+        static func name(_ type: PadScreen) -> String {
+            switch type {
+            case .allSounds:
+                "Vírgulas"
+            case .favorites:
+                "Favoritos"
+            case .groupedByAuthor:
+                "Autores"
+            case .reactions:
+                "Reações"
+            case .trends:
+                "Tendências"
+            case .allFolders:
+                "Todas as Pastas"
+            default:
+                ""
+            }
+        }
+
+        static func symbol(_ type: PadScreen) -> String {
+            switch type {
+            case .allSounds:
+                "headphones"
+            case .favorites:
+                "star"
+            case .groupedByAuthor:
+                "person"
+            case .reactions:
+                "rectangle.grid.2x2"
+            case .trends:
+                "chart.line.uptrend.xyaxis"
+            case .allFolders:
+                "folder"
+            default:
+                ""
+            }
+        }
+    }
+
     struct Constants {
         static let toastViewBottomPaddingPhone: CGFloat = 60
         static let toastViewBottomPaddingPad: CGFloat = 15
