@@ -128,7 +128,7 @@ extension PlayableContentViewModel {
     }
 
     public func onReportContentIssueSelected() {
-        subviewToOpen = .soundIssueEmailPicker
+        // subviewToOpen = .soundIssueEmailPicker // TODO: Fix this
         showingModalView = true
     }
 }
@@ -415,7 +415,7 @@ extension PlayableContentViewModel: ContentGridDisplaying {
     }
 
     func suggestOtherAuthorName(for content: AnyEquatableMedoContent) {
-        subviewToOpen = .authorIssueEmailPicker(content)
+        // subviewToOpen = .authorIssueEmailPicker(content) // TODO: Fix this
         showingModalView = true
     }
 }

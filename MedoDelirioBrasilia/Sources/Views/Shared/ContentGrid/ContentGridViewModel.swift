@@ -50,7 +50,7 @@ final class ContentGridViewModel {
     var alertTitle: String = ""
     var alertMessage: String = ""
     var showAlert: Bool = false
-    var alertType: SoundListAlertType = .soundFileNotFound
+    var alertType: ContentGridAlert = .removeSingleContent
 
     // Play Random Sound
     var scrollTo: String = ""
@@ -764,23 +764,6 @@ extension ContentGridViewModel {
 
 extension ContentGridViewModel {
 
-    private func showUnableToGetSoundAlert(_ soundTitle: String) {
-        HapticFeedback.error()
-        alertType = .issueSharingSound
-        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
-        alertMessage = Shared.contentNotFoundAlertMessage
-        showAlert = true
-    }
-
-    private func showServerSoundNotAvailableAlert(_ content: AnyEquatableMedoContent) {
-        selectedContentSingle = content
-        HapticFeedback.error()
-        alertType = .soundFileNotFound
-        alertTitle = Shared.contentNotFoundAlertTitle(content.title)
-        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
-        showAlert = true
-    }
-
     private func showShareManyIssueAlert(_ localizedError: String) {
         HapticFeedback.error()
         alertType = .issueExportingManySounds
@@ -792,28 +775,21 @@ extension ContentGridViewModel {
     private func showSoundRemovalConfirmation(soundTitle: String) {
         alertTitle = "Remover \"\(soundTitle)\"?"
         alertMessage = "O conteúdo continuará disponível fora da pasta."
-        alertType = .removeSingleSound
+        alertType = .removeSingleContent
         showAlert = true
     }
 
     private func showRemoveMultipleSoundsConfirmation() {
         alertTitle = "Remover os conteúdos selecionados?"
         alertMessage = "Os conteúdos continuarão disponíveis fora da pasta."
-        alertType = .removeMultipleSounds
-        showAlert = true
-    }
-
-    private func showUnableToRedownloadSoundAlert() {
-        alertTitle = "Não Foi Possível Baixar o Conteúdo"
-        alertMessage = "Tente novamente mais tarde."
-        alertType = .unableToRedownloadSound
+        alertType = .removeMultipleContent
         showAlert = true
     }
 
     private func showIssueRemovingContentFromFolderAlert(plural: Bool = false) {
         alertTitle = "Não Foi Possível Remover \(plural ? "os Conteúdos" : "o Conteúdo") da Pasta"
         alertMessage = "Tente novamente mais tarde."
-        alertType = .issueRemovingSoundFromFolder
+        alertType = .issueRemovingContentFromFolder
         showAlert = true
     }
 }
