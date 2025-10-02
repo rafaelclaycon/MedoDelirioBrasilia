@@ -178,7 +178,7 @@ public extension UIDevice {
             case "iPad8,11", "iPad8,12":                           return "iPad Pro (12.9-inch) (4th generation)" // 2020 - A12Z - 6 GB
             case "iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11": return "iPad Pro (12.9-inch) (5th generation)" // 2021 - M1 - 8 or 16 GB
             case "iPad14,5", "iPad14,6":                           return "iPad Pro (12.9-inch) (6th generation)" // 2022 - M2 - 8 or 16 GB
-            case "iPad16,4":                                       return "iPad Pro 11-inch (M4)" // 2024 - M4 (6E,3-4P) - 8 or 16 GB
+            case "iPad16,3","iPad16,4":                            return "iPad Pro 11-inch (M4)" // 2024 - M4 (6E,3-4P) - 8 or 16 GB
             case "iPad16,6":                                       return "iPad Pro 13-inch (M4)" // 2024 - M4 (6E,3-4P) - 8 or 16 GB
 
             case "RealityDevice14,1":                              return "Apple Vision Pro" // 2024 - M2 (4E,4P) - 16 GB
