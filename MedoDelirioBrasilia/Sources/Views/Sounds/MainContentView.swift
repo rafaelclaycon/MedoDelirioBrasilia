@@ -272,9 +272,9 @@ struct MainContentView: View {
                     .onChange(of: trendsHelper.contentIdToNavigateTo) {
                         highlight(contentId: trendsHelper.contentIdToNavigateTo)
                     }
-                    .onAppear {
+                    .task {
                         Task {
-                            await viewModel.onViewDidAppear()
+                            await viewModel.onViewLoaded()
                         }
                     }
                     .onChange(of: scenePhase) {

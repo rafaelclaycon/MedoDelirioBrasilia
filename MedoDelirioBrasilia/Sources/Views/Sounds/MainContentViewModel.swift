@@ -76,8 +76,8 @@ class MainContentViewModel {
 
 extension MainContentViewModel {
 
-    public func onViewDidAppear() async {
-        print("MAIN CONTENT VIEW - ON APPEAR")
+    public func onViewLoaded() async {
+        print("[MainContentViewModel] onViewLoaded")
 
         var hadAnyUpdates: Bool = false
 
