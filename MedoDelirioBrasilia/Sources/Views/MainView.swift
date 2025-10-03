@@ -100,7 +100,13 @@ struct MainView: View {
                         Tab(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends), value: .trends) {
                             NavigationView {
                                 TrendsView(
-                                    audienceViewModel: Audi
+                                    audienceViewModel: MostSharedByAudienceView.ViewModel(
+                                        trendsService: TrendsService(
+                                            database: LocalDatabase.shared,
+                                            apiClient: APIClient.shared,
+                                            contentRepository: contentRepository
+                                        )
+                                    ),
                                     tabSelection: $tabSelection,
                                     activePadScreen: .constant(.trends)
                                 )
