@@ -217,4 +217,9 @@ struct Shared {
 
         static let applePhotosApp = "com.apple.mobileslideshow"
     }
+
+    struct Search {
+
+        static let searchPrompt = "Buscar conteúdo, autor, pasta, sentimento"
+    }
 }

@@ -12,15 +12,19 @@ enum AlertType {
     case singleOption, twoOptions, twoOptionsOneDelete, twoOptionsOneRedownload, twoOptionsOneContinue
 }
 
-enum SoundListAlertType {
+enum PlayableContentAlert {
 
-    case soundFileNotFound
-    case issueSharingSound
+    case contentFileNotFound
+    case issueSharingContent
+    case unableToRedownloadContent
+}
+
+enum ContentGridAlert {
+
     case issueExportingManySounds
-    case removeSingleSound
-    case removeMultipleSounds
-    case unableToRedownloadSound
-    case issueRemovingSoundFromFolder
+    case removeSingleContent
+    case removeMultipleContent
+    case issueRemovingContentFromFolder
 }
 
 enum AuthorDetailAlertType {

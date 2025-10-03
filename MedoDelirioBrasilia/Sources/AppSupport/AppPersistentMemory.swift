@@ -24,6 +24,9 @@ protocol AppPersistentMemoryProtocol {
     func hasSeenVersion9WhatsNewScreen(_ newValue: Bool)
 
     var customInstallId: String { get }
+
+    func saveRecentSearches(_ searchTerms: [String])
+    func recentSearches() -> [String]?
 }
 
 /// Different from User Settings, App Memory are settings that help the app remember stuff to avoid asking again or doing a network job more than once per day.
@@ -220,11 +223,11 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
-    func hasDismissediOS26BetaBanner() -> Bool {
-        guard let value = userDefaults.object(forKey: "hasDismissediOS26BetaBanner") else {
-            return false
+    func recentSearches() -> [String]? {
+        guard let value = userDefaults.stringArray(forKey: "recentSearches") else {
+            return nil
         }
-        return Bool(value as! Bool)
+        return value
     }
 }
 
@@ -329,7 +332,7 @@ extension AppPersistentMemory {
         userDefaults.set(newValue, forKey: "hasSeenVersion9WhatsNewScreen")
     }
 
-    func hasDismissediOS26BetaBanner(_ newValue: Bool) {
-        userDefaults.set(newValue, forKey: "hasDismissediOS26BetaBanner")
+    func saveRecentSearches(_ searchTerms: [String]) {
+        userDefaults.set(searchTerms, forKey: "recentSearches")
     }
 }

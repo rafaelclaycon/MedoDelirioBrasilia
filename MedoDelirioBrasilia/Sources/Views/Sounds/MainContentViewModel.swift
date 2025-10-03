@@ -17,6 +17,8 @@ class MainContentViewModel {
     var contentSortOption: Int
     var authorSortOption: Int
 
+    var searchText: String = ""
+
     // Sync
     var processedUpdateNumber: Int = 0
     var totalUpdateCount: Int = 0

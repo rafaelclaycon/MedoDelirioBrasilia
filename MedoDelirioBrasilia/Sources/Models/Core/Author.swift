@@ -49,3 +49,18 @@ public struct Author: Hashable, Codable, Identifiable {
         }
     }
 }
+
+extension Author {
+
+    static let bozo = Author(
+        id: UUID().uuidString,
+        name: "Jair Bolsonaro",
+        photo: "https://conteudo.imguol.com.br/c/noticias/3b/2024/04/18/o-ex-presidente-jair-bolsonaro-pl-em-evento-no-theatro-municipal-no-centro-de-sao-paulo-1713465239755_v2_900x506.jpg.webp"
+    )
+
+    static let omarAziz = Author(
+        id: UUID().uuidString,
+        name: "Omar Aziz",
+        photo: "https://conteudo.imguol.com.br/c/noticias/a2/2019/09/18/06jul2019---o-senador-omar-aziz-apos-reuniao-na-residencia-oficial-da-presidencia-da-camara-com-rodrigo-maia-1568847478325_v2_1x1.jpg"
+    )
+}

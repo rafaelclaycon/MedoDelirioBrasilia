@@ -1,5 +1,5 @@
 //
-//  SidebarViewModel.swift
+//  SidebarFoldersViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 26/09/22.
@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class SidebarViewModel {
+class SidebarFoldersViewModel {
 
     var state: LoadingState<[UserFolder]> = .loading
     let userFolderRepository: UserFolderRepositoryProtocol
