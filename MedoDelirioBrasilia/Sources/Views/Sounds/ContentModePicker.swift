@@ -156,9 +156,11 @@ extension ContentModePicker {
 // MARK: - Preview
 
 #Preview {
+    @Previewable @State var selected: ContentModeOption = .all
+
     ContentModePicker(
         options: ContentModeOption.allCases,
-        selected: .constant(.all),
+        selected: $selected,
         allowScrolling: true
     )
 }
