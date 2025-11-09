@@ -199,6 +199,7 @@ struct AuthorDetailView: View {
                         .padding(.bottom)
                 }
             }
+            .toolbar(contentGridViewModel.tabBarVisibility, for: .tabBar)
         }
     }
 }

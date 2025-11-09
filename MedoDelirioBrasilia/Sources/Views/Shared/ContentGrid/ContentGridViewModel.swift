@@ -55,6 +55,9 @@ final class ContentGridViewModel {
     // Play Random Sound
     var scrollTo: String = ""
 
+    // Multi-select
+    var tabBarVisibility: Visibility = .visible
+
     // MARK: - Stored Properties
 
     public var currentListMode: Binding<ContentGridMode>
@@ -575,6 +578,15 @@ extension ContentGridViewModel {
         isFavoritesOnlyView: Bool
     ) {
         stopPlaying()
+
+        if #available(iOS 26, *) {
+            if currentListMode.wrappedValue == .regular {
+                tabBarVisibility = .hidden
+            } else {
+                tabBarVisibility = .visible
+            }
+        }
+
         if currentListMode.wrappedValue == .regular {
             currentListMode.wrappedValue = .selection
             floatingOptions.wrappedValue = FloatingContentOptions(
@@ -609,6 +621,9 @@ extension ContentGridViewModel {
         selectedContentMultiple = nil
         searchText = ""
         floatingOptions.wrappedValue = nil
+        if #available(iOS 26, *) {
+            tabBarVisibility = .visible
+        }
     }
 
     public func allSelectedAreFavorites() -> Bool {
