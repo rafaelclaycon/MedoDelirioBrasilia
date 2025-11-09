@@ -15,24 +15,34 @@ struct ContentModePicker: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: .spacing(.small)) {
-                ForEach(options) { option in
-                    PillView(
-                        option: option,
-                        selected: selected
-                    )
-                    .onTapGesture {
-                        selected = option
-                    }
-                    .sensoryFeedback(.impact(weight: .light, intensity: 0.4), trigger: selected)
+            if #available(iOS 26, *) {
+                GlassEffectContainer(spacing: .spacing(.small)) {
+                    scrollingOptions()
                 }
+            } else {
+                scrollingOptions()
             }
-            .padding(.horizontal)
-            .padding(.top, .spacing(.xSmall))
-            .padding(.bottom, .spacing(.xxSmall))
-            .dynamicTypeSize(...DynamicTypeSize.accessibility2)
         }
         .scrollDisabled(!allowScrolling)
+    }
+
+    func scrollingOptions() -> some View {
+        HStack(spacing: .spacing(.small)) {
+            ForEach(options) { option in
+                PillView(
+                    option: option,
+                    selected: selected
+                )
+                .onTapGesture {
+                    selected = option
+                }
+                .sensoryFeedback(.impact(weight: .light, intensity: 0.4), trigger: selected)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.top, .spacing(.xSmall))
+        .padding(.bottom, .spacing(.xxSmall))
+        .dynamicTypeSize(...DynamicTypeSize.accessibility2)
     }
 }
 
