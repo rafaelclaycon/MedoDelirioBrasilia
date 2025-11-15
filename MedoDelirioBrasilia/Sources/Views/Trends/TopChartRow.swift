@@ -70,7 +70,6 @@ struct TopChartRow: View {
 
                 Text("\(item.shareCount)")
             }
-            .background(.background)
             .padding(.leading, 10)
             .padding(.trailing)
             .padding(.vertical, 8)
@@ -89,7 +88,7 @@ struct TopChartRow: View {
 
 extension TopChartRow {
 
-    struct SpecialRow: View {
+    private struct SpecialRow: View {
 
         let item: TopChartItem
         let place: TopChartPlace
@@ -116,8 +115,34 @@ extension TopChartRow {
             }
         }
 
+        // MARK: - View Body
+
         var body: some View {
-            HStack(spacing: 7) {
+            if #available(iOS 26, *) {
+                content()
+                    .glassEffect(
+                        .regular.tint(
+                            background.opacity(0.4)
+                        ).interactive(),
+                        in: .rect(cornerRadius: .spacing(.large))
+                    )
+                    .scrollClipDisabled()
+            } else {
+                content()
+                    .background {
+                        RoundedRectangle(cornerRadius: 23)
+                            .fill(background)
+                            .opacity(0.2)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 23, style: .continuous)
+                                    .stroke(border.opacity(0.7), lineWidth: 1)
+                            )
+                    }
+            }
+        }
+
+        func content() -> some View {
+            HStack(spacing: .spacing(.xxSmall)) {
                 switch place {
                 case .first:
                     Text("🥇")
@@ -132,7 +157,7 @@ extension TopChartRow {
                     EmptyView()
                 }
 
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: .spacing(.xxSmall)) {
                     Text(item.contentName)
                         .bold()
                     Text(item.contentAuthorName)
@@ -149,15 +174,6 @@ extension TopChartRow {
             .padding(.vertical, 8)
             .padding(.trailing, 20)
             .padding(.leading, 12)
-            .background {
-                RoundedRectangle(cornerRadius: 23)
-                    .fill(background)
-                    .opacity(0.2)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 23, style: .continuous)
-                            .stroke(border.opacity(0.7), lineWidth: 1)
-                    )
-            }
         }
     }
 }
