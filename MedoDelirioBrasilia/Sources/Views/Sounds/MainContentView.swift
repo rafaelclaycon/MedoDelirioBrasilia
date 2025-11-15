@@ -104,6 +104,7 @@ struct MainContentView: View {
                                 selected: $viewModel.currentViewMode,
                                 allowScrolling: UIDevice.isiPhone
                             )
+                            .scrollClipDisabled()
                         }
 
                         switch viewModel.currentViewMode {
