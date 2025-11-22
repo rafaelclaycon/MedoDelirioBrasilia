@@ -24,7 +24,7 @@ final class FakeReactionRepository: ReactionRepositoryProtocol {
 
     func reaction(_ reactionId: String) async throws -> Reaction {
         didCallReaction = true
-        return Reaction(title: "", image: "")
+        return Reaction(id: reactionId, title: "Test Reaction", image: "https://example.com/image.jpg")
     }
 
     func reactionContent(reactionId: String) async throws -> [ReactionContent] {
