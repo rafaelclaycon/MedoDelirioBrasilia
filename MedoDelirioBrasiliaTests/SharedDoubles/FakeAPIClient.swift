@@ -55,4 +55,8 @@ class FakeAPIClient: APIClientProtocol {
     func getDonorNames() async -> [Donor]? {
         nil
     }
+    
+    func moneyInfo() async throws -> [MoneyInfo] {
+        return []
+    }
 }

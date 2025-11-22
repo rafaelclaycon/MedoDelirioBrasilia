@@ -34,15 +34,27 @@ extension Reaction {
 
     static var greetingsMock: Self {
         return .init(
+            id: "greeting-mock-id",
             title: "saudações",
-            image: "https://images.unsplash.com/photo-1610548822783-33fb5cb0e3a8?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            position: 1,
+            image: "https://images.unsplash.com/photo-1610548822783-33fb5cb0e3a8?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            lastUpdate: "2025-11-22T14:48:45.969Z",
+            type: .regular,
+            attributionText: nil,
+            attributionURL: nil
         )
     }
 
     static var classicsMock: Self {
         return .init(
+            id: "classics-mock-id",
             title: "clássicos",
-            image: "https://www.avina.net/wp-content/uploads/2019/06/Confiamos-no-Brasil-e-nos-brasileiros-e-brasileiras.jpg"
+            position: 2,
+            image: "https://www.avina.net/wp-content/uploads/2019/06/Confiamos-no-Brasil-e-nos-brasileiros-e-brasileiras.jpg",
+            lastUpdate: "2025-11-22T14:48:45.969Z",
+            type: .regular,
+            attributionText: nil,
+            attributionURL: nil
         )
     }
 
@@ -90,8 +102,14 @@ extension Reaction {
 
     static var provokingMock: Self {
         return .init(
+            id: "provoking-mock-id",
             title: "provocação",
-            image: "https://images.unsplash.com/photo-1528597788073-3bf9d20118ef?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            position: 3,
+            image: "https://images.unsplash.com/photo-1528597788073-3bf9d20118ef?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            lastUpdate: "2025-11-22T14:48:45.969Z",
+            type: .regular,
+            attributionText: nil,
+            attributionURL: nil
         )
     }
 

@@ -17,24 +17,20 @@ class FakeAPIClient: APIClientProtocol {
         return T.self as! T
     }
 
+    func getString(from url: URL) async throws -> String? {
+        nil
+    }
+
     func serverIsAvailable() async -> Bool {
         return !serverShouldBeUnavailable
     }
 
-    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, APIClientError?) -> Void) {
-        completionHandler(nil, nil)
+    func post(shareCountStat: ServerShareCountStat) async throws {
+        //
     }
 
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {
-        completionHandler(false, "")
-    }
-
-    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, APIClientError?) -> Void) {
-        completionHandler(nil, nil)
-    }
-
-    func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void) {
-        completionHandler(false, "")
+    func post(clientDeviceInfo: ClientDeviceInfo) async throws {
+        //
     }
 
     func fetchUpdateEvents(from lastDate: String) async throws -> [MedoDelirio.UpdateEvent] {
@@ -44,8 +40,16 @@ class FakeAPIClient: APIClientProtocol {
         }
     }
 
-    func retroStartingVersion() async -> String? {
-        return retroStartingVersion
+    func displayAskForMoneyView(appVersion: String) async -> Bool {
+        false
+    }
+
+    func getDonorNames() async -> [Donor]? {
+        nil
+    }
+
+    func moneyInfo() async throws -> [MoneyInfo] {
+        return []
     }
 
     func post<T>(to url: URL, body: T) async throws where T : Encodable {
