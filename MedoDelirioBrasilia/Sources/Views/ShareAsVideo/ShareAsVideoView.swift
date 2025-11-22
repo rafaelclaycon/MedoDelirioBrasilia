@@ -237,8 +237,9 @@ struct ShareAsVideoView: View {
         .frame(width: 196, height: 350)
     }
     
-    @ViewBuilder func shareButton(view: some View) -> some View {
-        Button {
+    @ViewBuilder
+    func shareButton(view: some View) -> some View {
+        let button = Button {
             Task {
                 let renderer = ImageRenderer(content: view)
                 renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
@@ -260,12 +261,22 @@ struct ShareAsVideoView: View {
                 Spacer()
             }
         }
-        .borderedButton(colored: .accentColor)
-        .disabled(viewModel.isShowingProcessingView)
+
+        if #available(iOS 26, *) {
+            button
+                .controlSize(.large)
+                .buttonStyle(.glass)
+                .disabled(viewModel.isShowingProcessingView)
+        } else {
+            button
+                .borderedButton(colored: .accentColor)
+                .disabled(viewModel.isShowingProcessingView)
+        }
     }
     
-    @ViewBuilder func saveVideoButton(view: some View) -> some View {
-        Button {
+    @ViewBuilder
+    func saveVideoButton(view: some View) -> some View {
+        let button = Button {
             Task {
                 let renderer = ImageRenderer(content: view)
                 renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
@@ -288,8 +299,17 @@ struct ShareAsVideoView: View {
                 Spacer()
             }
         }
-        .borderedProminentButton(colored: .accentColor)
-        .disabled(viewModel.isShowingProcessingView)
+
+        if #available(iOS 26, *) {
+            button
+                .controlSize(.large)
+                .buttonStyle(.glassProminent)
+                .disabled(viewModel.isShowingProcessingView)
+        } else {
+            button
+                .borderedProminentButton(colored: .accentColor)
+                .disabled(viewModel.isShowingProcessingView)
+        }
     }
 }
 
