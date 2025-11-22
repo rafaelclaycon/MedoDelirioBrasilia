@@ -59,11 +59,11 @@ struct Reaction: Hashable, Codable, Identifiable {
         dto: ReactionDTO,
         type: ReactionType
     ) {
-        self.id = dto.id
-        self.title = dto.title
+        self.id = dto.id ?? ""
+        self.title = dto.title ?? ""
         self.position = dto.position
-        self.image = dto.image
-        self.lastUpdate = dto.lastUpdate
+        self.image = dto.image ?? ""
+        self.lastUpdate = dto.lastUpdate ?? ""
         self.type = type
         self.attributionText = dto.attributionText
         if let url = dto.attributionURL {
@@ -81,11 +81,11 @@ enum ReactionType: Int, Codable {
 
 struct ReactionDTO: Hashable, Codable, Identifiable {
 
-    let id: String
-    let title: String
+    let id: String?
+    let title: String?
     let position: Int
-    let image: String
-    let lastUpdate: String
+    let image: String?
+    let lastUpdate: String?
     let attributionText: String?
     let attributionURL: String?
 }
@@ -94,11 +94,11 @@ extension Reaction {
 
     var dto: ReactionDTO {
         ReactionDTO(
-            id: self.id,
-            title: self.title,
+            id: self.id.isEmpty ? nil : self.id,
+            title: self.title.isEmpty ? nil : self.title,
             position: self.position,
-            image: self.image,
-            lastUpdate: self.lastUpdate,
+            image: self.image.isEmpty ? nil : self.image,
+            lastUpdate: self.lastUpdate.isEmpty ? nil : self.lastUpdate,
             attributionText: self.attributionText,
             attributionURL: self.attributionURL?.absoluteString
         )
