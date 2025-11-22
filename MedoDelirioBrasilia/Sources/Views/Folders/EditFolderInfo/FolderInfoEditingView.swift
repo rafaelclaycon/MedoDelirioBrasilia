@@ -68,7 +68,7 @@ struct FolderInfoEditingView: View {
                 .navigationTitle(viewModel.isEditing ? "Editar Pasta" : "Nova Pasta")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
+                    ToolbarItem(placement: .cancellationAction) {
                         CloseButton {
                             dismissSheet()
                         }
