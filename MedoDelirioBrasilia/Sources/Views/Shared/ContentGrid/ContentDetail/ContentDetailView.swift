@@ -47,8 +47,8 @@ struct ContentDetailView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 30) {
-                    HStack {
+                VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
+                    /*HStack {
                         Spacer()
 
                         AlbumCoverPlayView(isPlaying: $viewModel.isPlaying)
@@ -61,6 +61,20 @@ struct ContentDetailView: View {
                     .padding(.horizontal, .spacing(.medium))
 
                     TitleAndAuthorSection(
+                        type: viewModel.content.type,
+                        title: viewModel.content.title,
+                        authorName: viewModel.content.subtitle,
+                        authorCanNavigate: (viewModel.content.authorId != viewModel.authorId) && (viewModel.content.type == .sound),
+                        authorSelectedAction: { viewModel.onAuthorSelected() },
+                        editAuthorSelectedAction: {
+                            Task {
+                                await viewModel.onEditAuthorSelected()
+                            }
+                        }
+                    )
+                    .padding(.horizontal, .spacing(.medium))*/
+
+                    WavyHeaderSection(
                         type: viewModel.content.type,
                         title: viewModel.content.title,
                         authorName: viewModel.content.subtitle,
@@ -131,6 +145,57 @@ struct ContentDetailView: View {
 
 extension ContentDetailView {
 
+    /// New header view
+    struct WavyHeaderSection: View {
+
+        let type: MediaType
+        let title: String
+        let authorName: String
+        let authorCanNavigate: Bool
+        let authorSelectedAction: () -> Void
+        let editAuthorSelectedAction: () -> Void
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(title)
+                    .font(.title2)
+
+                Text("00:01 · \(authorName)")
+
+                HStack {
+                    Button("Tocar") {
+                        print("")
+                    }
+                }
+
+                /*Button {
+                    authorSelectedAction()
+                } label: {
+                    HStack(spacing: 8) {
+                        Text(authorName)
+                        if authorCanNavigate {
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                    .foregroundColor(.gray)
+                }
+                .padding(.top, 5)
+                .padding(.bottom)
+                .disabled(!authorCanNavigate)*/
+
+//                if type == .sound {
+//                    Button {
+//                        editAuthorSelectedAction()
+//                    } label: {
+//                        Label("Sugerir outro nome de autor", systemImage: "pencil.line")
+//                    }
+//                    .padding(.top, 2)
+//                }
+            }
+        }
+    }
+
+    /// Old header view
     struct TitleAndAuthorSection: View {
 
         let type: MediaType
