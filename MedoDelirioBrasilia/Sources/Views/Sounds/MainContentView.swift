@@ -377,7 +377,7 @@ extension MainContentView {
         var body: some View {
             VStack {
                 if showRetroBanner && userHasStats {
-                    Retro2024Banner(
+                    Retro2025Banner(
                         isBeingShown: $showRetroBanner,
                         openStoriesAction: {
                             showRetrospectiveStories = true

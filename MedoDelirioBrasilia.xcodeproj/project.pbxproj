@@ -1107,7 +1107,7 @@
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D9832C43294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9832C42294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 */; };
 		D9838A0E2CC5830400E58C2E /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9838A0D2CC5830400E58C2E /* StoriesView.swift */; };
-		D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */; };
+		D9838A122CC59ABF00E58C2E /* Retro2025Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9838A112CC59ABF00E58C2E /* Retro2025Banner.swift */; };
 		D984D55C2CF2157100680C7D /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D55B2CF2157100680C7D /* CGFloat+.swift */; };
 		D984D55F2CF2190B00680C7D /* ContentDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D55E2CF2190B00680C7D /* ContentDetailView+ViewModel.swift */; };
 		D984D5612CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D5602CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift */; };
@@ -2680,7 +2680,7 @@
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		D9832C42294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Biu de Lira - Resmungos.mp3"; sourceTree = "<group>"; };
 		D9838A0D2CC5830400E58C2E /* StoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
-		D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retro2024Banner.swift; sourceTree = "<group>"; };
+		D9838A112CC59ABF00E58C2E /* Retro2025Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retro2025Banner.swift; sourceTree = "<group>"; };
 		D984D55B2CF2157100680C7D /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		D984D55E2CF2190B00680C7D /* ContentDetailView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentDetailView+ViewModel.swift"; sourceTree = "<group>"; };
 		D984D5602CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentDetailView+ReactionsSection.swift"; sourceTree = "<group>"; };
@@ -4911,7 +4911,7 @@
 				D952C3442ED43F2100B72A31 /* StoryProgressIndicator.swift */,
 				D952C3452ED43F2100B72A31 /* SummaryCardView.swift */,
 				D9838A0D2CC5830400E58C2E /* StoriesView.swift */,
-				D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */,
+				D9838A112CC59ABF00E58C2E /* Retro2025Banner.swift */,
 				D944D5D82CE1A23600621981 /* CrumbProgressView.swift */,
 			);
 			path = Stories;
@@ -6990,7 +6990,7 @@
 				D98DBD35284919B1008544F8 /* APIClient.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
-				D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */,
+				D9838A122CC59ABF00E58C2E /* Retro2025Banner.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
 				D96993732E1C547E0006169F /* AuthorCreditsView.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* HelpTheAppView.swift in Sources */,
