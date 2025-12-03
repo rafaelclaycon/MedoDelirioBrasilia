@@ -372,10 +372,11 @@ extension MainContentView {
         @State private var showRetroBanner: Bool = true
         @State private var showBetaBanner: Bool = true
         @State private var showBetaFAQ: Bool = false
+        @State private var userHasStats: Bool = false
 
         var body: some View {
             VStack {
-                if showRetroBanner {
+                if showRetroBanner && userHasStats {
                     Retro2024Banner(
                         isBeingShown: $showRetroBanner,
                         openStoriesAction: {
@@ -404,6 +405,7 @@ extension MainContentView {
                 }
                 showBetaBanner = !AppPersistentMemory().hasDismissediOS26BetaBanner()
                 showRetroBanner = !AppPersistentMemory().hasDismissedRetro2024Banner()
+                userHasStats = LocalDatabase.shared.totalShareCount() > 0
             }
         }
     }
