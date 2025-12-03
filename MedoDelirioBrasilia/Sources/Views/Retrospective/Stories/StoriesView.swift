@@ -69,19 +69,23 @@ struct StoriesView: View {
                     .zIndex(101)
                 }
                 
-                // Tap zones for navigation
+                // Tap zones for navigation (edge strips only)
                 .overlay {
                     HStack(spacing: 0) {
-                        // Left zone - previous story
+                        // Left edge - previous story
                         Color.clear
                             .contentShape(Rectangle())
+                            .frame(width: 60)
                             .onTapGesture {
                                 goToPreviousStory()
                             }
                         
-                        // Right zone - next story
+                        Spacer()
+                        
+                        // Right edge - next story
                         Color.clear
                             .contentShape(Rectangle())
+                            .frame(width: 60)
                             .onTapGesture {
                                 goToNextStory()
                             }
