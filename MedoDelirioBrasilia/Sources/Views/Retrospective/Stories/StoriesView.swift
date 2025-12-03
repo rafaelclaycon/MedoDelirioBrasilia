@@ -127,6 +127,15 @@ struct StoriesView: View {
                 goToNextStory()
             }
         }
+        .gesture(
+            DragGesture()
+                .onEnded { value in
+                    // Dismiss if swiped down significantly
+                    if value.translation.height > 100 {
+                        dismiss()
+                    }
+                }
+        )
     }
     
     // MARK: - Computed Properties
