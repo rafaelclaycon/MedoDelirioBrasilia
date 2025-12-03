@@ -64,7 +64,8 @@ struct StoriesView: View {
                         Image(systemName: "xmark")
                             .font(.title3)
                             .foregroundStyle(.white)
-                            .padding()
+                            .padding(.horizontal)
+                            .padding(.vertical, .spacing(.xxLarge))
                     }
                     .zIndex(101)
                 }
