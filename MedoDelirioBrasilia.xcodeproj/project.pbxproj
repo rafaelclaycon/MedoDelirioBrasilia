@@ -1505,6 +1505,7 @@
 		D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */; };
 		D9F8E9A228E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */; };
 		D9F8E9A428E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */; };
+		D9F91E162EDFDF4B00A073B3 /* SurpriseIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F91E152EDFDF4B00A073B3 /* SurpriseIntroView.swift */; };
 		D9F9BB37294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */; };
 		D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */; };
 		D9FA62F42924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FA62F32924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 */; };
@@ -3076,6 +3077,7 @@
 		D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3"; sourceTree = "<group>"; };
 		D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Padre Kelson.mp3"; sourceTree = "<group>"; };
 		D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Candidato padre.mp3"; sourceTree = "<group>"; };
+		D9F91E152EDFDF4B00A073B3 /* SurpriseIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurpriseIntroView.swift; sourceTree = "<group>"; };
 		D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rafael Infante - Errou feio, errou rude.mp3"; sourceTree = "<group>"; };
 		D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsHelper.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
@@ -4903,6 +4905,7 @@
 		D9838A0C2CC582ED00E58C2E /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				D9F91E152EDFDF4B00A073B3 /* SurpriseIntroView.swift */,
 				D952C34D2ED43F2A00B72A31 /* StoryPages */,
 				D952C3432ED43F2100B72A31 /* StoriesView+ViewModel.swift */,
 				D952C3442ED43F2100B72A31 /* StoryProgressIndicator.swift */,
@@ -6868,6 +6871,7 @@
 				D9E7BE9B2C9E1D9D0094AD28 /* PushDevice.swift in Sources */,
 				D9E7BE9C2C9E1D9D0094AD28 /* TrendsTimeInterval.swift in Sources */,
 				D9E7BE9E2C9E1D9D0094AD28 /* ClientDeviceInfo.swift in Sources */,
+				D9F91E162EDFDF4B00A073B3 /* SurpriseIntroView.swift in Sources */,
 				D9E7BE9F2C9E1D9D0094AD28 /* ShareAsVideoResult.swift in Sources */,
 				D952C34E2ED43F2A00B72A31 /* WelcomeStory.swift in Sources */,
 				D952C34F2ED43F2A00B72A31 /* StatsStory.swift in Sources */,

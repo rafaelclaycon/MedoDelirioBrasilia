@@ -18,6 +18,7 @@ struct StoriesView: View {
     @State private var timerActive: Bool = false
     @State private var showShareSheet: Bool = false
     @State private var shareImage: UIImage?
+    @State private var showIntro: Bool = true
     
     private let progressUpdateInterval: TimeInterval = 0.05
     private let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
@@ -26,6 +27,14 @@ struct StoriesView: View {
         ZStack {
             if viewModel.isLoading {
                 ClassicRetroView.LoadingView()
+            } else if showIntro {
+                // Surprise intro animation
+                SurpriseIntroView {
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        showIntro = false
+                    }
+                    startTimer()
+                }
             } else if !viewModel.stories.isEmpty {
                 // Background
                 currentStory.backgroundColor.view()
@@ -99,7 +108,6 @@ struct StoriesView: View {
         }
         .task {
             await viewModel.loadData()
-            startTimer()
         }
         .onDisappear {
             stopTimer()
