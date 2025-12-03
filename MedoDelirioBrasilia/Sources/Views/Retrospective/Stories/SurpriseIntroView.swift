@@ -15,6 +15,8 @@ struct SurpriseIntroView: View {
     @State private var opacity: Double = 0.0
     @State private var textOffset: CGFloat = 50
     @State private var backgroundOpacity: Double = 0.0
+    @State private var skullScale: CGFloat = 1.0
+    @State private var skullShake: CGFloat = 0
     
     // Background emoji configurations for organic scattered look
     private let scatteredEmojis: [(emoji: String, x: CGFloat, y: CGFloat, size: CGFloat, rotation: Double, opacity: Double)] = [
@@ -73,9 +75,11 @@ struct SurpriseIntroView: View {
                 
                 // Main content
                 VStack(spacing: 20) {
-                    // Large centered skull
+                    // Large centered skull with spooky effect
                     Text("💀")
                         .font(.system(size: 120))
+                        .scaleEffect(skullScale)
+                        .rotationEffect(.degrees(skullShake))
                         .shadow(color: .white.opacity(0.3), radius: 20)
                     
                     // Question text
@@ -114,8 +118,27 @@ struct SurpriseIntroView: View {
             textOffset = 0
         }
         
-        // Phase 2: Hold for a moment, then fade out (after 2.5s total)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+        // Phase 2: Skull grows larger and shakes (spooky effect)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            // Grow the skull
+            withAnimation(.easeInOut(duration: 0.3)) {
+                skullScale = 1.4
+            }
+            
+            // Shake sequence
+            shakeSkull()
+        }
+        
+        // Phase 2b: Skull returns to normal size
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
+            withAnimation(.easeOut(duration: 0.2)) {
+                skullScale = 1.0
+                skullShake = 0
+            }
+        }
+        
+        // Phase 3: Hold for a moment, then fade out (after 2.8s total)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) {
             withAnimation(.easeIn(duration: 0.6)) {
                 opacity = 0.0
                 scale = 1.1
@@ -123,9 +146,22 @@ struct SurpriseIntroView: View {
             }
         }
         
-        // Phase 3: Complete and transition (after 3.2s total)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.2) {
+        // Phase 4: Complete and transition (after 3.5s total)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             onComplete()
+        }
+    }
+    
+    private func shakeSkull() {
+        let shakeDuration = 0.08
+        let shakeAngles: [CGFloat] = [-8, 8, -6, 6, -4, 4, -2, 2, 0]
+        
+        for (index, angle) in shakeAngles.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + shakeDuration * Double(index)) {
+                withAnimation(.linear(duration: shakeDuration)) {
+                    skullShake = angle
+                }
+            }
         }
     }
 }
