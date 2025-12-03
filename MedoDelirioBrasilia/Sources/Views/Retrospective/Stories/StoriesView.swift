@@ -141,9 +141,10 @@ struct StoriesView: View {
     
     @ViewBuilder
     private func storyContentView(for index: Int) -> some View {
-        let storyId = viewModel.stories[index].id
-        
-        switch storyId {
+        if index < viewModel.stories.count {
+            let storyId = viewModel.stories[index].id
+            
+            switch storyId {
         case "welcome":
             WelcomeStory()
             
@@ -189,6 +190,7 @@ struct StoriesView: View {
             
         default:
             EmptyView()
+            }
         }
     }
     
