@@ -66,10 +66,11 @@ internal protocol LocalDatabaseProtocol {
     // SyncLog
     func insert(syncLog newSyncLog: SyncLog)
 
-    // Retro 2023
+    // Retrospective
     func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem]
     func totalShareCount() -> Int
     func allDatesInWhichTheUserShared() throws -> [Date]
+    func sharedSoundsCount() -> Int
 
     // Pinned Reactions
     func insert(_ pinnedReaction: Reaction) throws

@@ -20,6 +20,9 @@ struct MainContentView: View {
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
     @State private var contentSearchTextIsEmpty: Bool? = true
+    
+    // Retrospective
+    @State private var showRetrospectiveStories = false
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -121,7 +124,8 @@ struct MainContentView: View {
                                     if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
                                         BannersView(
                                             bannerRepository: bannerRepository,
-                                            toast: viewModel.toast
+                                            toast: viewModel.toast,
+                                            showRetrospectiveStories: $showRetrospectiveStories
                                         )
                                     }
                                 }
@@ -264,6 +268,9 @@ struct MainContentView: View {
                             )
                         }
                     }
+                    .fullScreenCover(isPresented: $showRetrospectiveStories) {
+                        StoriesView()
+                    }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
                             viewModel.onExplicitContentSettingChanged()
@@ -359,14 +366,27 @@ extension MainContentView {
 
         let bannerRepository: BannerRepositoryProtocol
         @Binding var toast: Toast?
+        @Binding var showRetrospectiveStories: Bool
 
         @State private var data: DynamicBannerData?
-
+        @State private var showRetroBanner: Bool = true
         @State private var showBetaBanner: Bool = true
         @State private var showBetaFAQ: Bool = false
 
         var body: some View {
             VStack {
+                if showRetroBanner {
+                    Retro2024Banner(
+                        isBeingShown: $showRetroBanner,
+                        openStoriesAction: {
+                            showRetrospectiveStories = true
+                        },
+                        showCloseButton: true
+                    )
+                    .padding(.top, .spacing(.xxxSmall))
+                    .padding(.bottom, .spacing(.xSmall))
+                }
+                
                 if let data {
                     DynamicBanner(
                         bannerData: data,
@@ -383,6 +403,7 @@ extension MainContentView {
                     data = await bannerRepository.dynamicBanner()
                 }
                 showBetaBanner = !AppPersistentMemory().hasDismissediOS26BetaBanner()
+                showRetroBanner = !AppPersistentMemory().hasDismissedRetro2024Banner()
             }
         }
     }

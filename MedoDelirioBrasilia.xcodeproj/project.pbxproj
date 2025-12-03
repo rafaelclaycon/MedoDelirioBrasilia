@@ -412,6 +412,14 @@
 		D950A9372A5BA77500F03E65 /* Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D950A9362A5BA77500F03E65 /* Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3 */; };
 		D9523741285BF98A00E6C838 /* FakeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* FakeAPIClient.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
+		D952C3422ED43EFF00B72A31 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C3412ED43EFF00B72A31 /* Story.swift */; };
+		D952C3462ED43F2100B72A31 /* StoriesView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C3432ED43F2100B72A31 /* StoriesView+ViewModel.swift */; };
+		D952C3472ED43F2100B72A31 /* SummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C3452ED43F2100B72A31 /* SummaryCardView.swift */; };
+		D952C3482ED43F2100B72A31 /* StoryProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C3442ED43F2100B72A31 /* StoryProgressIndicator.swift */; };
+		D952C34E2ED43F2A00B72A31 /* WelcomeStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C34C2ED43F2A00B72A31 /* WelcomeStory.swift */; };
+		D952C34F2ED43F2A00B72A31 /* StatsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C34A2ED43F2A00B72A31 /* StatsStory.swift */; };
+		D952C3502ED43F2A00B72A31 /* TopSoundStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C34B2ED43F2A00B72A31 /* TopSoundStory.swift */; };
+		D952C3512ED43F2A00B72A31 /* ShareStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C3492ED43F2A00B72A31 /* ShareStory.swift */; };
 		D952DB7E29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */; };
 		D952DB7F29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7C29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 */; };
 		D952DB8029B3C7A4001F1E0E /* Manoel Gomes - La ele (animado).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7D29B3C7A4001F1E0E /* Manoel Gomes - La ele (animado).mp3 */; };
@@ -1973,6 +1981,14 @@
 		D950A9362A5BA77500F03E65 /* Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3"; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* FakeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAPIClient.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
+		D952C3412ED43EFF00B72A31 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		D952C3432ED43F2100B72A31 /* StoriesView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoriesView+ViewModel.swift"; sourceTree = "<group>"; };
+		D952C3442ED43F2100B72A31 /* StoryProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryProgressIndicator.swift; sourceTree = "<group>"; };
+		D952C3452ED43F2100B72A31 /* SummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCardView.swift; sourceTree = "<group>"; };
+		D952C3492ED43F2A00B72A31 /* ShareStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareStory.swift; sourceTree = "<group>"; };
+		D952C34A2ED43F2A00B72A31 /* StatsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsStory.swift; sourceTree = "<group>"; };
+		D952C34B2ED43F2A00B72A31 /* TopSoundStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSoundStory.swift; sourceTree = "<group>"; };
+		D952C34C2ED43F2A00B72A31 /* WelcomeStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeStory.swift; sourceTree = "<group>"; };
 		D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele.mp3"; sourceTree = "<group>"; };
 		D952DB7C29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele mil vezes.mp3"; sourceTree = "<group>"; };
 		D952DB7D29B3C7A4001F1E0E /* Manoel Gomes - La ele (animado).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele (animado).mp3"; sourceTree = "<group>"; };
@@ -4551,6 +4567,17 @@
 			path = Doubles;
 			sourceTree = "<group>";
 		};
+		D952C34D2ED43F2A00B72A31 /* StoryPages */ = {
+			isa = PBXGroup;
+			children = (
+				D952C3492ED43F2A00B72A31 /* ShareStory.swift */,
+				D952C34A2ED43F2A00B72A31 /* StatsStory.swift */,
+				D952C34B2ED43F2A00B72A31 /* TopSoundStory.swift */,
+				D952C34C2ED43F2A00B72A31 /* WelcomeStory.swift */,
+			);
+			path = StoryPages;
+			sourceTree = "<group>";
+		};
 		D9548CE32B0EDF6F000D2FA0 /* Retrospective */ = {
 			isa = PBXGroup;
 			children = (
@@ -4830,6 +4857,7 @@
 		D97B2DD728E5E9E400C3B50B /* ViewAid */ = {
 			isa = PBXGroup;
 			children = (
+				D952C3412ED43EFF00B72A31 /* Story.swift */,
 				D994AD612C9DFE84004FAE25 /* LoadingState.swift */,
 				D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */,
 				D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */,
@@ -4875,6 +4903,10 @@
 		D9838A0C2CC582ED00E58C2E /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				D952C34D2ED43F2A00B72A31 /* StoryPages */,
+				D952C3432ED43F2100B72A31 /* StoriesView+ViewModel.swift */,
+				D952C3442ED43F2100B72A31 /* StoryProgressIndicator.swift */,
+				D952C3452ED43F2100B72A31 /* SummaryCardView.swift */,
 				D9838A0D2CC5830400E58C2E /* StoriesView.swift */,
 				D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */,
 				D944D5D82CE1A23600621981 /* CrumbProgressView.swift */,
@@ -6837,6 +6869,10 @@
 				D9E7BE9C2C9E1D9D0094AD28 /* TrendsTimeInterval.swift in Sources */,
 				D9E7BE9E2C9E1D9D0094AD28 /* ClientDeviceInfo.swift in Sources */,
 				D9E7BE9F2C9E1D9D0094AD28 /* ShareAsVideoResult.swift in Sources */,
+				D952C34E2ED43F2A00B72A31 /* WelcomeStory.swift in Sources */,
+				D952C34F2ED43F2A00B72A31 /* StatsStory.swift in Sources */,
+				D952C3502ED43F2A00B72A31 /* TopSoundStory.swift in Sources */,
+				D952C3512ED43F2A00B72A31 /* ShareStory.swift in Sources */,
 				D9E7BEA02C9E1D9D0094AD28 /* AlertType.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D9ACB4F32DB4070F00CCCDD8 /* AuthorHeaderView.swift in Sources */,
@@ -6925,6 +6961,7 @@
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
 				D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
+				D952C3422ED43EFF00B72A31 /* Story.swift in Sources */,
 				D98D13802CD5B880001CF5BB /* UserFolderRepository.swift in Sources */,
 				D90E21752CCD793E00FC979C /* ReactionRepository.swift in Sources */,
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
@@ -6973,6 +7010,9 @@
 				D992EF5A2BCB24FB0080C892 /* ContentGrid.swift in Sources */,
 				D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */,
 				D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */,
+				D952C3462ED43F2100B72A31 /* StoriesView+ViewModel.swift in Sources */,
+				D952C3472ED43F2100B72A31 /* SummaryCardView.swift in Sources */,
+				D952C3482ED43F2100B72A31 /* StoryProgressIndicator.swift in Sources */,
 				D9BFD8CC29059B4800E1AF6F /* FoldersAreTagsBannerView.swift in Sources */,
 				D98D13852CD5CD19001CF5BB /* UserFolder+Mocks.swift in Sources */,
 				D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */,

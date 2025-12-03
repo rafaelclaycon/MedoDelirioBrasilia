@@ -8,95 +8,248 @@
 import SwiftUI
 
 struct StoriesView: View {
-
+    
     @Environment(\.dismiss) var dismiss
-
+    @StateObject private var viewModel = ViewModel()
+    
+    @State private var currentStoryIndex: Int = 0
+    @State private var progress: CGFloat = 0.0
+    @State private var isPaused: Bool = false
+    @State private var timer: Timer?
+    @State private var showShareSheet: Bool = false
+    @State private var shareImage: UIImage?
+    
+    private let progressUpdateInterval: TimeInterval = 0.05
+    
     var body: some View {
-        VStack {
-            Text("Dashes")
-                .foregroundStyle(.white)
-
-            FirstStory()
-
-            Spacer()
-        }
-        .frame(maxWidth: .infinity)
-        .background(.black)
-        .overlay(alignment: .topTrailing) {
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundStyle(.white)
+        ZStack {
+            if viewModel.isLoading {
+                ClassicRetroView.LoadingView()
+            } else if !viewModel.stories.isEmpty {
+                // Background
+                currentStory.backgroundColor.view()
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 0) {
+                    // Progress indicators at top
+                    StoryProgressIndicator(
+                        numberOfStories: viewModel.stories.count,
+                        currentStoryIndex: currentStoryIndex,
+                        currentProgress: progress
+                    )
+                    .zIndex(100)
+                    
+                    // Story content
+                    ZStack {
+                        storyContentView(for: currentStoryIndex)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                
+                // Close button
+                .overlay(alignment: .topTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.title3)
+                            .foregroundStyle(.white)
+                            .padding()
+                    }
+                    .zIndex(101)
+                }
+                
+                // Tap zones for navigation
+                .overlay {
+                    HStack(spacing: 0) {
+                        // Left zone - previous story
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                goToPreviousStory()
+                            }
+                        
+                        // Right zone - next story
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                goToNextStory()
+                            }
+                    }
+                }
+                
+                // Long press to pause
+                .simultaneousGesture(
+                    LongPressGesture(minimumDuration: 0.2)
+                        .onChanged { _ in
+                            pauseTimer()
+                        }
+                        .onEnded { _ in
+                            resumeTimer()
+                        }
+                )
             }
+        }
+        .statusBar(hidden: true)
+        .sheet(isPresented: $showShareSheet) {
+            if let image = shareImage {
+                ShareSheet(items: [image])
+            }
+        }
+        .task {
+            await viewModel.loadData()
+            startTimer()
+        }
+        .onDisappear {
+            stopTimer()
+        }
+    }
+    
+    // MARK: - Computed Properties
+    
+    private var currentStory: Story {
+        guard currentStoryIndex < viewModel.stories.count else {
+            return viewModel.stories.last ?? Story(id: "default")
+        }
+        return viewModel.stories[currentStoryIndex]
+    }
+    
+    // MARK: - Story Content Views
+    
+    @ViewBuilder
+    private func storyContentView(for index: Int) -> some View {
+        let storyId = viewModel.stories[index].id
+        
+        switch storyId {
+        case "welcome":
+            WelcomeStory()
+            
+        case "topSound1":
+            if let sound = viewModel.topSound(at: 0) {
+                TopSoundStory(
+                    rankNumber: 1,
+                    soundName: sound.contentName,
+                    authorName: sound.contentAuthorName,
+                    shareCount: sound.shareCount
+                )
+            }
+            
+        case "topSound2":
+            if let sound = viewModel.topSound(at: 1) {
+                TopSoundStory(
+                    rankNumber: 2,
+                    soundName: sound.contentName,
+                    authorName: sound.contentAuthorName,
+                    shareCount: sound.shareCount
+                )
+            }
+            
+        case "topSound3":
+            if let sound = viewModel.topSound(at: 2) {
+                TopSoundStory(
+                    rankNumber: 3,
+                    soundName: sound.contentName,
+                    authorName: sound.contentAuthorName,
+                    shareCount: sound.shareCount
+                )
+            }
+            
+        case "stats":
+            StatsStory(
+                totalShares: viewModel.totalShareCount,
+                uniqueSounds: viewModel.totalUniqueSoundsShared,
+                favoriteDay: viewModel.mostCommonShareDay
+            )
+            
+        case "share":
+            ShareStory(shareAction: handleShare)
+            
+        default:
+            EmptyView()
+        }
+    }
+    
+    // MARK: - Timer Management
+    
+    private func startTimer() {
+        progress = 0.0
+        timer = Timer.scheduledTimer(withTimeInterval: progressUpdateInterval, repeats: true) { _ in
+            guard !isPaused else { return }
+            
+            let increment = CGFloat(progressUpdateInterval / currentStory.duration)
+            progress += increment
+            
+            if progress >= 1.0 {
+                goToNextStory()
+            }
+        }
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func pauseTimer() {
+        isPaused = true
+    }
+    
+    private func resumeTimer() {
+        isPaused = false
+    }
+    
+    // MARK: - Navigation
+    
+    private func goToNextStory() {
+        if currentStoryIndex < viewModel.stories.count - 1 {
+            currentStoryIndex += 1
+            stopTimer()
+            startTimer()
+        } else {
+            // Reached the end
+            dismiss()
+        }
+    }
+    
+    private func goToPreviousStory() {
+        if currentStoryIndex > 0 {
+            currentStoryIndex -= 1
+            stopTimer()
+            startTimer()
+        }
+    }
+    
+    // MARK: - Share Action
+    
+    private func handleShare() {
+        // Generate summary card image
+        let summaryCard = SummaryCardView(
+            totalShares: viewModel.totalShareCount,
+            uniqueSounds: viewModel.totalUniqueSoundsShared,
+            topSound: viewModel.topSound(at: 0)
+        )
+        
+        if let image = summaryCard.generateImage() {
+            shareImage = image
+            showShareSheet = true
         }
     }
 }
 
-// MARK: - Subviews
+// MARK: - Share Sheet
 
-extension StoriesView {
-
-    struct FirstStory: View {
-
-        @State private var isLarge = false
-
-        var body: some View {
-            VStack {
-                VStack(spacing: 15) {
-                    Spacer()
-
-                    Text("Juntos doamos")
-                        .font(.largeTitle)
-
-                    Text("R$ 1.600")
-                        .font(isLarge ? .system(size: 60) : .body)
-                        .bold()
-                        .animation(.easeInOut(duration: 0.75), value: isLarge)
-
-                    Text("para **9 famílias** desabrigadas no Rio Grande do Sul.")
-                        .font(.title)
-
-                    Spacer()
-                }
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.white)
-                .padding(.horizontal, 30)
-            }
-            .background {
-                Color.green
-            }
-            .onAppear {
-                isLarge.toggle()
-            }
-        }
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        return controller
     }
-
-    struct SecondStory: View {
-
-        var body: some View {
-            VStack {
-                VStack(spacing: 15) {
-                    Spacer()
-
-                    Text("Juntos doamos")
-                        .font(.largeTitle)
-
-                    Text("para **9 famílias** desabrigadas no Rio Grande do Sul.")
-                        .font(.title)
-
-                    Spacer()
-                }
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.white)
-                .padding(.horizontal, 30)
-            }
-            .background {
-                Color.green
-            }
-        }
-    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
+
+// MARK: - Preview
 
 #Preview {
     StoriesView()
