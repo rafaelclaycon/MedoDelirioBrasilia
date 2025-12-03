@@ -16,7 +16,7 @@ struct Retro2024Banner: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
-                Text("Retrospectiva 2024")
+                Text("Retrospectiva 2025")
                     .font(.title3)
                     .foregroundColor(.white)
                     .bold()

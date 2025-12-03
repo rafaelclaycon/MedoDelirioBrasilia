@@ -15,11 +15,12 @@ struct StoriesView: View {
     @State private var currentStoryIndex: Int = 0
     @State private var progress: CGFloat = 0.0
     @State private var isPaused: Bool = false
-    @State private var timer: Timer?
+    @State private var timerActive: Bool = false
     @State private var showShareSheet: Bool = false
     @State private var shareImage: UIImage?
     
     private let progressUpdateInterval: TimeInterval = 0.05
+    private let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack {
@@ -103,6 +104,16 @@ struct StoriesView: View {
         .onDisappear {
             stopTimer()
         }
+        .onReceive(timer) { _ in
+            guard timerActive && !isPaused else { return }
+            
+            let increment = CGFloat(progressUpdateInterval / currentStory.duration)
+            progress += increment
+            
+            if progress >= 1.0 {
+                goToNextStory()
+            }
+        }
     }
     
     // MARK: - Computed Properties
@@ -173,21 +184,11 @@ struct StoriesView: View {
     
     private func startTimer() {
         progress = 0.0
-        timer = Timer.scheduledTimer(withTimeInterval: progressUpdateInterval, repeats: true) { _ in
-            guard !isPaused else { return }
-            
-            let increment = CGFloat(progressUpdateInterval / currentStory.duration)
-            progress += increment
-            
-            if progress >= 1.0 {
-                goToNextStory()
-            }
-        }
+        timerActive = true
     }
     
     private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+        timerActive = false
     }
     
     private func pauseTimer() {
@@ -203,10 +204,10 @@ struct StoriesView: View {
     private func goToNextStory() {
         if currentStoryIndex < viewModel.stories.count - 1 {
             currentStoryIndex += 1
-            stopTimer()
-            startTimer()
+            progress = 0.0
         } else {
             // Reached the end
+            stopTimer()
             dismiss()
         }
     }
@@ -214,8 +215,7 @@ struct StoriesView: View {
     private func goToPreviousStory() {
         if currentStoryIndex > 0 {
             currentStoryIndex -= 1
-            stopTimer()
-            startTimer()
+            progress = 0.0
         }
     }
     

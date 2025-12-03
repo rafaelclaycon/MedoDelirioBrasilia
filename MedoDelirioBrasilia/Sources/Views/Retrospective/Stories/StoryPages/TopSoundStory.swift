@@ -105,3 +105,4 @@ struct TopSoundStory: View {
     )
     .background(Color.darkerGreen)
 }
+
