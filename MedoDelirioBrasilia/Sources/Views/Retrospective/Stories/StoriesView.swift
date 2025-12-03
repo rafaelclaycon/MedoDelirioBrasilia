@@ -56,20 +56,6 @@ struct StoriesView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 
-                // Close button
-                .overlay(alignment: .topTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.title3)
-                            .foregroundStyle(.white)
-                            .padding(.horizontal)
-                            .padding(.vertical, .spacing(.xxLarge))
-                    }
-                    .zIndex(101)
-                }
-                
                 // Tap zones for navigation (edge strips only)
                 .overlay {
                     HStack(spacing: 0) {
@@ -91,6 +77,22 @@ struct StoriesView: View {
                                 goToNextStory()
                             }
                     }
+                }
+                
+                // Close button (after tap zones so it's on top)
+                .overlay(alignment: .topTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                            .frame(width: 44, height: 44)
+                            .contentShape(Rectangle())
+                    }
+                    .padding(.trailing, 16)
+                    .padding(.top, 16)
                 }
                 
                 // Long press to pause
