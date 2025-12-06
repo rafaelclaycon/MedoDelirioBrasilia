@@ -10,9 +10,11 @@ import SwiftUI
 struct TopSoundStory: View {
     
     let rankNumber: Int
+    let soundId: String
     let soundName: String
     let authorName: String
     let shareCount: Int
+    @Binding var isMuted: Bool
     
     @State private var showContent = false
     
@@ -92,6 +94,34 @@ struct TopSoundStory: View {
         .padding(.horizontal, 30)
         .onAppear {
             showContent = true
+            playSound()
+        }
+        .onChange(of: isMuted) { _, newValue in
+            if newValue {
+                AudioPlayer.shared?.cancel()
+            } else {
+                playSound()
+            }
+        }
+    }
+    
+    // MARK: - Audio Playback
+    
+    private func playSound() {
+        guard !isMuted else { return }
+        
+        do {
+            guard let sound = try LocalDatabase.shared.sound(withId: soundId) else {
+                print("Sound not found for id: \(soundId)")
+                return
+            }
+            
+            let url = try sound.fileURL()
+            
+            AudioPlayer.shared = AudioPlayer(url: url, update: { _ in })
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            print("Error playing sound: \(error)")
         }
     }
 }
@@ -99,9 +129,11 @@ struct TopSoundStory: View {
 #Preview {
     TopSoundStory(
         rankNumber: 1,
+        soundId: "preview-sound-id",
         soundName: "O Deltan tá chorando",
         authorName: "Pedro Daltro",
-        shareCount: 42
+        shareCount: 42,
+        isMuted: .constant(false)
     )
     .background(Color.darkerGreen)
 }

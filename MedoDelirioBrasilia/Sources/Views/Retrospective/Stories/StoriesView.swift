@@ -19,6 +19,7 @@ struct StoriesView: View {
     @State private var showShareSheet: Bool = false
     @State private var shareImage: UIImage?
     @State private var showIntro: Bool = true
+    @State private var isMuted: Bool = false
     
     private let progressUpdateInterval: TimeInterval = 0.05
     private let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
@@ -53,6 +54,7 @@ struct StoriesView: View {
                     ZStack {
                         storyContentView(for: currentStoryIndex)
                     }
+                    .id(currentStoryIndex)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 
@@ -95,6 +97,27 @@ struct StoriesView: View {
                     .padding(.top, 16)
                 }
                 
+                // Mute button (bottom left)
+                .overlay(alignment: .bottomLeading) {
+                    Button {
+                        isMuted.toggle()
+                        if isMuted {
+                            // Stop any currently playing audio
+                            AudioPlayer.shared?.cancel()
+                        }
+                    } label: {
+                        Image(systemName: isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                            .font(.title2)
+                            .foregroundStyle(.white)
+                            .frame(width: 44, height: 44)
+                            .background(Color.black.opacity(0.3))
+                            .clipShape(Circle())
+                            .contentShape(Rectangle())
+                    }
+                    .padding(.leading, 16)
+                    .padding(.bottom, 40)
+                }
+                
                 // Long press to pause
                 .simultaneousGesture(
                     LongPressGesture(minimumDuration: 0.2)
@@ -118,6 +141,7 @@ struct StoriesView: View {
         }
         .onDisappear {
             stopTimer()
+            AudioPlayer.shared?.cancel()
         }
         .onReceive(timer) { _ in
             guard timerActive && !isPaused else { return }
@@ -164,9 +188,11 @@ struct StoriesView: View {
             if let sound = viewModel.topSound(at: 0) {
                 TopSoundStory(
                     rankNumber: 1,
+                    soundId: sound.contentId,
                     soundName: sound.contentName,
                     authorName: sound.contentAuthorName,
-                    shareCount: sound.shareCount
+                    shareCount: sound.shareCount,
+                    isMuted: $isMuted
                 )
             }
             
@@ -174,9 +200,11 @@ struct StoriesView: View {
             if let sound = viewModel.topSound(at: 1) {
                 TopSoundStory(
                     rankNumber: 2,
+                    soundId: sound.contentId,
                     soundName: sound.contentName,
                     authorName: sound.contentAuthorName,
-                    shareCount: sound.shareCount
+                    shareCount: sound.shareCount,
+                    isMuted: $isMuted
                 )
             }
             
@@ -184,9 +212,11 @@ struct StoriesView: View {
             if let sound = viewModel.topSound(at: 2) {
                 TopSoundStory(
                     rankNumber: 3,
+                    soundId: sound.contentId,
                     soundName: sound.contentName,
                     authorName: sound.contentAuthorName,
-                    shareCount: sound.shareCount
+                    shareCount: sound.shareCount,
+                    isMuted: $isMuted
                 )
             }
             
@@ -228,6 +258,9 @@ struct StoriesView: View {
     // MARK: - Navigation
     
     private func goToNextStory() {
+        // Stop any currently playing audio before changing stories
+        AudioPlayer.shared?.cancel()
+        
         if currentStoryIndex < viewModel.stories.count - 1 {
             currentStoryIndex += 1
             progress = 0.0
@@ -239,6 +272,9 @@ struct StoriesView: View {
     }
     
     private func goToPreviousStory() {
+        // Stop any currently playing audio before changing stories
+        AudioPlayer.shared?.cancel()
+        
         if currentStoryIndex > 0 {
             currentStoryIndex -= 1
             progress = 0.0
