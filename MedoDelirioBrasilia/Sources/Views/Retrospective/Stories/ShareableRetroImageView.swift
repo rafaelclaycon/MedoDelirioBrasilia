@@ -37,6 +37,7 @@ struct ShareableRetroImageView: View {
                 Text(name)
                     .font(.system(size: 28, weight: .semibold))
                     .foregroundStyle(Color.darkestGreen)
+                    .lineLimit(1)
                     .offset(x: 62, y: 530)
             }
             
