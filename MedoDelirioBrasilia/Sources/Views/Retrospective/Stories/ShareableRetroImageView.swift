@@ -12,6 +12,7 @@ import SwiftUI
 struct ShareableRetroImageView: View {
     
     let authorPhoto: UIImage?
+    let authorName: String?
     let topSounds: [TopChartItem]
     let totalShares: Int
     let favoriteDay: String
@@ -30,6 +31,14 @@ struct ShareableRetroImageView: View {
             // Author photo - fixed position
             authorPhotoView
                 .offset(x: 62, y: 52)
+            
+            // Author name - below photo
+            if let name = authorName {
+                Text(name)
+                    .font(.system(size: 28, weight: .semibold))
+                    .foregroundStyle(Color.darkestGreen)
+                    .offset(x: 62, y: 530)
+            }
             
             // Top sounds list - fixed position
             soundsListView
@@ -107,6 +116,7 @@ extension ShareableRetroImageView {
     ScrollView {
         ShareableRetroImageView(
             authorPhoto: nil,
+            authorName: "Clarice Falcão",
             topSounds: [
                 TopChartItem(id: "1", rankNumber: "1", contentId: "s1", contentName: "Drama", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 20),
                 TopChartItem(id: "2", rankNumber: "2", contentId: "s2", contentName: "Tadinha! Que Barra!", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 15),
@@ -126,6 +136,7 @@ extension ShareableRetroImageView {
     ScrollView {
         ShareableRetroImageView(
             authorPhoto: nil,
+            authorName: "Pedro Daltro",
             topSounds: [
                 TopChartItem(id: "1", rankNumber: "1", contentId: "s1", contentName: "Drama", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 20),
                 TopChartItem(id: "2", rankNumber: "2", contentId: "s2", contentName: "Tadinha! Que Barra!", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 15),
@@ -143,6 +154,7 @@ extension ShareableRetroImageView {
     ScrollView {
         ShareableRetroImageView(
             authorPhoto: nil,
+            authorName: "Gregório Duvivier",
             topSounds: [
                 TopChartItem(id: "1", rankNumber: "1", contentId: "s1", contentName: "Drama", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 20)
             ],

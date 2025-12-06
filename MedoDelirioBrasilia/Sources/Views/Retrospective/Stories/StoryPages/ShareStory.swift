@@ -100,6 +100,7 @@ struct ShareStory: View {
         // Generate the shareable image with the pre-downloaded photo
         let shareCard = ShareableRetroImageView(
             authorPhoto: authorImage,
+            authorName: topAuthor?.authorName,
             topSounds: topSounds,
             totalShares: totalShares,
             favoriteDay: favoriteDay
