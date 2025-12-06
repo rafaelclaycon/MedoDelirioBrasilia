@@ -16,8 +16,6 @@ struct StoriesView: View {
     @State private var progress: CGFloat = 0.0
     @State private var isPaused: Bool = false
     @State private var timerActive: Bool = false
-    @State private var showShareSheet: Bool = false
-    @State private var shareImage: UIImage?
     @State private var showIntro: Bool = true
     @State private var isMuted: Bool = false
     
@@ -133,11 +131,6 @@ struct StoriesView: View {
             }
         }
         .statusBar(hidden: true)
-        .sheet(isPresented: $showShareSheet) {
-            if let image = shareImage {
-                ShareSheet(items: [image])
-            }
-        }
         .task {
             await viewModel.loadData()
         }
@@ -188,57 +181,62 @@ struct StoriesView: View {
             let storyId = viewModel.stories[index].id
             
             switch storyId {
-        case "welcome":
-            WelcomeStory()
-            
-        case "topSound1":
-            if let sound = viewModel.topSound(at: 0) {
-                TopSoundStory(
-                    rankNumber: 1,
-                    soundId: sound.contentId,
-                    soundName: sound.contentName,
-                    authorName: sound.contentAuthorName,
-                    shareCount: sound.shareCount,
-                    isMuted: $isMuted
+            case "welcome":
+                WelcomeStory()
+                
+            case "topSound1":
+                if let sound = viewModel.topSound(at: 0) {
+                    TopSoundStory(
+                        rankNumber: 1,
+                        soundId: sound.contentId,
+                        soundName: sound.contentName,
+                        authorName: sound.contentAuthorName,
+                        shareCount: sound.shareCount,
+                        isMuted: $isMuted
+                    )
+                }
+                
+            case "topSound2":
+                if let sound = viewModel.topSound(at: 1) {
+                    TopSoundStory(
+                        rankNumber: 2,
+                        soundId: sound.contentId,
+                        soundName: sound.contentName,
+                        authorName: sound.contentAuthorName,
+                        shareCount: sound.shareCount,
+                        isMuted: $isMuted
+                    )
+                }
+                
+            case "topSound3":
+                if let sound = viewModel.topSound(at: 2) {
+                    TopSoundStory(
+                        rankNumber: 3,
+                        soundId: sound.contentId,
+                        soundName: sound.contentName,
+                        authorName: sound.contentAuthorName,
+                        shareCount: sound.shareCount,
+                        isMuted: $isMuted
+                    )
+                }
+                
+            case "stats":
+                StatsStory(
+                    totalShares: viewModel.totalShareCount,
+                    uniqueSounds: viewModel.totalUniqueSoundsShared,
+                    favoriteDay: viewModel.mostCommonShareDay
                 )
-            }
-            
-        case "topSound2":
-            if let sound = viewModel.topSound(at: 1) {
-                TopSoundStory(
-                    rankNumber: 2,
-                    soundId: sound.contentId,
-                    soundName: sound.contentName,
-                    authorName: sound.contentAuthorName,
-                    shareCount: sound.shareCount,
-                    isMuted: $isMuted
+                
+            case "share":
+                ShareStory(
+                    topAuthor: viewModel.topAuthor,
+                    topSounds: viewModel.topSounds,
+                    totalShares: viewModel.totalShareCount,
+                    favoriteDay: viewModel.mostCommonShareDay
                 )
-            }
-            
-        case "topSound3":
-            if let sound = viewModel.topSound(at: 2) {
-                TopSoundStory(
-                    rankNumber: 3,
-                    soundId: sound.contentId,
-                    soundName: sound.contentName,
-                    authorName: sound.contentAuthorName,
-                    shareCount: sound.shareCount,
-                    isMuted: $isMuted
-                )
-            }
-            
-        case "stats":
-            StatsStory(
-                totalShares: viewModel.totalShareCount,
-                uniqueSounds: viewModel.totalUniqueSoundsShared,
-                favoriteDay: viewModel.mostCommonShareDay
-            )
-            
-        case "share":
-            ShareStory(shareAction: handleShare, topAuthor: viewModel.topAuthor)
-            
-        default:
-            EmptyView()
+                
+            default:
+                EmptyView()
             }
         }
     }
@@ -287,36 +285,6 @@ struct StoriesView: View {
             progress = 0.0
         }
     }
-    
-    // MARK: - Share Action
-    
-    private func handleShare() {
-        // Generate shareable retrospective image
-        let shareCard = ShareableRetroImageView(
-            authorPhotoURL: viewModel.topAuthor?.authorPhoto,
-            topSounds: viewModel.topSounds,
-            totalShares: viewModel.totalShareCount,
-            favoriteDay: viewModel.mostCommonShareDay
-        )
-        
-        if let image = shareCard.generateImage() {
-            shareImage = image
-            showShareSheet = true
-        }
-    }
-}
-
-// MARK: - Share Sheet
-
-struct ShareSheet: UIViewControllerRepresentable {
-    let items: [Any]
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
 // MARK: - Preview

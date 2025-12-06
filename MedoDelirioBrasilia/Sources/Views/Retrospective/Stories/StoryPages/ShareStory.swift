@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ShareStory: View {
     
-    let shareAction: () -> Void
     let topAuthor: TopAuthorItem?
+    let topSounds: [TopChartItem]
+    let totalShares: Int
+    let favoriteDay: String
     
     @State private var showContent = false
+    @State private var shareableImage: Image?
     
     var body: some View {
         VStack {
@@ -42,23 +45,33 @@ struct ShareStory: View {
                 .offset(y: showContent ? 0 : 20)
                 .animation(.easeOut(duration: 0.8).delay(0.3), value: showContent)
                 
-                // Share button
-                Button(action: shareAction) {
-                    Text("Compartilhar")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(Color.darkestGreen)
-                        .padding(.horizontal, 40)
-                        .padding(.vertical, 16)
-                        .background {
-                            RoundedRectangle(cornerRadius: 25)
-                                .fill(.white)
-                        }
+                // Share button using ShareLink
+                if let image = shareableImage {
+                    ShareLink(
+                        item: image,
+                        preview: SharePreview("Minha Retrospectiva 2025", image: image)
+                    ) {
+                        Text("Compartilhar")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.darkestGreen)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 16)
+                            .background {
+                                RoundedRectangle(cornerRadius: 25)
+                                    .fill(.white)
+                            }
+                    }
+                    .opacity(showContent ? 1.0 : 0.0)
+                    .offset(y: showContent ? 0 : 20)
+                    .animation(.easeOut(duration: 0.8).delay(0.6), value: showContent)
+                    .padding(.top, 10)
+                } else {
+                    // Placeholder while image generates
+                    ProgressView()
+                        .tint(.white)
+                        .padding(.top, 10)
                 }
-                .opacity(showContent ? 1.0 : 0.0)
-                .offset(y: showContent ? 0 : 20)
-                .animation(.easeOut(duration: 0.8).delay(0.6), value: showContent)
-                .padding(.top, 10)
             }
             .padding(.horizontal, 40)
             
@@ -66,21 +79,41 @@ struct ShareStory: View {
         }
         .onAppear {
             showContent = true
+            generateShareableImage()
             if let author = topAuthor {
                 print("Top Author: \(author.authorName), Photo: \(author.authorPhoto ?? "none"), Shares: \(author.shareCount)")
             }
         }
     }
+    
+    // MARK: - Image Generation
+    
+    private func generateShareableImage() {
+        let shareCard = ShareableRetroImageView(
+            authorPhotoURL: topAuthor?.authorPhoto,
+            topSounds: topSounds,
+            totalShares: totalShares,
+            favoriteDay: favoriteDay
+        )
+        
+        if let uiImage = shareCard.generateImage() {
+            shareableImage = Image(uiImage: uiImage)
+        }
+    }
 }
 
 #Preview {
-    ShareStory(shareAction: {}, topAuthor: nil)
-        .background(
-            LinearGradient(
-                gradient: Gradient(colors: [.yellow, .green, .darkestGreen]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+    ShareStory(
+        topAuthor: nil,
+        topSounds: [],
+        totalShares: 68,
+        favoriteDay: "Sexta-feira"
+    )
+    .background(
+        LinearGradient(
+            gradient: Gradient(colors: [.yellow, .green, .darkestGreen]),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
         )
+    )
 }
-
