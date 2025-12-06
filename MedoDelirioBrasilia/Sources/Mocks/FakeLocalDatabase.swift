@@ -270,6 +270,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         return topSharedSounds
     }
 
+    func getTopAuthorSharedByTheUser() throws -> TopAuthorItem? {
+        nil
+    }
+
     func totalShareCount() -> Int {
         return shareCount
     }

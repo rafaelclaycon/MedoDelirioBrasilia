@@ -235,7 +235,7 @@ struct StoriesView: View {
             )
             
         case "share":
-            ShareStory(shareAction: handleShare)
+            ShareStory(shareAction: handleShare, topAuthor: viewModel.topAuthor)
             
         default:
             EmptyView()
@@ -291,14 +291,15 @@ struct StoriesView: View {
     // MARK: - Share Action
     
     private func handleShare() {
-        // Generate summary card image
-        let summaryCard = SummaryCardView(
+        // Generate shareable retrospective image
+        let shareCard = ShareableRetroImageView(
+            authorPhotoURL: viewModel.topAuthor?.authorPhoto,
+            topSounds: viewModel.topSounds,
             totalShares: viewModel.totalShareCount,
-            uniqueSounds: viewModel.totalUniqueSoundsShared,
-            topSound: viewModel.topSound(at: 0)
+            favoriteDay: viewModel.mostCommonShareDay
         )
         
-        if let image = summaryCard.generateImage() {
+        if let image = shareCard.generateImage() {
             shareImage = image
             showShareSheet = true
         }

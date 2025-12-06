@@ -513,6 +513,7 @@
 		D96892DE2C9F7DC50084F646 /* VideoMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96892DD2C9F7DC40084F646 /* VideoMakerTests.swift */; };
 		D96892E12C9F83E00084F646 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D96892E02C9F83E00084F646 /* Images.xcassets */; };
 		D96993732E1C547E0006169F /* AuthorCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96993722E1C547E0006169F /* AuthorCreditsView.swift */; };
+		D969C5302EE492730073058C /* ShareableRetroImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D969C52F2EE492730073058C /* ShareableRetroImageView.swift */; };
 		D969DCF52A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */; };
 		D969DCF82A4B0F69003F4EB2 /* Monark - ACORDA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF62A4B0F69003F4EB2 /* Monark - ACORDA.mp3 */; };
 		D969DCF92A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF72A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 */; };
@@ -2086,6 +2087,7 @@
 		D96892DD2C9F7DC40084F646 /* VideoMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMakerTests.swift; sourceTree = "<group>"; };
 		D96892E02C9F83E00084F646 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D96993722E1C547E0006169F /* AuthorCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCreditsView.swift; sourceTree = "<group>"; };
+		D969C52F2EE492730073058C /* ShareableRetroImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareableRetroImageView.swift; sourceTree = "<group>"; };
 		D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - O o passarinho cantando.mp3"; sourceTree = "<group>"; };
 		D969DCF62A4B0F69003F4EB2 /* Monark - ACORDA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monark - ACORDA.mp3"; sourceTree = "<group>"; };
 		D969DCF72A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monark - Acorda, cara.mp3"; sourceTree = "<group>"; };
@@ -4905,6 +4907,7 @@
 		D9838A0C2CC582ED00E58C2E /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				D969C52F2EE492730073058C /* ShareableRetroImageView.swift */,
 				D9F91E152EDFDF4B00A073B3 /* SurpriseIntroView.swift */,
 				D952C34D2ED43F2A00B72A31 /* StoryPages */,
 				D952C3432ED43F2100B72A31 /* StoriesView+ViewModel.swift */,
@@ -6973,6 +6976,7 @@
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D904BDCF2DADAA09004AF550 /* ContentRepository.swift in Sources */,
 				D954D1D92DCD4D4200A7D949 /* MoneyInfo.swift in Sources */,
+				D969C5302EE492730073058C /* ShareableRetroImageView.swift in Sources */,
 				D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,

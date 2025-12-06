@@ -17,6 +17,7 @@ extension StoriesView {
         
         @Published var stories: [Story] = []
         @Published var topSounds: [TopChartItem] = []
+        @Published var topAuthor: TopAuthorItem?
         @Published var totalShareCount: Int = 0
         @Published var totalUniqueSoundsShared: Int = 0
         @Published var mostCommonShareDay: String = "-"
@@ -49,6 +50,9 @@ extension StoriesView {
             // Load share counts
             totalShareCount = database.totalShareCount()
             totalUniqueSoundsShared = database.sharedSoundsCount()
+            
+            // Load top author
+            topAuthor = try? database.getTopAuthorSharedByTheUser()
             
             // Load most common share day
             do {

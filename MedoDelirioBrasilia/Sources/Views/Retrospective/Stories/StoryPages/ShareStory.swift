@@ -10,6 +10,7 @@ import SwiftUI
 struct ShareStory: View {
     
     let shareAction: () -> Void
+    let topAuthor: TopAuthorItem?
     
     @State private var showContent = false
     
@@ -65,12 +66,15 @@ struct ShareStory: View {
         }
         .onAppear {
             showContent = true
+            if let author = topAuthor {
+                print("Top Author: \(author.authorName), Photo: \(author.authorPhoto ?? "none"), Shares: \(author.shareCount)")
+            }
         }
     }
 }
 
 #Preview {
-    ShareStory(shareAction: {})
+    ShareStory(shareAction: {}, topAuthor: nil)
         .background(
             LinearGradient(
                 gradient: Gradient(colors: [.yellow, .green, .darkestGreen]),

@@ -68,6 +68,7 @@ internal protocol LocalDatabaseProtocol {
 
     // Retrospective
     func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem]
+    func getTopAuthorSharedByTheUser() throws -> TopAuthorItem?
     func totalShareCount() -> Int
     func allDatesInWhichTheUserShared() throws -> [Date]
     func sharedSoundsCount() -> Int
