@@ -114,9 +114,12 @@ extension StoriesView {
                 dayCounts[dayName, default: 0] += 1
             }
             
-            // Find the most common day
-            let mostCommon = dayCounts.max { $0.value < $1.value }
-            return mostCommon?.key.capitalized
+            // Find the most common day and capitalize only the first letter
+            // Using prefix(1).uppercased() to avoid "Segunda-Feira" from .capitalized
+            guard let mostCommon = dayCounts.max(by: { $0.value < $1.value })?.key else {
+                return nil
+            }
+            return mostCommon.prefix(1).uppercased() + mostCommon.dropFirst()
         }
         
         func topSound(at index: Int) -> TopChartItem? {

@@ -17,6 +17,7 @@ struct TopSoundStory: View {
     @Binding var isMuted: Bool
     
     @State private var showContent = false
+    @State private var soundLoadFailed = false
     
     private var rankText: String {
         switch rankNumber {
@@ -86,6 +87,18 @@ struct TopSoundStory: View {
                     .opacity(showContent ? 1.0 : 0.0)
                     .offset(y: showContent ? 0 : 20)
                     .animation(.easeOut(duration: 0.8).delay(1.0), value: showContent)
+                
+                // Sound unavailable indicator
+                if soundLoadFailed {
+                    HStack(spacing: 4) {
+                        Image(systemName: "speaker.slash")
+                            .font(.caption)
+                        Text("Som indisponível")
+                            .font(.caption)
+                    }
+                    .foregroundStyle(.white.opacity(0.5))
+                    .padding(.top, 8)
+                }
             }
             .multilineTextAlignment(.center)
             
@@ -98,7 +111,7 @@ struct TopSoundStory: View {
         }
         .onChange(of: isMuted) { _, newValue in
             if newValue {
-                AudioPlayer.shared?.cancel()
+                stopSound()
             } else {
                 playSound()
             }
@@ -112,6 +125,7 @@ struct TopSoundStory: View {
         
         do {
             guard let sound = try LocalDatabase.shared.sound(withId: soundId) else {
+                soundLoadFailed = true
                 return
             }
             
@@ -120,8 +134,12 @@ struct TopSoundStory: View {
             AudioPlayer.shared = AudioPlayer(url: url, update: { _ in })
             AudioPlayer.shared?.togglePlay()
         } catch {
-            // Sound playback failed silently
+            soundLoadFailed = true
         }
+    }
+    
+    private func stopSound() {
+        AudioPlayer.shared?.cancel()
     }
 }
 

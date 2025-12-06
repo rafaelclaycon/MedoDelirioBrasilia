@@ -16,13 +16,18 @@ struct StoriesView: View {
     
     @State private var currentStoryIndex: Int = 0
     @State private var progress: CGFloat = 0.0
-    @State private var isPaused: Bool = false
     @State private var timerActive: Bool = false
     @State private var showIntro: Bool = true
     @State private var isMuted: Bool = false
+    @State private var isLongPressing: Bool = false
     
     private let progressUpdateInterval: TimeInterval = 0.05
     private let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
+    
+    /// Whether we're on the final story (share page) - timer should not auto-advance
+    private var isOnFinalStory: Bool {
+        currentStoryIndex == viewModel.stories.count - 1
+    }
     
     var body: some View {
         ZStack {
@@ -120,14 +125,16 @@ struct StoriesView: View {
                     }
                 }
                 
-                // Long press to pause
+                // Long press to pause - using DragGesture for continuous press detection
                 .simultaneousGesture(
-                    LongPressGesture(minimumDuration: 0.2)
+                    DragGesture(minimumDistance: 0)
                         .onChanged { _ in
-                            pauseTimer()
+                            if !isLongPressing {
+                                isLongPressing = true
+                            }
                         }
                         .onEnded { _ in
-                            resumeTimer()
+                            isLongPressing = false
                         }
                 )
             }
@@ -141,7 +148,13 @@ struct StoriesView: View {
             AudioPlayer.shared?.cancel()
         }
         .onReceive(timer) { _ in
-            guard timerActive && !isPaused else { return }
+            guard timerActive && !isLongPressing else { return }
+            
+            // Don't auto-advance on the final story (share page)
+            if isOnFinalStory {
+                progress = min(progress + CGFloat(progressUpdateInterval / currentStory.duration), 1.0)
+                return
+            }
             
             let increment = CGFloat(progressUpdateInterval / currentStory.duration)
             progress += increment
@@ -255,14 +268,6 @@ struct StoriesView: View {
     
     private func stopTimer() {
         timerActive = false
-    }
-    
-    private func pauseTimer() {
-        isPaused = true
-    }
-    
-    private func resumeTimer() {
-        isPaused = false
     }
     
     // MARK: - Navigation

@@ -270,6 +270,8 @@ struct MainContentView: View {
                     }
                     .fullScreenCover(isPresented: $showRetrospectiveStories) {
                         StoriesView(onShareAnalytics: { analyticsString in
+                            // Note: This logs intent to share (tap on share button), not confirmed shares.
+                            // User may cancel the share sheet without actually sharing.
                             Task {
                                 await AnalyticsService().send(
                                     originatingScreen: "Retro2025",
@@ -411,7 +413,7 @@ extension MainContentView {
                     data = await bannerRepository.dynamicBanner()
                 }
                 showBetaBanner = !AppPersistentMemory().hasDismissediOS26BetaBanner()
-                showRetroBanner = !AppPersistentMemory().hasDismissedRetro2024Banner()
+                showRetroBanner = !AppPersistentMemory().hasDismissedRetro2025Banner()
                 userHasStats = LocalDatabase.shared.totalShareCount() > 0
             }
         }

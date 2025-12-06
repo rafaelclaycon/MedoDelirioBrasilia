@@ -171,6 +171,13 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    func hasDismissedRetro2025Banner() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasDismissedRetro2025Banner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     func getHasSeenFirstUpdateIncentiveBanner() -> Bool {
         guard let value = userDefaults.object(forKey: "hasSeenFirstUpdateIncentiveBanner") else {
             return false
@@ -299,6 +306,10 @@ extension AppPersistentMemory {
 
     func dismissedRetro2024Banner(_ newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasDismissedRetro2024Banner")
+    }
+
+    func dismissedRetro2025Banner(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasDismissedRetro2025Banner")
     }
 
     func setHasSeenFirstUpdateIncentiveBanner(to newValue: Bool) {

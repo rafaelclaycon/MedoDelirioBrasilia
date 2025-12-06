@@ -18,6 +18,7 @@ struct ShareStory: View {
     
     @State private var showContent = false
     @State private var shareableImage: Image?
+    @State private var imageGenerationFailed = false
     
     var body: some View {
         VStack {
@@ -71,6 +72,12 @@ struct ShareStory: View {
                     .offset(y: showContent ? 0 : 20)
                     .animation(.easeOut(duration: 0.8).delay(0.6), value: showContent)
                     .padding(.top, 10)
+                } else if imageGenerationFailed {
+                    // Fallback when image generation fails
+                    Text("Não foi possível gerar a imagem")
+                        .font(.callout)
+                        .foregroundStyle(.white.opacity(0.7))
+                        .padding(.top, 10)
                 } else {
                     // Placeholder while image generates
                     ProgressView()
@@ -112,6 +119,8 @@ struct ShareStory: View {
         
         if let uiImage = shareCard.generateImage() {
             shareableImage = Image(uiImage: uiImage)
+        } else {
+            imageGenerationFailed = true
         }
     }
     
