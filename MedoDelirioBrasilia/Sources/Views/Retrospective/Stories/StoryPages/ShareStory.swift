@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ShareStory: View {
     
@@ -16,6 +17,7 @@ struct ShareStory: View {
     
     @State private var showContent = false
     @State private var shareableImage: Image?
+    @State private var isLoadingImage = true
     
     var body: some View {
         VStack {
@@ -79,18 +81,33 @@ struct ShareStory: View {
         }
         .onAppear {
             showContent = true
-            generateShareableImage()
             if let author = topAuthor {
                 print("Top Author: \(author.authorName), Photo: \(author.authorPhoto ?? "none"), Shares: \(author.shareCount)")
             }
+            print("Top Sounds count: \(topSounds.count)")
+            for (index, sound) in topSounds.enumerated() {
+                print("  \(index + 1). \(sound.contentName)")
+            }
+        }
+        .task {
+            await generateShareableImage()
         }
     }
     
     // MARK: - Image Generation
     
-    private func generateShareableImage() {
+    private func generateShareableImage() async {
+        // First, download the author photo if available
+        var authorImage: UIImage? = nil
+        
+        if let photoURLString = topAuthor?.authorPhoto,
+           let photoURL = URL(string: photoURLString) {
+            authorImage = await downloadImage(from: photoURL)
+        }
+        
+        // Generate the shareable image with the pre-downloaded photo
         let shareCard = ShareableRetroImageView(
-            authorPhotoURL: topAuthor?.authorPhoto,
+            authorPhoto: authorImage,
             topSounds: topSounds,
             totalShares: totalShares,
             favoriteDay: favoriteDay
@@ -98,6 +115,22 @@ struct ShareStory: View {
         
         if let uiImage = shareCard.generateImage() {
             shareableImage = Image(uiImage: uiImage)
+        }
+        
+        isLoadingImage = false
+    }
+    
+    private func downloadImage(from url: URL) async -> UIImage? {
+        await withCheckedContinuation { continuation in
+            KingfisherManager.shared.retrieveImage(with: url) { result in
+                switch result {
+                case .success(let imageResult):
+                    continuation.resume(returning: imageResult.image)
+                case .failure(let error):
+                    print("Failed to download author photo: \(error)")
+                    continuation.resume(returning: nil)
+                }
+            }
         }
     }
 }

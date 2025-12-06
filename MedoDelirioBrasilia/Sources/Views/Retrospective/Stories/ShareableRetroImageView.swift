@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 /// A view that generates a shareable retrospective summary image
 /// Uses a base template image with dynamic data overlaid
 struct ShareableRetroImageView: View {
     
-    let authorPhotoURL: String?
+    let authorPhoto: UIImage?
     let topSounds: [TopChartItem]
     let totalShares: Int
     let favoriteDay: String
@@ -36,15 +35,15 @@ struct ShareableRetroImageView: View {
                     .padding(.leading, 62)
                 
                 Spacer()
-                    .frame(height: 140)
-                
+                    .frame(height: 264)
+
                 // Top 5 sounds list
                 soundsListView
                     .padding(.leading, 62)
                 
                 Spacer()
-                    .frame(height: 40)
-                
+                    .frame(height: 104)
+
                 // Stats row
                 statsRowView
                     .padding(.leading, 62)
@@ -59,27 +58,23 @@ struct ShareableRetroImageView: View {
     
     private var authorPhotoView: some View {
         Group {
-            if let photoURL = authorPhotoURL, let url = URL(string: photoURL) {
-                KFImage(url)
-                    .placeholder {
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.3))
-                    }
+            if let photo = authorPhoto {
+                Image(uiImage: photo)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 440, height: 400)
+                    .frame(width: 500, height: 470)
                     .clipped()
             } else {
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))
-                    .frame(width: 440, height: 400)
+                    .frame(width: 500, height: 470)
             }
         }
     }
     
     private var soundsListView: some View {
         VStack(alignment: .leading, spacing: 8) {
-            ForEach(Array(topSounds.prefix(5).enumerated()), id: \.element.id) { index, sound in
+            ForEach(Array(topSounds.prefix(5).enumerated()), id: \.offset) { index, sound in
                 Text("\(index + 1) \(sound.contentName)")
                     .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(Color(hex: "1a1a1a"))
@@ -89,20 +84,21 @@ struct ShareableRetroImageView: View {
     }
     
     private var statsRowView: some View {
-        HStack(alignment: .top, spacing: 100) {
+        HStack(alignment: .top, spacing: 275) {
             // Total shares
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(totalShares)")
                     .font(.system(size: 72, weight: .bold))
-                    .foregroundStyle(Color(hex: "4a7c23"))
+                    .foregroundStyle(Color.darkestGreen.opacity(0.7))
             }
             
             // Favorite day
             VStack(alignment: .leading, spacing: 4) {
                 Text(favoriteDay)
                     .font(.system(size: 48, weight: .bold))
-                    .foregroundStyle(Color(hex: "4a7c23"))
+                    .foregroundStyle(Color.darkestGreen.opacity(0.7))
             }
+            .padding(.top, 10)
         }
     }
 }
@@ -122,16 +118,33 @@ extension ShareableRetroImageView {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("5 sounds") {
     ScrollView {
         ShareableRetroImageView(
-            authorPhotoURL: "https://example.com/photo.jpg",
+            authorPhoto: nil,
             topSounds: [
                 TopChartItem(id: "1", rankNumber: "1", contentId: "s1", contentName: "Drama", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 20),
                 TopChartItem(id: "2", rankNumber: "2", contentId: "s2", contentName: "Tadinha! Que Barra!", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 15),
                 TopChartItem(id: "3", rankNumber: "3", contentId: "s3", contentName: "Trump Bullshit", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 12),
                 TopChartItem(id: "4", rankNumber: "4", contentId: "s4", contentName: "Something", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 10),
                 TopChartItem(id: "5", rankNumber: "5", contentId: "s5", contentName: "Something But Longer So We See It", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 8)
+            ],
+            totalShares: 68,
+            favoriteDay: "Sexta-feira"
+        )
+        .scaleEffect(0.4)
+        .frame(width: 828 * 0.4, height: 1472 * 0.4)
+    }
+}
+
+#Preview("3 sounds") {
+    ScrollView {
+        ShareableRetroImageView(
+            authorPhoto: nil,
+            topSounds: [
+                TopChartItem(id: "1", rankNumber: "1", contentId: "s1", contentName: "Drama", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 20),
+                TopChartItem(id: "2", rankNumber: "2", contentId: "s2", contentName: "Tadinha! Que Barra!", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 15),
+                TopChartItem(id: "3", rankNumber: "3", contentId: "s3", contentName: "Trump Bullshit", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 12)
             ],
             totalShares: 68,
             favoriteDay: "Sexta-feira"
