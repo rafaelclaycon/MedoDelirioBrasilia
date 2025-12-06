@@ -27,29 +27,17 @@ struct ShareableRetroImageView: View {
                 .resizable()
                 .frame(width: templateWidth, height: templateHeight)
             
-            // Dynamic content overlays
-            VStack(alignment: .leading, spacing: 0) {
-                // Author photo area
-                authorPhotoView
-                    .padding(.top, 52)
-                    .padding(.leading, 62)
-                
-                Spacer()
-                    .frame(height: 264)
-
-                // Top 5 sounds list
-                soundsListView
-                    .padding(.leading, 62)
-                
-                Spacer()
-                    .frame(height: 104)
-
-                // Stats row
-                statsRowView
-                    .padding(.leading, 62)
-                
-                Spacer()
-            }
+            // Author photo - fixed position
+            authorPhotoView
+                .offset(x: 62, y: 52)
+            
+            // Top sounds list - fixed position
+            soundsListView
+                .offset(x: 62, y: 786)
+            
+            // Stats row - fixed position (independent of sounds list height)
+            statsRowView
+                .offset(x: 62, y: 1142)
         }
         .frame(width: templateWidth, height: templateHeight)
     }
@@ -145,6 +133,21 @@ extension ShareableRetroImageView {
                 TopChartItem(id: "1", rankNumber: "1", contentId: "s1", contentName: "Drama", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 20),
                 TopChartItem(id: "2", rankNumber: "2", contentId: "s2", contentName: "Tadinha! Que Barra!", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 15),
                 TopChartItem(id: "3", rankNumber: "3", contentId: "s3", contentName: "Trump Bullshit", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 12)
+            ],
+            totalShares: 68,
+            favoriteDay: "Sexta-feira"
+        )
+        .scaleEffect(0.4)
+        .frame(width: 828 * 0.4, height: 1472 * 0.4)
+    }
+}
+
+#Preview("1 sound") {
+    ScrollView {
+        ShareableRetroImageView(
+            authorPhoto: nil,
+            topSounds: [
+                TopChartItem(id: "1", rankNumber: "1", contentId: "s1", contentName: "Drama", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 20)
             ],
             totalShares: 68,
             favoriteDay: "Sexta-feira"
