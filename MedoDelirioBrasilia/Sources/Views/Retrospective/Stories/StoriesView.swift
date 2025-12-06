@@ -292,26 +292,3 @@ struct StoriesView: View {
 #Preview {
     StoriesView()
 }
-
-//#Preview("Show Sheet") {
-//
-//    struct BackgroundTestView: View {
-//
-//        @State private var isSheetPresented: Bool = false
-//
-//        var body: some View {
-//            VStack(spacing: 30) {
-//                Text("Background View")
-//
-//                Button("ShowSheet") {
-//                    isSheetPresented = true
-//                }
-//            }
-//            .fullScreenCover(isPresented: $isSheetPresented) {
-//                StoriesView()
-//            }
-//        }
-//    }
-//
-//    return BackgroundTestView()
-//}

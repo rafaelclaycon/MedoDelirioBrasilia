@@ -112,7 +112,6 @@ struct TopSoundStory: View {
         
         do {
             guard let sound = try LocalDatabase.shared.sound(withId: soundId) else {
-                print("Sound not found for id: \(soundId)")
                 return
             }
             
@@ -121,7 +120,7 @@ struct TopSoundStory: View {
             AudioPlayer.shared = AudioPlayer(url: url, update: { _ in })
             AudioPlayer.shared?.togglePlay()
         } catch {
-            print("Error playing sound: \(error)")
+            // Sound playback failed silently
         }
     }
 }

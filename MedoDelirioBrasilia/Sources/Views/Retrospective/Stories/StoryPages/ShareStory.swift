@@ -17,7 +17,6 @@ struct ShareStory: View {
     
     @State private var showContent = false
     @State private var shareableImage: Image?
-    @State private var isLoadingImage = true
     
     var body: some View {
         VStack {
@@ -81,13 +80,6 @@ struct ShareStory: View {
         }
         .onAppear {
             showContent = true
-            if let author = topAuthor {
-                print("Top Author: \(author.authorName), Photo: \(author.authorPhoto ?? "none"), Shares: \(author.shareCount)")
-            }
-            print("Top Sounds count: \(topSounds.count)")
-            for (index, sound) in topSounds.enumerated() {
-                print("  \(index + 1). \(sound.contentName)")
-            }
         }
         .task {
             await generateShareableImage()
@@ -116,8 +108,6 @@ struct ShareStory: View {
         if let uiImage = shareCard.generateImage() {
             shareableImage = Image(uiImage: uiImage)
         }
-        
-        isLoadingImage = false
     }
     
     private func downloadImage(from url: URL) async -> UIImage? {
@@ -126,8 +116,7 @@ struct ShareStory: View {
                 switch result {
                 case .success(let imageResult):
                     continuation.resume(returning: imageResult.image)
-                case .failure(let error):
-                    print("Failed to download author photo: \(error)")
+                case .failure:
                     continuation.resume(returning: nil)
                 }
             }
