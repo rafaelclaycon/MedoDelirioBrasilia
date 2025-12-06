@@ -35,9 +35,13 @@ struct ShareableRetroImageView: View {
             soundsListView
                 .offset(x: 62, y: 786)
             
-            // Stats row - fixed position (independent of sounds list height)
-            statsRowView
+            // Total shares stat - fixed position
+            totalSharesView
                 .offset(x: 62, y: 1142)
+            
+            // Favorite day stat - fixed position (independent of total shares width)
+            favoriteDayView
+                .offset(x: 435, y: 1152)
         }
         .frame(width: templateWidth, height: templateHeight)
     }
@@ -71,23 +75,16 @@ struct ShareableRetroImageView: View {
         }
     }
     
-    private var statsRowView: some View {
-        HStack(alignment: .top, spacing: 275) {
-            // Total shares
-            VStack(alignment: .leading, spacing: 4) {
-                Text("\(totalShares)")
-                    .font(.system(size: 72, weight: .bold))
-                    .foregroundStyle(Color.darkestGreen.opacity(0.7))
-            }
-            
-            // Favorite day
-            VStack(alignment: .leading, spacing: 4) {
-                Text(favoriteDay)
-                    .font(.system(size: 48, weight: .bold))
-                    .foregroundStyle(Color.darkestGreen.opacity(0.7))
-            }
-            .padding(.top, 10)
-        }
+    private var totalSharesView: some View {
+        Text("\(totalShares)")
+            .font(.system(size: 72, weight: .bold))
+            .foregroundStyle(Color.darkestGreen.opacity(0.7))
+    }
+    
+    private var favoriteDayView: some View {
+        Text(favoriteDay)
+            .font(.system(size: 48, weight: .bold))
+            .foregroundStyle(Color.darkestGreen.opacity(0.7))
     }
 }
 
@@ -135,7 +132,7 @@ extension ShareableRetroImageView {
                 TopChartItem(id: "3", rankNumber: "3", contentId: "s3", contentName: "Trump Bullshit", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 12)
             ],
             totalShares: 68,
-            favoriteDay: "Sexta-feira"
+            favoriteDay: "Segunda-feira"
         )
         .scaleEffect(0.4)
         .frame(width: 828 * 0.4, height: 1472 * 0.4)
@@ -150,7 +147,7 @@ extension ShareableRetroImageView {
                 TopChartItem(id: "1", rankNumber: "1", contentId: "s1", contentName: "Drama", contentAuthorId: "a1", contentAuthorName: "Author", shareCount: 20)
             ],
             totalShares: 68,
-            favoriteDay: "Sexta-feira"
+            favoriteDay: "Quarta-feira"
         )
         .scaleEffect(0.4)
         .frame(width: 828 * 0.4, height: 1472 * 0.4)
