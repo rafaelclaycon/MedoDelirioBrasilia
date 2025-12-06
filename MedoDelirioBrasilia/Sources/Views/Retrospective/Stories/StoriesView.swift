@@ -97,25 +97,27 @@ struct StoriesView: View {
                     .padding(.top, 16)
                 }
                 
-                // Mute button (bottom left)
+                // Mute button (bottom left) - only on audio stories
                 .overlay(alignment: .bottomLeading) {
-                    Button {
-                        isMuted.toggle()
-                        if isMuted {
-                            // Stop any currently playing audio
-                            AudioPlayer.shared?.cancel()
+                    if currentStoryPlaysAudio {
+                        Button {
+                            isMuted.toggle()
+                            if isMuted {
+                                // Stop any currently playing audio
+                                AudioPlayer.shared?.cancel()
+                            }
+                        } label: {
+                            Image(systemName: isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                                .font(.title2)
+                                .foregroundStyle(.white)
+                                .frame(width: 44, height: 44)
+                                .background(Color.black.opacity(0.3))
+                                .clipShape(Circle())
+                                .contentShape(Rectangle())
                         }
-                    } label: {
-                        Image(systemName: isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                            .font(.title2)
-                            .foregroundStyle(.white)
-                            .frame(width: 44, height: 44)
-                            .background(Color.black.opacity(0.3))
-                            .clipShape(Circle())
-                            .contentShape(Rectangle())
+                        .padding(.leading, 16)
+                        .padding(.bottom, 40)
                     }
-                    .padding(.leading, 16)
-                    .padding(.bottom, 40)
                 }
                 
                 // Long press to pause
@@ -171,6 +173,11 @@ struct StoriesView: View {
             return viewModel.stories.last ?? Story(id: "default")
         }
         return viewModel.stories[currentStoryIndex]
+    }
+    
+    private var currentStoryPlaysAudio: Bool {
+        let audioStoryIds = ["topSound1", "topSound2", "topSound3"]
+        return audioStoryIds.contains(currentStory.id)
     }
     
     // MARK: - Story Content Views
