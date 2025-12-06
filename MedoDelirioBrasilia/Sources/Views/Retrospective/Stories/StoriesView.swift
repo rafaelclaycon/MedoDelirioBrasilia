@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StoriesView: View {
     
+    var onShareAnalytics: ((String) -> Void)?
+    
     @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel = ViewModel()
     
@@ -232,7 +234,10 @@ struct StoriesView: View {
                     topAuthor: viewModel.topAuthor,
                     topSounds: viewModel.topSounds,
                     totalShares: viewModel.totalShareCount,
-                    favoriteDay: viewModel.mostCommonShareDay
+                    favoriteDay: viewModel.mostCommonShareDay,
+                    onShareTapped: {
+                        onShareAnalytics?(viewModel.analyticsString())
+                    }
                 )
                 
             default:

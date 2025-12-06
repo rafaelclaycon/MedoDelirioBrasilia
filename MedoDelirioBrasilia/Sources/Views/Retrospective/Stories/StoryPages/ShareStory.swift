@@ -14,6 +14,7 @@ struct ShareStory: View {
     let topSounds: [TopChartItem]
     let totalShares: Int
     let favoriteDay: String
+    let onShareTapped: (() -> Void)?
     
     @State private var showContent = false
     @State private var shareableImage: Image?
@@ -63,6 +64,9 @@ struct ShareStory: View {
                                     .fill(.white)
                             }
                     }
+                    .simultaneousGesture(TapGesture().onEnded { _ in
+                        onShareTapped?()
+                    })
                     .opacity(showContent ? 1.0 : 0.0)
                     .offset(y: showContent ? 0 : 20)
                     .animation(.easeOut(duration: 0.8).delay(0.6), value: showContent)
@@ -130,7 +134,8 @@ struct ShareStory: View {
         topAuthor: nil,
         topSounds: [],
         totalShares: 68,
-        favoriteDay: "Sexta-feira"
+        favoriteDay: "Sexta-feira",
+        onShareTapped: nil
     )
     .background(
         LinearGradient(

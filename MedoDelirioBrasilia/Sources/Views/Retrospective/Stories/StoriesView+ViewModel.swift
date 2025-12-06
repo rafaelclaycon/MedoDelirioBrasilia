@@ -123,6 +123,12 @@ extension StoriesView {
             guard index < topSounds.count else { return nil }
             return topSounds[index]
         }
+        
+        func analyticsString() -> String {
+            let ranking = topSounds.prefix(5).enumerated().map { "\($0.offset + 1) \($0.element.contentName)" }
+            let authorInfo = topAuthor.map { "\($0.authorName); \($0.authorPhoto ?? "no-photo")" } ?? "no-author"
+            return "\(ranking.joined(separator: ", ")); \(totalShareCount) compart; \(mostCommonShareDay); \(authorInfo)"
+        }
     }
 }
 

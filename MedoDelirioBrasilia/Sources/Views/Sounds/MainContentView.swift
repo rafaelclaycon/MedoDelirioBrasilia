@@ -269,7 +269,14 @@ struct MainContentView: View {
                         }
                     }
                     .fullScreenCover(isPresented: $showRetrospectiveStories) {
-                        StoriesView()
+                        StoriesView(onShareAnalytics: { analyticsString in
+                            Task {
+                                await AnalyticsService().send(
+                                    originatingScreen: "Retro2025",
+                                    action: analyticsString
+                                )
+                            }
+                        })
                     }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
