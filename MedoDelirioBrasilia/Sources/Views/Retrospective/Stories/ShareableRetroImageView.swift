@@ -81,6 +81,8 @@ struct ShareableRetroImageView: View {
                     .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(Color(hex: "1a1a1a"))
                     .lineLimit(1)
+                    .truncationMode(.tail)
+                    .frame(width: templateWidth - 62 - 50, alignment: .leading)
             }
         }
     }
