@@ -264,10 +264,14 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         didCallInsertSyncLog = true
     }
 
-    // Retro 2023
+    // Retrospective
 
     func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem] {
         return topSharedSounds
+    }
+
+    func getTopAuthorSharedByTheUser() throws -> TopAuthorItem? {
+        nil
     }
 
     func totalShareCount() -> Int {
@@ -276,6 +280,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func allDatesInWhichTheUserShared() throws -> [Date] {
         return shareDates
+    }
+
+    func sharedSoundsCount() -> Int {
+        0
     }
 
     // Pinned Reactions
