@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 /// A generic view that displays a list of sounds with customizable states for loading, empty, and error conditions.
 ///
@@ -261,6 +262,11 @@ struct ContentGrid<
                     viewModel.onDidExitShareAsVideoSheet()
                 }
                 .onChange(of: viewModel.showingModalView) {
+                    if viewModel.showingModalView == true && viewModel.subviewToOpen == .addToFolder {
+                        // Dismiss keyboard when Add to Folder sheet is presented
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
+                    
                     if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
                         Task {
                             await viewModel.onAddedContentToFolderSuccessfully(
