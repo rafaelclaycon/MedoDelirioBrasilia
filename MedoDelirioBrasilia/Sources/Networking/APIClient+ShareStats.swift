@@ -62,7 +62,11 @@ extension APIClient {
     public static func groupedStats(from stats: [TopChartReactionDTO]) -> [TopChartReaction] {
         guard !stats.isEmpty else { return [] }
 
-        let grouped = Dictionary(grouping: stats) { $0.reaction.title }
+        // Filter out invalid reactions before processing
+        let validStats = stats.filter { isValidReaction($0) }
+        guard !validStats.isEmpty else { return [] }
+
+        let grouped = Dictionary(grouping: validStats) { $0.reaction.title }
 
         let merged = grouped.map { (title, group) -> TopChartReaction in
             let first = group.first!
@@ -89,5 +93,20 @@ extension APIClient {
         }
 
         return merged.sorted { $0.position < $1.position }
+    }
+
+    /// Validates if a TopChartReactionDTO has all required fields populated
+    private static func isValidReaction(_ reactionDTO: TopChartReactionDTO) -> Bool {
+        let reaction = reactionDTO.reaction
+
+        // Check if essential fields are not null and not empty
+        guard let id = reaction.id, !id.isEmpty,
+              let title = reaction.title, !title.isEmpty,
+              let image = reaction.image, !image.isEmpty,
+              let lastUpdate = reaction.lastUpdate, !lastUpdate.isEmpty else {
+            return false
+        }
+
+        return true
     }
 }

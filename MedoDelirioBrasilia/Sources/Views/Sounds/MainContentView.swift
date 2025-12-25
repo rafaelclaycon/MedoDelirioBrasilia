@@ -20,6 +20,9 @@ struct MainContentView: View {
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
     @State private var contentSearchTextIsEmpty: Bool? = true
+    
+    // Retrospective
+    @State private var showRetrospectiveStories = false
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -101,6 +104,7 @@ struct MainContentView: View {
                                 selected: $viewModel.currentViewMode,
                                 allowScrolling: UIDevice.isiPhone
                             )
+                            .scrollClipDisabled()
                         }
 
                         switch viewModel.currentViewMode {
@@ -125,7 +129,8 @@ struct MainContentView: View {
                                     if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
                                         BannersView(
                                             bannerRepository: bannerRepository,
-                                            toast: viewModel.toast
+                                            toast: viewModel.toast,
+                                            showRetrospectiveStories: $showRetrospectiveStories
                                         )
                                     }
                                 }
@@ -263,6 +268,18 @@ struct MainContentView: View {
                             )
                         }
                     }
+                    .fullScreenCover(isPresented: $showRetrospectiveStories) {
+                        StoriesView(onShareAnalytics: { analyticsString in
+                            // Note: This logs intent to share (tap on share button), not confirmed shares.
+                            // User may cancel the share sheet without actually sharing.
+                            Task {
+                                await AnalyticsService().send(
+                                    originatingScreen: "Retro2025",
+                                    action: analyticsString
+                                )
+                            }
+                        })
+                    }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
                             viewModel.onExplicitContentSettingChanged()
@@ -272,9 +289,9 @@ struct MainContentView: View {
                     .onChange(of: trendsHelper.contentIdToNavigateTo) {
                         highlight(contentId: trendsHelper.contentIdToNavigateTo)
                     }
-                    .onAppear {
+                    .task {
                         Task {
-                            await viewModel.onViewDidAppear()
+                            await viewModel.onViewLoaded()
                         }
                     }
                     .onChange(of: scenePhase) {
@@ -291,6 +308,7 @@ struct MainContentView: View {
             }
             .toast(viewModel.toast)
             .floatingContentOptions(viewModel.floatingOptions)
+            .toolbar(contentGridViewModel.tabBarVisibility, for: .tabBar)
         }
     }
 }
@@ -357,14 +375,28 @@ extension MainContentView {
 
         let bannerRepository: BannerRepositoryProtocol
         @Binding var toast: Toast?
+        @Binding var showRetrospectiveStories: Bool
 
         @State private var data: DynamicBannerData?
-
+        @State private var showRetroBanner: Bool = true
         @State private var showBetaBanner: Bool = true
         @State private var showBetaFAQ: Bool = false
+        @State private var userHasStats: Bool = false
 
         var body: some View {
             VStack {
+                if showRetroBanner && userHasStats {
+                    Retro2025Banner(
+                        isBeingShown: $showRetroBanner,
+                        openStoriesAction: {
+                            showRetrospectiveStories = true
+                        },
+                        showCloseButton: true
+                    )
+                    .padding(.top, .spacing(.xxxSmall))
+                    .padding(.bottom, .spacing(.xSmall))
+                }
+                
                 if let data {
                     DynamicBanner(
                         bannerData: data,
@@ -381,6 +413,8 @@ extension MainContentView {
                     data = await bannerRepository.dynamicBanner()
                 }
                 showBetaBanner = !AppPersistentMemory().hasDismissediOS26BetaBanner()
+                showRetroBanner = !AppPersistentMemory().hasDismissedRetro2025Banner()
+                userHasStats = LocalDatabase.shared.totalShareCount() > 0
             }
         }
     }
