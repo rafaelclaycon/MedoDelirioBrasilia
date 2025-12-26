@@ -291,7 +291,7 @@ struct MainContentView: View {
                     }
                     .task {
                         Task {
-                            await viewModel.onViewLoaded()
+                            await viewModel.onViewDidAppear()
                         }
                     }
                     .onChange(of: scenePhase) {
