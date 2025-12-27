@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 var moveDatabaseIssue: String = ""
 
@@ -93,6 +94,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         createFoldersForDownloadedContent()
         updateExternalLinks()
         updateFolderChangeHashes()
+        registerForPushNotificationsIfAuthorized()
 
         return true
     }
@@ -162,19 +164,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         Task {
-            if AppPersistentMemory().getShouldRetrySendingDevicePushToken() {
-                let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-                let token = tokenParts.joined()
-                //print("Device Token: \(token)")
+            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+            let token = tokenParts.joined()
 
-                let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
+            let storedToken = AppPersistentMemory().getLastSentPushToken()
 
-                do {
-                    let success = try await APIClient.shared.register(pushDevice: device)
-                    AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: !success)
-                } catch {
-                    AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
+            // Only send if token is different from what we've already sent
+            guard token != storedToken else {
+                return
+            }
+
+            let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
+
+            do {
+                let success = try await APIClient.shared.register(pushDevice: device)
+                if success {
+                    AppPersistentMemory().setLastSentPushToken(to: token)
                 }
+            } catch {
+                // Token stays nil/old, will retry next time iOS provides the token
+                print("Failed to register push token: \(error.localizedDescription)")
             }
         }
     }
@@ -184,6 +193,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
         print("Failed to register: \(error.localizedDescription)")
+    }
+
+    private func registerForPushNotificationsIfAuthorized() {
+        Task {
+            let center = UNUserNotificationCenter.current()
+            let settings = await center.notificationSettings()
+
+            if settings.authorizationStatus == .authorized {
+                await MainActor.run {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
     }
     
     // MARK: - Missing Favorites bugfix
