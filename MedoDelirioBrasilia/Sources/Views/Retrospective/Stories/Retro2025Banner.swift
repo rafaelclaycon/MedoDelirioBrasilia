@@ -16,9 +16,8 @@ public enum RetroBannerStyle {
 struct Retro2025Banner: View {
 
     var style: RetroBannerStyle = .full
-    @Binding var isBeingShown: Bool
     let openStoriesAction: () -> Void
-    let showCloseButton: Bool
+    let dismissAction: () -> Void
 
     var body: some View {
         switch style {
@@ -60,17 +59,14 @@ struct Retro2025Banner: View {
                     .clipShape(RoundedRectangle(cornerRadius: 15))
             }
             .overlay(alignment: .topTrailing) {
-                if showCloseButton {
-                    Button {
-                        AppPersistentMemory().dismissedRetro2025Banner(true)
-                        isBeingShown = false
-                    } label: {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
-                            .shadow(color: .black.opacity(0.3), radius: 2)
-                    }
-                    .padding()
+                Button {
+                    dismissAction()
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.3), radius: 2)
                 }
+                .padding()
             }
         case .small:
             HStack(spacing: .spacing(.large)) {
@@ -111,17 +107,14 @@ struct Retro2025Banner: View {
                     .clipShape(RoundedRectangle(cornerRadius: 15))
             }
             .overlay(alignment: .topTrailing) {
-                if showCloseButton {
-                    Button {
-                        AppPersistentMemory().dismissedRetro2025Banner(true)
-                        isBeingShown = false
-                    } label: {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
-                            .shadow(color: .black.opacity(0.3), radius: 2)
-                    }
-                    .padding(.spacing(.small))
+                Button {
+                    dismissAction()
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.3), radius: 2)
                 }
+                .padding(.spacing(.small))
             }
         }
     }
@@ -306,9 +299,8 @@ struct SeededRandomGenerator: RandomNumberGenerator {
 
 #Preview("Full") {
     Retro2025Banner(
-        isBeingShown: .constant(true),
         openStoriesAction: {},
-        showCloseButton: true
+        dismissAction: {}
     )
     .padding()
 }
@@ -316,9 +308,8 @@ struct SeededRandomGenerator: RandomNumberGenerator {
 #Preview("Small") {
     Retro2025Banner(
         style: RetroBannerStyle.small,
-        isBeingShown: .constant(true),
         openStoriesAction: {},
-        showCloseButton: true
+        dismissAction: {}
     )
     .padding()
 }

@@ -13,7 +13,7 @@ final class MostSharedByMeViewViewModel {
 
     var viewState: LoadingState<[TopChartItem]> = .loading
 
-    func loadPersonalList() async {
+    func onViewAppeared() async {
         guard let ranking = Podium.shared.top10SoundsSharedByTheUser() else { return }
         viewState = .loaded(ranking)
     }
