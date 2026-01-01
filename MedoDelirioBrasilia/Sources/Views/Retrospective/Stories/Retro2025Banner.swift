@@ -7,60 +7,121 @@
 
 import SwiftUI
 
+public enum RetroBannerStyle {
+
+    case full
+    case small
+}
+
 struct Retro2025Banner: View {
 
+    var style: RetroBannerStyle = .full
     @Binding var isBeingShown: Bool
     let openStoriesAction: () -> Void
     let showCloseButton: Bool
 
     var body: some View {
-        VStack(alignment: .center, spacing: .spacing(.large)) {
-            Text("Retrospectiva 2025")
-                .font(.title2)
-                .foregroundColor(.white)
-                .bold()
-                .shadow(color: .black.opacity(0.3), radius: 2, y: 1)
-
-            Text("Bora ver o que nós aprontamos juntos esse ano?")
-                .font(.callout)
-                .foregroundStyle(.white)
-                .multilineTextAlignment(.center)
-                .shadow(color: .black.opacity(0.2), radius: 1, y: 1)
-
-            Button {
-                openStoriesAction()
-            } label: {
-                Text("Bora!")
-                    .font(.callout)
-                    .foregroundStyle(.black)
+        switch style {
+        case .full:
+            VStack(alignment: .center, spacing: .spacing(.large)) {
+                Text("Retrospectiva 2025")
+                    .font(.title2)
+                    .foregroundColor(.white)
                     .bold()
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 10)
-                    .background {
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(.white)
-                    }
-            }
-            .padding(.top, 5)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, .spacing(.xxxLarge))
-        .padding(.horizontal, 24)
-        .background {
-            FlowingGradientBackground()
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-        }
-        .overlay(alignment: .topTrailing) {
-            if showCloseButton {
+                    .shadow(color: .black.opacity(0.3), radius: 2, y: 1)
+
+                Text("Bora ver o que nós aprontamos juntos esse ano?")
+                    .font(.callout)
+                    .foregroundStyle(.white)
+                    .multilineTextAlignment(.center)
+                    .shadow(color: .black.opacity(0.2), radius: 1, y: 1)
+
                 Button {
-                    AppPersistentMemory().dismissedRetro2025Banner(true)
-                    isBeingShown = false
+                    openStoriesAction()
                 } label: {
-                    Image(systemName: "xmark")
-                        .foregroundColor(.white)
-                        .shadow(color: .black.opacity(0.3), radius: 2)
+                    Text("Bora!")
+                        .font(.callout)
+                        .foregroundStyle(.black)
+                        .bold()
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        .background {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.white)
+                        }
                 }
-                .padding()
+                .padding(.top, 5)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, .spacing(.xxxLarge))
+            .padding(.horizontal, 24)
+            .background {
+                FlowingGradientBackground()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+            .overlay(alignment: .topTrailing) {
+                if showCloseButton {
+                    Button {
+                        AppPersistentMemory().dismissedRetro2025Banner(true)
+                        isBeingShown = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                            .shadow(color: .black.opacity(0.3), radius: 2)
+                    }
+                    .padding()
+                }
+            }
+        case .small:
+            HStack(spacing: .spacing(.large)) {
+                VStack(alignment: .leading, spacing: .spacing(.small)) {
+                    Text("Retrospectiva 2025")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .bold()
+                        .shadow(color: .black.opacity(0.3), radius: 2, y: 1)
+
+                    Text("Bora ver o que nós aprontamos juntos esse ano?")
+                        .font(.callout)
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.leading)
+                        .shadow(color: .black.opacity(0.2), radius: 1, y: 1)
+                }
+
+                Button {
+                    openStoriesAction()
+                } label: {
+                    Text("Bora!")
+                        .font(.callout)
+                        .foregroundStyle(.black)
+                        .bold()
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        .background {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.white)
+                        }
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, .spacing(.xLarge))
+            .padding(.horizontal, .spacing(.xLarge))
+            .background {
+                FlowingGradientBackground()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+            .overlay(alignment: .topTrailing) {
+                if showCloseButton {
+                    Button {
+                        AppPersistentMemory().dismissedRetro2025Banner(true)
+                        isBeingShown = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                            .shadow(color: .black.opacity(0.3), radius: 2)
+                    }
+                    .padding(.spacing(.small))
+                }
             }
         }
     }
@@ -243,8 +304,18 @@ struct SeededRandomGenerator: RandomNumberGenerator {
 
 // MARK: - Preview
 
-#Preview {
+#Preview("Full") {
     Retro2025Banner(
+        isBeingShown: .constant(true),
+        openStoriesAction: {},
+        showCloseButton: true
+    )
+    .padding()
+}
+
+#Preview("Small") {
+    Retro2025Banner(
+        style: RetroBannerStyle.small,
         isBeingShown: .constant(true),
         openStoriesAction: {},
         showCloseButton: true
