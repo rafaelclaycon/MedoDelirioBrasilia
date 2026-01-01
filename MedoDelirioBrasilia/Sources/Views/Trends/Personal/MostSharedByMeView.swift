@@ -73,6 +73,18 @@ struct MostSharedByMeView: View {
             showRetroBanner = !AppPersistentMemory().hasDismissedRetro2025BannerInTrends()
             userHasStats = LocalDatabase.shared.totalShareCount() > 0
         }
+        .fullScreenCover(isPresented: $showRetrospectiveStories) {
+            StoriesView(onShareAnalytics: { analyticsString in
+                // Note: This logs intent to share (tap on share button), not confirmed shares.
+                // User may cancel the share sheet without actually sharing.
+                Task {
+                    await AnalyticsService().send(
+                        originatingScreen: "Retro2025",
+                        action: analyticsString
+                    )
+                }
+            })
+        }
     }
 }
 
