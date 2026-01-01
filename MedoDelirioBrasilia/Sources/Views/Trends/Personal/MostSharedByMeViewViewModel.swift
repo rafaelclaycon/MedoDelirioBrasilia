@@ -8,9 +8,10 @@
 import Foundation
 import Combine
 
-class MostSharedByMeViewViewModel: ObservableObject {
+@Observable @MainActor
+final class MostSharedByMeViewViewModel {
 
-    @Published var viewState: LoadingState<[TopChartItem]> = .loading
+    var viewState: LoadingState<[TopChartItem]> = .loading
 
     func loadPersonalList() async {
         guard let ranking = Podium.shared.top10SoundsSharedByTheUser() else { return }

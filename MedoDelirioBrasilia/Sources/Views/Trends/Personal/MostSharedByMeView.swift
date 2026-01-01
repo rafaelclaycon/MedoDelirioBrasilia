@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MostSharedByMeView: View {
 
-    @StateObject private var viewModel = MostSharedByMeViewViewModel()
+    @State private var viewModel = MostSharedByMeViewViewModel()
+
+    @State private var showRetrospectiveStories: Bool = false
+    @State private var showRetroBanner: Bool = true
 
     let columns = [
         GridItem(.flexible())
@@ -57,6 +60,17 @@ struct MostSharedByMeView: View {
                     }
                 } else {
                     VStack {
+                        Retro2025Banner(
+                            style: .small,
+                            isBeingShown: $showRetroBanner,
+                            openStoriesAction: {
+                                showRetrospectiveStories = true
+                            },
+                            showCloseButton: true
+                        )
+                        .padding(.top, .spacing(.xxxSmall))
+                        .padding(.bottom, .spacing(.xSmall))
+
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(items) { item in
                                 TopChartRow(item: item)
