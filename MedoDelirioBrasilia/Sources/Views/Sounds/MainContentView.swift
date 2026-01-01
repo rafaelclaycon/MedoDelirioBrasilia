@@ -387,11 +387,13 @@ extension MainContentView {
             VStack {
                 if showRetroBanner && userHasStats {
                     Retro2025Banner(
-                        isBeingShown: $showRetroBanner,
                         openStoriesAction: {
                             showRetrospectiveStories = true
                         },
-                        showCloseButton: true
+                        dismissAction: {
+                            AppPersistentMemory().dismissedRetro2025Banner(true)
+                            showRetroBanner = false
+                        }
                     )
                     .padding(.top, .spacing(.xxxSmall))
                     .padding(.bottom, .spacing(.xSmall))

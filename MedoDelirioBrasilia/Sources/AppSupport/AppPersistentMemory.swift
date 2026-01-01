@@ -78,12 +78,11 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
-    func getShouldRetrySendingDevicePushToken() -> Bool {
-        let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "shouldRetrySendingDevicePushToken") else {
-            return true
+    func getLastSentPushToken() -> String? {
+        guard let value = userDefaults.object(forKey: "lastSentPushToken") else {
+            return nil
         }
-        return Bool(value as! Bool)
+        return String(value as! String)
     }
 
     func hasShownNotificationsOnboarding() -> Bool {
@@ -184,6 +183,13 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    func hasDismissedRetro2025BannerInTrends() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasDismissedRetro2025BannerInTrends") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     func getHasSeenFirstUpdateIncentiveBanner() -> Bool {
         guard let value = userDefaults.object(forKey: "hasSeenFirstUpdateIncentiveBanner") else {
             return false
@@ -261,8 +267,8 @@ extension AppPersistentMemory {
         userDefaults.set(newValue, forKey: "folderBannerWasDismissed")
     }
     
-    func setShouldRetrySendingDevicePushToken(to newValue: Bool) {
-        userDefaults.set(newValue, forKey: "shouldRetrySendingDevicePushToken")
+    func setLastSentPushToken(to token: String) {
+        userDefaults.set(token, forKey: "lastSentPushToken")
     }
     
     func hasShownNotificationsOnboarding(_ newValue: Bool) {
@@ -320,6 +326,10 @@ extension AppPersistentMemory {
 
     func dismissedRetro2025Banner(_ newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasDismissedRetro2025Banner")
+    }
+
+    func dismissedRetro2025BannerInTrends(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasDismissedRetro2025BannerInTrends")
     }
 
     func setHasSeenFirstUpdateIncentiveBanner(to newValue: Bool) {

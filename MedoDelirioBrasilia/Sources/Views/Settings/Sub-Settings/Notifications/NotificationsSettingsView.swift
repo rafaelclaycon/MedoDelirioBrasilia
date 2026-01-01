@@ -60,18 +60,6 @@ struct NotificationsSettingsView: View {
                     }
                 }
             }
-            
-            if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
-                Section {
-                    Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
-                        AppPersistentMemory.shared.setShouldRetrySendingDevicePushToken(to: true)
-                    }
-                } header: {
-                    Text("Apenas para testes")
-                } footer: {
-                    Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Configurações no topo da tela para voltar para a tela de Configurações e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
-                }
-            }
         }
         .navigationTitle("Notificações")
         .navigationBarTitleDisplayMode(.inline)
