@@ -125,7 +125,7 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
     }
 
     func delete(authorId: String) throws {
-        didCallDeleteSound = true
+        didCallDeleteAuthor = true
     }
 
     func author(withId authorId: String) throws -> Author? {

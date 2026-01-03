@@ -15,6 +15,7 @@ protocol ContentUpdateServiceProtocol {
 
 /// A service that updates local content to stay in sync with their versions on the server.
 @Observable
+@MainActor
 class ContentUpdateService: ContentUpdateServiceProtocol {
 
     // MARK: - Public Properties
