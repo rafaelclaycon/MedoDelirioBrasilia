@@ -41,10 +41,12 @@ final class MainContentViewModel {
         logger: Logger.shared
     )
     private let syncValues: SyncValues
-    var displayLongUpdateBanner: Bool = false
-    var dismissedLongUpdateBanner: Bool = false
-    //var processedUpdateNumber: Int = 0
-    //var totalUpdateCount: Int = 0
+
+    var displayLongUpdateBanner: Bool {
+        contentUpdateService.isUpdating &&
+        contentUpdateService.totalUpdateCount >= 10 &&
+        contentUpdateService.processedUpdateNumber < contentUpdateService.totalUpdateCount
+    }
 
     // MARK: - Initializer
 
@@ -77,9 +79,9 @@ extension MainContentViewModel {
 
     public func onViewDidAppear() async {
         print("MAIN CONTENT VIEW - ON APPEAR")
-        await contentUpdateService.update()
-        updateDisplayLongUpdateBanner()
-        loadContent()
+        loadContent()                         // Show local content immediately
+        await contentUpdateService.update()   // Run update (banner shows reactively if 10+ updates)
+        loadContent(clearCache: true)         // Refresh with new content
     }
 
     public func onSelectedViewModeChanged() async {
@@ -107,16 +109,6 @@ extension MainContentViewModel {
 
     public func onFavoritesChanged() {
         loadContent()
-    }
-
-    public func onAllowFirstContentUpdateSelected() async {
-        //AppPersistentMemory.shared.hasAllowedContentUpdate(true)
-        await contentUpdateService.update()
-    }
-
-    public func onDismissFirstContentUpdateSelected() {
-        dismissedLongUpdateBanner = true
-        updateDisplayLongUpdateBanner()
     }
 }
 
@@ -190,12 +182,6 @@ extension MainContentViewModel {
         print("WILL WARM OPEN CONTENT UPDATE")
         await updateContent(lastAttempt: lastUpdateAttempt)
         print("DID FINISH WARM OPEN CONTENT UPDATE")
-    }
-
-    private func updateDisplayLongUpdateBanner() {
-        guard !dismissedLongUpdateBanner else { return displayLongUpdateBanner = false }
-        //guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return displayLongUpdateBanner = true }
-        displayLongUpdateBanner = contentUpdateService.totalUpdateCount >= 10 && contentUpdateService.processedUpdateNumber != contentUpdateService.totalUpdateCount
     }
 
     private func fireAnalytics() async {

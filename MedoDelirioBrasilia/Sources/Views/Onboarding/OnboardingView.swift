@@ -7,12 +7,20 @@
 
 import SwiftUI
 
+// MARK: - Content Download Choice
+
+enum ContentDownloadChoice {
+    case downloadLater
+    case downloadAllNow
+}
+
 struct OnboardingView: View {
 
-    let doFirstContentUpdateAction: () -> Void
+    // NOTE: Content Download Choice feature is disabled for now.
+    // The selectionAction and AskDoFirstContentUpdateView are preserved for future use.
+    // var selectionAction: ((ContentDownloadChoice) -> Void)? = nil
 
     @State private var showAskShowSensitive: Bool = false
-    @State private var showAskDoFirstUpdate: Bool = false
 
     @Environment(\.dismiss) private var dismiss
 
@@ -35,20 +43,10 @@ struct OnboardingView: View {
                 AskShowExplicitContentView(
                     showAction: {
                         UserSettings().setShowExplicitContent(to: true)
-                        showAskDoFirstUpdate = true
                     },
-                    dontShowAction: {
-                        showAskDoFirstUpdate = true
-                    }
+                    dontShowAction: {},
+                    completionAction: { dismiss() }
                 )
-                .navigationDestination(isPresented: $showAskDoFirstUpdate) {
-                    AskDoFirstContentUpdateView(
-                        allowAction: {
-                            doFirstContentUpdateAction()
-                        },
-                        dontAllowAction: { dismiss() }
-                    )
-                }
             }
         }
     }
@@ -122,8 +120,7 @@ extension OnboardingView {
 
         let showAction: () -> Void
         let dontShowAction: () -> Void
-
-        @Environment(\.dismiss) private var dismiss
+        let completionAction: () -> Void
 
         var body: some View {
             ScrollView {
@@ -176,6 +173,7 @@ extension OnboardingView {
                 VStack(alignment: .center, spacing: 22) {
                     Button {
                         showAction()
+                        completionAction()
                     } label: {
                         Text("Exibir Conteúdo Sensível")
                             .bold()
@@ -189,6 +187,7 @@ extension OnboardingView {
 
                     Button {
                         dontShowAction()
+                        completionAction()
                     } label: {
                         Text("Não Exibir Conteúdo Sensível")
                     }
@@ -208,8 +207,11 @@ extension OnboardingView {
 
     struct AskDoFirstContentUpdateView: View {
 
-        let allowAction: () -> Void
-        let dontAllowAction: () -> Void
+        let selectionAction: (ContentDownloadChoice) -> Void
+
+        @State private var selectedOption: ContentDownloadChoice? = nil
+
+        @Environment(\.colorScheme) private var colorScheme
 
         var body: some View {
             ScrollView {
@@ -222,58 +224,144 @@ extension OnboardingView {
                         .font(.largeTitle)
                         .bold()
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, .spacing(.large))
                         .padding(.vertical)
 
-                    VStack(alignment: .center, spacing: .spacing(.xLarge)) {
-                        Text("Novos sons e músicas são baixados sempre que você estiver online. A primeira atualização é a mais longa:")
-                            .multilineTextAlignment(.center)
+                    Text("Novos sons e músicas são baixados sempre que você estiver online. Como deseja prosseguir?")
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, .spacing(.large))
 
-                        Text("Aproximadamente 3 minutos - 20 MB")
-                            .multilineTextAlignment(.center)
-                            .bold()
+                    VStack(spacing: .spacing(.medium)) {
+                        OptionBox(
+                            icon: "clock.arrow.circlepath",
+                            title: "Baixar Depois",
+                            description: "Os sons serão baixados conforme você for usando o app. Mais rápido para começar.",
+                            isSelected: selectedOption == .downloadLater
+                        )
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                selectedOption = .downloadLater
+                            }
+                        }
 
-                        Text("Deseja realizá-la agora?")
-                            .multilineTextAlignment(.center)
+                        OptionBox(
+                            icon: "arrow.down.circle.fill",
+                            title: "Baixar Tudo Agora",
+                            description: "Baixa todos os sons de uma vez. Aproximadamente 3 minutos e 20 MB.",
+                            isSelected: selectedOption == .downloadAllNow
+                        )
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                selectedOption = .downloadAllNow
+                            }
+                        }
                     }
-                    .padding(.horizontal, .spacing(.large))
+                    .padding(.horizontal, .spacing(.medium))
+                    .padding(.top, .spacing(.medium))
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                VStack(alignment: .center, spacing: .spacing(.xLarge)) {
+                VStack(alignment: .center, spacing: .spacing(.medium)) {
                     Button {
-                        allowAction()
+                        if let selectedOption {
+                            selectionAction(selectedOption)
+                        }
                     } label: {
                         HStack {
                             Spacer()
-                            Text("Atualizar agora")
+                            Text("Continuar")
                                 .bold()
                                 .foregroundColor(.white)
                             Spacer()
                         }
                     }
                     .largeRoundedRectangleBorderedProminent(colored: .accentColor)
-
-                    Button {
-                        dontAllowAction()
-                    } label: {
-                        Text("Perguntar depois")
-                    }
-                    .foregroundColor(.blue)
+                    .disabled(selectedOption == nil)
+                    .opacity(selectedOption == nil ? 0.5 : 1.0)
 
                     if !UIDevice.isiPhone {
-                        Text("Caso a tela não feche automaticamente ao escolher uma das opções, toque fora dela (na área apagada).")
+                        Text("Caso a tela não feche automaticamente, toque fora dela (na área apagada).")
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                             .font(.callout)
                             .foregroundColor(.gray)
-                            .padding(.horizontal)
                     }
                 }
                 .padding(.horizontal)
-                .padding(.bottom, 10)
+                .padding(.bottom, .spacing(.small))
                 .background(Color.systemBackground)
             }
+            .sensoryFeedback(.selection, trigger: selectedOption)
+        }
+    }
+
+    // MARK: - OptionBox Component
+
+    struct OptionBox: View {
+
+        let icon: String
+        let title: String
+        let description: String
+        let isSelected: Bool
+
+        @Environment(\.colorScheme) private var colorScheme
+
+        private var backgroundColor: Color {
+            if isSelected {
+                return colorScheme == .dark
+                    ? Color.accentColor.opacity(0.2)
+                    : Color.accentColor.opacity(0.1)
+            } else {
+                return colorScheme == .dark
+                    ? Color.gray.opacity(0.15)
+                    : Color.gray.opacity(0.08)
+            }
+        }
+
+        private var borderColor: Color {
+            isSelected ? Color.accentColor : Color.gray.opacity(0.3)
+        }
+
+        private var borderWidth: CGFloat {
+            isSelected ? 2.5 : 1.0
+        }
+
+        var body: some View {
+            HStack(alignment: .center, spacing: .spacing(.medium)) {
+                Image(systemName: icon)
+                    .font(.system(size: 32))
+                    .foregroundColor(isSelected ? .accentColor : .secondary)
+                    .frame(width: 44)
+
+                VStack(alignment: .leading, spacing: .spacing(.xxxSmall)) {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundColor(.primary)
+
+                    Text(description)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                Spacer()
+
+                if isSelected {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.accentColor)
+                }
+            }
+            .padding(.spacing(.medium))
+            .background(
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(backgroundColor)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(borderColor, lineWidth: borderWidth)
+            )
+            .contentShape(RoundedRectangle(cornerRadius: 14))
         }
     }
 }
@@ -281,14 +369,35 @@ extension OnboardingView {
 // MARK: - Previews
 
 #Preview {
-    OnboardingView(doFirstContentUpdateAction: {})
+    OnboardingView()
 }
 
-#Preview("First Update") {
+#Preview("First Update - Disabled") {
     NavigationStack {
         OnboardingView.AskDoFirstContentUpdateView(
-            allowAction: {},
-            dontAllowAction: {}
+            selectionAction: { choice in
+                print("Selected: \(choice)")
+            }
         )
     }
+}
+
+#Preview("Option Box - Not Selected") {
+    OnboardingView.OptionBox(
+        icon: "clock.arrow.circlepath",
+        title: "Baixar Depois",
+        description: "Os sons serão baixados conforme você for usando o app.",
+        isSelected: false
+    )
+    .padding()
+}
+
+#Preview("Option Box - Selected") {
+    OnboardingView.OptionBox(
+        icon: "arrow.down.circle.fill",
+        title: "Baixar Tudo Agora",
+        description: "Baixa todos os sons de uma vez. Aproximadamente 3 minutos e 20 MB.",
+        isSelected: true
+    )
+    .padding()
 }

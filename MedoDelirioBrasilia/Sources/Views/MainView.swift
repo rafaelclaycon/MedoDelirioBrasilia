@@ -401,16 +401,8 @@ struct MainView: View {
                     .environment(settingsHelper)
 
             case .onboarding:
-                OnboardingView(
-                    doFirstContentUpdateAction: {
-//                        Task {
-//                            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
-//                            await contentUpdateService.update()
-//                        }
-                        showingModalView = false
-                    }
-                )
-                .interactiveDismissDisabled(UIDevice.isiPhone)
+                OnboardingView()
+                    .interactiveDismissDisabled(UIDevice.isiPhone)
 
             case .retrospective, .whatsNew:
                 EmptyView()

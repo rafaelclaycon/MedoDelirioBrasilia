@@ -114,15 +114,7 @@ struct MainContentView: View {
                                     if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
                                             completedNumber: viewModel.contentUpdateService.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
-                                            updateNowAction: {
-                                                Task {
-                                                    await viewModel.onAllowFirstContentUpdateSelected()
-                                                }
-                                            },
-                                            dismissBannerAction: {
-                                                viewModel.onDismissFirstContentUpdateSelected()
-                                            }
+                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount
                                         )
                                     }
 

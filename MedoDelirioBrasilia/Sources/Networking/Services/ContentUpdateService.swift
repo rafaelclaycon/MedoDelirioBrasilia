@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Observation
 import SwiftUI
 
 // MARK: - Update Event Structures
@@ -33,6 +34,7 @@ extension Notification.Name {
 }
 
 /// A service that updates local content to stay in sync with their versions on the server.
+@Observable
 class ContentUpdateService: ContentUpdateServiceProtocol {
 
     // MARK: - Public Properties
