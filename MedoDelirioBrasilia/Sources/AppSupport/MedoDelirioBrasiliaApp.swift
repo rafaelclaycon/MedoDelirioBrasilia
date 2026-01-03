@@ -116,13 +116,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func sendDeviceModelNameToServer() async {
-        guard AppPersistentMemory().getHasSentDeviceModelToServer() == false else {
+        guard AppPersistentMemory.shared.getHasSentDeviceModelToServer() == false else {
             return
         }
-        let info = ClientDeviceInfo(installId: AppPersistentMemory().customInstallId, modelName: UIDevice.modelName)
+        let info = ClientDeviceInfo(installId: AppPersistentMemory.shared.customInstallId, modelName: UIDevice.modelName)
         do {
             try await APIClient.shared.post(clientDeviceInfo: info)
-            AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
+            AppPersistentMemory.shared.setHasSentDeviceModelToServer(to: true)
         } catch {
             print("Erro enviando device model para o servidor:")
             debugPrint(error)
@@ -138,7 +138,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
 
         let signal = StillAliveSignal(
-            installId: AppPersistentMemory().customInstallId,
+            installId: AppPersistentMemory.shared.customInstallId,
             modelName: UIDevice.modelName,
             systemName: UIDevice.current.systemName,
             systemVersion: UIDevice.current.systemVersion,
@@ -256,6 +256,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
         }
     }
+
+//    Feature put on hold on Jan 3, 2026.
+//    /// For anyone that already had the app before the Ask For Content Update changes (PR #251),
+//    /// we need to skip asking them since asking should only happen before the 1st ever content update.
+//    private func updateHasAllowedContentUpdateIfNeeded() {
+//        if AppPersistentMemory.shared.getLastUpdateAttempt() != "" {
+//            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
+//        }
+//    }
 }
 
 extension AppDelegate {
@@ -284,7 +293,7 @@ extension AppDelegate {
             }
         } catch {
             print("Error creating \(folderName) folder: \(error)")
-            Logger.shared.logSyncError(description: "Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)")
+            Logger.shared.updateError("Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)")
         }
     }
 }

@@ -213,7 +213,7 @@ struct FolderGrid: View {
                 viewModel: FolderGridViewModel(
                     userFolderRepository: UserFolderRepository(database: fakeDB),
                     userSettings: UserSettings(),
-                    appMemory: AppPersistentMemory()
+                    appMemory: AppPersistentMemory.shared
                 ),
                 updateFolderList: .constant(false),
                 folderForEditing: .constant(nil),

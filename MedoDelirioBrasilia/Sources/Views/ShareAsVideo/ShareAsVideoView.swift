@@ -146,11 +146,11 @@ struct ShareAsVideoView: View {
                         if didCloseTip {
                             if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
                                 showTextSocialNetworkTip = false
-                                AppPersistentMemory().setHasHiddenShareAsVideoTextSocialNetworkTip(to: true)
+                                AppPersistentMemory.shared.setHasHiddenShareAsVideoTextSocialNetworkTip(to: true)
                                 self.didCloseTip = false
                             } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                                 showInstagramTip = false
-                                AppPersistentMemory().setHasHiddenShareAsVideoInstagramTip(to: true)
+                                AppPersistentMemory.shared.setHasHiddenShareAsVideoInstagramTip(to: true)
                                 self.didCloseTip = false
                             }
                         }
@@ -170,8 +170,8 @@ struct ShareAsVideoView: View {
         }
         .onAppear {
             tipText = textSocialNetworkTip
-            showTextSocialNetworkTip = AppPersistentMemory().getHasHiddenShareAsVideoTextSocialNetworkTip() == false
-            showInstagramTip = AppPersistentMemory().getHasHiddenShareAsVideoInstagramTip() == false
+            showTextSocialNetworkTip = AppPersistentMemory.shared.getHasHiddenShareAsVideoTextSocialNetworkTip() == false
+            showInstagramTip = AppPersistentMemory.shared.getHasHiddenShareAsVideoInstagramTip() == false
             viewModel.onViewAppeared()
         }
     }

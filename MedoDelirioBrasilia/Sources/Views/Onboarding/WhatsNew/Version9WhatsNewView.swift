@@ -124,6 +124,6 @@ extension Version9WhatsNewView {
         Text("Stuff")
     }
     .sheet(isPresented: .constant(true)) {
-        Version9WhatsNewView(appMemory: AppPersistentMemory())
+        Version9WhatsNewView(appMemory: AppPersistentMemory.shared)
     }
 }

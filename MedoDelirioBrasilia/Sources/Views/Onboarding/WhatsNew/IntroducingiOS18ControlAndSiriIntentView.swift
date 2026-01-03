@@ -76,7 +76,7 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
             .safeAreaInset(edge: .bottom) {
                 VStack(alignment: .center) {
                     Button {
-                        AppPersistentMemory().hasSeenControlWhatsNewScreen(true)
+                        AppPersistentMemory.shared.hasSeenControlWhatsNewScreen(true)
                         dismiss()
                     } label: {
                         HStack {

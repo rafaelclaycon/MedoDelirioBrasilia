@@ -26,6 +26,8 @@ struct ContentUpdateStatusView: View {
                     AllOkView(lastUpdateAttempt: lastUpdateAttempt)
                 case .updateError:
                     UpdateErrorView(lastUpdateDate: lastUpdateDate)
+                /*case .pendingFirstUpdate:
+                    PendingFirstUpdateView()*/
                 }
             }
             .navigationTitle("Atualização de Conteúdos")
@@ -176,6 +178,35 @@ extension ContentUpdateStatusView {
         }
     }
 
+    private struct PendingFirstUpdateView: View {
+
+        var body: some View {
+            VStack(spacing: 30) {
+                Image(systemName: "clock")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 70)
+                    .foregroundColor(.gray)
+
+                Text("Aguardando Primeira Atualização")
+                    .font(.title2)
+                    .bold()
+                    .multilineTextAlignment(.center)
+
+                Button {
+
+                } label: {
+                    Text("Atualizar Agora")
+                        .bold()
+                        .padding(.horizontal, .spacing(.medium))
+                }
+                .borderedButton(colored: .accentColor)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+        }
+    }
+
     private struct InfoHeader: View {
 
         let symbol: String
@@ -251,22 +282,26 @@ extension ContentUpdateStatusView {
 
 // MARK: - Previews
 
-#Preview("Updating") {
-    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "all")
-        .environment(SyncValues())
-}
-
-#Preview("Update OK") {
-    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-        .environment(SyncValues(syncStatus: .done))
-}
-
-#Preview("Update Error - Never Updated") {
-    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "all")
-        .environment(SyncValues(syncStatus: .updateError))
-}
-
-#Preview("Update Error") {
-    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2025-07-11T20:29:46.562Z")
-        .environment(SyncValues(syncStatus: .updateError))
-}
+//#Preview("Updating") {
+//    let syncValuesUpdating: SyncValues = SyncValues()
+//    return ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "all")
+//        .environment(syncValuesUpdating)
+//}
+//
+//#Preview("Done") {
+//    let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
+//    ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+//        .environment(syncValuesDone)
+//}
+//
+//#Preview("Update Error") {
+//    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
+//    return ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+//        .environment(syncValuesUpdateError)
+//}
+//
+//#Preview("First Update Not Allowed") {
+//    let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .pendingFirstUpdate)
+//    return ContentUpdateStatusView(lastUpdateAttempt: "", lastUpdateDate: "")
+//        .environment(syncValuesUpdateError)
+//}

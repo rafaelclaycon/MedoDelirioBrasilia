@@ -9,6 +9,10 @@ import Foundation
 
 protocol AppPersistentMemoryProtocol {
 
+    func hasAllowedContentUpdate() -> Bool
+    func hasAllowedContentUpdate(_ newValue: Bool)
+    func setLastUpdateAttempt(to newValue: String)
+
     func folderResearchHashes() -> [String: String]?
     func folderResearchHashes(_ foldersHashes: [String: String])
 
@@ -30,6 +34,8 @@ protocol AppPersistentMemoryProtocol {
 final class AppPersistentMemory: AppPersistentMemoryProtocol {
 
     private let userDefaults: UserDefaults
+
+    static let shared = AppPersistentMemory()
 
     init(
         userDefaults: UserDefaults = UserDefaults.standard
@@ -239,6 +245,10 @@ extension AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
+
+    func hasAllowedContentUpdate() -> Bool {
+        userDefaults.bool(forKey: "hasAllowedContentUpdate")
+    }
 }
 
 // MARK: - Setters
@@ -352,5 +362,9 @@ extension AppPersistentMemory {
 
     func hasDismissediOS26BetaBanner(_ newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasDismissediOS26BetaBanner")
+    }
+
+    func hasAllowedContentUpdate(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasAllowedContentUpdate")
     }
 }

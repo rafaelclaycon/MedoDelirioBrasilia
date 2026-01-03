@@ -51,4 +51,14 @@ extension LocalDatabase {
             throw LocalDatabaseError.musicGenreNotFound
         }
     }
+
+    func musicGenre(withId genreId: String) throws -> MusicGenre? {
+        var queriedItems = [MusicGenre]()
+        let id = Expression<String>("id")
+        let query = musicGenreTable.filter(id == genreId)
+        for queriedItem in try db.prepare(query) {
+            queriedItems.append(try queriedItem.decode())
+        }
+        return queriedItems.first
+    }
 }
