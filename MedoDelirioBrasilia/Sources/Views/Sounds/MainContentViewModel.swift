@@ -1,5 +1,5 @@
 //
-//  PhoneSoundsContainerViewModel.swift
+//  MainContentViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 14/04/24.
@@ -78,15 +78,10 @@ final class MainContentViewModel {
 extension MainContentViewModel {
 
     public func onViewDidAppear() async {
-        print("MAIN CONTENT VIEW - ON APPEAR")
-        loadContent()                         // Show local content immediately
-        await contentUpdateService.update()   // Run update (banner shows reactively if 10+ updates)
-        loadContent(clearCache: true)         // Refresh with new content
-        
-        // Sync the status and show toast
-        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
-        let message = syncValues.syncStatus.description
-        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
+        loadContent()
+        await contentUpdateService.update()
+        loadContent(clearCache: true)
+        showUpdateCompletionToast()
     }
 
     public func onSelectedViewModeChanged() async {
@@ -145,11 +140,6 @@ extension MainContentViewModel {
     }
 
     private func updateContent(lastAttempt: String) async {
-        //guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
-
-        print("lastAttempt: \(lastAttempt)")
-
-        // Logic for pulling down - keep here
         guard
             CommandLine.arguments.contains("-IGNORE_CONTENT_UPDATE_WAIT") ||
             lastAttempt == "" ||
@@ -158,36 +148,33 @@ extension MainContentViewModel {
             if syncValues.syncStatus == .updating {
                 syncValues.syncStatus = .done
             }
-
             let message = String(format: Shared.Sync.waitMessage, lastAttempt.timeUntil(addingMinutes: 1))
-
             toast.wrappedValue = Toast(message: message, type: .wait)
             return
         }
 
         await contentUpdateService.update()
-
-        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
-        let message = syncValues.syncStatus.description
-        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
+        showUpdateCompletionToast()
     }
 
     /// Warm open means the app was reopened before it left memory.
     private func warmOpenContentUpdate() async {
-        //guard AppPersistentMemory.shared.hasAllowedContentUpdate() else { return }
         guard !isRunningUnitTests else { return }
 
         let lastUpdateAttempt = AppPersistentMemory.shared.getLastUpdateAttempt()
-        print("lastUpdateAttempt: \(lastUpdateAttempt)")
         guard
             syncValues.syncStatus != .updating,
             let date = lastUpdateAttempt.iso8601withFractionalSeconds,
             date.minutesPassed(60)
         else { return }
 
-        print("WILL WARM OPEN CONTENT UPDATE")
         await updateContent(lastAttempt: lastUpdateAttempt)
-        print("DID FINISH WARM OPEN CONTENT UPDATE")
+    }
+
+    private func showUpdateCompletionToast() {
+        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
+        let message = syncValues.syncStatus.description
+        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
     }
 
     private func fireAnalytics() async {

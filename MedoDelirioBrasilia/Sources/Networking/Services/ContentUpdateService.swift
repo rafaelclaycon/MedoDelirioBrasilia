@@ -7,30 +7,10 @@
 
 import Foundation
 import Observation
-import SwiftUI
-
-// MARK: - Update Event Structures
-
-struct ProgressUpdate {
-    let processed: Int
-    let total: Int
-}
-
-struct StatusUpdate {
-    let status: ContentUpdateStatus
-    let contentChanged: Bool
-}
 
 protocol ContentUpdateServiceProtocol {
 
     func update() async
-}
-
-extension Notification.Name {
-
-    static let contentUpdateProgress = Notification.Name("contentUpdateProgress")
-    static let contentUpdateProgressTotal = Notification.Name("contentUpdateProgressTotal")
-    static let contentUpdateStatus = Notification.Name("contentUpdateStatus")
 }
 
 /// A service that updates local content to stay in sync with their versions on the server.
@@ -58,8 +38,6 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
     }
 
     // MARK: - Internal Properties
-
-    private var firstRunUpdateHappened: Bool = false
 
     private var localUnsuccessfulUpdates: [UpdateEvent]?
     private var serverUpdates: [UpdateEvent]?
@@ -95,11 +73,6 @@ extension ContentUpdateService {
 
     /// Performs the content update operation with the server.
     public func update() async {
-        /*guard appMemory.hasAllowedContentUpdate() else {
-            notifyUpdate(status: .pendingFirstUpdate, contentChanged: false)
-            return
-        }*/
-
         isUpdating = true
 
         defer {
@@ -120,7 +93,6 @@ extension ContentUpdateService {
             isUpdating = false
             updateStartTime = nil
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
-            print(errorMessage)
             logger.updateError(errorMessage)
             lastUpdateStatus = .updateError
             isUpdating = false
@@ -136,8 +108,6 @@ extension ContentUpdateService {
             isUpdating = false
             updateStartTime = nil
         }
-
-        firstRunUpdateHappened = true
     }
 }
 
@@ -146,13 +116,11 @@ extension ContentUpdateService {
 extension ContentUpdateService {
 
     private func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {
-        print(updateDateToConsider)
         return try await apiClient.fetchUpdateEvents(from: updateDateToConsider)
     }
 
     private func retryLocal() async throws -> Bool {
         let localResult = try await retrieveUnsuccessfulLocalUpdates()
-        print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
         if localResult > 0 {
             try await syncUnsuccessful()
         }
@@ -161,17 +129,14 @@ extension ContentUpdateService {
 
     private func syncDataWithServer() async throws -> Bool {
         let result = try await retrieveServerUpdates()
-        print("Resultado do retrieveServerUpdates: \(result)")
         if result > 0 {
             try await serverSync()
         }
         return result > 0
     }
 
-    private func retrieveServerUpdates() async throws -> Double {
-        print("retrieveServerUpdates()")
+    private func retrieveServerUpdates() async throws -> Int {
         let lastUpdateDate = localDatabase.dateTimeOfLastUpdate()
-        print("lastUpdateDate: \(lastUpdateDate)")
         serverUpdates = try await getUpdates(from: lastUpdateDate)
         if var serverUpdates = serverUpdates {
             for i in serverUpdates.indices {
@@ -185,21 +150,16 @@ extension ContentUpdateService {
                 }
             }
         }
-        return Double(serverUpdates?.count ?? 0)
+        return serverUpdates?.count ?? 0
     }
 
-    private func retrieveUnsuccessfulLocalUpdates() async throws -> Double {
-        print("fetchLocalUnsuccessfulUpdates()")
+    private func retrieveUnsuccessfulLocalUpdates() async throws -> Int {
         localUnsuccessfulUpdates = try localDatabase.unsuccessfulUpdates()
-        return Double(localUnsuccessfulUpdates?.count ?? 0)
+        return localUnsuccessfulUpdates?.count ?? 0
     }
 
     private func serverSync() async throws {
-        print("serverSync()")
-        guard let serverUpdates = serverUpdates else { return }
-        guard serverUpdates.isEmpty == false else {
-            return print("NO UPDATES")
-        }
+        guard let serverUpdates = serverUpdates, !serverUpdates.isEmpty else { return }
 
         let totalCount = serverUpdates.count
         var updateNumber: Int = 0
@@ -216,11 +176,7 @@ extension ContentUpdateService {
     }
 
     private func syncUnsuccessful() async throws {
-        print("syncUnsuccessful()")
-        guard let localUnsuccessfulUpdates = localUnsuccessfulUpdates else { return }
-        guard localUnsuccessfulUpdates.isEmpty == false else {
-            return print("NO LOCAL UNSUCCESSFUL UPDATES")
-        }
+        guard let localUnsuccessfulUpdates = localUnsuccessfulUpdates, !localUnsuccessfulUpdates.isEmpty else { return }
 
         for update in localUnsuccessfulUpdates {
             await process(updateEvent: update)
@@ -283,9 +239,10 @@ extension ContentUpdateService {
                 updateEventId: updateEvent.id.uuidString
             )
         } catch {
-            let message = "Erro ao tentar criar \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
-            print(message)
-            logger.updateError(message, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(
+                "Erro ao tentar criar \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)",
+                updateEventId: updateEvent.id.uuidString
+            )
         }
     }
 
@@ -319,9 +276,10 @@ extension ContentUpdateService {
                 updateEventId: updateEvent.id.uuidString
             )
         } catch {
-            let message = "Erro ao tentar atualizar dados de \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
-            print(message)
-            logger.updateError(message, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(
+                "Erro ao tentar atualizar dados de \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)",
+                updateEventId: updateEvent.id.uuidString
+            )
         }
     }
 
@@ -338,9 +296,10 @@ extension ContentUpdateService {
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             logger.updateSuccess("Arquivo de \(updateEvent.mediaType.description) \(updateEvent.contentId) atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {
-            let message = "Erro ao tentar atualizar arquivo de \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
-            print(message)
-            logger.updateError(message, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(
+                "Erro ao tentar atualizar arquivo de \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)",
+                updateEventId: updateEvent.id.uuidString
+            )
         }
     }
 
@@ -365,9 +324,10 @@ extension ContentUpdateService {
                 updateEventId: updateEvent.id.uuidString
             )
         } catch {
-            let message = "Erro ao tentar remover \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)"
-            print(message)
-            logger.updateError(message, updateEventId: updateEvent.id.uuidString)
+            logger.updateError(
+                "Erro ao tentar remover \(updateEvent.mediaType.description) - \(updateEvent.contentId): \(error.localizedDescription)",
+                updateEventId: updateEvent.id.uuidString
+            )
         }
     }
 }
