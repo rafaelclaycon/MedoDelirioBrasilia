@@ -18,7 +18,6 @@ struct ContentUpdateServiceTests {
     private var fileManager: FakeContentFileManager!
     private var appMemory: FakeAppPersistentMemory!
     private var logger: FakeLoggerService!
-    private var delegate: FakeContentUpdateServiceDelegate!
 
     init() {
         self.apiClient = FakeAPIClient()
@@ -26,7 +25,6 @@ struct ContentUpdateServiceTests {
         self.fileManager = FakeContentFileManager()
         self.appMemory = FakeAppPersistentMemory()
         self.logger = FakeLoggerService()
-        self.delegate = FakeContentUpdateServiceDelegate()
 
         self.service = ContentUpdateService(
             apiClient: apiClient,
@@ -35,15 +33,6 @@ struct ContentUpdateServiceTests {
             appMemory: appMemory,
             logger: logger
         )
-        self.service.delegate = delegate
-    }
-
-    @Test
-    func update_whenNotAllowedYet_shouldReturnPendingStatus() async throws {
-        await service.update()
-
-        #expect(delegate.statusUpdates.count == 1)
-        #expect(delegate.statusUpdates.first?.0 == ContentUpdateStatus.pendingFirstUpdate)
     }
 
     @Test
@@ -60,10 +49,7 @@ struct ContentUpdateServiceTests {
 
         await service.update()
 
-        #expect(delegate.statusUpdates.count == 2)
-        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
-        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
-
+        #expect(service.lastUpdateStatus == .done)
         #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
         #expect(!fileManager.didCallDownloadSound)
     }
@@ -80,10 +66,7 @@ struct ContentUpdateServiceTests {
 
         await service.update()
 
-        #expect(delegate.statusUpdates.count == 2)
-        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
-        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
-
+        #expect(service.lastUpdateStatus == .done)
         #expect(localDatabase.didCallInsertSound)
         #expect(fileManager.didCallDownloadSound)
         #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
@@ -101,10 +84,7 @@ struct ContentUpdateServiceTests {
 
         await service.update()
 
-        #expect(delegate.statusUpdates.count == 2)
-        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
-        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
-
+        #expect(service.lastUpdateStatus == .done)
         #expect(!localDatabase.didCallInsertSound)
         #expect(localDatabase.didCallUpdateSound)
         #expect(!localDatabase.didCallDeleteSound)
@@ -124,10 +104,7 @@ struct ContentUpdateServiceTests {
 
         await service.update()
 
-        #expect(delegate.statusUpdates.count == 2)
-        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
-        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
-
+        #expect(service.lastUpdateStatus == .done)
         #expect(!localDatabase.didCallInsertSound)
         #expect(fileManager.didCallDownloadSound)
         #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
@@ -142,10 +119,7 @@ struct ContentUpdateServiceTests {
 
         await service.update()
 
-        #expect(delegate.statusUpdates.count == 2)
-        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
-        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
-
+        #expect(service.lastUpdateStatus == .done)
         #expect(localDatabase.didCallDeleteSound)
         #expect(fileManager.didCallRemoveSoundFile)
         #expect(try localDatabase.unsuccessfulUpdates().isEmpty)
@@ -160,10 +134,7 @@ struct ContentUpdateServiceTests {
 
         await service.update()
 
-        #expect(delegate.statusUpdates.count == 2)
-        #expect(delegate.statusUpdates[0].0 == ContentUpdateStatus.updating)
-        #expect(delegate.statusUpdates[1].0 == ContentUpdateStatus.done)
-
+        #expect(service.lastUpdateStatus == .done)
         #expect(!localDatabase.didCallUpdateAuthor)
         #expect(!fileManager.didCallDownloadSound)
         #expect(!fileManager.didCallDownloadSong)

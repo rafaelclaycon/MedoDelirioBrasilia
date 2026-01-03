@@ -26,8 +26,8 @@ struct ContentUpdateStatusView: View {
                     AllOkView(lastUpdateAttempt: lastUpdateAttempt)
                 case .updateError:
                     UpdateErrorView(lastUpdateDate: lastUpdateDate)
-                case .pendingFirstUpdate:
-                    PendingFirstUpdateView()
+                /*case .pendingFirstUpdate:
+                    PendingFirstUpdateView()*/
                 }
             }
             .navigationTitle("Atualização de Conteúdos")

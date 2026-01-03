@@ -41,7 +41,7 @@ enum ContentUpdateError: Error {
 
 enum ContentUpdateStatus: CustomStringConvertible {
 
-    case updating, done, updateError, pendingFirstUpdate
+    case updating, done, updateError
 
     var description: String {
         switch self {
@@ -51,8 +51,8 @@ enum ContentUpdateStatus: CustomStringConvertible {
             return "Você tem as últimas novidades."
         case .updateError:
             return "Não foi possível obter as últimas novidades."
-        case .pendingFirstUpdate:
-            return "Primeira atualização ainda não autorizada."
+        /*case .pendingFirstUpdate:
+            return "Primeira atualização ainda não autorizada."*/
         }
     }
 }

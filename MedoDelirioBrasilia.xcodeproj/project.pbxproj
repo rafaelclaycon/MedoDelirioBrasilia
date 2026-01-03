@@ -362,7 +362,6 @@
 		D94B040E2993383F00EB03CA /* Susto caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040A2993383F00EB03CA /* Susto caralho.mp3 */; };
 		D94B040F2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */; };
 		D94B04112993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */; };
-		D94B514D2CC625120005FABE /* FakeContentUpdateServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B514C2CC625120005FABE /* FakeContentUpdateServiceDelegate.swift */; };
 		D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */; };
 		D94C393D29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C393A29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 */; };
 		D94C393E29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C393B29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 */; };
@@ -7133,7 +7132,6 @@
 				D96892DE2C9F7DC50084F646 /* VideoMakerTests.swift in Sources */,
 				D90E80C42CEA1F570014A886 /* ReactionsViewModelTests.swift in Sources */,
 				D9CF3BDC2DB060AF002C6E6B /* FakeAnalyticsService.swift in Sources */,
-				D94B514D2CC625120005FABE /* FakeContentUpdateServiceDelegate.swift in Sources */,
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
 				D9D22D862A59FA1D00ABDCDC /* MainViewViewModelTests.swift in Sources */,

@@ -21,9 +21,9 @@ struct ContentUpdateStatusSymbol: View {
         case .updateError:
             Image(systemName: "exclamationmark.triangle.fill") // "xmark.octagon"
                 .foregroundColor(.orange)
-        case .pendingFirstUpdate:
-            Image(systemName: "clock")
-                .foregroundColor(.gray)
+//        case .pendingFirstUpdate:
+//            Image(systemName: "clock")
+//                .foregroundColor(.gray)
         }
     }
 }

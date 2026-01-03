@@ -43,6 +43,7 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
     public var totalUpdateCount: Int = 0
     public var isUpdating: Bool = false
     public var updateStartTime: Date? = nil
+    public var lastUpdateStatus: ContentUpdateStatus = .updating
 
     public var estimatedSecondsRemaining: TimeInterval? {
         guard let start = updateStartTime,
@@ -115,23 +116,23 @@ extension ContentUpdateService {
                 logger.updateSuccess("Atualização concluída com sucesso, porém não existem novidades.")
             }
 
-            // notifyUpdate(status: .done, contentChanged: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates)
+            lastUpdateStatus = .done
             isUpdating = false
             updateStartTime = nil
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.updateError(errorMessage)
-            // notifyUpdate(status: .updateError, contentChanged: false)
+            lastUpdateStatus = .updateError
             isUpdating = false
             updateStartTime = nil
         } catch ContentUpdateError.errorInsertingUpdateEvent(let updateEventId) {
             logger.updateError("Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            // notifyUpdate(status: .updateError, contentChanged: false)
+            lastUpdateStatus = .updateError
             isUpdating = false
             updateStartTime = nil
         } catch {
             logger.updateError(error.localizedDescription)
-            // notifyUpdate(status: .updateError, contentChanged: false)
+            lastUpdateStatus = .updateError
             isUpdating = false
             updateStartTime = nil
         }

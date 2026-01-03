@@ -10,5 +10,5 @@ import Foundation
 @Observable
 class SyncValues {
 
-    public var syncStatus: ContentUpdateStatus = .pendingFirstUpdate
+    public var syncStatus: ContentUpdateStatus = .updating
 }

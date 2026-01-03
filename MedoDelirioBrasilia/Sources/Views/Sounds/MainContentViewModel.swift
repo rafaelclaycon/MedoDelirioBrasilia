@@ -82,6 +82,11 @@ extension MainContentViewModel {
         loadContent()                         // Show local content immediately
         await contentUpdateService.update()   // Run update (banner shows reactively if 10+ updates)
         loadContent(clearCache: true)         // Refresh with new content
+        
+        // Sync the status and show toast
+        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
+        let message = syncValues.syncStatus.description
+        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
     }
 
     public func onSelectedViewModeChanged() async {
@@ -162,6 +167,7 @@ extension MainContentViewModel {
 
         await contentUpdateService.update()
 
+        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
         let message = syncValues.syncStatus.description
         toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
     }
