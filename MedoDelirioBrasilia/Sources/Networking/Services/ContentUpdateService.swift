@@ -121,6 +121,14 @@ extension ContentUpdateService {
 
     private func retryLocal() async throws -> Bool {
         let localResult = try await retrieveUnsuccessfulLocalUpdates()
+        
+        // Set totalUpdateCount early so the banner can show while we process
+        if localResult >= 10 {
+            totalUpdateCount = localResult
+            processedUpdateNumber = 0
+            updateStartTime = Date()
+        }
+        
         if localResult > 0 {
             try await syncUnsuccessful()
         }
@@ -138,6 +146,15 @@ extension ContentUpdateService {
     private func retrieveServerUpdates() async throws -> Int {
         let lastUpdateDate = localDatabase.dateTimeOfLastUpdate()
         serverUpdates = try await getUpdates(from: lastUpdateDate)
+        
+        // Set totalUpdateCount early so the banner can show while we process
+        let count = serverUpdates?.count ?? 0
+        if count >= 10 {
+            totalUpdateCount = count
+            processedUpdateNumber = 0
+            updateStartTime = Date()
+        }
+        
         if var serverUpdates = serverUpdates {
             for i in serverUpdates.indices {
                 do {
@@ -150,7 +167,7 @@ extension ContentUpdateService {
                 }
             }
         }
-        return serverUpdates?.count ?? 0
+        return count
     }
 
     private func retrieveUnsuccessfulLocalUpdates() async throws -> Int {
@@ -161,25 +178,32 @@ extension ContentUpdateService {
     private func serverSync() async throws {
         guard let serverUpdates = serverUpdates, !serverUpdates.isEmpty else { return }
 
-        let totalCount = serverUpdates.count
-        var updateNumber: Int = 0
-        processedUpdateNumber = 0
-        totalUpdateCount = totalCount
-        updateStartTime = Date()
+        // Only set these if not already set (for < 10 updates case)
+        if totalUpdateCount == 0 {
+            processedUpdateNumber = 0
+            totalUpdateCount = serverUpdates.count
+            updateStartTime = Date()
+        }
 
         for update in serverUpdates {
             await process(updateEvent: update)
-
-            updateNumber += 1
-            processedUpdateNumber = updateNumber
+            processedUpdateNumber += 1
         }
     }
 
     private func syncUnsuccessful() async throws {
         guard let localUnsuccessfulUpdates = localUnsuccessfulUpdates, !localUnsuccessfulUpdates.isEmpty else { return }
 
+        // Only set these if not already set (for < 10 updates case)
+        if totalUpdateCount == 0 {
+            processedUpdateNumber = 0
+            totalUpdateCount = localUnsuccessfulUpdates.count
+            updateStartTime = Date()
+        }
+
         for update in localUnsuccessfulUpdates {
             await process(updateEvent: update)
+            processedUpdateNumber += 1
         }
     }
 
