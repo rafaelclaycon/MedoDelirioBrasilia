@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-// MARK: - Content Download Choice
+// MARK: - Disabled Feature: Content Download Choice
+// The following enum and views (AskDoFirstContentUpdateView, OptionBox) are preserved
+// for a future feature that lets users choose when to download content on first launch.
 
 enum ContentDownloadChoice {
     case downloadLater
@@ -44,7 +46,6 @@ struct OnboardingView: View {
                     showAction: {
                         UserSettings().setShowExplicitContent(to: true)
                     },
-                    dontShowAction: {},
                     completionAction: { dismiss() }
                 )
             }
@@ -119,7 +120,6 @@ extension OnboardingView {
     struct AskShowExplicitContentView: View {
 
         let showAction: () -> Void
-        let dontShowAction: () -> Void
         let completionAction: () -> Void
 
         var body: some View {
@@ -186,7 +186,6 @@ extension OnboardingView {
                     .buttonBorderShape(.roundedRectangle(radius: 15))
 
                     Button {
-                        dontShowAction()
                         completionAction()
                     } label: {
                         Text("Não Exibir Conteúdo Sensível")

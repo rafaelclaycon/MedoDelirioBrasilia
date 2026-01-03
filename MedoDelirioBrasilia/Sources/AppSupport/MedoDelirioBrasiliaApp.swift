@@ -257,13 +257,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
 
-    /// For anyone that already had the app before the Ask For Content Update changes (PR #251),
-    /// we need to skip asking them since asking should only happen before the 1st ever content update.
-    private func updateHasAllowedContentUpdateIfNeeded() {
-        if AppPersistentMemory.shared.getLastUpdateAttempt() != "" {
-            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
-        }
-    }
+//    Feature put on hold on Jan 3, 2026.
+//    /// For anyone that already had the app before the Ask For Content Update changes (PR #251),
+//    /// we need to skip asking them since asking should only happen before the 1st ever content update.
+//    private func updateHasAllowedContentUpdateIfNeeded() {
+//        if AppPersistentMemory.shared.getLastUpdateAttempt() != "" {
+//            AppPersistentMemory.shared.hasAllowedContentUpdate(true)
+//        }
+//    }
 }
 
 extension AppDelegate {
