@@ -42,6 +42,19 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
     public var processedUpdateNumber: Int = 0
     public var totalUpdateCount: Int = 0
     public var isUpdating: Bool = false
+    public var updateStartTime: Date? = nil
+
+    public var estimatedSecondsRemaining: TimeInterval? {
+        guard let start = updateStartTime,
+              processedUpdateNumber > 0,
+              totalUpdateCount > 0,
+              processedUpdateNumber < totalUpdateCount else { return nil }
+
+        let elapsed = Date().timeIntervalSince(start)
+        let progress = Double(processedUpdateNumber) / Double(totalUpdateCount)
+        let totalEstimated = elapsed / progress
+        return totalEstimated - elapsed
+    }
 
     // MARK: - Internal Properties
 
@@ -104,19 +117,23 @@ extension ContentUpdateService {
 
             // notifyUpdate(status: .done, contentChanged: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates)
             isUpdating = false
+            updateStartTime = nil
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.updateError(errorMessage)
             // notifyUpdate(status: .updateError, contentChanged: false)
             isUpdating = false
+            updateStartTime = nil
         } catch ContentUpdateError.errorInsertingUpdateEvent(let updateEventId) {
             logger.updateError("Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
             // notifyUpdate(status: .updateError, contentChanged: false)
             isUpdating = false
+            updateStartTime = nil
         } catch {
             logger.updateError(error.localizedDescription)
             // notifyUpdate(status: .updateError, contentChanged: false)
             isUpdating = false
+            updateStartTime = nil
         }
 
         firstRunUpdateHappened = true
@@ -187,6 +204,7 @@ extension ContentUpdateService {
         var updateNumber: Int = 0
         processedUpdateNumber = 0
         totalUpdateCount = totalCount
+        updateStartTime = Date()
 
         for update in serverUpdates {
             await process(updateEvent: update)

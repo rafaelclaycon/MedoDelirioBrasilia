@@ -11,6 +11,7 @@ struct LongUpdateBanner: View {
 
     let completedNumber: Int
     let totalUpdateCount: Int
+    let estimatedSecondsRemaining: TimeInterval?
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -22,6 +23,21 @@ struct LongUpdateBanner: View {
         else { return "" }
         let percentage: Int = Int((Double(completedNumber) / Double(totalUpdateCount)) * 100)
         return "\(percentage)%"
+    }
+
+    private var timeRemainingText: String? {
+        guard let remaining = estimatedSecondsRemaining, remaining > 0 else { return nil }
+
+        if remaining < 60 {
+            return "Menos de 1 minuto restante"
+        } else {
+            let minutes = Int(ceil(remaining / 60))
+            if minutes == 1 {
+                return "Aproximadamente 1 minuto restante"
+            } else {
+                return "Aproximadamente \(minutes) minutos restantes"
+            }
+        }
     }
 
     // MARK: - View Body
@@ -59,6 +75,12 @@ struct LongUpdateBanner: View {
                 )
                 .padding(.top, .spacing(.xSmall))
                 .padding(.bottom, .spacing(.xSmall))
+
+                if let timeText = timeRemainingText {
+                    Text(timeText)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
         }
         .padding()
@@ -72,34 +94,29 @@ struct LongUpdateBanner: View {
 
 // MARK: - Preview
 
-#Preview("Partial") {
+#Preview("Partial - With Time") {
     LongUpdateBanner(
-        completedNumber: 2,
-        totalUpdateCount: 10
+        completedNumber: 3,
+        totalUpdateCount: 12,
+        estimatedSecondsRemaining: 90
     )
     .padding()
 }
 
-#Preview("Complete") {
+#Preview("Partial - No Time Yet") {
     LongUpdateBanner(
-        completedNumber: 10,
-        totalUpdateCount: 10
+        completedNumber: 0,
+        totalUpdateCount: 10,
+        estimatedSecondsRemaining: nil
     )
     .padding()
 }
 
-#Preview("Over") {
+#Preview("Almost Done") {
     LongUpdateBanner(
-        completedNumber: 12,
-        totalUpdateCount: 10
-    )
-    .padding()
-}
-
-#Preview("Under") {
-    LongUpdateBanner(
-        completedNumber: -2,
-        totalUpdateCount: 10
+        completedNumber: 9,
+        totalUpdateCount: 10,
+        estimatedSecondsRemaining: 15
     )
     .padding()
 }

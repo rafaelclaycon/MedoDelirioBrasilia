@@ -114,7 +114,8 @@ struct MainContentView: View {
                                     if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
                                             completedNumber: viewModel.contentUpdateService.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount
+                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
+                                            estimatedSecondsRemaining: viewModel.contentUpdateService.estimatedSecondsRemaining
                                         )
                                     }
 
