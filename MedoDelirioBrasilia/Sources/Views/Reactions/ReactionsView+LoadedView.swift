@@ -87,7 +87,7 @@ extension ReactionsView {
                 pullToRefreshAction()
             }
             .onAppear {
-                shouldDisplayPinBanner = !AppPersistentMemory().hasSeenPinReactionsBanner()
+                shouldDisplayPinBanner = !AppPersistentMemory.shared.hasSeenPinReactionsBanner()
             }
             .alert(
                 "A Reação \"\(removedReaction?.title ?? "")\" Foi Removida",

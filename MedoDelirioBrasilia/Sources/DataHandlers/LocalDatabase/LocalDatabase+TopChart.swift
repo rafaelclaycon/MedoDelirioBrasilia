@@ -3,6 +3,15 @@ import SQLite
 
 private typealias Expression = SQLite.Expression
 
+// MARK: - Top Author Model
+
+struct TopAuthorItem {
+    let authorId: String
+    let authorName: String
+    let authorPhoto: String?
+    let shareCount: Int
+}
+
 extension LocalDatabase {
 
     // MARK: - Personal Top Chart
@@ -49,6 +58,67 @@ extension LocalDatabase {
             )
         }
         return result
+    }
+
+    func getTopAuthorSharedByTheUser() throws -> TopAuthorItem? {
+        guard let firstDay2024 = "2024-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return nil }
+
+        let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
+
+        let soundId = Expression<String>("id")
+        let authorIdOnSounds = Expression<String>("authorId")
+
+        let authorId = Expression<String>("id")
+        let authorName = Expression<String>("name")
+        let authorPhoto = Expression<String?>("photo")
+
+        let dateTime = Expression<Date>("dateTime")
+
+        let contentCount = content_id.count
+
+        // First try: Get top author WITH a photo
+        let queryWithPhoto = userShareLog
+            .join(soundTable, on: userShareLog[content_id] == soundTable[soundId])
+            .join(author, on: soundTable[authorIdOnSounds] == author[authorId])
+            .select(author[authorId], author[authorName], author[authorPhoto], contentCount)
+            .where(userShareLog[content_type] == 0 || userShareLog[content_type] == 2)
+            .filter(dateTime > firstDay2024)
+            .filter(author[authorPhoto] != nil && author[authorPhoto] != "")
+            .group(author[authorId])
+            .order(contentCount.desc)
+            .limit(1)
+
+        for row in try db.prepare(queryWithPhoto) {
+            return TopAuthorItem(
+                authorId: row[author[authorId]],
+                authorName: row[author[authorName]],
+                authorPhoto: row[author[authorPhoto]],
+                shareCount: row[contentCount]
+            )
+        }
+
+        // Fallback: Get top author without photo requirement
+        let queryAny = userShareLog
+            .join(soundTable, on: userShareLog[content_id] == soundTable[soundId])
+            .join(author, on: soundTable[authorIdOnSounds] == author[authorId])
+            .select(author[authorId], author[authorName], author[authorPhoto], contentCount)
+            .where(userShareLog[content_type] == 0 || userShareLog[content_type] == 2)
+            .filter(dateTime > firstDay2024)
+            .group(author[authorId])
+            .order(contentCount.desc)
+            .limit(1)
+
+        for row in try db.prepare(queryAny) {
+            return TopAuthorItem(
+                authorId: row[author[authorId]],
+                authorName: row[author[authorName]],
+                authorPhoto: row[author[authorPhoto]],
+                shareCount: row[contentCount]
+            )
+        }
+
+        return nil
     }
 
     func allDatesInWhichTheUserShared() throws -> [Date] {

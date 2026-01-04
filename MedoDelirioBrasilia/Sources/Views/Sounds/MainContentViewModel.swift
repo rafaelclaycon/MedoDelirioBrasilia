@@ -1,5 +1,5 @@
 //
-//  PhoneSoundsContainerViewModel.swift
+//  MainContentViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 14/04/24.
@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 @Observable
-class MainContentViewModel {
+final class MainContentViewModel {
 
     var state: LoadingState<[AnyEquatableMedoContent]> = .loading
 
@@ -19,11 +19,6 @@ class MainContentViewModel {
 
     var searchText: String = ""
 
-    // Sync
-    var processedUpdateNumber: Int = 0
-    var totalUpdateCount: Int = 0
-    var firstRunSyncHappened: Bool = false
-
     // MARK: - Stored Properties
 
     public var currentContentListMode: Binding<ContentGridMode>
@@ -32,10 +27,28 @@ class MainContentViewModel {
     private let contentRepository: ContentRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
 
-    // Sync
-    private let syncManager: SyncManager
+    // MARK: - Computed Properties
+
+    private var isRunningUnitTests: Bool {
+        ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+    }
+
+    // MARK: - Content Update
+
+    var contentUpdateService = ContentUpdateService(
+        apiClient: APIClient.shared,
+        database: LocalDatabase.shared,
+        fileManager: ContentFileManager(),
+        appMemory: AppPersistentMemory.shared,
+        logger: Logger.shared
+    )
     private let syncValues: SyncValues
-    private let isAllowedToSync: Bool
+
+    var displayLongUpdateBanner: Bool {
+        contentUpdateService.isUpdating &&
+        contentUpdateService.totalUpdateCount >= 10 &&
+        contentUpdateService.processedUpdateNumber < contentUpdateService.totalUpdateCount
+    }
 
     // MARK: - Initializer
 
@@ -47,7 +60,6 @@ class MainContentViewModel {
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
         syncValues: SyncValues,
-        isAllowedToSync: Bool = true,
         contentRepository: ContentRepositoryProtocol,
         analyticsService: AnalyticsServiceProtocol
     ) {
@@ -57,20 +69,9 @@ class MainContentViewModel {
         self.currentContentListMode = currentContentListMode
         self.toast = toast
         self.floatingOptions = floatingOptions
-
-        self.syncManager = SyncManager(
-            service: SyncService(
-                apiClient: APIClient.shared,
-                localDatabase: LocalDatabase.shared
-            ),
-            database: LocalDatabase.shared,
-            logger: Logger.shared
-        )
         self.syncValues = syncValues
         self.contentRepository = contentRepository
         self.analyticsService = analyticsService
-        self.isAllowedToSync = isAllowedToSync
-        self.syncManager.delegate = self
     }
 }
 
@@ -79,17 +80,10 @@ class MainContentViewModel {
 extension MainContentViewModel {
 
     public func onViewDidAppear() async {
-        print("MAIN CONTENT VIEW - ON APPEAR")
-
-        var hadAnyUpdates: Bool = false
-
-        if !firstRunSyncHappened {
-            print("WILL START SYNCING")
-            hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
-            print("DID FINISH SYNCING")
-        }
-
-        loadContent(clearCache: hadAnyUpdates)
+        loadContent()
+        await contentUpdateService.update()
+        loadContent(clearCache: true)
+        showUpdateCompletionToast()
     }
 
     public func onSelectedViewModeChanged() async {
@@ -105,16 +99,13 @@ extension MainContentViewModel {
         loadContent()
     }
 
-    public func onSyncRequested() async {
-        let hadAnyUpdates = await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
-        loadContent(clearCache: hadAnyUpdates)
+    public func onContentUpdateRequested() async {
+        await updateContent(lastAttempt: AppPersistentMemory.shared.getLastUpdateAttempt())
     }
 
     public func onScenePhaseChanged(newPhase: ScenePhase) async {
         if newPhase == .active {
-            let hadAnyUpdates = await warmOpenSync()
-            loadContent(clearCache: hadAnyUpdates)
-            print("DID FINISH WARM OPEN SYNC")
+            await warmOpenContentUpdate()
         }
     }
 
@@ -150,6 +141,44 @@ extension MainContentViewModel {
         }
     }
 
+    private func updateContent(lastAttempt: String) async {
+        guard
+            CommandLine.arguments.contains("-IGNORE_CONTENT_UPDATE_WAIT") ||
+            lastAttempt == "" ||
+            (lastAttempt.iso8601withFractionalSeconds?.minutesPassed(1) ?? false)
+        else {
+            if syncValues.syncStatus == .updating {
+                syncValues.syncStatus = .done
+            }
+            let message = String(format: Shared.Sync.waitMessage, lastAttempt.timeUntil(addingMinutes: 1))
+            toast.wrappedValue = Toast(message: message, type: .wait)
+            return
+        }
+
+        await contentUpdateService.update()
+        showUpdateCompletionToast()
+    }
+
+    /// Warm open means the app was reopened before it left memory.
+    private func warmOpenContentUpdate() async {
+        guard !isRunningUnitTests else { return }
+
+        let lastUpdateAttempt = AppPersistentMemory.shared.getLastUpdateAttempt()
+        guard
+            syncValues.syncStatus != .updating,
+            let date = lastUpdateAttempt.iso8601withFractionalSeconds,
+            date.minutesPassed(60)
+        else { return }
+
+        await updateContent(lastAttempt: lastUpdateAttempt)
+    }
+
+    private func showUpdateCompletionToast() {
+        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
+        let message = syncValues.syncStatus.description
+        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
+    }
+
     private func fireAnalytics() async {
         let screen = "MainContentView"
         if currentViewMode == .favorites {
@@ -161,82 +190,5 @@ extension MainContentViewModel {
         } else if currentViewMode == .authors {
             await analyticsService.send(originatingScreen: screen, action: "didViewAuthorsTab")
         }
-    }
-}
-
-// MARK: - Data Syncing
-
-extension MainContentViewModel: SyncManagerDelegate {
-
-    private func sync(lastAttempt: String) async -> Bool {
-        print("lastAttempt: \(lastAttempt)")
-
-        guard isAllowedToSync else { return false }
-
-        guard
-            CommandLine.arguments.contains("-IGNORE_SYNC_WAIT") ||
-            lastAttempt == "" ||
-            (lastAttempt.iso8601withFractionalSeconds?.minutesPassed(1) ?? false)
-        else {
-            if syncValues.syncStatus == .updating {
-                syncValues.syncStatus = .done
-            }
-
-            let message = String(format: Shared.Sync.waitMessage, lastAttempt.timeUntil(addingMinutes: 1))
-
-            toast.wrappedValue = Toast(message: message, type: .wait)
-            return false
-        }
-
-        let hadAnyUpdates = await syncManager.sync()
-
-        firstRunSyncHappened = true
-
-        let message = syncValues.syncStatus.description
-        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
-
-        return hadAnyUpdates
-    }
-
-    /// Warm open means the app was reopened before it left memory.
-    private func warmOpenSync() async -> Bool {
-        guard isAllowedToSync else { return false }
-
-        let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
-        print("lastUpdateAttempt: \(lastUpdateAttempt)")
-        guard
-            syncValues.syncStatus != .updating,
-            let date = lastUpdateAttempt.iso8601withFractionalSeconds,
-            date.minutesPassed(60)
-        else { return false }
-
-        print("WILL WARM OPEN SYNC")
-        return await sync(lastAttempt: lastUpdateAttempt)
-    }
-
-    nonisolated func set(totalUpdateCount: Int) {
-        Task { @MainActor in
-            self.totalUpdateCount = totalUpdateCount
-        }
-    }
-
-    nonisolated func didProcessUpdate(number: Int) {
-        Task { @MainActor in
-            processedUpdateNumber = number
-        }
-    }
-
-    nonisolated func didFinishUpdating(
-        status: SyncUIStatus,
-        updateSoundList: Bool
-    ) {
-        Task { @MainActor in
-            self.syncValues.syncStatus = status
-
-            if updateSoundList {
-                loadContent()
-            }
-        }
-        print(status)
     }
 }

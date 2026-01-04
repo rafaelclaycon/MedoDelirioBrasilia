@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Main view of the app on iPhone. This is reponsible for showing the main content view and start content sync.
+/// Main view of the app, reponsible for showing the content grid.
 struct MainContentView: View {
 
     @State private var viewModel: MainContentViewModel
@@ -20,6 +20,9 @@ struct MainContentView: View {
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
     @State private var contentSearchTextIsEmpty: Bool? = true
+    
+    // Retrospective
+    @State private var showRetrospectiveStories = false
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -30,9 +33,6 @@ struct MainContentView: View {
         userSettings: UserSettings(),
         sortOption: UserSettings().authorSortOption()
     )
-
-    // Sync
-    @State private var displayLongUpdateBanner: Bool = false
 
     @ScaledMetric private var explicitOffWarningTopPadding: CGFloat = .spacing(.medium)
     @ScaledMetric private var explicitOffWarningBottomPadding: CGFloat = .spacing(.large)
@@ -104,23 +104,26 @@ struct MainContentView: View {
                                 selected: $viewModel.currentViewMode,
                                 allowScrolling: UIDevice.isiPhone
                             )
+                            .scrollClipDisabled()
                         }
 
                         switch viewModel.currentViewMode {
                         case .all, .favorites, .songs:
                             VStack(spacing: .spacing(.xSmall)) {
                                 VStack(spacing: .spacing(.xSmall)) {
-                                    if displayLongUpdateBanner {
+                                    if viewModel.displayLongUpdateBanner {
                                         LongUpdateBanner(
-                                            completedNumber: viewModel.processedUpdateNumber,
-                                            totalUpdateCount: viewModel.totalUpdateCount
+                                            completedNumber: viewModel.contentUpdateService.processedUpdateNumber,
+                                            totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
+                                            estimatedSecondsRemaining: viewModel.contentUpdateService.estimatedSecondsRemaining
                                         )
                                     }
 
                                     if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
                                         BannersView(
                                             bannerRepository: bannerRepository,
-                                            toast: viewModel.toast
+                                            toast: viewModel.toast,
+                                            showRetrospectiveStories: $showRetrospectiveStories
                                         )
                                     }
                                 }
@@ -231,11 +234,6 @@ struct MainContentView: View {
                             await viewModel.onSelectedViewModeChanged()
                         }
                     }
-                    .onChange(of: viewModel.processedUpdateNumber) {
-                        withAnimation {
-                            displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
-                        }
-                    }
                     .onChange(of: playRandomSoundHelper.soundIdToPlay) {
                         if !playRandomSoundHelper.soundIdToPlay.isEmpty {
                             viewModel.currentViewMode = .all
@@ -263,6 +261,18 @@ struct MainContentView: View {
                             )
                         }
                     }
+                    .fullScreenCover(isPresented: $showRetrospectiveStories) {
+                        StoriesView(onShareAnalytics: { analyticsString in
+                            // Note: This logs intent to share (tap on share button), not confirmed shares.
+                            // User may cancel the share sheet without actually sharing.
+                            Task {
+                                await AnalyticsService().send(
+                                    originatingScreen: "Retro2025",
+                                    action: analyticsString
+                                )
+                            }
+                        })
+                    }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
                             viewModel.onExplicitContentSettingChanged()
@@ -272,7 +282,7 @@ struct MainContentView: View {
                     .onChange(of: trendsHelper.contentIdToNavigateTo) {
                         highlight(contentId: trendsHelper.contentIdToNavigateTo)
                     }
-                    .onAppear {
+                    .task {
                         Task {
                             await viewModel.onViewDidAppear()
                         }
@@ -286,11 +296,12 @@ struct MainContentView: View {
             }
             .refreshable {
                 Task { // Keep this Task to avoid "cancelled" issue.
-                    await viewModel.onSyncRequested()
+                    await viewModel.onContentUpdateRequested()
                 }
             }
             .toast(viewModel.toast)
             .floatingContentOptions(viewModel.floatingOptions)
+            .toolbar(contentGridViewModel.tabBarVisibility, for: .tabBar)
         }
     }
 }
@@ -357,14 +368,30 @@ extension MainContentView {
 
         let bannerRepository: BannerRepositoryProtocol
         @Binding var toast: Toast?
+        @Binding var showRetrospectiveStories: Bool
 
         @State private var data: DynamicBannerData?
-
+        @State private var showRetroBanner: Bool = true
         @State private var showBetaBanner: Bool = true
         @State private var showBetaFAQ: Bool = false
+        @State private var userHasStats: Bool = false
 
         var body: some View {
             VStack {
+                if showRetroBanner && userHasStats {
+                    Retro2025Banner(
+                        openStoriesAction: {
+                            showRetrospectiveStories = true
+                        },
+                        dismissAction: {
+                            AppPersistentMemory().dismissedRetro2025Banner(true)
+                            showRetroBanner = false
+                        }
+                    )
+                    .padding(.top, .spacing(.xxxSmall))
+                    .padding(.bottom, .spacing(.xSmall))
+                }
+                
                 if let data {
                     DynamicBanner(
                         bannerData: data,
@@ -381,6 +408,8 @@ extension MainContentView {
                     data = await bannerRepository.dynamicBanner()
                 }
                 showBetaBanner = !AppPersistentMemory().hasDismissediOS26BetaBanner()
+                showRetroBanner = !AppPersistentMemory().hasDismissedRetro2025Banner()
+                userHasStats = LocalDatabase.shared.totalShareCount() > 0
             }
         }
     }

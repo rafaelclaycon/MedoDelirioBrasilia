@@ -10,11 +10,5 @@ import Foundation
 @Observable
 class SyncValues {
 
-    var syncStatus: SyncUIStatus
-
-    init(
-        syncStatus: SyncUIStatus = .updating
-    ) {
-        self.syncStatus = syncStatus
-    }
+    public var syncStatus: ContentUpdateStatus = .updating
 }

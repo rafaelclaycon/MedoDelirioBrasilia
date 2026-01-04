@@ -17,7 +17,7 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     var folders = [UserFolder]()
     var contentInsideFolder = [UserFolderContent]()
-    var unsuccessfulUpdatesToReturn: [UpdateEvent]? = nil
+    var localUpdates = [UpdateEvent]()
     var errorToThrowOnInsertUpdateEvent: CustomSQLiteError? = nil
 
     var didCallInsertSound = false
@@ -48,7 +48,8 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
     var shareCount: Int = 0
     var shareDates: [Date] = []
     var numberOfTimesInsertUpdateEventWasCalled = 0
-    var preexistingUpdates: [UpdateEvent] = []
+
+    var sounds = [Sound]()
 
     var didCallDeletePinnedReaction = false
 
@@ -78,11 +79,14 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     // Sound
 
-    func insert(sound newSound: MedoDelirio.Sound) throws {
+    func insert(sound newSound: Sound) throws {
         didCallInsertSound = true
+        if sounds.contains(where: { $0.id == newSound.id }) {
+            throw CustomSQLiteError.databaseError(message: "A operação não pôde ser concluída. (SQLite.Result erro 0.)")
+        }
     }
 
-    func update(sound updatedSound: MedoDelirio.Sound) throws {
+    func update(sound updatedSound: Sound) throws {
         didCallUpdateSound = true
     }
 
@@ -103,7 +107,7 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
     }
 
     func contentExists(withId contentId: String) throws -> Bool {
-        false
+        sounds.contains(where: { $0.id == contentId })
     }
 
     func sounds(matchingDescription searchText: String) throws -> [Sound] {
@@ -116,16 +120,16 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         []
     }
 
-    func insert(author newAuthor: MedoDelirio.Author) throws {
+    func insert(author newAuthor: Author) throws {
         didCallInsertAuthor = true
     }
 
-    func update(author updatedAuthor: MedoDelirio.Author) throws {
+    func update(author updatedAuthor: Author) throws {
         didCallUpdateAuthor = true
     }
 
     func delete(authorId: String) throws {
-        didCallDeleteSound = true
+        didCallDeleteAuthor = true
     }
 
     func author(withId authorId: String) throws -> Author? {
@@ -213,11 +217,11 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     // MusicGenre
 
-    func insert(genre newGenre: MedoDelirio.MusicGenre) throws {
+    func insert(genre newGenre: MusicGenre) throws {
         didCallInsertGenre = true
     }
 
-    func update(genre updatedGenre: MedoDelirio.MusicGenre) throws {
+    func update(genre updatedGenre: MusicGenre) throws {
         didCallUpdateGenre = true
     }
 
@@ -225,9 +229,13 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         didCallDeleteGenre = true
     }
 
+    func musicGenre(withId genreId: String) throws -> MusicGenre? {
+        nil
+    }
+
     // UpdateEvent
 
-    func insert(updateEvent newUpdateEvent: MedoDelirio.UpdateEvent) throws {
+    func insert(updateEvent newUpdateEvent: UpdateEvent) throws {
         didCallInsertUpdateEvent = true
         numberOfTimesInsertUpdateEventWasCalled += 1
         if let error = errorToThrowOnInsertUpdateEvent {
@@ -237,23 +245,25 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func markAsSucceeded(updateEventId: UUID) throws {
         didCallMarkAsSucceeded = true
+        for i in stride(from: 0, to: localUpdates.count, by: 1) {
+            if localUpdates[i].id == updateEventId {
+                localUpdates[i].didSucceed = true
+            }
+        }
     }
 
-    func unsuccessfulUpdates() throws -> [MedoDelirio.UpdateEvent] {
+    func unsuccessfulUpdates() throws -> [UpdateEvent] {
         didCallUnsuccessfulUpdates = true
-        guard let updates = unsuccessfulUpdatesToReturn else {
-            return []
-        }
-        return updates
+        return localUpdates.filter { $0.didSucceed == false }
     }
 
     func exists(withId updateEventId: UUID) -> Bool {
-        preexistingUpdates.contains(where: { $0.id == updateEventId })
+        return localUpdates.contains(where: { $0.id == updateEventId })
     }
 
     func dateTimeOfLastUpdate() -> String {
         let dateFormatter = ISO8601DateFormatter()
-        let dateArray = preexistingUpdates.compactMap { dateFormatter.date(from: $0.dateTime) }
+        let dateArray = localUpdates.compactMap { dateFormatter.date(from: $0.dateTime) }
 
         if let latestDate = dateArray.max() {
             return dateFormatter.string(from: latestDate)
@@ -264,14 +274,18 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     // SyncLog
 
-    func insert(syncLog newSyncLog: MedoDelirio.SyncLog) {
+    func insert(syncLog newSyncLog: SyncLog) {
         didCallInsertSyncLog = true
     }
 
-    // Retro 2023
+    // Retrospective
 
     func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem] {
         return topSharedSounds
+    }
+
+    func getTopAuthorSharedByTheUser() throws -> TopAuthorItem? {
+        nil
     }
 
     func totalShareCount() -> Int {
@@ -280,6 +294,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func allDatesInWhichTheUserShared() throws -> [Date] {
         return shareDates
+    }
+
+    func sharedSoundsCount() -> Int {
+        0
     }
 
     // Pinned Reactions

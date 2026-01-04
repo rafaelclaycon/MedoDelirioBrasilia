@@ -9,6 +9,10 @@ import Foundation
 
 protocol AppPersistentMemoryProtocol {
 
+    func hasAllowedContentUpdate() -> Bool
+    func hasAllowedContentUpdate(_ newValue: Bool)
+    func setLastUpdateAttempt(to newValue: String)
+
     func folderResearchHashes() -> [String: String]?
     func folderResearchHashes(_ foldersHashes: [String: String])
 
@@ -33,6 +37,8 @@ protocol AppPersistentMemoryProtocol {
 final class AppPersistentMemory: AppPersistentMemoryProtocol {
 
     private let userDefaults: UserDefaults
+
+    static let shared = AppPersistentMemory()
 
     init(
         userDefaults: UserDefaults = UserDefaults.standard
@@ -75,12 +81,11 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
-    func getShouldRetrySendingDevicePushToken() -> Bool {
-        let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "shouldRetrySendingDevicePushToken") else {
-            return true
+    func getLastSentPushToken() -> String? {
+        guard let value = userDefaults.object(forKey: "lastSentPushToken") else {
+            return nil
         }
-        return Bool(value as! Bool)
+        return String(value as! String)
     }
 
     func hasShownNotificationsOnboarding() -> Bool {
@@ -174,6 +179,20 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    func hasDismissedRetro2025Banner() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasDismissedRetro2025Banner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    func hasDismissedRetro2025BannerInTrends() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasDismissedRetro2025BannerInTrends") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     func getHasSeenFirstUpdateIncentiveBanner() -> Bool {
         guard let value = userDefaults.object(forKey: "hasSeenFirstUpdateIncentiveBanner") else {
             return false
@@ -229,6 +248,10 @@ extension AppPersistentMemory {
         }
         return value
     }
+
+    func hasAllowedContentUpdate() -> Bool {
+        userDefaults.bool(forKey: "hasAllowedContentUpdate")
+    }
 }
 
 // MARK: - Setters
@@ -247,8 +270,8 @@ extension AppPersistentMemory {
         userDefaults.set(newValue, forKey: "folderBannerWasDismissed")
     }
     
-    func setShouldRetrySendingDevicePushToken(to newValue: Bool) {
-        userDefaults.set(newValue, forKey: "shouldRetrySendingDevicePushToken")
+    func setLastSentPushToken(to token: String) {
+        userDefaults.set(token, forKey: "lastSentPushToken")
     }
     
     func hasShownNotificationsOnboarding(_ newValue: Bool) {
@@ -304,6 +327,14 @@ extension AppPersistentMemory {
         userDefaults.set(newValue, forKey: "hasDismissedRetro2024Banner")
     }
 
+    func dismissedRetro2025Banner(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasDismissedRetro2025Banner")
+    }
+
+    func dismissedRetro2025BannerInTrends(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasDismissedRetro2025BannerInTrends")
+    }
+
     func setHasSeenFirstUpdateIncentiveBanner(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasSeenFirstUpdateIncentiveBanner")
     }
@@ -334,5 +365,9 @@ extension AppPersistentMemory {
 
     func saveRecentSearches(_ searchTerms: [String]) {
         userDefaults.set(searchTerms, forKey: "recentSearches")
+    }
+
+    func hasAllowedContentUpdate(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasAllowedContentUpdate")
     }
 }

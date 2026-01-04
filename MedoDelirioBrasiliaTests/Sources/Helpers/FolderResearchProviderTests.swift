@@ -12,13 +12,13 @@ final class FolderResearchProviderTests: XCTestCase {
 
     private var sut: FolderResearchProvider!
 
-    private var userSettings: FakeUserSettings!
+    private var userSettings: MockUserSettings!
     private var appMemory: FakeAppPersistentMemory!
     private var localDatabase: FakeLocalDatabase!
     private var repository: FakeFolderResearchRepository!
 
     override func setUpWithError() throws {
-        userSettings = FakeUserSettings()
+        userSettings = MockUserSettings()
         appMemory = FakeAppPersistentMemory()
         localDatabase = FakeLocalDatabase()
         repository = FakeFolderResearchRepository()

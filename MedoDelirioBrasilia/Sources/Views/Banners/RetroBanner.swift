@@ -59,7 +59,7 @@ struct RetroBanner: View {
         .overlay(alignment: .topTrailing) {
             if showCloseButton {
                 Button {
-                    // AppPersistentMemory().dismissedRetro2024Banner(true)
+                    // AppPersistentMemory.shared.dismissedRetro2024Banner(true)
                     isBeingShown = false
                 } label: {
                     Image(systemName: "xmark")

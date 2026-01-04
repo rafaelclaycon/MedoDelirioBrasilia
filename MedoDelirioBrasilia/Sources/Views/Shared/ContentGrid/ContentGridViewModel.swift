@@ -55,6 +55,9 @@ final class ContentGridViewModel {
     // Play Random Sound
     var scrollTo: String = ""
 
+    // Multi-select
+    var tabBarVisibility: Visibility = .visible
+
     // MARK: - Stored Properties
 
     public var currentListMode: Binding<ContentGridMode>
@@ -208,7 +211,7 @@ extension ContentGridViewModel {
 
     public func onRedownloadContentOptionSelected() {
         guard let content = selectedContentSingle else { return }
-        redownloadServerContent(withId: content.id)
+        redownloadServerContent(withId: content.id, ofType: content.type)
     }
 
     public func onReportContentIssueSelected() async {
@@ -272,10 +275,17 @@ extension ContentGridViewModel {
         }
     }
 
-    private func redownloadServerContent(withId contentId: String) {
+    private func redownloadServerContent(
+        withId contentId: String,
+        ofType contentType: MediaType
+    ) {
         Task {
             do {
-                try await SyncService.downloadFile(contentId)
+                if contentType == .sound {
+                    try await ContentFileManager().downloadSound(withId: contentId)
+                } else {
+                    try await ContentFileManager().downloadSong(withId: contentId)
+                }
                 toast.wrappedValue = Toast(
                     message: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
                     type: .success
@@ -575,6 +585,15 @@ extension ContentGridViewModel {
         isFavoritesOnlyView: Bool
     ) {
         stopPlaying()
+
+        if #available(iOS 26, *) {
+            if currentListMode.wrappedValue == .regular {
+                tabBarVisibility = .hidden
+            } else {
+                tabBarVisibility = .visible
+            }
+        }
+
         if currentListMode.wrappedValue == .regular {
             currentListMode.wrappedValue = .selection
             floatingOptions.wrappedValue = FloatingContentOptions(
@@ -609,6 +628,9 @@ extension ContentGridViewModel {
         selectedContentMultiple = nil
         searchText = ""
         floatingOptions.wrappedValue = nil
+        if #available(iOS 26, *) {
+            tabBarVisibility = .visible
+        }
     }
 
     public func allSelectedAreFavorites() -> Bool {

@@ -50,7 +50,7 @@ struct RecurringDonationBanner: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory().setHasSeenRecurringDonationBanner(to: true)
+                AppPersistentMemory.shared.setHasSeenRecurringDonationBanner(to: true)
                 isBeingShown = false
             } label: {
                 Image(systemName: "xmark")

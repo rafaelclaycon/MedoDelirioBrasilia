@@ -21,13 +21,13 @@ extension AppDelegate {
                 do {
                     try LocalDatabase.shared.insert(sound: sound)
                 } catch {
-                    Logger.shared.logSyncError(description: "Erro ao tentar importar Som '\(sound.title)': \(error.localizedDescription)")
+                    Logger.shared.updateError("Erro ao tentar importar Som '\(sound.title)': \(error.localizedDescription)")
                 }
             }
             let soundCount = try LocalDatabase.shared.soundCount()
-            Logger.shared.logSyncSuccess(description: "\(formatNumber(soundCount)) Sons importados dos dados fixos com sucesso.")
+            Logger.shared.updateSuccess("\(formatNumber(soundCount)) Sons importados dos dados fixos com sucesso.")
         } catch {
-            Logger.shared.logSyncError(description: "Erro ao tentar importar Sons: \(error.localizedDescription)")
+            Logger.shared.updateError("Erro ao tentar importar Sons: \(error.localizedDescription)")
         }
     }
 
@@ -38,13 +38,13 @@ extension AppDelegate {
                 do {
                     try LocalDatabase.shared.insert(author: author)
                 } catch {
-                    Logger.shared.logSyncError(description: "Erro ao tentar importar Autor '\(author.name)': \(error.localizedDescription)")
+                    Logger.shared.updateError("Erro ao tentar importar Autor '\(author.name)': \(error.localizedDescription)")
                 }
             }
             let authorCount = try LocalDatabase.shared.getAuthorCount()
-            Logger.shared.logSyncSuccess(description: "\(authorCount) Autores importados dos dados fixos com sucesso.")
+            Logger.shared.updateSuccess("\(authorCount) Autores importados dos dados fixos com sucesso.")
         } catch {
-            Logger.shared.logSyncError(description: "Erro ao tentar importar Autores: \(error.localizedDescription)")
+            Logger.shared.updateError("Erro ao tentar importar Autores: \(error.localizedDescription)")
         }
     }
 }
@@ -63,13 +63,13 @@ extension AppDelegate {
                 do {
                     try LocalDatabase.shared.insert(song: song)
                 } catch {
-                    Logger.shared.logSyncError(description: "Erro ao tentar importar Música '\(song.title)': \(error.localizedDescription)")
+                    Logger.shared.updateError("Erro ao tentar importar Música '\(song.title)': \(error.localizedDescription)")
                 }
             }
             let songCount = try LocalDatabase.shared.songCount()
-            Logger.shared.logSyncSuccess(description: "\(songCount) Músicas importadas dos dados fixos com sucesso.")
+            Logger.shared.updateSuccess("\(songCount) Músicas importadas dos dados fixos com sucesso.")
         } catch {
-            Logger.shared.logSyncError(description: "Erro ao tentar importar Músicas: \(error.localizedDescription)")
+            Logger.shared.updateError("Erro ao tentar importar Músicas: \(error.localizedDescription)")
         }
     }
 
@@ -80,13 +80,13 @@ extension AppDelegate {
                 do {
                     try LocalDatabase.shared.insert(genre: genre)
                 } catch {
-                    Logger.shared.logSyncError(description: "Erro ao tentar importar Gênero Musical '\(genre.name)': \(error.localizedDescription)")
+                    Logger.shared.updateError("Erro ao tentar importar Gênero Musical '\(genre.name)': \(error.localizedDescription)")
                 }
             }
             let genreCount = try LocalDatabase.shared.genreCount()
-            Logger.shared.logSyncSuccess(description: "\(genreCount) Gêneros Musicais importados dos dados fixos com sucesso.")
+            Logger.shared.updateSuccess("\(genreCount) Gêneros Musicais importados dos dados fixos com sucesso.")
         } catch {
-            Logger.shared.logSyncError(description: "Erro ao tentar importar Gêneros Musicais: \(error.localizedDescription)")
+            Logger.shared.updateError("Erro ao tentar importar Gêneros Musicais: \(error.localizedDescription)")
         }
     }
 }

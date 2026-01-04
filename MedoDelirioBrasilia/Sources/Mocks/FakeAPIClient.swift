@@ -12,8 +12,15 @@ class FakeAPIClient: APIClientProtocol {
     var serverPath: String
 
     var serverShouldBeUnavailable = false
-    var fetchUpdateEventsResult: SyncResult = .nothingToUpdate
+    var fetchUpdateEventsResult: ContentUpdateResult = .nothingToUpdate
     var retroStartingVersion: String?
+
+    var updateEvents = [UpdateEvent]()
+
+    var sound: Sound?
+    var song: Song?
+    var author: Author?
+    var musicGenre: MusicGenre?
 
     init() {
         serverPath = ""
@@ -38,7 +45,7 @@ class FakeAPIClient: APIClientProtocol {
     func fetchUpdateEvents(from lastDate: String) async throws -> [MedoDelirio.UpdateEvent] {
         switch fetchUpdateEventsResult {
         default:
-            return []
+            return updateEvents
         }
     }
 
@@ -79,5 +86,25 @@ class FakeAPIClient: APIClientProtocol {
 
     func moneyInfo() async throws -> [MoneyInfo] {
         []
+    }
+
+    func moneyInfo() async throws -> [MoneyInfo] {
+        []
+    }
+
+    func sound(_ id: String) async throws -> Sound {
+        sound!
+    }
+
+    func song(_ id: String) async throws -> Song {
+        song!
+    }
+
+    func author(_ id: String) async throws -> Author {
+        author!
+    }
+
+    func musicGenre(_ id: String) async throws -> MusicGenre {
+        musicGenre!
     }
 }

@@ -186,6 +186,7 @@ struct FolderDetailView: View {
                 }
             )
         }
+        .toolbar(contentGridViewModel.tabBarVisibility, for: .tabBar)
     }
 
     @ViewBuilder func playStopButton() -> some View {

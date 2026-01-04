@@ -68,19 +68,20 @@ struct FolderInfoEditingView: View {
                 .navigationTitle(viewModel.isEditing ? "Editar Pasta" : "Nova Pasta")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
+                    ToolbarItem(placement: .cancellationAction) {
                         CloseButton {
                             dismissSheet()
                         }
                     }
 
-                    ToolbarItem(placement: .topBarTrailing) {
+                    ToolbarItem(placement: .confirmationAction) {
                         if #available(iOS 26, *) {
                             Button {
                                 viewModel.onSaveSelected()
                             } label: {
                                 Image(systemName: "checkmark")
                             }
+                            .buttonStyle(.glassProminent)
                             .tint(.accentColor)
                             .disabled(viewModel.saveCreateButtonIsDisabled)
                         } else {

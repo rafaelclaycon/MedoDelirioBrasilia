@@ -8,8 +8,13 @@
 import Foundation
 
 internal protocol APIClientProtocol {
-    
+
     var serverPath: String { get }
+
+    func sound(_ id: String) async throws -> Sound
+    func song(_ id: String) async throws -> Song
+    func author(_ id: String) async throws -> Author
+    func musicGenre(_ id: String) async throws -> MusicGenre
 
     func `get`<T: Codable>(from url: URL) async throws -> T
     func getString(from url: URL) async throws -> String?
@@ -79,6 +84,34 @@ class APIClient: APIClientProtocol {
         return String(data: data, encoding: .utf8)
     }
 
+    func sound(_ id: String) async throws -> Sound {
+        guard let url = URL(string: serverPath + "v3/sound/\(id)") else {
+            throw APIClientError.unableToCreateUrlFor(id)
+        }
+        return try await get(from: url)
+    }
+
+    func song(_ id: String) async throws -> Song {
+        guard let url = URL(string: serverPath + "v3/song/\(id)") else {
+            throw APIClientError.unableToCreateUrlFor(id)
+        }
+        return try await get(from: url)
+    }
+
+    func author(_ id: String) async throws -> Author {
+        guard let url = URL(string: serverPath + "v3/author/\(id)") else {
+            throw APIClientError.unableToCreateUrlFor(id)
+        }
+        return try await get(from: url)
+    }
+
+    func musicGenre(_ id: String) async throws -> MusicGenre {
+        guard let url = URL(string: serverPath + "v3/music-genre/\(id)") else {
+            throw APIClientError.unableToCreateUrlFor(id)
+        }
+        return try await get(from: url)
+    }
+
     // MARK: - POST
 
     func post(shareCountStat: ServerShareCountStat) async throws {
@@ -92,6 +125,8 @@ class APIClient: APIClientProtocol {
     }
 }
 
+// MARK: - Errors
+
 enum APIClientError: Error, LocalizedError {
 
     case unexpectedStatusCode
@@ -100,6 +135,7 @@ enum APIClientError: Error, LocalizedError {
     case httpRequestFailed
     case errorFetchingUpdateEvents(String)
     case resourceNotFound
+    case unableToCreateUrlFor(String)
 
     var errorDescription: String? {
         switch self {
@@ -115,6 +151,8 @@ enum APIClientError: Error, LocalizedError {
             return "Erro ao obter UpdateEvents: \(errorMessage)"
         case .resourceNotFound:
             return "Recurso não encontrado."
+        case .unableToCreateUrlFor(let id):
+            return "Não foi possível criar URL para \(id)."
         }
     }
 }

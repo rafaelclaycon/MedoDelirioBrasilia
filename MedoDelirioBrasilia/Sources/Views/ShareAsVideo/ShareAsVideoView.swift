@@ -40,14 +40,6 @@ struct ShareAsVideoView: View {
         !isSquare
     }
 
-    private var isShareAvailable: Bool {
-        if #available(iOS 26, *), UIDevice.isMac {
-            return false
-        } else {
-            return true
-        }
-    }
-
     // MARK: - View Body
 
     var body: some View {
@@ -123,11 +115,11 @@ struct ShareAsVideoView: View {
                             HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == 0 {
                                     shareButton(view: squareImage)
-                                        .disabled(!isShareAvailable)
+
                                     saveVideoButton(view: squareImage)
                                 } else {
                                     shareButton(view: nineBySixteenImage)
-                                        .disabled(!isShareAvailable)
+
                                     saveVideoButton(view: nineBySixteenImage)
                                 }
                             }
@@ -154,11 +146,11 @@ struct ShareAsVideoView: View {
                         if didCloseTip {
                             if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
                                 showTextSocialNetworkTip = false
-                                AppPersistentMemory().setHasHiddenShareAsVideoTextSocialNetworkTip(to: true)
+                                AppPersistentMemory.shared.setHasHiddenShareAsVideoTextSocialNetworkTip(to: true)
                                 self.didCloseTip = false
                             } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                                 showInstagramTip = false
-                                AppPersistentMemory().setHasHiddenShareAsVideoInstagramTip(to: true)
+                                AppPersistentMemory.shared.setHasHiddenShareAsVideoInstagramTip(to: true)
                                 self.didCloseTip = false
                             }
                         }
@@ -178,8 +170,8 @@ struct ShareAsVideoView: View {
         }
         .onAppear {
             tipText = textSocialNetworkTip
-            showTextSocialNetworkTip = AppPersistentMemory().getHasHiddenShareAsVideoTextSocialNetworkTip() == false
-            showInstagramTip = AppPersistentMemory().getHasHiddenShareAsVideoInstagramTip() == false
+            showTextSocialNetworkTip = AppPersistentMemory.shared.getHasHiddenShareAsVideoTextSocialNetworkTip() == false
+            showInstagramTip = AppPersistentMemory.shared.getHasHiddenShareAsVideoInstagramTip() == false
             viewModel.onViewAppeared()
         }
     }
@@ -245,8 +237,9 @@ struct ShareAsVideoView: View {
         .frame(width: 196, height: 350)
     }
     
-    @ViewBuilder func shareButton(view: some View) -> some View {
-        Button {
+    @ViewBuilder
+    func shareButton(view: some View) -> some View {
+        let button = Button {
             Task {
                 let renderer = ImageRenderer(content: view)
                 renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
@@ -268,12 +261,22 @@ struct ShareAsVideoView: View {
                 Spacer()
             }
         }
-        .borderedButton(colored: .accentColor)
-        .disabled(viewModel.isShowingProcessingView)
+
+        if #available(iOS 26, *) {
+            button
+                .controlSize(.large)
+                .buttonStyle(.glass)
+                .disabled(viewModel.isShowingProcessingView)
+        } else {
+            button
+                .borderedButton(colored: .accentColor)
+                .disabled(viewModel.isShowingProcessingView)
+        }
     }
     
-    @ViewBuilder func saveVideoButton(view: some View) -> some View {
-        Button {
+    @ViewBuilder
+    func saveVideoButton(view: some View) -> some View {
+        let button = Button {
             Task {
                 let renderer = ImageRenderer(content: view)
                 renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
@@ -296,8 +299,17 @@ struct ShareAsVideoView: View {
                 Spacer()
             }
         }
-        .borderedProminentButton(colored: .accentColor)
-        .disabled(viewModel.isShowingProcessingView)
+
+        if #available(iOS 26, *) {
+            button
+                .controlSize(.large)
+                .buttonStyle(.glassProminent)
+                .disabled(viewModel.isShowingProcessingView)
+        } else {
+            button
+                .borderedProminentButton(colored: .accentColor)
+                .disabled(viewModel.isShowingProcessingView)
+        }
     }
 }
 
