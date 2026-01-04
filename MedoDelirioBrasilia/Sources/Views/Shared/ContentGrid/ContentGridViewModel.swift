@@ -11,32 +11,21 @@ import SwiftUI
 @Observable
 final class ContentGridViewModel {
 
+    // MARK: - Composed Playable State
+
+    let playable: PlayableContentState
+
+    // MARK: - Grid-Specific State
+
     var menuOptions: [ContextMenuSection]
     var refreshAction: (() -> Void)?
     var folder: UserFolder?
 
-    var favoritesKeeper = Set<String>()
     var highlightKeeper = Set<String>()
-    var nowPlayingKeeper = Set<String>()
     var selectionKeeper = Set<String>()
-
-    var selectedContentSingle: AnyEquatableMedoContent? = nil
-    var selectedContentMultiple: [AnyEquatableMedoContent]? = nil
-    var subviewToOpen: ContentGridModalToOpen = .shareAsVideo
-    var showingModalView = false
-
-    var authorToOpen: Author? = nil
-
-    // Share as Video
-    var shareAsVideoResult = ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .shareSheet)
 
     // Search
     var searchText: String = ""
-
-    // Sharing
-    var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
-    var isShowingShareSheet: Bool = false
-    var shareBannerMessage: String = ""
 
     // Long Updates
     var processedUpdateNumber: Int = 0
@@ -46,7 +35,7 @@ final class ContentGridViewModel {
     var isPlayingPlaylist: Bool = false
     private var currentTrackIndex: Int = 0
 
-    // Alerts
+    // Grid Alerts (folder-related)
     var alertTitle: String = ""
     var alertMessage: String = ""
     var showAlert: Bool = false
@@ -69,11 +58,59 @@ final class ContentGridViewModel {
     private let analyticsService: AnalyticsServiceProtocol
     private let currentScreen: ContentGridScreen
 
+    // MARK: - Computed Properties (Delegated to Playable)
+
+    var favoritesKeeper: Set<String> {
+        get { playable.favoritesKeeper }
+        set { playable.favoritesKeeper = newValue }
+    }
+
+    var nowPlayingKeeper: Set<String> {
+        get { playable.nowPlayingKeeper }
+        set { playable.nowPlayingKeeper = newValue }
+    }
+
+    var selectedContentSingle: AnyEquatableMedoContent? {
+        get { playable.selectedContent }
+        set { playable.selectedContent = newValue }
+    }
+
+    var selectedContentMultiple: [AnyEquatableMedoContent]? {
+        get { playable.selectedContentMultiple }
+        set { playable.selectedContentMultiple = newValue }
+    }
+
+    var authorToOpen: Author? {
+        get { playable.authorToOpen }
+        set { playable.authorToOpen = newValue }
+    }
+
+    var shareAsVideoResult: ShareAsVideoResult {
+        get { playable.shareAsVideoResult }
+        set { playable.shareAsVideoResult = newValue }
+    }
+
+    var iPadShareSheet: ActivityViewController? {
+        get { playable.iPadShareSheet }
+        set { playable.iPadShareSheet = newValue }
+    }
+
+    var isShowingShareSheet: Bool {
+        get { playable.isShowingShareSheet }
+        set { playable.isShowingShareSheet = newValue }
+    }
+
+    var activeSheet: PlayableContentSheet? {
+        get { playable.activeSheet }
+        set { playable.activeSheet = newValue }
+    }
+
     // MARK: - Initializer
 
     init(
         contentRepository: ContentRepositoryProtocol,
         userFolderRepository: UserFolderRepositoryProtocol,
+        contentFileManager: ContentFileManagerProtocol,
         screen: ContentGridScreen,
         menuOptions: [ContextMenuSection],
         currentListMode: Binding<ContentGridMode>,
@@ -96,7 +133,14 @@ final class ContentGridViewModel {
         self.folder = insideFolder
         self.multiSelectFolderOperation = multiSelectFolderOperation
 
-        loadFavorites()
+        // Initialize composed PlayableContentState
+        self.playable = PlayableContentState(
+            contentRepository: contentRepository,
+            contentFileManager: contentFileManager,
+            analyticsService: analyticsService,
+            screen: screen,
+            toast: toast
+        )
     }
 }
 
@@ -105,7 +149,7 @@ final class ContentGridViewModel {
 extension ContentGridViewModel {
 
     public func onViewAppeared() {
-        loadFavorites()
+        playable.onViewAppeared()
     }
 
     public func onContentSelected(
@@ -196,29 +240,15 @@ extension ContentGridViewModel {
     }
 
     public func onDidExitShareAsVideoSheet() {
-        if !shareAsVideoResult.videoFilepath.isEmpty {
-            if shareAsVideoResult.exportMethod == .saveAsVideo {
-                showVideoSavedSuccessfullyToast()
-            } else {
-                shareVideo(
-                    withPath: shareAsVideoResult.videoFilepath,
-                    andContentId: shareAsVideoResult.contentId,
-                    title: selectedContentSingle?.title ?? ""
-                )
-            }
-        }
+        playable.onDidExitShareAsVideoSheet()
     }
 
     public func onRedownloadContentOptionSelected() {
-        guard let content = selectedContentSingle else { return }
-        redownloadServerContent(withId: content.id, ofType: content.type)
+        playable.onRedownloadContentOptionSelected()
     }
 
     public func onReportContentIssueSelected() async {
-        await Mailman.openDefaultEmailApp(
-            subject: Shared.issueSuggestionEmailSubject,
-            body: Shared.issueSuggestionEmailBody
-        )
+        await playable.onReportContentIssueSelected()
     }
 
     public func onRemoveSingleContentSelected() {
@@ -240,62 +270,6 @@ extension ContentGridViewModel {
 
 extension ContentGridViewModel {
 
-    private func loadFavorites() {
-        do {
-            let favorites = try contentRepository.favorites()
-            favoritesKeeper.removeAll()
-            favorites.forEach { favorite in
-                self.favoritesKeeper.insert(favorite.contentId)
-            }
-        } catch {
-            print("Falha ao carregar favoritos: \(error.localizedDescription)")
-        }
-    }
-
-    private func addToFavorites(contentId: String) {
-        let newFavorite = Favorite(contentId: contentId, dateAdded: Date())
-
-        do {
-            let favorteAlreadyExists = try contentRepository.favoriteExists(contentId)
-            guard favorteAlreadyExists == false else { return }
-
-            try contentRepository.insert(favorite: newFavorite)
-            favoritesKeeper.insert(newFavorite.contentId)
-        } catch {
-            print("Issue saving Favorite '\(newFavorite.contentId)': \(error.localizedDescription)")
-        }
-    }
-
-    private func removeFromFavorites(contentId: String) {
-        do {
-            try contentRepository.deleteFavorite(contentId)
-            favoritesKeeper.remove(contentId)
-        } catch {
-            print("Issue removing Favorite '\(contentId)'.")
-        }
-    }
-
-    private func redownloadServerContent(
-        withId contentId: String,
-        ofType contentType: MediaType
-    ) {
-        Task {
-            do {
-                if contentType == .sound {
-                    try await ContentFileManager().downloadSound(withId: contentId)
-                } else {
-                    try await ContentFileManager().downloadSong(withId: contentId)
-                }
-                toast.wrappedValue = Toast(
-                    message: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
-                    type: .success
-                )
-            } catch {
-                // showUnableToRedownloadSoundAlert() // TODO: Pending PlayableContentViewModel refactor
-            }
-        }
-    }
-
     private func showVideoSavedSuccessfullyToast() {
         toast.wrappedValue = Toast(
             message: UIDevice.isMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully,
@@ -303,67 +277,8 @@ extension ContentGridViewModel {
         )
     }
 
-    private func shareVideo(
-        withPath filepath: String,
-        andContentId contentId: String,
-        title soundTitle: String
-    ) {
-        if UIDevice.isiPhone {
-            do {
-                try SharingUtility.share(
-                    .videoFromSound,
-                    withPath: filepath,
-                    andContentId: contentId,
-                    shareSheetDelayInSeconds: 0.6
-                ) { didShareSuccessfully in
-                    if didShareSuccessfully {
-                        self.toast.wrappedValue = Toast(message: Shared.videoSharedSuccessfullyMessage, type: .success)
-                    }
-
-                    WallE.deleteAllVideoFilesFromDocumentsDir()
-                }
-            } catch {
-                // showUnableToGetSoundAlert(soundTitle) // TODO: Pending PlayableContentViewModel refactor
-            }
-        } else {
-            guard filepath.isEmpty == false else {
-                return
-            }
-
-            let url = URL(fileURLWithPath: filepath)
-
-            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-                if completed {
-                    self.isShowingShareSheet = false
-
-                    guard let activity = activity else {
-                        return
-                    }
-                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.shared.logShared(
-                        .videoFromSound,
-                        contentId: contentId,
-                        destination: destination,
-                        destinationBundleId: activity.rawValue
-                    )
-
-                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-
-                    self.toast.wrappedValue = Toast(message: Shared.videoSharedSuccessfullyMessage, type: .success)
-                }
-
-                WallE.deleteAllVideoFilesFromDocumentsDir()
-            }
-
-            isShowingShareSheet = true
-        }
-    }
-
     public func typeForShareAsVideo() -> ContentType {
-        guard let content = selectedContentSingle else {
-            return .videoFromSound
-        }
-        return content.type == .sound ? .videoFromSound : .videoFromSong
+        playable.typeForShareAsVideo()
     }
 }
 
@@ -387,45 +302,19 @@ extension ContentGridViewModel {
         scrollToPlaying: Bool = false,
         loadedContent: [AnyEquatableMedoContent]
     ) {
-        do {
-            let url = try content.fileURL()
+        if scrollToPlaying {
+            scrollTo = content.id
+        }
 
-            nowPlayingKeeper.removeAll()
-            nowPlayingKeeper.insert(content.id)
-
-            if scrollToPlaying {
-                scrollTo = content.id
-            }
-
-            AudioPlayer.shared = AudioPlayer(
-                url: url,
-                update: { [weak self] state in
-                    self?.onAudioPlayerUpdate(
-                        playerState: state,
-                        scrollToPlaying: scrollToPlaying,
-                        loadedContent: loadedContent
-                    )
-                }
-            )
-
-            AudioPlayer.shared?.togglePlay()
-        } catch {
-            if content.isFromServer ?? false {
-                // showServerSoundNotAvailableAlert(content) // TODO: Pending PlayableContentViewModel refactor
-                // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
-            }
+        playable.play(content) { [weak self] in
+            self?.onPlaybackStopped(scrollToPlaying: scrollToPlaying, loadedContent: loadedContent)
         }
     }
 
-    private func onAudioPlayerUpdate(
-        playerState: AudioPlayer.State?,
+    private func onPlaybackStopped(
         scrollToPlaying: Bool,
         loadedContent: [AnyEquatableMedoContent]
     ) {
-        guard playerState?.activity == .stopped else { return }
-
-        nowPlayingKeeper.removeAll()
-
         guard !loadedContent.isEmpty else { return }
         guard isPlayingPlaylist else { return }
 
@@ -440,8 +329,7 @@ extension ContentGridViewModel {
 
     private func stopPlaying() {
         if nowPlayingKeeper.count > 0 {
-            AudioPlayer.shared?.togglePlay()
-            nowPlayingKeeper.removeAll()
+            playable.stopPlayback()
             doPlaylistCleanup()
         }
     }
@@ -474,68 +362,24 @@ extension ContentGridViewModel {
 extension ContentGridViewModel: ContentGridDisplaying {
 
     func share(content: AnyEquatableMedoContent) {
-        if UIDevice.isiPhone {
-            do {
-                try SharingUtility.shareSound(
-                    from: content.fileURL(),
-                    andContentId: content.id,
-                    context: .sound
-                ) { didShare in
-                    if didShare {
-                        self.toast.wrappedValue = Toast(message: Shared.soundSharedSuccessfullyMessage, type: .success)
-                    }
-                }
-            } catch {
-                // showUnableToGetSoundAlert(content.title) // TODO: Pending PlayableContentViewModel refactor
-            }
-        } else {
-            do {
-                let url = try content.fileURL()
-                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-                    if completed {
-                        self.isShowingShareSheet = false
-
-                        guard let activity = activity else {
-                            return
-                        }
-                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                        Logger.shared.logShared(.sound, contentId: content.id, destination: destination, destinationBundleId: activity.rawValue)
-
-                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-
-                        self.toast.wrappedValue = Toast(message: Shared.soundSharedSuccessfullyMessage, type: .success)
-                    }
-                }
-            } catch {
-                // showUnableToGetSoundAlert(content.title) // TODO: Pending PlayableContentViewModel refactor
-            }
-
-            isShowingShareSheet = true
-        }
+        playable.share(content: content)
     }
 
     func openShareAsVideoModal(for content: AnyEquatableMedoContent) {
-        selectedContentSingle = content
-        subviewToOpen = .shareAsVideo
-        showingModalView = true
+        playable.openShareAsVideoModal(for: content)
     }
 
     func toggleFavorite(_ contentId: String, isFavoritesOnlyView: Bool) {
-        if favoritesKeeper.contains(contentId) {
-            removeFromFavorites(contentId: contentId)
-            if isFavoritesOnlyView {
-                refreshAction?()
-            }
+        if isFavoritesOnlyView {
+            playable.toggleFavorite(contentId, refreshAction: refreshAction)
         } else {
-            addToFavorites(contentId: contentId)
+            playable.toggleFavorite(contentId)
         }
     }
 
     func addToFolder(_ content: AnyEquatableMedoContent) {
-        selectedContentMultiple = [AnyEquatableMedoContent]()
-        selectedContentMultiple?.append(content)
-        subviewToOpen = .addToFolder
-        showingModalView = true
+        selectedContentMultiple = [content]
+        playable.addToFolder(content)
     }
 
     func playFrom(
@@ -555,24 +399,15 @@ extension ContentGridViewModel: ContentGridDisplaying {
     }
 
     func showDetails(for content: AnyEquatableMedoContent) {
-        selectedContentSingle = content
-        subviewToOpen = .contentDetail
-        showingModalView = true
+        playable.showDetails(for: content)
     }
 
     func showAuthor(withId authorId: String) {
-        guard let author = try? contentRepository.author(withId: authorId) else {
-            print("ContentGrid error: unable to find author with id \(authorId)")
-            return
-        }
-        authorToOpen = author
+        playable.showAuthor(withId: authorId)
     }
 
     func suggestOtherAuthorName(for content: AnyEquatableMedoContent) async {
-        await Mailman.openDefaultEmailApp(
-            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
-            body: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id)
-        )
+        await playable.suggestOtherAuthorName(for: content)
     }
 }
 
@@ -665,22 +500,22 @@ extension ContentGridViewModel {
     private func addSelectedToFavorites() {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSound in
-            addToFavorites(contentId: selectedSound)
+            playable.toggleFavorite(selectedSound)
         }
     }
 
     private func removeSelectedFromFavorites() {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSound in
-            removeFromFavorites(contentId: selectedSound)
+            playable.toggleFavorite(selectedSound)
         }
     }
 
     private func addManyToFolder(loadedContent: [AnyEquatableMedoContent]) {
         guard selectionKeeper.count > 0 else { return }
-        selectedContentMultiple = loadedContent.filter { selectionKeeper.contains($0.id) }
-        subviewToOpen = .addToFolder
-        showingModalView = true
+        let selected = loadedContent.filter { selectionKeeper.contains($0.id) }
+        selectedContentMultiple = selected
+        activeSheet = .addToFolder(selected)
     }
 
     private func removeManyFromFolder() async {
@@ -734,7 +569,7 @@ extension ContentGridViewModel {
         } catch SoundError.fileNotFound(let soundTitle) {
             floatingOptions.wrappedValue?.shareIsProcessing = false
             stopSelecting()
-            // showUnableToGetSoundAlert(soundTitle) // TODO: Pending PlayableContentViewModel refactor
+            showUnableToGetSoundAlert(soundTitle)
         } catch {
             floatingOptions.wrappedValue?.shareIsProcessing = false
             stopSelecting()
@@ -785,6 +620,14 @@ extension ContentGridViewModel {
 // MARK: - Alerts
 
 extension ContentGridViewModel {
+
+    private func showUnableToGetSoundAlert(_ soundTitle: String) {
+        HapticFeedback.error()
+        alertType = .issueExportingManySounds
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
+        alertMessage = Shared.contentNotFoundAlertMessage
+        showAlert = true
+    }
 
     private func showShareManyIssueAlert(_ localizedError: String) {
         HapticFeedback.error()

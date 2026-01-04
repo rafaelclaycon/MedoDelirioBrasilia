@@ -17,6 +17,7 @@ struct StandaloneSearchView: View {
 
     @State private var searchText: String = ""
     @State private var searchResults = SearchResults()
+    @State private var toast: Toast? = nil
 
     @Environment(\.push) private var push
 
@@ -38,18 +39,18 @@ struct StandaloneSearchView: View {
                         .padding(.horizontal, .spacing(.medium))
                     } else {
                         SearchResultsView(
-                            viewModel: PlayableContentViewModel(
+                            playable: PlayableContentState(
                                 contentRepository: contentRepository,
-                                userFolderRepository: userFolderRepository,
+                                contentFileManager: ContentFileManager(),
+                                analyticsService: analyticsService,
                                 screen: .searchResultsView,
-                                menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-                                toast: .constant(nil), // TODO
-                                floatingOptions: .constant(nil), // TODO
-                                analyticsService: analyticsService
+                                toast: $toast
                             ),
                             searchString: searchText,
                             results: searchResults,
-                            containerWidth: geometry.size.width
+                            containerWidth: geometry.size.width,
+                            toast: $toast,
+                            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
                         )
                     }
                 }
@@ -60,11 +61,8 @@ struct StandaloneSearchView: View {
                 .onChange(of: searchText) {
                     onSearchStringChanged(newString: searchText)
                 }
-//                .onAppear {
-//                    viewModel.onViewDidAppear()
-//                    contentGridViewModel.onViewAppeared()
-//                }
             }
+            .toast($toast)
         }
     }
 

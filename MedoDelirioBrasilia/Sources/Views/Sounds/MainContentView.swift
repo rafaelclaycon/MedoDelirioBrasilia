@@ -77,6 +77,7 @@ struct MainContentView: View {
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            contentFileManager: ContentFileManager(),
             screen: .mainContentView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: currentContentListMode,
@@ -131,6 +132,7 @@ struct MainContentView: View {
                                 ContentGrid(
                                     state: viewModel.state,
                                     viewModel: contentGridViewModel,
+                                    toast: viewModel.toast,
                                     searchTextIsEmpty: $contentSearchTextIsEmpty,
                                     allowSearch: true,
                                     isFavoritesOnlyView: viewModel.currentViewMode == .favorites,

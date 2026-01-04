@@ -12,11 +12,36 @@ enum AlertType {
     case singleOption, twoOptions, twoOptionsOneDelete, twoOptionsOneRedownload, twoOptionsOneContinue
 }
 
-enum PlayableContentAlert {
+// MARK: - Playable Content
+
+enum PlayableContentAlert: Identifiable {
 
     case contentFileNotFound
     case issueSharingContent
     case unableToRedownloadContent
+
+    var id: String {
+        switch self {
+        case .contentFileNotFound: return "contentFileNotFound"
+        case .issueSharingContent: return "issueSharingContent"
+        case .unableToRedownloadContent: return "unableToRedownloadContent"
+        }
+    }
+}
+
+enum PlayableContentSheet: Identifiable, Equatable {
+
+    case shareAsVideo(AnyEquatableMedoContent)
+    case addToFolder([AnyEquatableMedoContent])
+    case contentDetail(AnyEquatableMedoContent)
+
+    var id: String {
+        switch self {
+        case .shareAsVideo(let content): return "shareAsVideo-\(content.id)"
+        case .addToFolder(let contents): return "addToFolder-\(contents.map { $0.id }.joined(separator: ","))"
+        case .contentDetail(let content): return "contentDetail-\(content.id)"
+        }
+    }
 }
 
 enum ContentGridAlert {

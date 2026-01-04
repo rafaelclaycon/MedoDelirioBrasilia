@@ -71,13 +71,8 @@ struct AuthorDetailView: View {
         self.currentContentListMode = currentListMode
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
-//            searchService: SearchService(
-//                contentRepository: contentRepository,
-//                authorService: AuthorService(database: LocalDatabase.shared),
-//                appMemory: AppPersistentMemory(),
-//                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
-//            ),
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            contentFileManager: ContentFileManager(),
             screen: .authorDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
@@ -126,6 +121,7 @@ struct AuthorDetailView: View {
                     ContentGrid(
                         state: viewModel.state,
                         viewModel: contentGridViewModel,
+                        toast: viewModel.toast,
                         authorId: viewModel.author.id,
                         containerSize: geometry.size,
                         loadingView: BasicLoadingView(text: "Carregando sons..."),

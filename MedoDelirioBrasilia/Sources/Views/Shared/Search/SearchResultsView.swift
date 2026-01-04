@@ -9,11 +9,13 @@ import SwiftUI
 
 struct SearchResultsView: View {
 
-    @State var viewModel: PlayableContentViewModel
+    @State var playable: PlayableContentState
 
     let searchString: String
     let results: SearchResults
     let containerWidth: CGFloat
+    var toast: Binding<Toast?>
+    var menuOptions: [ContextMenuSection]
 
     @State private var columns: [GridItem] = []
 
@@ -46,9 +48,9 @@ struct SearchResultsView: View {
                         contentView: { item in
                             PlayableContentView(
                                 content: item,
-                                favorites: viewModel.favoritesKeeper,
+                                favorites: playable.favoritesKeeper,
                                 highlighted: Set<String>(arrayLiteral: ""),
-                                nowPlaying: viewModel.nowPlayingKeeper,
+                                nowPlaying: playable.nowPlayingKeeper,
                                 selectedItems: Set<String>(arrayLiteral: ""),
                                 currentContentListMode: .constant(.regular)
                             )
@@ -57,13 +59,13 @@ struct SearchResultsView: View {
                                 RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
                             )
                             .onTapGesture {
-                                viewModel.onContentSelected(item, loadedContent: soundsMatchingTitle)
+                                onContentSelected(item, loadedContent: soundsMatchingTitle)
                             }
                             .contextMenu {
                                 contextMenuOptionsView(
                                     content: item,
-                                    menuOptions: viewModel.menuOptions,
-                                    favorites: viewModel.favoritesKeeper,
+                                    menuOptions: menuOptions,
+                                    favorites: playable.favoritesKeeper,
                                     loadedContent: soundsMatchingTitle
                                 )
                             }
@@ -97,12 +99,15 @@ struct SearchResultsView: View {
                         contentView: { item in
                             PlayableContentView(
                                 content: item,
-                                favorites: Set<String>(arrayLiteral: ""),
+                                favorites: playable.favoritesKeeper,
                                 highlighted: Set<String>(arrayLiteral: ""),
-                                nowPlaying: Set<String>(arrayLiteral: ""),
+                                nowPlaying: playable.nowPlayingKeeper,
                                 selectedItems: Set<String>(arrayLiteral: ""),
                                 currentContentListMode: .constant(.regular)
                             )
+                            .onTapGesture {
+                                onContentSelected(item, loadedContent: songsMatchingTitle)
+                            }
                         }
                     )
                 }
@@ -188,12 +193,37 @@ struct SearchResultsView: View {
                     )
                 }
             }
+            .playableContentUI(
+                state: playable,
+                toast: toast,
+                onAuthorSelected: { author in
+                    push(GeneralNavigationDestination.authorDetail(author))
+                },
+                onReactionSelected: { reaction in
+                    push(GeneralNavigationDestination.reactionDetail(reaction))
+                }
+            )
             .onAppear {
+                playable.onViewAppeared()
                 updateGridLayout()
             }
             .onChange(of: containerWidth) {
                 updateGridLayout()
             }
+        }
+    }
+
+    // MARK: - Actions
+
+    private func onContentSelected(
+        _ content: AnyEquatableMedoContent,
+        loadedContent: [AnyEquatableMedoContent]
+    ) {
+        if playable.nowPlayingKeeper.contains(content.id) {
+            AudioPlayer.shared?.togglePlay()
+            playable.nowPlayingKeeper.removeAll()
+        } else {
+            playable.play(content)
         }
     }
 
@@ -206,27 +236,45 @@ struct SearchResultsView: View {
         favorites: Set<String>,
         loadedContent: [AnyEquatableMedoContent]
     ) -> some View {
-        ForEach(menuOptions, id: \.title) { section in
-            Section {
-                ForEach(section.options(content)) { option in
-                    if option.appliesTo.contains(content.type) {
-                        Button {
-                            option.action(
-                                viewModel,
-                                ContextMenuPassthroughData(
-                                    selectedContent: content,
-                                    loadedContent: loadedContent,
-                                    isFavoritesOnlyView: false
-                                )
-                            )
-                        } label: {
-                            Label(
-                                option.title(favorites.contains(content.id)),
-                                systemImage: option.symbol(favorites.contains(content.id))
-                            )
-                        }
-                    }
-                }
+        // Sharing section
+        Section {
+            Button {
+                playable.share(content: content)
+            } label: {
+                Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+            }
+
+            Button {
+                playable.openShareAsVideoModal(for: content)
+            } label: {
+                Label(Shared.shareAsVideoButtonText, systemImage: "film")
+            }
+        }
+
+        // Organizing section
+        Section {
+            Button {
+                playable.toggleFavorite(content.id)
+            } label: {
+                Label(
+                    favorites.contains(content.id) ? Shared.removeFromFavorites : Shared.addToFavorites,
+                    systemImage: favorites.contains(content.id) ? "star.slash" : "star"
+                )
+            }
+
+            Button {
+                playable.addToFolder(content)
+            } label: {
+                Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
+            }
+        }
+
+        // Details section
+        Section {
+            Button {
+                playable.showDetails(for: content)
+            } label: {
+                Label("Ver Detalhes", systemImage: "info.circle")
             }
         }
     }
@@ -367,19 +415,18 @@ extension SearchResultsView {
     GeometryReader { geometry in
         ScrollView {
             SearchResultsView(
-                viewModel: PlayableContentViewModel(
+                playable: PlayableContentState(
                     contentRepository: FakeContentRepository(),
-                    userFolderRepository: FakeUserFolderRepository(),
-                    screen: .searchResultsView,
-                    menuOptions: [],
-                    toast: .constant(nil),
-                    floatingOptions: .constant(nil),
+                    contentFileManager: ContentFileManager(),
                     analyticsService: FakeAnalyticsService(),
-                    contentFileManager: ContentFileManager()
+                    screen: .searchResultsView,
+                    toast: .constant(nil)
                 ),
                 searchString: "Bolsorrrgnnn",
                 results: SearchResults(),
-                containerWidth: geometry.size.width
+                containerWidth: geometry.size.width,
+                toast: .constant(nil),
+                menuOptions: []
             )
             .padding(.all, .spacing(.medium))
         }
@@ -390,15 +437,12 @@ extension SearchResultsView {
     GeometryReader { geometry in
         ScrollView {
             SearchResultsView(
-                viewModel: PlayableContentViewModel(
+                playable: PlayableContentState(
                     contentRepository: FakeContentRepository(),
-                    userFolderRepository: FakeUserFolderRepository(),
-                    screen: .searchResultsView,
-                    menuOptions: [],
-                    toast: .constant(nil),
-                    floatingOptions: .constant(nil),
+                    contentFileManager: ContentFileManager(),
                     analyticsService: FakeAnalyticsService(),
-                    contentFileManager: ContentFileManager()
+                    screen: .searchResultsView,
+                    toast: .constant(nil)
                 ),
                 searchString: "Bolso",
                 results: SearchResults(
@@ -409,7 +453,9 @@ extension SearchResultsView {
                     reactionsMatchingTitle: [.viralMock, .choqueMock],
                     reactionsMatchingFeeling: [.viralMock]
                 ),
-                containerWidth: geometry.size.width
+                containerWidth: geometry.size.width,
+                toast: .constant(nil),
+                menuOptions: []
             )
             .padding(.all, .spacing(.medium))
         }

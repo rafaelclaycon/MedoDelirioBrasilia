@@ -10,6 +10,9 @@ import Foundation
 final class FakeContentRepository: ContentRepositoryProtocol {
 
     var content: [AnyEquatableMedoContent] = []
+    var fakeFavorites: [Favorite] = []
+    private var insertedFavorites: [Favorite] = []
+    private var deletedFavoriteIds: Set<String> = []
 
     func allContent(_ allowSensitive: Bool, _ sortOrder: SoundSortOption) throws -> [AnyEquatableMedoContent] {
         content
@@ -50,19 +53,22 @@ final class FakeContentRepository: ContentRepositoryProtocol {
     // Favorite
 
     func favorites() throws -> [Favorite] {
-        []
+        let existingIds = Set(fakeFavorites.map { $0.contentId })
+        let all = fakeFavorites + insertedFavorites.filter { !existingIds.contains($0.contentId) }
+        return all.filter { !deletedFavoriteIds.contains($0.contentId) }
     }
 
     func favoriteExists(_ contentId: String) throws -> Bool {
-        false
+        let allFavorites = try favorites()
+        return allFavorites.contains { $0.contentId == contentId }
     }
 
     func insert(favorite: Favorite) throws {
-        //
+        insertedFavorites.append(favorite)
     }
 
     func deleteFavorite(_ contentId: String) throws {
-        //
+        deletedFavoriteIds.insert(contentId)
     }
 
     // Song

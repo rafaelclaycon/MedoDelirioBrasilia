@@ -125,8 +125,8 @@
 		D90BCEA92F0ABD6A00E6EA20 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BCEA52F0ABD6A00E6EA20 /* SearchResultsView.swift */; };
 		D90BCEAC2F0ABD9A00E6EA20 /* HorizontalAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BCEAA2F0ABD9A00E6EA20 /* HorizontalAuthorView.swift */; };
 		D90BCEAD2F0ABD9A00E6EA20 /* VerticalAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BCEAB2F0ABD9A00E6EA20 /* VerticalAuthorView.swift */; };
-		D90BCEB02F0ABDC400E6EA20 /* PlayableContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BCEAE2F0ABDC400E6EA20 /* PlayableContentViewModel.swift */; };
-		D90BCEB12F0ABDC400E6EA20 /* PlayableContentWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BCEAF2F0ABDC400E6EA20 /* PlayableContentWrapperView.swift */; };
+		D90BCEB22F0ABDC500E6EA20 /* PlayableContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BCEAEE2F0ABDC500E6EA20 /* PlayableContentState.swift */; };
+		D90BCEB32F0ABDC500E6EA20 /* PlayableContentUIModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BCEAFF2F0ABDC500E6EA20 /* PlayableContentUIModifier.swift */; };
 		D90BCEB32F0ABDE900E6EA20 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BCEB22F0ABDE900E6EA20 /* SearchResults.swift */; };
 		D90BF91D2DE8800300C5480B /* BasicLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90BF91C2DE8800300C5480B /* BasicLoadingView.swift */; };
 		D90C4B09291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90C4B08291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 */; };
@@ -1376,6 +1376,7 @@
 		D9CEB76629991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */; };
 		D9CEB76A29991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */; };
 		D9CF3BDA2DB06036002C6E6B /* ContentGridViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF3BD92DB06036002C6E6B /* ContentGridViewModelTests.swift */; };
+		D9CF3BDB2DB06037002C6E6B /* PlayableContentStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF3BD92DB06037002C6E6B /* PlayableContentStateTests.swift */; };
 		D9CF3BDC2DB060AF002C6E6B /* FakeAnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CF3BDB2DB060AF002C6E6B /* FakeAnalyticsService.swift */; };
 		D9CFF04D2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CFF04C2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 */; };
 		D9D103EF29AE35CD0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */; };
@@ -1701,8 +1702,8 @@
 		D90BCEA62F0ABD6A00E6EA20 /* SearchSuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionsView.swift; sourceTree = "<group>"; };
 		D90BCEAA2F0ABD9A00E6EA20 /* HorizontalAuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalAuthorView.swift; sourceTree = "<group>"; };
 		D90BCEAB2F0ABD9A00E6EA20 /* VerticalAuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAuthorView.swift; sourceTree = "<group>"; };
-		D90BCEAE2F0ABDC400E6EA20 /* PlayableContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentViewModel.swift; sourceTree = "<group>"; };
-		D90BCEAF2F0ABDC400E6EA20 /* PlayableContentWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentWrapperView.swift; sourceTree = "<group>"; };
+		D90BCEAEE2F0ABDC500E6EA20 /* PlayableContentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentState.swift; sourceTree = "<group>"; };
+		D90BCEAFF2F0ABDC500E6EA20 /* PlayableContentUIModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentUIModifier.swift; sourceTree = "<group>"; };
 		D90BCEB22F0ABDE900E6EA20 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		D90BF91C2DE8800300C5480B /* BasicLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLoadingView.swift; sourceTree = "<group>"; };
 		D90C4B08291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Menino Pulando na Cama - Que bosta.mp3"; sourceTree = "<group>"; };
@@ -2957,6 +2958,7 @@
 		D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bruno Aleixo - Esqueceu-se.mp3"; sourceTree = "<group>"; };
 		D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Te amo te amo te amo, democracia (Natuza Nery).mp3"; sourceTree = "<group>"; };
 		D9CF3BD92DB06036002C6E6B /* ContentGridViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGridViewModelTests.swift; sourceTree = "<group>"; };
+		D9CF3BD92DB06037002C6E6B /* PlayableContentStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentStateTests.swift; sourceTree = "<group>"; };
 		D9CF3BDB2DB060AF002C6E6B /* FakeAnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAnalyticsService.swift; sourceTree = "<group>"; };
 		D9CFF04C2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hugo Ojuara - Preto demais.mp3"; sourceTree = "<group>"; };
 		D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lourdes Melo - O ministro cabeca de ovo lustrada.mp3"; sourceTree = "<group>"; };
@@ -5346,6 +5348,7 @@
 			isa = PBXGroup;
 			children = (
 				D9CF3BD92DB06036002C6E6B /* ContentGridViewModelTests.swift */,
+				D9CF3BD92DB06037002C6E6B /* PlayableContentStateTests.swift */,
 			);
 			path = ContentGrid;
 			sourceTree = "<group>";
@@ -5397,8 +5400,8 @@
 		D9DBEA9F2BCC10F200220679 /* ContentGrid */ = {
 			isa = PBXGroup;
 			children = (
-				D90BCEAE2F0ABDC400E6EA20 /* PlayableContentViewModel.swift */,
-				D90BCEAF2F0ABDC400E6EA20 /* PlayableContentWrapperView.swift */,
+				D90BCEAEE2F0ABDC500E6EA20 /* PlayableContentState.swift */,
+				D90BCEAFF2F0ABDC500E6EA20 /* PlayableContentUIModifier.swift */,
 				D992EF592BCB24FB0080C892 /* ContentGrid.swift */,
 				D992EF5B2BCB25820080C892 /* ContentGridViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* PlayableContentView.swift */,
@@ -6981,8 +6984,8 @@
 				D984D55F2CF2190B00680C7D /* ContentDetailView+ViewModel.swift in Sources */,
 				D9115BAD2DB1B2180089A0CF /* ContentLoadErrorView.swift in Sources */,
 				D96892DC2C9F13C00084F646 /* APIConfig.swift in Sources */,
-				D90BCEB02F0ABDC400E6EA20 /* PlayableContentViewModel.swift in Sources */,
-				D90BCEB12F0ABDC400E6EA20 /* PlayableContentWrapperView.swift in Sources */,
+				D90BCEB22F0ABDC500E6EA20 /* PlayableContentState.swift in Sources */,
+				D90BCEB32F0ABDC500E6EA20 /* PlayableContentUIModifier.swift in Sources */,
 				D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsGrid.swift in Sources */,
 				D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */,
@@ -7203,6 +7206,7 @@
 				D920BF662CD1F52500C6BD72 /* MockUserSettings.swift in Sources */,
 				D98DBD38284921B5008544F8 /* APIClientTests.swift in Sources */,
 				D9CF3BDA2DB06036002C6E6B /* ContentGridViewModelTests.swift in Sources */,
+				D9CF3BDB2DB06037002C6E6B /* PlayableContentStateTests.swift in Sources */,
 				D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */,
 				D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */,
 			);
