@@ -45,6 +45,7 @@ final class PlayableContentViewModel {
     private let userFolderRepository: UserFolderRepositoryProtocol
     private let analyticsService: AnalyticsServiceProtocol
     private let currentScreen: ContentGridScreen
+    private let contentFileManager: ContentFileManagerProtocol
 
     // MARK: - Initializer
 
@@ -55,11 +56,13 @@ final class PlayableContentViewModel {
         menuOptions: [ContextMenuSection],
         toast: Binding<Toast?>,
         floatingOptions: Binding<FloatingContentOptions?>,
-        analyticsService: AnalyticsServiceProtocol
+        analyticsService: AnalyticsServiceProtocol,
+        contentFileManager: ContentFileManagerProtocol
     ) {
         self.contentRepository = contentRepository
         self.userFolderRepository = userFolderRepository
         self.analyticsService = analyticsService
+        self.contentFileManager = contentFileManager
         self.currentScreen = screen
         self.menuOptions = menuOptions
         self.toast = toast
@@ -175,7 +178,7 @@ extension PlayableContentViewModel {
     private func redownloadServerContent(withId contentId: String) {
         Task {
             do {
-                try await SyncService.downloadFile(contentId)
+                try await contentFileManager.downloadSound(withId: contentId) // TODO: Pass into it if it's song or sound
                 toast.wrappedValue = Toast(
                     message: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
                     type: .success

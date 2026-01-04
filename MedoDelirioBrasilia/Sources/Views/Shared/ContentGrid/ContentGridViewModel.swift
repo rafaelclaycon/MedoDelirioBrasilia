@@ -291,7 +291,7 @@ extension ContentGridViewModel {
                     type: .success
                 )
             } catch {
-                showUnableToRedownloadSoundAlert()
+                // showUnableToRedownloadSoundAlert() // TODO: Pending PlayableContentViewModel refactor
             }
         }
     }
@@ -323,7 +323,7 @@ extension ContentGridViewModel {
                     WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
-                showUnableToGetSoundAlert(soundTitle)
+                // showUnableToGetSoundAlert(soundTitle) // TODO: Pending PlayableContentViewModel refactor
             }
         } else {
             guard filepath.isEmpty == false else {
@@ -411,7 +411,7 @@ extension ContentGridViewModel {
             AudioPlayer.shared?.togglePlay()
         } catch {
             if content.isFromServer ?? false {
-                showServerSoundNotAvailableAlert(content)
+                // showServerSoundNotAvailableAlert(content) // TODO: Pending PlayableContentViewModel refactor
                 // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
             }
         }
@@ -486,7 +486,7 @@ extension ContentGridViewModel: ContentGridDisplaying {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert(content.title)
+                // showUnableToGetSoundAlert(content.title) // TODO: Pending PlayableContentViewModel refactor
             }
         } else {
             do {
@@ -507,7 +507,7 @@ extension ContentGridViewModel: ContentGridDisplaying {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert(content.title)
+                // showUnableToGetSoundAlert(content.title) // TODO: Pending PlayableContentViewModel refactor
             }
 
             isShowingShareSheet = true
@@ -734,7 +734,7 @@ extension ContentGridViewModel {
         } catch SoundError.fileNotFound(let soundTitle) {
             floatingOptions.wrappedValue?.shareIsProcessing = false
             stopSelecting()
-            showUnableToGetSoundAlert(soundTitle)
+            // showUnableToGetSoundAlert(soundTitle) // TODO: Pending PlayableContentViewModel refactor
         } catch {
             floatingOptions.wrappedValue?.shareIsProcessing = false
             stopSelecting()

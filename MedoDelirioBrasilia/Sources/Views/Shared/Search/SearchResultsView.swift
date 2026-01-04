@@ -374,7 +374,8 @@ extension SearchResultsView {
                     menuOptions: [],
                     toast: .constant(nil),
                     floatingOptions: .constant(nil),
-                    analyticsService: FakeAnalyticsService()
+                    analyticsService: FakeAnalyticsService(),
+                    contentFileManager: ContentFileManager()
                 ),
                 searchString: "Bolsorrrgnnn",
                 results: SearchResults(),
@@ -396,7 +397,8 @@ extension SearchResultsView {
                     menuOptions: [],
                     toast: .constant(nil),
                     floatingOptions: .constant(nil),
-                    analyticsService: FakeAnalyticsService()
+                    analyticsService: FakeAnalyticsService(),
+                    contentFileManager: ContentFileManager()
                 ),
                 searchString: "Bolso",
                 results: SearchResults(

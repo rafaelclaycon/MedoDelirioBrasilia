@@ -162,7 +162,7 @@ struct ContentGrid<
                 }
                 .alert(isPresented: $viewModel.showAlert) {
                     switch viewModel.alertType {
-                    case .soundFileNotFound:
+                    /*case .soundFileNotFound:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
@@ -171,9 +171,9 @@ struct ContentGrid<
                                 action: { viewModel.onRedownloadContentOptionSelected() }
                             ),
                             secondaryButton: .cancel(Text("Fechar"))
-                        )
+                        )*/ // TODO: Playable refactor
 
-                    case .issueSharingSound:
+                    /*case .issueSharingSound:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
@@ -182,16 +182,16 @@ struct ContentGrid<
                                 action: { Task { await viewModel.onReportContentIssueSelected() } }
                             ),
                             secondaryButton: .cancel(Text("Fechar"))
-                        )
+                        )*/
 
-                    case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
+                    case .issueExportingManySounds, /*.unableToRedownloadSound,*/ .issueRemovingContentFromFolder:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
                             dismissButton: .default(Text("OK"))
                         )
 
-                    case .removeSingleSound:
+                    case .removeSingleContent:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
@@ -202,7 +202,7 @@ struct ContentGrid<
                             secondaryButton: .cancel(Text("Cancelar"))
                         )
 
-                    case .removeMultipleSounds:
+                    case .removeMultipleContent:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),

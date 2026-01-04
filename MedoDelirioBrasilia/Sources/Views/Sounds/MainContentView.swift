@@ -372,7 +372,6 @@ extension MainContentView {
 
         @State private var data: DynamicBannerData?
         @State private var showRetroBanner: Bool = true
-        @State private var showBetaBanner: Bool = true
         @State private var showBetaFAQ: Bool = false
         @State private var userHasStats: Bool = false
 
@@ -407,7 +406,6 @@ extension MainContentView {
                 Task{
                     data = await bannerRepository.dynamicBanner()
                 }
-                showBetaBanner = !AppPersistentMemory().hasDismissediOS26BetaBanner()
                 showRetroBanner = !AppPersistentMemory().hasDismissedRetro2025Banner()
                 userHasStats = LocalDatabase.shared.totalShareCount() > 0
             }

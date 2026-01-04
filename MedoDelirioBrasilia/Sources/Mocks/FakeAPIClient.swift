@@ -88,10 +88,6 @@ class FakeAPIClient: APIClientProtocol {
         []
     }
 
-    func moneyInfo() async throws -> [MoneyInfo] {
-        []
-    }
-
     func sound(_ id: String) async throws -> Sound {
         sound!
     }
