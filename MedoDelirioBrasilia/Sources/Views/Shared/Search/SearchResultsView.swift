@@ -43,8 +43,8 @@ struct SearchResultsView: View {
                     CollapsibleResultSection(
                         items: soundsMatchingTitle,
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
-                        headerSymbol: "speaker.wave.3",
-                        headerTitle: "Sons",
+                        headerSymbol: "headphones",
+                        headerTitle: "Vírgulas",
                         contentView: { item in
                             PlayableContentView(
                                 content: item,
@@ -77,8 +77,8 @@ struct SearchResultsView: View {
                     CollapsibleResultSection(
                         items: soundsMatchingContent,
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
-                        headerSymbol: "speaker.wave.3",
-                        headerTitle: "Conteúdo dos Sons",
+                        headerSymbol: "headphones",
+                        headerTitle: "Conteúdo das Vírgulas",
                         contentView: { item in
                             ContentWithDescriptionMatch(
                                 content: item,
@@ -317,7 +317,7 @@ extension SearchResultsView {
 
 
                 Text(countText)
-                    .font(.callout)
+                    .font(.footnote)
                     .foregroundStyle(.gray)
             }
             .padding(.vertical, .spacing(.xSmall))
