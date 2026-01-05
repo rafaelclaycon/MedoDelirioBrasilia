@@ -405,6 +405,27 @@ struct MainView: View {
                                 .foregroundColor(.accentColor)
                         }
                     }
+
+                    Tab(role: .search) {
+                        NavigationStack(path: $searchTabPath) {
+                            StandaloneSearchView(
+                                searchService: SearchService(
+                                    contentRepository: contentRepository,
+                                    authorService: AuthorService(database: LocalDatabase.shared),
+                                    appMemory: AppPersistentMemory.shared,
+                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+                                ),
+                                trendsService: trendsService,
+                                contentRepository: contentRepository,
+                                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                analyticsService: AnalyticsService()
+                            )
+                            .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                GeneralRouter(destination: screen, contentRepository: contentRepository)
+                            }
+                        }
+                        .environment(\.push, PushAction { searchTabPath.append($0) })
+                    }
                 }
                 .tabViewStyle(.sidebarAdaptable)
                 .tabViewSidebarHeader {
