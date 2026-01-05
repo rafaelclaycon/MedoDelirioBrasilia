@@ -16,10 +16,17 @@ struct MainContentView: View {
     private let openSettingsAction: () -> Void
     private let contentRepository: ContentRepositoryProtocol
     private let bannerRepository: BannerRepositoryProtocol
+    private let searchService: SearchServiceProtocol
+    private let analyticsService: AnalyticsServiceProtocol
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
     @State private var contentSearchTextIsEmpty: Bool? = true
+
+    // iOS 18 Search
+    @State private var searchText: String = ""
+    @State private var searchResults = SearchResults()
+    @State private var searchToast: Toast? = nil
     
     // Retrospective
     @State private var showRetrospectiveStories = false
@@ -44,6 +51,17 @@ struct MainContentView: View {
     @Environment(PlayRandomSoundHelper.self) private var playRandomSoundHelper
 
     // MARK: - Computed Properties
+
+    private var isIOS26OrLater: Bool {
+        if #available(iOS 26.0, *) {
+            return true
+        }
+        return false
+    }
+
+    private var isSearchingOnIOS18: Bool {
+        !isIOS26OrLater && !searchText.isEmpty
+    }
 
     private var title: String {
         guard currentContentListMode.wrappedValue == .regular else {
@@ -71,7 +89,9 @@ struct MainContentView: View {
         floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void,
         contentRepository: ContentRepositoryProtocol,
-        bannerRepository: BannerRepositoryProtocol
+        bannerRepository: BannerRepositoryProtocol,
+        searchService: SearchServiceProtocol,
+        analyticsService: AnalyticsServiceProtocol
     ) {
         self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
@@ -84,12 +104,14 @@ struct MainContentView: View {
             toast: toast,
             floatingOptions: floatingOptions,
             refreshAction: viewModel.onFavoritesChanged,
-            analyticsService: AnalyticsService()
+            analyticsService: analyticsService
         )
         self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction
         self.contentRepository = contentRepository
         self.bannerRepository = bannerRepository
+        self.searchService = searchService
+        self.analyticsService = analyticsService
     }
 
     // MARK: - View Body
@@ -129,29 +151,46 @@ struct MainContentView: View {
                                     }
                                 }
 
-                                ContentGrid(
-                                    state: viewModel.state,
-                                    viewModel: contentGridViewModel,
-                                    toast: viewModel.toast,
-                                    searchTextIsEmpty: $contentSearchTextIsEmpty,
-                                    allowSearch: true,
-                                    isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
-                                    containerSize: geometry.size,
-                                    scrollViewProxy: proxy,
-                                    loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
-                                    emptyStateView:
-                                        VStack {
-                                            if viewModel.currentViewMode == .favorites {
-                                                NoFavoritesView()
-                                                    .padding(.vertical, .spacing(.huge))
-                                            } else {
-                                                Text("Nenhum som a ser exibido. Isso é esquisito.")
-                                                    .foregroundColor(.gray)
+                                if isSearchingOnIOS18 {
+                                    SearchResultsView(
+                                        playable: PlayableContentState(
+                                            contentRepository: contentRepository,
+                                            contentFileManager: ContentFileManager(),
+                                            analyticsService: analyticsService,
+                                            screen: .searchResultsView,
+                                            toast: $searchToast
+                                        ),
+                                        searchString: searchText,
+                                        results: searchResults,
+                                        containerWidth: geometry.size.width,
+                                        toast: $searchToast,
+                                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                                    )
+                                } else {
+                                    ContentGrid(
+                                        state: viewModel.state,
+                                        viewModel: contentGridViewModel,
+                                        toast: viewModel.toast,
+                                        searchTextIsEmpty: $contentSearchTextIsEmpty,
+                                        allowSearch: false,
+                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
+                                        containerSize: geometry.size,
+                                        scrollViewProxy: proxy,
+                                        loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
+                                        emptyStateView:
+                                            VStack {
+                                                if viewModel.currentViewMode == .favorites {
+                                                    NoFavoritesView()
+                                                        .padding(.vertical, .spacing(.huge))
+                                                } else {
+                                                    Text("Nenhum som a ser exibido. Isso é esquisito.")
+                                                        .foregroundColor(.gray)
+                                                }
                                             }
-                                        }
-                                    ,
-                                    errorView: VStack { ContentLoadErrorView() }
-                                )
+                                        ,
+                                        errorView: VStack { ContentLoadErrorView() }
+                                    )
+                                }
 
                                 if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
                                     ExplicitDisabledWarning(
@@ -230,6 +269,14 @@ struct MainContentView: View {
                             },
                             matchedTransitionNamespace: namespace
                         )
+                    }
+                    .if(!isIOS26OrLater) { view in
+                        view
+                            .searchable(text: $searchText, placement: .navigationBarDrawer, prompt: Shared.Search.searchPrompt)
+                            .autocorrectionDisabled()
+                    }
+                    .onChange(of: searchText) {
+                        onSearchTextChanged(newString: searchText)
                     }
                     .onChange(of: viewModel.currentViewMode) {
                         Task {
@@ -451,6 +498,14 @@ extension MainContentView {
         playRandomSoundHelper.soundIdToPlay = randomSound.id
         await AnalyticsService().send(action: "didPlayRandomSound(\(randomSound.title))")
     }
+
+    private func onSearchTextChanged(newString: String) {
+        guard !newString.isEmpty else {
+            searchResults.clearAll()
+            return
+        }
+        searchResults = searchService.results(matching: newString)
+    }
 }
 
 // MARK: - Preview
@@ -466,13 +521,20 @@ extension MainContentView {
             floatingOptions: .constant(nil),
             syncValues: SyncValues(),
             contentRepository: FakeContentRepository(),
-            analyticsService: AnalyticsService()
+            analyticsService: FakeAnalyticsService()
         ),
         currentContentListMode: .constant(.regular),
         toast: .constant(nil),
         floatingOptions: .constant(nil),
         openSettingsAction: {},
         contentRepository: FakeContentRepository(),
-        bannerRepository: BannerRepository()
+        bannerRepository: BannerRepository(),
+        searchService: SearchService(
+            contentRepository: FakeContentRepository(),
+            authorService: FakeAuthorService(),
+            appMemory: FakeAppPersistentMemory(),
+            userFolderRepository: FakeUserFolderRepository()
+        ),
+        analyticsService: FakeAnalyticsService()
     )
 }

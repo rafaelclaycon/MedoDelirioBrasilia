@@ -91,7 +91,14 @@ struct MainView: View {
                                         isShowingSettingsSheet.toggle()
                                     },
                                     contentRepository: contentRepository,
-                                    bannerRepository: BannerRepository()
+                                    bannerRepository: BannerRepository(),
+                                    searchService: SearchService(
+                                        contentRepository: contentRepository,
+                                        authorService: AuthorService(database: LocalDatabase.shared),
+                                        appMemory: AppPersistentMemory.shared,
+                                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+                                    ),
+                                    analyticsService: AnalyticsService()
                                 )
                                 .environment(trendsHelper)
                                 .environment(settingsHelper)
@@ -171,7 +178,14 @@ struct MainView: View {
                                     isShowingSettingsSheet.toggle()
                                 },
                                 contentRepository: contentRepository,
-                                bannerRepository: BannerRepository()
+                                bannerRepository: BannerRepository(),
+                                searchService: SearchService(
+                                    contentRepository: contentRepository,
+                                    authorService: AuthorService(database: LocalDatabase.shared),
+                                    appMemory: AppPersistentMemory.shared,
+                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+                                ),
+                                analyticsService: AnalyticsService()
                             )
                             .environment(trendsHelper)
                             .environment(settingsHelper)
@@ -258,7 +272,14 @@ struct MainView: View {
                                 floatingOptions: $floatingOptions,
                                 openSettingsAction: {},
                                 contentRepository: contentRepository,
-                                bannerRepository: BannerRepository()
+                                bannerRepository: BannerRepository(),
+                                searchService: SearchService(
+                                    contentRepository: contentRepository,
+                                    authorService: AuthorService(database: LocalDatabase.shared),
+                                    appMemory: AppPersistentMemory.shared,
+                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+                                ),
+                                analyticsService: AnalyticsService()
                             )
                             .environment(trendsHelper)
                             .environment(settingsHelper)
