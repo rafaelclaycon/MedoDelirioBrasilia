@@ -371,6 +371,8 @@ extension SearchResultsView {
 
         @State private var isCollapsed: Bool = true
 
+        @Environment(\.colorScheme) var colorScheme
+
         var body: some View {
             Section {
                 if isCollapsed {
@@ -390,19 +392,42 @@ extension SearchResultsView {
                 )
             } footer: {
                 if items.count > itemCountWhenCollapsed && isCollapsed {
-                    Button {
-                        withAnimation {
-                            isCollapsed.toggle()
-                        }
-                    } label: {
+                    if #available(iOS 26, *) {
                         HStack {
                             Spacer()
                             Text("Ver Tudo")
                                 .bold()
                             Spacer()
                         }
+                        .foregroundStyle(
+                            colorScheme == .dark ? .primary : Color.darkestGreen
+                        )
+                        .frame(height: 46)
+                        .glassEffect(
+                            .regular.tint(
+                                .accentColor.opacity(0.3)
+                            ).interactive()
+                        )
+                        .onTapGesture {
+                            withAnimation {
+                                isCollapsed.toggle()
+                            }
+                        }
+                    } else {
+                        Button {
+                            withAnimation {
+                                isCollapsed.toggle()
+                            }
+                        } label: {
+                            HStack {
+                                Spacer()
+                                Text("Ver Tudo")
+                                    .bold()
+                                Spacer()
+                            }
+                        }
+                        .largeRoundedRectangleBordered(colored: .green)
                     }
-                    .largeRoundedRectangleBordered(colored: .green)
                 }
             }
         }
