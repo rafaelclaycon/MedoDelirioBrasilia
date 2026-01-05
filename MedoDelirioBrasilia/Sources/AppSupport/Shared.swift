@@ -224,6 +224,6 @@ struct Shared {
 
     struct Search {
 
-        static let searchPrompt = "Buscar conteúdo, autor, pasta, sentimento"
+        static let searchPrompt = "Buscar conteúdo, autor ou pasta" // "Buscar conteúdo, autor, pasta, sentimento"
     }
 }
