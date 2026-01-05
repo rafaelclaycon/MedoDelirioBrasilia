@@ -14,6 +14,8 @@ struct Shared {
                 "Tendências"
             case .settings:
                 "Configurações"
+            case .search:
+                ""
             }
         }
 
@@ -26,6 +28,8 @@ struct Shared {
             case .trends:
                 "chart.line.uptrend.xyaxis"
             case .settings:
+                ""
+            case .search:
                 ""
             }
         }

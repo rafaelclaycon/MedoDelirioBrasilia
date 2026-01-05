@@ -299,6 +299,7 @@
 		D92F096529ED844300CC382F /* View+Marquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F096429ED844300CC382F /* View+Marquee.swift */; };
 		D9310C262A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
+		D933B5C52F0B3E7D00251FBA /* StandaloneSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933B5C42F0B3E7D00251FBA /* StandaloneSearchView.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
 		D93443292838230500ADCD38 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+.swift */; };
@@ -1877,6 +1878,7 @@
 		D92F096429ED844300CC382F /* View+Marquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Marquee.swift"; sourceTree = "<group>"; };
 		D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jaiminho - E que quero evitar a fadiga.mp3"; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		D933B5C42F0B3E7D00251FBA /* StandaloneSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneSearchView.swift; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
 		D93443282838230500ADCD38 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -4799,6 +4801,7 @@
 		D965DCD22DAAD04500BF6920 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				D933B5C42F0B3E7D00251FBA /* StandaloneSearchView.swift */,
 				D9400DE32DAA992500EFBE20 /* StandaloneFavoritesView.swift */,
 				D9400DE52DAAAF4800EFBE20 /* StandaloneFavoritesViewModel.swift */,
 				D965DCD32DAAD06F00BF6920 /* StandaloneAuthorsView.swift */,
@@ -7007,6 +7010,7 @@
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D904BDCF2DADAA09004AF550 /* ContentRepository.swift in Sources */,
+				D933B5C52F0B3E7D00251FBA /* StandaloneSearchView.swift in Sources */,
 				D954D1D92DCD4D4200A7D949 /* MoneyInfo.swift in Sources */,
 				D969C5302EE492730073058C /* ShareableRetroImageView.swift in Sources */,
 				D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */,

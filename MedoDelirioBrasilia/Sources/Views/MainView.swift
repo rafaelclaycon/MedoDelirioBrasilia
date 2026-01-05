@@ -127,14 +127,26 @@ struct MainView: View {
                             .tag(PhoneTab.trends)
                         }
 
-                        // Coming after Ask for Permission and Universal Search are ready.
-                        /*Tab(role: .search) {
-                            NavigationStack {
-                                VStack {
-                                    Text("Tela de Pesquisa Universal")
+                        Tab(value: .search, role: .search) {
+                            NavigationStack(path: $searchTabPath) {
+                                StandaloneSearchView(
+                                    searchService: SearchService(
+                                        contentRepository: contentRepository,
+                                        authorService: AuthorService(database: LocalDatabase.shared),
+                                        appMemory: AppPersistentMemory.shared,
+                                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
+                                    ),
+                                    trendsService: trendsService,
+                                    contentRepository: contentRepository,
+                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    analyticsService: AnalyticsService()
+                                )
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
                             }
-                        }*/
+                            .environment(\.push, PushAction { searchTabPath.append($0) })
+                        }
                     }
                     .tabBarMinimizeBehavior(.onScrollDown)
                 } else {
@@ -510,3 +522,4 @@ struct MainView: View {
         padSelection: .constant(.allSounds)
     )
 }
+
