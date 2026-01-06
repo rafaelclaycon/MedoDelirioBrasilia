@@ -34,8 +34,7 @@ struct SearchResultsView: View {
         } else {
             LazyVGrid(
                 columns: columns,
-                spacing: .spacing(.medium),
-                pinnedViews: .sectionHeaders
+                spacing: .spacing(.medium)
             ) {
                 // MARK: - Sounds
 
@@ -314,7 +313,6 @@ extension SearchResultsView {
                     .lineLimit(2)
 
                 Spacer()
-
 
                 Text(countText)
                     .font(.footnote)
