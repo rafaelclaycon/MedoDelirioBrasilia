@@ -10,10 +10,12 @@ import SwiftUI
 struct SearchSuggestionsView: View {
 
     @State var recent: [String]
+    @State var playable: PlayableContentState
     let trendsService: TrendsServiceProtocol
     let onRecentSelectedAction: (String) -> Void
     let onReactionSelectedAction: (Reaction) -> Void
     let containerWidth: CGFloat
+    var toast: Binding<Toast?>
     let onClearSearchesAction: () -> Void
 
     @State private var popularContent: LoadingState<[AnyEquatableMedoContent]> = .loading
@@ -25,6 +27,7 @@ struct SearchSuggestionsView: View {
     private let padItemSpacing: CGFloat = .spacing(.medium)
 
     @Environment(\.sizeCategory) private var sizeCategory
+    @Environment(\.push) private var push
 
     // MARK: - View Body
 
@@ -62,6 +65,7 @@ struct SearchSuggestionsView: View {
             if case .loaded(let content) = popularContent, !content.isEmpty {
                 PopularContentView(
                     content: content,
+                    playable: playable,
                     columns: columns,
                     phoneItemSpacing: phoneItemSpacing,
                     padItemSpacing: padItemSpacing
@@ -78,7 +82,18 @@ struct SearchSuggestionsView: View {
                 )
             }
         }
+        .playableContentUI(
+            state: playable,
+            toast: toast,
+            onAuthorSelected: { author in
+                push(GeneralNavigationDestination.authorDetail(author))
+            },
+            onReactionSelected: { reaction in
+                push(GeneralNavigationDestination.reactionDetail(reaction))
+            }
+        )
         .onAppear {
+            playable.onViewAppeared()
             Task {
                 await loadContent()
             }
@@ -136,6 +151,7 @@ extension SearchSuggestionsView {
     struct PopularContentView: View {
 
         let content: [AnyEquatableMedoContent]
+        @Bindable var playable: PlayableContentState
         let columns: [GridItem]
         let phoneItemSpacing: CGFloat
         let padItemSpacing: CGFloat
@@ -149,12 +165,67 @@ extension SearchSuggestionsView {
                     ForEach(content) { item in
                         PlayableContentView(
                             content: item,
-                            favorites: Set<String>(),
+                            favorites: playable.favoritesKeeper,
                             highlighted: Set<String>(),
-                            nowPlaying: Set<String>(),
+                            nowPlaying: playable.nowPlayingKeeper,
                             selectedItems: Set<String>(),
                             currentContentListMode: .constant(.regular)
                         )
+                        .contentShape(
+                            .contextMenuPreview,
+                            RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
+                        )
+                        .onTapGesture {
+                            if playable.nowPlayingKeeper.contains(item.id) {
+                                AudioPlayer.shared?.togglePlay()
+                                playable.nowPlayingKeeper.removeAll()
+                            } else {
+                                playable.play(item)
+                            }
+                        }
+                        .contextMenu {
+                            // Sharing
+                            Section {
+                                Button {
+                                    playable.share(content: item)
+                                } label: {
+                                    Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                                }
+
+                                Button {
+                                    playable.openShareAsVideoModal(for: item)
+                                } label: {
+                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                }
+                            }
+
+                            // Organizing
+                            Section {
+                                Button {
+                                    playable.toggleFavorite(item.id)
+                                } label: {
+                                    Label(
+                                        playable.favoritesKeeper.contains(item.id) ? Shared.removeFromFavorites : Shared.addToFavorites,
+                                        systemImage: playable.favoritesKeeper.contains(item.id) ? "star.slash" : "star"
+                                    )
+                                }
+
+                                Button {
+                                    playable.addToFolder(item)
+                                } label: {
+                                    Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
+                                }
+                            }
+
+                            // Details
+                            Section {
+                                Button {
+                                    playable.showDetails(for: item)
+                                } label: {
+                                    Label("Ver Detalhes", systemImage: "info.circle")
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -196,6 +267,13 @@ extension SearchSuggestionsView {
                 HStack {
                     SearchSuggestionsView(
                         recent: [],
+                        playable: PlayableContentState(
+                            contentRepository: FakeContentRepository(),
+                            contentFileManager: ContentFileManager(),
+                            analyticsService: FakeAnalyticsService(),
+                            screen: .searchResultsView,
+                            toast: .constant(nil)
+                        ),
                         trendsService: TrendsService(
                             database: FakeLocalDatabase(),
                             apiClient: FakeAPIClient(),
@@ -204,6 +282,7 @@ extension SearchSuggestionsView {
                         onRecentSelectedAction: { _ in },
                         onReactionSelectedAction: { _ in },
                         containerWidth: geometry.size.width,
+                        toast: .constant(nil),
                         onClearSearchesAction: {}
                     )
 

@@ -18,6 +18,7 @@ struct StandaloneSearchView: View {
     @State private var searchText: String = ""
     @State private var searchResults = SearchResults()
     @State private var toast: Toast? = nil
+    @State private var playable: PlayableContentState?
 
     @Environment(\.push) private var push
 
@@ -25,34 +26,32 @@ struct StandaloneSearchView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
-                    if searchText.isEmpty {
-                        SearchSuggestionsView(
-                            recent: searchService.recentSearches(),
-                            trendsService: trendsService,
-                            onRecentSelectedAction: {
-                                searchText = $0
-                            },
-                            onReactionSelectedAction: { push(GeneralNavigationDestination.reactionDetail($0)) },
-                            containerWidth: geometry.size.width,
-                            onClearSearchesAction: searchService.clearRecentSearches
-                        )
-                        .padding(.horizontal, .spacing(.medium))
-                    } else {
-                        SearchResultsView(
-                            playable: PlayableContentState(
-                                contentRepository: contentRepository,
-                                contentFileManager: ContentFileManager(),
-                                analyticsService: analyticsService,
-                                screen: .searchResultsView,
-                                toast: $toast
-                            ),
-                            searchString: searchText,
-                            results: searchResults,
-                            containerWidth: geometry.size.width,
-                            toast: $toast,
-                            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
-                        )
-                        .padding(.horizontal, UIDevice.isiPhone ? .spacing(.xSmall) : 0)
+                    if let playable {
+                        if searchText.isEmpty {
+                            SearchSuggestionsView(
+                                recent: searchService.recentSearches(),
+                                playable: playable,
+                                trendsService: trendsService,
+                                onRecentSelectedAction: {
+                                    searchText = $0
+                                },
+                                onReactionSelectedAction: { push(GeneralNavigationDestination.reactionDetail($0)) },
+                                containerWidth: geometry.size.width,
+                                toast: $toast,
+                                onClearSearchesAction: searchService.clearRecentSearches
+                            )
+                            .padding(.horizontal, .spacing(.medium))
+                        } else {
+                            SearchResultsView(
+                                playable: playable,
+                                searchString: searchText,
+                                results: searchResults,
+                                containerWidth: geometry.size.width,
+                                toast: $toast,
+                                menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                            )
+                            .padding(.horizontal, UIDevice.isiPhone ? .spacing(.xSmall) : 0)
+                        }
                     }
                 }
                 .padding(.all, UIDevice.isiPad ? .spacing(.medium) : .spacing(.xSmall))
@@ -64,6 +63,17 @@ struct StandaloneSearchView: View {
                 }
             }
             .toast($toast)
+            .onAppear {
+                if playable == nil {
+                    playable = PlayableContentState(
+                        contentRepository: contentRepository,
+                        contentFileManager: ContentFileManager(),
+                        analyticsService: analyticsService,
+                        screen: .searchResultsView,
+                        toast: $toast
+                    )
+                }
+            }
         }
     }
 
