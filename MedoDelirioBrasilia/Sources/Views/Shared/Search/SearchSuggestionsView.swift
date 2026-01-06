@@ -158,7 +158,7 @@ extension SearchSuggestionsView {
 
         var body: some View {
             VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                Text("Conteúdos Populares")
+                Text("🔥 Em Alta Hoje")
                     .font(.headline)
 
                 LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
