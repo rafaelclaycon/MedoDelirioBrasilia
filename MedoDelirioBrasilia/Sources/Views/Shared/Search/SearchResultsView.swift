@@ -328,8 +328,34 @@ extension SearchResultsView {
         let content: AnyEquatableMedoContent
         let highlight: String
 
+        private let contextRadius = 40
+
         private var text: AttributedString {
-            var attributedString = AttributedString(content.description)
+            let description = content.description
+
+            // Find the match location in the original string
+            guard let matchRange = description.range(of: highlight, options: .caseInsensitive) else {
+                return AttributedString(description)
+            }
+
+            // Calculate snippet bounds centered around the match
+            let matchStartOffset = description.distance(from: description.startIndex, to: matchRange.lowerBound)
+            let matchEndOffset = description.distance(from: description.startIndex, to: matchRange.upperBound)
+
+            let snippetStartOffset = max(0, matchStartOffset - contextRadius)
+            let snippetEndOffset = min(description.count, matchEndOffset + contextRadius)
+
+            let snippetStart = description.index(description.startIndex, offsetBy: snippetStartOffset)
+            let snippetEnd = description.index(description.startIndex, offsetBy: snippetEndOffset)
+
+            var snippet = String(description[snippetStart..<snippetEnd])
+
+            // Add ellipsis if truncated
+            if snippetStartOffset > 0 { snippet = "..." + snippet }
+            if snippetEndOffset < description.count { snippet = snippet + "..." }
+
+            // Apply highlight to the snippet
+            var attributedString = AttributedString(snippet)
             if let range = attributedString.range(of: highlight, options: .caseInsensitive) {
                 attributedString[range].foregroundColor = .yellow
                 attributedString[range].font = .headline
