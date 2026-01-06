@@ -81,9 +81,11 @@ extension MainContentViewModel {
 
     public func onViewDidAppear() async {
         loadContent()
-        await contentUpdateService.update()
+        let didUpdate = await contentUpdateService.update()
         loadContent(clearCache: true)
-        showUpdateCompletionToast()
+        if didUpdate {
+            showUpdateCompletionToast()
+        }
     }
 
     public func onSelectedViewModeChanged() async {
