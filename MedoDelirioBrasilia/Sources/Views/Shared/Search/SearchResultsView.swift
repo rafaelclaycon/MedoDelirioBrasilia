@@ -81,7 +81,8 @@ struct SearchResultsView: View {
                         contentView: { item in
                             ContentWithDescriptionMatch(
                                 content: item,
-                                highlight: searchString
+                                highlight: searchString,
+                                playable: playable
                             )
                         }
                     )
@@ -120,7 +121,8 @@ struct SearchResultsView: View {
                         contentView: { item in
                             ContentWithDescriptionMatch(
                                 content: item,
-                                highlight: searchString
+                                highlight: searchString,
+                                playable: playable
                             )
                         }
                     )
@@ -327,6 +329,7 @@ extension SearchResultsView {
 
         let content: AnyEquatableMedoContent
         let highlight: String
+        @Bindable var playable: PlayableContentState
 
         private let contextRadius = 40
 
@@ -367,12 +370,64 @@ extension SearchResultsView {
             VStack {
                 PlayableContentView(
                     content: content,
-                    favorites: Set<String>(arrayLiteral: ""),
-                    highlighted: Set<String>(arrayLiteral: ""),
-                    nowPlaying: Set<String>(arrayLiteral: ""),
-                    selectedItems: Set<String>(arrayLiteral: ""),
+                    favorites: playable.favoritesKeeper,
+                    highlighted: Set<String>(),
+                    nowPlaying: playable.nowPlayingKeeper,
+                    selectedItems: Set<String>(),
                     currentContentListMode: .constant(.regular)
                 )
+                .contentShape(
+                    .contextMenuPreview,
+                    RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
+                )
+                .onTapGesture {
+                    if playable.nowPlayingKeeper.contains(content.id) {
+                        AudioPlayer.shared?.togglePlay()
+                        playable.nowPlayingKeeper.removeAll()
+                    } else {
+                        playable.play(content)
+                    }
+                }
+                .contextMenu {
+                    Section {
+                        Button {
+                            playable.share(content: content)
+                        } label: {
+                            Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                        }
+
+                        Button {
+                            playable.openShareAsVideoModal(for: content)
+                        } label: {
+                            Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                        }
+                    }
+
+                    Section {
+                        Button {
+                            playable.toggleFavorite(content.id)
+                        } label: {
+                            Label(
+                                playable.favoritesKeeper.contains(content.id) ? Shared.removeFromFavorites : Shared.addToFavorites,
+                                systemImage: playable.favoritesKeeper.contains(content.id) ? "star.slash" : "star"
+                            )
+                        }
+
+                        Button {
+                            playable.addToFolder(content)
+                        } label: {
+                            Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
+                        }
+                    }
+
+                    Section {
+                        Button {
+                            playable.showDetails(for: content)
+                        } label: {
+                            Label("Ver Detalhes", systemImage: "info.circle")
+                        }
+                    }
+                }
 
                 Text("\"\(text)\"")
                     .italic()
