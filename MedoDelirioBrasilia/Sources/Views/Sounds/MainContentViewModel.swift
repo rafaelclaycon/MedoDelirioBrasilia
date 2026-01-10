@@ -83,8 +83,14 @@ extension MainContentViewModel {
         loadContent()
         let didUpdate = await contentUpdateService.update()
         loadContent(clearCache: true)
+        
+        // Always update sync status to stop the spinner
+        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
+        
+        // Only show toast if there were actual updates
         if didUpdate {
-            showUpdateCompletionToast()
+            let message = syncValues.syncStatus.description
+            toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
         }
     }
 
@@ -158,7 +164,11 @@ extension MainContentViewModel {
         }
 
         await contentUpdateService.update()
-        showUpdateCompletionToast()
+        
+        // Always update sync status and show toast for explicit refresh requests
+        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
+        let message = syncValues.syncStatus.description
+        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
     }
 
     /// Warm open means the app was reopened before it left memory.
@@ -173,12 +183,6 @@ extension MainContentViewModel {
         else { return }
 
         await updateContent(lastAttempt: lastUpdateAttempt)
-    }
-
-    private func showUpdateCompletionToast() {
-        syncValues.syncStatus = contentUpdateService.lastUpdateStatus
-        let message = syncValues.syncStatus.description
-        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
     }
 
     private func fireAnalytics() async {
