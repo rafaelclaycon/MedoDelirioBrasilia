@@ -62,24 +62,58 @@ struct SearchSuggestionsView: View {
                 }
             }
 
-            if case .loaded(let content) = popularContent, !content.isEmpty {
-                PopularContentView(
-                    content: content,
-                    playable: playable,
-                    columns: columns,
-                    phoneItemSpacing: phoneItemSpacing,
-                    padItemSpacing: padItemSpacing
-                )
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("🔥 Em Alta Hoje")
+                    .font(.headline)
+
+                switch popularContent {
+                case .loading:
+                    HStack {
+                        ProgressView()
+                        Spacer()
+                    }
+                    .frame(height: 80)
+
+                case .loaded(let content) where !content.isEmpty:
+                    PopularContentGrid(
+                        content: content,
+                        playable: playable,
+                        columns: columns,
+                        phoneItemSpacing: phoneItemSpacing,
+                        padItemSpacing: padItemSpacing
+                    )
+                    .transition(.slideFromLeading)
+
+                default:
+                    EmptyView()
+                }
             }
 
-            if case .loaded(let reactions) = popularReactions, !reactions.isEmpty {
-                PopularReactionsView(
-                    reactions: reactions,
-                    onReactionSelectedAction: onReactionSelectedAction,
-                    columns: columns,
-                    phoneItemSpacing: phoneItemSpacing,
-                    padItemSpacing: padItemSpacing
-                )
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("Reações Populares")
+                    .font(.headline)
+
+                switch popularReactions {
+                case .loading:
+                    HStack {
+                        ProgressView()
+                        Spacer()
+                    }
+                    .frame(height: 80)
+
+                case .loaded(let reactions) where !reactions.isEmpty:
+                    PopularReactionsGrid(
+                        reactions: reactions,
+                        onReactionSelectedAction: onReactionSelectedAction,
+                        columns: columns,
+                        phoneItemSpacing: phoneItemSpacing,
+                        padItemSpacing: padItemSpacing
+                    )
+                    .transition(.slideFromLeading)
+
+                default:
+                    EmptyView()
+                }
             }
         }
         .playableContentUI(
@@ -110,8 +144,15 @@ struct SearchSuggestionsView: View {
         popularContent = .loading
         popularReactions = .loading
         do {
-            popularContent = .loaded(try await trendsService.top3Content())
-            popularReactions = .loaded(try await trendsService.top3Reactions())
+            let content = try await trendsService.top3Content()
+            withAnimation(.easeOut(duration: 0.3)) {
+                popularContent = .loaded(content)
+            }
+
+            let reactions = try await trendsService.top3Reactions()
+            withAnimation(.easeOut(duration: 0.3).delay(0.1)) {
+                popularReactions = .loaded(reactions)
+            }
         } catch {
             popularContent = .error("")
             popularReactions = .error("")
@@ -148,7 +189,7 @@ extension SearchSuggestionsView {
         }
     }
 
-    struct PopularContentView: View {
+    struct PopularContentGrid: View {
 
         let content: [AnyEquatableMedoContent]
         @Bindable var playable: PlayableContentState
@@ -157,73 +198,68 @@ extension SearchSuggestionsView {
         let padItemSpacing: CGFloat
 
         var body: some View {
-            VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                Text("🔥 Em Alta Hoje")
-                    .font(.headline)
+            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
+                ForEach(content) { item in
+                    PlayableContentView(
+                        content: item,
+                        favorites: playable.favoritesKeeper,
+                        highlighted: Set<String>(),
+                        nowPlaying: playable.nowPlayingKeeper,
+                        selectedItems: Set<String>(),
+                        currentContentListMode: .constant(.regular)
+                    )
+                    .contentShape(
+                        .contextMenuPreview,
+                        RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
+                    )
+                    .onTapGesture {
+                        if playable.nowPlayingKeeper.contains(item.id) {
+                            AudioPlayer.shared?.togglePlay()
+                            playable.nowPlayingKeeper.removeAll()
+                        } else {
+                            playable.play(item)
+                        }
+                    }
+                    .contextMenu {
+                        // Sharing
+                        Section {
+                            Button {
+                                playable.share(content: item)
+                            } label: {
+                                Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                            }
 
-                LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
-                    ForEach(content) { item in
-                        PlayableContentView(
-                            content: item,
-                            favorites: playable.favoritesKeeper,
-                            highlighted: Set<String>(),
-                            nowPlaying: playable.nowPlayingKeeper,
-                            selectedItems: Set<String>(),
-                            currentContentListMode: .constant(.regular)
-                        )
-                        .contentShape(
-                            .contextMenuPreview,
-                            RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
-                        )
-                        .onTapGesture {
-                            if playable.nowPlayingKeeper.contains(item.id) {
-                                AudioPlayer.shared?.togglePlay()
-                                playable.nowPlayingKeeper.removeAll()
-                            } else {
-                                playable.play(item)
+                            Button {
+                                playable.openShareAsVideoModal(for: item)
+                            } label: {
+                                Label(Shared.shareAsVideoButtonText, systemImage: "film")
                             }
                         }
-                        .contextMenu {
-                            // Sharing
-                            Section {
-                                Button {
-                                    playable.share(content: item)
-                                } label: {
-                                    Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
-                                }
 
-                                Button {
-                                    playable.openShareAsVideoModal(for: item)
-                                } label: {
-                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
-                                }
+                        // Organizing
+                        Section {
+                            Button {
+                                playable.toggleFavorite(item.id)
+                            } label: {
+                                Label(
+                                    playable.favoritesKeeper.contains(item.id) ? Shared.removeFromFavorites : Shared.addToFavorites,
+                                    systemImage: playable.favoritesKeeper.contains(item.id) ? "star.slash" : "star"
+                                )
                             }
 
-                            // Organizing
-                            Section {
-                                Button {
-                                    playable.toggleFavorite(item.id)
-                                } label: {
-                                    Label(
-                                        playable.favoritesKeeper.contains(item.id) ? Shared.removeFromFavorites : Shared.addToFavorites,
-                                        systemImage: playable.favoritesKeeper.contains(item.id) ? "star.slash" : "star"
-                                    )
-                                }
-
-                                Button {
-                                    playable.addToFolder(item)
-                                } label: {
-                                    Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
-                                }
+                            Button {
+                                playable.addToFolder(item)
+                            } label: {
+                                Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
                             }
+                        }
 
-                            // Details
-                            Section {
-                                Button {
-                                    playable.showDetails(for: item)
-                                } label: {
-                                    Label("Ver Detalhes", systemImage: "info.circle")
-                                }
+                        // Details
+                        Section {
+                            Button {
+                                playable.showDetails(for: item)
+                            } label: {
+                                Label("Ver Detalhes", systemImage: "info.circle")
                             }
                         }
                     }
@@ -232,7 +268,7 @@ extension SearchSuggestionsView {
         }
     }
 
-    struct PopularReactionsView: View {
+    struct PopularReactionsGrid: View {
 
         let reactions: [Reaction]
         let onReactionSelectedAction: (Reaction) -> Void
@@ -241,17 +277,12 @@ extension SearchSuggestionsView {
         let padItemSpacing: CGFloat
 
         var body: some View {
-            VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                Text("Reações Populares")
-                    .font(.headline)
-
-                LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
-                    ForEach(reactions) { reaction in
-                        ReactionItem(reaction: reaction)
-                            .onTapGesture {
-                                onReactionSelectedAction(reaction)
-                            }
-                    }
+            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
+                ForEach(reactions) { reaction in
+                    ReactionItem(reaction: reaction)
+                        .onTapGesture {
+                            onReactionSelectedAction(reaction)
+                        }
                 }
             }
         }

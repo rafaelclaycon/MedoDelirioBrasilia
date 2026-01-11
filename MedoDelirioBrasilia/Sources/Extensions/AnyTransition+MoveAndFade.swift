@@ -8,4 +8,11 @@ extension AnyTransition {
             removal: .opacity
         )
     }
+
+    static var slideFromLeading: AnyTransition {
+        .asymmetric(
+            insertion: .move(edge: .leading).combined(with: .opacity),
+            removal: .opacity
+        )
+    }
 }
