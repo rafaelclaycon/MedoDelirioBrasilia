@@ -61,6 +61,7 @@ struct FolderDetailView: View {
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            contentFileManager: ContentFileManager(),
             screen: .folderDetailView,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentListMode: currentContentListMode,
@@ -138,6 +139,7 @@ struct FolderDetailView: View {
             ContentGrid(
                 state: viewModel.state,
                 viewModel: contentGridViewModel,
+                toast: contentGridViewModel.toast,
                 showNewTag: false,
                 containerSize: size,
                 loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),

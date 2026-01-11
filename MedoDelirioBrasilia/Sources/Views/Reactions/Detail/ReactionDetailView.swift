@@ -45,6 +45,7 @@ struct ReactionDetailView: View {
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            contentFileManager: ContentFileManager(),
             screen: .reactionDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentListMode: currentListMode,
@@ -73,6 +74,7 @@ struct ReactionDetailView: View {
                     ContentGrid(
                         state: viewModel.state,
                         viewModel: contentGridViewModel,
+                        toast: viewModel.toast,
                         showNewTag: false,
                         reactionId: viewModel.reaction.id,
                         containerSize: geometry.size,

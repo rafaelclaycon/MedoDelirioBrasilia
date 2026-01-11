@@ -14,6 +14,8 @@ struct Shared {
                 "Tendências"
             case .settings:
                 "Configurações"
+            case .search:
+                ""
             }
         }
 
@@ -26,6 +28,8 @@ struct Shared {
             case .trends:
                 "chart.line.uptrend.xyaxis"
             case .settings:
+                ""
+            case .search:
                 ""
             }
         }
@@ -216,5 +220,10 @@ struct Shared {
     struct BundleIds {
 
         static let applePhotosApp = "com.apple.mobileslideshow"
+    }
+
+    struct Search {
+
+        static let searchPrompt = "Buscar conteúdo, autor ou pasta" // "Buscar conteúdo, autor, pasta, sentimento"
     }
 }

@@ -36,6 +36,7 @@ struct StandaloneFavoritesView: View {
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            contentFileManager: ContentFileManager(),
             screen: .standaloneFavoritesView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: .constant(.regular),
@@ -55,6 +56,7 @@ struct StandaloneFavoritesView: View {
                     ContentGrid(
                         state: viewModel.state,
                         viewModel: contentGridViewModel,
+                        toast: viewModel.toast,
                         searchTextIsEmpty: $soundSearchTextIsEmpty,
                         allowSearch: true,
                         isFavoritesOnlyView: true,
@@ -108,7 +110,6 @@ struct StandaloneFavoritesView: View {
                 }
                 .onAppear {
                     viewModel.onViewDidAppear()
-                    contentGridViewModel.onViewAppeared()
                 }
             }
             .toast(contentGridViewModel.toast)

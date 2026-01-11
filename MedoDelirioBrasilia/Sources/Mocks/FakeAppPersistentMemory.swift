@@ -31,6 +31,8 @@ final class FakeAppPersistentMemory: AppPersistentMemoryProtocol {
         lastUpdateAttempt = newValue
     }
     
+    private var internalRecentSearches: [String] = []
+
     func folderResearchHashes() -> [String : String]? {
         return folderResearchHashValue
     }
@@ -65,5 +67,13 @@ final class FakeAppPersistentMemory: AppPersistentMemoryProtocol {
     
     func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
         //
+    }
+
+    func saveRecentSearches(_ searchTerms: [String]) {
+        internalRecentSearches = searchTerms
+    }
+
+    func recentSearches() -> [String]? {
+        internalRecentSearches
     }
 }

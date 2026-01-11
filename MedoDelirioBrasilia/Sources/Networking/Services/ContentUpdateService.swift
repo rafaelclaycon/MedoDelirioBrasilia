@@ -10,7 +10,8 @@ import Observation
 
 protocol ContentUpdateServiceProtocol {
 
-    func update() async
+    /// Returns `true` if any updates (local or remote) were processed.
+    func update() async -> Bool
 }
 
 /// A service that updates local content to stay in sync with their versions on the server.
@@ -73,7 +74,8 @@ class ContentUpdateService: ContentUpdateServiceProtocol {
 extension ContentUpdateService {
 
     /// Performs the content update operation with the server.
-    public func update() async {
+    @discardableResult
+    public func update() async -> Bool {
         isUpdating = true
 
         defer {
@@ -93,21 +95,25 @@ extension ContentUpdateService {
             lastUpdateStatus = .done
             isUpdating = false
             updateStartTime = nil
+            return didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
         } catch APIClientError.errorFetchingUpdateEvents(let errorMessage) {
             logger.updateError(errorMessage)
             lastUpdateStatus = .updateError
             isUpdating = false
             updateStartTime = nil
+            return true // Error counts as "something happened" - show toast
         } catch ContentUpdateError.errorInsertingUpdateEvent(let updateEventId) {
             logger.updateError("Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
             lastUpdateStatus = .updateError
             isUpdating = false
             updateStartTime = nil
+            return true
         } catch {
             logger.updateError(error.localizedDescription)
             lastUpdateStatus = .updateError
             isUpdating = false
             updateStartTime = nil
+            return true
         }
     }
 }

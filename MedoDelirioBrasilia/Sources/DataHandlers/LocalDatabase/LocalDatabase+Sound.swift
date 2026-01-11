@@ -254,3 +254,38 @@ extension LocalDatabase {
         return soundCount > 0 || songCount > 0
     }
 }
+
+// MARK: - Search
+
+extension LocalDatabase {
+
+    func sounds(matchingDescription searchText: String) throws -> [Sound] {
+        var queriedSounds = [Sound]()
+
+        let author_id = Expression<String>("authorId")
+        let id = Expression<String>("id")
+        let name = Expression<String>("name")
+        let description = Expression<String>("description")
+
+        let query = soundTable.select(soundTable[*], author[name])
+            .join(author, on: soundTable[author_id] == author[id])
+            .filter(soundTable[description].like("%\(searchText)%"))
+
+        for queriedSound in try db.prepare(query) {
+            var soundData: Sound = try queriedSound.decode()
+            if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
+                if let date = dateFormatter.date(from: dateString) {
+                    soundData.dateAdded = date
+                }
+            }
+            if let isFromServer = try queriedSound.get(Expression<Bool?>("isFromServer")) {
+                soundData.isFromServer = isFromServer
+            }
+            let authorName = try queriedSound.get(author[name])
+            soundData.authorName = authorName
+            queriedSounds.append(soundData)
+        }
+
+        return queriedSounds
+    }
+}

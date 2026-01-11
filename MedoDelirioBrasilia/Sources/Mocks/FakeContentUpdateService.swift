@@ -9,7 +9,9 @@ import Foundation
 
 class FakeContentUpdateService: ContentUpdateServiceProtocol {
 
-    func update() async {
-        // Empty implementation for testing
+    var shouldReturnDidUpdate = false
+
+    func update() async -> Bool {
+        shouldReturnDidUpdate
     }
 }

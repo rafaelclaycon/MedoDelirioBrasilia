@@ -1,12 +1,11 @@
 //
 //  FakeFolderResearchRepository.swift
-//  MedoDelirioBrasiliaTests
+//  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 02/11/24.
 //
 
 import Foundation
-@testable import MedoDelirio
 
 final class FakeFolderResearchRepository: FolderResearchRepositoryProtocol {
 

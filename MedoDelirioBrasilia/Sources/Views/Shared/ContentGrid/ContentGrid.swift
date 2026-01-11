@@ -28,6 +28,7 @@ struct ContentGrid<
 
     private var state: LoadingState<[AnyEquatableMedoContent]>
     @State private var viewModel: ContentGridViewModel
+    private var toast: Binding<Toast?>
     private var searchTextIsEmpty: Binding<Bool?>
     private let allowSearch: Bool
     private let showNewTag: Bool
@@ -49,9 +50,6 @@ struct ContentGrid<
     @State private var showMultiSelectButtons: Bool = false
     @State private var multiSelectButtonsEnabled: Bool = false
     @State private var allSelectedAreFavorites: Bool = false
-
-    // Add to Folder details
-    @State private var addToFolderHelper = AddToFolderDetails()
 
     // MARK: - Computed Properties
 
@@ -81,6 +79,7 @@ struct ContentGrid<
     init(
         state: LoadingState<[AnyEquatableMedoContent]>,
         viewModel: ContentGridViewModel,
+        toast: Binding<Toast?>,
 
         searchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
@@ -97,6 +96,7 @@ struct ContentGrid<
     ) {
         self.state = state
         self.viewModel = viewModel
+        self.toast = toast
         self.searchTextIsEmpty = searchTextIsEmpty
         self.allowSearch = allowSearch
         self.showNewTag = showNewTag
@@ -160,38 +160,17 @@ struct ContentGrid<
                         .searchable(text: $viewModel.searchText)
                         .disableAutocorrection(true)
                 }
+                // Grid-specific alerts (folder operations)
                 .alert(isPresented: $viewModel.showAlert) {
                     switch viewModel.alertType {
-                    case .soundFileNotFound:
-                        return Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            primaryButton: .default(
-                                Text("Baixar Novamente"),
-                                action: { viewModel.onRedownloadContentOptionSelected() }
-                            ),
-                            secondaryButton: .cancel(Text("Fechar"))
-                        )
-
-                    case .issueSharingSound:
-                        return Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            primaryButton: .default(
-                                Text("Relatar Problema por E-mail"),
-                                action: { Task { await viewModel.onReportContentIssueSelected() } }
-                            ),
-                            secondaryButton: .cancel(Text("Fechar"))
-                        )
-
-                    case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
+                    case .issueExportingManySounds, .issueRemovingContentFromFolder:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
                             dismissButton: .default(Text("OK"))
                         )
 
-                    case .removeSingleSound:
+                    case .removeSingleContent:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
@@ -202,7 +181,7 @@ struct ContentGrid<
                             secondaryButton: .cancel(Text("Cancelar"))
                         )
 
-                    case .removeMultipleSounds:
+                    case .removeMultipleContent:
                         return Alert(
                             title: Text(viewModel.alertTitle),
                             message: Text(viewModel.alertMessage),
@@ -214,66 +193,27 @@ struct ContentGrid<
                         )
                     }
                 }
-                .sheet(isPresented: $viewModel.showingModalView) {
-                    switch viewModel.subviewToOpen {
-                    case .shareAsVideo:
-                        ShareAsVideoView(
-                            viewModel: ShareAsVideoViewModel(
-                                content: viewModel.selectedContentSingle!,
-                                subtitle: viewModel.selectedContentSingle!.subtitle,
-                                contentType: viewModel.typeForShareAsVideo(),
-                                result: $viewModel.shareAsVideoResult
-                            ),
-                            useLongerGeneratingVideoMessage: viewModel.selectedContentSingle!.type == .song
-                        )
-
-                    case .addToFolder:
-                        AddToFolderView(
-                            details: $addToFolderHelper,
-                            selectedContent: viewModel.selectedContentMultiple ?? []
-                        )
-                        .presentationDetents([.medium, .large])
-
-                    case .contentDetail:
-                        ContentDetailView(
-                            content: viewModel.selectedContentSingle ?? AnyEquatableMedoContent(Sound(title: "")),
-                            openAuthorDetailsAction: { author in
-                                guard author.id != self.authorId else { return }
-                                viewModel.showingModalView.toggle()
-                                push(GeneralNavigationDestination.authorDetail(author))
-                            },
-                            authorId: authorId,
-                            openReactionAction: { reaction in
-                                viewModel.showingModalView.toggle()
-                                push(GeneralNavigationDestination.reactionDetail(reaction))
-                            },
-                            reactionId: reactionId,
-                            dismissAction: { viewModel.showingModalView = false }
-                        )
+                // Playable content UI (alerts for content not found, sheets for share/detail)
+                .playableContentUI(
+                    state: viewModel.playable,
+                    toast: toast,
+                    authorId: authorId,
+                    reactionId: reactionId,
+                    onAuthorSelected: { author in
+                        push(GeneralNavigationDestination.authorDetail(author))
+                    },
+                    onReactionSelected: { reaction in
+                        push(GeneralNavigationDestination.reactionDetail(reaction))
                     }
-                }
-                .sheet(isPresented: $viewModel.isShowingShareSheet) {
-                    viewModel.iPadShareSheet
-                }
+                )
                 .onChange(of: viewModel.searchText) {
                     searchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
                 }
-                .onChange(of: viewModel.shareAsVideoResult.videoFilepath) {
-                    viewModel.onDidExitShareAsVideoSheet()
-                }
-                .onChange(of: viewModel.showingModalView) {
-                    if viewModel.showingModalView == true && viewModel.subviewToOpen == .addToFolder {
-                        // Dismiss keyboard when Add to Folder sheet is presented
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    }
-                    
-                    if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
-                        Task {
-                            await viewModel.onAddedContentToFolderSuccessfully(
-                                folderName: addToFolderHelper.folderName ?? "",
-                                pluralization: addToFolderHelper.pluralization
-                            )
-                            addToFolderHelper = AddToFolderDetails()
+                .onChange(of: viewModel.activeSheet) {
+                    if viewModel.activeSheet != nil {
+                        if case .addToFolder = viewModel.activeSheet {
+                            // Dismiss keyboard when Add to Folder sheet is presented
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                         }
                     }
                 }
@@ -296,11 +236,6 @@ struct ContentGrid<
                             scrollViewProxy?.scrollTo(viewModel.scrollTo, anchor: .center)
                         }
                     }
-                }
-                .onChange(of: viewModel.authorToOpen) {
-                    guard let author = viewModel.authorToOpen else { return }
-                    push(GeneralNavigationDestination.authorDetail(author))
-                    viewModel.authorToOpen = nil
                 }
                 .onAppear {
                     viewModel.onViewAppeared()
@@ -348,13 +283,6 @@ struct ContentGrid<
     ) -> some View {
         let optionTitle = option.title(isFavorite)
 
-        // TODO: Migrate all share sheet use to ShareLink but keep the toast feedback and other things done in the current implementation.
-//        if optionTitle == Shared.shareSoundButtonText,
-//           let url = try? content.fileURL()
-//        {
-//            ShareLink(item: url) {
-//                Label(optionTitle + " DEV", systemImage: option.symbol(isFavorite))
-//            }
         Button {
             option.action(
                 viewModel,
@@ -388,6 +316,7 @@ struct ContentGrid<
         viewModel: ContentGridViewModel(
             contentRepository: FakeContentRepository(),
             userFolderRepository: UserFolderRepository(database: LocalDatabase()),
+            contentFileManager: ContentFileManager(),
             screen: .mainContentView,
             menuOptions: [.sharingOptions()],
             currentListMode: .constant(.regular),
@@ -395,6 +324,7 @@ struct ContentGrid<
             floatingOptions: .constant(nil),
             analyticsService: AnalyticsService()
         ),
+        toast: .constant(nil),
         containerSize: CGSize(width: 390, height: 1200),
         loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
         emptyStateView: Text("No Sounds to Display"),
