@@ -77,7 +77,7 @@ struct Retro2025Banner: View {
                         .bold()
                         .shadow(color: .black.opacity(0.3), radius: 2, y: 1)
 
-                    Text("Bora ver o que nós aprontamos juntos esse ano?")
+                    Text("Bora ver o que nós aprontamos juntos?")
                         .font(.callout)
                         .foregroundStyle(.white)
                         .multilineTextAlignment(.leading)
