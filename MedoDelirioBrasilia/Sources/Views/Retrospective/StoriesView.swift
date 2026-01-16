@@ -32,7 +32,7 @@ struct StoriesView: View {
     var body: some View {
         ZStack {
             if viewModel.isLoading {
-                ClassicRetroView.LoadingView()
+                BasicLoadingView(text: "Carregando dados...")
             } else if showIntro {
                 // Surprise intro animation
                 SurpriseIntroView {

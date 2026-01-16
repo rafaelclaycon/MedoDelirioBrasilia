@@ -169,13 +169,6 @@ extension AppPersistentMemory {
         return String(value as! String)
     }
 
-    func hasDismissedRetro2024Banner() -> Bool {
-        guard let value = userDefaults.object(forKey: "hasDismissedRetro2024Banner") else {
-            return false
-        }
-        return Bool(value as! Bool)
-    }
-
     func hasDismissedRetro2025Banner() -> Bool {
         guard let value = userDefaults.object(forKey: "hasDismissedRetro2025Banner") else {
             return false
@@ -318,10 +311,6 @@ extension AppPersistentMemory {
 
     func setLastUpdateAttempt(to newValue: String) {
         userDefaults.set(newValue, forKey: "lastUpdateAttempt")
-    }
-
-    func dismissedRetro2024Banner(_ newValue: Bool) {
-        userDefaults.set(newValue, forKey: "hasDismissedRetro2024Banner")
     }
 
     func dismissedRetro2025Banner(_ newValue: Bool) {

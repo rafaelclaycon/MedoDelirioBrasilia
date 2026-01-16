@@ -34,7 +34,7 @@ struct UpdateIncentiveBanner: View {
                         .frame(width: 30)
                 }
 
-                Text("Seu \(UIDevice.isiPhone ? "iPhone" : "iPad") está rodando \(UIDevice.isiPhone ? "iOS" : "iPadOS") 15, porém suporta \(maxSystemVersion). Considere atualizar para usar o Compartilhar como Vídeo melhorado e a Retrospectiva 2023.")
+                Text("Seu \(UIDevice.isiPhone ? "iPhone" : "iPad") está rodando \(UIDevice.isiPhone ? "iOS" : "iPadOS") 15, porém suporta \(maxSystemVersion). Considere atualizar para usar o Compartilhar como Vídeo melhorado e a Retrospectiva.")
                     .foregroundColor(.red)
                     .opacity(0.8)
                     .font(.callout)
