@@ -296,6 +296,28 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         0
     }
 
+    // Retrospective 2025
+
+    func getTopSoundsSharedByTheUserFor2025Retro(_ limit: Int) throws -> [TopChartItem] {
+        return topSharedSounds
+    }
+
+    func getTopAuthorSharedByTheUserFor2025Retro() throws -> TopAuthorItem? {
+        nil
+    }
+
+    func totalShareCountFor2025Retro() -> Int {
+        return shareCount
+    }
+
+    func allDatesInWhichTheUserSharedFor2025Retro() throws -> [Date] {
+        return shareDates
+    }
+
+    func sharedSoundsCountFor2025Retro() -> Int {
+        0
+    }
+
     // Pinned Reactions
 
     func insert(_ pinnedReaction: Reaction) throws {}

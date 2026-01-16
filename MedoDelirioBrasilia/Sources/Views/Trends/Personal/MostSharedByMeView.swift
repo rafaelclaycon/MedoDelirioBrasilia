@@ -71,7 +71,7 @@ struct MostSharedByMeView: View {
             }
 
             showRetroBanner = !AppPersistentMemory().hasDismissedRetro2025BannerInTrends()
-            userHasStats = LocalDatabase.shared.totalShareCount() > 0
+            userHasStats = LocalDatabase.shared.totalShareCountFor2025Retro() > 0
         }
         .fullScreenCover(isPresented: $showRetrospectiveStories) {
             StoriesView(onShareAnalytics: { analyticsString in

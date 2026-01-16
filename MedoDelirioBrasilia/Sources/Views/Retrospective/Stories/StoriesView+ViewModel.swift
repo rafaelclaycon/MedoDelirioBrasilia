@@ -41,22 +41,22 @@ extension StoriesView {
             
             // Load top sounds
             do {
-                topSounds = try database.getTopSoundsSharedByTheUser(5)
+                topSounds = try database.getTopSoundsSharedByTheUserFor2025Retro(5)
             } catch {
                 print("Error loading top sounds: \(error)")
                 topSounds = []
             }
             
             // Load share counts
-            totalShareCount = database.totalShareCount()
-            totalUniqueSoundsShared = database.sharedSoundsCount()
+            totalShareCount = database.totalShareCountFor2025Retro()
+            totalUniqueSoundsShared = database.sharedSoundsCountFor2025Retro()
             
             // Load top author
-            topAuthor = try? database.getTopAuthorSharedByTheUser()
+            topAuthor = try? database.getTopAuthorSharedByTheUserFor2025Retro()
             
             // Load most common share day
             do {
-                let dates = try database.allDatesInWhichTheUserShared()
+                let dates = try database.allDatesInWhichTheUserSharedFor2025Retro()
                 mostCommonShareDay = mostCommonDay(from: dates) ?? "-"
             } catch {
                 print("Error loading share dates: \(error)")

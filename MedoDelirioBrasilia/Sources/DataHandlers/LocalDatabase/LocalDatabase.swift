@@ -73,6 +73,13 @@ internal protocol LocalDatabaseProtocol {
     func totalShareCount() -> Int
     func allDatesInWhichTheUserShared() throws -> [Date]
     func sharedSoundsCount() -> Int
+    
+    // Retrospective 2025
+    func getTopSoundsSharedByTheUserFor2025Retro(_ limit: Int) throws -> [TopChartItem]
+    func getTopAuthorSharedByTheUserFor2025Retro() throws -> TopAuthorItem?
+    func totalShareCountFor2025Retro() -> Int
+    func allDatesInWhichTheUserSharedFor2025Retro() throws -> [Date]
+    func sharedSoundsCountFor2025Retro() -> Int
 
     // Pinned Reactions
     func insert(_ pinnedReaction: Reaction) throws
