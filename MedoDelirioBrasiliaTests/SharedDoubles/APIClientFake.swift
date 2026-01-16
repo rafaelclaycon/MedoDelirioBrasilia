@@ -7,7 +7,6 @@ class FakeAPIClient: APIClientProtocol {
 
     var serverShouldBeUnavailable = false
     var fetchUpdateEventsResult: SyncResult = .nothingToUpdate
-    var retroStartingVersion: String?
 
     init() {
         serverPath = ""
