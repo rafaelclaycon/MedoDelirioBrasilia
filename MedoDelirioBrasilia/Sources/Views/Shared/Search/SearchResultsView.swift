@@ -44,6 +44,7 @@ struct SearchResultsView: View {
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "headphones",
                         headerTitle: "Vírgulas",
+                        searchString: searchString,
                         contentView: { item in
                             PlayableContentView(
                                 content: item,
@@ -78,6 +79,7 @@ struct SearchResultsView: View {
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "headphones",
                         headerTitle: "Conteúdo das Vírgulas",
+                        searchString: searchString,
                         contentView: { item in
                             ContentWithDescriptionMatch(
                                 content: item,
@@ -96,6 +98,7 @@ struct SearchResultsView: View {
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "music.quarternote.3",
                         headerTitle: "Músicas",
+                        searchString: searchString,
                         contentView: { item in
                             PlayableContentView(
                                 content: item,
@@ -118,6 +121,7 @@ struct SearchResultsView: View {
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "music.quarternote.3",
                         headerTitle: "Conteúdo das Músicas",
+                        searchString: searchString,
                         contentView: { item in
                             ContentWithDescriptionMatch(
                                 content: item,
@@ -136,6 +140,7 @@ struct SearchResultsView: View {
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "person.2",
                         headerTitle: "Autores",
+                        searchString: searchString,
                         contentView: { item in
                             VerticalAuthorView(author: item)
                                 .onTapGesture {
@@ -153,6 +158,7 @@ struct SearchResultsView: View {
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "folder",
                         headerTitle: "Pastas",
+                        searchString: searchString,
                         contentView: { item in
                             FolderView(folder: item)
                                 .onTapGesture {
@@ -170,6 +176,7 @@ struct SearchResultsView: View {
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "rectangle.grid.2x2",
                         headerTitle: "Reações",
+                        searchString: searchString,
                         contentView: { item in
                             ReactionItem(reaction: item)
                                 .onTapGesture {
@@ -185,6 +192,7 @@ struct SearchResultsView: View {
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "theatermasks",
                         headerTitle: "Reações que expressam o sentimento de \"\(searchString)\"",
+                        searchString: searchString,
                         contentView: { item in
                             ReactionItem(reaction: item)
                                 .onTapGesture {
@@ -446,6 +454,7 @@ extension SearchResultsView {
         let itemCountWhenCollapsed: Int
         let headerSymbol: String
         let headerTitle: String
+        let searchString: String
         let contentView: (T) -> ItemView
 
         @State private var isCollapsed: Bool = true
@@ -508,6 +517,9 @@ extension SearchResultsView {
                         .largeRoundedRectangleBordered(colored: .green)
                     }
                 }
+            }
+            .onChange(of: searchString) {
+                isCollapsed = true
             }
         }
     }
