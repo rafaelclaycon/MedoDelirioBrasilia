@@ -203,7 +203,7 @@ struct IntroducingUniversalSearchView: View {
                     // Features Section
                     VStack(alignment: .leading, spacing: 24) {
                         ItemView(
-                            icon: "square.stack.3d.down.right.fill",
+                            icon: "sparkle.magnifyingglass",
                             iconColor: Color(red: 0.2, green: 0.5, blue: 1.0),
                             title: "Tudo Em Um Só Lugar",
                             message: "Encontre vírgulas, músicas, autores, pastas e reações com uma única busca."
@@ -218,7 +218,7 @@ struct IntroducingUniversalSearchView: View {
 
                         if isIOS26OrLater {
                             ItemView(
-                                icon: "hand.tap.fill",
+                                icon: "hand.tap",
                                 iconColor: Color(red: 0.15, green: 0.45, blue: 0.95),
                                 title: "Acesso Facilitado",
                                 message: "No \(currentOSName), a busca agora tem um \(searchButtonPlacement)."
