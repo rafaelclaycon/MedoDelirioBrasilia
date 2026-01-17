@@ -249,6 +249,7 @@
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
 		D92ABB252DBC15EB002E4315 /* Version9WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92ABB242DBC15EB002E4315 /* Version9WhatsNewView.swift */; };
+		D92ABB262DBC15EB002E4316 /* IntroducingUniversalSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92ABB272DBC15EB002E4316 /* IntroducingUniversalSearchView.swift */; };
 		D92ABB522DBD69E5002E4315 /* AuthorToolbarOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92ABB512DBD69E5002E4315 /* AuthorToolbarOptionsView.swift */; };
 		D92ABB542DBDAC60002E4315 /* AuthorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92ABB532DBDAC60002E4315 /* AuthorService.swift */; };
 		D92ABB562DBDAFBA002E4315 /* FakeAuthorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92ABB552DBDAFBA002E4315 /* FakeAuthorService.swift */; };
@@ -1819,6 +1820,7 @@
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
 		D92ABB242DBC15EB002E4315 /* Version9WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version9WhatsNewView.swift; sourceTree = "<group>"; };
+		D92ABB272DBC15EB002E4316 /* IntroducingUniversalSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingUniversalSearchView.swift; sourceTree = "<group>"; };
 		D92ABB512DBD69E5002E4315 /* AuthorToolbarOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorToolbarOptionsView.swift; sourceTree = "<group>"; };
 		D92ABB532DBDAC60002E4315 /* AuthorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorService.swift; sourceTree = "<group>"; };
 		D92ABB552DBDAFBA002E4315 /* FakeAuthorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthorService.swift; sourceTree = "<group>"; };
@@ -4876,6 +4878,7 @@
 			children = (
 				D97FFA652CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift */,
 				D924F9202BF841E6002FC815 /* IntroducingReactionsView.swift */,
+				D92ABB272DBC15EB002E4316 /* IntroducingUniversalSearchView.swift */,
 				D92ABB242DBC15EB002E4315 /* Version9WhatsNewView.swift */,
 			);
 			path = WhatsNew;
@@ -7049,6 +7052,7 @@
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
 				D95BFEF129E8866700E42A23 /* LargeCreatorView.swift in Sources */,
 				D92ABB252DBC15EB002E4315 /* Version9WhatsNewView.swift in Sources */,
+				D92ABB262DBC15EB002E4316 /* IntroducingUniversalSearchView.swift in Sources */,
 				D9ECD81528B3C470003C033A /* IconImage.swift in Sources */,
 				D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */,
 				D9F50E322DE264F600C593A9 /* FakeContentUpdateService.swift in Sources */,

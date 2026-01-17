@@ -29,6 +29,7 @@ struct MainView: View {
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
+    @State private var showUniversalSearchWhatsNew: Bool = false
 
     // iPad
     @State private var sidebarFoldersViewModel = SidebarFoldersViewModel(
@@ -456,6 +457,7 @@ struct MainView: View {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
+            displayUniversalSearchWhatsNewIfNeeded()
 
             Task {
 //                if AppPersistentMemory.shared.hasAllowedContentUpdate() {
@@ -492,6 +494,9 @@ struct MainView: View {
         .sheet(isPresented: $isShowingSettingsSheet) {
             SettingsView(apiClient: APIClient.shared)
                 .environment(settingsHelper)
+        }
+        .sheet(isPresented: $showUniversalSearchWhatsNew) {
+            IntroducingUniversalSearchView(appMemory: AppPersistentMemory.shared)
         }
     }
 
@@ -531,6 +536,15 @@ struct MainView: View {
             subviewToOpen = .onboarding
             showingModalView = true
         }
+    }
+
+    private func displayUniversalSearchWhatsNewIfNeeded() {
+        // Don't show if onboarding is being shown
+        guard AppPersistentMemory.shared.hasShownNotificationsOnboarding() else { return }
+        // Don't show if already seen
+        guard !AppPersistentMemory.shared.hasSeenUniversalSearchWhatsNewScreen() else { return }
+
+        showUniversalSearchWhatsNew = true
     }
 
     private func sendFolderResearchChanges() async {
