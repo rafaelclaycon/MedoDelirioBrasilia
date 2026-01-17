@@ -496,6 +496,7 @@ extension SearchResultsView {
                                 .accentColor.opacity(0.3)
                             ).interactive()
                         )
+                        .contentShape(Rectangle())
                         .onTapGesture {
                             withAnimation {
                                 isCollapsed.toggle()
