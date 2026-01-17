@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SearchSuggestionsView: View {
 
+    /// Tracks whether the entrance animations have been shown this session (static to persist across view recreations)
+    private static var hasShownEntranceAnimations = false
+
     @State var recent: [String]
     @State var playable: PlayableContentState
     let trendsService: TrendsServiceProtocol
@@ -20,6 +23,7 @@ struct SearchSuggestionsView: View {
 
     @State private var popularContent: LoadingState<[AnyEquatableMedoContent]> = .loading
     @State private var popularReactions: LoadingState<[Reaction]> = .loading
+    @State private var shouldAnimateEntrance: Bool = false
 
     @State private var columns: [GridItem] = []
 
@@ -82,7 +86,9 @@ struct SearchSuggestionsView: View {
                         phoneItemSpacing: phoneItemSpacing,
                         padItemSpacing: padItemSpacing
                     )
-                    .transition(.slideFromLeading)
+                    .if(shouldAnimateEntrance) { view in
+                        view.transition(.slideFromLeading)
+                    }
 
                 default:
                     EmptyView()
@@ -109,7 +115,9 @@ struct SearchSuggestionsView: View {
                         phoneItemSpacing: phoneItemSpacing,
                         padItemSpacing: padItemSpacing
                     )
-                    .transition(.slideFromLeading)
+                    .if(shouldAnimateEntrance) { view in
+                        view.transition(.slideFromLeading)
+                    }
 
                 default:
                     EmptyView()
@@ -127,6 +135,12 @@ struct SearchSuggestionsView: View {
             }
         )
         .onAppear {
+            // Only animate entrance on first open of search this session
+            shouldAnimateEntrance = !Self.hasShownEntranceAnimations
+            if shouldAnimateEntrance {
+                Self.hasShownEntranceAnimations = true
+            }
+
             playable.onViewAppeared()
             Task {
                 await loadContent()
