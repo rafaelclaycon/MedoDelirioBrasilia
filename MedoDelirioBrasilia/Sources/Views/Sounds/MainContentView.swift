@@ -27,6 +27,7 @@ struct MainContentView: View {
     @State private var searchText: String = ""
     @State private var searchResults = SearchResults()
     @State private var searchToast: Toast? = nil
+    @State private var isInSearchMode: Bool = false
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -46,6 +47,7 @@ struct MainContentView: View {
     @Environment(TrendsHelper.self) private var trendsHelper
     @Environment(SettingsHelper.self) private var settingsHelper 
     @Environment(PlayRandomSoundHelper.self) private var playRandomSoundHelper
+    @Environment(\.push) private var push
 
     // MARK: - Computed Properties
 
@@ -54,10 +56,6 @@ struct MainContentView: View {
             return true
         }
         return false
-    }
-
-    private var isSearchingOnIOS18: Bool {
-        !isIOS26OrLater && !searchText.isEmpty
     }
 
     private var title: String {
@@ -70,6 +68,36 @@ struct MainContentView: View {
     private var loadedContent: [AnyEquatableMedoContent] {
         guard case .loaded(let content) = viewModel.state else { return [] }
         return content
+    }
+
+    @ViewBuilder
+    private var searchSuggestionsContent: some View {
+        SearchSuggestionsView(
+            recent: searchService.recentSearches(),
+            playable: PlayableContentState(
+                contentRepository: contentRepository,
+                contentFileManager: ContentFileManager(),
+                analyticsService: analyticsService,
+                screen: .searchResultsView,
+                toast: $searchToast
+            ),
+            trendsService: TrendsService(
+                database: LocalDatabase.shared,
+                apiClient: APIClient.shared,
+                contentRepository: contentRepository
+            ),
+            onRecentSelectedAction: { text in
+                searchText = text
+            },
+            onReactionSelectedAction: { reaction in
+                push(GeneralNavigationDestination.reactionDetail(reaction))
+            },
+            containerWidth: UIScreen.main.bounds.width - 32,
+            toast: $searchToast,
+            onClearSearchesAction: {
+                searchService.clearRecentSearches()
+            }
+        )
     }
 
     // MARK: - Shared Environment
@@ -118,7 +146,7 @@ struct MainContentView: View {
             ScrollView {
                 ScrollViewReader { proxy in
                     VStack(spacing: .spacing(.xSmall)) {
-                        if contentSearchTextIsEmpty ?? true, currentContentListMode.wrappedValue == .regular {
+                        if contentSearchTextIsEmpty ?? true, currentContentListMode.wrappedValue == .regular, !isInSearchMode {
                             ContentModePicker(
                                 options: UIDevice.isiPhone ? ContentModeOption.allCases : [.all, .songs],
                                 selected: $viewModel.currentViewMode,
@@ -147,48 +175,47 @@ struct MainContentView: View {
                                     }
                                 }
 
-                                if isSearchingOnIOS18 {
-                                    SearchResultsView(
-                                        playable: PlayableContentState(
-                                            contentRepository: contentRepository,
-                                            contentFileManager: ContentFileManager(),
-                                            analyticsService: analyticsService,
-                                            screen: .searchResultsView,
-                                            toast: $searchToast
-                                        ),
-                                        searchString: searchText,
-                                        results: searchResults,
-                                        containerWidth: geometry.size.width,
-                                        toast: $searchToast,
-                                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
-                                    )
-                                } else {
-                                    ContentGrid(
-                                        state: viewModel.state,
-                                        viewModel: contentGridViewModel,
-                                        toast: viewModel.toast,
-                                        searchTextIsEmpty: $contentSearchTextIsEmpty,
-                                        allowSearch: false,
-                                        isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
-                                        containerSize: geometry.size,
-                                        scrollViewProxy: proxy,
-                                        loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
-                                        emptyStateView:
-                                            VStack {
-                                                if viewModel.currentViewMode == .favorites {
-                                                    NoFavoritesView()
-                                                        .padding(.vertical, .spacing(.huge))
-                                                } else {
-                                                    Text("Nenhum som a ser exibido. Isso é esquisito.")
-                                                        .foregroundColor(.gray)
+                                SearchAwareContentView(
+                                    searchText: searchText,
+                                    searchResults: searchResults,
+                                    searchToast: $searchToast,
+                                    isInSearchMode: $isInSearchMode,
+                                    searchSuggestionsContent: searchSuggestionsContent,
+                                    contentRepository: contentRepository,
+                                    analyticsService: analyticsService,
+                                    containerWidth: geometry.size.width,
+                                    gridContent: {
+                                        ContentGrid(
+                                            state: viewModel.state,
+                                            viewModel: contentGridViewModel,
+                                            toast: viewModel.toast,
+                                            searchTextIsEmpty: $contentSearchTextIsEmpty,
+                                            allowSearch: false,
+                                            isFavoritesOnlyView: viewModel.currentViewMode == .favorites,
+                                            containerSize: geometry.size,
+                                            scrollViewProxy: proxy,
+                                            loadingView: BasicLoadingView(text: "Carregando Conteúdos..."),
+                                            emptyStateView:
+                                                VStack {
+                                                    if viewModel.currentViewMode == .favorites {
+                                                        NoFavoritesView()
+                                                            .padding(.vertical, .spacing(.huge))
+                                                    } else {
+                                                        Text("Nenhum som a ser exibido. Isso é esquisito.")
+                                                            .foregroundColor(.gray)
+                                                    }
                                                 }
-                                            }
-                                        ,
-                                        errorView: VStack { ContentLoadErrorView() }
-                                    )
-                                }
+                                            ,
+                                            errorView: VStack { ContentLoadErrorView() }
+                                        )
+                                    }
+                                )
 
-                                if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
+                                if
+                                    viewModel.currentViewMode == .all,
+                                    !UserSettings().getShowExplicitContent(),
+                                    !isInSearchMode
+                                {
                                     ExplicitDisabledWarning(
                                         text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
                                     )
@@ -198,7 +225,8 @@ struct MainContentView: View {
                                 if
                                     viewModel.currentViewMode == .all,
                                     loadedContent.count > 0,
-                                    contentSearchTextIsEmpty ?? true
+                                    contentSearchTextIsEmpty ?? true,
+                                    !isInSearchMode
                                 {
                                     Text("\(loadedContent.count) ITENS")
                                         .font(.footnote)
@@ -421,6 +449,68 @@ extension MainContentView {
                 Task{
                     data = await bannerRepository.dynamicBanner()
                 }
+            }
+        }
+    }
+
+    /// A view that reads `isSearching` environment and shows the appropriate content.
+    /// This must be a child of a view with `.searchable()` for the environment to work.
+    struct SearchAwareContentView<SuggestionsContent: View, GridContent: View>: View {
+
+        let searchText: String
+        let searchResults: SearchResults
+        @Binding var searchToast: Toast?
+        @Binding var isInSearchMode: Bool
+        let searchSuggestionsContent: SuggestionsContent
+        let contentRepository: ContentRepositoryProtocol
+        let analyticsService: AnalyticsServiceProtocol
+        let containerWidth: CGFloat
+        @ViewBuilder let gridContent: () -> GridContent
+
+        @Environment(\.isSearching) private var isSearching
+
+        private var isIOS26OrLater: Bool {
+            if #available(iOS 26.0, *) {
+                return true
+            }
+            return false
+        }
+
+        private var shouldShowSearchUI: Bool {
+            !isIOS26OrLater && isSearching
+        }
+
+        var body: some View {
+            Group {
+                if shouldShowSearchUI && searchText.isEmpty {
+                    // Show suggestions when search is active but text is empty
+                    searchSuggestionsContent
+                } else if shouldShowSearchUI && !searchText.isEmpty {
+                    // Show search results
+                    SearchResultsView(
+                        playable: PlayableContentState(
+                            contentRepository: contentRepository,
+                            contentFileManager: ContentFileManager(),
+                            analyticsService: analyticsService,
+                            screen: .searchResultsView,
+                            toast: $searchToast
+                        ),
+                        searchString: searchText,
+                        results: searchResults,
+                        containerWidth: containerWidth,
+                        toast: $searchToast,
+                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                    )
+                } else {
+                    // Show regular content grid
+                    gridContent()
+                }
+            }
+            .onChange(of: isSearching) {
+                isInSearchMode = shouldShowSearchUI
+            }
+            .onAppear {
+                isInSearchMode = shouldShowSearchUI
             }
         }
     }
