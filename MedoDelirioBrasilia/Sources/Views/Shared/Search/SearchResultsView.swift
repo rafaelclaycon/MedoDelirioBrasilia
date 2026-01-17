@@ -43,7 +43,7 @@ struct SearchResultsView: View {
                         items: soundsMatchingTitle,
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "headphones",
-                        headerTitle: "Vírgulas",
+                        headerTitle: "Nome das Vírgulas",
                         searchString: searchString,
                         contentView: { item in
                             PlayableContentView(
@@ -97,7 +97,7 @@ struct SearchResultsView: View {
                         items: songsMatchingTitle,
                         itemCountWhenCollapsed: itemCountWhenCollapsed,
                         headerSymbol: "music.quarternote.3",
-                        headerTitle: "Músicas",
+                        headerTitle: "Nome das Músicas",
                         searchString: searchString,
                         contentView: { item in
                             PlayableContentView(
