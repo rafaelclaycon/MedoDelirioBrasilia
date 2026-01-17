@@ -33,6 +33,18 @@ struct IntroducingUniversalSearchView: View {
         return window.safeAreaInsets.bottom > 0
     }
 
+    private var currentOSName: String {
+        "\(UIDevice.systemMarketingName) 26"
+    }
+
+    private var searchButtonPlacement: String {
+        if UIDevice.isiPhone {
+            return "botão dedicado no canto inferior direito"
+        } else {
+            return "botão dedicado no painel lateral"
+        }
+    }
+
     private let gradientColors: [Color] = [
         Color(red: 0.1, green: 0.4, blue: 0.9),
         Color(red: 0.2, green: 0.6, blue: 1.0),
@@ -191,7 +203,7 @@ struct IntroducingUniversalSearchView: View {
                     // Features Section
                     VStack(alignment: .leading, spacing: 24) {
                         ItemView(
-                            icon: "sparkle.magnifyingglass",
+                            icon: "square.stack.3d.down.right.fill",
                             iconColor: Color(red: 0.2, green: 0.5, blue: 1.0),
                             title: "Tudo Em Um Só Lugar",
                             message: "Encontre vírgulas, músicas, autores, pastas e reações com uma única busca."
@@ -209,7 +221,7 @@ struct IntroducingUniversalSearchView: View {
                                 icon: "hand.tap.fill",
                                 iconColor: Color(red: 0.15, green: 0.45, blue: 0.95),
                                 title: "Acesso Facilitado",
-                                message: "No iOS 26, a busca agora tem um botão dedicado no canto inferior direito."
+                                message: "No \(currentOSName), a busca agora tem um \(searchButtonPlacement)."
                             )
                         } else {
                             ItemView(
