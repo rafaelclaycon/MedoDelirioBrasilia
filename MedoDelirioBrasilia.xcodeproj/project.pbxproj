@@ -103,6 +103,7 @@
 		D904BDE12DAF703E004AF550 /* ReactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904BDE02DAF703E004AF550 /* ReactionService.swift */; };
 		D904BDE32DAF744F004AF550 /* LocalDatabase+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904BDE22DAF744F004AF550 /* LocalDatabase+Content.swift */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
+		D906012C2F1C281B00BD238A /* SearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906012B2F1C281B00BD238A /* SearchServiceTests.swift */; };
 		D90622C82AB4030600704B70 /* MedoContentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90622C72AB4030600704B70 /* MedoContentProtocol.swift */; };
 		D90697652A6A177F00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90697622A6A177E00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 */; };
 		D90697662A6A177F00F5B8D0 /* Marcos do Val - Inteligencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90697632A6A177E00F5B8D0 /* Marcos do Val - Inteligencia.mp3 */; };
@@ -1673,6 +1674,7 @@
 		D904BDE02DAF703E004AF550 /* ReactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionService.swift; sourceTree = "<group>"; };
 		D904BDE22DAF744F004AF550 /* LocalDatabase+Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Content.swift"; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
+		D906012B2F1C281B00BD238A /* SearchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTests.swift; sourceTree = "<group>"; };
 		D90622C72AB4030600704B70 /* MedoContentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoContentProtocol.swift; sourceTree = "<group>"; };
 		D90697622A6A177E00F5B8D0 /* Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3"; sourceTree = "<group>"; };
 		D90697632A6A177E00F5B8D0 /* Marcos do Val - Inteligencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcos do Val - Inteligencia.mp3"; sourceTree = "<group>"; };
@@ -4625,6 +4627,7 @@
 		D95C3E082A02AAFC00172C17 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D906012B2F1C281B00BD238A /* SearchServiceTests.swift */,
 				D95C3E092A02AB1800172C17 /* ContentUpdateServiceTests.swift */,
 			);
 			path = Services;
@@ -7133,6 +7136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9DE92102B9B98F800268626 /* SyncManagerTests.swift in Sources */,
+				D906012C2F1C281B00BD238A /* SearchServiceTests.swift in Sources */,
 				D920BF642CD1E5A800C6BD72 /* FolderResearchProviderTests.swift in Sources */,
 				D9A3AB6F28F063FF0064CB7A /* DateExtensionTests.swift in Sources */,
 				D9FF3F9B2B14325A007AE773 /* UpdateIncentiveTests.swift in Sources */,
