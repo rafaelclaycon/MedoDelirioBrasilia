@@ -81,11 +81,7 @@ struct MainContentView: View {
                 screen: .searchResultsView,
                 toast: $searchToast
             ),
-            trendsService: TrendsService(
-                database: LocalDatabase.shared,
-                apiClient: APIClient.shared,
-                contentRepository: contentRepository
-            ),
+            trendsService: TrendsService.shared,
             onRecentSelectedAction: { text in
                 searchText = text
             },

@@ -35,6 +35,13 @@ final class TrendsService: TrendsServiceProtocol {
     public static let defaultSoundsTimeInterval: TrendsTimeInterval = .last24Hours
     public static let defaultSongsTimeInterval: TrendsTimeInterval = .lastWeek
 
+    /// Shared singleton instance with default dependencies
+    public static let shared = TrendsService(
+        database: LocalDatabase.shared,
+        apiClient: APIClient.shared,
+        contentRepository: ContentRepository(database: LocalDatabase.shared)
+    )
+
     private let database: LocalDatabaseProtocol
     private let apiClient: APIClientProtocol
     private let contentRepository: ContentRepositoryProtocol

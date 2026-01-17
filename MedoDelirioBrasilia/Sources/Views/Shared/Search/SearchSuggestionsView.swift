@@ -141,8 +141,6 @@ struct SearchSuggestionsView: View {
     // MARK: - Functions
 
     private func loadContent() async {
-        popularContent = .loading
-        popularReactions = .loading
         do {
             let content = try await trendsService.top3Content()
             withAnimation(.easeOut(duration: 0.3)) {

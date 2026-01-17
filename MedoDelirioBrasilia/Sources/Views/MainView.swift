@@ -45,7 +45,7 @@ struct MainView: View {
     @State private var syncValues = SyncValues()
 
     @State private var contentRepository: ContentRepository
-    @State private var trendsService: TrendsService
+    private let trendsService = TrendsService.shared
     @State private var reactionRepository = ReactionRepository()
 
     init(
@@ -56,11 +56,6 @@ struct MainView: View {
         self.tabSelection = tabSelection
         self.padSelection = padSelection
         self.contentRepository = contentRepository
-        self.trendsService = TrendsService(
-            database: LocalDatabase.shared,
-            apiClient: APIClient.shared,
-            contentRepository: contentRepository
-        )
     }
 
     // MARK: - View Body
