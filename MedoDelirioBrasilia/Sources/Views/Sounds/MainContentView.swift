@@ -583,7 +583,8 @@ extension MainContentView {
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
             appMemory: FakeAppPersistentMemory(),
-            userFolderRepository: FakeUserFolderRepository()
+            userFolderRepository: FakeUserFolderRepository(),
+            userSettings: FakeUserSettings()
         ),
         analyticsService: FakeAnalyticsService()
     )

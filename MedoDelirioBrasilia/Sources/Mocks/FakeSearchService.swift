@@ -9,8 +9,6 @@ import Foundation
 
 final class FakeSearchService: SearchServiceProtocol {
 
-    var allowSensitive: Bool = true
-    
     func results(matching searchString: String) -> SearchResults {
         SearchResults()
     }

@@ -17,7 +17,8 @@ struct SearchServiceTests {
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
             appMemory: memory,
-            userFolderRepository: FakeUserFolderRepository()
+            userFolderRepository: FakeUserFolderRepository(),
+            userSettings: FakeUserSettings()
         )
         service.save(searchString: "")
 
@@ -32,7 +33,8 @@ struct SearchServiceTests {
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
             appMemory: memory,
-            userFolderRepository: FakeUserFolderRepository()
+            userFolderRepository: FakeUserFolderRepository(),
+            userSettings: FakeUserSettings()
         )
         service.save(searchString: "Anitt")
         service.save(searchString: "Anitt")
@@ -49,7 +51,8 @@ struct SearchServiceTests {
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
             appMemory: memory,
-            userFolderRepository: FakeUserFolderRepository()
+            userFolderRepository: FakeUserFolderRepository(),
+            userSettings: FakeUserSettings()
         )
         service.save(searchString: "Anitt")
         service.save(searchString: "Meme")
@@ -66,7 +69,8 @@ struct SearchServiceTests {
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
             appMemory: memory,
-            userFolderRepository: FakeUserFolderRepository()
+            userFolderRepository: FakeUserFolderRepository(),
+            userSettings: FakeUserSettings()
         )
         service.save(searchString: "Anitt")
         service.save(searchString: "Meme")
@@ -87,7 +91,8 @@ struct SearchServiceTests {
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
             appMemory: memory,
-            userFolderRepository: FakeUserFolderRepository()
+            userFolderRepository: FakeUserFolderRepository(),
+            userSettings: FakeUserSettings()
         )
         service.save(searchString: "Meme")
         service.save(searchString: "Jair")

@@ -9,7 +9,12 @@ import Foundation
 
 final class FakeUserSettings: UserSettingsProtocol {
 
+    var showExplicitContent = false
     var hasJoinedFolderResearch = false
+
+    func getShowExplicitContent() -> Bool {
+        return showExplicitContent
+    }
 
     func getHasJoinedFolderResearch() -> Bool {
         return hasJoinedFolderResearch

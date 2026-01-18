@@ -9,8 +9,6 @@ import Foundation
 
 protocol SearchServiceProtocol {
 
-    var allowSensitive: Bool { get set }
-
     func results(matching searchString: String) -> SearchResults
 
     func save(searchString: String)
@@ -24,8 +22,7 @@ final class SearchService: SearchServiceProtocol {
     private let authorService: AuthorServiceProtocol
     private let appMemory: AppPersistentMemoryProtocol
     private let userFolderRepository: UserFolderRepositoryProtocol
-
-    public var allowSensitive: Bool
+    private let userSettings: UserSettingsProtocol
 
     private var searches: [String] = []
 
@@ -36,13 +33,13 @@ final class SearchService: SearchServiceProtocol {
         authorService: AuthorServiceProtocol,
         appMemory: AppPersistentMemoryProtocol,
         userFolderRepository: UserFolderRepositoryProtocol,
-        allowSensitive: Bool = false
+        userSettings: UserSettingsProtocol
     ) {
         self.contentRepository = contentRepository
         self.authorService = authorService
         self.appMemory = appMemory
         self.userFolderRepository = userFolderRepository
-        self.allowSensitive = allowSensitive
+        self.userSettings = userSettings
         self.searches = appMemory.recentSearches() ?? []
     }
 
@@ -50,6 +47,7 @@ final class SearchService: SearchServiceProtocol {
 
     func results(matching searchString: String) -> SearchResults {
         save(searchString: searchString)
+        let allowSensitive = userSettings.getShowExplicitContent()
         return SearchResults(
             soundsMatchingTitle: contentRepository.sounds(matchingTitle: searchString, allowSensitive),
             soundsMatchingContent: contentRepository.sounds(matchingDescription: searchString, allowSensitive),

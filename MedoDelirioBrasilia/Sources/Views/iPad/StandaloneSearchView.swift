@@ -94,7 +94,8 @@ struct StandaloneSearchView: View {
             contentRepository: FakeContentRepository(),
             authorService: FakeAuthorService(),
             appMemory: FakeAppPersistentMemory(),
-            userFolderRepository: FakeUserFolderRepository()
+            userFolderRepository: FakeUserFolderRepository(),
+            userSettings: FakeUserSettings()
         ),
         trendsService: TrendsService(
             database: FakeLocalDatabase(),
