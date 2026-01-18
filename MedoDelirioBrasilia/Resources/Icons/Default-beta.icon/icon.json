@@ -1,0 +1,196 @@
+{
+  "fill" : {
+    "solid" : "srgb:0.00000,0.58980,1.00000,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "solid" : "extended-gray:1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "extended-gray:1.00000,1.00000"
+              }
+            }
+          ],
+          "glass" : false,
+          "image-name" : "BETA2.svg",
+          "name" : "BETA2",
+          "opacity-specializations" : [
+            {
+              "appearance" : "tinted",
+              "value" : 0.77
+            }
+          ],
+          "position-specializations" : [
+            {
+              "value" : {
+                "scale" : 1,
+                "translation-in-points" : [
+                  17.3828125,
+                  413.1796875
+                ]
+              }
+            },
+            {
+              "idiom" : "square",
+              "value" : {
+                "scale" : 1.19,
+                "translation-in-points" : [
+                  264.90625,
+                  -378.7890625
+                ]
+              }
+            },
+            {
+              "idiom" : "watchOS",
+              "value" : {
+                "scale" : 1.22,
+                "translation-in-points" : [
+                  27.171875,
+                  433.78125
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "solid" : "extended-gray:0.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "solid" : "srgb:1.00000,1.00000,1.00000,0.91205"
+              }
+            }
+          ],
+          "glass" : false,
+          "image-name" : "Titulo 2.svg",
+          "name" : "Titulo 2",
+          "opacity-specializations" : [
+            {
+              "value" : 0.89
+            },
+            {
+              "appearance" : "dark",
+              "value" : 1
+            },
+            {
+              "appearance" : "tinted",
+              "value" : 0.95
+            }
+          ],
+          "position" : {
+            "scale" : 0.13,
+            "translation-in-points" : [
+              23.8984375,
+              2.6171956513275063
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "hidden" : false,
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill" : "automatic",
+          "glass" : true,
+          "hidden" : false,
+          "image-name" : "Losango 2.svg",
+          "name" : "Losango 2",
+          "opacity-specializations" : [
+            {
+              "appearance" : "dark",
+              "value" : 0.7
+            },
+            {
+              "appearance" : "tinted",
+              "value" : 0.38
+            }
+          ],
+          "position-specializations" : [
+            {
+              "value" : {
+                "scale" : 0.24,
+                "translation-in-points" : [
+                  0,
+                  30
+                ]
+              }
+            },
+            {
+              "idiom" : "watchOS",
+              "value" : {
+                "scale" : 0.26,
+                "translation-in-points" : [
+                  0.04341999999996915,
+                  -45.15625
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "position" : {
+        "scale" : 1,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
