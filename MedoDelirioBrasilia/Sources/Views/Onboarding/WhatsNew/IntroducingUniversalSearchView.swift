@@ -266,7 +266,7 @@ struct IntroducingUniversalSearchView: View {
                     .padding(.vertical, 14)
             }
             .buttonStyle(.glassProminent)
-            .tint(Color(red: 0.2, green: 0.5, blue: 1.0))
+            .tint(.blue)
         } else {
             Button {
                 appMemory.hasSeenUniversalSearchWhatsNewScreen(true)
