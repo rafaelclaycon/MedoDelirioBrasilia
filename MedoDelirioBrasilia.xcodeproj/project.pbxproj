@@ -3188,6 +3188,8 @@
 				D90BCEA62F0ABD6A00E6EA20 /* SearchSuggestionsView.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
 		D906013D2F1D314100BD238A /* Icons */ = {
 			isa = PBXGroup;
 			children = (
