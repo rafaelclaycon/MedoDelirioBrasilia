@@ -67,6 +67,10 @@ struct SearchSuggestionsView: View {
 
                 // Popular Reactions
                 popularReactionsSection
+
+                // Feedback
+                SearchFeedbackButton()
+                    .padding(.top, .spacing(.medium))
             }
         }
         .playableContentUI(
@@ -477,6 +481,61 @@ extension SearchSuggestionsView {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 100)
+        }
+    }
+
+    struct SearchFeedbackButton: View {
+
+        var body: some View {
+            Button {
+                Task {
+                    await Mailman.openDefaultEmailApp(
+                        subject: "Feedback sobre a Busca Universal v\(Versioneer.appVersion)",
+                        body: "Conte-me o que você achou da nova busca e o que poderia melhorar:\n\n"
+                    )
+                }
+            } label: {
+                HStack(spacing: .spacing(.small)) {
+                    Image(systemName: "bubble.left.and.text.bubble.right")
+                        .font(.system(size: 14))
+                        .foregroundStyle(.secondary)
+
+                    Text("Tem sugestões? Envie feedback")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                }
+                .padding(.horizontal, .spacing(.large))
+                .padding(.vertical, .spacing(.small))
+                .modifier(FeedbackButtonBackground())
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
+    struct FeedbackButtonBackground: ViewModifier {
+
+        @Environment(\.colorScheme) private var colorScheme
+
+        func body(content: Content) -> some View {
+            if #available(iOS 26.0, *) {
+                content
+                    .background(.regularMaterial, in: Capsule())
+                    .glassEffect(.regular.interactive(), in: Capsule())
+            } else {
+                content
+                    .background(
+                        Capsule()
+                            .fill(colorScheme == .dark
+                                  ? Color(.secondarySystemBackground)
+                                  : Color(.systemGray5))
+                    )
+            }
         }
     }
 }
