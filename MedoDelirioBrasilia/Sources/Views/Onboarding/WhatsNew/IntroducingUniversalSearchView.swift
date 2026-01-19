@@ -12,11 +12,11 @@ struct IntroducingUniversalSearchView: View {
     let appMemory: AppPersistentMemoryProtocol
 
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
 
     @State private var glowAnimation = false
     @State private var pulseAnimation = false
     @State private var ringAnimation = false
-    @State private var floatAnimation = false
 
     private var isIOS26OrLater: Bool {
         if #available(iOS 26.0, *) {
@@ -45,10 +45,38 @@ struct IntroducingUniversalSearchView: View {
         }
     }
 
-    private let gradientColors: [Color] = [
-        Color(red: 0.1, green: 0.4, blue: 0.9),
-        Color(red: 0.2, green: 0.6, blue: 1.0),
-        Color(red: 0.4, green: 0.7, blue: 1.0)
+    private var gradientColors: [Color] {
+        if colorScheme == .dark {
+            return [
+                Color(red: 0.05, green: 0.05, blue: 0.15),  // Deep space black-blue
+                Color(red: 0.1, green: 0.08, blue: 0.25),   // Dark purple
+                Color(red: 0.15, green: 0.12, blue: 0.35)   // Subtle cosmic purple
+            ]
+        } else {
+            return [
+                Color(red: 0.1, green: 0.4, blue: 0.9),     // Bright blue
+                Color(red: 0.2, green: 0.6, blue: 1.0),     // Sky blue
+                Color(red: 0.4, green: 0.7, blue: 1.0)      // Light blue
+            ]
+        }
+    }
+
+    private let flyingSymbols: [(symbol: String, angle: Double, delay: Double)] = [
+        // Spread evenly around 360°, staggered delays for continuous stream
+        ("headphones", 0, 0.0),
+        ("music.quarternote.3", 45, 1.1),
+        ("person.2", 90, 2.2),
+        ("folder", 135, 3.3),
+        ("theatermasks", 180, 4.4),
+        ("waveform", 225, 5.5),
+        ("headphones", 270, 6.6),
+        ("music.quarternote.3", 315, 7.7),
+        // Second wave offset by 22.5° for density
+        ("folder", 22, 8.8),
+        ("theatermasks", 67, 9.9),
+        ("waveform", 112, 11.0),
+        ("person.2", 157, 12.1),
+        ("headphones", 202, 13.2),
     ]
 
     var body: some View {
@@ -75,47 +103,22 @@ struct IntroducingUniversalSearchView: View {
                             )
                         )
 
-                        // Decorative floating circles
-                        Circle()
-                            .fill(.white.opacity(0.1))
-                            .frame(width: 200, height: 200)
-                            .offset(
-                                x: -100 + (floatAnimation ? 8 : -8),
-                                y: -50 + (floatAnimation ? -12 : 12)
-                            )
-                            .animation(
-                                .easeInOut(duration: 4).repeatForever(autoreverses: true),
-                                value: floatAnimation
-                            )
-
-                        Circle()
-                            .fill(.white.opacity(0.08))
-                            .frame(width: 150, height: 150)
-                            .offset(
-                                x: 120 + (floatAnimation ? -10 : 10),
-                                y: 30 + (floatAnimation ? 8 : -8)
-                            )
-                            .animation(
-                                .easeInOut(duration: 5).repeatForever(autoreverses: true),
-                                value: floatAnimation
-                            )
-
-                        Circle()
-                            .fill(.white.opacity(0.05))
-                            .frame(width: 100, height: 100)
-                            .offset(
-                                x: 80 + (floatAnimation ? 6 : -6),
-                                y: -70 + (floatAnimation ? 10 : -10)
-                            )
-                            .animation(
-                                .easeInOut(duration: 3.5).repeatForever(autoreverses: true),
-                                value: floatAnimation
-                            )
+                        // Distant stars (or clouds in light mode)
+                        StarsView(colorScheme: colorScheme)
 
                         // Content
                         VStack(spacing: 16) {
                             // Search icon with animated glow effect
                             ZStack {
+                                // Flying symbols (Time Machine style) - centered on search icon
+                                ForEach(Array(flyingSymbols.enumerated()), id: \.offset) { _, item in
+                                    FlyingSymbolView(
+                                        symbol: item.symbol,
+                                        angle: item.angle,
+                                        delay: item.delay
+                                    )
+                                }
+
                                 // Outer expanding rings
                                 ForEach(0..<3, id: \.self) { index in
                                     Circle()
@@ -179,22 +182,27 @@ struct IntroducingUniversalSearchView: View {
                                 glowAnimation = true
                                 pulseAnimation = true
                                 ringAnimation = true
-                                floatAnimation = true
                             }
 
                             VStack(spacing: .spacing(.nano)) {
                                 Text("Busca")
                                     .font(.system(size: 34, weight: .bold, design: .rounded))
                                     .foregroundStyle(.white)
+                                    .shadow(color: .black.opacity(0.6), radius: 12, x: 0, y: 2)
 
                                 Text("Universal")
                                     .font(.system(size: 34, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.white.opacity(0.9))
+                                    .foregroundStyle(.white)
+                                    .shadow(color: .black.opacity(0.6), radius: 12, x: 0, y: 2)
                             }
 
                             Text("Uma nova forma de encontrar tudo")
                                 .font(.subheadline)
-                                .foregroundStyle(.primary.opacity(0.85))
+                                .foregroundStyle(
+                                    colorScheme == .dark
+                                        ? Color.primary.opacity(0.85)
+                                        : Color(red: 0.0, green: 0.3, blue: 0.5)
+                                )
                         }
                         .padding(.vertical, 40)
                     }
@@ -204,14 +212,12 @@ struct IntroducingUniversalSearchView: View {
                     VStack(alignment: .leading, spacing: 24) {
                         ItemView(
                             icon: "sparkle.magnifyingglass",
-                            iconColor: Color(red: 0.2, green: 0.5, blue: 1.0),
                             title: "Tudo Em Um Só Lugar",
                             message: "Encontre vírgulas, músicas, autores, pastas e reações com uma única busca."
                         )
 
                         ItemView(
                             icon: "clock.arrow.circlepath",
-                            iconColor: Color(red: 0.4, green: 0.65, blue: 1.0),
                             title: "Pesquisas Recentes",
                             message: "Acesse rapidamente suas buscas anteriores para encontrar aquela vírgula que você já conhece."
                         )
@@ -219,14 +225,12 @@ struct IntroducingUniversalSearchView: View {
                         if isIOS26OrLater {
                             ItemView(
                                 icon: "hand.tap",
-                                iconColor: Color(red: 0.15, green: 0.45, blue: 0.95),
                                 title: "Acesso Facilitado",
                                 message: "No \(currentOSName), a busca agora tem um \(searchButtonPlacement)."
                             )
                         } else {
                             ItemView(
                                 icon: "checkmark.circle",
-                                iconColor: Color(red: 0.15, green: 0.45, blue: 0.95),
                                 title: "No Mesmo Lugar de Sempre",
                                 message: "A busca continua no topo da tela, no mesmo lugar que você já conhece."
                             )
@@ -289,24 +293,101 @@ struct IntroducingUniversalSearchView: View {
 
 extension IntroducingUniversalSearchView {
 
+    struct StarsView: View {
+        let colorScheme: ColorScheme
+
+        // Fixed positions for consistency
+        private let particles: [(x: CGFloat, y: CGFloat, size: CGFloat, opacity: Double)] = [
+            (-120, -80, 2, 0.8), (80, -100, 1.5, 0.6), (150, -60, 2.5, 0.7),
+            (-80, -40, 1, 0.5), (100, 20, 2, 0.6), (-140, 30, 1.5, 0.7),
+            (60, -120, 1, 0.4), (-50, 60, 2, 0.5), (130, 80, 1.5, 0.6),
+            (-100, 100, 1, 0.4), (40, 50, 2.5, 0.3), (-160, -20, 1, 0.5),
+            (170, -30, 1.5, 0.4), (-30, -90, 2, 0.6), (90, 110, 1, 0.3),
+            (-150, 70, 2, 0.5), (20, -50, 1.5, 0.4), (110, -90, 1, 0.5),
+        ]
+
+        var body: some View {
+            ZStack {
+                ForEach(Array(particles.enumerated()), id: \.offset) { _, particle in
+                    Circle()
+                        .fill(particleColor.opacity(particle.opacity * opacityMultiplier))
+                        .frame(width: particle.size * sizeMultiplier, height: particle.size * sizeMultiplier)
+                        .offset(x: particle.x, y: particle.y)
+                }
+            }
+        }
+
+        private var particleColor: Color {
+            colorScheme == .dark ? .white : .white
+        }
+
+        private var opacityMultiplier: Double {
+            colorScheme == .dark ? 1.0 : 0.7
+        }
+
+        private var sizeMultiplier: CGFloat {
+            colorScheme == .dark ? 1.0 : 1.5  // Slightly larger "clouds" in light mode
+        }
+    }
+
+    struct FlyingSymbolView: View {
+        let symbol: String
+        let angle: Double
+        let delay: Double
+
+        private let cycleDuration: Double = 14.0
+
+        var body: some View {
+            TimelineView(.animation) { timeline in
+                let elapsed = timeline.date.timeIntervalSinceReferenceDate
+                let adjustedTime = elapsed - delay
+                let progress = adjustedTime > 0
+                    ? CGFloat((adjustedTime.truncatingRemainder(dividingBy: cycleDuration)) / cycleDuration)
+                    : 0
+
+                // Gentle scale: start tiny, end moderately larger
+                let scale = 0.15 + (progress * 1.8)
+                let radians = angle * .pi / 180
+                // Drift outward slowly
+                let distance = progress * 180
+
+                let opacity: Double = {
+                    // Fade in gently, stay visible longer, fade out smoothly
+                    if progress < 0.2 {
+                        return Double(progress) * 2.25
+                    } else if progress > 0.8 {
+                        return Double(1 - progress) * 2.25
+                    }
+                    return 0.45
+                }()
+
+                Image(systemName: symbol)
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundStyle(.white.opacity(opacity))
+                    .shadow(color: .white.opacity(0.5), radius: 4)
+                    .scaleEffect(scale)
+                    .offset(
+                        x: cos(radians) * distance,
+                        y: sin(radians) * distance
+                    )
+            }
+        }
+    }
+
     struct ItemView: View {
 
         let icon: String
-        let iconColor: Color
         let title: String
         let message: String
 
+        private let iconColor = Color(red: 0.2, green: 0.5, blue: 1.0)
+
         var body: some View {
             HStack(alignment: .top, spacing: 16) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(iconColor.opacity(0.15))
-                        .frame(width: 48, height: 48)
-
-                    Image(systemName: icon)
-                        .font(.system(size: 22))
-                        .foregroundStyle(iconColor)
-                }
+                Image(systemName: icon)
+                    .font(.system(size: 28, weight: .medium))
+                    .foregroundStyle(iconColor)
+                    .frame(width: 36)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
