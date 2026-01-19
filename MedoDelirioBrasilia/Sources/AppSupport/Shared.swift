@@ -24,7 +24,7 @@ struct Shared {
             case .sounds:
                 "headphones"
             case .reactions:
-                "rectangle.grid.2x2"
+                "theatermasks"
             case .trends:
                 "chart.line.uptrend.xyaxis"
             case .settings:
@@ -62,7 +62,7 @@ struct Shared {
             case .groupedByAuthor:
                 "person"
             case .reactions:
-                "rectangle.grid.2x2"
+                "theatermasks"
             case .trends:
                 "chart.line.uptrend.xyaxis"
             case .allFolders:
