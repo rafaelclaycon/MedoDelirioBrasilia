@@ -3180,16 +3180,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D90BCEA32F0ABD5700E6EA20 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				D90BCEA42F0ABD6A00E6EA20 /* NoSearchResultsView.swift */,
-				D90BCEA52F0ABD6A00E6EA20 /* SearchResultsView.swift */,
-				D90BCEA62F0ABD6A00E6EA20 /* SearchSuggestionsView.swift */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
 		D906013D2F1D314100BD238A /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -3198,6 +3188,16 @@
 				D90601422F1D458B00BD238A /* Default.icon */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		D90BCEA32F0ABD5700E6EA20 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D90BCEA42F0ABD6A00E6EA20 /* NoSearchResultsView.swift */,
+				D90BCEA52F0ABD6A00E6EA20 /* SearchResultsView.swift */,
+				D90BCEA62F0ABD6A00E6EA20 /* SearchSuggestionsView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		D90E80C22CEA1F3B0014A886 /* Reactions */ = {
@@ -7340,7 +7340,7 @@
 		D9625E9F28238F9B00080852 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_BUILD = 4;
+				APP_BUILD = 5;
 				APP_VERSION = 10.5;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Default-beta";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -7383,7 +7383,7 @@
 		D9625EA028238F9B00080852 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_BUILD = 4;
+				APP_BUILD = 5;
 				APP_VERSION = 10.5;
 				ASSETCATALOG_COMPILER_APPICON_NAME = Default;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
