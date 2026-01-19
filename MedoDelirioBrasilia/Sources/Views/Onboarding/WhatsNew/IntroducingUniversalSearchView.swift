@@ -41,7 +41,7 @@ struct IntroducingUniversalSearchView: View {
         if UIDevice.isiPhone {
             return "botão dedicado no canto inferior direito"
         } else {
-            return "botão dedicado no painel lateral"
+            return "botão dedicado na barra lateral"
         }
     }
 
