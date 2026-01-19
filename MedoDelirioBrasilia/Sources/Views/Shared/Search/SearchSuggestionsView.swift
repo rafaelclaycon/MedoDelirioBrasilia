@@ -33,95 +33,40 @@ struct SearchSuggestionsView: View {
     @Environment(\.sizeCategory) private var sizeCategory
     @Environment(\.push) private var push
 
+    // MARK: - Computed Properties
+
+    private var showFeatureDiscovery: Bool {
+        recent.isEmpty && !hasLoadedContent
+    }
+
+    private var hasLoadedContent: Bool {
+        switch (popularContent, popularReactions) {
+        case (.loaded(let content), _) where !content.isEmpty:
+            return true
+        case (_, .loaded(let reactions)) where !reactions.isEmpty:
+            return true
+        default:
+            return false
+        }
+    }
+
     // MARK: - View Body
 
     var body: some View {
         VStack(alignment: .leading, spacing: .spacing(.xLarge)) {
-            if !recent.isEmpty {
-                VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                    HStack {
-                        Text("Pesquisas Recentes")
-                            .font(.headline)
-
-                        Spacer()
-
-                        Button {
-                            recent.removeAll()
-                            onClearSearchesAction()
-                        } label: {
-                            Text("Limpar")
-                        }
-                        .miniButton(colored: .green)
-                    }
-
-                    VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                        ForEach(recent, id: \.self) { text in
-                            RecentSearchView(text: text)
-                                .onTapGesture {
-                                    onRecentSelectedAction(text)
-                                }
-                        }
-                    }
-                    .padding(.leading, .spacing(.small))
+            if showFeatureDiscovery {
+                FeatureDiscoveryView()
+            } else {
+                // Recent Searches
+                if !recent.isEmpty {
+                    recentSearchesSection
                 }
-            }
 
-            VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                Text("🔥 Em Alta Hoje")
-                    .font(.headline)
+                // Popular Content
+                popularContentSection
 
-                switch popularContent {
-                case .loading:
-                    HStack {
-                        ProgressView()
-                        Spacer()
-                    }
-                    .frame(height: 80)
-
-                case .loaded(let content) where !content.isEmpty:
-                    PopularContentGrid(
-                        content: content,
-                        playable: playable,
-                        columns: columns,
-                        phoneItemSpacing: phoneItemSpacing,
-                        padItemSpacing: padItemSpacing
-                    )
-                    .if(shouldAnimateEntrance) { view in
-                        view.transition(.slideFromLeading)
-                    }
-
-                default:
-                    EmptyView()
-                }
-            }
-
-            VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                Text("Reações Populares")
-                    .font(.headline)
-
-                switch popularReactions {
-                case .loading:
-                    HStack {
-                        ProgressView()
-                        Spacer()
-                    }
-                    .frame(height: 80)
-
-                case .loaded(let reactions) where !reactions.isEmpty:
-                    PopularReactionsGrid(
-                        reactions: reactions,
-                        onReactionSelectedAction: onReactionSelectedAction,
-                        columns: columns,
-                        phoneItemSpacing: phoneItemSpacing,
-                        padItemSpacing: padItemSpacing
-                    )
-                    .if(shouldAnimateEntrance) { view in
-                        view.transition(.slideFromLeading)
-                    }
-
-                default:
-                    EmptyView()
-                }
+                // Popular Reactions
+                popularReactionsSection
             }
         }
         .playableContentUI(
@@ -152,22 +97,186 @@ struct SearchSuggestionsView: View {
         }
     }
 
+    // MARK: - Section Views
+
+    private var recentSearchesSection: some View {
+        VStack(alignment: .leading, spacing: .spacing(.medium)) {
+            HStack {
+                Text("Pesquisas Recentes")
+                    .font(.headline)
+
+                Spacer()
+
+                Button {
+                    recent.removeAll()
+                    onClearSearchesAction()
+                } label: {
+                    Text("Limpar")
+                }
+                .miniButton(colored: .green)
+            }
+
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                ForEach(recent, id: \.self) { text in
+                    RecentSearchView(text: text)
+                        .onTapGesture {
+                            onRecentSelectedAction(text)
+                        }
+                }
+            }
+            .padding(.leading, .spacing(.small))
+        }
+    }
+
+    @ViewBuilder
+    private var popularContentSection: some View {
+        switch popularContent {
+        case .loading:
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("🔥 Em Alta Hoje")
+                    .font(.headline)
+
+                HStack {
+                    Spacer()
+                    VStack(spacing: .spacing(.small)) {
+                        ProgressView()
+                        Text("Carregando...")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                }
+                .frame(height: 100)
+            }
+
+        case .loaded(let content) where !content.isEmpty:
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("🔥 Em Alta Hoje")
+                    .font(.headline)
+
+                PopularContentGrid(
+                    content: content,
+                    playable: playable,
+                    columns: columns,
+                    phoneItemSpacing: phoneItemSpacing,
+                    padItemSpacing: padItemSpacing
+                )
+                .if(shouldAnimateEntrance) { view in
+                    view.transition(.slideFromLeading)
+                }
+            }
+
+        case .error:
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("🔥 Em Alta Hoje")
+                    .font(.headline)
+
+                ErrorRetryView(
+                    message: "Não foi possível carregar",
+                    retryAction: {
+                        Task {
+                            popularContent = .loading
+                            await loadPopularContent()
+                        }
+                    }
+                )
+            }
+
+        default:
+            EmptyView()
+        }
+    }
+
+    @ViewBuilder
+    private var popularReactionsSection: some View {
+        switch popularReactions {
+        case .loading:
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("Reações Populares")
+                    .font(.headline)
+
+                HStack {
+                    Spacer()
+                    VStack(spacing: .spacing(.small)) {
+                        ProgressView()
+                        Text("Carregando...")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                }
+                .frame(height: 100)
+            }
+
+        case .loaded(let reactions) where !reactions.isEmpty:
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("Reações Populares")
+                    .font(.headline)
+
+                PopularReactionsGrid(
+                    reactions: reactions,
+                    onReactionSelectedAction: onReactionSelectedAction,
+                    columns: columns,
+                    phoneItemSpacing: phoneItemSpacing,
+                    padItemSpacing: padItemSpacing
+                )
+                .if(shouldAnimateEntrance) { view in
+                    view.transition(.slideFromLeading)
+                }
+            }
+
+        case .error:
+            VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                Text("Reações Populares")
+                    .font(.headline)
+
+                ErrorRetryView(
+                    message: "Não foi possível carregar",
+                    retryAction: {
+                        Task {
+                            popularReactions = .loading
+                            await loadPopularReactions()
+                        }
+                    }
+                )
+            }
+
+        default:
+            EmptyView()
+        }
+    }
+
     // MARK: - Functions
 
     private func loadContent() async {
+        await loadPopularContent()
+        await loadPopularReactions()
+    }
+
+    private func loadPopularContent() async {
         do {
             let content = try await trendsService.top3Content()
             withAnimation(.easeOut(duration: 0.3)) {
                 popularContent = .loaded(content)
             }
+        } catch {
+            withAnimation {
+                popularContent = .error("")
+            }
+            debugPrint(error)
+        }
+    }
 
+    private func loadPopularReactions() async {
+        do {
             let reactions = try await trendsService.top3Reactions()
-            withAnimation(.easeOut(duration: 0.3).delay(0.1)) {
+            withAnimation(.easeOut(duration: 0.3)) {
                 popularReactions = .loaded(reactions)
             }
         } catch {
-            popularContent = .error("")
-            popularReactions = .error("")
+            withAnimation {
+                popularReactions = .error("")
+            }
             debugPrint(error)
         }
     }
@@ -297,6 +406,77 @@ extension SearchSuggestionsView {
                         }
                 }
             }
+        }
+    }
+
+    struct FeatureDiscoveryView: View {
+
+        private let searchableTypes: [(icon: String, name: String)] = [
+            ("headphones", "Vírgulas"),
+            ("music.quarternote.3", "Músicas"),
+            ("person.2", "Autores"),
+            ("folder", "Pastas"),
+            ("theatermasks", "Reações")
+        ]
+
+        var body: some View {
+            VStack(spacing: .spacing(.large)) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 48, weight: .light))
+                    .foregroundStyle(.secondary)
+
+                VStack(spacing: .spacing(.small)) {
+                    Text("O que você quer encontrar?")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+
+                    Text("Use a busca para encontrar:")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+
+                HStack(spacing: .spacing(.medium)) {
+                    ForEach(searchableTypes, id: \.name) { type in
+                        VStack(spacing: .spacing(.xSmall)) {
+                            Image(systemName: type.icon)
+                                .font(.system(size: 20))
+                                .foregroundStyle(.blue)
+
+                            Text(type.name)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                }
+                .padding(.top, .spacing(.small))
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, .spacing(.xxxLarge))
+        }
+    }
+
+    struct ErrorRetryView: View {
+
+        let message: String
+        let retryAction: () -> Void
+
+        var body: some View {
+            VStack(spacing: .spacing(.medium)) {
+                Text(message)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+
+                Button {
+                    retryAction()
+                } label: {
+                    Label("Tentar novamente", systemImage: "arrow.clockwise")
+                        .font(.subheadline)
+                }
+                .buttonStyle(.bordered)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 100)
         }
     }
 }
