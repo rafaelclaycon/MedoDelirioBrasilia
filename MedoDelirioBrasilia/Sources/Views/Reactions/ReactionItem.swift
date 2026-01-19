@@ -78,7 +78,7 @@ extension ReactionItem {
         @State private var isLoading: Bool = true
 
         var body: some View {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.black.opacity(0.4))
                 .frame(height: itemHeight)
                 .background {
@@ -100,7 +100,6 @@ extension ReactionItem {
                         .resizable()
                         .scaledToFill()
                         .frame(height: itemHeight)
-                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 }
                 .overlay {
                     Text(title)
@@ -110,6 +109,7 @@ extension ReactionItem {
                         .multilineTextAlignment(.center)
                         .shadow(color: .black, radius: 4, y: 4)
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         }
     }
