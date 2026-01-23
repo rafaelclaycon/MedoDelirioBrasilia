@@ -15,6 +15,7 @@ struct MainContentView: View {
     private var currentContentListMode: Binding<ContentGridMode>
     private let openSettingsAction: () -> Void
     private let contentRepository: ContentRepositoryProtocol
+    private let userFolderRepository: UserFolderRepositoryProtocol
     private let bannerRepository: BannerRepositoryProtocol
     private let searchService: SearchServiceProtocol
     private let analyticsService: AnalyticsServiceProtocol
@@ -110,6 +111,7 @@ struct MainContentView: View {
         floatingOptions: Binding<FloatingContentOptions?>,
         openSettingsAction: @escaping () -> Void,
         contentRepository: ContentRepositoryProtocol,
+        userFolderRepository: UserFolderRepositoryProtocol,
         bannerRepository: BannerRepositoryProtocol,
         searchService: SearchServiceProtocol,
         analyticsService: AnalyticsServiceProtocol
@@ -117,7 +119,7 @@ struct MainContentView: View {
         self.viewModel = viewModel
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
-            userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            userFolderRepository: userFolderRepository,
             contentFileManager: ContentFileManager(),
             screen: .mainContentView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
@@ -130,6 +132,7 @@ struct MainContentView: View {
         self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction
         self.contentRepository = contentRepository
+        self.userFolderRepository = userFolderRepository
         self.bannerRepository = bannerRepository
         self.searchService = searchService
         self.analyticsService = analyticsService
@@ -240,7 +243,7 @@ struct MainContentView: View {
                         case .folders:
                             MyFoldersiPhoneView(
                                 contentRepository: contentRepository,
-                                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                userFolderRepository: userFolderRepository,
                                 containerSize: geometry.size
                             )
                             .environment(deleteFolderAide)
@@ -578,6 +581,7 @@ extension MainContentView {
         floatingOptions: .constant(nil),
         openSettingsAction: {},
         contentRepository: FakeContentRepository(),
+        userFolderRepository: FakeUserFolderRepository(),
         bannerRepository: BannerRepository(),
         searchService: SearchService(
             contentRepository: FakeContentRepository(),

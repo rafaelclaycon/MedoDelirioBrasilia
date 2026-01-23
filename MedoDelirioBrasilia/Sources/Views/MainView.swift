@@ -32,9 +32,7 @@ struct MainView: View {
     @State private var showUniversalSearchWhatsNew: Bool = false
 
     // iPad
-    @State private var sidebarFoldersViewModel = SidebarFoldersViewModel(
-        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared)
-    )
+    @State private var sidebarFoldersViewModel: SidebarFoldersViewModel
     @State private var authorSortOption: Int = 0
     @State private var authorSortAction: AuthorSortOption = .nameAscending
 
@@ -49,14 +47,19 @@ struct MainView: View {
     private let trendsService = TrendsService.shared
     @State private var reactionRepository = ReactionRepository()
 
+    private let userFolderRepository: UserFolderRepositoryProtocol
+
     init(
         tabSelection: Binding<PhoneTab>,
         padSelection: Binding<PadScreen?>,
-        contentRepository: ContentRepository = ContentRepository(database: LocalDatabase.shared)
+        contentRepository: ContentRepository = ContentRepository(database: LocalDatabase.shared),
+        userFolderRepository: UserFolderRepositoryProtocol = UserFolderRepository(database: LocalDatabase.shared)
     ) {
         self.tabSelection = tabSelection
         self.padSelection = padSelection
         self.contentRepository = contentRepository
+        self.userFolderRepository = userFolderRepository
+        self._sidebarFoldersViewModel = State(initialValue: SidebarFoldersViewModel(userFolderRepository: userFolderRepository))
     }
 
     // MARK: - View Body
@@ -87,12 +90,13 @@ struct MainView: View {
                                         isShowingSettingsSheet.toggle()
                                     },
                                     contentRepository: contentRepository,
+                                    userFolderRepository: userFolderRepository,
                                     bannerRepository: BannerRepository(),
                                     searchService: SearchService(
                                         contentRepository: contentRepository,
                                         authorService: AuthorService(database: LocalDatabase.shared),
                                         appMemory: AppPersistentMemory.shared,
-                                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                        userFolderRepository: userFolderRepository,
                                         userSettings: UserSettings()
                                     ),
                                     analyticsService: AnalyticsService()
@@ -138,12 +142,12 @@ struct MainView: View {
                                         contentRepository: contentRepository,
                                         authorService: AuthorService(database: LocalDatabase.shared),
                                         appMemory: AppPersistentMemory.shared,
-                                        userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                        userFolderRepository: userFolderRepository,
                                         userSettings: UserSettings()
                                     ),
                                     trendsService: trendsService,
                                     contentRepository: contentRepository,
-                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    userFolderRepository: userFolderRepository,
                                     analyticsService: AnalyticsService()
                                 )
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
@@ -176,12 +180,13 @@ struct MainView: View {
                                     isShowingSettingsSheet.toggle()
                                 },
                                 contentRepository: contentRepository,
+                                userFolderRepository: userFolderRepository,
                                 bannerRepository: BannerRepository(),
                                 searchService: SearchService(
                                     contentRepository: contentRepository,
                                     authorService: AuthorService(database: LocalDatabase.shared),
                                     appMemory: AppPersistentMemory.shared,
-                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    userFolderRepository: userFolderRepository,
                                     userSettings: UserSettings()
                                 ),
                                 analyticsService: AnalyticsService()
@@ -271,12 +276,13 @@ struct MainView: View {
                                 floatingOptions: $floatingOptions,
                                 openSettingsAction: {},
                                 contentRepository: contentRepository,
+                                userFolderRepository: userFolderRepository,
                                 bannerRepository: BannerRepository(),
                                 searchService: SearchService(
                                     contentRepository: contentRepository,
                                     authorService: AuthorService(database: LocalDatabase.shared),
                                     appMemory: AppPersistentMemory.shared,
-                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    userFolderRepository: userFolderRepository,
                                     userSettings: UserSettings()
                                 ),
                                 analyticsService: AnalyticsService()
@@ -413,12 +419,12 @@ struct MainView: View {
                                     contentRepository: contentRepository,
                                     authorService: AuthorService(database: LocalDatabase.shared),
                                     appMemory: AppPersistentMemory.shared,
-                                    userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                    userFolderRepository: userFolderRepository,
                                     userSettings: UserSettings()
                                 ),
                                 trendsService: trendsService,
                                 contentRepository: contentRepository,
-                                userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                                userFolderRepository: userFolderRepository,
                                 analyticsService: AnalyticsService()
                             )
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
@@ -488,7 +494,7 @@ struct MainView: View {
         .sheet(item: $folderForEditing) { folder in
             FolderInfoEditingView(
                 folder: folder,
-                folderRepository: UserFolderRepository(database: LocalDatabase.shared),
+                folderRepository: userFolderRepository,
                 dismissSheet: {
                     folderForEditing = nil
                     updateFolderList = true
