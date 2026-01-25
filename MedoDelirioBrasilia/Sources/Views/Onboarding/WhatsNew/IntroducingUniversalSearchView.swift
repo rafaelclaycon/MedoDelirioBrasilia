@@ -211,15 +211,15 @@ struct IntroducingUniversalSearchView: View {
                     // Features Section
                     VStack(alignment: .leading, spacing: 24) {
                         ItemView(
-                            icon: "sparkle.magnifyingglass",
+                            icon: "square.grid.2x2",
                             title: "Tudo Em Um Só Lugar",
                             message: "Encontre vírgulas, músicas, autores, pastas e reações com uma única busca."
                         )
 
                         ItemView(
-                            icon: "clock.arrow.circlepath",
-                            title: "Pesquisas Recentes",
-                            message: "Acesse rapidamente suas buscas anteriores para encontrar aquela vírgula que você já conhece."
+                            icon: "text.magnifyingglass",
+                            title: "Busca no Conteúdo",
+                            message: "Encontre palavras dentro do que é dito nas vírgulas e músicas, com trechos destacados mostrando o contexto."
                         )
 
                         if isIOS26OrLater {
