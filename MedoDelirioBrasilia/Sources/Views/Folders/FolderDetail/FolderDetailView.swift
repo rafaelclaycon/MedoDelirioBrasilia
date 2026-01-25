@@ -103,7 +103,6 @@ struct FolderDetailView: View {
                 .toast(contentGridViewModel.toast)
                 .floatingContentOptions(contentGridViewModel.floatingOptions)
                 .scrollEdgeEffectHidden(true, for: .top)
-                .toolbarVisibility(.hidden, for: .tabBar)
             } else {
                 ScrollView {
                     detailView(size: geometry.size)
