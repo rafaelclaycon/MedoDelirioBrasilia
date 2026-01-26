@@ -30,6 +30,7 @@ final class SearchService: SearchServiceProtocol {
 
     private var searches: [String] = []
     private(set) var reactionsState: LoadingState<[Reaction]> = .loading
+    private var saveWorkItem: DispatchWorkItem?
 
     // MARK: - Initializer
 
@@ -79,6 +80,7 @@ final class SearchService: SearchServiceProtocol {
     func save(searchString: String) {
         guard !searchString.isEmpty else { return }
 
+        // Update in-memory array immediately
         if let index = firstIndexOf(searchString: searchString) {
             guard searches[index].count < searchString.count else { return }
             searches.remove(at: index)
@@ -90,7 +92,14 @@ final class SearchService: SearchServiceProtocol {
         if searches.count > 3 {
             searches.removeLast()
         }
-        appMemory.saveRecentSearches(searches)
+
+        // Debounce the disk write
+        saveWorkItem?.cancel()
+        saveWorkItem = DispatchWorkItem { [weak self] in
+            guard let self else { return }
+            self.appMemory.saveRecentSearches(self.searches)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: saveWorkItem!)
     }
 
     func recentSearches() -> [String] {
