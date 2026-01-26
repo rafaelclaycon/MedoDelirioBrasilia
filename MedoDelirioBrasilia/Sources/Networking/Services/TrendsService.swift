@@ -30,6 +30,7 @@ protocol TrendsServiceProtocol {
     func sendUserPersonalTrendsToServerIfEnabled() async
 }
 
+@MainActor
 final class TrendsService: TrendsServiceProtocol {
 
     public static let defaultSoundsTimeInterval: TrendsTimeInterval = .last24Hours
@@ -42,7 +43,6 @@ final class TrendsService: TrendsServiceProtocol {
         contentRepository: ContentRepository(database: LocalDatabase.shared)
     )
 
-    private let database: LocalDatabaseProtocol
     private let apiClient: APIClientProtocol
     private let contentRepository: ContentRepositoryProtocol
 
@@ -51,10 +51,12 @@ final class TrendsService: TrendsServiceProtocol {
     private var todaysTop3Reactions: [Reaction]
     private var reactionStats: [TopChartReaction]
 
-    public var soundsLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    public var songsLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    public var top3ReactionsLastUpdate: Date = Date(timeIntervalSince1970: 0)
-    public var reactionsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    private var soundsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    private var songsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    private var top3ReactionsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+    private var reactionsLastUpdate: Date = Date(timeIntervalSince1970: 0)
+
+    private static let cacheExpirationMinutes = 60
 
     // MARK: - Initializer
 
@@ -63,7 +65,7 @@ final class TrendsService: TrendsServiceProtocol {
         apiClient: APIClientProtocol,
         contentRepository: ContentRepositoryProtocol
     ) {
-        self.database = database
+        // Note: database parameter kept for API compatibility but not currently used
         self.apiClient = apiClient
         self.contentRepository = contentRepository
         self.defaultSoundStats = []
@@ -89,7 +91,7 @@ final class TrendsService: TrendsServiceProtocol {
         case .sounds:
             switch timeInterval {
             case .last24Hours:
-                if soundsLastUpdate.minutesPassed(60) {
+                if soundsLastUpdate.minutesPassed(Self.cacheExpirationMinutes) {
                     await loadSoundStats(timeInterval: timeInterval)
                 }
                 return defaultSoundStats
@@ -104,7 +106,7 @@ final class TrendsService: TrendsServiceProtocol {
         case .songs:
             switch timeInterval {
             case .lastWeek:
-                if songsLastUpdate.minutesPassed(60) {
+                if songsLastUpdate.minutesPassed(Self.cacheExpirationMinutes) {
                     await loadSongStats(timeInterval: timeInterval)
                 }
                 return defaultSongStats
@@ -119,21 +121,21 @@ final class TrendsService: TrendsServiceProtocol {
     }
 
     func top3Content() async throws -> [AnyEquatableMedoContent] {
-        if soundsLastUpdate.minutesPassed(60) {
+        if soundsLastUpdate.minutesPassed(Self.cacheExpirationMinutes) {
             await loadSoundStats(timeInterval: .lastWeek)
         }
         return try contentRepository.content(withIds: defaultSoundStats.prefix(3).map { $0.contentId }) // TODO: Include songs here
     }
 
     func top3Reactions() async throws -> [Reaction] {
-        if top3ReactionsLastUpdate.minutesPassed(60) {
+        if top3ReactionsLastUpdate.minutesPassed(Self.cacheExpirationMinutes) {
             await loadTop3Reactions()
         }
         return todaysTop3Reactions
     }
 
     func reactionsStats() async throws -> [TopChartReaction] {
-        if reactionsLastUpdate.minutesPassed(60) {
+        if reactionsLastUpdate.minutesPassed(Self.cacheExpirationMinutes) {
             await loadReactions()
         }
         return reactionStats

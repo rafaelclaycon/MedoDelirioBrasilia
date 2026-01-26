@@ -48,6 +48,7 @@ struct MainView: View {
     @State private var reactionRepository = ReactionRepository()
 
     private let userFolderRepository: UserFolderRepositoryProtocol
+    private let searchService: SearchService
 
     init(
         tabSelection: Binding<PhoneTab>,
@@ -60,6 +61,16 @@ struct MainView: View {
         self.contentRepository = contentRepository
         self.userFolderRepository = userFolderRepository
         self._sidebarFoldersViewModel = State(initialValue: SidebarFoldersViewModel(userFolderRepository: userFolderRepository))
+
+        // Create a single shared SearchService instance
+        self.searchService = SearchService(
+            contentRepository: contentRepository,
+            authorService: AuthorService(database: LocalDatabase.shared),
+            appMemory: AppPersistentMemory.shared,
+            userFolderRepository: userFolderRepository,
+            userSettings: UserSettings(),
+            reactionRepository: ReactionRepository()
+        )
     }
 
     // MARK: - View Body
@@ -89,69 +100,55 @@ struct MainView: View {
                                     openSettingsAction: {
                                         isShowingSettingsSheet.toggle()
                                     },
-                                    contentRepository: contentRepository,
-                                    userFolderRepository: userFolderRepository,
-                                    bannerRepository: BannerRepository(),
-                                    searchService: SearchService(
-                                        contentRepository: contentRepository,
-                                        authorService: AuthorService(database: LocalDatabase.shared),
-                                        appMemory: AppPersistentMemory.shared,
-                                        userFolderRepository: userFolderRepository,
-                                        userSettings: UserSettings(),
-                                        reactionRepository: ReactionRepository()
-                                    ),
-                                    analyticsService: AnalyticsService()
-                                )
+                                contentRepository: contentRepository,
+                                userFolderRepository: userFolderRepository,
+                                bannerRepository: BannerRepository(),
+                                searchService: searchService,
+                                analyticsService: AnalyticsService()
+                            )
+                            .environment(trendsHelper)
+                            .environment(settingsHelper)
+                            .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                GeneralRouter(destination: screen, contentRepository: contentRepository)
+                            }
+                        }
+                        .tag(PhoneTab.sounds)
+                        .environment(\.push, PushAction { soundsPath.append($0) })
+                    }
+
+                    Tab(Shared.TabInfo.name(PhoneTab.reactions), systemImage: Shared.TabInfo.symbol(PhoneTab.reactions), value: .reactions) {
+                        NavigationStack(path: $reactionsPath) {
+                            ReactionsView()
                                 .environment(trendsHelper)
-                                .environment(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
-                            }
-                            .tag(PhoneTab.sounds)
-                            .environment(\.push, PushAction { soundsPath.append($0) })
                         }
+                        .tag(PhoneTab.reactions)
+                        .environment(\.push, PushAction { reactionsPath.append($0) })
+                    }
 
-                        Tab(Shared.TabInfo.name(PhoneTab.reactions), systemImage: Shared.TabInfo.symbol(PhoneTab.reactions), value: .reactions) {
-                            NavigationStack(path: $reactionsPath) {
-                                ReactionsView()
-                                    .environment(trendsHelper)
-                                    .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                        GeneralRouter(destination: screen, contentRepository: contentRepository)
-                                    }
-                            }
-                            .tag(PhoneTab.reactions)
-                            .environment(\.push, PushAction { reactionsPath.append($0) })
+                    Tab(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends), value: .trends) {
+                        NavigationView {
+                            TrendsView(
+                                audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
+                                tabSelection: tabSelection,
+                                activePadScreen: .constant(.trends)
+                            )
+                            .environment(trendsHelper)
                         }
+                        .tag(PhoneTab.trends)
+                    }
 
-                        Tab(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends), value: .trends) {
-                            NavigationView {
-                                TrendsView(
-                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                    tabSelection: tabSelection,
-                                    activePadScreen: .constant(.trends)
-                                )
-                                .environment(trendsHelper)
-                            }
-                            .tag(PhoneTab.trends)
-                        }
-
-                        Tab(value: .search, role: .search) {
-                            NavigationStack(path: $searchTabPath) {
-                                StandaloneSearchView(
-                                    searchService: SearchService(
-                                        contentRepository: contentRepository,
-                                        authorService: AuthorService(database: LocalDatabase.shared),
-                                        appMemory: AppPersistentMemory.shared,
-                                        userFolderRepository: userFolderRepository,
-                                        userSettings: UserSettings(),
-                                        reactionRepository: ReactionRepository()
-                                    ),
-                                    trendsService: trendsService,
-                                    contentRepository: contentRepository,
-                                    userFolderRepository: userFolderRepository,
-                                    analyticsService: AnalyticsService()
-                                )
+                    Tab(value: .search, role: .search) {
+                        NavigationStack(path: $searchTabPath) {
+                            StandaloneSearchView(
+                                searchService: searchService,
+                                trendsService: trendsService,
+                                contentRepository: contentRepository,
+                                userFolderRepository: userFolderRepository,
+                                analyticsService: AnalyticsService()
+                            )
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
@@ -184,14 +181,7 @@ struct MainView: View {
                                 contentRepository: contentRepository,
                                 userFolderRepository: userFolderRepository,
                                 bannerRepository: BannerRepository(),
-                                searchService: SearchService(
-                                    contentRepository: contentRepository,
-                                    authorService: AuthorService(database: LocalDatabase.shared),
-                                    appMemory: AppPersistentMemory.shared,
-                                    userFolderRepository: userFolderRepository,
-                                    userSettings: UserSettings(),
-                                    reactionRepository: ReactionRepository()
-                                ),
+                                searchService: searchService,
                                 analyticsService: AnalyticsService()
                             )
                             .environment(trendsHelper)
@@ -281,14 +271,7 @@ struct MainView: View {
                                 contentRepository: contentRepository,
                                 userFolderRepository: userFolderRepository,
                                 bannerRepository: BannerRepository(),
-                                searchService: SearchService(
-                                    contentRepository: contentRepository,
-                                    authorService: AuthorService(database: LocalDatabase.shared),
-                                    appMemory: AppPersistentMemory.shared,
-                                    userFolderRepository: userFolderRepository,
-                                    userSettings: UserSettings(),
-                                    reactionRepository: ReactionRepository()
-                                ),
+                                searchService: searchService,
                                 analyticsService: AnalyticsService()
                             )
                             .environment(trendsHelper)
@@ -419,14 +402,7 @@ struct MainView: View {
                     Tab(role: .search) {
                         NavigationStack(path: $searchTabPath) {
                             StandaloneSearchView(
-                                searchService: SearchService(
-                                    contentRepository: contentRepository,
-                                    authorService: AuthorService(database: LocalDatabase.shared),
-                                    appMemory: AppPersistentMemory.shared,
-                                    userFolderRepository: userFolderRepository,
-                                    userSettings: UserSettings(),
-                                    reactionRepository: ReactionRepository()
-                                ),
+                                searchService: searchService,
                                 trendsService: trendsService,
                                 contentRepository: contentRepository,
                                 userFolderRepository: userFolderRepository,
@@ -527,14 +503,17 @@ struct MainView: View {
                 return
             }
 
-            if let lastDate = AppPersistentMemory.shared.getLastSendDateOfUserPersonalTrendsToServer() {
-                if lastDate.onlyDate! < Date.now.onlyDate! {
+            let todayDate = Date.now.onlyDate ?? Date.now
+
+            if let lastDate = AppPersistentMemory.shared.getLastSendDateOfUserPersonalTrendsToServer(),
+               let lastOnlyDate = lastDate.onlyDate {
+                if lastOnlyDate < todayDate {
                     let result = await Podium.shared.sendShareCountStatsToServer()
 
                     guard result == .successful || result == .noStatsToSend else {
                         return
                     }
-                    AppPersistentMemory.shared.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                    AppPersistentMemory.shared.setLastSendDateOfUserPersonalTrendsToServer(to: todayDate)
                 }
             } else {
                 let result = await Podium.shared.sendShareCountStatsToServer()
@@ -542,7 +521,7 @@ struct MainView: View {
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }
-                AppPersistentMemory.shared.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                AppPersistentMemory.shared.setLastSendDateOfUserPersonalTrendsToServer(to: todayDate)
             }
         }
     }

@@ -13,7 +13,7 @@ struct SearchSuggestionsView: View {
     private static var hasShownEntranceAnimations = false
 
     @State var recent: [String]
-    @State var playable: PlayableContentState
+    @Bindable var playable: PlayableContentState
     let trendsService: TrendsServiceProtocol
     let onRecentSelectedAction: (String) -> Void
     let onReactionSelectedAction: (Reaction) -> Void
@@ -265,7 +265,7 @@ struct SearchSuggestionsView: View {
             }
         } catch {
             withAnimation {
-                popularContent = .error("")
+                popularContent = .error(error.localizedDescription)
             }
             debugPrint(error)
         }
@@ -279,7 +279,7 @@ struct SearchSuggestionsView: View {
             }
         } catch {
             withAnimation {
-                popularReactions = .error("")
+                popularReactions = .error(error.localizedDescription)
             }
             debugPrint(error)
         }

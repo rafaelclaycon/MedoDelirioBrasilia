@@ -19,6 +19,7 @@ protocol SearchServiceProtocol {
     func clearRecentSearches()
 }
 
+@MainActor
 final class SearchService: SearchServiceProtocol {
 
     private let contentRepository: ContentRepositoryProtocol
@@ -34,6 +35,10 @@ final class SearchService: SearchServiceProtocol {
     private var reactionsLoadedAt: Date?
 
     private let reactionsCacheMaxAge: TimeInterval = 30 * 60 // 30 minutes
+
+    deinit {
+        saveWorkItem?.cancel()
+    }
 
     // MARK: - Initializer
 
@@ -106,11 +111,12 @@ final class SearchService: SearchServiceProtocol {
 
         // Debounce the disk write
         saveWorkItem?.cancel()
-        saveWorkItem = DispatchWorkItem { [weak self] in
+        let workItem = DispatchWorkItem { [weak self] in
             guard let self else { return }
             self.appMemory.saveRecentSearches(self.searches)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: saveWorkItem!)
+        saveWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
     }
 
     func recentSearches() -> [String] {
@@ -134,11 +140,9 @@ final class SearchService: SearchServiceProtocol {
 extension SearchService {
 
     private func firstIndexOf(searchString: String) -> Int? {
-        for i in stride(from: 0, to: searches.count, by: 1) {
-            if
-                searches[i].starts(with: searchString) ||
-                searchString.contains(searches[i])
-            {
+        for i in 0..<searches.count {
+            if searches[i].starts(with: searchString) ||
+               searchString.contains(searches[i]) {
                 return i
             }
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchResultsView: View {
 
-    @State var playable: PlayableContentState
+    @Bindable var playable: PlayableContentState
 
     let searchString: String
     let results: SearchResults
@@ -68,9 +68,9 @@ struct SearchResultsView: View {
                             PlayableContentView(
                                 content: item,
                                 favorites: playable.favoritesKeeper,
-                                highlighted: Set<String>(arrayLiteral: ""),
+                                highlighted: Set<String>(),
                                 nowPlaying: playable.nowPlayingKeeper,
-                                selectedItems: Set<String>(arrayLiteral: ""),
+                                selectedItems: Set<String>(),
                                 currentContentListMode: .constant(.regular)
                             )
                             .contentShape(
@@ -122,9 +122,9 @@ struct SearchResultsView: View {
                             PlayableContentView(
                                 content: item,
                                 favorites: playable.favoritesKeeper,
-                                highlighted: Set<String>(arrayLiteral: ""),
+                                highlighted: Set<String>(),
                                 nowPlaying: playable.nowPlayingKeeper,
-                                selectedItems: Set<String>(arrayLiteral: ""),
+                                selectedItems: Set<String>(),
                                 currentContentListMode: .constant(.regular)
                             )
                             .onTapGesture {
