@@ -9,7 +9,10 @@ import Foundation
 
 protocol SearchServiceProtocol {
 
+    var reactionsState: LoadingState<[Reaction]> { get }
+
     func results(matching searchString: String) -> SearchResults
+    func loadReactions() async
 
     func save(searchString: String)
     func recentSearches() -> [String]
@@ -23,8 +26,10 @@ final class SearchService: SearchServiceProtocol {
     private let appMemory: AppPersistentMemoryProtocol
     private let userFolderRepository: UserFolderRepositoryProtocol
     private let userSettings: UserSettingsProtocol
+    private let reactionRepository: ReactionRepositoryProtocol
 
     private var searches: [String] = []
+    private(set) var reactionsState: LoadingState<[Reaction]> = .loading
 
     // MARK: - Initializer
 
@@ -33,13 +38,15 @@ final class SearchService: SearchServiceProtocol {
         authorService: AuthorServiceProtocol,
         appMemory: AppPersistentMemoryProtocol,
         userFolderRepository: UserFolderRepositoryProtocol,
-        userSettings: UserSettingsProtocol
+        userSettings: UserSettingsProtocol,
+        reactionRepository: ReactionRepositoryProtocol
     ) {
         self.contentRepository = contentRepository
         self.authorService = authorService
         self.appMemory = appMemory
         self.userFolderRepository = userFolderRepository
         self.userSettings = userSettings
+        self.reactionRepository = reactionRepository
         self.searches = appMemory.recentSearches() ?? []
     }
 
@@ -54,8 +61,19 @@ final class SearchService: SearchServiceProtocol {
             songsMatchingTitle: contentRepository.songs(matchingTitle: searchString, allowSensitive),
             songsMatchingContent: contentRepository.songs(matchingDescription: searchString, allowSensitive),
             authors: authorService.authors(matchingName: searchString),
-            folders: userFolderRepository.folders(matchingName: searchString)
+            folders: userFolderRepository.folders(matchingName: searchString),
+            reactionsMatchingTitle: reactions(matchingTitle: searchString)
         )
+    }
+
+    func loadReactions() async {
+        reactionsState = .loading
+        do {
+            let reactions = try await reactionRepository.allReactions()
+            reactionsState = .loaded(reactions)
+        } catch {
+            reactionsState = .error(error.localizedDescription)
+        }
     }
 
     func save(searchString: String) {
@@ -99,5 +117,13 @@ extension SearchService {
             }
         }
         return nil
+    }
+
+    private func reactions(matchingTitle title: String) -> [Reaction]? {
+        guard case .loaded(let reactions) = reactionsState else { return nil }
+        return reactions.filter {
+            $0.title.lowercased().withoutDiacritics()
+                .contains(title.lowercased().withoutDiacritics())
+        }
     }
 }

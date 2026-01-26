@@ -97,7 +97,8 @@ struct MainView: View {
                                         authorService: AuthorService(database: LocalDatabase.shared),
                                         appMemory: AppPersistentMemory.shared,
                                         userFolderRepository: userFolderRepository,
-                                        userSettings: UserSettings()
+                                        userSettings: UserSettings(),
+                                        reactionRepository: ReactionRepository()
                                     ),
                                     analyticsService: AnalyticsService()
                                 )
@@ -143,7 +144,8 @@ struct MainView: View {
                                         authorService: AuthorService(database: LocalDatabase.shared),
                                         appMemory: AppPersistentMemory.shared,
                                         userFolderRepository: userFolderRepository,
-                                        userSettings: UserSettings()
+                                        userSettings: UserSettings(),
+                                        reactionRepository: ReactionRepository()
                                     ),
                                     trendsService: trendsService,
                                     contentRepository: contentRepository,
@@ -187,7 +189,8 @@ struct MainView: View {
                                     authorService: AuthorService(database: LocalDatabase.shared),
                                     appMemory: AppPersistentMemory.shared,
                                     userFolderRepository: userFolderRepository,
-                                    userSettings: UserSettings()
+                                    userSettings: UserSettings(),
+                                    reactionRepository: ReactionRepository()
                                 ),
                                 analyticsService: AnalyticsService()
                             )
@@ -283,7 +286,8 @@ struct MainView: View {
                                     authorService: AuthorService(database: LocalDatabase.shared),
                                     appMemory: AppPersistentMemory.shared,
                                     userFolderRepository: userFolderRepository,
-                                    userSettings: UserSettings()
+                                    userSettings: UserSettings(),
+                                    reactionRepository: ReactionRepository()
                                 ),
                                 analyticsService: AnalyticsService()
                             )
@@ -420,7 +424,8 @@ struct MainView: View {
                                     authorService: AuthorService(database: LocalDatabase.shared),
                                     appMemory: AppPersistentMemory.shared,
                                     userFolderRepository: userFolderRepository,
-                                    userSettings: UserSettings()
+                                    userSettings: UserSettings(),
+                                    reactionRepository: ReactionRepository()
                                 ),
                                 trendsService: trendsService,
                                 contentRepository: contentRepository,

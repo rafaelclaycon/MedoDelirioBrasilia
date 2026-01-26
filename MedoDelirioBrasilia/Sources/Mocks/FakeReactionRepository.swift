@@ -1,12 +1,11 @@
 //
 //  FakeReactionRepository.swift
-//  MedoDelirioBrasiliaTests
+//  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 17/11/24.
 //
 
 import Foundation
-@testable import MedoDelirio
 
 final class FakeReactionRepository: ReactionRepositoryProtocol {
 

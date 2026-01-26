@@ -29,6 +29,7 @@ struct MainContentView: View {
     @State private var searchResults = SearchResults()
     @State private var searchToast: Toast? = nil
     @State private var isInSearchMode: Bool = false
+    @State private var reactionsState: LoadingState<[Reaction]> = .loading
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -177,12 +178,14 @@ struct MainContentView: View {
                                 SearchAwareContentView(
                                     searchText: searchText,
                                     searchResults: searchResults,
+                                    reactionsState: reactionsState,
                                     searchToast: $searchToast,
                                     isInSearchMode: $isInSearchMode,
                                     searchSuggestionsContent: searchSuggestionsContent,
                                     contentRepository: contentRepository,
                                     analyticsService: analyticsService,
                                     containerWidth: geometry.size.width,
+                                    retryLoadReactionsAction: loadReactions,
                                     gridContent: {
                                         ContentGrid(
                                             state: viewModel.state,
@@ -352,6 +355,13 @@ struct MainContentView: View {
                             await viewModel.onScenePhaseChanged(newPhase: scenePhase)
                         }
                     }
+                    .onChange(of: isInSearchMode) {
+                        if isInSearchMode {
+                            Task {
+                                await loadReactions()
+                            }
+                        }
+                    }
                 }
             }
             .refreshable {
@@ -458,12 +468,14 @@ extension MainContentView {
 
         let searchText: String
         let searchResults: SearchResults
+        let reactionsState: LoadingState<[Reaction]>
         @Binding var searchToast: Toast?
         @Binding var isInSearchMode: Bool
         let searchSuggestionsContent: SuggestionsContent
         let contentRepository: ContentRepositoryProtocol
         let analyticsService: AnalyticsServiceProtocol
         let containerWidth: CGFloat
+        var retryLoadReactionsAction: (() async -> Void)? = nil
         @ViewBuilder let gridContent: () -> GridContent
 
         @Environment(\.isSearching) private var isSearching
@@ -496,9 +508,11 @@ extension MainContentView {
                         ),
                         searchString: searchText,
                         results: searchResults,
+                        reactionsState: reactionsState,
                         containerWidth: containerWidth,
                         toast: $searchToast,
-                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                        retryLoadReactionsAction: retryLoadReactionsAction
                     )
                 } else {
                     // Show regular content grid
@@ -559,6 +573,12 @@ extension MainContentView {
         }
         searchResults = searchService.results(matching: newString)
     }
+
+    private func loadReactions() async {
+        reactionsState = .loading
+        await searchService.loadReactions()
+        reactionsState = searchService.reactionsState
+    }
 }
 
 // MARK: - Preview
@@ -588,7 +608,8 @@ extension MainContentView {
             authorService: FakeAuthorService(),
             appMemory: FakeAppPersistentMemory(),
             userFolderRepository: FakeUserFolderRepository(),
-            userSettings: FakeUserSettings()
+            userSettings: FakeUserSettings(),
+            reactionRepository: FakeReactionRepository()
         ),
         analyticsService: FakeAnalyticsService()
     )

@@ -13,13 +13,32 @@ struct SearchResultsView: View {
 
     let searchString: String
     let results: SearchResults
+    var reactionsState: LoadingState<[Reaction]> = .loaded([])
     let containerWidth: CGFloat
     var toast: Binding<Toast?>
     var menuOptions: [ContextMenuSection]
+    var retryLoadReactionsAction: (() async -> Void)? = nil
 
     @State private var columns: [GridItem] = []
 
     private let itemCountWhenCollapsed: Int = 4
+
+    private var hasAnyNonReactionResults: Bool {
+        let hasContent = !(results.soundsMatchingTitle?.isEmpty ?? true) ||
+            !(results.soundsMatchingContent?.isEmpty ?? true) ||
+            !(results.songsMatchingTitle?.isEmpty ?? true) ||
+            !(results.songsMatchingContent?.isEmpty ?? true) ||
+            !(results.authors?.isEmpty ?? true) ||
+            !(results.folders?.isEmpty ?? true)
+        return hasContent
+    }
+
+    private var showNoResultsView: Bool {
+        // Show no results only if we have no content AND reactions are loaded with no matches
+        guard !hasAnyNonReactionResults else { return false }
+        guard case .loaded = reactionsState else { return false }
+        return results.reactionsMatchingTitle?.isEmpty ?? true
+    }
 
     // MARK: - Environment
 
@@ -29,7 +48,7 @@ struct SearchResultsView: View {
     // MARK: - View Body
 
     var body: some View {
-        if results.noResults {
+        if showNoResultsView {
             NoSearchResultsView(searchText: searchString)
         } else {
             LazyVGrid(
@@ -170,37 +189,7 @@ struct SearchResultsView: View {
 
                 // MARK: - Reactions
 
-                if let reactionsMatchingTitle = results.reactionsMatchingTitle, !reactionsMatchingTitle.isEmpty {
-                    CollapsibleResultSection(
-                        items: reactionsMatchingTitle,
-                        itemCountWhenCollapsed: itemCountWhenCollapsed,
-                        headerSymbol: "rectangle.grid.2x2",
-                        headerTitle: "Reações",
-                        searchString: searchString,
-                        contentView: { item in
-                            ReactionItem(reaction: item)
-                                .onTapGesture {
-                                    push(GeneralNavigationDestination.reactionDetail(item))
-                                }
-                        }
-                    )
-                }
-
-                if let reactionsMatchingFeeling = results.reactionsMatchingFeeling, !reactionsMatchingFeeling.isEmpty {
-                    CollapsibleResultSection(
-                        items: reactionsMatchingFeeling,
-                        itemCountWhenCollapsed: itemCountWhenCollapsed,
-                        headerSymbol: "theatermasks",
-                        headerTitle: "Reações que expressam o sentimento de \"\(searchString)\"",
-                        searchString: searchString,
-                        contentView: { item in
-                            ReactionItem(reaction: item)
-                                .onTapGesture {
-                                    push(GeneralNavigationDestination.reactionDetail(item))
-                                }
-                        }
-                    )
-                }
+                reactionsSection
             }
             .playableContentUI(
                 state: playable,
@@ -237,6 +226,69 @@ struct SearchResultsView: View {
     }
 
     // MARK: - Subviews
+
+    @MainActor @ViewBuilder
+    private var reactionsSection: some View {
+        switch reactionsState {
+        case .loading:
+            Section {
+                ReactionsLoadingView()
+            } header: {
+                HeaderView(
+                    symbol: "theatermasks",
+                    title: "Reações",
+                    resultCount: 0
+                )
+            }
+
+        case .error(let message):
+            Section {
+                ReactionsErrorView(
+                    message: message,
+                    retryAction: retryLoadReactionsAction
+                )
+            } header: {
+                HeaderView(
+                    symbol: "theatermasks",
+                    title: "Reações",
+                    resultCount: 0
+                )
+            }
+
+        case .loaded:
+            if let reactionsMatchingTitle = results.reactionsMatchingTitle, !reactionsMatchingTitle.isEmpty {
+                CollapsibleResultSection(
+                    items: reactionsMatchingTitle,
+                    itemCountWhenCollapsed: itemCountWhenCollapsed,
+                    headerSymbol: "theatermasks",
+                    headerTitle: "Reações",
+                    searchString: searchString,
+                    contentView: { item in
+                        ReactionItem(reaction: item)
+                            .onTapGesture {
+                                push(GeneralNavigationDestination.reactionDetail(item))
+                            }
+                    }
+                )
+            }
+
+            if let reactionsMatchingFeeling = results.reactionsMatchingFeeling, !reactionsMatchingFeeling.isEmpty {
+                CollapsibleResultSection(
+                    items: reactionsMatchingFeeling,
+                    itemCountWhenCollapsed: itemCountWhenCollapsed,
+                    headerSymbol: "theatermasks",
+                    headerTitle: "Reações que expressam o sentimento de \"\(searchString)\"",
+                    searchString: searchString,
+                    contentView: { item in
+                        ReactionItem(reaction: item)
+                            .onTapGesture {
+                                push(GeneralNavigationDestination.reactionDetail(item))
+                            }
+                    }
+                )
+            }
+        }
+    }
 
     @MainActor @ViewBuilder
     private func contextMenuOptionsView(
@@ -524,6 +576,49 @@ extension SearchResultsView {
             }
         }
     }
+
+    struct ReactionsLoadingView: View {
+
+        var body: some View {
+            HStack(spacing: .spacing(.small)) {
+                ProgressView()
+                Text("Carregando reações...")
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, .spacing(.medium))
+        }
+    }
+
+    struct ReactionsErrorView: View {
+
+        let message: String
+        var retryAction: (() async -> Void)?
+
+        var body: some View {
+            VStack(spacing: .spacing(.small)) {
+                HStack(spacing: .spacing(.xSmall)) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .foregroundStyle(.orange)
+                    Text("Erro ao carregar reações")
+                        .foregroundStyle(.secondary)
+                }
+
+                if let retryAction {
+                    Button {
+                        Task {
+                            await retryAction()
+                        }
+                    } label: {
+                        Label("Tentar Novamente", systemImage: "arrow.clockwise")
+                    }
+                    .buttonStyle(.bordered)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, .spacing(.medium))
+        }
+    }
 }
 
 // MARK: - Previews
@@ -541,6 +636,7 @@ extension SearchResultsView {
                 ),
                 searchString: "Bolsorrrgnnn",
                 results: SearchResults(),
+                reactionsState: .loaded([]),
                 containerWidth: geometry.size.width,
                 toast: .constant(nil),
                 menuOptions: []
@@ -570,9 +666,61 @@ extension SearchResultsView {
                     reactionsMatchingTitle: [.viralMock, .choqueMock],
                     reactionsMatchingFeeling: [.viralMock]
                 ),
+                reactionsState: .loaded([]),
                 containerWidth: geometry.size.width,
                 toast: .constant(nil),
                 menuOptions: []
+            )
+            .padding(.all, .spacing(.medium))
+        }
+    }
+}
+
+#Preview("Reactions Loading") {
+    GeometryReader { geometry in
+        ScrollView {
+            SearchResultsView(
+                playable: PlayableContentState(
+                    contentRepository: FakeContentRepository(),
+                    contentFileManager: ContentFileManager(),
+                    analyticsService: FakeAnalyticsService(),
+                    screen: .searchResultsView,
+                    toast: .constant(nil)
+                ),
+                searchString: "Bolso",
+                results: SearchResults(
+                    soundsMatchingTitle: Sound.sampleSounds.map { AnyEquatableMedoContent($0) }
+                ),
+                reactionsState: .loading,
+                containerWidth: geometry.size.width,
+                toast: .constant(nil),
+                menuOptions: []
+            )
+            .padding(.all, .spacing(.medium))
+        }
+    }
+}
+
+#Preview("Reactions Error") {
+    GeometryReader { geometry in
+        ScrollView {
+            SearchResultsView(
+                playable: PlayableContentState(
+                    contentRepository: FakeContentRepository(),
+                    contentFileManager: ContentFileManager(),
+                    analyticsService: FakeAnalyticsService(),
+                    screen: .searchResultsView,
+                    toast: .constant(nil)
+                ),
+                searchString: "Bolso",
+                results: SearchResults(
+                    soundsMatchingTitle: Sound.sampleSounds.map { AnyEquatableMedoContent($0) }
+                ),
+                reactionsState: .error("Não foi possível conectar ao servidor"),
+                containerWidth: geometry.size.width,
+                toast: .constant(nil),
+                menuOptions: [],
+                retryLoadReactionsAction: {}
             )
             .padding(.all, .spacing(.medium))
         }

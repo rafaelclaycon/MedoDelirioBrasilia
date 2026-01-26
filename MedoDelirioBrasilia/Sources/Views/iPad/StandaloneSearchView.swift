@@ -19,6 +19,7 @@ struct StandaloneSearchView: View {
     @State private var searchResults = SearchResults()
     @State private var toast: Toast? = nil
     @State private var playable: PlayableContentState?
+    @State private var reactionsState: LoadingState<[Reaction]> = .loading
 
     @Environment(\.push) private var push
 
@@ -46,9 +47,11 @@ struct StandaloneSearchView: View {
                                 playable: playable,
                                 searchString: searchText,
                                 results: searchResults,
+                                reactionsState: reactionsState,
                                 containerWidth: geometry.size.width,
                                 toast: $toast,
-                                menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                                menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                                retryLoadReactionsAction: loadReactions
                             )
                             .padding(.horizontal, UIDevice.isiPhone ? .spacing(.xSmall) : 0)
                         }
@@ -74,7 +77,16 @@ struct StandaloneSearchView: View {
                     )
                 }
             }
+            .task {
+                await loadReactions()
+            }
         }
+    }
+
+    private func loadReactions() async {
+        reactionsState = .loading
+        await searchService.loadReactions()
+        reactionsState = searchService.reactionsState
     }
 
     private func onSearchStringChanged(newString: String) {
@@ -95,7 +107,8 @@ struct StandaloneSearchView: View {
             authorService: FakeAuthorService(),
             appMemory: FakeAppPersistentMemory(),
             userFolderRepository: FakeUserFolderRepository(),
-            userSettings: FakeUserSettings()
+            userSettings: FakeUserSettings(),
+            reactionRepository: FakeReactionRepository()
         ),
         trendsService: TrendsService(
             database: FakeLocalDatabase(),
