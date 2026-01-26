@@ -310,6 +310,7 @@ extension SearchSuggestionsView {
 
                 Spacer()
             }
+            .contentShape(Rectangle())
             .padding(.vertical, .spacing(.xSmall))
         }
     }
