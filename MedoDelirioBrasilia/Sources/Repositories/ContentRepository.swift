@@ -114,7 +114,7 @@ final class ContentRepository: ContentRepositoryProtocol {
         let contentIds = folderContents.map { $0.contentId }
         var content = allContent.filter { contentIds.contains($0.id) }
 
-        for i in stride(from: 0, to: content.count, by: 1) {
+        for i in 0..<content.count {
             // DateAdded here is date added to folder not to the app as it means outside folders.
             content[i].dateAdded = folderContents.first(where: { $0.contentId == content[i].id })?.dateAdded
         }

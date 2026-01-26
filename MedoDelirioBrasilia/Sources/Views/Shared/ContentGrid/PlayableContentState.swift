@@ -210,17 +210,20 @@ extension PlayableContentState {
     }
 
     public func onDidExitShareAsVideoSheet() {
-        if !shareAsVideoResult.videoFilepath.isEmpty {
-            if shareAsVideoResult.exportMethod == .saveAsVideo {
-                showVideoSavedSuccessfullyToast()
-            } else {
-                shareVideo(
-                    withPath: shareAsVideoResult.videoFilepath,
-                    andContentId: shareAsVideoResult.contentId,
-                    title: selectedContent?.title ?? ""
-                )
-            }
+        guard !shareAsVideoResult.videoFilepath.isEmpty else { return }
+
+        if shareAsVideoResult.exportMethod == .saveAsVideo {
+            showVideoSavedSuccessfullyToast()
+        } else {
+            shareVideo(
+                withPath: shareAsVideoResult.videoFilepath,
+                andContentId: shareAsVideoResult.contentId,
+                title: selectedContent?.title ?? ""
+            )
         }
+
+        // Reset after processing to prevent reprocessing on subsequent sheet dismissals
+        shareAsVideoResult = ShareAsVideoResult(videoFilepath: "", contentId: "", exportMethod: .shareSheet)
     }
 
     public func onAddedContentToFolderSuccessfully(

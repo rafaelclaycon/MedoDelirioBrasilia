@@ -37,7 +37,9 @@ struct SearchResultsView: View {
         // Show no results only if we have no content AND reactions are loaded with no matches
         guard !hasAnyNonReactionResults else { return false }
         guard case .loaded = reactionsState else { return false }
-        return results.reactionsMatchingTitle?.isEmpty ?? true
+        let hasMatchingTitle = !(results.reactionsMatchingTitle?.isEmpty ?? true)
+        let hasMatchingFeeling = !(results.reactionsMatchingFeeling?.isEmpty ?? true)
+        return !hasMatchingTitle && !hasMatchingFeeling
     }
 
     // MARK: - Environment
