@@ -41,6 +41,7 @@ struct SearchServiceTests {
         service.save(searchString: "Anitt")
         service.save(searchString: "Anitt")
         service.save(searchString: "Anitt")
+        service.flushPendingSave()
 
         #expect(service.recentSearches() == ["Anitt"])
         #expect(memory.recentSearches() == ["Anitt"])
@@ -60,6 +61,7 @@ struct SearchServiceTests {
         service.save(searchString: "Anitt")
         service.save(searchString: "Meme")
         service.save(searchString: "Bolso")
+        service.flushPendingSave()
 
         #expect(service.recentSearches() == ["Bolso", "Meme", "Anitt"])
         #expect(memory.recentSearches() == ["Bolso", "Meme", "Anitt"])
@@ -83,6 +85,7 @@ struct SearchServiceTests {
         service.save(searchString: "Jair Bolsonaro")
 
         service.save(searchString: "Jair Bols")
+        service.flushPendingSave()
 
         #expect(service.recentSearches() == ["Jair Bolsonaro", "Meme", "Anitt"])
         #expect(memory.recentSearches() == ["Jair Bolsonaro", "Meme", "Anitt"])
@@ -104,6 +107,7 @@ struct SearchServiceTests {
         service.save(searchString: "Anitt")
 
         service.save(searchString: "Jair Bolsonaro")
+        service.flushPendingSave()
 
         #expect(service.recentSearches() == ["Jair Bolsonaro", "Anitt", "Meme"])
         #expect(memory.recentSearches() == ["Jair Bolsonaro", "Anitt", "Meme"])

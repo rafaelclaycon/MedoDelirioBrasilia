@@ -143,7 +143,6 @@
 		D90E80BF2CEA1A780014A886 /* AddPinnedReactionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80BE2CEA1A780014A886 /* AddPinnedReactionTable.swift */; };
 		D90E80C12CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C02CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift */; };
 		D90E80C42CEA1F570014A886 /* ReactionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C32CEA1F570014A886 /* ReactionsViewModelTests.swift */; };
-		D90E80C72CEA20820014A886 /* FakeReactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C62CEA20820014A886 /* FakeReactionRepository.swift */; };
 		D90E80C92CEA229C0014A886 /* ReactionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C82CEA229C0014A886 /* ReactionGroup.swift */; };
 		D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90EA65C2CB2E81D001F4DA2 /* UIDeviceExtensionsTests.swift */; };
 		D90EDC5C2AAAC02500CA3567 /* Coeee Remix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90EDC5A2AAAC02500CA3567 /* Coeee Remix.mp3 */; };
@@ -7168,7 +7167,6 @@
 				D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */,
 				D9A06417298B59D5006075D1 /* AddToFolderViewModelTests.swift in Sources */,
 				D9F570882A62F27F00596C32 /* XCTestCase+Extensions.swift in Sources */,
-				D90E80C72CEA20820014A886 /* FakeReactionRepository.swift in Sources */,
 				D95C3E0A2A02AB1800172C17 /* ContentUpdateServiceTests.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
 				D900B9C52A6DF6D300C1BC3A /* FakeLoggerService.swift in Sources */,

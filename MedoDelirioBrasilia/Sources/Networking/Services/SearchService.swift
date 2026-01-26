@@ -110,6 +110,12 @@ final class SearchService: SearchServiceProtocol {
         searches = []
         appMemory.saveRecentSearches([])
     }
+
+    /// Immediately executes any pending save operation. Useful for testing.
+    func flushPendingSave() {
+        saveWorkItem?.perform()
+        saveWorkItem = nil
+    }
 }
 
 // MARK: - Internal Functions
