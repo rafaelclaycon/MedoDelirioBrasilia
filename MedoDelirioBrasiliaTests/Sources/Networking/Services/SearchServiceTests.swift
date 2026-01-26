@@ -8,6 +8,7 @@
 import Testing
 @testable import MedoDelirio
 
+@MainActor
 struct SearchServiceTests {
 
     @Test("When an EMPTY string is provided, it is NOT saved")
