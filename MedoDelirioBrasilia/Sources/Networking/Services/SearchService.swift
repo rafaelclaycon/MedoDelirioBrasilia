@@ -31,6 +31,9 @@ final class SearchService: SearchServiceProtocol {
     private var searches: [String] = []
     private(set) var reactionsState: LoadingState<[Reaction]> = .loading
     private var saveWorkItem: DispatchWorkItem?
+    private var reactionsLoadedAt: Date?
+
+    private let reactionsCacheMaxAge: TimeInterval = 30 * 60 // 30 minutes
 
     // MARK: - Initializer
 
@@ -68,10 +71,18 @@ final class SearchService: SearchServiceProtocol {
     }
 
     func loadReactions() async {
+        // Skip if recently loaded and still valid
+        if let loadedAt = reactionsLoadedAt,
+           Date().timeIntervalSince(loadedAt) < reactionsCacheMaxAge,
+           case .loaded = reactionsState {
+            return
+        }
+
         reactionsState = .loading
         do {
             let reactions = try await reactionRepository.allReactions()
             reactionsState = .loaded(reactions)
+            reactionsLoadedAt = Date()
         } catch {
             reactionsState = .error(error.localizedDescription)
         }
