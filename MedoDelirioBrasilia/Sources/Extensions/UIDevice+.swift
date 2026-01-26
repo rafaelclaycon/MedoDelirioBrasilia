@@ -47,9 +47,11 @@ extension UIDevice {
         return true
     }
 
-    static var isRunningSoftwareVersion26: Bool {
-        let version = UIDevice.current.systemVersion
-        return version.contains("19") || version.contains("26")
+    static var isIOS26OrLater: Bool {
+        if #available(iOS 26.0, *) {
+            return true
+        }
+        return false
     }
 
     static var systemMarketingName: String {

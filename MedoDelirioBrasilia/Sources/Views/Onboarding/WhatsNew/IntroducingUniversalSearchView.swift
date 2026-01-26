@@ -18,13 +18,6 @@ struct IntroducingUniversalSearchView: View {
     @State private var pulseAnimation = false
     @State private var ringAnimation = false
 
-    private var isIOS26OrLater: Bool {
-        if #available(iOS 26.0, *) {
-            return true
-        }
-        return false
-    }
-
     private var hasHomeIndicator: Bool {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first else {
@@ -222,7 +215,7 @@ struct IntroducingUniversalSearchView: View {
                             message: "Encontre palavras dentro do que é dito nas vírgulas e músicas, com trechos destacados mostrando o contexto."
                         )
 
-                        if isIOS26OrLater {
+                        if UIDevice.isIOS26OrLater {
                             ItemView(
                                 icon: "hand.tap",
                                 title: "Acesso Facilitado",

@@ -53,13 +53,6 @@ struct MainContentView: View {
 
     // MARK: - Computed Properties
 
-    private var isIOS26OrLater: Bool {
-        if #available(iOS 26.0, *) {
-            return true
-        }
-        return false
-    }
-
     private var title: String {
         guard currentContentListMode.wrappedValue == .regular else {
             return selectionNavBarTitle(for: contentGridViewModel)
@@ -296,7 +289,7 @@ struct MainContentView: View {
                             matchedTransitionNamespace: namespace
                         )
                     }
-                    .if(!isIOS26OrLater) { view in
+                    .if(!UIDevice.isIOS26OrLater) { view in
                         view
                             .searchable(text: $searchText, placement: .navigationBarDrawer, prompt: Shared.Search.searchPrompt)
                             .autocorrectionDisabled()
@@ -480,15 +473,8 @@ extension MainContentView {
 
         @Environment(\.isSearching) private var isSearching
 
-        private var isIOS26OrLater: Bool {
-            if #available(iOS 26.0, *) {
-                return true
-            }
-            return false
-        }
-
         private var shouldShowSearchUI: Bool {
-            !isIOS26OrLater && isSearching
+            !UIDevice.isIOS26OrLater && isSearching
         }
 
         var body: some View {
