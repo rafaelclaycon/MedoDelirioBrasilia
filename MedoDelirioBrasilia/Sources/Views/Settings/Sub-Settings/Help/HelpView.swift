@@ -73,24 +73,29 @@ extension HelpView {
 
     private var toSearchInstruction: String {
         if UIDevice.isMac {
-            return "Para pesquisar, clique no campo Buscar no canto superior direito da tela de sons e digite o texto que procura.\n\nA pesquisa considera o que é falado no áudio e o nome do autor ou gênero musical. Não use vírgulas."
+            return "Para pesquisar por conteúdos, selecione Buscar na barra lateral.\n\nA pesquisa destaca tanto resultados encontrados no título ou autor quanto dentro do áudio."
         } else {
             if UIDevice.isiPhone {
-                return "Para pesquisar, vá até o topo da lista de conteúdos e puxe mais um pouco para baixo até revelar o campo Buscar.\n\nA pesquisa considera o que é falado no áudio e o nome do autor ou gênero musical. Não use vírgulas."
+                if UIDevice.isIOS26OrLater {
+                    return "Para pesquisar, toque na lupa no canto inferior direito da tela a qualquer momento.\n\nA pesquisa destaca tanto resultados encontrados no título ou autor do conteúdo quanto dentro do áudio."
+                } else {
+                    return "Para pesquisar, vá até o topo da lista de conteúdos e puxe mais um pouco para baixo até revelar o campo Buscar.\n\nA pesquisa considera o que é falado no áudio e o nome do autor ou gênero musical. Não use vírgulas."
+                }
             } else {
-                return "Para pesquisar, toque no campo Buscar no canto superior direito da tela de sons e digite o texto que procura.\n\nA pesquisa considera o que é falado no áudio e o nome do autor ou gênero musical. Não use vírgulas."
+                // iPad - sidebar search available in iOS 18+
+                return "Para pesquisar por conteúdos, toque em Buscar na barra lateral.\n\nA pesquisa destaca tanto resultados encontrados no título ou autor quanto dentro do áudio."
             }
         }
     }
 
     private var favoritesInstruction: String {
         if UIDevice.isMac {
-            return "Para favoritar, clique com o botão direito em um conteúdo e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, clique em Favoritos na barra lateral.\n\nÉ possível pesquisar entre os favoritos usando o campo Buscar no topo direito da tela de Favoritos."
+            return "Para favoritar, clique com o botão direito em um conteúdo e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, clique em Favoritos na barra lateral."
         } else {
             if UIDevice.isiPhone {
-                return "Para favoritar, segure o conteúdo e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Favoritos nos filtros da parte superior da tela.\n\nÉ possível pesquisar entre os favoritos usando a barra de Busca. Para isso, na lista de favoritos, vá até o topo e puxe mais um pouco para baixo até ver a barra."
+                return "Para favoritar, segure o conteúdo e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Favoritos nos filtros da parte superior da tela."
             } else {
-                return "Para favoritar, segure o conteúdo e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Favoritos na barra lateral.\n\nÉ possível pesquisar entre os favoritos usando o campo Buscar no topo direito da tela de Favoritos."
+                return "Para favoritar, segure o conteúdo e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Favoritos na barra lateral."
             }
         }
     }
