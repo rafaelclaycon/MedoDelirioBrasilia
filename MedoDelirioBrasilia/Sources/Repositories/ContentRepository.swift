@@ -139,7 +139,7 @@ final class ContentRepository: ContentRepositoryProtocol {
             content = content.filter { !$0.isOffensive }
         }
         content = content.filter {
-            $0.title.lowercased().withoutDiacritics().contains(title.lowercased().withoutDiacritics())
+            $0.title.normalizedForSearch().contains(title.normalizedForSearch())
         }
         return sort(content: content, by: .titleAscending)
     }
@@ -153,12 +153,10 @@ final class ContentRepository: ContentRepositoryProtocol {
         if !allowSensitive {
             content = content.filter { !$0.isOffensive }
         }
+        let normalizedSearch = description.normalizedForSearch()
         content = content.filter {
-            $0.description.lowercased().withoutDiacritics().contains(
-                description.lowercased().withoutDiacritics()
-            ) && !$0.title.lowercased().withoutDiacritics().contains(
-                description.lowercased().withoutDiacritics()
-            )
+            $0.description.normalizedForSearch().contains(normalizedSearch) &&
+            !$0.title.normalizedForSearch().contains(normalizedSearch)
         }
         return sort(content: content, by: .titleAscending)
     }
@@ -199,7 +197,7 @@ final class ContentRepository: ContentRepositoryProtocol {
             content = content.filter { !$0.isOffensive }
         }
         content = content.filter {
-            $0.title.lowercased().withoutDiacritics().contains(title.lowercased().withoutDiacritics())
+            $0.title.normalizedForSearch().contains(title.normalizedForSearch())
         }
         return sort(content: content, by: .titleAscending)
     }
@@ -213,12 +211,10 @@ final class ContentRepository: ContentRepositoryProtocol {
         if !allowSensitive {
             content = content.filter { !$0.isOffensive }
         }
+        let normalizedSearch = description.normalizedForSearch()
         content = content.filter {
-            $0.description.lowercased().withoutDiacritics().contains(
-                description.lowercased().withoutDiacritics()
-            ) && !$0.title.lowercased().withoutDiacritics().contains(
-                description.lowercased().withoutDiacritics()
-            )
+            $0.description.normalizedForSearch().contains(normalizedSearch) &&
+            !$0.title.normalizedForSearch().contains(normalizedSearch)
         }
         return sort(content: content, by: .titleAscending)
     }

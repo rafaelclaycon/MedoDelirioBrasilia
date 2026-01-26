@@ -40,7 +40,8 @@ final class AuthorService: AuthorServiceProtocol {
     func authors(matchingName name: String) -> [Author]? {
         guard !name.isEmpty else { return nil }
         guard let allAuthors, allAuthors.count > 0 else { return nil }
-        let copy = allAuthors.filter { $0.name.lowercased().withoutDiacritics().contains(name.lowercased().withoutDiacritics()) }
+        let normalizedSearch = name.normalizedForSearch()
+        let copy = allAuthors.filter { $0.name.normalizedForSearch().contains(normalizedSearch) }
         let authors = sort(authors: copy, by: .nameAscending)
         return authors.isEmpty ? nil : authors
     }

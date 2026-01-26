@@ -53,9 +53,9 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
 
     func folders(matchingName name: String) -> [UserFolder]? {
         guard let allFolders else { return nil }
+        let normalizedSearch = name.normalizedForSearch()
         return allFolders.filter { folder in
-            let normalizedFolderName = folder.name.lowercased().withoutDiacritics()
-            return normalizedFolderName.contains(name.lowercased().withoutDiacritics())
+            folder.name.normalizedForSearch().contains(normalizedSearch)
         }
     }
 

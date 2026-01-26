@@ -398,8 +398,16 @@ extension SearchResultsView {
         private var text: AttributedString {
             let description = content.description
 
-            // Find the match location in the original string
-            guard let matchRange = description.range(of: highlight, options: .caseInsensitive) else {
+            // Normalize highlight string to match search behavior (strip punctuation, handle diacritics)
+            let normalizedHighlight = highlight
+                .folding(options: .diacriticInsensitive, locale: .current)
+                .replacingOccurrences(of: "[^a-zA-Z0-9 ]", with: "", options: .regularExpression)
+
+            // Find the match location using normalized search
+            guard let matchRange = description.range(
+                of: normalizedHighlight,
+                options: [.caseInsensitive, .diacriticInsensitive]
+            ) else {
                 return AttributedString(description)
             }
 
@@ -419,9 +427,12 @@ extension SearchResultsView {
             if snippetStartOffset > 0 { snippet = "..." + snippet }
             if snippetEndOffset < description.count { snippet = snippet + "..." }
 
-            // Apply highlight to the snippet
+            // Apply highlight to the snippet using normalized search
             var attributedString = AttributedString(snippet)
-            if let range = attributedString.range(of: highlight, options: .caseInsensitive) {
+            if let range = attributedString.range(
+                of: normalizedHighlight,
+                options: [.caseInsensitive, .diacriticInsensitive]
+            ) {
                 attributedString[range].foregroundColor = .yellow
                 attributedString[range].font = .headline
             }

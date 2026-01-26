@@ -151,9 +151,9 @@ extension SearchService {
 
     private func reactions(matchingTitle title: String) -> [Reaction]? {
         guard case .loaded(let reactions) = reactionsState else { return nil }
+        let normalizedSearch = title.normalizedForSearch()
         return reactions.filter {
-            $0.title.lowercased().withoutDiacritics()
-                .contains(title.lowercased().withoutDiacritics())
+            $0.title.normalizedForSearch().contains(normalizedSearch)
         }
     }
 }
