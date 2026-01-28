@@ -9,6 +9,7 @@ import Foundation
 
 protocol UserSettingsProtocol {
 
+    func getShowExplicitContent() -> Bool
     func getHasJoinedFolderResearch() -> Bool
 
     func authorSortOption(_ newValue: Int)

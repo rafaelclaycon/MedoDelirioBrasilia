@@ -82,6 +82,7 @@ enum SoundError: Error, LocalizedError {
 }
 
 extension Sound {
+
     static let sampleSounds = [
         Sound(title: "Alegria", authorName: "Fábio Porchat"),
         Sound(title: "Maravilhoso!", authorName: "Milton Cunha"),
@@ -90,4 +91,16 @@ extension Sound {
         Sound(title: "O que é que é dura?", authorName: "Jair Bolsonaro"),
         Sound(title: "Lixo, arrombado", authorName: "Soraya Thronicke")
     ]
+
+    static let sampleBolsoA = Sound(
+        title: "Kamala Érris",
+        authorName: "Omar Aziz",
+        description: "é aí que entra o bolso no que eu dou o exemplo"
+    )
+
+    static let sampleBolsoB = Sound(
+        title: "Mexicano Família",
+        authorName: "Eduardo Bolsonaro",
+        description: "uncle ben's como era de se esperar essa linha bolso que tu"
+    )
 }

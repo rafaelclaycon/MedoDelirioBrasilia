@@ -29,6 +29,13 @@ internal protocol APIClientProtocol {
     func moneyInfo() async throws -> [MoneyInfo]
 
     func post<T: Encodable>(to url: URL, body: T) async throws
+
+    func top3Reactions() async throws -> [Reaction]
+    func getReactionsStats() async throws -> [TopChartReaction]
+    func getShareCountStats(
+        for contentType: TrendsContentType,
+        in timeInterval: TrendsTimeInterval
+    ) async throws -> [TopChartItem]
 }
 
 class APIClient: APIClientProtocol {

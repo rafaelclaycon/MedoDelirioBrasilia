@@ -5,7 +5,18 @@ extension String {
     func withoutDiacritics() -> String {
         return self.folding(options: .diacriticInsensitive, locale: .current)
     }
-    
+
+    /// Normalizes a string for search by lowercasing, removing diacritics, stripping punctuation, and collapsing whitespace.
+    func normalizedForSearch() -> String {
+        return self
+            .lowercased()
+            .folding(options: .diacriticInsensitive, locale: .current)
+            .replacingOccurrences(of: "[^a-z0-9 ]", with: "", options: .regularExpression)
+            .components(separatedBy: .whitespaces)
+            .filter { !$0.isEmpty }
+            .joined(separator: " ")
+    }
+
     func toPastelColor() -> Color {
         switch self {
         case "pastelPurple":

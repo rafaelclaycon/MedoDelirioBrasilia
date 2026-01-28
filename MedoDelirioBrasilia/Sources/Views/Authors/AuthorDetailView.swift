@@ -72,6 +72,7 @@ struct AuthorDetailView: View {
         self.contentGridViewModel = ContentGridViewModel(
             contentRepository: contentRepository,
             userFolderRepository: UserFolderRepository(database: LocalDatabase.shared),
+            contentFileManager: ContentFileManager(),
             screen: .authorDetailView,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentListMode: currentListMode,
@@ -120,6 +121,7 @@ struct AuthorDetailView: View {
                     ContentGrid(
                         state: viewModel.state,
                         viewModel: contentGridViewModel,
+                        toast: viewModel.toast,
                         authorId: viewModel.author.id,
                         containerSize: geometry.size,
                         loadingView: BasicLoadingView(text: "Carregando sons..."),

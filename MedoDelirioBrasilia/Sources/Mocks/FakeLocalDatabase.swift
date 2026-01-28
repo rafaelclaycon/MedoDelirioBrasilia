@@ -1,6 +1,6 @@
 //
 //  FakeLocalDatabase.swift
-//  MedoDelirioBrasiliaTests
+//  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 02/02/23.
 //
@@ -108,6 +108,10 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func contentExists(withId contentId: String) throws -> Bool {
         sounds.contains(where: { $0.id == contentId })
+    }
+
+    func sounds(matchingDescription searchText: String) throws -> [Sound] {
+        []
     }
 
     // Author

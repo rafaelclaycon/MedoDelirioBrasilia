@@ -20,11 +20,18 @@ struct MedoDelirioBrasiliaApp: App {
 
     @State private var helper = PlayRandomSoundHelper()
 
+    /// Shared instance used across the app to ensure cache consistency
+    private let userFolderRepository = UserFolderRepository(database: LocalDatabase.shared)
+
     var body: some Scene {
         WindowGroup {
-            MainView(tabSelection: $tabSelection, padSelection: $state)
-                .onOpenURL(perform: handleURL)
-                .environment(helper)
+            MainView(
+                tabSelection: $tabSelection,
+                padSelection: $state,
+                userFolderRepository: userFolderRepository
+            )
+            .onOpenURL(perform: handleURL)
+            .environment(helper)
         }
     }
 

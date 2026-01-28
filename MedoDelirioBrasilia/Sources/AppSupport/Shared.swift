@@ -14,6 +14,8 @@ struct Shared {
                 "Tendências"
             case .settings:
                 "Configurações"
+            case .search:
+                ""
             }
         }
 
@@ -22,10 +24,12 @@ struct Shared {
             case .sounds:
                 "headphones"
             case .reactions:
-                "rectangle.grid.2x2"
+                "theatermasks"
             case .trends:
                 "chart.line.uptrend.xyaxis"
             case .settings:
+                ""
+            case .search:
                 ""
             }
         }
@@ -58,7 +62,7 @@ struct Shared {
             case .groupedByAuthor:
                 "person"
             case .reactions:
-                "rectangle.grid.2x2"
+                "theatermasks"
             case .trends:
                 "chart.line.uptrend.xyaxis"
             case .allFolders:
@@ -216,5 +220,10 @@ struct Shared {
     struct BundleIds {
 
         static let applePhotosApp = "com.apple.mobileslideshow"
+    }
+
+    struct Search {
+
+        static let searchPrompt = "Buscar conteúdo, autor ou pasta" // "Buscar conteúdo, autor, pasta, sentimento"
     }
 }

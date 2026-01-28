@@ -12,4 +12,8 @@ class FakeAuthorService: AuthorServiceProtocol {
     func allAuthors(_ sortOrder: AuthorSortOption) throws -> [Author] {
         []
     }
+
+    func authors(matchingName name: String) -> [Author]? {
+        nil
+    }
 }

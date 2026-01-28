@@ -1,5 +1,5 @@
 //
-//  AuthorCell.swift
+//  HorizontalAuthorView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 10/12/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct AuthorCell: View {
+struct HorizontalAuthorView: View {
 
     let author: Author
 
@@ -83,15 +83,17 @@ struct AuthorCell: View {
     }
 }
 
+// MARK: - Previews
+
 #Preview {
     Group {
         // No image
-        AuthorCell(
+        HorizontalAuthorView(
             author: .init(id: "", name: "Jair Bolsonaro", soundCount: 10)
         )
 
         // Square image
-        AuthorCell(
+        HorizontalAuthorView(
             author: .init(
                 id: "",
                 name: "Samira Close",
@@ -101,7 +103,7 @@ struct AuthorCell: View {
         )
 
         // Image is taller than wider
-        AuthorCell(
+        HorizontalAuthorView(
             author: .init(
                 id: "",
                 name: "Abraham Weintraub",
@@ -111,7 +113,7 @@ struct AuthorCell: View {
         )
 
         // Image is wider than taller
-        AuthorCell(
+        HorizontalAuthorView(
             author: .init(
                 id: "",
                 name: "Biquini",
@@ -121,7 +123,7 @@ struct AuthorCell: View {
         )
 
         // URL unavailable
-        AuthorCell(
+        HorizontalAuthorView(
             author: .init(id: "", name: "Samira Close", photo: "abc", soundCount: 1)
         )
     }

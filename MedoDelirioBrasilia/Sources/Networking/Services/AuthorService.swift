@@ -10,6 +10,8 @@ import Foundation
 protocol AuthorServiceProtocol {
 
     func allAuthors(_ sortOrder: AuthorSortOption) throws -> [Author]
+
+    func authors(matchingName name: String) -> [Author]?
 }
 
 final class AuthorService: AuthorServiceProtocol {
@@ -33,6 +35,15 @@ final class AuthorService: AuthorServiceProtocol {
     func allAuthors(_ sortOrder: AuthorSortOption) throws -> [Author] {
         guard let allAuthors, allAuthors.count > 0 else { return [] }
         return sort(authors: allAuthors, by: sortOrder)
+    }
+
+    func authors(matchingName name: String) -> [Author]? {
+        guard !name.isEmpty else { return nil }
+        guard let allAuthors, allAuthors.count > 0 else { return nil }
+        let normalizedSearch = name.normalizedForSearch()
+        let copy = allAuthors.filter { $0.name.normalizedForSearch().contains(normalizedSearch) }
+        let authors = sort(authors: copy, by: .nameAscending)
+        return authors.isEmpty ? nil : authors
     }
 }
 

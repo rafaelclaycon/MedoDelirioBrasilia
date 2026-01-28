@@ -55,7 +55,7 @@ final class ReactionService: ReactionServiceProtocol {
         let soundIds: [String] = serverContent.map { $0.soundId }
         var content = try contentRepository.content(withIds: soundIds)
 
-        for i in stride(from: 0, to: content.count, by: 1) {
+        for i in 0..<content.count {
             if let reactionSound = serverContent.first(where: { $0.soundId == content[i].id }) {
                 content[i].dateAdded = reactionSound.dateAdded.iso8601withFractionalSeconds
             }

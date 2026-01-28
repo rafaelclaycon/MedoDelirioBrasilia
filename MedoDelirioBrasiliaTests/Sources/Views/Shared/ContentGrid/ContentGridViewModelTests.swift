@@ -21,6 +21,7 @@ struct ContentGridViewModelTests {
         let sut = await ContentGridViewModel(
             contentRepository: FakeContentRepository(),
             userFolderRepository: FakeUserFolderRepository(),
+            contentFileManager: FakeContentFileManager(),
             screen: .mainContentView,
             menuOptions: [],
             currentListMode: listMode,
@@ -33,5 +34,29 @@ struct ContentGridViewModelTests {
 
         #expect(listModeValue == .selection)
         #expect(await sut.currentListMode.wrappedValue == .selection)
+    }
+
+    @Test func playable_shouldProvideAccessToFavoritesKeeper() async throws {
+        var listModeValue: ContentGridMode = .regular
+        let listMode = Binding<ContentGridMode>(
+            get: { listModeValue },
+            set: { listModeValue = $0 }
+        )
+
+        let sut = await ContentGridViewModel(
+            contentRepository: FakeContentRepository(),
+            userFolderRepository: FakeUserFolderRepository(),
+            contentFileManager: FakeContentFileManager(),
+            screen: .mainContentView,
+            menuOptions: [],
+            currentListMode: listMode,
+            toast: .constant(nil),
+            floatingOptions: .constant(nil),
+            analyticsService: FakeAnalyticsService()
+        )
+
+        // Verify favoritesKeeper is accessible via composition
+        #expect(await sut.favoritesKeeper.isEmpty)
+        #expect(await sut.playable.favoritesKeeper.isEmpty)
     }
 }
