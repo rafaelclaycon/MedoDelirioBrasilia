@@ -225,5 +225,13 @@ struct Shared {
     struct Search {
 
         static let searchPrompt = "Buscar conteúdo, autor ou pasta" // "Buscar conteúdo, autor, pasta, sentimento"
+
+        struct Feedback {
+
+            static let alertTitle = "Enviar Feedback"
+            static let alertMessage = "Você será redirecionado para o app de e-mail padrão para enviar sua sugestão sobre a busca."
+            static var emailSubject: String { "Feedback sobre a Busca Universal v\(Versioneer.appVersion)" }
+            static let emailBody = "Conte-me o que você achou da nova busca e o que poderia melhorar:\n\n"
+        }
     }
 }

@@ -30,6 +30,7 @@ struct MainContentView: View {
     @State private var searchToast: Toast? = nil
     @State private var isInSearchMode: Bool = false
     @State private var reactionsState: LoadingState<[Reaction]> = .loading
+    @State private var showSearchFeedbackAlert: Bool = false
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -265,6 +266,7 @@ struct MainContentView: View {
                             contentListMode: currentContentListMode.wrappedValue,
                             contentSortOption: $viewModel.contentSortOption,
                             authorSortOption: $viewModel.authorSortOption,
+                            isInSearchMode: isInSearchMode,
                             openContentUpdateSheet: {
                                 subviewToOpen = .syncInfo
                                 showingModalView = true
@@ -285,6 +287,9 @@ struct MainContentView: View {
                             },
                             authorSortChangeAction: {
                                 authorsGridViewModel.onAuthorSortingChangedExternally(viewModel.authorSortOption)
+                            },
+                            showFeedbackAction: {
+                                showSearchFeedbackAlert = true
                             },
                             matchedTransitionNamespace: namespace
                         )
@@ -328,6 +333,23 @@ struct MainContentView: View {
                                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                             )
                         }
+                    }
+                    // iOS 18 compat: Search feedback button only shows for pre-iOS 26 search UI.
+                    .alert(
+                        Shared.Search.Feedback.alertTitle,
+                        isPresented: $showSearchFeedbackAlert
+                    ) {
+                        Button("Cancelar", role: .cancel) { }
+                        Button("Continuar") {
+                            Task {
+                                await Mailman.openDefaultEmailApp(
+                                    subject: Shared.Search.Feedback.emailSubject,
+                                    body: Shared.Search.Feedback.emailBody
+                                )
+                            }
+                        }
+                    } message: {
+                        Text(Shared.Search.Feedback.alertMessage)
                     }
                     .onChange(of: settingsHelper.updateSoundsList) { // iPad - Settings sensitive toggle.
                         if settingsHelper.updateSoundsList {
@@ -379,15 +401,25 @@ extension MainContentView {
         let contentListMode: ContentGridMode
         @Binding var contentSortOption: Int
         @Binding var authorSortOption: Int
+        let isInSearchMode: Bool
         let openContentUpdateSheet: () -> Void
         let multiSelectAction: () -> Void
         let playRandomSoundAction: () -> Void
         let contentSortChangeAction: () -> Void
         let authorSortChangeAction: () -> Void
+        let showFeedbackAction: () -> Void
         let matchedTransitionNamespace: Namespace.ID
 
         var body: some ToolbarContent {
-            if currentViewMode != .folders { // MyFoldersiPhoneView takes care of its own toolbar.
+            if isInSearchMode {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showFeedbackAction()
+                    } label: {
+                        Image(systemName: "bubble.left.and.text.bubble.right")
+                    }
+                }
+            } else if currentViewMode != .folders { // MyFoldersiPhoneView takes care of its own toolbar.
                 if currentViewMode == .authors {
                     AuthorToolbarOptionsView(
                         authorSortOption: $authorSortOption,
