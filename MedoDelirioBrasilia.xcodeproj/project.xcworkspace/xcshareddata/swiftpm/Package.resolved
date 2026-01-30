@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stephencelis/SQLite.swift",
       "state" : {
-        "revision" : "392dd6058624d9f6c5b4c769d165ddd8c7293394",
-        "version" : "0.15.4"
+        "revision" : "0c08856385fe24f7b76d8c51842d78a196e8e817",
+        "version" : "0.15.5"
       }
     },
     {
@@ -26,15 +26,6 @@
       "state" : {
         "revision" : "42281bf1111a4bba144c5ba138724514383ff3ab",
         "version" : "0.8.3"
-      }
-    },
-    {
-      "identity" : "swift-toolchain-sqlite",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftlang/swift-toolchain-sqlite",
-      "state" : {
-        "revision" : "b626d3002773b1a1304166643e7f118f724b2132",
-        "version" : "1.0.4"
       }
     }
   ],
