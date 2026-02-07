@@ -238,17 +238,46 @@ struct MainContentView: View {
                             .padding(.horizontal, .spacing(.medium))
 
                         case .folders:
-                            MyFoldersiPhoneView(
+                            SearchAwareContentView(
+                                searchText: searchText,
+                                searchResults: searchResults,
+                                reactionsState: reactionsState,
+                                searchToast: $searchToast,
+                                isInSearchMode: $isInSearchMode,
+                                searchSuggestionsContent: searchSuggestionsContent,
                                 contentRepository: contentRepository,
-                                userFolderRepository: userFolderRepository,
-                                containerSize: geometry.size
+                                analyticsService: analyticsService,
+                                containerWidth: geometry.size.width,
+                                retryLoadReactionsAction: loadReactions,
+                                gridContent: {
+                                    MyFoldersiPhoneView(
+                                        contentRepository: contentRepository,
+                                        userFolderRepository: userFolderRepository,
+                                        containerSize: geometry.size
+                                    )
+                                    .environment(deleteFolderAide)
+                                }
                             )
-                            .environment(deleteFolderAide)
+                            .padding(.horizontal, .spacing(.medium))
 
                         case .authors:
-                            AuthorsGrid(
-                                viewModel: authorsGridViewModel,
-                                containerWidth: geometry.size.width
+                            SearchAwareContentView(
+                                searchText: searchText,
+                                searchResults: searchResults,
+                                reactionsState: reactionsState,
+                                searchToast: $searchToast,
+                                isInSearchMode: $isInSearchMode,
+                                searchSuggestionsContent: searchSuggestionsContent,
+                                contentRepository: contentRepository,
+                                analyticsService: analyticsService,
+                                containerWidth: geometry.size.width,
+                                retryLoadReactionsAction: loadReactions,
+                                gridContent: {
+                                    AuthorsGrid(
+                                        viewModel: authorsGridViewModel,
+                                        containerWidth: geometry.size.width
+                                    )
+                                }
                             )
                             .padding(.horizontal, .spacing(.medium))
                         }

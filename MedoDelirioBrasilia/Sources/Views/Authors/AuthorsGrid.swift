@@ -42,19 +42,13 @@ struct AuthorsGrid: View {
             case .loaded(let authors):
                 VStack {
                     LazyVGrid(columns: viewModel.columns, spacing: .spacing(.large)) {
-                        if viewModel.searchResults.isEmpty {
-                            NoSearchResultsView(searchText: viewModel.searchText)
-                        } else {
-                            ForEach(viewModel.searchResults) { author in
-                                HorizontalAuthorView(author: author)
-                                    .onTapGesture {
-                                        push(GeneralNavigationDestination.authorDetail(author))
-                                    }
-                            }
+                        ForEach(authors) { author in
+                            HorizontalAuthorView(author: author)
+                                .onTapGesture {
+                                    push(GeneralNavigationDestination.authorDetail(author))
+                                }
                         }
                     }
-                    .searchable(text: $viewModel.searchText)
-                    .autocorrectionDisabled()
                     .padding(.top, .spacing(.xxSmall))
                     .onChange(of: containerWidth) {
                         viewModel.onContainerWidthChanged(newWidth: containerWidth)
@@ -63,14 +57,12 @@ struct AuthorsGrid: View {
                         viewModel.onAuthorSortingChanged()
                     }
 
-                    if viewModel.searchText.isEmpty {
-                        Text("\(authors.count) AUTORES")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                            .padding(.top, authorCountTopPadding)
-                            .padding(.bottom, authorCountPadBottomPadding)
-                    }
+                    Text("\(authors.count) AUTORES")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding(.top, authorCountTopPadding)
+                        .padding(.bottom, authorCountPadBottomPadding)
                 }
 
             case .error(let errorMessage):

@@ -14,7 +14,6 @@ extension AuthorsGrid {
         var state: LoadingState<[Author]> = .loading
 
         var sortOption: Int
-        var searchText = ""
         var columns: [GridItem] = []
 
         var currentActivity: NSUserActivity? = nil
@@ -22,29 +21,16 @@ extension AuthorsGrid {
         private let authorService: AuthorServiceProtocol
         private let userSettings: UserSettingsProtocol
 
-        // MARK: - Computed Properties
-
-        public var searchResults: [Author] {
-            guard case .loaded(let authors) = state else { return [] }
-            if searchText.isEmpty {
-                return authors
-            } else {
-                return authors.filter { $0.name.lowercased().withoutDiacritics().contains(searchText.lowercased()) }
-            }
-        }
-
         // MARK: - Initializer
 
         init(
             authorService: AuthorServiceProtocol,
             userSettings: UserSettingsProtocol,
-            sortOption: Int,
-            searchText: String = ""
+            sortOption: Int
         ) {
             self.authorService = authorService
             self.userSettings = userSettings
             self.sortOption = sortOption
-            self.searchText = searchText
         }
     }
 }
