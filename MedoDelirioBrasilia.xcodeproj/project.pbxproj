@@ -1429,6 +1429,7 @@
 		D9DF2B4E29821E5F0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4A29821E5E0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 */; };
 		D9DF2B4F29821E5F0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4B29821E5E0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 */; };
 		D9DF2B5029821E5F0083765A /* Franciel Cruz - Sabe o que e anistia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4C29821E5E0083765A /* Franciel Cruz - Sabe o que e anistia.mp3 */; };
+		D9DUNB22EDF30C400D49340 /* DunTestFlightBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DUNB12EDF30C400D49340 /* DunTestFlightBannerView.swift */; };
 		D9E142C4293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */; };
 		D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */; };
 		D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */; };
@@ -3006,6 +3007,7 @@
 		D9DF2B4A29821E5E0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3"; sourceTree = "<group>"; };
 		D9DF2B4B29821E5E0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3"; sourceTree = "<group>"; };
 		D9DF2B4C29821E5E0083765A /* Franciel Cruz - Sabe o que e anistia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Sabe o que e anistia.mp3"; sourceTree = "<group>"; };
+		D9DUNB12EDF30C400D49340 /* DunTestFlightBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DunTestFlightBannerView.swift; sourceTree = "<group>"; };
 		D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Isa Penna - Eu nao permito, nao sou obrigada.mp3"; sourceTree = "<group>"; };
 		D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica de Bolle - Pronto, falei.mp3"; sourceTree = "<group>"; };
 		D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoldersiPhoneView.swift; sourceTree = "<group>"; };
@@ -4519,6 +4521,7 @@
 		D94BA9EB2879E964001BD09C /* Banners */ = {
 			isa = PBXGroup;
 			children = (
+				D9DUNB12EDF30C400D49340 /* DunTestFlightBannerView.swift */,
 				D9BFD8CB29059B4800E1AF6F /* FoldersAreTagsBannerView.swift */,
 				D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */,
 				D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift */,
@@ -6878,6 +6881,7 @@
 				D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */,
 				D93443292838230500ADCD38 /* String+.swift in Sources */,
 				D9943F2628641FEF002C6B97 /* AddToFolderView.swift in Sources */,
+				D9DUNB22EDF30C400D49340 /* DunTestFlightBannerView.swift in Sources */,
 				D986C2462B25848B00EF575A /* LongUpdateBanner.swift in Sources */,
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
 				D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */,

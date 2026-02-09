@@ -32,6 +32,10 @@ struct MainContentView: View {
     @State private var reactionsState: LoadingState<[Reaction]> = .loading
     @State private var showSearchFeedbackAlert: Bool = false
 
+    // Dùn TestFlight banner
+    @State private var showDunTestFlightBanner: Bool = false
+    @State private var showDunTestFlightExpanded: Bool = false
+
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
 
@@ -158,6 +162,13 @@ struct MainContentView: View {
                                             completedNumber: viewModel.contentUpdateService.processedUpdateNumber,
                                             totalUpdateCount: viewModel.contentUpdateService.totalUpdateCount,
                                             estimatedSecondsRemaining: viewModel.contentUpdateService.estimatedSecondsRemaining
+                                        )
+                                    }
+
+                                    if showDunTestFlightBanner, viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
+                                        DunTestFlightBannerView(
+                                            isBeingShown: $showDunTestFlightBanner,
+                                            onVerTestFlightTapped: { showDunTestFlightExpanded = true }
                                         )
                                     }
 
@@ -390,9 +401,24 @@ struct MainContentView: View {
                         highlight(contentId: trendsHelper.contentIdToNavigateTo)
                     }
                     .task {
+                        showDunTestFlightBanner = !AppPersistentMemory.shared.hasSeenDunTestFlightBanner()
                         Task {
                             await viewModel.onViewDidAppear()
                         }
+                    }
+                    .sheet(isPresented: $showDunTestFlightExpanded) {
+                        DunTestFlightExpandedView(
+                            onSimQueroTestar: {
+                                AppPersistentMemory.shared.setHasSeenDunTestFlightBanner(to: true)
+                                showDunTestFlightBanner = false
+                                showDunTestFlightExpanded = false
+                            },
+                            onTalvezDepois: {
+                                AppPersistentMemory.shared.setHasSeenDunTestFlightBanner(to: true)
+                                showDunTestFlightBanner = false
+                                showDunTestFlightExpanded = false
+                            }
+                        )
                     }
                     .onChange(of: scenePhase) {
                         Task {

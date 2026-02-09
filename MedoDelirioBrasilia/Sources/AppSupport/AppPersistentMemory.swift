@@ -231,6 +231,13 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    func hasSeenDunTestFlightBanner() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasSeenDunTestFlightBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     func hasSeenVersion9WhatsNewScreen() -> Bool {
         guard let value = userDefaults.object(forKey: "hasSeenVersion9WhatsNewScreen") else {
             return false
@@ -356,6 +363,10 @@ extension AppPersistentMemory {
 
     func setHasSeenPinReactionsBanner(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasSeenPinReactionsBanner")
+    }
+
+    func setHasSeenDunTestFlightBanner(to newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasSeenDunTestFlightBanner")
     }
 
     func hasSeenVersion9WhatsNewScreen(_ newValue: Bool) {
