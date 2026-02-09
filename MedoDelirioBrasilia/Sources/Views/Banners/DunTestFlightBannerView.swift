@@ -95,28 +95,54 @@ struct DunTestFlightExpandedView: View {
 
     @Environment(\.colorScheme) var colorScheme
 
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                Image("DunAppIcon")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80)
-                    .frame(maxWidth: .infinity)
-                    .clipShape(RoundedRectangle(cornerRadius: 18))
+    private var expandedBodyColor: Color {
+        colorScheme == .dark ? Color(white: 0.88) : .secondary
+    }
 
-                Text("Dùn - Links Privados")
+    private var dunGradient: LinearGradient {
+        LinearGradient(
+            stops: [
+                .init(color: Color(hex: "7C3AED"), location: 0),
+                .init(color: Color(hex: "4338CA"), location: 0.15),
+                .init(color: Color(hex: "6366F1"), location: 0.3),
+                .init(color: Color.systemBackground, location: 0.5),
+                .init(color: Color.systemBackground, location: 1),
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            dunGradient
+                .frame(maxWidth: .infinity)
+                .frame(height: 320)
+                .ignoresSafeArea(edges: .top)
+
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Image("DunAppIcon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                        .frame(maxWidth: .infinity)
+                        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                        .shadow(color: .black.opacity(0.3), radius: 8, y: 4)
+                        .padding()
+
+                    Text("Dùn - Links Privados")
                     .font(.title2)
                     .bold()
                     .foregroundColor(.primary)
 
                 Text("Já teve links pessoais aparecendo nas sugestões do Safari na hora errada?")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(expandedBodyColor)
 
                 Text("Dùn é um espaço separado, protegido por Face ID, pra guardar links que você não quer misturados com o trabalho.")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(expandedBodyColor)
 
                 VStack(alignment: .leading, spacing: 8) {
                     bulletRow("Armazenamento local")
@@ -127,7 +153,7 @@ struct DunTestFlightExpandedView: View {
 
                 Text("Tá em TestFlight. Preciso de ~20 testadores pra dar feedback antes do lançamento.")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(expandedBodyColor)
 
                 Text("Bora ajudar?")
                     .font(.headline)
@@ -158,8 +184,9 @@ struct DunTestFlightExpandedView: View {
                 .padding(.top, 8)
             }
             .padding(24)
+            }
         }
-        .presentationDetents([.medium, .large])
+        .presentationDetents([.large])
         .presentationDragIndicator(.visible)
     }
 
@@ -169,7 +196,7 @@ struct DunTestFlightExpandedView: View {
                 .foregroundColor(.purple)
             Text(text)
                 .font(.body)
-                .foregroundColor(.secondary)
+                .foregroundColor(expandedBodyColor)
         }
     }
 }
