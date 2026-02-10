@@ -9,7 +9,7 @@ import SwiftUI
 
 class Mailman {
 
-    private static let supportEmail = "medodeliriosuporte@gmail.com"
+    private static let supportEmail = "contato@medodelirioios.com"
 
     @MainActor
     static func openDefaultEmailApp(

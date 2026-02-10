@@ -69,7 +69,7 @@ Check out [Sidronio Lima's Android app](https://play.google.com/store/apps/detai
 
 ## App support
 
-For support needs, please send an e-mail to [our support address](mailto:medodeliriosuporte@gmail.com).
+For support needs, please send an e-mail to [our support address](mailto:contato@medodelirioios.com).
 
 ## About this repo
 

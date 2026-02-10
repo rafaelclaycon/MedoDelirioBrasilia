@@ -140,7 +140,7 @@ extension HelpTheAppView {
 
         @Binding var toast: Toast?
 
-        private let pixKey: String = "medodeliriosuporte@gmail.com"
+        private let pixKey: String = "contato@medodelirioios.com"
 
         var body: some View {
             VStack(alignment: .center, spacing: .spacing(.large)) {
