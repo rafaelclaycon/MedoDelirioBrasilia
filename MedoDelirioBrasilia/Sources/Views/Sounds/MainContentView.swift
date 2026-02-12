@@ -168,7 +168,15 @@ struct MainContentView: View {
                                     if showDunTestFlightBanner, viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? false {
                                         DunTestFlightBannerView(
                                             isBeingShown: $showDunTestFlightBanner,
-                                            onVerTestFlightTapped: { showDunTestFlightExpanded = true }
+                                            onVerTestFlightTapped: {
+                                                showDunTestFlightExpanded = true
+                                                Task {
+                                                    await AnalyticsService().send(
+                                                        originatingScreen: "DunTestFlightBannerView",
+                                                        action: "didTapDunVerTestFlight"
+                                                    )
+                                                }
+                                            }
                                         )
                                     }
 
@@ -412,11 +420,23 @@ struct MainContentView: View {
                                 AppPersistentMemory.shared.setHasSeenDunTestFlightBanner(to: true)
                                 showDunTestFlightBanner = false
                                 showDunTestFlightExpanded = false
+                                Task {
+                                    await AnalyticsService().send(
+                                        originatingScreen: "DunTestFlightExpandedView",
+                                        action: "didTapDunSimQueroTestar"
+                                    )
+                                }
                             },
                             onTalvezDepois: {
                                 AppPersistentMemory.shared.setHasSeenDunTestFlightBanner(to: true)
                                 showDunTestFlightBanner = false
                                 showDunTestFlightExpanded = false
+                                Task {
+                                    await AnalyticsService().send(
+                                        originatingScreen: "DunTestFlightExpandedView",
+                                        action: "didTapDunTalvezDepois"
+                                    )
+                                }
                             }
                         )
                     }
