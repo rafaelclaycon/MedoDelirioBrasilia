@@ -145,6 +145,8 @@ extension MostSharedByAudienceView {
                 Shared.Trends.lastWeek
             case .lastMonth:
                 Shared.Trends.lastMonth
+            case .year2026:
+                Shared.Trends.year2026
             case .year2025:
                 Shared.Trends.year2025
             case .year2024:
@@ -226,30 +228,49 @@ extension MostSharedByAudienceView {
         // MARK: - Subviews
 
         @ViewBuilder func timeIntervalSelector() -> some View {
-            Picker(selection: $timeIntervalOption) {
-                Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
-                Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
-                Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
-                Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
-                Text(Shared.Trends.year2025).tag(TrendsTimeInterval.year2025)
-                Text(Shared.Trends.year2024).tag(TrendsTimeInterval.year2024)
-                Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
-                Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
-                Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
-            } label: {
-                HStack(spacing: .spacing(.xxSmall)) {
-                    Text(dropDownText)
+            Menu {
+                menuItem(Shared.Trends.last24Hours, interval: .last24Hours)
+                menuItem(Shared.Trends.last3Days, interval: .last3Days)
+                menuItem(Shared.Trends.lastWeek, interval: .lastWeek)
+                menuItem(Shared.Trends.lastMonth, interval: .lastMonth)
 
-                    Image(systemName: "chevron.up.chevron.down")
+                Menu("Por Ano") {
+                    menuItem(Shared.Trends.year2026, interval: .year2026)
+                    menuItem(Shared.Trends.year2025, interval: .year2025)
+                    menuItem(Shared.Trends.year2024, interval: .year2024)
+                    menuItem(Shared.Trends.year2023, interval: .year2023)
+                    menuItem(Shared.Trends.year2022, interval: .year2022)
+                }
+
+                menuItem(Shared.Trends.allTime, interval: .allTime)
+            } label: {
+                if #available(iOS 26, *) {
+                    HStack(spacing: .spacing(.xxSmall)) {
+                        Image(systemName: "line.3.horizontal.decrease")
+                        Text(dropDownText)
+                    }
+                    .padding(.vertical, .spacing(.xSmall))
+                    .padding(.horizontal, .spacing(.small))
+                    .glassEffect(.regular.interactive())
+                } else {
+                    HStack(spacing: .spacing(.xxSmall)) {
+                        Image(systemName: "line.3.horizontal.decrease")
+                        Text(dropDownText)
+                    }
                 }
             }
-//            .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
-//                if let option = timeIntervalToGoTo {
-//                    DispatchQueue.main.async {
-//                        viewModel.timeIntervalOption = option
-//                    }
-//                }
-//            }
+        }
+
+        private func menuItem(_ title: String, interval: TrendsTimeInterval) -> some View {
+            Button {
+                timeIntervalOption = interval
+            } label: {
+                if timeIntervalOption == interval {
+                    Label(title, systemImage: "checkmark")
+                } else {
+                    Text(title)
+                }
+            }
         }
     }
 

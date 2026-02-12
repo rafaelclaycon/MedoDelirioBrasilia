@@ -13,6 +13,7 @@ enum TrendsTimeInterval: Int {
     case last3Days
     case lastWeek
     case lastMonth
+    case year2026
     case year2025
     case year2024
     case year2023
