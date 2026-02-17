@@ -16,7 +16,7 @@ enum SongSortOption: Int {
 }
 
 enum AuthorSortOption: Int {
-    case nameAscending, soundCountDescending, soundCountAscending
+    case nameAscending, soundCountDescending, soundCountAscending, descriptionLengthDescending
 }
 
 enum FolderSoundSortOption: Int {

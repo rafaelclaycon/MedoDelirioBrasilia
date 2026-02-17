@@ -67,6 +67,8 @@ extension AuthorService {
             authors.sorted(by: { $0.soundCount ?? 0 > $1.soundCount ?? 0 })
         case .soundCountAscending:
             authors.sorted(by: { $0.soundCount ?? 0 < $1.soundCount ?? 0 })
+        case .descriptionLengthDescending:
+            authors.sorted(by: { ($0.description?.count ?? 0) > ($1.description?.count ?? 0) })
         }
     }
 }

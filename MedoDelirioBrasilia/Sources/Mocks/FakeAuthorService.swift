@@ -10,7 +10,10 @@ import Foundation
 class FakeAuthorService: AuthorServiceProtocol {
 
     func allAuthors(_ sortOrder: AuthorSortOption) throws -> [Author] {
-        []
+        [
+            Author.bozo,
+            Author.omarAziz
+        ]
     }
 
     func authors(matchingName name: String) -> [Author]? {

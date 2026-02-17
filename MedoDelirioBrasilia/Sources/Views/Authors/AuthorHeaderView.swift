@@ -203,7 +203,7 @@ extension AuthorHeaderView {
                     }
 
                     if let description = author.description {
-                        Text(description)
+                        ExpandableText(description)
                     }
 
                     if !author.links.isEmpty {
@@ -346,7 +346,7 @@ extension AuthorHeaderView {
                         HStack {
                             VStack(alignment: .leading, spacing: .spacing(.medium)) {
                                 if let description = author.description {
-                                    Text(description)
+                                    ExpandableText(description)
                                 }
 
                                 if !author.links.isEmpty {
@@ -393,6 +393,106 @@ extension AuthorHeaderView {
                     }
                 }
             }
+        }
+    }
+
+    struct ExpandableText: View {
+
+        let text: String
+        let lineLimit: Int
+
+        @State private var isExpanded: Bool = false
+        @State private var isTruncated: Bool = false
+
+        init(_ text: String, lineLimit: Int = 3) {
+            self.text = text
+            self.lineLimit = lineLimit
+        }
+
+        @State private var collapsedHeight: CGFloat = 0
+        @State private var fullHeight: CGFloat = 0
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: .spacing(.xxSmall)) {
+                Text(text)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .background(
+                        GeometryReader { geo in
+                            Color.clear.preference(
+                                key: FullTextHeightKey.self,
+                                value: geo.size.height
+                            )
+                        }
+                    )
+                    .background(
+                        Text(text)
+                            .lineLimit(lineLimit)
+                            .hidden()
+                            .background(
+                                GeometryReader { geo in
+                                    Color.clear.preference(
+                                        key: VisibleTextHeightKey.self,
+                                        value: geo.size.height
+                                    )
+                                }
+                            )
+                    )
+                    .onPreferenceChange(FullTextHeightKey.self) { height in
+                        fullHeight = height
+                        isTruncated = fullHeight > collapsedHeight + 1
+                    }
+                    .onPreferenceChange(VisibleTextHeightKey.self) { height in
+                        collapsedHeight = height
+                        isTruncated = fullHeight > collapsedHeight + 1
+                    }
+                    .frame(
+                        height: (!isExpanded && collapsedHeight > 0) ? collapsedHeight : nil,
+                        alignment: .top
+                    )
+                    .clipped()
+                    .overlay(alignment: .bottomTrailing) {
+                        if isTruncated && !isExpanded {
+                            Button("Ver Mais") {
+                                isExpanded.toggle()
+                            }
+                            .font(.callout)
+                            .padding(.leading, 32)
+                            .background(
+                                LinearGradient(
+                                    stops: [
+                                        .init(color: .clear, location: 0),
+                                        .init(color: Color(.systemBackground), location: 0.15),
+                                        .init(color: Color(.systemBackground), location: 1),
+                                    ],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                        }
+                    }
+
+                if isTruncated && isExpanded {
+                    Button("Ver Menos") {
+                        isExpanded.toggle()
+                    }
+                    .font(.callout)
+                }
+            }
+            .animation(.easeInOut(duration: 0.25), value: isExpanded)
+        }
+    }
+
+    struct FullTextHeightKey: PreferenceKey {
+        static var defaultValue: CGFloat = 0
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = max(value, nextValue())
+        }
+    }
+
+    struct VisibleTextHeightKey: PreferenceKey {
+        static var defaultValue: CGFloat = 0
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = max(value, nextValue())
         }
     }
 

@@ -25,6 +25,11 @@ struct AuthorToolbarOptionsView: ToolbarContent {
 
                         Text("Autores com Menos Sons no Topo")
                             .tag(2)
+
+                        if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
+                            Text("Descrição Mais Longa no Topo")
+                                .tag(3)
+                        }
                     }
                 }
             } label: {
