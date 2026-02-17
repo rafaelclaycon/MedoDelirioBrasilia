@@ -128,16 +128,25 @@ struct MainView: View {
                         .environment(\.push, PushAction { reactionsPath.append($0) })
                     }
 
-                    Tab(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends), value: .trends) {
-                        NavigationView {
-                            TrendsView(
-                                audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                tabSelection: tabSelection,
-                                activePadScreen: .constant(.trends)
-                            )
-                            .environment(trendsHelper)
+                    if FeatureFlag.isEnabled(.episodes) {
+                        Tab("Episódios", systemImage: "radio", value: .trends) {
+                            NavigationView {
+                                EpisodesView()
+                            }
+                            .tag(PhoneTab.trends)
                         }
-                        .tag(PhoneTab.trends)
+                    } else {
+                        Tab(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends), value: .trends) {
+                            NavigationView {
+                                TrendsView(
+                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
+                                    tabSelection: tabSelection,
+                                    activePadScreen: .constant(.trends)
+                                )
+                                .environment(trendsHelper)
+                            }
+                            .tag(PhoneTab.trends)
+                        }
                     }
 
                     Tab(value: .search, role: .search) {
@@ -209,18 +218,28 @@ struct MainView: View {
                         .tag(PhoneTab.reactions)
                         .environment(\.push, PushAction { reactionsPath.append($0) })
 
-                        NavigationView {
-                            TrendsView(
-                                audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                tabSelection: tabSelection,
-                                activePadScreen: .constant(.trends)
-                            )
-                            .environment(trendsHelper)
+                        if FeatureFlag.isEnabled(.episodes) {
+                            NavigationView {
+                                EpisodesView()
+                            }
+                            .tabItem {
+                                Label("Episódios", systemImage: "radio")
+                            }
+                            .tag(PhoneTab.trends)
+                        } else {
+                            NavigationView {
+                                TrendsView(
+                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
+                                    tabSelection: tabSelection,
+                                    activePadScreen: .constant(.trends)
+                                )
+                                .environment(trendsHelper)
+                            }
+                            .tabItem {
+                                Label(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends))
+                            }
+                            .tag(PhoneTab.trends)
                         }
-                        .tabItem {
-                            Label(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends))
-                        }
-                        .tag(PhoneTab.trends)
                     }
                     .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                         tabSelection.wrappedValue = .sounds
@@ -326,14 +345,22 @@ struct MainView: View {
                         .environment(\.push, PushAction { authorsPath.append($0) })
                     }
 
-                    Tab(Shared.TabInfo.name(PadScreen.trends), systemImage: Shared.TabInfo.symbol(PadScreen.trends)) {
-                        NavigationStack {
-                            TrendsView(
-                                audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                tabSelection: tabSelection,
-                                activePadScreen: .constant(.trends)
-                            )
-                            .environment(trendsHelper)
+                    if FeatureFlag.isEnabled(.episodes) {
+                        Tab("Episódios", systemImage: "radio") {
+                            NavigationStack {
+                                EpisodesView()
+                            }
+                        }
+                    } else {
+                        Tab(Shared.TabInfo.name(PadScreen.trends), systemImage: Shared.TabInfo.symbol(PadScreen.trends)) {
+                            NavigationStack {
+                                TrendsView(
+                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
+                                    tabSelection: tabSelection,
+                                    activePadScreen: .constant(.trends)
+                                )
+                                .environment(trendsHelper)
+                            }
                         }
                     }
 

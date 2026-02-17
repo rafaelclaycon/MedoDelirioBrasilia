@@ -120,6 +120,10 @@ struct SettingsView: View {
                     }
                 }
 
+                if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
+                    FeatureFlagsSettingsView()
+                }
+
                 Section {
                     AuthorCreditsView()
                 }
