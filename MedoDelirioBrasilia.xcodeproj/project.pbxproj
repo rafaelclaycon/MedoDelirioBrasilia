@@ -96,6 +96,8 @@
 		D903DB0A29DF42A500D9BE42 /* Hino Mimimi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0629DF42A400D9BE42 /* Hino Mimimi.mp3 */; };
 		D903DB0B29DF42A500D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0729DF42A400D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 */; };
 		D903DB0C29DF42A500D9BE42 /* 04 E Transao Versao Definitiva.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0829DF42A400D9BE42 /* 04 E Transao Versao Definitiva.mp3 */; };
+		D905E7592F45121900190A03 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = D905E7582F45121900190A03 /* FeedKit */; };
+		D905E75B2F45121900190A03 /* XMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = D905E75A2F45121900190A03 /* XMLKit */; };
 		D906012C2F1C281B00BD238A /* SearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D906012B2F1C281B00BD238A /* SearchServiceTests.swift */; };
 		D90601402F1D317E00BD238A /* Default-beta.icon in Resources */ = {isa = PBXBuildFile; fileRef = D906013E2F1D317E00BD238A /* Default-beta.icon */; };
 		D90601412F1D317E00BD238A /* LGBT.icon in Resources */ = {isa = PBXBuildFile; fileRef = D906013F2F1D317E00BD238A /* LGBT.icon */; };
@@ -2551,9 +2553,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D905E75B2F45121900190A03 /* XMLKit in Frameworks */,
 				D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */,
 				D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */,
 				D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */,
+				D905E7592F45121900190A03 /* FeedKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4094,6 +4098,8 @@
 				D9E69591283D2E2C00C341B2 /* SQLite */,
 				D94656D828450535008B4785 /* SQLiteMigrationManager */,
 				D9943F19286406AF002C6B97 /* Kingfisher */,
+				D905E7582F45121900190A03 /* FeedKit */,
+				D905E75A2F45121900190A03 /* XMLKit */,
 			);
 			productName = MedoDelirioBrasilia;
 			productReference = D9625E7A28238F9A00080852 /* MedoDelirio.app */;
@@ -4175,6 +4181,7 @@
 				D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */,
 				D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */,
 				D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D905E7572F45121900190A03 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = D9625E7B28238F9A00080852 /* Products */;
 			projectDirPath = "";
@@ -5846,6 +5853,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D905E7572F45121900190A03 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.4.0;
+			};
+		};
 		D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/garriguv/SQLiteMigrationManager.swift";
@@ -5873,6 +5888,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D905E7582F45121900190A03 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D905E7572F45121900190A03 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
+		};
+		D905E75A2F45121900190A03 /* XMLKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D905E7572F45121900190A03 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = XMLKit;
+		};
 		D94656D828450535008B4785 /* SQLiteMigrationManager */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */;
