@@ -56,6 +56,7 @@ struct NowPlayingAccessoryView: View {
             }
             .buttonStyle(.plain)
         }
-        .padding(.horizontal, .spacing(.xSmall))
+        .padding(.leading, .spacing(.xSmall))
+        .padding(.trailing, .spacing(.medium))
     }
 }
