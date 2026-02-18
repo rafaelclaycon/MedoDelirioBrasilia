@@ -18,6 +18,7 @@ struct MainView: View {
     @State private var authorsPath = NavigationPath()
     @State private var searchTabPath = NavigationPath()
     @State private var foldersPath = NavigationPath()
+    @State private var episodesPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
     @State private var settingsHelper = SettingsHelper()
@@ -42,6 +43,11 @@ struct MainView: View {
 
     // Content Update
     @State private var syncValues = SyncValues()
+
+    // Episodes
+    @State private var episodePlayer = EpisodePlayer()
+    @State private var episodeFavoritesStore = EpisodeFavoritesStore()
+    @State private var showNowPlaying = false
 
     @State private var contentRepository: ContentRepository
     private let trendsService = TrendsService.shared
@@ -130,9 +136,13 @@ struct MainView: View {
 
                     if FeatureFlag.isEnabled(.episodes) {
                         Tab("Episódios", systemImage: "radio", value: .trends) {
-                            NavigationView {
+                            NavigationStack(path: $episodesPath) {
                                 EpisodesView()
+                                    .navigationDestination(for: PodcastEpisode.self) { episode in
+                                        EpisodeDetailView(episode: episode)
+                                    }
                             }
+                            .environment(\.push, PushAction { episodesPath.append($0) })
                             .tag(PhoneTab.trends)
                         }
                     } else {
@@ -164,6 +174,18 @@ struct MainView: View {
                             }
                             .environment(\.push, PushAction { searchTabPath.append($0) })
                         }
+                    }
+                    .tabViewBottomAccessory {
+                        if FeatureFlag.isEnabled(.episodes), let episode = episodePlayer.currentEpisode {
+                            NowPlayingAccessoryView(episode: episode, player: episodePlayer)
+                                .onTapGesture {
+                                    showNowPlaying = true
+                                }
+                        }
+                    }
+                    .sheet(isPresented: $showNowPlaying) {
+                        NowPlayingView()
+                            .environment(episodePlayer)
                     }
                     .tabBarMinimizeBehavior(.onScrollDown)
                 } else {
@@ -219,9 +241,13 @@ struct MainView: View {
                         .environment(\.push, PushAction { reactionsPath.append($0) })
 
                         if FeatureFlag.isEnabled(.episodes) {
-                            NavigationView {
+                            NavigationStack(path: $episodesPath) {
                                 EpisodesView()
+                                    .navigationDestination(for: PodcastEpisode.self) { episode in
+                                        EpisodeDetailView(episode: episode)
+                                    }
                             }
+                            .environment(\.push, PushAction { episodesPath.append($0) })
                             .tabItem {
                                 Label("Episódios", systemImage: "radio")
                             }
@@ -347,9 +373,13 @@ struct MainView: View {
 
                     if FeatureFlag.isEnabled(.episodes) {
                         Tab("Episódios", systemImage: "radio") {
-                            NavigationStack {
+                            NavigationStack(path: $episodesPath) {
                                 EpisodesView()
+                                    .navigationDestination(for: PodcastEpisode.self) { episode in
+                                        EpisodeDetailView(episode: episode)
+                                    }
                             }
+                            .environment(\.push, PushAction { episodesPath.append($0) })
                         }
                     } else {
                         Tab(Shared.TabInfo.name(PadScreen.trends), systemImage: Shared.TabInfo.symbol(PadScreen.trends)) {
@@ -472,6 +502,8 @@ struct MainView: View {
             }
         }
         .environment(syncValues)
+        .environment(episodePlayer)
+        .environment(episodeFavoritesStore)
         .onAppear {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
@@ -594,5 +626,6 @@ struct MainView: View {
         tabSelection: .constant(.sounds),
         padSelection: .constant(.allSounds)
     )
+    .environment(EpisodePlayer())
 }
 

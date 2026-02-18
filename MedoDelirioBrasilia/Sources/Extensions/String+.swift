@@ -2,6 +2,43 @@ import SwiftUI
 
 extension String {
 
+    /// Strips HTML tags, converts `<br>` variants to newlines, and decodes common HTML entities.
+    func strippingHTML() -> String {
+        var result = self
+        // Normalise <br>, <br/>, <br /> to newlines
+        result = result.replacingOccurrences(
+            of: "<br\\s*/?>",
+            with: "\n",
+            options: .regularExpression
+        )
+        // Strip all remaining HTML tags
+        result = result.replacingOccurrences(
+            of: "<[^>]+>",
+            with: "",
+            options: .regularExpression
+        )
+        // Decode common HTML entities
+        let entities: [(String, String)] = [
+            ("&amp;", "&"),
+            ("&lt;", "<"),
+            ("&gt;", ">"),
+            ("&quot;", "\""),
+            ("&apos;", "'"),
+            ("&#39;", "'"),
+            ("&nbsp;", " "),
+        ]
+        for (entity, replacement) in entities {
+            result = result.replacingOccurrences(of: entity, with: replacement)
+        }
+        // Collapse multiple consecutive newlines into at most two
+        result = result.replacingOccurrences(
+            of: "\\n{3,}",
+            with: "\n\n",
+            options: .regularExpression
+        )
+        return result.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
     func withoutDiacritics() -> String {
         return self.folding(options: .diacriticInsensitive, locale: .current)
     }

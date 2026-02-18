@@ -1,0 +1,61 @@
+//
+//  NowPlayingAccessoryView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 17/02/26.
+//
+
+import SwiftUI
+
+/// A compact now-playing view designed for the iOS 26 tab bar bottom accessory.
+///
+/// Shows the episode artwork, title, and a play/pause toggle button.
+/// The liquid glass capsule background is automatically applied by `tabViewBottomAccessory`.
+@available(iOS 26.0, *)
+struct NowPlayingAccessoryView: View {
+
+    let episode: PodcastEpisode
+    let player: EpisodePlayer
+
+    var body: some View {
+        HStack(spacing: .spacing(.xSmall)) {
+            AsyncImage(url: episode.imageURL) { phase in
+                switch phase {
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                case .failure, .empty:
+                    Image(systemName: "radio")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                @unknown default:
+                    Image(systemName: "radio")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(width: 28, height: 28)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+
+            Text(episode.title)
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .lineLimit(1)
+
+            Spacer(minLength: 0)
+
+            Button {
+                Task {
+                    await player.togglePlayPause()
+                }
+            } label: {
+                Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
+                    .font(.body)
+                    .fontWeight(.semibold)
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(.horizontal, .spacing(.xSmall))
+    }
+}

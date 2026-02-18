@@ -1,0 +1,452 @@
+//
+//  EpisodePlayer.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 17/02/26.
+//
+
+import AVFoundation
+import Foundation
+import MediaPlayer
+
+/// Manages podcast episode download and playback.
+///
+/// Downloads episodes to local storage before playing them back using `AVAudioPlayer`.
+/// Tracks download progress and playback state as observable properties so SwiftUI views
+/// can reactively update.
+///
+/// Designed to be created once in `MainView` and shared via `.environment()`.
+@Observable
+final class EpisodePlayer {
+
+    // MARK: - Observable State
+
+    var currentEpisode: PodcastEpisode?
+    var isPlaying: Bool = false
+    var currentTime: TimeInterval = 0
+    var duration: TimeInterval = 0
+
+    /// Download progress per episode ID (0.0 to 1.0). Empty when no downloads are active.
+    var downloadProgress: [String: Double] = [:]
+
+    // MARK: - Private State
+
+    @ObservationIgnored private var audioPlayer: AVAudioPlayer?
+    @ObservationIgnored private var playbackDelegate: PlaybackDelegate?
+    @ObservationIgnored private var timer: Timer?
+    @ObservationIgnored private var activeDownloadTask: URLSessionDownloadTask?
+    @ObservationIgnored private var downloadingEpisodeId: String?
+    @ObservationIgnored private var playGeneration: Int = 0
+    @ObservationIgnored private var remoteCommandsConfigured = false
+
+    @ObservationIgnored private lazy var downloadCoordinator: DownloadCoordinator = {
+        DownloadCoordinator { [weak self] progress in
+            Task { @MainActor [weak self] in
+                guard let self, let id = self.downloadingEpisodeId else { return }
+                self.downloadProgress[id] = progress
+            }
+        }
+    }()
+
+    @ObservationIgnored private lazy var downloadSession: URLSession = {
+        URLSession(
+            configuration: .default,
+            delegate: downloadCoordinator,
+            delegateQueue: nil
+        )
+    }()
+
+    // MARK: - Public API
+
+    /// Plays the given episode. Downloads it first if not already on disk.
+    /// If the same episode is currently loaded, toggles play/pause instead.
+    @MainActor
+    func play(episode: PodcastEpisode) async {
+        if currentEpisode?.id == episode.id && audioPlayer != nil {
+            togglePlayPause()
+            return
+        }
+
+        stopInternal()
+        playGeneration += 1
+        let generation = playGeneration
+
+        let fileURL = Self.localFileURL(for: episode)
+
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            startPlayback(episode: episode, fileURL: fileURL)
+            return
+        }
+
+        do {
+            let downloadedURL = try await downloadEpisode(episode)
+            guard playGeneration == generation else { return }
+            startPlayback(episode: episode, fileURL: downloadedURL)
+        } catch {
+            guard playGeneration == generation else { return }
+            downloadProgress.removeValue(forKey: episode.id)
+            downloadingEpisodeId = nil
+        }
+    }
+
+    /// Toggles between playing and paused states.
+    @MainActor
+    func togglePlayPause() {
+        guard let player = audioPlayer else { return }
+        if player.isPlaying {
+            player.pause()
+            isPlaying = false
+            stopTimer()
+        } else {
+            player.play()
+            isPlaying = true
+            startTimer()
+        }
+        updateNowPlayingInfo()
+    }
+
+    /// Stops playback and clears the current episode.
+    @MainActor
+    func stop() {
+        stopInternal()
+    }
+
+    /// Whether the given episode is currently being downloaded.
+    func isDownloading(_ episode: PodcastEpisode) -> Bool {
+        downloadProgress[episode.id] != nil
+    }
+
+    /// Whether the given episode is the one currently loaded in the player.
+    func isCurrentEpisode(_ episode: PodcastEpisode) -> Bool {
+        currentEpisode?.id == episode.id
+    }
+
+    /// Seeks to the given time, clamped to `0...duration`.
+    @MainActor
+    func seek(to time: TimeInterval) {
+        guard let player = audioPlayer else { return }
+        let clamped = min(max(time, 0), duration)
+        player.currentTime = clamped
+        currentTime = clamped
+        updateNowPlayingInfo()
+    }
+
+    /// Skips forward by the given number of seconds (default 30).
+    @MainActor
+    func skipForward(_ seconds: TimeInterval = 30) {
+        seek(to: currentTime + seconds)
+    }
+
+    /// Skips backward by the given number of seconds (default 15).
+    @MainActor
+    func skipBackward(_ seconds: TimeInterval = 15) {
+        seek(to: currentTime - seconds)
+    }
+
+    // MARK: - Download
+
+    @MainActor
+    private func downloadEpisode(_ episode: PodcastEpisode) async throws -> URL {
+        downloadingEpisodeId = episode.id
+        downloadProgress[episode.id] = 0.0
+
+        return try await withCheckedThrowingContinuation { [weak self] continuation in
+            guard let self else {
+                continuation.resume(throwing: CancellationError())
+                return
+            }
+            self.downloadCoordinator.setContinuation(continuation, episodeId: episode.id)
+
+            let task = self.downloadSession.downloadTask(with: episode.audioURL)
+            self.activeDownloadTask = task
+            task.resume()
+        }
+    }
+
+    // MARK: - Playback
+
+    @MainActor
+    private func startPlayback(episode: PodcastEpisode, fileURL: URL) {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            return
+        }
+
+        guard let player = try? AVAudioPlayer(contentsOf: fileURL) else { return }
+
+        let delegate = PlaybackDelegate { [weak self] in
+            Task { @MainActor [weak self] in
+                self?.onPlaybackFinished()
+            }
+        }
+
+        audioPlayer = player
+        playbackDelegate = delegate
+        player.delegate = delegate
+        currentEpisode = episode
+        duration = player.duration
+        player.play()
+        isPlaying = true
+        configureRemoteCommands()
+        updateNowPlayingInfo()
+        loadArtwork(for: episode)
+        startTimer()
+    }
+
+    @MainActor
+    private func onPlaybackFinished() {
+        isPlaying = false
+        currentTime = 0
+        stopTimer()
+        clearNowPlayingInfo()
+    }
+
+    // MARK: - Timer
+
+    @MainActor
+    private func startTimer() {
+        stopTimer()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
+            guard let self, let player = self.audioPlayer else { return }
+            self.currentTime = player.currentTime
+            self.updateNowPlayingInfo()
+        }
+    }
+
+    @MainActor
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+
+    @MainActor
+    private func stopInternal() {
+        activeDownloadTask?.cancel()
+        activeDownloadTask = nil
+        downloadCoordinator.cancelContinuation()
+        if let id = downloadingEpisodeId {
+            downloadProgress.removeValue(forKey: id)
+        }
+        downloadingEpisodeId = nil
+
+        audioPlayer?.stop()
+        audioPlayer = nil
+        playbackDelegate = nil
+        isPlaying = false
+        currentEpisode = nil
+        currentTime = 0
+        duration = 0
+        stopTimer()
+        clearNowPlayingInfo()
+    }
+
+    // MARK: - Remote Commands
+
+    private func configureRemoteCommands() {
+        guard !remoteCommandsConfigured else { return }
+        remoteCommandsConfigured = true
+
+        let commandCenter = MPRemoteCommandCenter.shared()
+
+        commandCenter.playCommand.addTarget { [weak self] _ in
+            Task { @MainActor [weak self] in self?.togglePlayPause() }
+            return .success
+        }
+        commandCenter.pauseCommand.addTarget { [weak self] _ in
+            Task { @MainActor [weak self] in self?.togglePlayPause() }
+            return .success
+        }
+        commandCenter.togglePlayPauseCommand.addTarget { [weak self] _ in
+            Task { @MainActor [weak self] in self?.togglePlayPause() }
+            return .success
+        }
+
+        commandCenter.skipForwardCommand.preferredIntervals = [30]
+        commandCenter.skipForwardCommand.addTarget { [weak self] _ in
+            Task { @MainActor [weak self] in self?.skipForward() }
+            return .success
+        }
+
+        commandCenter.skipBackwardCommand.preferredIntervals = [15]
+        commandCenter.skipBackwardCommand.addTarget { [weak self] _ in
+            Task { @MainActor [weak self] in self?.skipBackward() }
+            return .success
+        }
+
+        commandCenter.changePlaybackPositionCommand.addTarget { [weak self] event in
+            guard let positionEvent = event as? MPChangePlaybackPositionCommandEvent else {
+                return .commandFailed
+            }
+            Task { @MainActor [weak self] in self?.seek(to: positionEvent.positionTime) }
+            return .success
+        }
+    }
+
+    // MARK: - Now Playing Info
+
+    private func updateNowPlayingInfo() {
+        guard let episode = currentEpisode else { return }
+
+        var info = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [String: Any]()
+        info[MPMediaItemPropertyTitle] = episode.title
+        info[MPMediaItemPropertyPlaybackDuration] = duration
+        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentTime
+        info[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? 1.0 : 0.0
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = info
+    }
+
+    private func clearNowPlayingInfo() {
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+    }
+
+    // MARK: - Artwork
+
+    private func loadArtwork(for episode: PodcastEpisode) {
+        guard let imageURL = episode.imageURL else { return }
+        Task.detached { [weak self] in
+            guard let (data, _) = try? await URLSession.shared.data(from: imageURL),
+                  let image = UIImage(data: data) else { return }
+
+            let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+
+            await MainActor.run { [weak self] in
+                guard let self, self.currentEpisode?.id == episode.id else { return }
+                var info = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [String: Any]()
+                info[MPMediaItemPropertyArtwork] = artwork
+                MPNowPlayingInfoCenter.default().nowPlayingInfo = info
+            }
+        }
+    }
+
+    // MARK: - File Management
+
+    static func localFileURL(for episode: PodcastEpisode) -> URL {
+        let filename = sanitizedFilename(for: episode.id)
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return documentsURL.appendingPathComponent("\(InternalFolderNames.downloadedEpisodes)\(filename).mp3")
+    }
+
+    static func isDownloaded(_ episode: PodcastEpisode) -> Bool {
+        FileManager.default.fileExists(atPath: localFileURL(for: episode).path)
+    }
+
+    static func sanitizedFilename(for episodeId: String) -> String {
+        let allowed = CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "-_."))
+        return episodeId.unicodeScalars
+            .map { allowed.contains($0) ? String($0) : "_" }
+            .joined()
+    }
+}
+
+// MARK: - Download Coordinator
+
+extension EpisodePlayer {
+
+    /// Coordinates `URLSessionDownloadTask` callbacks, tracking progress and bridging
+    /// the delegate pattern with async/await via `CheckedContinuation`.
+    final class DownloadCoordinator: NSObject, URLSessionDownloadDelegate {
+
+        private let onProgress: (Double) -> Void
+        private let lock = NSLock()
+        private var continuation: CheckedContinuation<URL, Error>?
+        private var episodeId: String?
+
+        init(onProgress: @escaping (Double) -> Void) {
+            self.onProgress = onProgress
+        }
+
+        func setContinuation(_ continuation: CheckedContinuation<URL, Error>, episodeId: String) {
+            lock.lock()
+            self.continuation?.resume(throwing: CancellationError())
+            self.continuation = continuation
+            self.episodeId = episodeId
+            lock.unlock()
+        }
+
+        func cancelContinuation() {
+            lock.lock()
+            continuation?.resume(throwing: CancellationError())
+            continuation = nil
+            episodeId = nil
+            lock.unlock()
+        }
+
+        // MARK: URLSessionDownloadDelegate
+
+        func urlSession(
+            _ session: URLSession,
+            downloadTask: URLSessionDownloadTask,
+            didWriteData bytesWritten: Int64,
+            totalBytesWritten: Int64,
+            totalBytesExpectedToWrite: Int64
+        ) {
+            guard totalBytesExpectedToWrite > 0 else { return }
+            let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
+            onProgress(progress)
+        }
+
+        func urlSession(
+            _ session: URLSession,
+            downloadTask: URLSessionDownloadTask,
+            didFinishDownloadingTo location: URL
+        ) {
+            lock.lock()
+            guard let episodeId, let activeContinuation = continuation else {
+                lock.unlock()
+                return
+            }
+            continuation = nil
+            self.episodeId = nil
+            lock.unlock()
+
+            let filename = EpisodePlayer.sanitizedFilename(for: episodeId)
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let destinationURL = documentsURL.appendingPathComponent(
+                "\(InternalFolderNames.downloadedEpisodes)\(filename).mp3"
+            )
+
+            do {
+                if FileManager.default.fileExists(atPath: destinationURL.path) {
+                    try FileManager.default.removeItem(at: destinationURL)
+                }
+                try FileManager.default.moveItem(at: location, to: destinationURL)
+                activeContinuation.resume(returning: destinationURL)
+            } catch {
+                activeContinuation.resume(throwing: error)
+            }
+        }
+
+        func urlSession(
+            _ session: URLSession,
+            task: URLSessionTask,
+            didCompleteWithError error: Error?
+        ) {
+            guard let error else { return }
+            lock.lock()
+            continuation?.resume(throwing: error)
+            continuation = nil
+            lock.unlock()
+        }
+    }
+}
+
+// MARK: - Playback Delegate
+
+extension EpisodePlayer {
+
+    /// Receives `AVAudioPlayerDelegate` callbacks and forwards them via a closure.
+    final class PlaybackDelegate: NSObject, AVAudioPlayerDelegate {
+
+        private let onFinish: () -> Void
+
+        init(onFinish: @escaping () -> Void) {
+            self.onFinish = onFinish
+        }
+
+        func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+            onFinish()
+        }
+    }
+}
