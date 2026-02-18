@@ -13,6 +13,11 @@ struct EpisodeDetailView: View {
     @Environment(EpisodePlayer.self) private var episodePlayer
     @Environment(EpisodeFavoritesStore.self) private var favoritesStore
     @Environment(EpisodeProgressStore.self) private var progressStore
+    @Environment(EpisodePlayedStore.self) private var playedStore
+
+    private var isPlayed: Bool {
+        playedStore.isPlayed(episode.id)
+    }
 
     private var isThisEpisodePlaying: Bool {
         episodePlayer.isCurrentEpisode(episode) && episodePlayer.isPlaying
@@ -81,7 +86,11 @@ struct EpisodeDetailView: View {
             HStack(spacing: .spacing(.medium)) {
                 playButton
 
-                if hasProgress, let episodeProgress {
+                if isPlayed {
+                    Text("Reproduzido")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                } else if hasProgress, let episodeProgress {
                     Text(Self.formatTimeRemaining(episodeProgress.duration - episodeProgress.currentTime))
                         .font(.subheadline)
                         .foregroundStyle(.secondary)

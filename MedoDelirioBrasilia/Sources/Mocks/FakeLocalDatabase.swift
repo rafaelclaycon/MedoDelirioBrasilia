@@ -352,6 +352,11 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
     func upsertEpisodeProgress(episodeId: String, currentTime: Double, duration: Double) throws {}
     func deleteEpisodeProgress(episodeId: String) throws {}
 
+    // Podcast Episode Cache
+
+    func allPodcastEpisodes() throws -> [PodcastEpisode] { [] }
+    func upsertPodcastEpisodes(_ episodes: [PodcastEpisode]) throws {}
+
     func markAllUserShareLogsAsSentToServer() throws {
         //
     }

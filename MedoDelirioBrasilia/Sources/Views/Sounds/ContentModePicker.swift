@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ContentModePicker: View {
+struct ContentModePicker<Option: FilterOption>: View {
 
-    let options: [ContentModeOption]
-    @Binding var selected: ContentModeOption
+    let options: [Option]
+    @Binding var selected: Option
     let allowScrolling: Bool
 
     var body: some View {
@@ -52,8 +52,8 @@ extension ContentModePicker {
 
     private struct PillView: View {
 
-        let option: ContentModeOption
-        let selected: ContentModeOption
+        let option: Option
+        let selected: Option
 
         @Environment(\.colorScheme) private var colorScheme
 

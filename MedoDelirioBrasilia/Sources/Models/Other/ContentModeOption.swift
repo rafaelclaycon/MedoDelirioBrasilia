@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ContentModeOption: CaseIterable, Identifiable {
+enum ContentModeOption: CaseIterable, FilterOption {
 
     case all, favorites, songs, folders, authors
 

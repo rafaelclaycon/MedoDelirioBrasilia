@@ -10,13 +10,13 @@ import FeedKit
 
 protocol EpisodesServiceProtocol {
 
-    func fetchEpisodes(from url: URL, limit: Int) async throws -> [PodcastEpisode]
+    func fetchEpisodes(from url: URL) async throws -> [PodcastEpisode]
 }
 
 @MainActor
 final class EpisodesService: EpisodesServiceProtocol {
 
-    func fetchEpisodes(from url: URL, limit: Int) async throws -> [PodcastEpisode] {
+    func fetchEpisodes(from url: URL) async throws -> [PodcastEpisode] {
         let (data, _) = try await URLSession.shared.data(from: url)
 
         let episodes: [PodcastEpisode] = try await Task.detached {
@@ -31,10 +31,7 @@ final class EpisodesService: EpisodesServiceProtocol {
             }
         }.value
 
-        return episodes
-            .sorted { $0.pubDate > $1.pubDate }
-            .prefix(limit)
-            .map { $0 }
+        return episodes.sorted { $0.pubDate > $1.pubDate }
     }
 
     // MARK: - Mapping

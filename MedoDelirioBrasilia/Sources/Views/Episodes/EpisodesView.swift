@@ -15,6 +15,7 @@ struct EpisodesView: View {
     @Environment(EpisodePlayedStore.self) private var playedStore
     @Environment(\.push) private var push
     @State private var viewModel = ViewModel(episodesService: EpisodesService())
+    @State private var selectedFilter: EpisodeFilterOption = .all
 
     // MARK: - View Body
 
@@ -28,6 +29,8 @@ struct EpisodesView: View {
                 )
 
             case .loaded(let episodes):
+                let filtered = filteredEpisodes(from: episodes)
+
                 if episodes.isEmpty {
                     ContentUnavailableView(
                         "Nenhum Episódio",
@@ -35,46 +38,62 @@ struct EpisodesView: View {
                         description: Text("Não foi possível encontrar episódios no momento.")
                     )
                 } else {
-                    List(episodes) { episode in
-                        EpisodeRow(
-                            episode: episode,
-                            episodePlayer: episodePlayer,
-                            isFavorite: favoritesStore.isFavorite(episode.id),
-                            progress: progressStore.progress(for: episode.id),
-                            isPlayed: playedStore.isPlayed(episode.id)
+                    VStack(spacing: 0) {
+                        ContentModePicker(
+                            options: EpisodeFilterOption.allCases,
+                            selected: $selectedFilter,
+                            allowScrolling: true
                         )
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            push(episode)
-                        }
-                        .swipeActions(edge: .trailing) {
-                            Button {
-                                playedStore.toggle(episode.id)
-                            } label: {
-                                Label(
-                                    playedStore.isPlayed(episode.id) ? "Marcar como Não Ouvido" : "Marcar como Ouvido",
-                                    systemImage: playedStore.isPlayed(episode.id) ? "ear.slash" : "ear"
+                        .scrollClipDisabled()
+
+                        if filtered.isEmpty {
+                            emptyStateForFilter(selectedFilter)
+                        } else {
+                            List(filtered) { episode in
+                                EpisodeRow(
+                                    episode: episode,
+                                    episodePlayer: episodePlayer,
+                                    isFavorite: favoritesStore.isFavorite(episode.id),
+                                    progress: progressStore.progress(for: episode.id),
+                                    isPlayed: playedStore.isPlayed(episode.id)
                                 )
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    push(episode)
+                                }
+                                .swipeActions(edge: .trailing) {
+                                    Button {
+                                        if !playedStore.isPlayed(episode.id) {
+                                            progressStore.clear(episodeID: episode.id)
+                                        }
+                                        playedStore.toggle(episode.id)
+                                    } label: {
+                                        Label(
+                                            playedStore.isPlayed(episode.id) ? "Marcar como Não Reproduzido" : "Marcar como Reproduzido",
+                                            systemImage: playedStore.isPlayed(episode.id) ? "arrow.uturn.backward" : "checkmark"
+                                        )
+                                    }
+                                    .tint(.blue)
+                                }
+                                .swipeActions(edge: .leading) {
+                                    Button {
+                                        favoritesStore.toggle(episode.id)
+                                    } label: {
+                                        Label(
+                                            favoritesStore.isFavorite(episode.id) ? "Desfavoritar" : "Favoritar",
+                                            systemImage: favoritesStore.isFavorite(episode.id) ? "star.slash" : "star"
+                                        )
+                                    }
+                                    .tint(.yellow)
+                                }
+                                .listRowSeparator(.visible)
+                                .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
                             }
-                            .tint(.blue)
-                        }
-                        .swipeActions(edge: .leading) {
-                            Button {
-                                favoritesStore.toggle(episode.id)
-                            } label: {
-                                Label(
-                                    favoritesStore.isFavorite(episode.id) ? "Desfavoritar" : "Favoritar",
-                                    systemImage: favoritesStore.isFavorite(episode.id) ? "star.slash" : "star"
-                                )
+                            .listStyle(.plain)
+                            .refreshable {
+                                await viewModel.onPullToRefresh()
                             }
-                            .tint(.yellow)
                         }
-                        .listRowSeparator(.visible)
-                        .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
-                    }
-                    .listStyle(.plain)
-                    .refreshable {
-                        await viewModel.onPullToRefresh()
                     }
                 }
 
@@ -94,6 +113,75 @@ struct EpisodesView: View {
         .navigationTitle("Episódios")
         .oneTimeTask {
             await viewModel.onViewLoaded()
+        }
+    }
+
+    // MARK: - Empty States
+
+    @ViewBuilder
+    private func emptyStateForFilter(_ filter: EpisodeFilterOption) -> some View {
+        switch filter {
+        case .all:
+            ContentUnavailableView {
+                Label("Nenhum Resultado", systemImage: "line.3.horizontal.decrease.circle")
+            } description: {
+                Text("Nenhum episódio encontrado para este filtro.")
+                    .padding(.top, .spacing(.nano))
+            }
+
+        case .favorites:
+            ContentUnavailableView {
+                Label {
+                    Text("Nenhum Favorito")
+                } icon: {
+                    Image(systemName: "star")
+                        .foregroundStyle(.yellow)
+                }
+            } description: {
+                Text("Deslize um episódio para a direita e toque na estrela para favoritá-lo.")
+                    .padding(.top, .spacing(.nano))
+            }
+
+        case .notPlayed:
+            ContentUnavailableView {
+                Label {
+                    Text("Você Ouviu Tudo!")
+                } icon: {
+                    Image(systemName: "checkmark.circle")
+                        .foregroundStyle(.blue)
+                }
+            } description: {
+                Text("Todos os episódios foram reproduzidos. Parabéns!")
+                    .padding(.top, .spacing(.nano))
+            }
+
+        case .played:
+            ContentUnavailableView {
+                Label {
+                    Text("Nenhum Reproduzido")
+                } icon: {
+                    Image(systemName: "checkmark")
+                        .foregroundStyle(.blue)
+                }
+            } description: {
+                Text("Episódios que você já ouviu aparecerão aqui.")
+                    .padding(.top, .spacing(.nano))
+            }
+        }
+    }
+
+    // MARK: - Filtering
+
+    private func filteredEpisodes(from episodes: [PodcastEpisode]) -> [PodcastEpisode] {
+        switch selectedFilter {
+        case .all:
+            return episodes
+        case .notPlayed:
+            return episodes.filter { !playedStore.isPlayed($0.id) }
+        case .favorites:
+            return episodes.filter { favoritesStore.isFavorite($0.id) }
+        case .played:
+            return episodes.filter { playedStore.isPlayed($0.id) }
         }
     }
 }
@@ -163,7 +251,12 @@ extension EpisodesView {
                 VStack(spacing: .spacing(.xSmall)) {
                     playButton
 
-                    if hasProgress, let progress {
+                    if isPlayed {
+                        Text("Reproduzido")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    } else if hasProgress, let progress {
                         Text(Self.formatTimeRemaining(progress.duration - progress.currentTime))
                             .font(.caption)
                             .foregroundStyle(.secondary)

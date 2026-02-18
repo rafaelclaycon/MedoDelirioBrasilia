@@ -102,6 +102,10 @@ internal protocol LocalDatabaseProtocol {
     func upsertEpisodeProgress(episodeId: String, currentTime: Double, duration: Double) throws
     func deleteEpisodeProgress(episodeId: String) throws
 
+    // Podcast Episode Cache
+    func allPodcastEpisodes() throws -> [PodcastEpisode]
+    func upsertPodcastEpisodes(_ episodes: [PodcastEpisode]) throws
+
     func markAllUserShareLogsAsSentToServer() throws
     func clearAudienceSharingStatisticTable() throws
 }
@@ -127,6 +131,7 @@ class LocalDatabase: LocalDatabaseProtocol {
     var episodeFavoriteTable = Table("episodeFavorite")
     var episodePlayedTable = Table("episodePlayed")
     var episodeProgressTable = Table("episodeProgress")
+    var podcastEpisodeTable = Table("podcastEpisode")
 
     static let shared = LocalDatabase()
     
@@ -181,7 +186,8 @@ extension LocalDatabase {
             AddExternalLinksFieldToAuthorTable(),
             AddChangeHashFieldToUserFolderTable(),
             AddPinnedReactionTable(),
-            AddEpisodeStateTables()
+            AddEpisodeStateTables(),
+            AddPodcastEpisodeTable()
         ]
     }
 

@@ -14,16 +14,18 @@ extension EpisodesView {
         var state: LoadingState<[PodcastEpisode]> = .loading
 
         private let episodesService: EpisodesServiceProtocol
+        private let database: LocalDatabaseProtocol
 
         private static let feedURL = URL(string: "https://www.spreaker.com/show/4711842/episodes/feed")!
-        private static let episodeLimit = 20
 
         // MARK: - Initializer
 
         init(
-            episodesService: EpisodesServiceProtocol
+            episodesService: EpisodesServiceProtocol,
+            database: LocalDatabaseProtocol = LocalDatabase.shared
         ) {
             self.episodesService = episodesService
+            self.database = database
         }
     }
 }
@@ -41,7 +43,7 @@ extension EpisodesView.ViewModel {
     }
 
     func onPullToRefresh() async {
-        await loadEpisodes()
+        await syncFromNetwork()
     }
 }
 
@@ -50,16 +52,27 @@ extension EpisodesView.ViewModel {
 extension EpisodesView.ViewModel {
 
     private func loadEpisodes() async {
-        state = .loading
+        let cached = (try? database.allPodcastEpisodes()) ?? []
 
+        if cached.isEmpty {
+            state = .loading
+        } else {
+            state = .loaded(cached)
+        }
+
+        await syncFromNetwork()
+    }
+
+    private func syncFromNetwork() async {
         do {
-            let episodes = try await episodesService.fetchEpisodes(
-                from: Self.feedURL,
-                limit: Self.episodeLimit
-            )
-            state = .loaded(episodes)
+            let episodes = try await episodesService.fetchEpisodes(from: Self.feedURL)
+            try database.upsertPodcastEpisodes(episodes)
+            let refreshed = try database.allPodcastEpisodes()
+            state = .loaded(refreshed)
         } catch {
-            state = .error(error.localizedDescription)
+            if case .loading = state {
+                state = .error(error.localizedDescription)
+            }
         }
     }
 }
