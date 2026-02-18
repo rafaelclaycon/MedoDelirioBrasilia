@@ -56,7 +56,7 @@ struct EpisodesView: View {
                                     systemImage: playedStore.isPlayed(episode.id) ? "ear.slash" : "ear"
                                 )
                             }
-                            .tint(.gray)
+                            .tint(.blue)
                         }
                         .swipeActions(edge: .leading) {
                             Button {
@@ -219,6 +219,7 @@ extension EpisodesView {
                             Color.green.opacity(0.3)
                         ).interactive()
                     )
+                    .disabled(isPlayed)
                 } else {
                     Button {
                         Task {
@@ -230,6 +231,7 @@ extension EpisodesView {
                             .foregroundStyle(.primary)
                     }
                     .buttonStyle(.borderless)
+                    .disabled(isPlayed)
                 }
             }
         }
