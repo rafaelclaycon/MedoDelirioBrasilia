@@ -16,6 +16,7 @@ struct EpisodesView: View {
     @Environment(\.push) private var push
     @State private var viewModel = ViewModel(episodesService: EpisodesService())
     @State private var selectedFilter: EpisodeFilterOption = .all
+    @State private var sortAscending = false
 
     // MARK: - View Body
 
@@ -49,45 +50,18 @@ struct EpisodesView: View {
                         if filtered.isEmpty {
                             emptyStateForFilter(selectedFilter)
                         } else {
-                            List(filtered) { episode in
-                                EpisodeRow(
-                                    episode: episode,
-                                    episodePlayer: episodePlayer,
-                                    isFavorite: favoritesStore.isFavorite(episode.id),
-                                    progress: progressStore.progress(for: episode.id),
-                                    isPlayed: playedStore.isPlayed(episode.id)
-                                )
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    push(episode)
-                                }
-                                .swipeActions(edge: .trailing) {
-                                    Button {
-                                        if !playedStore.isPlayed(episode.id) {
-                                            progressStore.clear(episodeID: episode.id)
+                            List {
+                                ForEach(groupedByYear(filtered)) { group in
+                                    Section {
+                                        ForEach(group.episodes) { episode in
+                                            episodeRow(for: episode)
                                         }
-                                        playedStore.toggle(episode.id)
-                                    } label: {
-                                        Label(
-                                            playedStore.isPlayed(episode.id) ? "Marcar como Não Reproduzido" : "Marcar como Reproduzido",
-                                            systemImage: playedStore.isPlayed(episode.id) ? "arrow.uturn.backward" : "checkmark"
-                                        )
+                                    } header: {
+                                        Text(String(group.year))
+                                            .font(.title3)
+                                            .fontWeight(.bold)
                                     }
-                                    .tint(.blue)
                                 }
-                                .swipeActions(edge: .leading) {
-                                    Button {
-                                        favoritesStore.toggle(episode.id)
-                                    } label: {
-                                        Label(
-                                            favoritesStore.isFavorite(episode.id) ? "Desfavoritar" : "Favoritar",
-                                            systemImage: favoritesStore.isFavorite(episode.id) ? "star.slash" : "star"
-                                        )
-                                    }
-                                    .tint(.yellow)
-                                }
-                                .listRowSeparator(.visible)
-                                .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
                             }
                             .listStyle(.plain)
                             .refreshable {
@@ -111,6 +85,21 @@ struct EpisodesView: View {
             }
         }
         .navigationTitle("Episódios")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Picker("Ordenação", selection: $sortAscending) {
+                        Text("Mais Recentes no Topo")
+                            .tag(false)
+
+                        Text("Mais Antigos no Topo")
+                            .tag(true)
+                    }
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down")
+                }
+            }
+        }
         .oneTimeTask {
             await viewModel.onViewLoaded()
         }
@@ -170,19 +159,80 @@ struct EpisodesView: View {
         }
     }
 
-    // MARK: - Filtering
+    // MARK: - Episode Row
+
+    private func episodeRow(for episode: PodcastEpisode) -> some View {
+        EpisodeRow(
+            episode: episode,
+            episodePlayer: episodePlayer,
+            isFavorite: favoritesStore.isFavorite(episode.id),
+            progress: progressStore.progress(for: episode.id),
+            isPlayed: playedStore.isPlayed(episode.id)
+        )
+        .contentShape(Rectangle())
+        .onTapGesture {
+            push(episode)
+        }
+        .swipeActions(edge: .trailing) {
+            Button {
+                if !playedStore.isPlayed(episode.id) {
+                    progressStore.clear(episodeID: episode.id)
+                }
+                playedStore.toggle(episode.id)
+            } label: {
+                Label(
+                    playedStore.isPlayed(episode.id) ? "Marcar como Não Reproduzido" : "Marcar como Reproduzido",
+                    systemImage: playedStore.isPlayed(episode.id) ? "arrow.uturn.backward" : "checkmark"
+                )
+            }
+            .tint(.blue)
+        }
+        .swipeActions(edge: .leading) {
+            Button {
+                favoritesStore.toggle(episode.id)
+            } label: {
+                Label(
+                    favoritesStore.isFavorite(episode.id) ? "Desfavoritar" : "Favoritar",
+                    systemImage: favoritesStore.isFavorite(episode.id) ? "star.slash" : "star"
+                )
+            }
+            .tint(.yellow)
+        }
+        .listRowSeparator(.visible)
+        .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
+    }
+
+    // MARK: - Grouping & Filtering
+
+    private struct EpisodeYearGroup: Identifiable {
+        let year: Int
+        let episodes: [PodcastEpisode]
+        var id: Int { year }
+    }
+
+    private func groupedByYear(_ episodes: [PodcastEpisode]) -> [EpisodeYearGroup] {
+        let calendar = Calendar.current
+        let grouped = Dictionary(grouping: episodes) { calendar.component(.year, from: $0.pubDate) }
+        return grouped
+            .map { EpisodeYearGroup(year: $0.key, episodes: $0.value) }
+            .sorted { sortAscending ? $0.year < $1.year : $0.year > $1.year }
+    }
 
     private func filteredEpisodes(from episodes: [PodcastEpisode]) -> [PodcastEpisode] {
-        switch selectedFilter {
+        let filtered: [PodcastEpisode] = switch selectedFilter {
         case .all:
-            return episodes
+            episodes
         case .notPlayed:
-            return episodes.filter { !playedStore.isPlayed($0.id) }
+            episodes.filter { !playedStore.isPlayed($0.id) }
         case .favorites:
-            return episodes.filter { favoritesStore.isFavorite($0.id) }
+            episodes.filter { favoritesStore.isFavorite($0.id) }
         case .played:
-            return episodes.filter { playedStore.isPlayed($0.id) }
+            episodes.filter { playedStore.isPlayed($0.id) }
         }
+
+        return sortAscending
+            ? filtered.sorted { $0.pubDate < $1.pubDate }
+            : filtered.sorted { $0.pubDate > $1.pubDate }
     }
 }
 
@@ -248,27 +298,29 @@ extension EpisodesView {
 
                 Spacer(minLength: 0)
 
-                VStack(spacing: .spacing(.xSmall)) {
-                    playButton
+                if isPlayed {
+                    Image(systemName: "checkmark")
+                        .font(.largeTitle)
+                        .foregroundStyle(.secondary.opacity(0.5))
+                        .frame(width: 60)
+                } else {
+                    VStack(spacing: .spacing(.xSmall)) {
+                        playButton
 
-                    if isPlayed {
-                        Text("Reproduzido")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
-                    } else if hasProgress, let progress {
-                        Text(Self.formatTimeRemaining(progress.duration - progress.currentTime))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
-                    } else if let formattedDuration = episode.formattedDuration {
-                        Text(formattedDuration)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
+                        if hasProgress, let progress {
+                            Text(Self.formatTimeRemaining(progress.duration - progress.currentTime))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                        } else if let formattedDuration = episode.formattedDuration {
+                            Text(formattedDuration)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                        }
                     }
+                    .frame(width: 60)
                 }
-                .frame(width: 60)
             }
             .padding(.vertical, .spacing(.small))
             .opacity(isPlayed ? 0.5 : 1.0)
@@ -312,7 +364,6 @@ extension EpisodesView {
                             Color.green.opacity(0.3)
                         ).interactive()
                     )
-                    .disabled(isPlayed)
                 } else {
                     Button {
                         Task {
@@ -324,7 +375,6 @@ extension EpisodesView {
                             .foregroundStyle(.primary)
                     }
                     .buttonStyle(.borderless)
-                    .disabled(isPlayed)
                 }
             }
         }
@@ -422,4 +472,15 @@ private extension View {
     .environment(EpisodeFavoritesStore())
     .environment(EpisodeProgressStore())
     .environment(EpisodePlayedStore())
+}
+
+#Preview("Played Episode") {
+    EpisodesView.EpisodeRow(
+        episode: .mockLastWeek,
+        episodePlayer: EpisodePlayer(),
+        isFavorite: false,
+        progress: nil,
+        isPlayed: true
+    )
+    .padding()
 }

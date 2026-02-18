@@ -87,9 +87,9 @@ struct EpisodeDetailView: View {
                 playButton
 
                 if isPlayed {
-                    Text("Reproduzido")
+                    Image(systemName: "checkmark")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.secondary.opacity(0.5))
                 } else if hasProgress, let episodeProgress {
                     Text(Self.formatTimeRemaining(episodeProgress.duration - episodeProgress.currentTime))
                         .font(.subheadline)
