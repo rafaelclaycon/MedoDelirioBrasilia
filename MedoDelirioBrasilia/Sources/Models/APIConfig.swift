@@ -16,7 +16,7 @@ final class APIConfig {
         case "dev":
             return "https://api.medodelirioios.club/"
         default:
-            return "http://medodelirioios.com:8080/"
+            return "https://api.medodelirioios.com/"
         }
     }
 
