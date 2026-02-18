@@ -15,17 +15,23 @@ final class EpisodeProgressStore {
         var duration: TimeInterval
     }
 
-    private static let key = "episodePlaybackProgress"
+    private static let legacyKey = "episodePlaybackProgress"
+
+    @ObservationIgnored private let database: LocalDatabaseProtocol
 
     private(set) var entries: [String: EpisodeProgress]
 
-    init() {
-        guard let data = UserDefaults.standard.data(forKey: Self.key),
-              let decoded = try? JSONDecoder().decode([String: EpisodeProgress].self, from: data) else {
-            entries = [:]
-            return
+    init(database: LocalDatabaseProtocol = LocalDatabase.shared) {
+        self.database = database
+
+        let dbEntries = (try? database.allEpisodeProgress()) ?? [:]
+        var converted = [String: EpisodeProgress]()
+        for (id, value) in dbEntries {
+            converted[id] = EpisodeProgress(currentTime: value.currentTime, duration: value.duration)
         }
-        entries = decoded
+        self.entries = converted
+
+        migrateFromUserDefaultsIfNeeded()
     }
 
     // MARK: - Public API
@@ -37,12 +43,12 @@ final class EpisodeProgressStore {
     func save(episodeID: String, currentTime: TimeInterval, duration: TimeInterval) {
         guard duration > 0 else { return }
         entries[episodeID] = EpisodeProgress(currentTime: currentTime, duration: duration)
-        persist()
+        try? database.upsertEpisodeProgress(episodeId: episodeID, currentTime: currentTime, duration: duration)
     }
 
     func clear(episodeID: String) {
         entries.removeValue(forKey: episodeID)
-        persist()
+        try? database.deleteEpisodeProgress(episodeId: episodeID)
     }
 
     func fractionCompleted(for episodeID: String) -> Double? {
@@ -73,10 +79,27 @@ final class EpisodeProgressStore {
         }
     }
 
-    // MARK: - Persistence
+    // MARK: - Legacy Migration
 
-    private func persist() {
-        guard let data = try? JSONEncoder().encode(entries) else { return }
-        UserDefaults.standard.set(data, forKey: Self.key)
+    private func migrateFromUserDefaultsIfNeeded() {
+        guard let data = UserDefaults.standard.data(forKey: Self.legacyKey),
+              let decoded = try? JSONDecoder().decode([String: EpisodeProgress].self, from: data) else {
+            return
+        }
+        for (id, progress) in decoded {
+            try? database.upsertEpisodeProgress(
+                episodeId: id,
+                currentTime: progress.currentTime,
+                duration: progress.duration
+            )
+        }
+        UserDefaults.standard.removeObject(forKey: Self.legacyKey)
+
+        let dbEntries = (try? database.allEpisodeProgress()) ?? [:]
+        var converted = [String: EpisodeProgress]()
+        for (id, value) in dbEntries {
+            converted[id] = EpisodeProgress(currentTime: value.currentTime, duration: value.duration)
+        }
+        entries = converted
     }
 }

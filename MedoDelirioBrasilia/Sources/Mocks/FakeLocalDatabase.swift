@@ -334,6 +334,24 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
         didCallDeletePinnedReaction = true
     }
 
+    // Episode Favorite
+
+    func allEpisodeFavoriteIDs() throws -> Set<String> { [] }
+    func insertEpisodeFavorite(episodeId: String) throws {}
+    func deleteEpisodeFavorite(episodeId: String) throws {}
+
+    // Episode Played
+
+    func allEpisodePlayedIDs() throws -> Set<String> { [] }
+    func insertEpisodePlayed(episodeId: String) throws {}
+    func deleteEpisodePlayed(episodeId: String) throws {}
+
+    // Episode Progress
+
+    func allEpisodeProgress() throws -> [String: (currentTime: Double, duration: Double)] { [:] }
+    func upsertEpisodeProgress(episodeId: String, currentTime: Double, duration: Double) throws {}
+    func deleteEpisodeProgress(episodeId: String) throws {}
+
     func markAllUserShareLogsAsSentToServer() throws {
         //
     }

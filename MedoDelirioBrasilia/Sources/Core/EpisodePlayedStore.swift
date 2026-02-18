@@ -10,13 +10,16 @@ import Foundation
 @Observable
 final class EpisodePlayedStore {
 
-    private static let key = "playedEpisodeIDs"
+    private static let legacyKey = "playedEpisodeIDs"
+
+    @ObservationIgnored private let database: LocalDatabaseProtocol
 
     private(set) var playedIDs: Set<String>
 
-    init() {
-        let stored = UserDefaults.standard.stringArray(forKey: Self.key) ?? []
-        playedIDs = Set(stored)
+    init(database: LocalDatabaseProtocol = LocalDatabase.shared) {
+        self.database = database
+        self.playedIDs = (try? database.allEpisodePlayedIDs()) ?? []
+        migrateFromUserDefaultsIfNeeded()
     }
 
     func isPlayed(_ episodeID: String) -> Bool {
@@ -26,13 +29,21 @@ final class EpisodePlayedStore {
     func toggle(_ episodeID: String) {
         if playedIDs.contains(episodeID) {
             playedIDs.remove(episodeID)
+            try? database.deleteEpisodePlayed(episodeId: episodeID)
         } else {
             playedIDs.insert(episodeID)
+            try? database.insertEpisodePlayed(episodeId: episodeID)
         }
-        persist()
     }
 
-    private func persist() {
-        UserDefaults.standard.set(Array(playedIDs), forKey: Self.key)
+    // MARK: - Legacy Migration
+
+    private func migrateFromUserDefaultsIfNeeded() {
+        guard let legacy = UserDefaults.standard.stringArray(forKey: Self.legacyKey) else { return }
+        for id in legacy {
+            try? database.insertEpisodePlayed(episodeId: id)
+        }
+        UserDefaults.standard.removeObject(forKey: Self.legacyKey)
+        playedIDs = (try? database.allEpisodePlayedIDs()) ?? playedIDs
     }
 }

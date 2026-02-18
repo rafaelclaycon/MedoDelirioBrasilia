@@ -87,6 +87,21 @@ internal protocol LocalDatabaseProtocol {
     func pinnedReactions() throws -> [Reaction]
     func delete(reactionId: String) throws
 
+    // Episode Favorite
+    func allEpisodeFavoriteIDs() throws -> Set<String>
+    func insertEpisodeFavorite(episodeId: String) throws
+    func deleteEpisodeFavorite(episodeId: String) throws
+
+    // Episode Played
+    func allEpisodePlayedIDs() throws -> Set<String>
+    func insertEpisodePlayed(episodeId: String) throws
+    func deleteEpisodePlayed(episodeId: String) throws
+
+    // Episode Progress
+    func allEpisodeProgress() throws -> [String: (currentTime: Double, duration: Double)]
+    func upsertEpisodeProgress(episodeId: String, currentTime: Double, duration: Double) throws
+    func deleteEpisodeProgress(episodeId: String) throws
+
     func markAllUserShareLogsAsSentToServer() throws
     func clearAudienceSharingStatisticTable() throws
 }
@@ -109,6 +124,9 @@ class LocalDatabase: LocalDatabaseProtocol {
     let songTable = Table("song")
     var musicGenreTable = Table("musicGenre")
     var pinnedReactionTable = Table("pinnedReaction")
+    var episodeFavoriteTable = Table("episodeFavorite")
+    var episodePlayedTable = Table("episodePlayed")
+    var episodeProgressTable = Table("episodeProgress")
 
     static let shared = LocalDatabase()
     
@@ -162,7 +180,8 @@ extension LocalDatabase {
             AddSongAndMusicGenreTables(),
             AddExternalLinksFieldToAuthorTable(),
             AddChangeHashFieldToUserFolderTable(),
-            AddPinnedReactionTable()
+            AddPinnedReactionTable(),
+            AddEpisodeStateTables()
         ]
     }
 
@@ -197,6 +216,7 @@ enum LocalDatabaseError: Error {
     case songNotFound
     case musicGenreNotFound
     case pinnedReactionNotFound
+    case episodeProgressNotFound
 }
 
 extension LocalDatabaseError: LocalizedError {
@@ -219,6 +239,8 @@ extension LocalDatabaseError: LocalizedError {
             return NSLocalizedString("O Gênero Musical solicitado não foi encontrado no banco de dados.", comment: "")
         case .pinnedReactionNotFound:
             return NSLocalizedString("A Reação Fixada solicitada não foi encontrada no banco de dados.", comment: "")
+        case .episodeProgressNotFound:
+            return NSLocalizedString("O progresso do episódio solicitado não foi encontrado no banco de dados.", comment: "")
         }
     }
 }
