@@ -11,6 +11,8 @@ struct EpisodesView: View {
 
     @Environment(EpisodePlayer.self) private var episodePlayer
     @Environment(EpisodeFavoritesStore.self) private var favoritesStore
+    @Environment(EpisodeProgressStore.self) private var progressStore
+    @Environment(EpisodePlayedStore.self) private var playedStore
     @Environment(\.push) private var push
     @State private var viewModel = ViewModel(episodesService: EpisodesService())
 
@@ -37,11 +39,24 @@ struct EpisodesView: View {
                         EpisodeRow(
                             episode: episode,
                             episodePlayer: episodePlayer,
-                            isFavorite: favoritesStore.isFavorite(episode.id)
+                            isFavorite: favoritesStore.isFavorite(episode.id),
+                            progress: progressStore.progress(for: episode.id),
+                            isPlayed: playedStore.isPlayed(episode.id)
                         )
                         .contentShape(Rectangle())
                         .onTapGesture {
                             push(episode)
+                        }
+                        .swipeActions(edge: .trailing) {
+                            Button {
+                                playedStore.toggle(episode.id)
+                            } label: {
+                                Label(
+                                    playedStore.isPlayed(episode.id) ? "Marcar como Não Ouvido" : "Marcar como Ouvido",
+                                    systemImage: playedStore.isPlayed(episode.id) ? "ear.slash" : "ear"
+                                )
+                            }
+                            .tint(.gray)
                         }
                         .swipeActions(edge: .leading) {
                             Button {
@@ -92,9 +107,16 @@ extension EpisodesView {
         let episode: PodcastEpisode
         let episodePlayer: EpisodePlayer
         let isFavorite: Bool
+        let progress: EpisodeProgressStore.EpisodeProgress?
+        let isPlayed: Bool
 
         private var isThisEpisodePlaying: Bool {
             episodePlayer.isCurrentEpisode(episode) && episodePlayer.isPlaying
+        }
+
+        private var hasProgress: Bool {
+            guard let progress else { return false }
+            return progress.currentTime > 0 && progress.duration > 0
         }
 
         var body: some View {
@@ -118,11 +140,21 @@ extension EpisodesView {
                         .fontDesign(.serif)
                         .lineLimit(2)
 
-                    if let plainText = episode.plainTextDescription {
-                        Text(plainText)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(1)
+                    HStack(spacing: .spacing(.xSmall)) {
+                        if let plainText = episode.plainTextDescription {
+                            Text(plainText)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                        }
+
+                        if hasProgress, let progress {
+                            Spacer(minLength: 0)
+
+                            ProgressView(value: progress.currentTime, total: progress.duration)
+                                .tint(.blue)
+                                .frame(width: 100, height: 6)
+                        }
                     }
                 }
 
@@ -131,14 +163,38 @@ extension EpisodesView {
                 VStack(spacing: .spacing(.xSmall)) {
                     playButton
 
-                    if let formattedDuration = episode.formattedDuration {
+                    if hasProgress, let progress {
+                        Text(Self.formatTimeRemaining(progress.duration - progress.currentTime))
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    } else if let formattedDuration = episode.formattedDuration {
                         Text(formattedDuration)
                             .font(.caption)
                             .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
                     }
                 }
+                .frame(width: 60)
             }
             .padding(.vertical, .spacing(.small))
+            .opacity(isPlayed ? 0.5 : 1.0)
+        }
+
+        private static func formatTimeRemaining(_ remaining: TimeInterval) -> String {
+            let totalMinutes = Int(max(remaining, 0)) / 60
+            let hours = totalMinutes / 60
+            let minutes = totalMinutes % 60
+
+            if hours > 0 && minutes > 0 {
+                return "\(hours) hr \(minutes) min restantes"
+            } else if hours > 0 {
+                return "\(hours) hr restantes"
+            } else if minutes > 0 {
+                return "\(minutes) min restantes"
+            } else {
+                return "< 1 min restante"
+            }
         }
 
         @ViewBuilder
@@ -146,15 +202,35 @@ extension EpisodesView {
             if episodePlayer.isDownloading(episode) {
                 downloadProgressIndicator
             } else {
-                Button {
-                    Task {
-                        await episodePlayer.play(episode: episode)
+                if #available(iOS 26.0, *) {
+                    Button {
+                        Task {
+                            await episodePlayer.play(episode: episode)
+                        }
+                    } label: {
+                        Image(systemName: isThisEpisodePlaying ? "pause.fill" : "play.fill")
+                            .font(.title2)
+                            .foregroundStyle(.primary)
                     }
-                } label: {
-                    Image(systemName: isThisEpisodePlaying ? "pause.fill" : "play.fill")
-                        .font(.title2)
+                    .buttonStyle(.borderless)
+                    .padding(.spacing(.small))
+                    .glassEffect(
+                        .regular.tint(
+                            Color.green.opacity(0.3)
+                        ).interactive()
+                    )
+                } else {
+                    Button {
+                        Task {
+                            await episodePlayer.play(episode: episode)
+                        }
+                    } label: {
+                        Image(systemName: isThisEpisodePlaying ? "pause.fill" : "play.fill")
+                            .font(.title2)
+                            .foregroundStyle(.primary)
+                    }
+                    .buttonStyle(.borderless)
                 }
-                .if_iOS26GlassElseBorderless()
             }
         }
 
@@ -249,4 +325,6 @@ private extension View {
     }
     .environment(EpisodePlayer())
     .environment(EpisodeFavoritesStore())
+    .environment(EpisodeProgressStore())
+    .environment(EpisodePlayedStore())
 }

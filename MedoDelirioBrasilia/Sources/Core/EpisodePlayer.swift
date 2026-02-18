@@ -29,6 +29,10 @@ final class EpisodePlayer {
     /// Download progress per episode ID (0.0 to 1.0). Empty when no downloads are active.
     var downloadProgress: [String: Double] = [:]
 
+    // MARK: - Dependencies
+
+    @ObservationIgnored var progressStore: EpisodeProgressStore?
+
     // MARK: - Private State
 
     @ObservationIgnored private var audioPlayer: AVAudioPlayer?
@@ -38,6 +42,7 @@ final class EpisodePlayer {
     @ObservationIgnored private var downloadingEpisodeId: String?
     @ObservationIgnored private var playGeneration: Int = 0
     @ObservationIgnored private var remoteCommandsConfigured = false
+    @ObservationIgnored private var lastProgressSaveTime: Date = .distantPast
 
     @ObservationIgnored private lazy var downloadCoordinator: DownloadCoordinator = {
         DownloadCoordinator { [weak self] progress in
@@ -97,6 +102,7 @@ final class EpisodePlayer {
             player.pause()
             isPlaying = false
             stopTimer()
+            saveProgress()
         } else {
             player.play()
             isPlaying = true
@@ -187,6 +193,13 @@ final class EpisodePlayer {
         player.delegate = delegate
         currentEpisode = episode
         duration = player.duration
+
+        if let saved = progressStore?.progress(for: episode.id),
+           saved.currentTime > 0, saved.currentTime < player.duration {
+            player.currentTime = saved.currentTime
+            currentTime = saved.currentTime
+        }
+
         player.play()
         isPlaying = true
         configureRemoteCommands()
@@ -197,6 +210,9 @@ final class EpisodePlayer {
 
     @MainActor
     private func onPlaybackFinished() {
+        if let id = currentEpisode?.id {
+            progressStore?.clear(episodeID: id)
+        }
         isPlaying = false
         currentTime = 0
         stopTimer()
@@ -212,6 +228,7 @@ final class EpisodePlayer {
             guard let self, let player = self.audioPlayer else { return }
             self.currentTime = player.currentTime
             self.updateNowPlayingInfo()
+            self.saveProgressThrottled()
         }
     }
 
@@ -231,6 +248,8 @@ final class EpisodePlayer {
         }
         downloadingEpisodeId = nil
 
+        saveProgress()
+
         audioPlayer?.stop()
         audioPlayer = nil
         playbackDelegate = nil
@@ -240,6 +259,19 @@ final class EpisodePlayer {
         duration = 0
         stopTimer()
         clearNowPlayingInfo()
+    }
+
+    // MARK: - Progress Persistence
+
+    private func saveProgress() {
+        guard let episode = currentEpisode, currentTime > 0, duration > 0 else { return }
+        progressStore?.save(episodeID: episode.id, currentTime: currentTime, duration: duration)
+        lastProgressSaveTime = Date()
+    }
+
+    private func saveProgressThrottled() {
+        guard Date().timeIntervalSince(lastProgressSaveTime) >= 5 else { return }
+        saveProgress()
     }
 
     // MARK: - Remote Commands

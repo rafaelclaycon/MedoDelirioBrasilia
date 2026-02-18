@@ -47,6 +47,8 @@ struct MainView: View {
     // Episodes
     @State private var episodePlayer = EpisodePlayer()
     @State private var episodeFavoritesStore = EpisodeFavoritesStore()
+    @State private var episodeProgressStore = EpisodeProgressStore()
+    @State private var episodePlayedStore = EpisodePlayedStore()
     @State private var showNowPlaying = false
 
     @State private var contentRepository: ContentRepository
@@ -175,12 +177,14 @@ struct MainView: View {
                             .environment(\.push, PushAction { searchTabPath.append($0) })
                         }
                     }
-                    .tabViewBottomAccessory {
-                        if FeatureFlag.isEnabled(.episodes), let episode = episodePlayer.currentEpisode {
-                            NowPlayingAccessoryView(episode: episode, player: episodePlayer)
-                                .onTapGesture {
-                                    showNowPlaying = true
-                                }
+                    .if(FeatureFlag.isEnabled(.episodes) && episodePlayer.currentEpisode != nil) { view in
+                        view.tabViewBottomAccessory {
+                            if let episode = episodePlayer.currentEpisode {
+                                NowPlayingAccessoryView(episode: episode, player: episodePlayer)
+                                    .onTapGesture {
+                                        showNowPlaying = true
+                                    }
+                            }
                         }
                     }
                     .sheet(isPresented: $showNowPlaying) {
@@ -504,7 +508,10 @@ struct MainView: View {
         .environment(syncValues)
         .environment(episodePlayer)
         .environment(episodeFavoritesStore)
+        .environment(episodeProgressStore)
+        .environment(episodePlayedStore)
         .onAppear {
+            episodePlayer.progressStore = episodeProgressStore
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
