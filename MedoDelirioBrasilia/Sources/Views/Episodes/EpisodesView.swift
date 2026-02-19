@@ -13,6 +13,7 @@ struct EpisodesView: View {
     @Environment(EpisodeFavoritesStore.self) private var favoritesStore
     @Environment(EpisodeProgressStore.self) private var progressStore
     @Environment(EpisodePlayedStore.self) private var playedStore
+    @Environment(EpisodeBookmarkStore.self) private var bookmarkStore
     @Environment(\.push) private var push
     @State private var viewModel = ViewModel(episodesService: EpisodesService())
     @State private var selectedFilter: EpisodeFilterOption = .all
@@ -140,20 +141,33 @@ struct EpisodesView: View {
                         .foregroundStyle(.blue)
                 }
             } description: {
-                Text("Todos os episódios foram reproduzidos. Parabéns!")
+                Text("Todos os episódios foram finalizados. Parabéns!")
                     .padding(.top, .spacing(.nano))
             }
 
         case .played:
             ContentUnavailableView {
                 Label {
-                    Text("Nenhum Reproduzido")
+                    Text("Nenhum Finalizado")
                 } icon: {
                     Image(systemName: "checkmark")
                         .foregroundStyle(.blue)
                 }
             } description: {
                 Text("Episódios que você já ouviu aparecerão aqui.")
+                    .padding(.top, .spacing(.nano))
+            }
+
+        case .bookmarked:
+            ContentUnavailableView {
+                Label {
+                    Text("Nenhum Marcador")
+                } icon: {
+                    Image(systemName: "bookmark")
+                        .foregroundStyle(Color.rubyRed)
+                }
+            } description: {
+                Text("Use o botão de marcador na tela Reproduzindo para salvar momentos importantes.")
                     .padding(.top, .spacing(.nano))
             }
         }
@@ -181,7 +195,7 @@ struct EpisodesView: View {
                 playedStore.toggle(episode.id)
             } label: {
                 Label(
-                    playedStore.isPlayed(episode.id) ? "Marcar como Não Reproduzido" : "Marcar como Reproduzido",
+                    playedStore.isPlayed(episode.id) ? "Marcar como Não Finalizado" : "Marcar como Finalizado",
                     systemImage: playedStore.isPlayed(episode.id) ? "arrow.uturn.backward" : "checkmark"
                 )
             }
@@ -228,6 +242,8 @@ struct EpisodesView: View {
             episodes.filter { favoritesStore.isFavorite($0.id) }
         case .played:
             episodes.filter { playedStore.isPlayed($0.id) }
+        case .bookmarked:
+            episodes.filter { bookmarkStore.episodeIdsWithBookmarks().contains($0.id) }
         }
 
         return sortAscending
@@ -472,6 +488,7 @@ private extension View {
     .environment(EpisodeFavoritesStore())
     .environment(EpisodeProgressStore())
     .environment(EpisodePlayedStore())
+    .environment(EpisodeBookmarkStore())
 }
 
 #Preview("Played Episode") {

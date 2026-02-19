@@ -9,7 +9,7 @@ import Foundation
 
 enum EpisodeFilterOption: CaseIterable, FilterOption {
 
-    case all, favorites, notPlayed, played
+    case all, favorites, notPlayed, played, bookmarked
 
     var id: String { displayName }
 
@@ -18,7 +18,8 @@ enum EpisodeFilterOption: CaseIterable, FilterOption {
         case .all: "Todos"
         case .notPlayed: "Não Reproduzidos"
         case .favorites: "Favoritos"
-        case .played: "Reproduzidos"
+        case .played: "Finalizados"
+        case .bookmarked: "Com Marcadores"
         }
     }
 }

@@ -36,6 +36,10 @@ public extension Color {
     // Main View Selector
     static let whatsAppLightGreen = Color(UIColor(red: 0.88, green: 0.99, blue: 0.84, alpha: 1.00))
     static let whatsAppDarkGreen = Color(UIColor(red: 0.18, green: 0.37, blue: 0.25, alpha: 1.00))
+
+    // Episodes – Bookmarks
+    static let rubyRed = Color(red: 0.8, green: 0.07, blue: 0.14)
+    static let darkerOrange = Color(UIColor(red: 0.80, green: 0.45, blue: 0.0, alpha: 1.00))
 }
 
 extension Color {

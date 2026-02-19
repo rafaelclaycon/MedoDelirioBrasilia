@@ -49,6 +49,7 @@ struct MainView: View {
     @State private var episodeFavoritesStore = EpisodeFavoritesStore()
     @State private var episodeProgressStore = EpisodeProgressStore()
     @State private var episodePlayedStore = EpisodePlayedStore()
+    @State private var episodeBookmarkStore = EpisodeBookmarkStore()
     @State private var showNowPlaying = false
 
     @State private var contentRepository: ContentRepository
@@ -190,6 +191,7 @@ struct MainView: View {
                     .sheet(isPresented: $showNowPlaying) {
                         NowPlayingView()
                             .environment(episodePlayer)
+                            .environment(episodeBookmarkStore)
                     }
                     .tabBarMinimizeBehavior(.onScrollDown)
                 } else {
@@ -510,8 +512,14 @@ struct MainView: View {
         .environment(episodeFavoritesStore)
         .environment(episodeProgressStore)
         .environment(episodePlayedStore)
+        .environment(episodeBookmarkStore)
+        .onChange(of: episodePlayer.pendingRemoteBookmark) { _, isPending in
+            guard isPending else { return }
+            showNowPlaying = true
+        }
         .onAppear {
             episodePlayer.progressStore = episodeProgressStore
+            episodePlayer.bookmarkStore = episodeBookmarkStore
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()

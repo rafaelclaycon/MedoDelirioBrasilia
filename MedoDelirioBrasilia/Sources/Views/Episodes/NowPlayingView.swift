@@ -11,35 +11,82 @@ import SwiftUI
 struct NowPlayingView: View {
 
     @Environment(EpisodePlayer.self) private var player
+    @Environment(EpisodeBookmarkStore.self) private var bookmarkStore
 
     @State private var isScrubbing: Bool = false
     @State private var scrubValue: TimeInterval = 0
+    @State private var toast: Toast?
+    @State private var editingBookmark: EpisodeBookmark?
 
     var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
+        ScrollView {
+            VStack(spacing: 0) {
+                Spacer()
+                    .frame(height: .spacing(.xLarge))
 
-            artwork
+                artwork
 
-            Spacer()
-                .frame(height: .spacing(.xxLarge))
+                Spacer()
+                    .frame(height: .spacing(.xxLarge))
 
-            episodeInfo
+                episodeInfo
 
-            Spacer()
-                .frame(height: .spacing(.xxLarge))
+                Spacer()
+                    .frame(height: .spacing(.xxLarge))
 
-            progressSection
+                progressSection
 
-            Spacer()
-                .frame(height: .spacing(.xLarge))
+                Spacer()
+                    .frame(height: .spacing(.xLarge))
 
-            playbackControls
+                playbackControls
 
-            Spacer()
+                Spacer()
+                    .frame(height: .spacing(.medium))
+
+                HStack(spacing: .spacing(.medium)) {
+                    GlassButton(
+                        symbol: "bookmark.fill",
+                        title: "Adicionar Marcador",
+                        color: .rubyRed,
+                        lightModeLabelColor: .rubyRed,
+                        action: {
+                            guard let episodeId = player.currentEpisode?.id else { return }
+                            bookmarkStore.addBookmark(episodeId: episodeId, timestamp: player.currentTime)
+                            toast = Toast(message: "Marcador Adicionado", type: .success)
+                        }
+                    )
+
+                    GlassButton(
+                        symbol: "text.pad.header",
+                        title: "Adicionar Nota",
+                        color: .yellow,
+                        lightModeLabelColor: .darkerOrange,
+                        action: {
+                            toast = Toast(message: "Em Breve!", type: .success)
+                        }
+                    )
+                }
+
+                Spacer()
+                    .frame(height: .spacing(.xLarge))
+
+                bookmarkList
+            }
+            .padding(.horizontal, .spacing(.xLarge))
         }
-        .padding(.horizontal, .spacing(.xLarge))
         .presentationDragIndicator(.visible)
+        .toast($toast)
+        .sheet(item: $editingBookmark) { bookmark in
+            BookmarkEditView(bookmark: bookmark)
+                .environment(bookmarkStore)
+        }
+        .onAppear {
+            if player.pendingRemoteBookmark {
+                player.pendingRemoteBookmark = false
+                toast = Toast(message: "Marcador Adicionado", type: .success)
+            }
+        }
     }
 
     // MARK: - Artwork
@@ -96,6 +143,26 @@ struct NowPlayingView: View {
 
     private var progressSection: some View {
         VStack(spacing: .spacing(.xxxSmall)) {
+            scrubberWithMarkers
+
+            HStack {
+                Text(Self.formatTime(isScrubbing ? scrubValue : player.currentTime))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+
+                Spacer()
+
+                Text("-" + Self.formatTime(player.duration - (isScrubbing ? scrubValue : player.currentTime)))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+            }
+        }
+    }
+
+    private var scrubberWithMarkers: some View {
+        ZStack(alignment: .leading) {
             Slider(
                 value: Binding(
                     get: { isScrubbing ? scrubValue : player.currentTime },
@@ -113,19 +180,21 @@ struct NowPlayingView: View {
             )
             .tint(.primary)
 
-            HStack {
-                Text(Self.formatTime(isScrubbing ? scrubValue : player.currentTime))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .monospacedDigit()
+            GeometryReader { geometry in
+                let totalDuration = max(player.duration, 1)
+                let bookmarks = currentBookmarks
 
-                Spacer()
+                ForEach(bookmarks) { bookmark in
+                    let fraction = bookmark.timestamp / totalDuration
+                    let xPosition = geometry.size.width * fraction
 
-                Text("-" + Self.formatTime(player.duration - (isScrubbing ? scrubValue : player.currentTime)))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .monospacedDigit()
+                    Capsule()
+                        .fill(Color.rubyRed)
+                        .frame(width: 3, height: geometry.size.height + 8)
+                        .offset(x: xPosition - 1.5, y: -4)
+                }
             }
+            .allowsHitTesting(false)
         }
     }
 
@@ -162,6 +231,78 @@ struct NowPlayingView: View {
         .foregroundStyle(.primary)
     }
 
+    // MARK: - Bookmark List
+
+    private var currentBookmarks: [EpisodeBookmark] {
+        guard let episodeId = player.currentEpisode?.id else { return [] }
+        return bookmarkStore.bookmarks(for: episodeId)
+    }
+
+    @ViewBuilder
+    private var bookmarkList: some View {
+        let bookmarks = currentBookmarks
+        if !bookmarks.isEmpty {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Marcadores")
+                    .font(.headline)
+                    .padding(.bottom, .spacing(.small))
+
+                ForEach(Array(bookmarks.enumerated()), id: \.element.id) { index, bookmark in
+                    bookmarkRow(bookmark)
+
+                    if index < bookmarks.count - 1 {
+                        Divider()
+                    }
+                }
+            }
+            .padding(.bottom, .spacing(.xLarge))
+        }
+    }
+
+    private func bookmarkRow(_ bookmark: EpisodeBookmark) -> some View {
+        HStack(spacing: .spacing(.small)) {
+            Image(systemName: "bookmark.fill")
+                .foregroundStyle(Color.rubyRed)
+                .font(.body)
+
+            Text(bookmark.formattedTimestamp)
+                .font(.body)
+                .monospacedDigit()
+                .foregroundStyle(Color.rubyRed)
+
+            Text(bookmark.title ?? "Sem título")
+                .font(.body)
+                .foregroundStyle(bookmark.title != nil ? .primary : .secondary)
+                .lineLimit(1)
+
+            Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.caption)
+                .foregroundStyle(.tertiary)
+        }
+        .padding(.vertical, .spacing(.small))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            player.seek(to: bookmark.timestamp)
+        }
+        .contextMenu {
+            Button {
+                editingBookmark = bookmark
+            } label: {
+                Label("Editar", systemImage: "pencil")
+            }
+
+            Button(role: .destructive) {
+                withAnimation {
+                    bookmarkStore.delete(id: bookmark.id, episodeId: bookmark.episodeId)
+                }
+            } label: {
+                Label("Excluir", systemImage: "trash")
+            }
+        }
+    }
+
     // MARK: - Helpers
 
     /// Formats a `TimeInterval` to `M:SS` or `H:MM:SS`.
@@ -179,10 +320,58 @@ struct NowPlayingView: View {
     }
 }
 
+// MARK: - Subviews
+
+extension NowPlayingView {
+
+    struct GlassButton: View {
+
+        let symbol: String
+        let title: String
+        let color: Color
+        let lightModeLabelColor: Color
+        let action: () -> Void
+
+        @Environment(\.colorScheme) var colorScheme
+
+        var body: some View {
+            if #available(iOS 26, *) {
+                Label(title, systemImage: symbol)
+                    .font(.subheadline)
+                    .fontWeight(.regular)
+                    .foregroundStyle(colorScheme == .dark ? .white : lightModeLabelColor)
+                    .padding(.vertical, .spacing(.small))
+                    .padding(.horizontal, .spacing(.xSmall))
+                    .glassEffect(
+                        .regular.tint(
+                            colorScheme == .dark ? color.opacity(0.3) : color.opacity(0.1)
+                        ).interactive()
+                    )
+                    //.contentShape(Rectangle())
+                    .onTapGesture {
+                        action()
+                    }
+            } else {
+                Button {
+                    action()
+                } label: {
+                    Label(title, systemImage: symbol)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(color)
+                }
+                .buttonStyle(.bordered)
+                .tint(color)
+            }
+        }
+    }
+}
+
 // MARK: - Preview
 
 #Preview {
     let player = EpisodePlayer()
     NowPlayingView()
         .environment(player)
+        .environment(EpisodeBookmarkStore())
 }

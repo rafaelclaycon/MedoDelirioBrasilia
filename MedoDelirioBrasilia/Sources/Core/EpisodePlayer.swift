@@ -32,6 +32,11 @@ final class EpisodePlayer {
     // MARK: - Dependencies
 
     @ObservationIgnored var progressStore: EpisodeProgressStore?
+    @ObservationIgnored var bookmarkStore: EpisodeBookmarkStore?
+
+    /// Set to `true` when a bookmark is added from the lock screen remote command.
+    /// Observed by `MainView` to auto-open the Now Playing screen.
+    var pendingRemoteBookmark: Bool = false
 
     // MARK: - Private State
 
@@ -314,6 +319,18 @@ final class EpisodePlayer {
             Task { @MainActor [weak self] in self?.seek(to: positionEvent.positionTime) }
             return .success
         }
+
+        commandCenter.bookmarkCommand.addTarget { [weak self] _ in
+            Task { @MainActor [weak self] in self?.handleRemoteBookmark() }
+            return .success
+        }
+    }
+
+    @MainActor
+    private func handleRemoteBookmark() {
+        guard let episode = currentEpisode else { return }
+        bookmarkStore?.addBookmark(episodeId: episode.id, timestamp: currentTime)
+        pendingRemoteBookmark = true
     }
 
     // MARK: - Now Playing Info

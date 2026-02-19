@@ -357,6 +357,14 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
     func allPodcastEpisodes() throws -> [PodcastEpisode] { [] }
     func upsertPodcastEpisodes(_ episodes: [PodcastEpisode]) throws {}
 
+    // Episode Bookmark
+
+    func allBookmarks(forEpisodeId episodeId: String) throws -> [EpisodeBookmark] { [] }
+    func allBookmarkedEpisodeIDs() throws -> Set<String> { [] }
+    func insertBookmark(_ bookmark: EpisodeBookmark) throws {}
+    func updateBookmark(_ bookmark: EpisodeBookmark) throws {}
+    func deleteBookmark(id: String) throws {}
+
     func markAllUserShareLogsAsSentToServer() throws {
         //
     }
