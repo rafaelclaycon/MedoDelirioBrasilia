@@ -174,6 +174,17 @@ struct MainView: View {
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen, contentRepository: contentRepository)
                                 }
+                                .navigationDestination(for: SearchNavigationDestination.self) { screen in
+                                    switch screen {
+                                    case .trends:
+                                        TrendsView(
+                                            audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
+                                            tabSelection: tabSelection,
+                                            activePadScreen: .constant(.trends)
+                                        )
+                                        .environment(trendsHelper)
+                                    }
+                                }
                             }
                             .environment(\.push, PushAction { searchTabPath.append($0) })
                         }
@@ -473,6 +484,17 @@ struct MainView: View {
                             )
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen, contentRepository: contentRepository)
+                            }
+                            .navigationDestination(for: SearchNavigationDestination.self) { screen in
+                                switch screen {
+                                case .trends:
+                                    TrendsView(
+                                        audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
+                                        tabSelection: tabSelection,
+                                        activePadScreen: .constant(.trends)
+                                    )
+                                    .environment(trendsHelper)
+                                }
                             }
                         }
                         .environment(\.push, PushAction { searchTabPath.append($0) })

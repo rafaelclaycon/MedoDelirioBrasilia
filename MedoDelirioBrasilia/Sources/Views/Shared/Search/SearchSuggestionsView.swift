@@ -128,13 +128,31 @@ struct SearchSuggestionsView: View {
         }
     }
 
+    private var popularContentHeader: some View {
+        HStack {
+            Text("🔥 Em Alta Hoje")
+                .font(.headline)
+
+            Spacer()
+
+            Button {
+                push(SearchNavigationDestination.trends)
+            } label: {
+                HStack(spacing: 4) {
+                    Text("Ver Mais")
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                }
+            }
+        }
+    }
+
     @ViewBuilder
     private var popularContentSection: some View {
         switch popularContent {
         case .loading:
             VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                Text("🔥 Em Alta Hoje")
-                    .font(.headline)
+                popularContentHeader
 
                 LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
                     ForEach(0..<3, id: \.self) { _ in
@@ -145,8 +163,7 @@ struct SearchSuggestionsView: View {
 
         case .loaded(let content) where !content.isEmpty:
             VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                Text("🔥 Em Alta Hoje")
-                    .font(.headline)
+                popularContentHeader
 
                 PopularContentGrid(
                     content: content,
@@ -162,8 +179,7 @@ struct SearchSuggestionsView: View {
 
         case .error:
             VStack(alignment: .leading, spacing: .spacing(.medium)) {
-                Text("🔥 Em Alta Hoje")
-                    .font(.headline)
+                popularContentHeader
 
                 ErrorRetryView(
                     message: "Não foi possível carregar",

@@ -14,6 +14,11 @@ enum GeneralNavigationDestination: Hashable {
     case folderDetail(UserFolder)
 }
 
+enum SearchNavigationDestination: Hashable {
+
+    case trends
+}
+
 struct GeneralRouter: View {
 
     let destination: GeneralNavigationDestination
