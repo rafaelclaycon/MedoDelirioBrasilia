@@ -47,7 +47,7 @@ struct NowPlayingView: View {
                 HStack(spacing: .spacing(.medium)) {
                     GlassButton(
                         symbol: "bookmark.fill",
-                        title: "Adicionar Marcador",
+                        title: "Marcar Esse Ponto",
                         color: .rubyRed,
                         lightModeLabelColor: .rubyRed,
                         action: {
@@ -57,15 +57,7 @@ struct NowPlayingView: View {
                         }
                     )
 
-                    GlassButton(
-                        symbol: "text.pad.header",
-                        title: "Adicionar Nota",
-                        color: .yellow,
-                        lightModeLabelColor: .darkerOrange,
-                        action: {
-                            toast = Toast(message: "Em Breve!", type: .success)
-                        }
-                    )
+                    // TODO: Adicionar Nota button (hidden for now)
                 }
 
                 Spacer()
@@ -277,22 +269,22 @@ struct NowPlayingView: View {
 
             Spacer()
 
-            Image(systemName: "chevron.right")
-                .font(.caption)
-                .foregroundStyle(.tertiary)
+            Button {
+                player.seek(to: bookmark.timestamp)
+            } label: {
+                Image(systemName: "play.fill")
+                    .font(.body)
+                    .foregroundStyle(Color.rubyRed)
+                    .padding(.spacing(.xxxSmall))
+            }
+            .if_iOS26GlassElsePlain()
         }
         .padding(.vertical, .spacing(.small))
         .contentShape(Rectangle())
         .onTapGesture {
-            player.seek(to: bookmark.timestamp)
+            editingBookmark = bookmark
         }
         .contextMenu {
-            Button {
-                editingBookmark = bookmark
-            } label: {
-                Label("Editar", systemImage: "pencil")
-            }
-
             Button(role: .destructive) {
                 withAnimation {
                     bookmarkStore.delete(id: bookmark.id, episodeId: bookmark.episodeId)
@@ -341,7 +333,7 @@ extension NowPlayingView {
                     .fontWeight(.regular)
                     .foregroundStyle(colorScheme == .dark ? .white : lightModeLabelColor)
                     .padding(.vertical, .spacing(.small))
-                    .padding(.horizontal, .spacing(.xSmall))
+                    .padding(.horizontal, .spacing(.medium))
                     .glassEffect(
                         .regular.tint(
                             colorScheme == .dark ? color.opacity(0.3) : color.opacity(0.1)
@@ -363,6 +355,20 @@ extension NowPlayingView {
                 .buttonStyle(.bordered)
                 .tint(color)
             }
+        }
+    }
+}
+
+// MARK: - Liquid Glass Helper
+
+private extension View {
+
+    @ViewBuilder
+    func if_iOS26GlassElsePlain() -> some View {
+        if #available(iOS 26.0, *) {
+            self.buttonStyle(.glass)
+        } else {
+            self.buttonStyle(.plain)
         }
     }
 }

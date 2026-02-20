@@ -180,6 +180,7 @@ struct EpisodesView: View {
             episode: episode,
             episodePlayer: episodePlayer,
             isFavorite: favoritesStore.isFavorite(episode.id),
+            bookmarkCount: bookmarkStore.bookmarks(for: episode.id).count,
             progress: progressStore.progress(for: episode.id),
             isPlayed: playedStore.isPlayed(episode.id)
         )
@@ -261,6 +262,7 @@ extension EpisodesView {
         let episode: PodcastEpisode
         let episodePlayer: EpisodePlayer
         let isFavorite: Bool
+        let bookmarkCount: Int
         let progress: EpisodeProgressStore.EpisodeProgress?
         let isPlayed: Bool
 
@@ -286,6 +288,15 @@ extension EpisodesView {
                             Image(systemName: "star.fill")
                                 .font(.caption2)
                                 .foregroundStyle(.yellow)
+                        }
+
+                        if bookmarkCount > 0 {
+                            HStack(spacing: 2) {
+                                Image(systemName: "bookmark.fill")
+                                Text("\(bookmarkCount)")
+                            }
+                            .font(.caption2)
+                            .foregroundStyle(Color.rubyRed)
                         }
                     }
 
@@ -496,6 +507,7 @@ private extension View {
         episode: .mockLastWeek,
         episodePlayer: EpisodePlayer(),
         isFavorite: false,
+        bookmarkCount: 0,
         progress: nil,
         isPlayed: true
     )

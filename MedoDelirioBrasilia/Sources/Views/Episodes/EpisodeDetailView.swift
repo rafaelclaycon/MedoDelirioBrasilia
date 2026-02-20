@@ -14,6 +14,9 @@ struct EpisodeDetailView: View {
     @Environment(EpisodeFavoritesStore.self) private var favoritesStore
     @Environment(EpisodeProgressStore.self) private var progressStore
     @Environment(EpisodePlayedStore.self) private var playedStore
+    @Environment(EpisodeBookmarkStore.self) private var bookmarkStore
+
+    @State private var editingBookmark: EpisodeBookmark?
 
     private var isPlayed: Bool {
         playedStore.isPlayed(episode.id)
@@ -44,12 +47,17 @@ struct EpisodeDetailView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
+
+                bookmarkSection
             }
             .padding(.horizontal, .spacing(.medium))
             .padding(.vertical, .spacing(.small))
         }
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(item: $editingBookmark) { bookmark in
+            BookmarkEditView(bookmark: bookmark)
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -160,6 +168,81 @@ struct EpisodeDetailView: View {
         }
         .frame(width: 32, height: 32)
     }
+
+    // MARK: - Bookmarks
+
+    private var episodeBookmarks: [EpisodeBookmark] {
+        bookmarkStore.bookmarks(for: episode.id)
+    }
+
+    @ViewBuilder
+    private var bookmarkSection: some View {
+        let bookmarks = episodeBookmarks
+        if !bookmarks.isEmpty {
+            Divider()
+
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Marcadores")
+                    .font(.headline)
+                    .padding(.bottom, .spacing(.small))
+
+                ForEach(Array(bookmarks.enumerated()), id: \.element.id) { index, bookmark in
+                    detailBookmarkRow(bookmark)
+
+                    if index < bookmarks.count - 1 {
+                        Divider()
+                    }
+                }
+            }
+        }
+    }
+
+    private func detailBookmarkRow(_ bookmark: EpisodeBookmark) -> some View {
+        HStack(spacing: .spacing(.small)) {
+            Image(systemName: "bookmark.fill")
+                .foregroundStyle(Color.rubyRed)
+                .font(.body)
+
+            Text(bookmark.formattedTimestamp)
+                .font(.body)
+                .monospacedDigit()
+                .foregroundStyle(Color.rubyRed)
+
+            Text(bookmark.title ?? "Sem título")
+                .font(.body)
+                .foregroundStyle(bookmark.title != nil ? .primary : .secondary)
+                .lineLimit(1)
+
+            Spacer()
+
+            Button {
+                Task {
+                    await episodePlayer.play(episode: episode)
+                    episodePlayer.seek(to: bookmark.timestamp)
+                }
+            } label: {
+                Image(systemName: "play.fill")
+                    .font(.body)
+                    .foregroundStyle(Color.rubyRed)
+                    .padding(.spacing(.xxxSmall))
+            }
+            .if_iOS26GlassElsePlain()
+        }
+        .padding(.vertical, .spacing(.small))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            editingBookmark = bookmark
+        }
+        .contextMenu {
+            Button(role: .destructive) {
+                withAnimation {
+                    bookmarkStore.delete(id: bookmark.id, episodeId: bookmark.episodeId)
+                }
+            } label: {
+                Label("Excluir", systemImage: "trash")
+            }
+        }
+    }
 }
 
 // MARK: - Liquid Glass Helper
@@ -172,6 +255,15 @@ private extension View {
             self.buttonStyle(.glass)
         } else {
             self.buttonStyle(.borderedProminent)
+        }
+    }
+
+    @ViewBuilder
+    func if_iOS26GlassElsePlain() -> some View {
+        if #available(iOS 26.0, *) {
+            self.buttonStyle(.glass)
+        } else {
+            self.buttonStyle(.plain)
         }
     }
 }
