@@ -20,4 +20,24 @@ extension View {
             self
         }
     }
+
+    /// Conditionally applies `tabViewBottomAccessory` using the `isEnabled` parameter on iOS 26.1+,
+    /// falling back to the `.if` conditional modifier on iOS 26.0.
+    @available(iOS 26.0, *)
+    @ViewBuilder func if_tabViewBottomAccessory<Accessory: View>(
+        isEnabled: @autoclosure () -> Bool,
+        @ViewBuilder content: @escaping () -> Accessory
+    ) -> some View {
+        if #available(iOS 26.1, *) {
+            self.tabViewBottomAccessory(isEnabled: isEnabled()) {
+                content()
+            }
+        } else {
+            self.if(isEnabled()) { view in
+                view.tabViewBottomAccessory {
+                    content()
+                }
+            }
+        }
+    }
 }

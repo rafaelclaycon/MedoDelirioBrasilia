@@ -189,15 +189,13 @@ struct MainView: View {
                             .environment(\.push, PushAction { searchTabPath.append($0) })
                         }
                     }
-                    // TODO: When I can drop iOS 18, add this here:
-                    // .tabViewBottomAccessory(isEnabled: FeatureFlag.isEnabled(.episodes) && episodePlayer.currentEpisode != nil) {
-                    .if(FeatureFlag.isEnabled(.episodes)) { view in
-                        view.tabViewBottomAccessory {
-                            NowPlayingAccessoryView(episode: episodePlayer.currentEpisode, player: episodePlayer)
-                                .onTapGesture {
-                                    showNowPlaying = true
-                                }
-                        }
+                    .if_tabViewBottomAccessory(
+                        isEnabled: FeatureFlag.isEnabled(.episodes) && episodePlayer.currentEpisode != nil
+                    ) {
+                        NowPlayingAccessoryView(episode: episodePlayer.currentEpisode, player: episodePlayer)
+                            .onTapGesture {
+                                showNowPlaying = true
+                            }
                     }
                     .sheet(isPresented: $showNowPlaying) {
                         NowPlayingView()
