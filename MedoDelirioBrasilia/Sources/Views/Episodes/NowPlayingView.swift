@@ -119,7 +119,7 @@ struct NowPlayingView: View {
         VStack(spacing: .spacing(.xxxSmall)) {
             Text(player.currentEpisode?.title ?? "")
                 .font(.title2)
-                .fontWeight(.bold)
+                .fontDesign(.serif)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
 
@@ -153,41 +153,58 @@ struct NowPlayingView: View {
         }
     }
 
+    private static let trackHeight: CGFloat = 4
+    private static let thumbSize: CGFloat = 14
+    private static let trackColor = Color.darkerGreen
+    private static let trackBgColor = Color(.systemGray4)
+
     private var scrubberWithMarkers: some View {
-        ZStack(alignment: .leading) {
-            Slider(
-                value: Binding(
-                    get: { isScrubbing ? scrubValue : player.currentTime },
-                    set: { newValue in
-                        scrubValue = newValue
-                    }
-                ),
-                in: 0...max(player.duration, 1),
-                onEditingChanged: { editing in
-                    isScrubbing = editing
-                    if !editing {
-                        player.seek(to: scrubValue)
-                    }
-                }
-            )
-            .tint(.primary)
+        GeometryReader { geometry in
+            let totalDuration = max(player.duration, 1)
+            let currentValue = isScrubbing ? scrubValue : player.currentTime
+            let fraction = CGFloat(currentValue / totalDuration)
+            let thumbX = fraction * geometry.size.width
 
-            GeometryReader { geometry in
-                let totalDuration = max(player.duration, 1)
-                let bookmarks = currentBookmarks
+            ZStack(alignment: .leading) {
+                Capsule()
+                    .fill(Self.trackBgColor)
+                    .frame(height: Self.trackHeight)
 
-                ForEach(bookmarks) { bookmark in
-                    let fraction = bookmark.timestamp / totalDuration
-                    let xPosition = geometry.size.width * fraction
+                Capsule()
+                    .fill(Self.trackColor)
+                    .frame(width: max(thumbX, 0), height: Self.trackHeight)
+
+                ForEach(currentBookmarks) { bookmark in
+                    let bFraction = bookmark.timestamp / totalDuration
+                    let bX = geometry.size.width * bFraction
 
                     Capsule()
                         .fill(Color.rubyRed)
-                        .frame(width: 3, height: geometry.size.height + 8)
-                        .offset(x: xPosition - 1.5, y: -4)
+                        .frame(width: 3, height: Self.trackHeight + 12)
+                        .offset(x: bX - 1.5)
                 }
+
+                Circle()
+                    .fill(Self.trackColor)
+                    .frame(width: Self.thumbSize, height: Self.thumbSize)
+                    .offset(x: thumbX - Self.thumbSize / 2)
             }
-            .allowsHitTesting(false)
+            .frame(height: Self.thumbSize)
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { value in
+                        if !isScrubbing { isScrubbing = true }
+                        let clamped = min(max(value.location.x, 0), geometry.size.width)
+                        scrubValue = TimeInterval(clamped / geometry.size.width) * totalDuration
+                    }
+                    .onEnded { _ in
+                        isScrubbing = false
+                        player.seek(to: scrubValue)
+                    }
+            )
         }
+        .frame(height: Self.thumbSize)
     }
 
     // MARK: - Playback Controls
