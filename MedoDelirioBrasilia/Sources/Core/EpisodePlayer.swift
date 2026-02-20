@@ -127,6 +127,18 @@ final class EpisodePlayer {
         downloadProgress[episode.id] != nil
     }
 
+    /// Cancels any active episode download.
+    @MainActor
+    func cancelDownload() {
+        activeDownloadTask?.cancel()
+        activeDownloadTask = nil
+        downloadCoordinator.cancelContinuation()
+        if let id = downloadingEpisodeId {
+            downloadProgress.removeValue(forKey: id)
+        }
+        downloadingEpisodeId = nil
+    }
+
     /// Whether the given episode is the one currently loaded in the player.
     func isCurrentEpisode(_ episode: PodcastEpisode) -> Bool {
         currentEpisode?.id == episode.id
@@ -178,6 +190,9 @@ final class EpisodePlayer {
 
     @MainActor
     private func startPlayback(episode: PodcastEpisode, fileURL: URL) {
+        downloadProgress.removeValue(forKey: episode.id)
+        downloadingEpisodeId = nil
+
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback)
             try AVAudioSession.sharedInstance().setActive(true)
