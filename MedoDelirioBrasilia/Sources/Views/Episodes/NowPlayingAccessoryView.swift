@@ -14,49 +14,61 @@ import SwiftUI
 @available(iOS 26.0, *)
 struct NowPlayingAccessoryView: View {
 
-    let episode: PodcastEpisode
+    let episode: PodcastEpisode?
     let player: EpisodePlayer
 
     var body: some View {
-        HStack(spacing: .spacing(.xSmall)) {
-            AsyncImage(url: episode.imageURL) { phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                case .failure, .empty:
-                    Image(systemName: "radio")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                @unknown default:
-                    Image(systemName: "radio")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+        if let episode {
+            HStack(spacing: .spacing(.xSmall)) {
+                AsyncImage(url: episode.imageURL) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    case .failure, .empty:
+                        Image(systemName: "radio")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    @unknown default:
+                        Image(systemName: "radio")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
-            }
-            .frame(width: 28, height: 28)
-            .clipShape(RoundedRectangle(cornerRadius: 6))
+                .frame(width: 28, height: 28)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
 
-            Text(episode.title)
-                .font(.subheadline)
-                .fontWeight(.medium)
-                .lineLimit(1)
+                Text(episode.title)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .lineLimit(1)
 
-            Spacer(minLength: 0)
+                Spacer(minLength: 0)
 
-            Button {
-                Task {
-                    await player.togglePlayPause()
+                Button {
+                    Task {
+                        await player.togglePlayPause()
+                    }
+                } label: {
+                    Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
+                        .font(.body)
+                        .fontWeight(.semibold)
                 }
-            } label: {
-                Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
-                    .font(.body)
-                    .fontWeight(.semibold)
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
+            .padding(.leading, .spacing(.xSmall))
+            .padding(.trailing, .spacing(.medium))
+        } else {
+            HStack(spacing: .spacing(.xSmall)) {
+                Text("Nada Reproduzindo")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .lineLimit(1)
+
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, .spacing(.medium))
         }
-        .padding(.leading, .spacing(.xSmall))
-        .padding(.trailing, .spacing(.medium))
     }
 }
