@@ -23,11 +23,6 @@
 	</array>
 	<key>LSMinimumSystemVersion</key>
 	<string>14.0</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
