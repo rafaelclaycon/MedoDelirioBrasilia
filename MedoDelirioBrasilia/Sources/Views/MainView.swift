@@ -198,11 +198,6 @@ struct MainView: View {
                                 showNowPlaying = true
                             }
                     }
-                    .sheet(isPresented: $showNowPlaying) {
-                        NowPlayingView()
-                            .environment(episodePlayer)
-                            .environment(episodeBookmarkStore)
-                    }
                     .tabBarMinimizeBehavior(.onScrollDown)
                 } else {
                     TabView(selection: tabSelection) {
@@ -264,6 +259,15 @@ struct MainView: View {
                                     }
                             }
                             .environment(\.push, PushAction { episodesPath.append($0) })
+                            .safeAreaInset(edge: .bottom) {
+                                if episodePlayer.currentEpisode != nil {
+                                    NowPlayingBar(episode: episodePlayer.currentEpisode, player: episodePlayer)
+                                        .onTapGesture {
+                                            showNowPlaying = true
+                                        }
+                                        .padding(.bottom, .spacing(.xSmall))
+                                }
+                            }
                             .tabItem {
                                 Label("Episódios", systemImage: "radio")
                             }
@@ -396,6 +400,14 @@ struct MainView: View {
                                     }
                             }
                             .environment(\.push, PushAction { episodesPath.append($0) })
+                            .safeAreaInset(edge: .bottom) {
+                                if episodePlayer.currentEpisode != nil {
+                                    NowPlayingBar(episode: episodePlayer.currentEpisode, player: episodePlayer)
+                                        .onTapGesture {
+                                            showNowPlaying = true
+                                        }
+                                }
+                            }
                         }
                     } else {
                         Tab(Shared.TabInfo.name(PadScreen.trends), systemImage: Shared.TabInfo.symbol(PadScreen.trends)) {
@@ -588,6 +600,11 @@ struct MainView: View {
         }
         .sheet(isPresented: $showEpisodesWhatsNew) {
             IntroducingEpisodesView(appMemory: AppPersistentMemory.shared)
+        }
+        .sheet(isPresented: $showNowPlaying) {
+            NowPlayingView()
+                .environment(episodePlayer)
+                .environment(episodeBookmarkStore)
         }
     }
 
