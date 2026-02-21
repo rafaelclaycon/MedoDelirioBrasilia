@@ -17,6 +17,7 @@ struct EpisodeDetailView: View {
     @Environment(EpisodeBookmarkStore.self) private var bookmarkStore
 
     @State private var editingBookmark: EpisodeBookmark?
+    @State private var bookmarksSortAscending: Bool = true
 
     private var isPlayed: Bool {
         playedStore.isPlayed(episode.id)
@@ -193,16 +194,35 @@ struct EpisodeDetailView: View {
         bookmarkStore.bookmarks(for: episode.id)
     }
 
+    private var sortedBookmarks: [EpisodeBookmark] {
+        let bookmarks = episodeBookmarks
+        return bookmarksSortAscending
+            ? bookmarks.sorted { $0.timestamp < $1.timestamp }
+            : bookmarks.sorted { $0.timestamp > $1.timestamp }
+    }
+
     @ViewBuilder
     private var bookmarkSection: some View {
-        let bookmarks = episodeBookmarks
+        let bookmarks = sortedBookmarks
         if !bookmarks.isEmpty {
             Divider()
 
             VStack(alignment: .leading, spacing: 0) {
-                Text("Marcadores")
-                    .font(.headline)
-                    .padding(.bottom, .spacing(.small))
+                HStack {
+                    Text("Meus Marcadores")
+                        .font(.headline)
+
+                    Spacer()
+
+                    Button {
+                        bookmarksSortAscending.toggle()
+                    } label: {
+                        Image(systemName: bookmarksSortAscending ? "arrow.up" : "arrow.down")
+                            .font(.subheadline.weight(.medium))
+                            .foregroundStyle(Color.rubyRed)
+                    }
+                }
+                .padding(.bottom, .spacing(.small))
 
                 ForEach(Array(bookmarks.enumerated()), id: \.element.id) { index, bookmark in
                     detailBookmarkRow(bookmark)

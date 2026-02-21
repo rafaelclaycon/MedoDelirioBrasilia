@@ -17,6 +17,7 @@ struct NowPlayingView: View {
     @State private var scrubValue: TimeInterval = 0
     @State private var toast: Toast?
     @State private var editingBookmark: EpisodeBookmark?
+    @State private var bookmarksSortAscending: Bool = true
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -259,14 +260,33 @@ struct NowPlayingView: View {
         return bookmarkStore.bookmarks(for: episodeId)
     }
 
+    private var sortedBookmarks: [EpisodeBookmark] {
+        let bookmarks = currentBookmarks
+        return bookmarksSortAscending
+            ? bookmarks.sorted { $0.timestamp < $1.timestamp }
+            : bookmarks.sorted { $0.timestamp > $1.timestamp }
+    }
+
     @ViewBuilder
     private var bookmarkList: some View {
-        let bookmarks = currentBookmarks
+        let bookmarks = sortedBookmarks
         if !bookmarks.isEmpty {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Marcadores")
-                    .font(.headline)
-                    .padding(.bottom, .spacing(.small))
+                HStack {
+                    Text("Meus Marcadores")
+                        .font(.headline)
+
+                    Spacer()
+
+                    Button {
+                        bookmarksSortAscending.toggle()
+                    } label: {
+                        Image(systemName: bookmarksSortAscending ? "arrow.up" : "arrow.down")
+                            .font(.subheadline.weight(.medium))
+                            .foregroundStyle(Color.rubyRed)
+                    }
+                }
+                .padding(.bottom, .spacing(.small))
 
                 ForEach(Array(bookmarks.enumerated()), id: \.element.id) { index, bookmark in
                     bookmarkRow(bookmark)
