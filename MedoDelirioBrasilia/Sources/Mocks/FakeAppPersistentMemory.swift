@@ -77,6 +77,14 @@ final class FakeAppPersistentMemory: AppPersistentMemoryProtocol {
         //
     }
 
+    func hasSeenEpisodesWhatsNewScreen() -> Bool {
+        return false
+    }
+
+    func hasSeenEpisodesWhatsNewScreen(_ newValue: Bool) {
+        //
+    }
+
     func saveRecentSearches(_ searchTerms: [String]) {
         internalRecentSearches = searchTerms
     }

@@ -31,6 +31,7 @@ struct MainView: View {
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
     @State private var showUniversalSearchWhatsNew: Bool = false
+    @State private var showEpisodesWhatsNew: Bool = false
 
     // iPad
     @State private var sidebarFoldersViewModel: SidebarFoldersViewModel
@@ -544,6 +545,7 @@ struct MainView: View {
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
             displayUniversalSearchWhatsNewIfNeeded()
+            displayEpisodesWhatsNewIfNeeded()
 
             Task {
 //                if AppPersistentMemory.shared.hasAllowedContentUpdate() {
@@ -583,6 +585,9 @@ struct MainView: View {
         }
         .sheet(isPresented: $showUniversalSearchWhatsNew) {
             IntroducingUniversalSearchView(appMemory: AppPersistentMemory.shared)
+        }
+        .sheet(isPresented: $showEpisodesWhatsNew) {
+            IntroducingEpisodesView(appMemory: AppPersistentMemory.shared)
         }
     }
 
@@ -634,6 +639,15 @@ struct MainView: View {
         guard !AppPersistentMemory.shared.hasSeenUniversalSearchWhatsNewScreen() else { return }
 
         showUniversalSearchWhatsNew = true
+    }
+
+    private func displayEpisodesWhatsNewIfNeeded() {
+        guard FeatureFlag.isEnabled(.episodes) else { return }
+        guard AppPersistentMemory.shared.hasShownNotificationsOnboarding() else { return }
+        guard !AppPersistentMemory.shared.hasSeenEpisodesWhatsNewScreen() else { return }
+        guard !showUniversalSearchWhatsNew else { return }
+
+        showEpisodesWhatsNew = true
     }
 
     private func sendFolderResearchChanges() async {
