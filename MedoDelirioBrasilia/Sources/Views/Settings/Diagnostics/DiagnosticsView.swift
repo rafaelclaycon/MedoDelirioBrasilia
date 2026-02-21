@@ -17,6 +17,8 @@ struct DiagnosticsView: View {
 
     var body: some View {
         Form {
+            APIBaseURLView()
+
             TestServerConnectionView()
 
             InstallIdView()
@@ -48,6 +50,16 @@ struct DiagnosticsView: View {
 }
 
 extension DiagnosticsView {
+
+    struct APIBaseURLView: View {
+
+        var body: some View {
+            Section("URL base da API") {
+                Text(APIConfig.apiURL)
+                    .font(.monospaced(.subheadline)())
+            }
+        }
+    }
 
     struct TestServerConnectionView: View {
 
