@@ -18,6 +18,8 @@ struct NowPlayingView: View {
     @State private var toast: Toast?
     @State private var editingBookmark: EpisodeBookmark?
 
+    @Environment(\.colorScheme) private var colorScheme
+
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -102,7 +104,15 @@ struct NowPlayingView: View {
         }
         .frame(maxWidth: 300, maxHeight: 300)
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(radius: 8, y: 4)
+        .shadow(
+            color: player.isPlaying
+                ? (colorScheme == .dark ? .green.opacity(0.4) : .black.opacity(0.25))
+                : .clear,
+            radius: colorScheme == .dark ? 16 : 8,
+            y: colorScheme == .dark ? 0 : 4
+        )
+        .scaleEffect(player.isPlaying ? 1.0 : 0.88)
+        .animation(.spring(duration: 0.35, bounce: 0.4), value: player.isPlaying)
     }
 
     private var artworkPlaceholder: some View {
