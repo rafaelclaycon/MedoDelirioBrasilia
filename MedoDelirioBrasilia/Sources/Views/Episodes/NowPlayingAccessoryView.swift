@@ -61,7 +61,7 @@ struct NowPlayingAccessoryView: View {
             .padding(.trailing, .spacing(.medium))
         } else {
             HStack(spacing: .spacing(.xSmall)) {
-                Text("Nada Reproduzindo")
+                Text("Não Reproduzindo")
                     .font(.subheadline)
                     .fontWeight(.medium)
                     .lineLimit(1)

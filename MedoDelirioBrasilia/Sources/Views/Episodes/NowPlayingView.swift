@@ -225,6 +225,7 @@ struct NowPlayingView: View {
     private var playbackControls: some View {
         HStack(spacing: .spacing(.xxxLarge)) {
             Button {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 player.skipBackward()
             } label: {
                 Image(systemName: "gobackward.15")
@@ -234,14 +235,17 @@ struct NowPlayingView: View {
             .buttonStyle(.plain)
 
             Button {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 player.togglePlayPause()
             } label: {
                 Image(systemName: player.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                     .font(.system(size: 64))
+                    .contentTransition(.symbolEffect(.replace.wholeSymbol))
             }
             .buttonStyle(.plain)
 
             Button {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 player.skipForward()
             } label: {
                 Image(systemName: "goforward.30")
