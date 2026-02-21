@@ -15,7 +15,7 @@ extension PodcastEpisode {
         pubDate: Date().addingTimeInterval(-3600 * 2),
         audioURL: URL(string: "https://example.com/ep1.mp3")!,
         description: "<b>Neste episódio</b>, discutimos como o governo perdeu a narrativa nas redes sociais e o impacto disso na opinião pública.<br />Com participação especial de especialistas em comunicação política.",
-        imageURL: nil,
+        imageURL: URL(string: "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/bab9085e39dbc75ec9854cab5b046fa3.jpg"),
         duration: 3945,
         explicit: false
     )

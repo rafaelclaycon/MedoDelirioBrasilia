@@ -25,6 +25,7 @@ struct NowPlayingView: View {
                     .frame(height: .spacing(.xLarge))
 
                 artwork
+                    .padding(.top, .spacing(.medium))
 
                 Spacer()
                     .frame(height: .spacing(.xxLarge))
@@ -37,12 +38,12 @@ struct NowPlayingView: View {
                 progressSection
 
                 Spacer()
-                    .frame(height: .spacing(.xLarge))
+                    .frame(height: .spacing(.small))
 
                 playbackControls
 
                 Spacer()
-                    .frame(height: .spacing(.medium))
+                    .frame(height: .spacing(.xxLarge))
 
                 HStack(spacing: .spacing(.medium)) {
                     GlassButton(
@@ -120,6 +121,7 @@ struct NowPlayingView: View {
             Text(player.currentEpisode?.title ?? "")
                 .font(.title2)
                 .fontDesign(.serif)
+                .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
 
@@ -393,8 +395,26 @@ private extension View {
 // MARK: - Preview
 
 #Preview {
-    let player = EpisodePlayer()
-    NowPlayingView()
-        .environment(player)
-        .environment(EpisodeBookmarkStore())
+    struct SheetHost: View {
+        @State private var isPresented = true
+
+        let player: EpisodePlayer = {
+            let p = EpisodePlayer()
+            p.currentEpisode = .mockRecent
+            p.duration = PodcastEpisode.mockRecent.duration ?? 3945
+            p.currentTime = 620
+            return p
+        }()
+
+        var body: some View {
+            Color.clear
+                .sheet(isPresented: $isPresented) {
+                    NowPlayingView()
+                        .environment(player)
+                        .environment(EpisodeBookmarkStore())
+                }
+        }
+    }
+
+    return SheetHost()
 }
