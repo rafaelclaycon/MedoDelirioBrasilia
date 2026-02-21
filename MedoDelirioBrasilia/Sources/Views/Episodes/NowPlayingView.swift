@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 /// Full now-playing screen presented as a sheet from the bottom accessory.
 struct NowPlayingView: View {
@@ -88,21 +89,14 @@ struct NowPlayingView: View {
     // MARK: - Artwork
 
     private var artwork: some View {
-        AsyncImage(url: player.currentEpisode?.imageURL) { phase in
-            switch phase {
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            case .failure:
-                artworkPlaceholder
-            case .empty:
+        KFImage(player.currentEpisode?.imageURL)
+            .placeholder {
                 ProgressView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-            @unknown default:
-                artworkPlaceholder
             }
-        }
+            .onFailure { _ in }
+            .resizable()
+            .aspectRatio(contentMode: .fit)
         .frame(maxWidth: 300, maxHeight: 300)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(

@@ -17,6 +17,7 @@ struct EpisodesView: View {
     @Environment(\.push) private var push
     @State private var viewModel = ViewModel(episodesService: EpisodesService())
     @State private var selectedFilter: EpisodeFilterOption = .all
+    @State private var activePlaybackStates: Set<EpisodePlaybackStateFilter> = EpisodePlaybackStateFilter.allSet
     @State private var sortAscending = false
 
     // MARK: - View Body
@@ -89,6 +90,27 @@ struct EpisodesView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
+                    ForEach(EpisodePlaybackStateFilter.allCases, id: \.self) { state in
+                        Button {
+                            togglePlaybackState(state)
+                        } label: {
+                            Label(
+                                state.displayName,
+                                systemImage: activePlaybackStates.contains(state) ? "checkmark.circle.fill" : "circle"
+                            )
+                        }
+                    }
+                } label: {
+                    Image(
+                        systemName: activePlaybackStates == EpisodePlaybackStateFilter.allSet
+                            ? "line.3.horizontal.decrease.circle"
+                            : "line.3.horizontal.decrease.circle.fill"
+                    )
+                }
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
                     Picker("Ordenação", selection: $sortAscending) {
                         Text("Mais Recentes no Topo")
                             .tag(false)
@@ -112,12 +134,7 @@ struct EpisodesView: View {
     private func emptyStateForFilter(_ filter: EpisodeFilterOption) -> some View {
         switch filter {
         case .all:
-            ContentUnavailableView {
-                Label("Nenhum Resultado", systemImage: "line.3.horizontal.decrease.circle")
-            } description: {
-                Text("Nenhum episódio encontrado para este filtro.")
-                    .padding(.top, .spacing(.nano))
-            }
+            emptyStateForPlaybackState
 
         case .favorites:
             ContentUnavailableView {
@@ -129,32 +146,6 @@ struct EpisodesView: View {
                 }
             } description: {
                 Text("Deslize um episódio para a direita e toque na estrela para favoritá-lo.")
-                    .padding(.top, .spacing(.nano))
-            }
-
-        case .notPlayed:
-            ContentUnavailableView {
-                Label {
-                    Text("Você Ouviu Tudo!")
-                } icon: {
-                    Image(systemName: "checkmark.circle")
-                        .foregroundStyle(.blue)
-                }
-            } description: {
-                Text("Todos os episódios foram finalizados. Parabéns!")
-                    .padding(.top, .spacing(.nano))
-            }
-
-        case .played:
-            ContentUnavailableView {
-                Label {
-                    Text("Nenhum Finalizado")
-                } icon: {
-                    Image(systemName: "checkmark")
-                        .foregroundStyle(.blue)
-                }
-            } description: {
-                Text("Episódios que você já ouviu aparecerão aqui.")
                     .padding(.top, .spacing(.nano))
             }
 
@@ -170,6 +161,15 @@ struct EpisodesView: View {
                 Text("Use o botão de marcador na tela Reproduzindo para salvar momentos importantes.")
                     .padding(.top, .spacing(.nano))
             }
+        }
+    }
+
+    private var emptyStateForPlaybackState: some View {
+        ContentUnavailableView {
+            Label("Nenhum Resultado", systemImage: "line.3.horizontal.decrease.circle")
+        } description: {
+            Text("Nenhum episódio encontrado para os filtros selecionados.")
+                .padding(.top, .spacing(.nano))
         }
     }
 
@@ -234,22 +234,48 @@ struct EpisodesView: View {
     }
 
     private func filteredEpisodes(from episodes: [PodcastEpisode]) -> [PodcastEpisode] {
-        let filtered: [PodcastEpisode] = switch selectedFilter {
+        let chipFiltered: [PodcastEpisode] = switch selectedFilter {
         case .all:
             episodes
-        case .notPlayed:
-            episodes.filter { !playedStore.isPlayed($0.id) }
         case .favorites:
             episodes.filter { favoritesStore.isFavorite($0.id) }
-        case .played:
-            episodes.filter { playedStore.isPlayed($0.id) }
         case .bookmarked:
             episodes.filter { bookmarkStore.episodeIdsWithBookmarks().contains($0.id) }
         }
 
+        let allSelected = activePlaybackStates == EpisodePlaybackStateFilter.allSet
+        let stateFiltered: [PodcastEpisode] = if allSelected {
+            chipFiltered
+        } else {
+            chipFiltered.filter { episode in
+                let isFinished = playedStore.isPlayed(episode.id)
+                let isStarted = !isFinished && hasProgress(episode.id)
+                let isNotStarted = !isFinished && !isStarted
+
+                return (activePlaybackStates.contains(.notStarted) && isNotStarted)
+                    || (activePlaybackStates.contains(.started) && isStarted)
+                    || (activePlaybackStates.contains(.finished) && isFinished)
+            }
+        }
+
         return sortAscending
-            ? filtered.sorted { $0.pubDate < $1.pubDate }
-            : filtered.sorted { $0.pubDate > $1.pubDate }
+            ? stateFiltered.sorted { $0.pubDate < $1.pubDate }
+            : stateFiltered.sorted { $0.pubDate > $1.pubDate }
+    }
+
+    private func togglePlaybackState(_ state: EpisodePlaybackStateFilter) {
+        if activePlaybackStates.contains(state) {
+            if activePlaybackStates.count > 1 {
+                activePlaybackStates.remove(state)
+            }
+        } else {
+            activePlaybackStates.insert(state)
+        }
+    }
+
+    private func hasProgress(_ episodeID: String) -> Bool {
+        guard let progress = progressStore.progress(for: episodeID) else { return false }
+        return progress.currentTime > 0 && progress.duration > 0
     }
 }
 
@@ -399,9 +425,9 @@ extension EpisodesView {
                     } label: {
                         Image(systemName: isThisEpisodePlaying ? "pause.fill" : "play.fill")
                             .font(.title2)
-                            .foregroundStyle(.primary)
+                            .padding(.vertical, .spacing(.xxxSmall))
                     }
-                    .buttonStyle(.borderless)
+                    .capsule(colored: .accentColor)
                 }
             }
         }
@@ -518,6 +544,18 @@ private extension View {
     .environment(EpisodeProgressStore())
     .environment(EpisodePlayedStore())
     .environment(EpisodeBookmarkStore())
+}
+
+#Preview("Episode") {
+    EpisodesView.EpisodeRow(
+        episode: .mockLastWeek,
+        episodePlayer: EpisodePlayer(),
+        isFavorite: false,
+        bookmarkCount: 0,
+        progress: nil,
+        isPlayed: false
+    )
+    .padding()
 }
 
 #Preview("Played Episode") {

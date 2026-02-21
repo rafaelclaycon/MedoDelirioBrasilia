@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 /// A compact now-playing view designed for the iOS 26 tab bar bottom accessory.
 ///
@@ -20,22 +21,14 @@ struct NowPlayingAccessoryView: View {
     var body: some View {
         if let episode {
             HStack(spacing: .spacing(.xSmall)) {
-                AsyncImage(url: episode.imageURL) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    case .failure, .empty:
-                        Image(systemName: "radio")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    @unknown default:
+                KFImage(episode.imageURL)
+                    .placeholder {
                         Image(systemName: "radio")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
-                }
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
                 .frame(width: 28, height: 28)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
 
