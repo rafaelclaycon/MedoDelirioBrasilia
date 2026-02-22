@@ -109,7 +109,7 @@ struct IntroducingEpisodesView: View {
                         featureItem(
                             icon: "bookmark.fill",
                             title: "Marque Seus Momentos",
-                            message: "Salve marcadores nos timestamps mais importantes para revisitar depois."
+                            message: "Salve marcadores nos pontos mais importantes para revisitar depois."
                         )
 
                         featureItem(
