@@ -126,6 +126,22 @@ struct EpisodesView: View {
         .oneTimeTask {
             await viewModel.onViewLoaded()
         }
+        .alert(
+            "Download Grande",
+            isPresented: Binding(
+                get: { episodePlayer.pendingCellularDownload != nil },
+                set: { _ in }
+            )
+        ) {
+            Button("Baixar Mesmo Assim") {
+                Task { await episodePlayer.confirmCellularDownload() }
+            }
+            Button("Cancelar", role: .cancel) {
+                episodePlayer.dismissCellularDownload()
+            }
+        } message: {
+            Text("Você está usando dados móveis e este episódio tem aproximadamente \(episodePlayer.pendingDownloadSizeMB) MB. Deseja continuar com o download?")
+        }
     }
 
     // MARK: - Empty States

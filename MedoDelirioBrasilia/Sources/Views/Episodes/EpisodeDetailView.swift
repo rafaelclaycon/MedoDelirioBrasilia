@@ -36,6 +36,15 @@ struct EpisodeDetailView: View {
         return episodeProgress.currentTime > 0 && episodeProgress.duration > 0
     }
 
+    private var downloadedFileSize: String? {
+        let fileURL = EpisodePlayer.localFileURL(for: episode)
+        guard let attrs = try? FileManager.default.attributesOfItem(atPath: fileURL.path),
+              let bytes = attrs[.size] as? Int64, bytes > 0 else {
+            return nil
+        }
+        return ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: .spacing(.medium)) {
@@ -68,6 +77,22 @@ struct EpisodeDetailView: View {
                         .foregroundStyle(favoritesStore.isFavorite(episode.id) ? .yellow : .primary)
                 }
             }
+        }
+        .alert(
+            "Download Grande",
+            isPresented: Binding(
+                get: { episodePlayer.pendingCellularDownload != nil },
+                set: { _ in }
+            )
+        ) {
+            Button("Baixar Mesmo Assim") {
+                Task { await episodePlayer.confirmCellularDownload() }
+            }
+            Button("Cancelar", role: .cancel) {
+                episodePlayer.dismissCellularDownload()
+            }
+        } message: {
+            Text("Você está usando dados móveis e este episódio tem aproximadamente \(episodePlayer.pendingDownloadSizeMB) MB. Deseja continuar com o download?")
         }
     }
 
@@ -105,6 +130,15 @@ struct EpisodeDetailView: View {
                         .foregroundStyle(.secondary)
                 } else if let formattedDuration = episode.formattedDuration {
                     Text(formattedDuration)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+
+                if let fileSize = downloadedFileSize {
+                    Text("·")
+                        .foregroundStyle(.secondary)
+
+                    Text(fileSize)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }

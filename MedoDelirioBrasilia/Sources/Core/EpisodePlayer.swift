@@ -8,6 +8,7 @@
 import AVFoundation
 import Foundation
 import MediaPlayer
+import Network
 
 /// Manages podcast episode download and playback.
 ///
@@ -28,6 +29,13 @@ final class EpisodePlayer {
 
     /// Download progress per episode ID (0.0 to 1.0). Empty when no downloads are active.
     var downloadProgress: [String: Double] = [:]
+
+    /// Set when a download is blocked because the user is on cellular and the file exceeds the size threshold.
+    /// Views observe this to present a confirmation alert.
+    var pendingCellularDownload: PodcastEpisode?
+    var pendingDownloadSizeMB: Int = 0
+
+    private static let cellularDownloadThreshold: Int64 = 100 * 1024 * 1024
 
     // MARK: - Dependencies
 
@@ -88,15 +96,11 @@ final class EpisodePlayer {
             return
         }
 
-        do {
-            let downloadedURL = try await downloadEpisode(episode)
-            guard playGeneration == generation else { return }
-            startPlayback(episode: episode, fileURL: downloadedURL)
-        } catch {
-            guard playGeneration == generation else { return }
-            downloadProgress.removeValue(forKey: episode.id)
-            downloadingEpisodeId = nil
+        if await shouldWarnCellularDownload(for: episode) {
+            return
         }
+
+        await performDownloadAndPlay(episode: episode, generation: generation)
     }
 
     /// Toggles between playing and paused states.
@@ -164,6 +168,68 @@ final class EpisodePlayer {
     @MainActor
     func skipBackward(_ seconds: TimeInterval = 15) {
         seek(to: currentTime - seconds)
+    }
+
+    /// Called by the UI when the user confirms they want to download over cellular.
+    @MainActor
+    func confirmCellularDownload() async {
+        guard let episode = pendingCellularDownload else { return }
+        pendingCellularDownload = nil
+        pendingDownloadSizeMB = 0
+
+        playGeneration += 1
+        let generation = playGeneration
+        await performDownloadAndPlay(episode: episode, generation: generation)
+    }
+
+    @MainActor
+    func dismissCellularDownload() {
+        pendingCellularDownload = nil
+        pendingDownloadSizeMB = 0
+    }
+
+    // MARK: - Cellular Check
+
+    @MainActor
+    private func shouldWarnCellularDownload(for episode: PodcastEpisode) async -> Bool {
+        let monitor = NWPathMonitor()
+        let path = await withCheckedContinuation { continuation in
+            monitor.pathUpdateHandler = { path in
+                monitor.cancel()
+                continuation.resume(returning: path)
+            }
+            monitor.start(queue: DispatchQueue.global(qos: .utility))
+        }
+
+        guard path.usesInterfaceType(.cellular) else { return false }
+
+        var request = URLRequest(url: episode.audioURL)
+        request.httpMethod = "HEAD"
+
+        guard let (_, response) = try? await URLSession.shared.data(for: request),
+              let httpResponse = response as? HTTPURLResponse else {
+            return false
+        }
+
+        let contentLength = Int64(httpResponse.value(forHTTPHeaderField: "Content-Length") ?? "0") ?? 0
+        guard contentLength > Self.cellularDownloadThreshold else { return false }
+
+        pendingCellularDownload = episode
+        pendingDownloadSizeMB = Int(contentLength / (1024 * 1024))
+        return true
+    }
+
+    @MainActor
+    private func performDownloadAndPlay(episode: PodcastEpisode, generation: Int) async {
+        do {
+            let downloadedURL = try await downloadEpisode(episode)
+            guard playGeneration == generation else { return }
+            startPlayback(episode: episode, fileURL: downloadedURL)
+        } catch {
+            guard playGeneration == generation else { return }
+            downloadProgress.removeValue(forKey: episode.id)
+            downloadingEpisodeId = nil
+        }
     }
 
     // MARK: - Download
