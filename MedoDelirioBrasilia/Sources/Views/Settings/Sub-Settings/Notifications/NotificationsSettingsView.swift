@@ -2,40 +2,12 @@ import SwiftUI
 
 struct NotificationsSettingsView: View {
 
-    @State var enableNotifications = false
-    
+    @State private var enableNotifications = false
+    @State private var episodeNotifications = false
+
     var body: some View {
         Form {
-//            Section {
-//                Toggle("Novos sons", isOn: $newSounds)
-//                    .onChange(of: newSounds) { newValue in
-//                        //UserSettings().setEnableTrends(to: newValue)
-//                    }
-//
-//                Toggle("Novas músicas", isOn: $newSounds)
-//                    .onChange(of: newSounds) { newValue in
-//                        //UserSettings().setEnableTrends(to: newValue)
-//                    }
-//
-//                Toggle("Anúncios de novas funcionalidades", isOn: $newSounds)
-//                    .onChange(of: newSounds) { newValue in
-//                        //UserSettings().setEnableTrends(to: newValue)
-//                    }
-//
-//                Toggle("Brincadeiras", isOn: $newSounds)
-//                    .onChange(of: newSounds) { newValue in
-//                        //UserSettings().setEnableTrends(to: newValue)
-//                    }
-//            } header: {
-//                Text("Escolha quais notificações deseja receber")
-//            } footer: {
-//                Text("Tentarei manter a frequência das notificações em 1 a 2 por semana para não encher o saco.")
-//            }
-            
             Section {
-                NotificationSymbolPlusText()
-                    .padding()
-                
                 Toggle("Habilitar Notificações", isOn: $enableNotifications)
                     .onChange(of: enableNotifications) {
                         if enableNotifications {
@@ -50,13 +22,30 @@ struct NotificationsSettingsView: View {
             } header: {
                 EmptyView()
             } footer: {
-                Text("Caso a opção acima não esteja surtindo efeito, toque no botão abaixo para habilitar as notificações do app nos Ajustes do sistema.")
+                Text("Caso a opção acima não esteja surtindo efeito, toque no botão no fim dessa tela para habilitar as notificações do app nos Ajustes do sistema.")
             }
-            
+
+            if FeatureFlag.isEnabled(.episodes), enableNotifications {
+                Section {
+                    Toggle("Avisos", isOn: .constant(true))
+                        .disabled(true)
+
+                    Toggle("Novos Episódios", isOn: $episodeNotifications)
+                        .onChange(of: episodeNotifications) {
+                            //UserSettings().setEnableTrends(to: newValue)
+                        }
+                } header: {
+                    Text("Escolha o que quer receber")
+                } footer: {
+                    Text("Seja avisado quando um novo episódio do podcast estiver disponível.")
+                }
+            }
+
             Section {
                 Button("Mostrar permissões do app no sistema") {
-                    if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
-                        UIApplication.shared.open(appSettings)
+                    let bundleId = Bundle.main.bundleIdentifier ?? ""
+                    if let url = URL(string: "settings-navigation://com.apple.Settings.Apps/\(bundleId)") {
+                        UIApplication.shared.open(url)
                     }
                 }
             }
@@ -70,5 +59,7 @@ struct NotificationsSettingsView: View {
 }
 
 #Preview {
-    NotificationsSettingsView()
+    NavigationStack {
+        NotificationsSettingsView()
+    }
 }
