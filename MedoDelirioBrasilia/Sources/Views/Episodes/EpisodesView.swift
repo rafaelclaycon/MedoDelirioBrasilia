@@ -413,38 +413,77 @@ extension EpisodesView {
 
         @ViewBuilder
         private var playButton: some View {
-            if episodePlayer.isDownloading(episode) {
+            if isThisEpisodePlaying {
+                pauseButton
+            } else if episodePlayer.isDownloading(episode) {
                 downloadProgressIndicator
+            } else if episodePlayer.isPreparing(episode) {
+                ProgressView()
+                    .frame(width: 32, height: 32)
             } else {
-                if #available(iOS 26.0, *) {
-                    Button {
-                        Task {
-                            await episodePlayer.play(episode: episode)
-                        }
-                    } label: {
-                        Image(systemName: isThisEpisodePlaying ? "pause.fill" : "play.fill")
-                            .font(.title2)
-                            .foregroundStyle(.primary)
-                    }
-                    .buttonStyle(.borderless)
-                    .padding(.spacing(.small))
-                    .glassEffect(
-                        .regular.tint(
-                            Color.green.opacity(0.3)
-                        ).interactive()
-                    )
-                } else {
-                    Button {
-                        Task {
-                            await episodePlayer.play(episode: episode)
-                        }
-                    } label: {
-                        Image(systemName: isThisEpisodePlaying ? "pause.fill" : "play.fill")
-                            .font(.title2)
-                            .padding(.vertical, .spacing(.xxxSmall))
-                    }
-                    .capsule(colored: .accentColor)
+                playActionButton
+            }
+        }
+
+        @ViewBuilder
+        private var pauseButton: some View {
+            if #available(iOS 26.0, *) {
+                Button {
+                    episodePlayer.togglePlayPause()
+                } label: {
+                    Image(systemName: "pause.fill")
+                        .font(.title2)
+                        .foregroundStyle(.primary)
                 }
+                .buttonStyle(.borderless)
+                .padding(.spacing(.small))
+                .glassEffect(
+                    .regular.tint(
+                        Color.green.opacity(0.3)
+                    ).interactive()
+                )
+            } else {
+                Button {
+                    episodePlayer.togglePlayPause()
+                } label: {
+                    Image(systemName: "pause.fill")
+                        .font(.title2)
+                        .padding(.vertical, .spacing(.xxxSmall))
+                }
+                .capsule(colored: .accentColor)
+            }
+        }
+
+        @ViewBuilder
+        private var playActionButton: some View {
+            if #available(iOS 26.0, *) {
+                Button {
+                    Task {
+                        await episodePlayer.play(episode: episode)
+                    }
+                } label: {
+                    Image(systemName: "play.fill")
+                        .font(.title2)
+                        .foregroundStyle(.primary)
+                }
+                .buttonStyle(.borderless)
+                .padding(.spacing(.small))
+                .glassEffect(
+                    .regular.tint(
+                        Color.green.opacity(0.3)
+                    ).interactive()
+                )
+            } else {
+                Button {
+                    Task {
+                        await episodePlayer.play(episode: episode)
+                    }
+                } label: {
+                    Image(systemName: "play.fill")
+                        .font(.title2)
+                        .padding(.vertical, .spacing(.xxxSmall))
+                }
+                .capsule(colored: .accentColor)
             }
         }
 

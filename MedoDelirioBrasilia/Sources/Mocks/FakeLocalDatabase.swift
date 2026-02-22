@@ -361,9 +361,34 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func allBookmarks(forEpisodeId episodeId: String) throws -> [EpisodeBookmark] { [] }
     func allBookmarkedEpisodeIDs() throws -> Set<String> { [] }
+    func allBookmarkDates() throws -> [Date] { [] }
     func insertBookmark(_ bookmark: EpisodeBookmark) throws {}
     func updateBookmark(_ bookmark: EpisodeBookmark) throws {}
     func deleteBookmark(id: String) throws {}
+
+    // Episode Listen Log
+
+    var episodeListenLogs: [EpisodeListenLog] = []
+
+    func insertEpisodeListenLog(_ log: EpisodeListenLog) throws {
+        episodeListenLogs.append(log)
+    }
+
+    func allEpisodeListenLogs() throws -> [EpisodeListenLog] {
+        episodeListenLogs
+    }
+
+    func episodeListenLogs(forEpisodeId episodeId: String) throws -> [EpisodeListenLog] {
+        episodeListenLogs.filter { $0.episodeId == episodeId }
+    }
+
+    func allListenDates() throws -> [Date] {
+        episodeListenLogs.map(\.startedAt)
+    }
+
+    func deleteAllEpisodeListenLogs() throws {
+        episodeListenLogs.removeAll()
+    }
 
     func markAllUserShareLogsAsSentToServer() throws {
         //

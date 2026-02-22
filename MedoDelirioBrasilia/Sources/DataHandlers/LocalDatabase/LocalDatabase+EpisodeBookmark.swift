@@ -49,6 +49,18 @@ extension LocalDatabase {
         return ids
     }
 
+    func allBookmarkDates() throws -> [Date] {
+        let query = episodeBookmarkTable
+            .select(createdAtCol)
+            .order(createdAtCol.asc)
+
+        var dates = [Date]()
+        for row in try db.prepare(query) {
+            dates.append(row[createdAtCol])
+        }
+        return dates
+    }
+
     func insertBookmark(_ bookmark: EpisodeBookmark) throws {
         try db.run(episodeBookmarkTable.insert(
             idCol <- bookmark.id,

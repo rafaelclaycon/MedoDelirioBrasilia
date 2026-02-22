@@ -105,6 +105,7 @@ internal protocol LocalDatabaseProtocol {
     // Episode Bookmark
     func allBookmarks(forEpisodeId episodeId: String) throws -> [EpisodeBookmark]
     func allBookmarkedEpisodeIDs() throws -> Set<String>
+    func allBookmarkDates() throws -> [Date]
     func insertBookmark(_ bookmark: EpisodeBookmark) throws
     func updateBookmark(_ bookmark: EpisodeBookmark) throws
     func deleteBookmark(id: String) throws
@@ -112,6 +113,13 @@ internal protocol LocalDatabaseProtocol {
     // Podcast Episode Cache
     func allPodcastEpisodes() throws -> [PodcastEpisode]
     func upsertPodcastEpisodes(_ episodes: [PodcastEpisode]) throws
+
+    // Episode Listen Log
+    func insertEpisodeListenLog(_ log: EpisodeListenLog) throws
+    func allEpisodeListenLogs() throws -> [EpisodeListenLog]
+    func episodeListenLogs(forEpisodeId episodeId: String) throws -> [EpisodeListenLog]
+    func allListenDates() throws -> [Date]
+    func deleteAllEpisodeListenLogs() throws
 
     func markAllUserShareLogsAsSentToServer() throws
     func clearAudienceSharingStatisticTable() throws
@@ -140,6 +148,7 @@ class LocalDatabase: LocalDatabaseProtocol {
     var episodeProgressTable = Table("episodeProgress")
     var podcastEpisodeTable = Table("podcastEpisode")
     var episodeBookmarkTable = Table("episodeBookmark")
+    var episodeListenLogTable = Table("episodeListenLog")
 
     static let shared = LocalDatabase()
     
@@ -196,7 +205,8 @@ extension LocalDatabase {
             AddPinnedReactionTable(),
             AddEpisodeStateTables(),
             AddPodcastEpisodeTable(),
-            AddEpisodeBookmarkTable()
+            AddEpisodeBookmarkTable(),
+            AddEpisodeListenLogTable()
         ]
     }
 

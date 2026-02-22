@@ -90,6 +90,8 @@
 		49E5D33B28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */; };
 		49F9220028E334C1009AC743 /* Eu to esmagada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */; };
 		49F9220228E33576009AC743 /* Ey ey eymael funk meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */; };
+		9B4AA4F5205E1ED1C90268B6 /* EpisodeListenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235B1A4C6190535D767EE97 /* EpisodeListenStoreTests.swift */; };
+		A6C14FDB535C6A546AA42300 /* EpisodeListenStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F192C0CBCA2E306EEA5B76 /* EpisodeListenStatsTests.swift */; };
 		D900B9C52A6DF6D300C1BC3A /* FakeLoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900B9C42A6DF6D300C1BC3A /* FakeLoggerService.swift */; };
 		D903DB0429DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */; };
 		D903DB0929DF42A500D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */; };
@@ -1278,6 +1280,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		40F192C0CBCA2E306EEA5B76 /* EpisodeListenStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListenStatsTests.swift; sourceTree = "<group>"; };
 		491110252926B9CC0055F4EE /* Desconhecido - Eu por forca de lei sou obrigado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Eu por forca de lei sou obrigado.mp3"; sourceTree = "<group>"; };
 		491110272926BA2F0055F4EE /* Desconhecido - Socorro nos ajudem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Socorro nos ajudem.mp3"; sourceTree = "<group>"; };
 		491110292926BA6F0055F4EE /* Desconhecido - Um movimento passivo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Um movimento passivo.mp3"; sourceTree = "<group>"; };
@@ -1361,6 +1364,7 @@
 		49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao e hora pra desespero completo.mp3"; sourceTree = "<group>"; };
 		49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu to esmagada.mp3"; sourceTree = "<group>"; };
 		49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ey ey eymael funk meme.mp3"; sourceTree = "<group>"; };
+		9235B1A4C6190535D767EE97 /* EpisodeListenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListenStoreTests.swift; sourceTree = "<group>"; };
 		D900B9C42A6DF6D300C1BC3A /* FakeLoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLoggerService.swift; sourceTree = "<group>"; };
 		D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro e morte, Bolsonaro e uma peste.mp3"; sourceTree = "<group>"; };
 		D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ei, Bolsonaro, vai tomar no cu.mp3"; sourceTree = "<group>"; };
@@ -3837,6 +3841,7 @@
 				D9FF3F9A2B14325A007AE773 /* UpdateIncentiveTests.swift */,
 				D96892DD2C9F7DC40084F646 /* VideoMakerTests.swift */,
 				D920BF632CD1E5A800C6BD72 /* FolderResearchProviderTests.swift */,
+				40F192C0CBCA2E306EEA5B76 /* EpisodeListenStatsTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4039,6 +4044,7 @@
 		D9E69598283D581700C341B2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F3E1908815F9569034BA9FB3 /* Core */,
 				D92C0CA328401220009CF19A /* Views */,
 				D95D88332AAD6A2000C97090 /* Extensions */,
 				D9E69599283D581E00C341B2 /* DataHandlers */,
@@ -4071,6 +4077,14 @@
 				D9F570872A62F27F00596C32 /* XCTestCase+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F3E1908815F9569034BA9FB3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				9235B1A4C6190535D767EE97 /* EpisodeListenStoreTests.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5457,6 +5471,8 @@
 				D98DBD38284921B5008544F8 /* APIClientTests.swift in Sources */,
 				D9CF3BDA2DB06036002C6E6B /* ContentGridViewModelTests.swift in Sources */,
 				D9CF3BDB2DB06037002C6E6B /* PlayableContentStateTests.swift in Sources */,
+				A6C14FDB535C6A546AA42300 /* EpisodeListenStatsTests.swift in Sources */,
+				9B4AA4F5205E1ED1C90268B6 /* EpisodeListenStoreTests.swift in Sources */,
 				D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */,
 				D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */,
 			);

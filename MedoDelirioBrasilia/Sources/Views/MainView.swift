@@ -51,6 +51,7 @@ struct MainView: View {
     @State private var episodeProgressStore = EpisodeProgressStore()
     @State private var episodePlayedStore = EpisodePlayedStore()
     @State private var episodeBookmarkStore = EpisodeBookmarkStore()
+    @State private var episodeListenStore = EpisodeListenStore()
     @State private var showNowPlaying = false
 
     @State private var contentRepository: ContentRepository
@@ -546,6 +547,7 @@ struct MainView: View {
         .environment(episodeProgressStore)
         .environment(episodePlayedStore)
         .environment(episodeBookmarkStore)
+        .environment(episodeListenStore)
         .onChange(of: episodePlayer.pendingRemoteBookmark) { _, isPending in
             guard isPending else { return }
             showNowPlaying = true
@@ -553,6 +555,7 @@ struct MainView: View {
         .onAppear {
             episodePlayer.progressStore = episodeProgressStore
             episodePlayer.bookmarkStore = episodeBookmarkStore
+            episodePlayer.listenStore = episodeListenStore
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()

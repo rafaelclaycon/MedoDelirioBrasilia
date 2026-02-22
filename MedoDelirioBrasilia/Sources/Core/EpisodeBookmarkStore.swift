@@ -56,6 +56,10 @@ final class EpisodeBookmarkStore {
         }
     }
 
+    func allBookmarkDates() -> [Date] {
+        (try? database.allBookmarkDates()) ?? []
+    }
+
     func delete(id: String, episodeId: String) {
         try? database.deleteBookmark(id: id)
 

@@ -30,6 +30,10 @@ final class EpisodePlayer {
     /// Download progress per episode ID (0.0 to 1.0). Empty when no downloads are active.
     var downloadProgress: [String: Double] = [:]
 
+    /// The episode ID currently going through pre-download checks (cellular, HEAD request).
+    /// Drives an indeterminate spinner on the play button for immediate tap feedback.
+    var preparingEpisodeId: String?
+
     /// Set when a download is blocked because the user is on cellular and the file exceeds the size threshold.
     /// Views observe this to present a confirmation alert.
     var pendingCellularDownload: PodcastEpisode?
@@ -41,6 +45,7 @@ final class EpisodePlayer {
 
     @ObservationIgnored var progressStore: EpisodeProgressStore?
     @ObservationIgnored var bookmarkStore: EpisodeBookmarkStore?
+    @ObservationIgnored var listenStore: EpisodeListenStore?
 
     /// Set to `true` when a bookmark is added from the lock screen remote command.
     /// Observed by `MainView` to auto-open the Now Playing screen.
@@ -56,11 +61,13 @@ final class EpisodePlayer {
     @ObservationIgnored private var playGeneration: Int = 0
     @ObservationIgnored private var remoteCommandsConfigured = false
     @ObservationIgnored private var lastProgressSaveTime: Date = .distantPast
+    @ObservationIgnored private var currentSessionStart: Date?
+    @ObservationIgnored private var currentSessionStartTime: TimeInterval = 0
 
     @ObservationIgnored private lazy var downloadCoordinator: DownloadCoordinator = {
         DownloadCoordinator { [weak self] progress in
             Task { @MainActor [weak self] in
-                guard let self, let id = self.downloadingEpisodeId else { return }
+                guard let self, let id = self.downloadingEpisodeId, self.audioPlayer == nil else { return }
                 self.downloadProgress[id] = progress
             }
         }
@@ -86,17 +93,20 @@ final class EpisodePlayer {
         }
 
         stopInternal()
+        preparingEpisodeId = episode.id
         playGeneration += 1
         let generation = playGeneration
 
         let fileURL = Self.localFileURL(for: episode)
 
         if FileManager.default.fileExists(atPath: fileURL.path) {
+            preparingEpisodeId = nil
             startPlayback(episode: episode, fileURL: fileURL)
             return
         }
 
         if await shouldWarnCellularDownload(for: episode) {
+            preparingEpisodeId = nil
             return
         }
 
@@ -108,11 +118,13 @@ final class EpisodePlayer {
     func togglePlayPause() {
         guard let player = audioPlayer else { return }
         if player.isPlaying {
+            recordCurrentSession(didComplete: false)
             player.pause()
             isPlaying = false
             stopTimer()
             saveProgress()
         } else {
+            beginSession()
             player.play()
             isPlaying = true
             startTimer()
@@ -131,15 +143,19 @@ final class EpisodePlayer {
         downloadProgress[episode.id] != nil
     }
 
+    /// Whether the given episode is being prepared (pre-download checks in flight).
+    func isPreparing(_ episode: PodcastEpisode) -> Bool {
+        preparingEpisodeId == episode.id
+    }
+
     /// Cancels any active episode download.
     @MainActor
     func cancelDownload() {
         activeDownloadTask?.cancel()
         activeDownloadTask = nil
         downloadCoordinator.cancelContinuation()
-        if let id = downloadingEpisodeId {
-            downloadProgress.removeValue(forKey: id)
-        }
+        preparingEpisodeId = nil
+        downloadProgress = [:]
         downloadingEpisodeId = nil
     }
 
@@ -227,7 +243,8 @@ final class EpisodePlayer {
             startPlayback(episode: episode, fileURL: downloadedURL)
         } catch {
             guard playGeneration == generation else { return }
-            downloadProgress.removeValue(forKey: episode.id)
+            preparingEpisodeId = nil
+            downloadProgress = [:]
             downloadingEpisodeId = nil
         }
     }
@@ -236,6 +253,7 @@ final class EpisodePlayer {
 
     @MainActor
     private func downloadEpisode(_ episode: PodcastEpisode) async throws -> URL {
+        preparingEpisodeId = nil
         downloadingEpisodeId = episode.id
         downloadProgress[episode.id] = 0.0
 
@@ -256,7 +274,8 @@ final class EpisodePlayer {
 
     @MainActor
     private func startPlayback(episode: PodcastEpisode, fileURL: URL) {
-        downloadProgress.removeValue(forKey: episode.id)
+        preparingEpisodeId = nil
+        downloadProgress = [:]
         downloadingEpisodeId = nil
 
         do {
@@ -288,6 +307,7 @@ final class EpisodePlayer {
 
         player.play()
         isPlaying = true
+        beginSession()
         configureRemoteCommands()
         updateNowPlayingInfo()
         loadArtwork(for: episode)
@@ -296,6 +316,7 @@ final class EpisodePlayer {
 
     @MainActor
     private func onPlaybackFinished() {
+        recordCurrentSession(didComplete: true)
         if let id = currentEpisode?.id {
             progressStore?.clear(episodeID: id)
         }
@@ -329,11 +350,11 @@ final class EpisodePlayer {
         activeDownloadTask?.cancel()
         activeDownloadTask = nil
         downloadCoordinator.cancelContinuation()
-        if let id = downloadingEpisodeId {
-            downloadProgress.removeValue(forKey: id)
-        }
+        preparingEpisodeId = nil
+        downloadProgress = [:]
         downloadingEpisodeId = nil
 
+        recordCurrentSession(didComplete: false)
         saveProgress()
 
         audioPlayer?.stop()
@@ -358,6 +379,30 @@ final class EpisodePlayer {
     private func saveProgressThrottled() {
         guard Date().timeIntervalSince(lastProgressSaveTime) >= 5 else { return }
         saveProgress()
+    }
+
+    // MARK: - Listen Session Logging
+
+    private func recordCurrentSession(didComplete: Bool) {
+        guard let start = currentSessionStart,
+              let episodeId = currentEpisode?.id else { return }
+        let now = Date()
+        let listened = currentTime - currentSessionStartTime
+        guard listened > 0 else { return }
+        listenStore?.recordSession(
+            episodeId: episodeId,
+            startedAt: start,
+            endedAt: now,
+            durationListened: listened,
+            didComplete: didComplete
+        )
+        currentSessionStart = nil
+        currentSessionStartTime = 0
+    }
+
+    private func beginSession() {
+        currentSessionStart = Date()
+        currentSessionStartTime = currentTime
     }
 
     // MARK: - Remote Commands

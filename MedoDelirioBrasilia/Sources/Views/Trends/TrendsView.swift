@@ -67,18 +67,14 @@ struct TrendsView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             MostSharedByMeView()
                                 .environment(trendsHelper)
-                            
-                            /*if showDayOfTheWeekTheUserSharesTheMost {
-                             Text("Dia da Semana No Qual Eu Mais Compartilho")
-                             .font(.title2)
-                             .padding(.horizontal)
-                             }*/
-                            
-                            /*if showAppsThroughWhichTheUserSharesTheMost {
-                             Text("Apps Pelos Quais Você Mais Compartilha")
-                             .font(.title2)
-                             .padding(.horizontal)
-                             }*/
+
+                            if FeatureFlag.isEnabled(.episodes) {
+                                Divider()
+                                    .padding(.horizontal)
+                                    .padding(.vertical, .spacing(.small))
+
+                                EpisodeStatsView()
+                            }
                         }
                     }
                 }
