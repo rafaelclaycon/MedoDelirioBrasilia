@@ -227,6 +227,8 @@ struct EpisodesView: View {
             Button {
                 if !playedStore.isPlayed(episode.id) {
                     progressStore.clear(episodeID: episode.id)
+                    let memory = AppPersistentMemory.shared
+                    memory.setEpisodesCompletedCount(memory.getEpisodesCompletedCount() + 1)
                 }
                 playedStore.toggle(episode.id)
             } label: {

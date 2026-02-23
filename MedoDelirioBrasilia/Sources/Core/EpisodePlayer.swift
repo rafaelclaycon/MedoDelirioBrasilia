@@ -49,11 +49,15 @@ final class EpisodePlayer {
     @ObservationIgnored var progressStore: EpisodeProgressStore?
     @ObservationIgnored var bookmarkStore: EpisodeBookmarkStore?
     @ObservationIgnored var listenStore: EpisodeListenStore?
+    @ObservationIgnored var playedStore: EpisodePlayedStore?
     @ObservationIgnored var analyticsService: AnalyticsServiceProtocol?
 
     /// Set to `true` when a bookmark is added from the lock screen remote command.
     /// Observed by `MainView` to auto-open the Now Playing screen.
     var pendingRemoteBookmark: Bool = false
+
+    var showSupportPrompt: Bool = false
+    var dismissNowPlaying: Bool = false
 
     // MARK: - Private State
 
@@ -340,6 +344,9 @@ final class EpisodePlayer {
         recordCurrentSession(didComplete: true)
         if let id = currentEpisode?.id {
             progressStore?.clear(episodeID: id)
+            if !(playedStore?.isPlayed(id) ?? true) {
+                playedStore?.toggle(id)
+            }
         }
         isPlaying = false
         currentTime = 0
@@ -347,6 +354,13 @@ final class EpisodePlayer {
         currentEpisode = nil
         stopTimer()
         clearNowPlayingInfo()
+        dismissNowPlaying = true
+
+        let memory = AppPersistentMemory.shared
+        memory.setEpisodesCompletedCount(memory.getEpisodesCompletedCount() + 1)
+        if memory.shouldShowEpisodeSupportPrompt() {
+            showSupportPrompt = true
+        }
     }
 
     // MARK: - Timer

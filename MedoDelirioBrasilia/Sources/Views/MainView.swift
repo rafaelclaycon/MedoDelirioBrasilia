@@ -24,6 +24,7 @@ struct MainView: View {
     @State private var episodesPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
+    @State private var isShowingSupportSheet: Bool = false
     @State private var settingsHelper = SettingsHelper()
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false
@@ -512,10 +513,16 @@ struct MainView: View {
             guard isPending else { return }
             showNowPlaying = true
         }
+        .onChange(of: episodePlayer.dismissNowPlaying) { _, shouldDismiss in
+            guard shouldDismiss else { return }
+            showNowPlaying = false
+            episodePlayer.dismissNowPlaying = false
+        }
         .onAppear {
             episodePlayer.progressStore = episodeProgressStore
             episodePlayer.bookmarkStore = episodeBookmarkStore
             episodePlayer.listenStore = episodeListenStore
+            episodePlayer.playedStore = episodePlayedStore
             episodePlayer.analyticsService = AnalyticsService()
             episodeBookmarkStore.analyticsService = AnalyticsService()
             logger.debug("MainView appeared")
@@ -563,6 +570,9 @@ struct MainView: View {
             SettingsView(apiClient: APIClient.shared)
                 .environment(settingsHelper)
         }
+        .sheet(isPresented: $isShowingSupportSheet) {
+            StandaloneSupportView()
+        }
         .sheet(isPresented: $showEpisodesWhatsNew) {
             IntroducingEpisodesView(appMemory: AppPersistentMemory.shared)
         }
@@ -570,6 +580,47 @@ struct MainView: View {
             NowPlayingView()
                 .environment(episodePlayer)
                 .environment(episodeBookmarkStore)
+        }
+        .sheet(isPresented: $episodePlayer.showSupportPrompt) {
+            SupportPromptView(
+                onSupport: {
+                    let memory = AppPersistentMemory.shared
+                    memory.setHasSeenEpisodeSupportPrompt(true)
+                    memory.setLastSupportPromptDate(Date())
+                    episodePlayer.showSupportPrompt = false
+                    Task {
+                        await AnalyticsService().send(
+                            originatingScreen: "SupportPrompt",
+                            action: "support_prompt_tapped(trigger=episodes)"
+                        )
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        isShowingSupportSheet = true
+                    }
+                },
+                onDismiss: {
+                    let memory = AppPersistentMemory.shared
+                    memory.setHasSeenEpisodeSupportPrompt(true)
+                    memory.setLastSupportPromptDate(Date())
+                    episodePlayer.showSupportPrompt = false
+                    Task {
+                        await AnalyticsService().send(
+                            originatingScreen: "SupportPrompt",
+                            action: "support_prompt_dismissed(trigger=episodes)"
+                        )
+                    }
+                }
+            )
+            .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
+            .onAppear {
+                Task {
+                    await AnalyticsService().send(
+                        originatingScreen: "SupportPrompt",
+                        action: "support_prompt_shown(trigger=episodes)"
+                    )
+                }
+            }
         }
     }
 

@@ -139,83 +139,103 @@ extension HelpTheAppView {
     struct DonateButtons: View {
 
         @Binding var toast: Toast?
+        var showSectionDivider: Bool = false
+        @State private var pixAlertAmount: Int?
 
         private let pixKey: String = "contato@medodelirioios.com"
 
+        // MARK: - Tier Data
+
+        struct Tier: Identifiable {
+            let emoji: String
+            let amount: Int
+            let isPopular: Bool
+            var id: Int { amount }
+        }
+
+        static let monthlyTiers: [Tier] = [
+            Tier(emoji: "☕", amount: 5, isPopular: false),
+            Tier(emoji: "🍕", amount: 10, isPopular: true),
+            Tier(emoji: "🍖", amount: 20, isPopular: false),
+        ]
+
+        static let pixTiers: [Tier] = [
+            Tier(emoji: "☕", amount: 5, isPopular: false),
+            Tier(emoji: "🍕", amount: 10, isPopular: false),
+            Tier(emoji: "🍖", amount: 20, isPopular: false),
+            Tier(emoji: "🎉", amount: 50, isPopular: false),
+        ]
+
+        // MARK: - Body
+
         var body: some View {
-            VStack(alignment: .center, spacing: .spacing(.large)) {
-                let apoiaseButton = Button {
-                    Task {
-                        await apoiaseAction()
+            VStack(alignment: .center, spacing: .spacing(.xLarge)) {
+                Text("💚 Junte-se aos apoiadores do app")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+
+                VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                    Text("Apoio Mensal (Apoia.se)")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+
+                    HStack(spacing: .spacing(.small)) {
+                        ForEach(Self.monthlyTiers) { tier in
+                            TierCard(tier: tier, showPeriod: true) {
+                                Task { await apoiaseAction(amount: tier.amount) }
+                            }
+                        }
                     }
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("Apoiar mensalmente")
-                            .bold()
-                        Spacer()
-                    }
-                    .padding(.vertical, .spacing(.xxSmall))
                 }
 
-                let pixButton = Button {
-                    Task {
-                        await copyPixKeyAction()
-                    }
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("Fazer uma doação única via Pix")
-                            .bold()
-                        Spacer()
-                    }
-                    .padding(.vertical, .spacing(.xxSmall))
+                if showSectionDivider {
+                    Divider()
                 }
 
-                if #available(iOS 26, *) {
-                    apoiaseButton
-                        .buttonStyle(.glassProminent)
-                        .tint(.red)
-                } else {
-                    apoiaseButton
-                        .borderedButton(colored: Color.red)
-                }
+                VStack(alignment: .leading, spacing: .spacing(.medium)) {
+                    Text("Doação Única (Pix)")
+                        .font(.headline)
+                        .fontWeight(.semibold)
 
-                if #available(iOS 26, *) {
-                    pixButton
-                        .buttonStyle(.glass)
-                } else {
-                    pixButton
-                        .borderedButton(colored: .green)
+                    HStack(spacing: .spacing(.small)) {
+                        ForEach(Self.pixTiers) { tier in
+                            TierCard(tier: tier, showPeriod: false) {
+                                Task { await pixAction(amount: tier.amount) }
+                            }
+                        }
+                    }
+
+                    Text("Toque para copiar chave Pix")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, .spacing(.xxxSmall))
                 }
+            }
+            .alert(
+                "Pix de R$ \(pixAlertAmount ?? 0) Copiado! ✓",
+                isPresented: Binding(
+                    get: { pixAlertAmount != nil },
+                    set: { if !$0 { pixAlertAmount = nil } }
+                )
+            ) {
+                Button("OK") { pixAlertAmount = nil }
+            } message: {
+                Text("Cole no app do seu banco para enviar R$ \(pixAlertAmount ?? 0).\n\nObrigado! 💚")
             }
         }
 
-        private func apoiaseAction() async {
+        // MARK: - Actions
+
+        private func apoiaseAction(amount: Int) async {
             OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-            await HelpTheAppView.DonateButtons.sendAnalytics(for: "didTapApoiaseButton")
+            await Self.sendAnalytics(for: "didTapApoiase_R$\(amount)")
         }
 
-        private func copyPixKeyAction() async {
+        private func pixAction(amount: Int) async {
             UIPasteboard.general.string = pixKey
-            toast = Toast(message: randomThankYouString(), type: .thankYou)
-            await HelpTheAppView.DonateButtons.sendAnalytics(for: "didCopyPixKey")
-        }
-
-        private func randomThankYouString() -> String {
-            let ending = [
-                "Obrigado!",
-                "Tem que manter isso, viu?",
-                "Alegria!",
-                "Éééé!",
-                "Vamos apoiar o circo!",
-                "Olha-Que-Legal!",
-                "Ai, que delícia!",
-                "Maravilhoso!",
-                "Vamo, comunistada!",
-                "Bora!"
-            ].randomElement() ?? ""
-            return "Chave copiada. \(ending)"
+            pixAlertAmount = amount
+            await Self.sendAnalytics(for: "didTapPix_R$\(amount)")
         }
 
         private static func sendAnalytics(for action: String) async {
@@ -223,6 +243,60 @@ extension HelpTheAppView {
                 originatingScreen: "SettingsView",
                 action: action
             )
+        }
+
+        // MARK: - Tier Card
+
+        struct TierCard: View {
+
+            let tier: Tier
+            let showPeriod: Bool
+            let action: () -> Void
+
+            @Environment(\.colorScheme) private var colorScheme
+
+            var body: some View {
+                Button(action: action) {
+                    VStack(spacing: .spacing(.xxxSmall)) {
+                        Text(tier.emoji)
+                            .font(.title)
+
+                        Text("R$ \(tier.amount)")
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+
+                        if showPeriod {
+                            Text("/mês")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.spacing(.small))
+                    .background(
+                        colorScheme == .dark ? Color(.systemGray5) : Color(.systemGray6),
+                        in: RoundedRectangle(cornerRadius: .spacing(.small))
+                    )
+                    .overlay(alignment: .top) {
+                        if tier.isPopular {
+                            Text("POPULAR")
+                                .font(.caption2)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, .spacing(.xxSmall))
+                                .padding(.vertical, .spacing(.nano))
+                                .background(Color.green, in: RoundedRectangle(cornerRadius: .spacing(.xxxSmall)))
+                                .offset(y: -.spacing(.xSmall))
+                        }
+                    }
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(
+                    showPeriod
+                        ? "Apoiar R$ \(tier.amount) por mês"
+                        : "Doar R$ \(tier.amount) via Pix"
+                )
+            }
         }
     }
 
@@ -295,9 +369,6 @@ extension HelpTheAppView {
 }
 
 #Preview("Donate Buttons") {
-    if #available(iOS 26.0, *) {
-        HelpTheAppView.DonateButtons(toast: .constant(nil))
-    } else {
-        // Fallback on earlier versions
-    }
+    HelpTheAppView.DonateButtons(toast: .constant(nil))
+        .padding()
 }

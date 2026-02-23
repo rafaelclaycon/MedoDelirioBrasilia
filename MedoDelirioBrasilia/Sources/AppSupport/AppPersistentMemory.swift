@@ -272,6 +272,39 @@ extension AppPersistentMemory {
     func hasAllowedContentUpdate() -> Bool {
         userDefaults.bool(forKey: "hasAllowedContentUpdate")
     }
+
+    // MARK: Episode Support Prompt
+
+    func getEpisodesCompletedCount() -> Int {
+        guard let value = userDefaults.object(forKey: "episodesCompletedCount") else {
+            return 0
+        }
+        return value as! Int
+    }
+
+    func getHasSeenEpisodeSupportPrompt() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasSeenEpisodeSupportPrompt") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    func getLastSupportPromptDate() -> Date? {
+        guard let value = userDefaults.object(forKey: "lastSupportPromptDate") else {
+            return nil
+        }
+        return Date(timeIntervalSince1970: value as! Double)
+    }
+
+    func shouldShowEpisodeSupportPrompt() -> Bool {
+        guard !getHasSeenEpisodeSupportPrompt() else { return false }
+        guard getEpisodesCompletedCount() >= 3 else { return false }
+        if let lastDate = getLastSupportPromptDate(),
+           Date().timeIntervalSince(lastDate) < 7 * 24 * 3600 {
+            return false
+        }
+        return true
+    }
 }
 
 // MARK: - Setters
@@ -397,5 +430,19 @@ extension AppPersistentMemory {
 
     func hasAllowedContentUpdate(_ newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasAllowedContentUpdate")
+    }
+
+    // MARK: Episode Support Prompt
+
+    func setEpisodesCompletedCount(_ newValue: Int) {
+        userDefaults.set(newValue, forKey: "episodesCompletedCount")
+    }
+
+    func setHasSeenEpisodeSupportPrompt(_ newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasSeenEpisodeSupportPrompt")
+    }
+
+    func setLastSupportPromptDate(_ newValue: Date) {
+        userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSupportPromptDate")
     }
 }
