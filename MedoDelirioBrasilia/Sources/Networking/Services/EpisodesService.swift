@@ -55,7 +55,7 @@ final class EpisodesService: EpisodesServiceProtocol {
         let imageURL: URL? = item.iTunes?.image?.attributes?.href.flatMap { URL(string: $0) }
 
         return PodcastEpisode(
-            id: item.guid?.text ?? UUID().uuidString,
+            id: parseEpisodeId(from: item.guid?.text) ?? UUID().uuidString,
             title: title,
             pubDate: pubDate,
             audioURL: audioURL,
@@ -64,6 +64,18 @@ final class EpisodesService: EpisodesServiceProtocol {
             duration: item.iTunes?.duration,
             explicit: item.iTunes?.explicit == "yes"
         )
+    }
+
+    /// Extracts the numeric Spreaker ID from a GUID that may be a full URL
+    /// (e.g. "https://api.spreaker.com/episode/69980761" -> "69980761").
+    /// Returns the string as-is when it is not a URL.
+    nonisolated static func parseEpisodeId(from guid: String?) -> String? {
+        guard let guid else { return nil }
+        if let url = URL(string: guid), url.scheme != nil {
+            let lastComponent = url.lastPathComponent
+            return lastComponent.isEmpty ? guid : lastComponent
+        }
+        return guid
     }
 }
 
