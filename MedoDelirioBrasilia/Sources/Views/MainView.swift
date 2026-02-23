@@ -570,6 +570,12 @@ struct MainView: View {
 //                }
                 await sendFolderResearchChanges()
             }
+
+            if FeatureFlag.isEnabled(.episodes) {
+                Task {
+                    await EpisodesService().syncEpisodes()
+                }
+            }
         }
         .sheet(isPresented: $showingModalView) {
             switch subviewToOpen {

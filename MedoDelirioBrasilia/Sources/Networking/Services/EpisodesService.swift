@@ -11,10 +11,18 @@ import FeedKit
 protocol EpisodesServiceProtocol {
 
     func fetchEpisodes(from url: URL) async throws -> [PodcastEpisode]
+    func syncEpisodes(database: LocalDatabaseProtocol) async
 }
 
 @MainActor
 final class EpisodesService: EpisodesServiceProtocol {
+
+    static let feedURL = URL(string: "https://www.spreaker.com/show/4711842/episodes/feed")!
+
+    func syncEpisodes(database: LocalDatabaseProtocol = LocalDatabase.shared) async {
+        guard let episodes = try? await fetchEpisodes(from: Self.feedURL) else { return }
+        try? database.upsertPodcastEpisodes(episodes)
+    }
 
     func fetchEpisodes(from url: URL) async throws -> [PodcastEpisode] {
         let (data, _) = try await URLSession.shared.data(from: url)

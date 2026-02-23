@@ -24,6 +24,8 @@ struct SearchResults {
     var songsMatchingContent: [AnyEquatableMedoContent]?
     var authors: [Author]?
     var folders: [UserFolder]?
+    var episodesMatchingTitle: [PodcastEpisode]?
+    var episodesMatchingDescription: [PodcastEpisode]?
     var reactionsMatchingTitle: [Reaction]?
     var reactionsMatchingFeeling: [Reaction]?
 
@@ -34,6 +36,8 @@ struct SearchResults {
             songsMatchingContent?.isEmpty ?? true &&
             authors?.isEmpty ?? true &&
             folders?.isEmpty ?? true &&
+            episodesMatchingTitle?.isEmpty ?? true &&
+            episodesMatchingDescription?.isEmpty ?? true &&
             reactionsMatchingTitle?.isEmpty ?? true &&
             reactionsMatchingFeeling?.isEmpty ?? true
     }
@@ -45,6 +49,8 @@ struct SearchResults {
         self.songsMatchingContent = nil
         self.authors = nil
         self.folders = nil
+        self.episodesMatchingTitle = nil
+        self.episodesMatchingDescription = nil
         self.reactionsMatchingTitle = nil
         self.reactionsMatchingFeeling = nil
     }

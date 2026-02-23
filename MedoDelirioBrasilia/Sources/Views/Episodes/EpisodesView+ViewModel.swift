@@ -16,8 +16,6 @@ extension EpisodesView {
         private let episodesService: EpisodesServiceProtocol
         private let database: LocalDatabaseProtocol
 
-        private static let feedURL = URL(string: "https://www.spreaker.com/show/4711842/episodes/feed")!
-
         // MARK: - Initializer
 
         init(
@@ -64,15 +62,11 @@ extension EpisodesView.ViewModel {
     }
 
     private func syncFromNetwork() async {
-        do {
-            let episodes = try await episodesService.fetchEpisodes(from: Self.feedURL)
-            try database.upsertPodcastEpisodes(episodes)
-            let refreshed = try database.allPodcastEpisodes()
+        await episodesService.syncEpisodes(database: database)
+        if let refreshed = try? database.allPodcastEpisodes() {
             state = .loaded(refreshed)
-        } catch {
-            if case .loading = state {
-                state = .error(error.localizedDescription)
-            }
+        } else if case .loading = state {
+            state = .error("Não foi possível carregar os episódios.")
         }
     }
 }

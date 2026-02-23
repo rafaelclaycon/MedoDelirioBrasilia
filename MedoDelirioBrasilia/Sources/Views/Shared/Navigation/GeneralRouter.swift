@@ -12,6 +12,7 @@ enum GeneralNavigationDestination: Hashable {
     case authorDetail(Author)
     case reactionDetail(Reaction)
     case folderDetail(UserFolder)
+    case episodeDetail(PodcastEpisode)
 }
 
 enum SearchNavigationDestination: Hashable {
@@ -67,6 +68,9 @@ struct GeneralRouter: View {
                 floatingOptions: $floatingOptions,
                 contentRepository: contentRepository
             )
+
+        case .episodeDetail(let episode):
+            EpisodeDetailView(episode: episode)
         }
     }
 }
