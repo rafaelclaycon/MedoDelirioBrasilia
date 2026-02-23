@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct EpisodeDetailView: View {
 
@@ -15,6 +16,8 @@ struct EpisodeDetailView: View {
     @Environment(EpisodeProgressStore.self) private var progressStore
     @Environment(EpisodePlayedStore.self) private var playedStore
     @Environment(EpisodeBookmarkStore.self) private var bookmarkStore
+
+    @Environment(\.openURL) private var openURL
 
     @State private var editingBookmark: EpisodeBookmark?
     @State private var bookmarksSortAscending: Bool = true
@@ -58,6 +61,8 @@ struct EpisodeDetailView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
+
+                linksSection
 
                 bookmarkSection
             }
@@ -238,6 +243,95 @@ struct EpisodeDetailView: View {
                 .foregroundStyle(.secondary)
                 .monospacedDigit()
         }
+    }
+
+    // MARK: - Links
+
+    @ViewBuilder
+    private var linksSection: some View {
+        let links = episode.extractedLinks
+        if !links.isEmpty {
+            Divider()
+
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Links")
+                    .font(.headline)
+                    .padding(.bottom, .spacing(.small))
+
+                ForEach(Array(links.enumerated()), id: \.offset) { index, url in
+                    linkRow(url)
+
+                    if index < links.count - 1 {
+                        Divider()
+                    }
+                }
+            }
+        }
+    }
+
+    private func linkRow(_ url: URL) -> some View {
+        let isMailto = url.scheme == "mailto"
+        let displayText: String = {
+            if isMailto {
+                return url.absoluteString
+                    .replacingOccurrences(of: "mailto:", with: "")
+            }
+            var text = url.host ?? url.absoluteString
+            let path = url.path
+            if !path.isEmpty, path != "/" {
+                text += path
+            }
+            return text
+        }()
+
+        return Button {
+            openURL(url)
+        } label: {
+            HStack(spacing: .spacing(.medium)) {
+                if isMailto {
+                    Image(systemName: "envelope")
+                        .font(.title3)
+                        .foregroundStyle(.tint)
+                        .frame(width: 28, height: 28)
+                } else {
+                    faviconImage(for: url)
+                }
+
+                Text(displayText)
+                    .font(.subheadline)
+                    .foregroundStyle(.tint)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+
+                Spacer()
+
+                Image(systemName: "arrow.up.right")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.vertical, .spacing(.medium))
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func faviconImage(for url: URL) -> some View {
+        let faviconURL: URL? = {
+            guard let host = url.host else { return nil }
+            return URL(string: "https://www.google.com/s2/favicons?domain=\(host)&sz=64")
+        }()
+
+        return KFImage(faviconURL)
+            .placeholder {
+                Image(systemName: "globe")
+                    .font(.title3)
+                    .foregroundStyle(.tint)
+            }
+            .onFailure { _ in }
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 28, height: 28)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
     }
 
     // MARK: - Bookmarks
