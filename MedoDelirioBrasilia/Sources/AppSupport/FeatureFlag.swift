@@ -9,19 +9,19 @@ import Foundation
 
 enum FeatureFlag: String, CaseIterable {
 
-    case episodes = "featureFlag_episodes"
+    case episodeNotifications = "featureFlag_episodeNotifications"
 
     var displayName: String {
         switch self {
-        case .episodes:
-            return "Episódios"
+        case .episodeNotifications:
+            return "Notificações de Novos Episódios"
         }
     }
 
     var description: String {
         switch self {
-        case .episodes:
-            return "Habilita a aba de Episódios com reprodutor de áudio e integração com FeedKit."
+        case .episodeNotifications:
+            return "Exibe a opção de receber notificações quando novos episódios forem publicados."
         }
     }
 

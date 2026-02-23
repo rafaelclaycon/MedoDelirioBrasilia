@@ -173,7 +173,6 @@ extension SearchService {
     }
 
     private func episodes(matchingTitle title: String) -> [PodcastEpisode]? {
-        guard FeatureFlag.isEnabled(.episodes) else { return nil }
         let allEpisodes = loadEpisodesIfNeeded()
         let normalizedSearch = title.normalizedForSearch()
         return allEpisodes
@@ -182,7 +181,6 @@ extension SearchService {
     }
 
     private func episodes(matchingDescription description: String, excludingIds: Set<String>) -> [PodcastEpisode]? {
-        guard FeatureFlag.isEnabled(.episodes) else { return nil }
         let allEpisodes = loadEpisodesIfNeeded()
         let normalizedSearch = description.normalizedForSearch()
         return allEpisodes

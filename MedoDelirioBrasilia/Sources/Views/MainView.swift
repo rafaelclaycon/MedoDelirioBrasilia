@@ -139,29 +139,15 @@ struct MainView: View {
                         .environment(\.push, PushAction { reactionsPath.append($0) })
                     }
 
-                    if FeatureFlag.isEnabled(.episodes) {
-                        Tab("Episódios", systemImage: "radio", value: .trends) {
-                            NavigationStack(path: $episodesPath) {
-                                EpisodesView()
-                                    .navigationDestination(for: PodcastEpisode.self) { episode in
-                                        EpisodeDetailView(episode: episode)
-                                    }
-                            }
-                            .environment(\.push, PushAction { episodesPath.append($0) })
-                            .tag(PhoneTab.trends)
+                    Tab("Episódios", systemImage: "radio", value: .trends) {
+                        NavigationStack(path: $episodesPath) {
+                            EpisodesView()
+                                .navigationDestination(for: PodcastEpisode.self) { episode in
+                                    EpisodeDetailView(episode: episode)
+                                }
                         }
-                    } else {
-                        Tab(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends), value: .trends) {
-                            NavigationView {
-                                TrendsView(
-                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                    tabSelection: tabSelection,
-                                    activePadScreen: .constant(.trends)
-                                )
-                                .environment(trendsHelper)
-                            }
-                            .tag(PhoneTab.trends)
-                        }
+                        .environment(\.push, PushAction { episodesPath.append($0) })
+                        .tag(PhoneTab.trends)
                     }
 
                     Tab(value: .search, role: .search) {
@@ -192,7 +178,7 @@ struct MainView: View {
                         }
                     }
                     .if_tabViewBottomAccessory(
-                        isEnabled: FeatureFlag.isEnabled(.episodes) && episodePlayer.currentEpisode != nil
+                        isEnabled: episodePlayer.currentEpisode != nil
                     ) {
                         NowPlayingAccessoryView(episode: episodePlayer.currentEpisode, player: episodePlayer)
                             .onTapGesture {
@@ -252,41 +238,26 @@ struct MainView: View {
                         .tag(PhoneTab.reactions)
                         .environment(\.push, PushAction { reactionsPath.append($0) })
 
-                        if FeatureFlag.isEnabled(.episodes) {
-                            NavigationStack(path: $episodesPath) {
-                                EpisodesView()
-                                    .navigationDestination(for: PodcastEpisode.self) { episode in
-                                        EpisodeDetailView(episode: episode)
-                                    }
-                            }
-                            .environment(\.push, PushAction { episodesPath.append($0) })
-                            .safeAreaInset(edge: .bottom) {
-                                if episodePlayer.currentEpisode != nil {
-                                    NowPlayingBar(episode: episodePlayer.currentEpisode, player: episodePlayer)
-                                        .onTapGesture {
-                                            showNowPlaying = true
-                                        }
-                                        .padding(.bottom, .spacing(.xSmall))
+                        NavigationStack(path: $episodesPath) {
+                            EpisodesView()
+                                .navigationDestination(for: PodcastEpisode.self) { episode in
+                                    EpisodeDetailView(episode: episode)
                                 }
-                            }
-                            .tabItem {
-                                Label("Episódios", systemImage: "radio")
-                            }
-                            .tag(PhoneTab.trends)
-                        } else {
-                            NavigationView {
-                                TrendsView(
-                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                    tabSelection: tabSelection,
-                                    activePadScreen: .constant(.trends)
-                                )
-                                .environment(trendsHelper)
-                            }
-                            .tabItem {
-                                Label(Shared.TabInfo.name(PhoneTab.trends), systemImage: Shared.TabInfo.symbol(PhoneTab.trends))
-                            }
-                            .tag(PhoneTab.trends)
                         }
+                        .environment(\.push, PushAction { episodesPath.append($0) })
+                        .safeAreaInset(edge: .bottom) {
+                            if episodePlayer.currentEpisode != nil {
+                                NowPlayingBar(episode: episodePlayer.currentEpisode, player: episodePlayer)
+                                    .onTapGesture {
+                                        showNowPlaying = true
+                                    }
+                                    .padding(.bottom, .spacing(.xSmall))
+                            }
+                        }
+                        .tabItem {
+                            Label("Episódios", systemImage: "radio")
+                        }
+                        .tag(PhoneTab.trends)
                     }
                     .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                         tabSelection.wrappedValue = .sounds
@@ -392,33 +363,20 @@ struct MainView: View {
                         .environment(\.push, PushAction { authorsPath.append($0) })
                     }
 
-                    if FeatureFlag.isEnabled(.episodes) {
-                        Tab("Episódios", systemImage: "radio") {
-                            NavigationStack(path: $episodesPath) {
-                                EpisodesView()
-                                    .navigationDestination(for: PodcastEpisode.self) { episode in
-                                        EpisodeDetailView(episode: episode)
-                                    }
-                            }
-                            .environment(\.push, PushAction { episodesPath.append($0) })
-                            .safeAreaInset(edge: .bottom) {
-                                if episodePlayer.currentEpisode != nil {
-                                    NowPlayingBar(episode: episodePlayer.currentEpisode, player: episodePlayer)
-                                        .onTapGesture {
-                                            showNowPlaying = true
-                                        }
+                    Tab("Episódios", systemImage: "radio") {
+                        NavigationStack(path: $episodesPath) {
+                            EpisodesView()
+                                .navigationDestination(for: PodcastEpisode.self) { episode in
+                                    EpisodeDetailView(episode: episode)
                                 }
-                            }
                         }
-                    } else {
-                        Tab(Shared.TabInfo.name(PadScreen.trends), systemImage: Shared.TabInfo.symbol(PadScreen.trends)) {
-                            NavigationStack {
-                                TrendsView(
-                                    audienceViewModel: MostSharedByAudienceView.ViewModel(trendsService: trendsService),
-                                    tabSelection: tabSelection,
-                                    activePadScreen: .constant(.trends)
-                                )
-                                .environment(trendsHelper)
+                        .environment(\.push, PushAction { episodesPath.append($0) })
+                        .safeAreaInset(edge: .bottom) {
+                            if episodePlayer.currentEpisode != nil {
+                                NowPlayingBar(episode: episodePlayer.currentEpisode, player: episodePlayer)
+                                    .onTapGesture {
+                                        showNowPlaying = true
+                                    }
                             }
                         }
                     }
@@ -571,10 +529,8 @@ struct MainView: View {
                 await sendFolderResearchChanges()
             }
 
-            if FeatureFlag.isEnabled(.episodes) {
-                Task {
-                    await EpisodesService().syncEpisodes()
-                }
+            Task {
+                await EpisodesService().syncEpisodes()
             }
         }
         .sheet(isPresented: $showingModalView) {
@@ -670,7 +626,6 @@ struct MainView: View {
     }
 
     private func displayEpisodesWhatsNewIfNeeded() {
-        guard FeatureFlag.isEnabled(.episodes) else { return }
         guard AppPersistentMemory.shared.hasShownNotificationsOnboarding() else { return }
         guard !AppPersistentMemory.shared.hasSeenEpisodesWhatsNewScreen() else { return }
         guard !showUniversalSearchWhatsNew else { return }

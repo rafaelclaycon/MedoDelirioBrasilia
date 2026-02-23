@@ -68,13 +68,11 @@ struct TrendsView: View {
                             MostSharedByMeView()
                                 .environment(trendsHelper)
 
-                            if FeatureFlag.isEnabled(.episodes) {
-                                Divider()
-                                    .padding(.horizontal)
-                                    .padding(.vertical, .spacing(.small))
+                            Divider()
+                                .padding(.horizontal)
+                                .padding(.vertical, .spacing(.small))
 
-                                EpisodeStatsView()
-                            }
+                            EpisodeStatsView()
                         }
                     }
                 }

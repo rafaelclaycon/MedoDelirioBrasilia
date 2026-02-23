@@ -25,7 +25,7 @@ struct NotificationsSettingsView: View {
                 Text("Caso a opção acima não esteja surtindo efeito, toque no botão no fim dessa tela para habilitar as notificações do app nos Ajustes do sistema.")
             }
 
-            if FeatureFlag.isEnabled(.episodes), enableNotifications {
+            if FeatureFlag.isEnabled(.episodeNotifications), enableNotifications {
                 Section {
                     Toggle("Avisos", isOn: .constant(true))
                         .disabled(true)
