@@ -18,6 +18,7 @@ struct EpisodeDetailView: View {
 
     @State private var editingBookmark: EpisodeBookmark?
     @State private var bookmarksSortAscending: Bool = true
+    @State private var showDeleteConfirmation: Bool = false
 
     private var isPlayed: Bool {
         playedStore.isPlayed(episode.id)
@@ -94,6 +95,14 @@ struct EpisodeDetailView: View {
         } message: {
             Text("Você está usando dados móveis e este episódio tem aproximadamente \(episodePlayer.pendingDownloadSizeMB) MB. Deseja continuar com o download?")
         }
+        .alert("Apagar Download", isPresented: $showDeleteConfirmation) {
+            Button("Apagar", role: .destructive) {
+                try? FileManager.default.removeItem(at: EpisodePlayer.localFileURL(for: episode))
+            }
+            Button("Cancelar", role: .cancel) {}
+        } message: {
+            Text("O arquivo local deste episódio será removido. Você poderá baixá-lo novamente.")
+        }
     }
 
     // MARK: - Header
@@ -141,6 +150,15 @@ struct EpisodeDetailView: View {
                     Text(fileSize)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
+
+                    if isPlayed {
+                        Button(role: .destructive) {
+                            showDeleteConfirmation = true
+                        } label: {
+                            Image(systemName: "trash")
+                                .font(.subheadline)
+                        }
+                    }
                 }
             }
             .padding(.top, .spacing(.xxxSmall))
