@@ -30,7 +30,6 @@ struct MainView: View {
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
-    @State private var showUniversalSearchWhatsNew: Bool = false
     @State private var showEpisodesWhatsNew: Bool = false
 
     // iPad
@@ -519,7 +518,6 @@ struct MainView: View {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
-            displayUniversalSearchWhatsNewIfNeeded()
             displayEpisodesWhatsNewIfNeeded()
 
             Task {
@@ -561,9 +559,6 @@ struct MainView: View {
         .sheet(isPresented: $isShowingSettingsSheet) {
             SettingsView(apiClient: APIClient.shared)
                 .environment(settingsHelper)
-        }
-        .sheet(isPresented: $showUniversalSearchWhatsNew) {
-            IntroducingUniversalSearchView(appMemory: AppPersistentMemory.shared)
         }
         .sheet(isPresented: $showEpisodesWhatsNew) {
             IntroducingEpisodesView(appMemory: AppPersistentMemory.shared)
@@ -616,19 +611,9 @@ struct MainView: View {
         }
     }
 
-    private func displayUniversalSearchWhatsNewIfNeeded() {
-        // Don't show if onboarding is being shown
-        guard AppPersistentMemory.shared.hasShownNotificationsOnboarding() else { return }
-        // Don't show if already seen
-        guard !AppPersistentMemory.shared.hasSeenUniversalSearchWhatsNewScreen() else { return }
-
-        showUniversalSearchWhatsNew = true
-    }
-
     private func displayEpisodesWhatsNewIfNeeded() {
         guard AppPersistentMemory.shared.hasShownNotificationsOnboarding() else { return }
         guard !AppPersistentMemory.shared.hasSeenEpisodesWhatsNewScreen() else { return }
-        guard !showUniversalSearchWhatsNew else { return }
 
         showEpisodesWhatsNew = true
     }
