@@ -73,7 +73,7 @@ struct NowPlayingView: View {
             .padding(.horizontal, .spacing(.xLarge))
         }
         .presentationDragIndicator(.visible)
-        .toast($toast)
+        .topToast($toast)
         .sheet(item: $editingBookmark) { bookmark in
             BookmarkEditView(bookmark: bookmark)
                 .environment(bookmarkStore)
