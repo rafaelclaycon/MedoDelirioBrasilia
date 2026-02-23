@@ -82,6 +82,7 @@ struct EpisodeDetailView: View {
                     Image(systemName: favoritesStore.isFavorite(episode.id) ? "star.fill" : "star")
                         .foregroundStyle(favoritesStore.isFavorite(episode.id) ? .yellow : .primary)
                 }
+                .accessibilityLabel(favoritesStore.isFavorite(episode.id) ? "Remover dos favoritos" : "Adicionar aos favoritos")
             }
         }
         .alert(
@@ -107,6 +108,14 @@ struct EpisodeDetailView: View {
             Button("Cancelar", role: .cancel) {}
         } message: {
             Text("O arquivo local deste episódio será removido. Você poderá baixá-lo novamente.")
+        }
+        .alert("Erro", isPresented: Binding(
+            get: { episodePlayer.playerError != nil },
+            set: { if !$0 { episodePlayer.playerError = nil } }
+        )) {
+            Button("OK") { episodePlayer.playerError = nil }
+        } message: {
+            Text(episodePlayer.playerError ?? "")
         }
     }
 
@@ -163,6 +172,7 @@ struct EpisodeDetailView: View {
                             Image(systemName: "trash")
                                 .font(.subheadline)
                         }
+                        .accessibilityLabel("Apagar download")
                     }
                 }
             }
@@ -235,6 +245,7 @@ struct EpisodeDetailView: View {
                         .foregroundStyle(.primary)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Cancelar download")
             }
             .frame(width: 32, height: 32)
 
@@ -258,7 +269,7 @@ struct EpisodeDetailView: View {
                     .font(.headline)
                     .padding(.bottom, .spacing(.small))
 
-                ForEach(Array(links.enumerated()), id: \.offset) { index, url in
+                ForEach(Array(links.enumerated()), id: \.element) { index, url in
                     linkRow(url)
 
                     if index < links.count - 1 {
@@ -367,6 +378,7 @@ struct EpisodeDetailView: View {
                             .font(.subheadline.weight(.medium))
                             .foregroundStyle(Color.rubyRed)
                     }
+                    .accessibilityLabel("Ordenar marcadores")
                 }
                 .padding(.bottom, .spacing(.small))
 
@@ -411,6 +423,7 @@ struct EpisodeDetailView: View {
                     .padding(.spacing(.xxxSmall))
             }
             .if_iOS26GlassElsePlain()
+            .accessibilityLabel("Reproduzir a partir do marcador")
         }
         .padding(.vertical, .spacing(.small))
         .contentShape(Rectangle())

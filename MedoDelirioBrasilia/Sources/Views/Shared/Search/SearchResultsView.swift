@@ -613,6 +613,8 @@ extension SearchResultsView {
                                 isCollapsed.toggle()
                             }
                         }
+                        .accessibilityLabel("Ver todos os resultados")
+                        .accessibilityAddTraits(.isButton)
                     } else {
                         Button {
                             withAnimation {
@@ -627,6 +629,7 @@ extension SearchResultsView {
                             }
                         }
                         .largeRoundedRectangleBordered(colored: .green)
+                        .accessibilityLabel("Ver todos os resultados")
                     }
                 }
             }

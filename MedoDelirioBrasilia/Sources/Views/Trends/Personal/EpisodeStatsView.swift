@@ -91,7 +91,7 @@ struct EpisodeStatsView: View {
                 .padding(.horizontal)
 
             LazyVGrid(columns: [GridItem(.flexible())], spacing: .spacing(.xSmall)) {
-                ForEach(Array(viewModel.topEpisodes.enumerated()), id: \.offset) { index, item in
+                ForEach(Array(viewModel.topEpisodes.enumerated()), id: \.element.id) { index, item in
                     EpisodeRankRow(
                         rank: index + 1,
                         title: item.title,
@@ -130,6 +130,7 @@ struct EpisodeStatsView: View {
 
 extension EpisodeStatsView {
 
+    @MainActor
     @Observable
     final class ViewModel {
 
@@ -141,9 +142,12 @@ extension EpisodeStatsView {
         private(set) var bookmarkStreak = 0
         private(set) var topEpisodes: [RankedEpisode] = []
 
-        struct RankedEpisode {
+        struct RankedEpisode: Identifiable {
+            let episodeId: String
             let title: String
             let totalSeconds: Double
+
+            var id: String { episodeId }
 
             var formattedDuration: String {
                 let hours = Int(totalSeconds) / 3600
@@ -188,6 +192,7 @@ extension EpisodeStatsView {
             let topByTime = EpisodeListenStats.mostListenedEpisodes(from: logs, limit: 5)
             topEpisodes = topByTime.map { item in
                 RankedEpisode(
+                    episodeId: item.episodeId,
                     title: episodeMap[item.episodeId] ?? "Episódio desconhecido",
                     totalSeconds: item.totalSeconds
                 )
@@ -249,6 +254,8 @@ extension EpisodeStatsView {
             .frame(maxWidth: .infinity)
             .padding(.vertical, .spacing(.small))
             .padding(.horizontal, .spacing(.xSmall))
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(label): \(value)")
         }
     }
 }

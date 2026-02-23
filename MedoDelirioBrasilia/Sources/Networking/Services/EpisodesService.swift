@@ -11,7 +11,7 @@ import FeedKit
 protocol EpisodesServiceProtocol {
 
     func fetchEpisodes(from url: URL) async throws -> [PodcastEpisode]
-    func syncEpisodes(database: LocalDatabaseProtocol) async
+    func syncEpisodes(database: LocalDatabaseProtocol) async throws
 }
 
 @MainActor
@@ -19,13 +19,18 @@ final class EpisodesService: EpisodesServiceProtocol {
 
     static let feedURL = URL(string: "https://www.spreaker.com/show/4711842/episodes/feed")!
 
-    func syncEpisodes(database: LocalDatabaseProtocol = LocalDatabase.shared) async {
-        guard let episodes = try? await fetchEpisodes(from: Self.feedURL) else { return }
-        try? database.upsertPodcastEpisodes(episodes)
+    func syncEpisodes(database: LocalDatabaseProtocol = LocalDatabase.shared) async throws {
+        let episodes = try await fetchEpisodes(from: Self.feedURL)
+        try database.upsertPodcastEpisodes(episodes)
     }
 
     func fetchEpisodes(from url: URL) async throws -> [PodcastEpisode] {
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw EpisodesServiceError.invalidHTTPResponse
+        }
 
         let episodes: [PodcastEpisode] = try await Task.detached {
             let feed = try Feed(data: data)
@@ -45,7 +50,8 @@ final class EpisodesService: EpisodesServiceProtocol {
     // MARK: - Mapping
 
     private nonisolated static func mapToPodcastEpisode(_ item: RSSFeedItem) -> PodcastEpisode? {
-        guard let title = item.title,
+        guard let id = parseEpisodeId(from: item.guid?.text),
+              let title = item.title,
               let pubDate = item.pubDate,
               let audioURLString = item.enclosure?.attributes?.url,
               let audioURL = URL(string: audioURLString) else {
@@ -55,7 +61,7 @@ final class EpisodesService: EpisodesServiceProtocol {
         let imageURL: URL? = item.iTunes?.image?.attributes?.href.flatMap { URL(string: $0) }
 
         return PodcastEpisode(
-            id: parseEpisodeId(from: item.guid?.text) ?? UUID().uuidString,
+            id: id,
             title: title,
             pubDate: pubDate,
             audioURL: audioURL,
@@ -84,11 +90,14 @@ final class EpisodesService: EpisodesServiceProtocol {
 enum EpisodesServiceError: Error, LocalizedError {
 
     case invalidFeedFormat
+    case invalidHTTPResponse
 
     var errorDescription: String? {
         switch self {
         case .invalidFeedFormat:
             return "O feed do podcast possui um formato inválido."
+        case .invalidHTTPResponse:
+            return "O servidor retornou uma resposta inesperada."
         }
     }
 }

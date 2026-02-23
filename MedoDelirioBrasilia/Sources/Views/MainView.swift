@@ -5,7 +5,10 @@
 //  Created by Rafael Claycon Schmitt on 19/05/22.
 //
 
+import os
 import SwiftUI
+
+private let logger = os.Logger(subsystem: "com.rafaelschmitt.MedoDelirioBrasilia", category: "MainView")
 
 struct MainView: View {
 
@@ -515,7 +518,7 @@ struct MainView: View {
             episodePlayer.listenStore = episodeListenStore
             episodePlayer.analyticsService = AnalyticsService()
             episodeBookmarkStore.analyticsService = AnalyticsService()
-            print("MAIN VIEW - ON APPEAR")
+            logger.debug("MainView appeared")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
             displayEpisodesWhatsNewIfNeeded()
@@ -528,7 +531,7 @@ struct MainView: View {
             }
 
             Task {
-                await EpisodesService().syncEpisodes()
+                try? await EpisodesService().syncEpisodes()
             }
         }
         .sheet(isPresented: $showingModalView) {

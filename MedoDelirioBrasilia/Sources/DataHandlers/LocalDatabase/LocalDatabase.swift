@@ -161,10 +161,6 @@ class LocalDatabase: LocalDatabaseProtocol {
             fatalError(error.localizedDescription)
         }
 
-        db.trace { sql in
-            print("SQL Trace HA! - \(sql)")
-        }
-
         self.migrationManager = SQLiteMigrationManager(db: self.db, migrations: LocalDatabase.migrations())
     }
     

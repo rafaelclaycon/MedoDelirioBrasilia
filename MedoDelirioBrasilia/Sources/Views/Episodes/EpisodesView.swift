@@ -107,6 +107,7 @@ struct EpisodesView: View {
                             : "line.3.horizontal.decrease.circle.fill"
                     )
                 }
+                .accessibilityLabel("Filtrar por estado")
             }
 
             ToolbarItem(placement: .topBarTrailing) {
@@ -121,6 +122,7 @@ struct EpisodesView: View {
                 } label: {
                     Image(systemName: "arrow.up.arrow.down")
                 }
+                .accessibilityLabel("Ordenar episódios")
             }
         }
         .oneTimeTask {
@@ -149,6 +151,15 @@ struct EpisodesView: View {
             }
         } message: {
             Text("Você está usando dados móveis e este episódio tem aproximadamente \(episodePlayer.pendingDownloadSizeMB) MB. Deseja continuar com o download?")
+        }
+        .topToast($viewModel.toast)
+        .alert("Erro", isPresented: Binding(
+            get: { episodePlayer.playerError != nil },
+            set: { if !$0 { episodePlayer.playerError = nil } }
+        )) {
+            Button("OK") { episodePlayer.playerError = nil }
+        } message: {
+            Text(episodePlayer.playerError ?? "")
         }
     }
 

@@ -6,24 +6,31 @@
 //
 
 import Foundation
+import os
+
+private let logger = os.Logger(subsystem: "com.rafaelschmitt.MedoDelirioBrasilia", category: "EpisodesViewModel")
 
 extension EpisodesView {
 
     @Observable class ViewModel {
 
         var state: LoadingState<[PodcastEpisode]> = .loading
+        var toast: Toast?
 
         private let episodesService: EpisodesServiceProtocol
         private let database: LocalDatabaseProtocol
+        private let analyticsService: AnalyticsServiceProtocol
 
         // MARK: - Initializer
 
         init(
             episodesService: EpisodesServiceProtocol,
-            database: LocalDatabaseProtocol = LocalDatabase.shared
+            database: LocalDatabaseProtocol = LocalDatabase.shared,
+            analyticsService: AnalyticsServiceProtocol = AnalyticsService()
         ) {
             self.episodesService = episodesService
             self.database = database
+            self.analyticsService = analyticsService
         }
     }
 }
@@ -62,11 +69,23 @@ extension EpisodesView.ViewModel {
     }
 
     private func syncFromNetwork() async {
-        await episodesService.syncEpisodes(database: database)
-        if let refreshed = try? database.allPodcastEpisodes() {
-            state = .loaded(refreshed)
-        } else if case .loading = state {
-            state = .error("Não foi possível carregar os episódios.")
+        do {
+            try await episodesService.syncEpisodes(database: database)
+            if let refreshed = try? database.allPodcastEpisodes() {
+                state = .loaded(refreshed)
+            }
+        } catch {
+            logger.error("Episode sync failed: \(error.localizedDescription, privacy: .public)")
+            await analyticsService.send(
+                originatingScreen: "EpisodesView",
+                action: "syncFailed(\(error.localizedDescription))"
+            )
+
+            if case .loading = state {
+                state = .error("Não foi possível carregar os episódios.")
+            } else {
+                toast = Toast(message: "Não foi possível atualizar os episódios.", type: .warning)
+            }
         }
     }
 }

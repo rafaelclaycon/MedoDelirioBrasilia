@@ -39,6 +39,9 @@ final class EpisodePlayer {
     var pendingCellularDownload: PodcastEpisode?
     var pendingDownloadSizeMB: Int = 0
 
+    /// User-facing error message shown as an alert when download or playback fails.
+    var playerError: String?
+
     private static let cellularDownloadThreshold: Int64 = 100 * 1024 * 1024
 
     // MARK: - Dependencies
@@ -242,11 +245,17 @@ final class EpisodePlayer {
             let downloadedURL = try await downloadEpisode(episode)
             guard playGeneration == generation else { return }
             startPlayback(episode: episode, fileURL: downloadedURL)
+        } catch is CancellationError {
+            guard playGeneration == generation else { return }
+            preparingEpisodeId = nil
+            downloadProgress = [:]
+            downloadingEpisodeId = nil
         } catch {
             guard playGeneration == generation else { return }
             preparingEpisodeId = nil
             downloadProgress = [:]
             downloadingEpisodeId = nil
+            playerError = "Não foi possível baixar o episódio. Tente novamente."
         }
     }
 
@@ -283,10 +292,14 @@ final class EpisodePlayer {
             try AVAudioSession.sharedInstance().setCategory(.playback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
+            playerError = "Não foi possível iniciar a reprodução."
             return
         }
 
-        guard let player = try? AVAudioPlayer(contentsOf: fileURL) else { return }
+        guard let player = try? AVAudioPlayer(contentsOf: fileURL) else {
+            playerError = "Não foi possível iniciar a reprodução."
+            return
+        }
 
         let delegate = PlaybackDelegate { [weak self] in
             Task { @MainActor [weak self] in
@@ -330,6 +343,8 @@ final class EpisodePlayer {
         }
         isPlaying = false
         currentTime = 0
+        duration = 0
+        currentEpisode = nil
         stopTimer()
         clearNowPlayingInfo()
     }

@@ -76,7 +76,7 @@ enum EpisodeListenStats {
 
         let calendar = Calendar.current
         let todayStart = calendar.startOfDay(for: today)
-        let yesterdayStart = calendar.date(byAdding: .day, value: -1, to: todayStart)!
+        guard let yesterdayStart = calendar.date(byAdding: .day, value: -1, to: todayStart) else { return 0 }
 
         guard let lastDay = uniqueDays.last,
               lastDay == todayStart || lastDay == yesterdayStart else {
@@ -85,7 +85,7 @@ enum EpisodeListenStats {
 
         var streak = 1
         for i in stride(from: uniqueDays.count - 2, through: 0, by: -1) {
-            let expected = calendar.date(byAdding: .day, value: -1, to: uniqueDays[i + 1])!
+            guard let expected = calendar.date(byAdding: .day, value: -1, to: uniqueDays[i + 1]) else { break }
             if uniqueDays[i] == expected {
                 streak += 1
             } else {
@@ -114,7 +114,10 @@ enum EpisodeListenStats {
         var current = 1
 
         for i in 1..<sortedDays.count {
-            let expected = calendar.date(byAdding: .day, value: 1, to: sortedDays[i - 1])!
+            guard let expected = calendar.date(byAdding: .day, value: 1, to: sortedDays[i - 1]) else {
+                current = 1
+                continue
+            }
             if sortedDays[i] == expected {
                 current += 1
                 longest = max(longest, current)
