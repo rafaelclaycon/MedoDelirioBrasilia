@@ -46,6 +46,7 @@ final class EpisodePlayer {
     @ObservationIgnored var progressStore: EpisodeProgressStore?
     @ObservationIgnored var bookmarkStore: EpisodeBookmarkStore?
     @ObservationIgnored var listenStore: EpisodeListenStore?
+    @ObservationIgnored var analyticsService: AnalyticsServiceProtocol?
 
     /// Set to `true` when a bookmark is added from the lock screen remote command.
     /// Observed by `MainView` to auto-open the Now Playing screen.
@@ -312,6 +313,13 @@ final class EpisodePlayer {
         updateNowPlayingInfo()
         loadArtwork(for: episode)
         startTimer()
+
+        Task {
+            await analyticsService?.send(
+                originatingScreen: "EpisodePlayer",
+                action: "didPlayEpisode(\(episode.title))"
+            )
+        }
     }
 
     @MainActor

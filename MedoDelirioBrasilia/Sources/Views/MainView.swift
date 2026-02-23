@@ -556,6 +556,8 @@ struct MainView: View {
             episodePlayer.progressStore = episodeProgressStore
             episodePlayer.bookmarkStore = episodeBookmarkStore
             episodePlayer.listenStore = episodeListenStore
+            episodePlayer.analyticsService = AnalyticsService()
+            episodeBookmarkStore.analyticsService = AnalyticsService()
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()

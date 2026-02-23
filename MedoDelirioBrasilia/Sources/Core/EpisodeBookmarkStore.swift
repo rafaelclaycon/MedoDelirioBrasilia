@@ -11,6 +11,7 @@ import Foundation
 final class EpisodeBookmarkStore {
 
     @ObservationIgnored private let database: LocalDatabaseProtocol
+    @ObservationIgnored var analyticsService: AnalyticsServiceProtocol?
 
     private(set) var bookmarksByEpisode: [String: [EpisodeBookmark]] = [:]
 
@@ -42,6 +43,13 @@ final class EpisodeBookmarkStore {
         list.append(bookmark)
         list.sort { $0.timestamp < $1.timestamp }
         bookmarksByEpisode[episodeId] = list
+
+        Task {
+            await analyticsService?.send(
+                originatingScreen: "EpisodeBookmarkStore",
+                action: "didAddBookmarkToEpisode(\(episodeId))"
+            )
+        }
 
         return bookmark
     }

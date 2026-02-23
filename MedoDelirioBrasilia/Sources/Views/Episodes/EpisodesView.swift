@@ -126,6 +126,14 @@ struct EpisodesView: View {
         .oneTimeTask {
             await viewModel.onViewLoaded()
         }
+        .onAppear {
+            Task {
+                await AnalyticsService().send(
+                    originatingScreen: "EpisodesView",
+                    action: "didViewEpisodesScreen"
+                )
+            }
+        }
         .alert(
             "Download Grande",
             isPresented: Binding(
