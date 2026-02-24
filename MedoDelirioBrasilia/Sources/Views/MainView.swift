@@ -583,7 +583,11 @@ struct MainView: View {
                 .environment(episodePlayer)
                 .environment(episodeBookmarkStore)
         }
-        .sheet(isPresented: $episodePlayer.showSupportPrompt) {
+        .sheet(isPresented: $episodePlayer.showSupportPrompt, onDismiss: {
+            let memory = AppPersistentMemory.shared
+            memory.setHasSeenEpisodeSupportPrompt(true)
+            memory.setLastSupportPromptDate(Date())
+        }) {
             SupportPromptView(
                 onSupport: {
                     let memory = AppPersistentMemory.shared
