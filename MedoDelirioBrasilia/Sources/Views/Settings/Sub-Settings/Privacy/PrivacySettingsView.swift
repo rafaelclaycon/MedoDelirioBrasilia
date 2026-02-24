@@ -27,6 +27,14 @@ struct PrivacySettingsView: View {
                     }
                 }
             }
+
+            Section {
+                Button {
+                    OpenUtility.open(link: "https://site.medodelirioios.com/#politica-de-privacidade")
+                } label: {
+                    Label("Política de Privacidade", systemImage: "doc.text")
+                }
+            }
         }
         .navigationTitle("Privacidade")
         .navigationBarTitleDisplayMode(.inline)
