@@ -573,7 +573,9 @@ struct MainView: View {
         .sheet(isPresented: $isShowingSupportSheet) {
             StandaloneSupportView()
         }
-        .sheet(isPresented: $showEpisodesWhatsNew) {
+        .sheet(isPresented: $showEpisodesWhatsNew, onDismiss: {
+            AppPersistentMemory.shared.hasSeenEpisodesWhatsNewScreen(true)
+        }) {
             IntroducingEpisodesView(appMemory: AppPersistentMemory.shared)
         }
         .sheet(isPresented: $showNowPlaying) {
