@@ -253,8 +253,6 @@ extension HelpTheAppView {
             let showPeriod: Bool
             let action: () -> Void
 
-            @Environment(\.colorScheme) private var colorScheme
-
             var body: some View {
                 Button(action: action) {
                     VStack(spacing: .spacing(.xxxSmall)) {
@@ -274,7 +272,7 @@ extension HelpTheAppView {
                     .frame(maxWidth: .infinity)
                     .padding(.spacing(.small))
                     .background(
-                        colorScheme == .dark ? Color(.systemGray5) : Color(.systemGray6),
+                        Color.gray.opacity(0.2),
                         in: RoundedRectangle(cornerRadius: .spacing(.small))
                     )
                     .overlay(alignment: .top) {
