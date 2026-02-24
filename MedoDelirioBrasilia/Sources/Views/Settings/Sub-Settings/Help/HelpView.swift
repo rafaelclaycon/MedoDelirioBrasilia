@@ -41,6 +41,57 @@ struct HelpView: View {
                         color: .red,
                         text: favoritesInstruction
                     )
+
+                    Divider()
+                        .padding(.vertical, .spacing(.small))
+
+                    Text("Episódios")
+                        .font(.title)
+                        .bold()
+
+                    HelpInstructionView(
+                        symbol: "play.circle.fill",
+                        color: .green,
+                        text: episodePlayInstruction
+                    )
+
+                    Divider()
+
+                    HelpInstructionView(
+                        symbol: "hand.draw",
+                        text: episodeSwipeInstruction
+                    )
+
+                    Divider()
+
+                    HelpInstructionView(
+                        symbol: "goforward.30",
+                        color: .green,
+                        text: episodeControlsInstruction
+                    )
+
+                    Divider()
+
+                    HelpInstructionView(
+                        symbol: "bookmark.fill",
+                        color: .red,
+                        text: episodeBookmarkInstruction
+                    )
+
+                    Divider()
+
+                    HelpInstructionView(
+                        symbol: "arrow.down.circle",
+                        color: .green,
+                        text: episodeDownloadInstruction
+                    )
+
+                    Divider()
+
+                    HelpInstructionView(
+                        symbol: "line.3.horizontal.decrease",
+                        text: episodeFilterInstruction
+                    )
                 }
                 .padding(.horizontal, .spacing(.medium))
                 .padding(.vertical, .spacing(.xSmall))
@@ -98,6 +149,31 @@ extension HelpView {
                 return "Para favoritar, segure o conteúdo e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Favoritos na barra lateral."
             }
         }
+    }
+    // MARK: - Episodes
+
+    private var episodePlayInstruction: String {
+        "Toque em um episódio para ver os detalhes. Toque no botão de Play ao lado de cada episódio para reproduzir. Uma barra aparece na parte inferior, toque nela para abrir a tela Reproduzindo Agora com a capa, o progresso e os controles."
+    }
+
+    private var episodeControlsInstruction: String {
+        "Na tela Reproduzindo Agora, arraste a barra de progresso para pular para qualquer ponto. Use os botões para voltar 15 segundos ou avançar 30 segundos. O progresso é salvo automaticamente. Se você sair e voltar, a reprodução continua de onde parou."
+    }
+
+    private var episodeBookmarkInstruction: String {
+        "Enquanto ouve, toque em \"Marcar Esse Ponto\" para salvar o momento atual. Os marcadores aparecem como linhas vermelhas na barra de progresso e em uma lista abaixo.\n\nToque no Play ao lado de qualquer marcador para pular até aquele ponto novamente. Você também pode dar um nome, adicionar uma nota e excluir marcadores tocando em um deles."
+    }
+
+    private var episodeDownloadInstruction: String {
+        "Todo episódio selecionado para reprodução é primeiro baixado offline antes de reproduzir. Uma vez baixado, ele toca sem internet.\n\nPara apagar o download, abra os detalhes do episódio, toque na lixeira ao lado do tamanho do arquivo e confirme."
+    }
+
+    private var episodeFilterInstruction: String {
+        "A lista de episódios tem filtros horizontais e de menu que podem ser combinados. Na parte superior: Todos, Favoritos e Com Marcadores.\n\nNo menu do canto direito você pode filtrar por estado de reprodução (Não Iniciado, Em Progresso, Finalizado). Use o menu de ordenação para ver os mais recentes ou mais antigos primeiro."
+    }
+
+    private var episodeSwipeInstruction: String {
+        "Deslize um episódio para a direita para favoritar ou desfavoritar. Deslize para a esquerda para marcar como finalizado ou desfazer."
     }
 }
 
