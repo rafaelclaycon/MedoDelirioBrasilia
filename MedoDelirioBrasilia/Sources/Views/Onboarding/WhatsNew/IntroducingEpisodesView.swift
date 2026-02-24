@@ -250,7 +250,7 @@ extension IntroducingEpisodesView {
 
         private func brickRow(index: Int, elapsed: TimeInterval) -> some View {
             let speed = 18.0 + Double(index % 3) * 6.0
-            let stripWidth = Double(brickWidth + brickSpacing) * 12
+            let stripWidth = Double(brickWidth + brickSpacing) * 6
             let cycleDuration = stripWidth / speed
             let progress = elapsed.truncatingRemainder(dividingBy: cycleDuration) / cycleDuration
 
