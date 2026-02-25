@@ -1,0 +1,160 @@
+//
+//  SidecastVideoFrameView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 25/02/26.
+//
+
+import SwiftUI
+
+// MARK: - Layout
+
+/// Computes absolute positions and sizes for the video frame content.
+/// Shared between the SwiftUI view (static rendering) and the generator
+/// (CALayer scrubber animation) to guarantee pixel-perfect alignment.
+struct SidecastVideoLayout {
+
+    let videoSize: CGSize
+
+    private var isPortrait: Bool { videoSize.height > videoSize.width }
+    private var isLandscape: Bool { videoSize.width > videoSize.height }
+
+    var horizontalPadding: CGFloat { videoSize.width * 0.1 }
+
+    var artworkSize: CGFloat {
+        if isPortrait { return videoSize.width * 0.55 }
+        if isLandscape { return min(videoSize.height * 0.45, videoSize.width * 0.28) }
+        return videoSize.width * 0.45
+    }
+
+    var artworkCornerRadius: CGFloat { artworkSize * 0.06 }
+
+    var artworkTopPadding: CGFloat {
+        if isPortrait { return videoSize.height * 0.15 }
+        if isLandscape { return videoSize.height * 0.08 }
+        return videoSize.height * 0.1
+    }
+
+    var titleSpacing: CGFloat { videoSize.height * 0.035 }
+    var dateSpacing: CGFloat { videoSize.height * 0.015 }
+
+    var titleFontSize: CGFloat {
+        if isLandscape { return 44 }
+        return 40
+    }
+
+    var dateFontSize: CGFloat { titleFontSize * 0.7 }
+    var brandingFontSize: CGFloat { titleFontSize * 0.6 }
+
+    var trackCornerRadius: CGFloat { trackFrame.height / 2 }
+
+    /// The progress bar track rectangle in the video's coordinate system.
+    var trackFrame: CGRect {
+        let padding = horizontalPadding
+        let height: CGFloat = max(videoSize.height * 0.005, 6)
+        let width = videoSize.width - 2 * padding
+        let y: CGFloat
+        if isPortrait { y = videoSize.height * 0.65 }
+        else if isLandscape { y = videoSize.height * 0.78 }
+        else { y = videoSize.height * 0.72 }
+        return CGRect(x: padding, y: y, width: width, height: height)
+    }
+
+    var brandingY: CGFloat {
+        if isPortrait { return videoSize.height * 0.72 }
+        if isLandscape { return videoSize.height * 0.88 }
+        return videoSize.height * 0.82
+    }
+}
+
+// MARK: - View
+
+/// A pure SwiftUI view representing one video frame.
+/// Rendered off-screen via `ImageRenderer` at the video's pixel dimensions (scale 1.0).
+/// The progress bar track background is included here; the animated orange fill
+/// is composited on top as a `CALayer` during video generation.
+struct SidecastVideoFrameView: View {
+
+    let artwork: UIImage
+    let episodeTitle: String
+    let episodeDate: Date
+    let branding: SidecastClipBranding
+    let videoSize: CGSize
+    let isDarkMode: Bool
+
+    private var layout: SidecastVideoLayout { .init(videoSize: videoSize) }
+
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            backgroundColor
+
+            VStack(spacing: 0) {
+                Spacer()
+                    .frame(height: layout.artworkTopPadding)
+
+                Image(uiImage: artwork)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: layout.artworkSize, height: layout.artworkSize)
+                    .clipShape(RoundedRectangle(cornerRadius: layout.artworkCornerRadius))
+
+                Spacer()
+                    .frame(height: layout.titleSpacing)
+
+                Text(episodeTitle)
+                    .font(.system(size: layout.titleFontSize, weight: .bold))
+                    .foregroundStyle(textColor)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(3)
+                    .padding(.horizontal, layout.horizontalPadding)
+
+                Spacer()
+                    .frame(height: layout.dateSpacing)
+
+                Text(episodeDate, format: .dateTime.day().month(.wide).year())
+                    .font(.system(size: layout.dateFontSize))
+                    .foregroundStyle(textColor.opacity(0.6))
+
+                Spacer()
+            }
+            .frame(width: videoSize.width)
+
+            trackBackground
+
+            if branding == .appBadge {
+                brandingLabel
+            }
+        }
+        .frame(width: videoSize.width, height: videoSize.height)
+    }
+
+    // MARK: - Subviews
+
+    private var trackBackground: some View {
+        RoundedRectangle(cornerRadius: layout.trackCornerRadius)
+            .fill(isDarkMode ? Color.white.opacity(0.15) : Color.black.opacity(0.1))
+            .frame(width: layout.trackFrame.width, height: layout.trackFrame.height)
+            .offset(
+                x: layout.trackFrame.origin.x,
+                y: layout.trackFrame.origin.y
+            )
+    }
+
+    private var brandingLabel: some View {
+        Text("Clipe criado com Medo e Delírio iOS")
+            .font(.system(size: layout.brandingFontSize, weight: .medium))
+            .foregroundStyle(textColor.opacity(0.4))
+            .frame(width: videoSize.width)
+            .offset(y: layout.brandingY)
+    }
+
+    // MARK: - Colors
+
+    private var backgroundColor: Color {
+        isDarkMode ? .black : .white
+    }
+
+    private var textColor: Color {
+        isDarkMode ? .white : .black
+    }
+}

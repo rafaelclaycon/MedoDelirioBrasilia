@@ -19,6 +19,7 @@ struct NowPlayingView: View {
     @State private var toast: Toast?
     @State private var editingBookmark: EpisodeBookmark?
     @State private var bookmarksSortAscending: Bool = true
+    @State private var showSidecastClip: Bool = false
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -62,7 +63,18 @@ struct NowPlayingView: View {
                         }
                     )
 
-                    // TODO: Adicionar Nota button (hidden for now)
+                    if FeatureFlag.isEnabled(.projectSidecast) {
+                        GlassIconButton(
+                            symbol: "scissors",
+                            color: .orange,
+                            action: {
+                                if player.isPlaying {
+                                    player.togglePlayPause()
+                                }
+                                showSidecastClip = true
+                            }
+                        )
+                    }
                 }
 
                 Spacer()
@@ -77,6 +89,12 @@ struct NowPlayingView: View {
         .sheet(item: $editingBookmark) { bookmark in
             BookmarkEditView(bookmark: bookmark)
                 .environment(bookmarkStore)
+        }
+        .sheet(isPresented: $showSidecastClip) {
+            if let episode = player.currentEpisode {
+                SidecastClipView(episode: episode)
+                    .environment(player)
+            }
         }
         .onAppear {
             if player.pendingRemoteBookmark {
@@ -395,6 +413,44 @@ extension NowPlayingView {
                     action()
                 } label: {
                     Label(title, systemImage: symbol)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(color)
+                }
+                .buttonStyle(.bordered)
+                .tint(color)
+            }
+        }
+    }
+
+    struct GlassIconButton: View {
+
+        let symbol: String
+        let color: Color
+        let action: () -> Void
+
+        @Environment(\.colorScheme) var colorScheme
+
+        var body: some View {
+            if #available(iOS 26, *) {
+                Image(systemName: symbol)
+                    .font(.subheadline)
+                    .fontWeight(.regular)
+                    .foregroundStyle(colorScheme == .dark ? .white : color)
+                    .padding(.spacing(.small))
+                    .glassEffect(
+                        .regular.tint(
+                            colorScheme == .dark ? color.opacity(0.3) : color.opacity(0.1)
+                        ).interactive()
+                    )
+                    .onTapGesture {
+                        action()
+                    }
+            } else {
+                Button {
+                    action()
+                } label: {
+                    Image(systemName: symbol)
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundStyle(color)
