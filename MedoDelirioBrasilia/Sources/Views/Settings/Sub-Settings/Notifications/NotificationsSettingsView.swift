@@ -33,6 +33,17 @@ struct NotificationsSettingsView: View {
                     Toggle("Novos Episódios", isOn: $episodeNotifications)
                         .onChange(of: episodeNotifications) {
                             UserSettings().setEnableEpisodeNotifications(to: episodeNotifications)
+                            Task {
+                                do {
+                                    if episodeNotifications {
+                                        try await APIClient.shared.subscribeToChannel("new_episodes")
+                                    } else {
+                                        try await APIClient.shared.unsubscribeFromChannel("new_episodes")
+                                    }
+                                } catch {
+                                    print("Channel subscription update failed: \(error.localizedDescription)")
+                                }
+                            }
                         }
                 } header: {
                     Text("Escolha o que quer receber")

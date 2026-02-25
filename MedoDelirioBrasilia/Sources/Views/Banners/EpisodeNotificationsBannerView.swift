@@ -1,10 +1,29 @@
 import SwiftUI
+import UserNotifications
 
 struct EpisodeNotificationsBannerView: View {
 
     @Binding var isBeingShown: Bool
 
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.openURL) private var openURL
+
+    @State private var showDeniedAlert = false
+
+    private func optIn() async {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+
+        if settings.authorizationStatus == .denied {
+            showDeniedAlert = true
+            return
+        }
+
+        await NotificationAide.registerForRemoteNotifications()
+        guard UserSettings().getUserAllowedNotifications() else { return }
+        try? await APIClient.shared.subscribeToChannel("new_episodes")
+        UserSettings().setEnableEpisodeNotifications(to: true)
+        isBeingShown = false
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .spacing(.medium)) {
@@ -28,9 +47,7 @@ struct EpisodeNotificationsBannerView: View {
 
             if #available(iOS 26, *) {
                 Button {
-                    // TODO: Call episode notifications opt-in endpoint
-                    UserSettings().setEnableEpisodeNotifications(to: true)
-                    isBeingShown = false
+                    Task { await optIn() }
                 } label: {
                     Text("Quero Receber")
                         .font(.callout)
@@ -46,9 +63,7 @@ struct EpisodeNotificationsBannerView: View {
                 }
             } else {
                 Button {
-                    // TODO: Call episode notifications opt-in endpoint
-                    UserSettings().setEnableEpisodeNotifications(to: true)
-                    isBeingShown = false
+                    Task { await optIn() }
                 } label: {
                     Text("Quero Receber")
                         .font(.callout)
@@ -76,6 +91,16 @@ struct EpisodeNotificationsBannerView: View {
                     )
             }
             .padding()
+        }
+        .alert("Notificações Desativadas", isPresented: $showDeniedAlert) {
+            Button("Abrir Ajustes") {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    openURL(url)
+                }
+            }
+            Button("Cancelar", role: .cancel) {}
+        } message: {
+            Text("As notificações estão desativadas para este app. Ative-as nos Ajustes do sistema para receber avisos de novos episódios.")
         }
     }
 }

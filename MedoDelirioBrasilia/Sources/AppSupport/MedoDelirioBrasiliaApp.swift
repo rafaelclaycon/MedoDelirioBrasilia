@@ -31,6 +31,11 @@ struct MedoDelirioBrasiliaApp: App {
                 userFolderRepository: userFolderRepository
             )
             .onOpenURL(perform: handleURL)
+            .onReceive(NotificationCenter.default.publisher(for: .navigateToTab)) { notification in
+                if let tab = notification.userInfo?[NavigateToTabKey.phoneTab] as? PhoneTab {
+                    tabSelection = tab
+                }
+            }
             .environment(helper)
         }
     }
@@ -60,7 +65,7 @@ struct MedoDelirioBrasiliaApp: App {
     }
 }
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
     @AppStorage("hasMigratedSongsMusicGenres") private var hasMigratedSongsMusicGenres = false
@@ -72,6 +77,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
         print("APP - APP DELEGATE")
+        UNUserNotificationCenter.current().delegate = self
+
         // Fixes
         moveDatabaseFileIfNeeded()
         replaceUserSettingFlag()
@@ -214,7 +221,37 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             }
         }
     }
-    
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .sound])
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        let userInfo = response.notification.request.content.userInfo
+
+        if let typeString = userInfo["type"] as? String,
+           let type = PushNotificationType(rawValue: typeString) {
+            switch type {
+            case .newEpisode:
+                NotificationCenter.default.post(
+                    name: .navigateToTab,
+                    object: nil,
+                    userInfo: [NavigateToTabKey.phoneTab: PhoneTab.trends]
+                )
+            }
+        }
+
+        completionHandler()
+    }
+
     // MARK: - Missing Favorites bugfix
     
     private func moveDatabaseFileIfNeeded() {
