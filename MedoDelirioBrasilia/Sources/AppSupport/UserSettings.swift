@@ -134,6 +134,13 @@ extension UserSettings {
         }
         return Bool(value as! Bool)
     }
+
+    func getEnableEpisodeNotifications() -> Bool {
+        guard let value = userDefaults.object(forKey: "enableEpisodeNotifications") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
 }
 
 // MARK: - Setters
@@ -198,5 +205,9 @@ extension UserSettings {
 
     func setHasJoinedFolderResearch(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasJoinedFolderResearch")
+    }
+
+    func setEnableEpisodeNotifications(to newValue: Bool) {
+        userDefaults.set(newValue, forKey: "enableEpisodeNotifications")
     }
 }

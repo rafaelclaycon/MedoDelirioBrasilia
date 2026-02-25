@@ -49,6 +49,15 @@ struct EpisodesView: View {
                         )
                         .scrollClipDisabled()
 
+                        if
+                            FeatureFlag.isEnabled(.episodeNotifications)
+                            && !AppPersistentMemory.shared.getHasDismissedEpisodeNotificationsBanner()
+                            && !UserSettings().getEnableEpisodeNotifications()
+                        {
+                            EpisodeNotificationsBannerView(isBeingShown: $showEpisodeNotificationsBanner)
+                                .padding([.top, .horizontal], .spacing(.medium))
+                        }
+
                         if filtered.isEmpty {
                             emptyStateForFilter(selectedFilter)
                         } else {

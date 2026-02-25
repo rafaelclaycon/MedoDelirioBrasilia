@@ -32,12 +32,12 @@ struct NotificationsSettingsView: View {
 
                     Toggle("Novos Episódios", isOn: $episodeNotifications)
                         .onChange(of: episodeNotifications) {
-                            //UserSettings().setEnableTrends(to: newValue)
+                            UserSettings().setEnableEpisodeNotifications(to: episodeNotifications)
                         }
                 } header: {
                     Text("Escolha o que quer receber")
                 } footer: {
-                    Text("Seja avisado quando um novo episódio do podcast estiver disponível.")
+                    Text("Receba uma notificação quando um novo episódio do podcast estiver disponível.")
                 }
             }
 
@@ -54,6 +54,7 @@ struct NotificationsSettingsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             enableNotifications = UserSettings().getUserAllowedNotifications()
+            episodeNotifications = UserSettings().getEnableEpisodeNotifications()
         }
     }
 }

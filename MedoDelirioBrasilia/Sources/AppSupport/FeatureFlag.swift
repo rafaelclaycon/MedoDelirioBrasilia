@@ -15,7 +15,7 @@ enum FeatureFlag: String, CaseIterable {
     var displayName: String {
         switch self {
         case .episodeNotifications:
-            return "Notificações de Novos Episódios"
+            return "Project Echo"
         case .projectSidecast:
             return "Project Sidecast"
         }
