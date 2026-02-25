@@ -236,7 +236,7 @@ struct NowPlayingView: View {
 
     private var playbackControls: some View {
         ZStack {
-            HStack(spacing: .spacing(.xxxLarge)) {
+            HStack(spacing: .spacing(.xLarge)) {
                 Button {
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     player.skipBackward()
@@ -244,6 +244,7 @@ struct NowPlayingView: View {
                     Image(systemName: "gobackward.15")
                         .font(.title)
                         .fontWeight(.medium)
+                        .padding(.all, .spacing(.small))
                 }
                 .buttonStyle(.plain)
 
@@ -264,6 +265,7 @@ struct NowPlayingView: View {
                     Image(systemName: "goforward.30")
                         .font(.title)
                         .fontWeight(.medium)
+                        .padding(.all, .spacing(.small))
                 }
                 .buttonStyle(.plain)
             }
@@ -293,11 +295,11 @@ struct NowPlayingView: View {
             }
         } label: {
             Text(EpisodePlayer.formattedSpeed(player.playbackSpeed))
-                .font(.body)
+                .font(.title3)
                 .fontWeight(.semibold)
                 .monospacedDigit()
-                .padding(.vertical, .spacing(.xxSmall))
-                .padding(.horizontal, .spacing(.small))
+                .padding(.vertical, .spacing(.xSmall))
+                .padding(.trailing, .spacing(.medium))
         }
         .foregroundStyle(.primary)
     }
