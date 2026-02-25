@@ -19,6 +19,7 @@ struct EpisodesView: View {
     @State private var selectedFilter: EpisodeFilterOption = .all
     @State private var activePlaybackStates: Set<EpisodePlaybackStateFilter> = EpisodePlaybackStateFilter.allSet
     @State private var sortAscending = false
+    @State private var showEpisodeNotificationsBanner = true
 
     // MARK: - View Body
 
@@ -53,6 +54,7 @@ struct EpisodesView: View {
                             FeatureFlag.isEnabled(.episodeNotifications)
                             && !AppPersistentMemory.shared.getHasDismissedEpisodeNotificationsBanner()
                             && !UserSettings().getEnableEpisodeNotifications()
+                            && showEpisodeNotificationsBanner
                         {
                             EpisodeNotificationsBannerView(isBeingShown: $showEpisodeNotificationsBanner)
                                 .padding([.top, .horizontal], .spacing(.medium))

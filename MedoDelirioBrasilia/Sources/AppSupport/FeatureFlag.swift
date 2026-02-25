@@ -24,7 +24,7 @@ enum FeatureFlag: String, CaseIterable {
     var description: String {
         switch self {
         case .episodeNotifications:
-            return "Exibe a opção de receber notificações quando novos episódios forem publicados."
+            return "Receber notificações quando novos episódios forem publicados."
         case .projectSidecast:
             return "Gere clipes compartilháveis a partir de episódios do podcast."
         }
