@@ -26,6 +26,12 @@ final class EpisodePlayer {
     var isPlaying: Bool = false
     var currentTime: TimeInterval = 0
     var duration: TimeInterval = 0
+    var playbackSpeed: Float = {
+        let stored = UserDefaults.standard.float(forKey: "episodePlaybackSpeed")
+        return stored > 0 ? stored : 1.0
+    }()
+
+    static let availableSpeeds: [Float] = [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0]
 
     /// Download progress per episode ID (0.0 to 1.0). Empty when no downloads are active.
     var downloadProgress: [String: Double] = [:]
@@ -134,6 +140,7 @@ final class EpisodePlayer {
         } else {
             beginSession()
             player.play()
+            player.rate = playbackSpeed
             isPlaying = true
             startTimer()
         }
@@ -192,6 +199,23 @@ final class EpisodePlayer {
     @MainActor
     func skipBackward(_ seconds: TimeInterval = 15) {
         seek(to: currentTime - seconds)
+    }
+
+    /// Changes the playback speed and persists the choice.
+    @MainActor
+    func setSpeed(_ speed: Float) {
+        playbackSpeed = speed
+        audioPlayer?.rate = speed
+        UserDefaults.standard.set(speed, forKey: "episodePlaybackSpeed")
+        updateNowPlayingInfo()
+    }
+
+    /// Formats a speed value for display (e.g. 1.0 -> "1x", 1.5 -> "1.5x", 0.75 -> "0.75x").
+    static func formattedSpeed(_ speed: Float) -> String {
+        if speed == Float(Int(speed)) {
+            return "\(Int(speed))x"
+        }
+        return "\(String(format: "%g", speed))x"
     }
 
     /// Called by the UI when the user confirms they want to download over cellular.
@@ -314,6 +338,7 @@ final class EpisodePlayer {
         audioPlayer = player
         playbackDelegate = delegate
         player.delegate = delegate
+        player.enableRate = true
         currentEpisode = episode
         duration = player.duration
 
@@ -324,6 +349,7 @@ final class EpisodePlayer {
         }
 
         player.play()
+        player.rate = playbackSpeed
         isPlaying = true
         beginSession()
         configureRemoteCommands()
@@ -505,7 +531,7 @@ final class EpisodePlayer {
         info[MPMediaItemPropertyTitle] = episode.title
         info[MPMediaItemPropertyPlaybackDuration] = duration
         info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentTime
-        info[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? 1.0 : 0.0
+        info[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? Double(playbackSpeed) : 0.0
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
     }
 

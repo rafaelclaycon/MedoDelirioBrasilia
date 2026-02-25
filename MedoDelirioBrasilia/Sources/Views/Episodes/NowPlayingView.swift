@@ -235,36 +235,69 @@ struct NowPlayingView: View {
     // MARK: - Playback Controls
 
     private var playbackControls: some View {
-        HStack(spacing: .spacing(.xxxLarge)) {
-            Button {
-                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                player.skipBackward()
-            } label: {
-                Image(systemName: "gobackward.15")
-                    .font(.title)
-                    .fontWeight(.medium)
-            }
-            .buttonStyle(.plain)
+        ZStack {
+            HStack(spacing: .spacing(.xxxLarge)) {
+                Button {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    player.skipBackward()
+                } label: {
+                    Image(systemName: "gobackward.15")
+                        .font(.title)
+                        .fontWeight(.medium)
+                }
+                .buttonStyle(.plain)
 
-            Button {
-                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                player.togglePlayPause()
-            } label: {
-                Image(systemName: player.isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                    .font(.system(size: 64))
-                    .contentTransition(.symbolEffect(.replace.wholeSymbol))
-            }
-            .buttonStyle(.plain)
+                Button {
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    player.togglePlayPause()
+                } label: {
+                    Image(systemName: player.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                        .font(.system(size: 64))
+                        .contentTransition(.symbolEffect(.replace.wholeSymbol))
+                }
+                .buttonStyle(.plain)
 
-            Button {
-                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                player.skipForward()
-            } label: {
-                Image(systemName: "goforward.30")
-                    .font(.title)
-                    .fontWeight(.medium)
+                Button {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    player.skipForward()
+                } label: {
+                    Image(systemName: "goforward.30")
+                        .font(.title)
+                        .fontWeight(.medium)
+                }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
+
+            HStack {
+                speedButton
+                Spacer()
+            }
+        }
+        .foregroundStyle(.primary)
+    }
+
+    // MARK: - Speed Control
+
+    private var speedButton: some View {
+        Menu {
+            ForEach(EpisodePlayer.availableSpeeds, id: \.self) { speed in
+                Button {
+                    player.setSpeed(speed)
+                } label: {
+                    if speed == player.playbackSpeed {
+                        Label(EpisodePlayer.formattedSpeed(speed), systemImage: "checkmark")
+                    } else {
+                        Text(EpisodePlayer.formattedSpeed(speed))
+                    }
+                }
+            }
+        } label: {
+            Text(EpisodePlayer.formattedSpeed(player.playbackSpeed))
+                .font(.body)
+                .fontWeight(.semibold)
+                .monospacedDigit()
+                .padding(.vertical, .spacing(.xxSmall))
+                .padding(.horizontal, .spacing(.small))
         }
         .foregroundStyle(.primary)
     }
