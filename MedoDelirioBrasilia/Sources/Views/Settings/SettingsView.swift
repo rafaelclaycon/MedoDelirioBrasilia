@@ -16,6 +16,7 @@ struct SettingsView: View {
     @State private var showChangeAppIcon: Bool = !UIDevice.isMac
 
     @State private var showAskForMoneyView: Bool = false
+    @State private var showOnboardingPreview: Bool = false
     @State private var toast: Toast?
     @State private var donors: [Donor]? = nil
 
@@ -47,6 +48,20 @@ struct SettingsView: View {
                         }
                 } footer: {
                     Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
+                }
+
+                if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
+                    Section {
+                        NavigationLink(value: SettingsDestination.devOptions) {
+                            Label {
+                                Text("Dev Options")
+                                    .foregroundStyle(.primary)
+                            } icon: {
+                                Image(systemName: "hammer")
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
                 }
 
                 Section {
@@ -120,10 +135,6 @@ struct SettingsView: View {
                     }
                 }
 
-                if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
-                    FeatureFlagsSettingsView()
-                }
-
                 Section {
                     AuthorCreditsView()
                 }
@@ -136,6 +147,9 @@ struct SettingsView: View {
                 }
             }
             .toast($toast)
+            .sheet(isPresented: $showOnboardingPreview) {
+                OnboardingView()
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     CloseButton {
@@ -155,6 +169,9 @@ struct SettingsView: View {
                 switch destination {
                 case .changeAppIcon:
                     ChangeAppIconView()
+
+                case .devOptions:
+                    DevOptionsView(showOnboardingPreview: $showOnboardingPreview)
 
                 case .diagnostics:
                     DiagnosticsView(
@@ -194,10 +211,31 @@ struct SettingsView: View {
 enum SettingsDestination: Hashable {
 
     case changeAppIcon
+    case devOptions
     case diagnostics
     case help
     case notificationSettings
     case privacySettings
+}
+
+// MARK: - Dev Options
+
+struct DevOptionsView: View {
+
+    @Binding var showOnboardingPreview: Bool
+
+    var body: some View {
+        Form {
+            FeatureFlagsSettingsView()
+
+            Section("Tools") {
+                Button("Reexibir Onboarding") {
+                    showOnboardingPreview = true
+                }
+            }
+        }
+        .navigationTitle("Dev Options")
+    }
 }
 
 // MARK: - Preview

@@ -16,38 +16,68 @@ enum ContentDownloadChoice {
     case downloadAllNow
 }
 
+enum OnboardingStep: Hashable {
+    case explicitContent
+    case notifications
+    case episodeNotifications
+}
+
 struct OnboardingView: View {
 
     // NOTE: Content Download Choice feature is disabled for now.
     // The selectionAction and AskDoFirstContentUpdateView are preserved for future use.
     // var selectionAction: ((ContentDownloadChoice) -> Void)? = nil
 
-    @State private var showAskShowSensitive: Bool = false
+    @State private var path = NavigationPath()
 
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationStack {
-            AskAllowNotificationsView(
-                allowAction: {
-                    Task {
-                        await NotificationAide.registerForRemoteNotifications()
-                        AppPersistentMemory.shared.hasShownNotificationsOnboarding(true)
-                        showAskShowSensitive = true
-                    }
-                },
-                dontAllowAction: {
-                    AppPersistentMemory.shared.hasShownNotificationsOnboarding(true)
-                    showAskShowSensitive = true
+        NavigationStack(path: $path) {
+            WelcomeView {
+                path.append(OnboardingStep.explicitContent)
+            }
+            .navigationDestination(for: OnboardingStep.self) { step in
+                switch step {
+                case .explicitContent:
+                    AskShowExplicitContentView(
+                        showAction: {
+                            UserSettings().setShowExplicitContent(to: true)
+                        },
+                        advanceAction: {
+                            path.append(OnboardingStep.notifications)
+                        }
+                    )
+
+                case .notifications:
+                    AskAllowNotificationsView(
+                        allowAction: {
+                            Task {
+                                await NotificationAide.registerForRemoteNotifications()
+                                AppPersistentMemory.shared.hasShownNotificationsOnboarding(true)
+                                path.append(OnboardingStep.episodeNotifications)
+                            }
+                        },
+                        dontAllowAction: {
+                            AppPersistentMemory.shared.hasShownNotificationsOnboarding(true)
+                            dismiss()
+                        }
+                    )
+
+                case .episodeNotifications:
+                    AskEpisodeNotificationsView(
+                        optInAction: {
+                            Task {
+                                try? await APIClient.shared.subscribeToChannel("new_episodes")
+                                UserSettings().setEnableEpisodeNotifications(to: true)
+                                dismiss()
+                            }
+                        },
+                        skipAction: {
+                            dismiss()
+                        }
+                    )
                 }
-            )
-            .navigationDestination(isPresented: $showAskShowSensitive) {
-                AskShowExplicitContentView(
-                    showAction: {
-                        UserSettings().setShowExplicitContent(to: true)
-                    },
-                    completionAction: { dismiss() }
-                )
             }
         }
     }
@@ -57,6 +87,75 @@ struct OnboardingView: View {
 
 extension OnboardingView {
 
+    struct WelcomeView: View {
+
+        let advanceAction: () -> Void
+
+        @Environment(\.colorScheme) private var colorScheme
+
+        var body: some View {
+            VStack(spacing: 0) {
+                GeometryReader { geo in
+                    ZStack {
+                        LinearGradient(
+                            colors: [Color.darkerGreen, Color.brightGreen],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+
+                        VStack(spacing: 20) {
+                            Image("IconePadrao")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 120, height: 120)
+                                .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+                                .shadow(color: .black.opacity(0.3), radius: 20, y: 10)
+
+                            Text("Medo e Delírio")
+                                .font(.system(size: 36, weight: .bold, design: .default))
+                                .foregroundStyle(.white)
+
+                            Text("em Brasília")
+                                .font(.system(size: 22, weight: .medium, design: .default))
+                                .foregroundStyle(.white.opacity(0.85))
+                        }
+                        .padding(.top, geo.safeAreaInsets.top + 30)
+                    }
+                    .frame(width: geo.size.width, height: geo.size.height * 0.55)
+                    .clipped()
+                }
+                .frame(maxHeight: .infinity)
+                .ignoresSafeArea(edges: .top)
+
+                VStack(spacing: 16) {
+                    Text("Sons, músicas e muito mais do seu podcast favorito.")
+                        .font(.title3)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.primary)
+                        .padding(.horizontal, 30)
+                        .padding(.top, 30)
+
+                    Spacer()
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                VStack(spacing: 12) {
+                    GlassButton(
+                        title: "Vamos lá",
+                        color: .green,
+                        fullWidth: true,
+                        action: advanceAction
+                    )
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 10)
+                .background(Color.systemBackground)
+            }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+
     struct AskAllowNotificationsView: View {
 
         let allowAction: () -> Void
@@ -65,9 +164,6 @@ extension OnboardingView {
         var body: some View {
             ScrollView {
                 VStack(alignment: .center) {
-                    Spacer()
-                        .frame(height: 50)
-
                     NotificationsSymbol()
 
                     Text("Saiba das Novidades Assim que Elas Chegam")
@@ -85,32 +181,26 @@ extension OnboardingView {
             }
             .safeAreaInset(edge: .bottom) {
                 VStack(alignment: .center, spacing: 18) {
-                    Button {
-                        allowAction()
-                    } label: {
-                        Text("Permitir notificações")
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 50)
-                    }
-                    .tint(.accentColor)
-                    .controlSize(.large)
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.capsule)
+                    GlassButton(
+                        title: "Permitir notificações",
+                        color: .green,
+                        fullWidth: true,
+                        action: allowAction
+                    )
 
-                    Button {
-                        dontAllowAction()
-                    } label: {
-                        Text("Ah é, é? F***-se")
-                    }
-                    .foregroundColor(.blue)
+                    GlassButton(
+                        title: "Ah é, é? F***-se",
+                        color: .clear,
+                        fullWidth: true,
+                        action: dontAllowAction
+                    )
 
                     Text("Você pode ativar as notificações mais tarde nas Configurações do app.")
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal)
                         .font(.callout)
                         .foregroundColor(.gray)
                 }
+                .padding(.horizontal)
                 .padding(.bottom, 10)
                 .background(Color.systemBackground)
             }
@@ -120,7 +210,7 @@ extension OnboardingView {
     struct AskShowExplicitContentView: View {
 
         let showAction: () -> Void
-        let completionAction: () -> Void
+        let advanceAction: () -> Void
 
         var body: some View {
             ScrollView {
@@ -170,27 +260,80 @@ extension OnboardingView {
                 .padding(.horizontal, 20)
             }
             .safeAreaInset(edge: .bottom) {
-                VStack(alignment: .center, spacing: 22) {
-                    Button {
-                        showAction()
-                        completionAction()
-                    } label: {
-                        Text("Exibir Conteúdo Sensível")
-                            .bold()
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .tint(.accentColor)
-                    .controlSize(.large)
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.roundedRectangle(radius: 15))
+                VStack(alignment: .center, spacing: 18) {
+                    GlassButton(
+                        title: "Exibir Conteúdo Sensível",
+                        color: .green,
+                        fullWidth: true,
+                        action: {
+                            showAction()
+                            advanceAction()
+                        }
+                    )
 
-                    Button {
-                        completionAction()
-                    } label: {
-                        Text("Não Exibir Conteúdo Sensível")
-                    }
-                    .foregroundColor(.blue)
+                    GlassButton(
+                        title: "Não Exibir Conteúdo Sensível",
+                        color: .clear,
+                        fullWidth: true,
+                        action: advanceAction
+                    )
+
+                    Text("Você pode mudar isso mais tarde nas Configurações do app.")
+                        .multilineTextAlignment(.center)
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 10)
+                .background(Color.systemBackground)
+            }
+        }
+    }
+
+    struct AskEpisodeNotificationsView: View {
+
+        let optInAction: () -> Void
+        let skipAction: () -> Void
+
+        var body: some View {
+            ScrollView {
+                VStack(alignment: .center) {
+                    Spacer()
+                        .frame(height: 50)
+
+                    Image(systemName: "headphones")
+                        .font(.system(size: 74))
+                        .foregroundStyle(Color.accentColor)
+                        .padding(.bottom, 10)
+
+                    Text("Nunca Perca um Episódio")
+                        .font(.largeTitle)
+                        .bold()
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical)
+
+                    Text("Receba uma notificação sempre que um novo episódio do podcast estiver disponível.")
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical)
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                VStack(alignment: .center, spacing: 18) {
+                    GlassButton(
+                        title: "Quero Receber",
+                        color: .green,
+                        fullWidth: true,
+                        action: optInAction
+                    )
+
+                    GlassButton(
+                        title: "Agora não",
+                        color: .clear,
+                        fullWidth: true,
+                        action: skipAction
+                    )
 
                     Text("Você pode mudar isso mais tarde nas Configurações do app.")
                         .multilineTextAlignment(.center)
@@ -367,8 +510,44 @@ extension OnboardingView {
 
 // MARK: - Previews
 
-#Preview {
-    OnboardingView()
+#Preview("Full Onboarding") {
+    struct SheetHost: View {
+        @State private var isPresented = true
+
+        var body: some View {
+            Color.clear
+                .sheet(isPresented: $isPresented) {
+                    OnboardingView()
+                }
+        }
+    }
+
+    return SheetHost()
+}
+
+#Preview("Welcome") {
+    OnboardingView.WelcomeView(advanceAction: {})
+}
+
+#Preview("Explicit Content") {
+    OnboardingView.AskShowExplicitContentView(
+        showAction: {},
+        advanceAction: {}
+    )
+}
+
+#Preview("Notifications") {
+    OnboardingView.AskAllowNotificationsView(
+        allowAction: {},
+        dontAllowAction: {}
+    )
+}
+
+#Preview("Episode Notifications") {
+    OnboardingView.AskEpisodeNotificationsView(
+        optInAction: {},
+        skipAction: {}
+    )
 }
 
 #Preview("First Update - Disabled") {
