@@ -72,8 +72,7 @@ struct OnboardingView: View {
                     AskEpisodeNotificationsView(
                         optInAction: {
                             Task {
-                                try? await APIClient.shared.subscribeToChannel("new_episodes")
-                                UserSettings().setEnableEpisodeNotifications(to: true)
+                                _ = await EpisodeNotificationSubscriber.subscribe()
                                 dismiss()
                             }
                         },

@@ -34,6 +34,10 @@ extension APIClient {
             let refDate: String = Date.dateAsString(addingDays: -30)
             url = URL(string: serverPath + "v3/\(keyword)-share-count-stats-from/\(refDate)")!
 
+        case .last3Months:
+            let refDate: String = Date.dateAsString(addingDays: -90)
+            url = URL(string: serverPath + "v3/\(keyword)-share-count-stats-from/\(refDate)")!
+
         case .year2026:
             url = URL(string: serverPath + "v3/\(keyword)-share-count-stats-from-to/2026-01-01/2026-12-31")!
 

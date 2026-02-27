@@ -4,6 +4,7 @@ struct NotificationsSettingsView: View {
 
     @State private var enableNotifications = false
     @State private var episodeNotifications = false
+    @State private var toast: Toast?
 
     var body: some View {
         Form {
@@ -32,16 +33,19 @@ struct NotificationsSettingsView: View {
 
                     Toggle("Novos Episódios", isOn: $episodeNotifications)
                         .onChange(of: episodeNotifications) {
-                            UserSettings().setEnableEpisodeNotifications(to: episodeNotifications)
                             Task {
-                                do {
-                                    if episodeNotifications {
-                                        try await APIClient.shared.subscribeToChannel("new_episodes")
-                                    } else {
-                                        try await APIClient.shared.unsubscribeFromChannel("new_episodes")
-                                    }
-                                } catch {
-                                    print("Channel subscription update failed: \(error.localizedDescription)")
+                                let result = if episodeNotifications {
+                                    await EpisodeNotificationSubscriber.subscribe()
+                                } else {
+                                    await EpisodeNotificationSubscriber.unsubscribe()
+                                }
+
+                                if case .failure = result {
+                                    episodeNotifications = !episodeNotifications
+                                    toast = Toast(
+                                        message: "Não foi possível atualizar a inscrição. Tente novamente.",
+                                        type: .warning
+                                    )
                                 }
                             }
                         }
@@ -63,6 +67,7 @@ struct NotificationsSettingsView: View {
         }
         .navigationTitle("Notificações")
         .navigationBarTitleDisplayMode(.inline)
+        .topToast($toast)
         .onAppear {
             enableNotifications = UserSettings().getUserAllowedNotifications()
             episodeNotifications = UserSettings().getEnableEpisodeNotifications()

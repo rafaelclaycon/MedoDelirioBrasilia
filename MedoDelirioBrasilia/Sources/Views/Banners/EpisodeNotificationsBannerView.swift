@@ -9,6 +9,7 @@ struct EpisodeNotificationsBannerView: View {
     @Environment(\.openURL) private var openURL
 
     @State private var showDeniedAlert = false
+    @State private var toast: Toast?
 
     private func optIn() async {
         let settings = await UNUserNotificationCenter.current().notificationSettings()
@@ -20,9 +21,17 @@ struct EpisodeNotificationsBannerView: View {
 
         await NotificationAide.registerForRemoteNotifications()
         guard UserSettings().getUserAllowedNotifications() else { return }
-        try? await APIClient.shared.subscribeToChannel("new_episodes")
-        UserSettings().setEnableEpisodeNotifications(to: true)
-        isBeingShown = false
+
+        let result = await EpisodeNotificationSubscriber.subscribe()
+        switch result {
+        case .success:
+            isBeingShown = false
+        case .failure:
+            toast = Toast(
+                message: "Não foi possível ativar as notificações de episódios. Tente novamente.",
+                type: .warning
+            )
+        }
     }
 
     var body: some View {
@@ -102,6 +111,7 @@ struct EpisodeNotificationsBannerView: View {
         } message: {
             Text("As notificações estão desativadas para este app. Ative-as nos Ajustes do sistema para receber avisos de novos episódios.")
         }
+        .topToast($toast)
     }
 }
 
