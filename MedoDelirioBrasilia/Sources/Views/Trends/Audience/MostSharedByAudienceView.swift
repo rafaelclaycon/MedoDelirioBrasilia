@@ -145,6 +145,8 @@ extension MostSharedByAudienceView {
                 Shared.Trends.lastWeek
             case .lastMonth:
                 Shared.Trends.lastMonth
+            case .last3Months:
+                Shared.Trends.last3Months
             case .year2026:
                 Shared.Trends.year2026
             case .year2025:
@@ -233,6 +235,10 @@ extension MostSharedByAudienceView {
                 menuItem(Shared.Trends.last3Days, interval: .last3Days)
                 menuItem(Shared.Trends.lastWeek, interval: .lastWeek)
                 menuItem(Shared.Trends.lastMonth, interval: .lastMonth)
+
+                if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
+                    menuItem(Shared.Trends.last3Months, interval: .last3Months)
+                }
 
                 Menu("Por Ano") {
                     menuItem(Shared.Trends.year2026, interval: .year2026)

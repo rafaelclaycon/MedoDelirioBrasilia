@@ -191,6 +191,9 @@ extension MostSharedByAudienceView.ViewModel {
         case .lastMonth:
             activityType = Shared.ActivityTypes.viewLastMonthTopChart
             activityName = "Ver sons mais compartilhados no último mês"
+        case .last3Months:
+            activityType = Shared.ActivityTypes.viewLastMonthTopChart
+            activityName = ""
         case .year2026:
             activityType = Shared.ActivityTypes.view2026TopChart
             activityName = "Ver sons mais compartilhados de 2026"

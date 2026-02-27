@@ -181,6 +181,7 @@ struct Shared {
         static let last3Days = "Últimos 3 dias"
         static let lastWeek = "Última semana"
         static let lastMonth = "Último mês"
+        static let last3Months = "Últimos 3 meses"
         static let year2026 = "2026"
         static let year2025 = "2025"
         static let year2024 = "2024"

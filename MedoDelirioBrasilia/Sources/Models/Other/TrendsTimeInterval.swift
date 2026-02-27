@@ -19,6 +19,7 @@ enum TrendsTimeInterval: Int {
     case year2023
     case year2022
     case allTime
+    case last3Months
 }
 
 enum TrendsContentType {
