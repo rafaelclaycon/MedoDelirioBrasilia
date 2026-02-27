@@ -55,7 +55,11 @@ struct OnboardingView: View {
                             Task {
                                 await NotificationAide.registerForRemoteNotifications()
                                 AppPersistentMemory.shared.hasShownNotificationsOnboarding(true)
-                                path.append(OnboardingStep.episodeNotifications)
+                                if FeatureFlag.isEnabled(.episodeNotifications) {
+                                    path.append(OnboardingStep.episodeNotifications)
+                                } else {
+                                    dismiss()
+                                }
                             }
                         },
                         dontAllowAction: {

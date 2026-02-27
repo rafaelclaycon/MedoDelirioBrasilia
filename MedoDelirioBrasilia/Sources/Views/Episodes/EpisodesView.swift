@@ -20,6 +20,7 @@ struct EpisodesView: View {
     @State private var activePlaybackStates: Set<EpisodePlaybackStateFilter> = EpisodePlaybackStateFilter.allSet
     @State private var sortAscending = false
     @State private var showEpisodeNotificationsBanner = true
+    @State private var showNotificationSettings = false
 
     // MARK: - View Body
 
@@ -98,7 +99,23 @@ struct EpisodesView: View {
             }
         }
         .navigationTitle("Episódios")
+        .sheet(isPresented: $showNotificationSettings) {
+            NavigationStack {
+                NotificationsSettingsView()
+            }
+        }
         .toolbar {
+            if FeatureFlag.isEnabled(.episodeNotifications) {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showNotificationSettings = true
+                    } label: {
+                        Image(systemName: "bell.badge")
+                    }
+                    .accessibilityLabel("Configurações de notificações")
+                }
+            }
+
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     ForEach(EpisodePlaybackStateFilter.allCases, id: \.self) { state in
