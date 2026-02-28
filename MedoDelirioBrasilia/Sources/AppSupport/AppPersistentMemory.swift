@@ -241,6 +241,13 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    func hasDismissedDunBanner() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasDismissedDunBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     func getHasDismissedEpisodeNotificationsBanner() -> Bool {
         guard let value = userDefaults.object(forKey: "hasDismissedEpisodeNotificationsBanner") else {
             return false
@@ -421,6 +428,10 @@ extension AppPersistentMemory {
 
     func setHasSeenDunTestFlightBanner(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasSeenDunTestFlightBanner")
+    }
+
+    func setHasDismissedDunBanner(to newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasDismissedDunBanner")
     }
 
     func setHasDismissedEpisodeNotificationsBanner(to newValue: Bool) {

@@ -494,9 +494,16 @@ extension MainContentView {
         @Binding var toast: Toast?
 
         @State private var data: DynamicBannerData?
+        @State private var showDunBanner = !AppPersistentMemory.shared.hasDismissedDunBanner()
 
         var body: some View {
             VStack {
+                if showDunBanner {
+                    DunBannerView(isBeingShown: $showDunBanner)
+                        .padding(.top, .spacing(.xxxSmall))
+                        .padding(.bottom, .spacing(.xSmall))
+                }
+
                 if let data {
                     DynamicBanner(
                         bannerData: data,
