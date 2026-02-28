@@ -5,6 +5,7 @@ struct NotificationsSettingsView: View {
     @State private var enableNotifications = false
     @State private var episodeNotifications = false
     @State private var toast: Toast?
+    @State private var subscriptionStatus: String?
 
     var body: some View {
         Form {
@@ -40,8 +41,14 @@ struct NotificationsSettingsView: View {
                                     await EpisodeNotificationSubscriber.unsubscribe()
                                 }
 
-                                if case .failure = result {
+                                switch result {
+                                case .success:
+                                    subscriptionStatus = episodeNotifications
+                                        ? "Inscrito com sucesso."
+                                        : "Inscrição removida."
+                                case .failure(let error):
                                     episodeNotifications = !episodeNotifications
+                                    subscriptionStatus = "Erro: \(error.localizedDescription)"
                                     toast = Toast(
                                         message: "Não foi possível atualizar a inscrição. Tente novamente.",
                                         type: .warning
@@ -52,7 +59,16 @@ struct NotificationsSettingsView: View {
                 } header: {
                     Text("Escolha o que quer receber")
                 } footer: {
-                    Text("Receba uma notificação quando um novo episódio do podcast estiver disponível.")
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Receba uma notificação quando um novo episódio do podcast estiver disponível.")
+
+                        if let subscriptionStatus {
+                            Text(subscriptionStatus)
+                                .foregroundStyle(
+                                    subscriptionStatus.hasPrefix("Erro") ? .red : .secondary
+                                )
+                        }
+                    }
                 }
             }
 

@@ -44,6 +44,8 @@ struct DiagnosticsView: View {
             
             ShareLogsView()
 
+            PushTokenCacheView()
+
             ChannelLogsView()
         }
         .navigationTitle("Diagnóstico")
@@ -324,6 +326,41 @@ extension DiagnosticsView {
                 }
             } catch {
                 return ""
+            }
+        }
+    }
+
+    struct PushTokenCacheView: View {
+
+        @State private var hasToken = AppPersistentMemory.shared.getLastSentPushToken() != nil
+        @State private var showClearedAlert = false
+
+        var body: some View {
+            Section {
+                HStack {
+                    Text("Token em cache")
+                    Spacer()
+                    Text(hasToken ? "Sim" : "Não")
+                        .foregroundStyle(.secondary)
+                }
+
+                Button("Limpar cache do push token", role: .destructive) {
+                    AppPersistentMemory.shared.clearLastSentPushToken()
+                    hasToken = false
+                    showClearedAlert = true
+                }
+                .disabled(!hasToken)
+                .alert(isPresented: $showClearedAlert) {
+                    Alert(
+                        title: Text("Token removido"),
+                        message: Text("O push token será reenviado ao servidor na próxima abertura do app."),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
+            } header: {
+                Text("Push token")
+            } footer: {
+                Text("Limpar o cache força o app a reenviar o push token ao servidor na próxima vez que o app abrir. Útil se você trocou de servidor.")
             }
         }
     }

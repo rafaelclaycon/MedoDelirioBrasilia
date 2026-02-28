@@ -333,6 +333,10 @@ extension AppPersistentMemory {
     func setLastSentPushToken(to token: String) {
         userDefaults.set(token, forKey: "lastSentPushToken")
     }
+
+    func clearLastSentPushToken() {
+        userDefaults.removeObject(forKey: "lastSentPushToken")
+    }
     
     func hasShownNotificationsOnboarding(_ newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasShownNotificationsOnboarding")
