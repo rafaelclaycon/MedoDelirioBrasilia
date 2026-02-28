@@ -31,6 +31,7 @@ struct MainContentView: View {
     @State private var isInSearchMode: Bool = false
     @State private var reactionsState: LoadingState<[Reaction]> = .loading
     @State private var showSearchFeedbackAlert: Bool = false
+    @State private var searchPlayable: PlayableContentState?
 
     // Folders
     @State private var deleteFolderAide = DeleteFolderViewAide()
@@ -68,28 +69,24 @@ struct MainContentView: View {
 
     @ViewBuilder
     private var searchSuggestionsContent: some View {
-        SearchSuggestionsView(
-            recent: searchService.recentSearches(),
-            playable: PlayableContentState(
-                contentRepository: contentRepository,
-                contentFileManager: ContentFileManager(),
-                analyticsService: analyticsService,
-                screen: .searchResultsView,
-                toast: $searchToast
-            ),
-            trendsService: TrendsService.shared,
-            onRecentSelectedAction: { text in
-                searchText = text
-            },
-            onReactionSelectedAction: { reaction in
-                push(GeneralNavigationDestination.reactionDetail(reaction))
-            },
-            containerWidth: UIScreen.main.bounds.width - 32,
-            toast: $searchToast,
-            onClearSearchesAction: {
-                searchService.clearRecentSearches()
-            }
-        )
+        if let searchPlayable {
+            SearchSuggestionsView(
+                recent: searchService.recentSearches(),
+                playable: searchPlayable,
+                trendsService: TrendsService.shared,
+                onRecentSelectedAction: { text in
+                    searchText = text
+                },
+                onReactionSelectedAction: { reaction in
+                    push(GeneralNavigationDestination.reactionDetail(reaction))
+                },
+                containerWidth: UIScreen.main.bounds.width - 32,
+                toast: $searchToast,
+                onClearSearchesAction: {
+                    searchService.clearRecentSearches()
+                }
+            )
+        }
     }
 
     // MARK: - Shared Environment
@@ -176,8 +173,7 @@ struct MainContentView: View {
                                     searchToast: $searchToast,
                                     isInSearchMode: $isInSearchMode,
                                     searchSuggestionsContent: searchSuggestionsContent,
-                                    contentRepository: contentRepository,
-                                    analyticsService: analyticsService,
+                                    playable: searchPlayable,
                                     containerWidth: geometry.size.width,
                                     retryLoadReactionsAction: loadReactions,
                                     gridContent: {
@@ -245,8 +241,7 @@ struct MainContentView: View {
                                 searchToast: $searchToast,
                                 isInSearchMode: $isInSearchMode,
                                 searchSuggestionsContent: searchSuggestionsContent,
-                                contentRepository: contentRepository,
-                                analyticsService: analyticsService,
+                                playable: searchPlayable,
                                 containerWidth: geometry.size.width,
                                 retryLoadReactionsAction: loadReactions,
                                 gridContent: {
@@ -268,8 +263,7 @@ struct MainContentView: View {
                                 searchToast: $searchToast,
                                 isInSearchMode: $isInSearchMode,
                                 searchSuggestionsContent: searchSuggestionsContent,
-                                contentRepository: contentRepository,
-                                analyticsService: analyticsService,
+                                playable: searchPlayable,
                                 containerWidth: geometry.size.width,
                                 retryLoadReactionsAction: loadReactions,
                                 gridContent: {
@@ -390,6 +384,15 @@ struct MainContentView: View {
                         highlight(contentId: trendsHelper.contentIdToNavigateTo)
                     }
                     .task {
+                        if searchPlayable == nil {
+                            searchPlayable = PlayableContentState(
+                                contentRepository: contentRepository,
+                                contentFileManager: ContentFileManager(),
+                                analyticsService: analyticsService,
+                                screen: .searchResultsView,
+                                toast: $searchToast
+                            )
+                        }
                         Task {
                             await viewModel.onViewDidAppear()
                         }
@@ -533,8 +536,7 @@ extension MainContentView {
         @Binding var searchToast: Toast?
         @Binding var isInSearchMode: Bool
         let searchSuggestionsContent: SuggestionsContent
-        let contentRepository: ContentRepositoryProtocol
-        let analyticsService: AnalyticsServiceProtocol
+        let playable: PlayableContentState?
         let containerWidth: CGFloat
         var retryLoadReactionsAction: (() async -> Void)? = nil
         @ViewBuilder let gridContent: () -> GridContent
@@ -548,28 +550,21 @@ extension MainContentView {
         var body: some View {
             Group {
                 if shouldShowSearchUI && searchText.isEmpty {
-                    // Show suggestions when search is active but text is empty
                     searchSuggestionsContent
                 } else if shouldShowSearchUI && !searchText.isEmpty {
-                    // Show search results
-                    SearchResultsView(
-                        playable: PlayableContentState(
-                            contentRepository: contentRepository,
-                            contentFileManager: ContentFileManager(),
-                            analyticsService: analyticsService,
-                            screen: .searchResultsView,
-                            toast: $searchToast
-                        ),
-                        searchString: searchText,
-                        results: searchResults,
-                        reactionsState: reactionsState,
-                        containerWidth: containerWidth,
-                        toast: $searchToast,
-                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-                        retryLoadReactionsAction: retryLoadReactionsAction
-                    )
+                    if let playable {
+                        SearchResultsView(
+                            playable: playable,
+                            searchString: searchText,
+                            results: searchResults,
+                            reactionsState: reactionsState,
+                            containerWidth: containerWidth,
+                            toast: $searchToast,
+                            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                            retryLoadReactionsAction: retryLoadReactionsAction
+                        )
+                    }
                 } else {
-                    // Show regular content grid
                     gridContent()
                 }
             }

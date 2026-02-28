@@ -132,8 +132,20 @@ struct SearchResultsView: View {
                                     selectedItems: Set<String>(),
                                     currentContentListMode: .constant(.regular)
                                 )
+                                .contentShape(
+                                    .contextMenuPreview,
+                                    RoundedRectangle(cornerRadius: .spacing(.large), style: .continuous)
+                                )
                                 .onTapGesture {
                                     onContentSelected(item, loadedContent: songsMatchingTitle)
+                                }
+                                .contextMenu {
+                                    contextMenuOptionsView(
+                                        content: item,
+                                        menuOptions: menuOptions,
+                                        favorites: playable.favoritesKeeper,
+                                        loadedContent: songsMatchingTitle
+                                    )
                                 }
                             }
                         )
