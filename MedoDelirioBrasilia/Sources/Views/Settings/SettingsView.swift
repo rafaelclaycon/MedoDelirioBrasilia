@@ -114,6 +114,42 @@ struct SettingsView: View {
                     HelpTheAppView(donors: donors, toast: $toast, apiClient: APIClient.shared)
                 }
 
+//                Section("Outros apps do mesmo desenvolvedor") {
+//                    Button {
+//                        OpenUtility.open(link: "https://apps.apple.com/br/app/d%C3%B9n-private-link-storage/id6627333601")
+//                    } label: {
+//                        HStack(spacing: .spacing(.small)) {
+//                            Image("DunAppIcon")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 40, height: 40)
+//                                .clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous))
+//
+//                            VStack(alignment: .leading, spacing: 2) {
+//                                Text("Dùn — Guarde Seus Links")
+//                                    .font(.subheadline.weight(.semibold))
+//                                    .foregroundStyle(.primary)
+//
+//                                Text("Seus links, só seus.")
+//                                    .font(.caption)
+//                                    .foregroundStyle(.secondary)
+//                            }
+//
+//                            Spacer()
+//
+//                            Text("Grátis")
+//                                .font(.caption.weight(.medium))
+//                                .foregroundStyle(.blue)
+//                                .padding(.horizontal, .spacing(.xSmall))
+//                                .padding(.vertical, .spacing(.xxxSmall))
+//                                .background {
+//                                    Capsule()
+//                                        .fill(Color.blue.opacity(0.12))
+//                                }
+//                        }
+//                    }
+//                }
+
                 Section("Sobre") {
                     Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
 
